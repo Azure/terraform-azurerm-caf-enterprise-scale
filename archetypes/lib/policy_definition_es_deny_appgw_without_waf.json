@@ -1,0 +1,28 @@
+{
+  "name": "ES-Deny-AppGW-Without-WAF",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Deny-AppGW-Without-WAF",
+    "displayName": "ES-Deny-AppGW-Without-WAF",
+    "mode": "All",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/applicationGateways"
+          },
+          {
+            "field": "Microsoft.Network/applicationGateways/sku.name",
+            "notequals": "WAF_v2"
+          }
+        ]
+      },
+      "then": {
+        "effect": "Deny"
+      }
+    }
+  }
+}
