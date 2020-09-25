@@ -22,7 +22,7 @@ resource "azurerm_policy_set_definition" "enterprise_scale" {
     ]
     content {
       policy_definition_id = policy_definition_reference.value["policyDefinitionId"]
-      parameter_values     = try(length(policy_definition_reference.value["parameters"]) > 0, false) ? jsonencode(policy_definition_reference.value["parameters"]) : local.empty_string
+      parameter_values     = try(length(policy_definition_reference.value["parameters"]) > 0, false) ? jsonencode(policy_definition_reference.value["parameters"]) : jsonencode(local.empty_map)
       reference_id         = try(length(policy_definition_reference.value["policyDefinitionReferenceId"]) > 0, false) ? policy_definition_reference.value["policyDefinitionReferenceId"] : policy_definition_reference.value["policyDefinitionId"]
     }
   }
