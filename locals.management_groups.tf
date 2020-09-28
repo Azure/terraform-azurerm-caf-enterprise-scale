@@ -87,7 +87,7 @@ locals {
     "${local.es_root_id}-demo-sap"       = local.empty_list
   }
   es_subscription_ids_overrides_map = {
-    for key, value in local.es_subscription_ids_map :
+    for key, value in local.es_subscription_ids_overrides :
     key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
   }
   es_subscription_ids_map = merge(

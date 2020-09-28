@@ -49,7 +49,7 @@ variable "es_archetype_config_overrides" {
   default     = {}
 }
 
-variable "es_subscription_ids_map" {
+variable "es_subscription_ids_overrides" {
   type        = map(list(string))
   description = "OPTIONAL: If specified, will be used to assign subscription_ids to the default Enterprise-scale Management Groups"
   default     = {}
