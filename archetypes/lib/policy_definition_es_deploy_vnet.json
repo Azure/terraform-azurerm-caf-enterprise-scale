@@ -61,39 +61,7 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "ipam": {
-                    "defaultValue": [
-                      {
-                        "name": "bu1-weu-msx3-vNet1",
-                        "location": "westeurope",
-                        "virtualNetworks": {
-                          "properties": {
-                            "addressSpace": {
-                              "addressPrefixes": [
-                                "10.51.217.0/24"
-                              ]
-                            }
-                          }
-                        },
-                        "networkSecurityGroups": {
-                          "properties": {
-                            "securityRules": []
-                          }
-                        },
-                        "routeTables": {
-                          "properties": {
-                            "routes": []
-                          }
-                        },
-                        "hubVirtualNetworkConnection": {
-                          "vWanVhubResourceId": "/subscriptions/99c2838f-a548-4884-a6e2-38c1f8fb4c0b/resourceGroups/contoso-global-vwan/providers/Microsoft.Network/virtualHubs/contoso-vhub-weu",
-                          "properties": {
-                            "allowHubToRemoteVnetTransit": true,
-                            "allowRemoteVnetToUseHubVnetGateways": false,
-                            "enableInternetSecurity": true
-                          }
-                        }
-                      }
-                    ],
+                    "defaultValue": [],
                     "type": "Array"
                   }
                 },
