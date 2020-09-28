@@ -1,0 +1,30 @@
+{
+    "name": "0f98b2cb-e7ad-4922-baa8-f891a0eab09e",
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "apiVersion": "2018-01-01-preview",
+    "properties": {
+        "roleName": "ES Network Subnet Contributor",
+        "description": "Enterprise-scale custom Role Definition. Grants full access to manage Virtual Network subnets, but no other network resources.",
+        "type": "customRole",
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Support/*",
+                    "Microsoft.Network/*/read",
+                    "Microsoft.Network/virtualNetworks/subnets/*"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ],
+        "assignableScopes": [
+            "/"
+        ]
+    }
+}

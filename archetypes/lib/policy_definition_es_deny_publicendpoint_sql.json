@@ -1,0 +1,28 @@
+{
+  "name": "ES-Deny-PublicEndpoint-Sql",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "This policy restrict creation of Sql servers with exposed public endpoints",
+    "displayName": "ES-Deny-PublicEndpoint-Sql",
+    "mode": "All",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Sql/servers"
+          },
+          {
+            "field": "Microsoft.Sql/servers/publicNetworkAccess",
+            "notequals": "Disabled"
+          }
+        ]
+      },
+      "then": {
+        "effect": "Deny"
+      }
+    }
+  }
+}

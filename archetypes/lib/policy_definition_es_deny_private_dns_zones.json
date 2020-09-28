@@ -1,0 +1,20 @@
+{
+  "name": "ES-Deny-Private-DNS-Zones",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Denies creation of Private DNS Zones at the assigned scope.",
+    "displayName": "ES-Deny-Private-DNS-Zones",
+    "mode": "All",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.Network/privateDnsZones"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

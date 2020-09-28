@@ -1,0 +1,28 @@
+{
+  "name": "ES-Deny-PublicEndpoint-MySQL",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "This policy restrict creation of MySql DB accounts with exposed public endpoints",
+    "displayName": "ES-Deny-PublicEndpoint-MySQL",
+    "mode": "All",
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.DBforMySQL/servers"
+          },
+          {
+            "field": "Microsoft.DBforMySQL/servers/publicNetworkAccess",
+            "notequals": "Disabled"
+          }
+        ]
+      },
+      "then": {
+        "effect": "Deny"
+      }
+    }
+  }
+}
