@@ -1,15 +1,27 @@
+# The following block of locals are used to avoid using
+# empty object types in the code
 locals {
   empty_list   = []
   empty_map    = {}
   empty_string = ""
 }
 
+# The following locals are used to convert basic input
+# variables to locals before use elsewhere in the module
 locals {
-  root_id                   = var.root_id
-  scope_id                  = var.scope_id
+  root_id                = var.root_id
+  scope_id               = var.scope_id
+  archetype_id           = var.archetype_id
+  archetype_parameters   = var.archetype_parameters
+  archetype_library_path = var.archetype_library_path
+  default_location       = var.default_location
+}
+
+# The following locals are used to define base Azure
+# provider paths and resource types
+locals {
   scope_is_management_group = length(regexall("^/providers/Microsoft.Management/managementGroups/.*", local.scope_id)) > 0
   scope_is_subscription     = length(regexall("^/subscriptions/.*", local.scope_id)) > 0
-  default_location          = var.default_location
   resource_types = {
     policy_assignment     = "Microsoft.Authorization/policyAssignments"
     policy_definition     = "Microsoft.Authorization/policyDefinitions"

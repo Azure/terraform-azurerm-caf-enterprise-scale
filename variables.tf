@@ -93,3 +93,10 @@ variable "es_archetype_library_path" {
   # }
 }
 
+variable "es_default_location" {
+  type        = string
+  description = "OPTIONAL: If specified, will use set the default location used for resource deployments where needed."
+  default     = "eastus"
+
+  # Need to add validation covering all Azure locations
+}

@@ -93,8 +93,8 @@ locals {
       # variable. These come from the archetype_config object in
       # the enterprise_scale module and are merged with the Policy
       # Assignment template values to provide overrides.
-      parameters = contains(keys(var.archetype_parameters), policy_assignment) ? {
-        for parameter_key, parameter_value in var.archetype_parameters[policy_assignment] :
+      parameters = contains(keys(local.archetype_parameters), policy_assignment) ? {
+        for parameter_key, parameter_value in local.archetype_parameters[policy_assignment] :
         parameter_key => {
           value = parameter_value
         }

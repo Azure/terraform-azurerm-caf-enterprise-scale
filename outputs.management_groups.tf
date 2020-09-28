@@ -6,4 +6,5 @@ output "azurerm_management_group" {
   value = {
     enterprise_scale = local.es_management_group_output
   }
+  description = "Returns the configuration data for all Management Groups created by this module."
 }

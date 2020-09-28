@@ -6,4 +6,5 @@ output "azurerm_role_assignment" {
     # enterprise_scale = azurerm_role_assignment.enterprise_scale
     enterprise_scale = {}
   }
+  description = "Returns the configuration data for all Role Assignments created by this module."
 }
