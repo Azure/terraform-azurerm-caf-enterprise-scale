@@ -57,13 +57,13 @@ locals {
       parameters   = local.empty_map
     }
   }
-  es_archetype_config_overrides = {
+  es_archetype_config_overrides_map = {
     for key, value in local.es_archetype_config_overrides :
     key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
   }
   es_archetype_config_map = merge(
     local.es_archetype_config_defaults,
-    local.es_archetype_config_overrides,
+    local.es_archetype_config_overrides_map,
   )
 }
 
@@ -86,13 +86,13 @@ locals {
     "${local.es_root_id}-demo-online"    = local.empty_list
     "${local.es_root_id}-demo-sap"       = local.empty_list
   }
-  es_subscription_ids_overrides = {
+  es_subscription_ids_overrides_map = {
     for key, value in local.es_subscription_ids_map :
     key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
   }
   es_subscription_ids_map = merge(
     local.es_subscription_ids_defaults,
-    local.es_subscription_ids_overrides,
+    local.es_subscription_ids_overrides_map,
   )
 }
 
