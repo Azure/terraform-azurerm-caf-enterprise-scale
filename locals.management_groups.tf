@@ -5,14 +5,6 @@
 # specified via the es_custom_management_groups variable.
 ########################################################
 
-# The following locals are used to convert basic input
-# variables to locals before use elsewhere in the module
-locals {
-  es_root_id        = var.es_root_id
-  es_root_name      = var.es_root_name
-  es_root_parent_id = var.es_root_parent_id
-}
-
 # The following locals are used to determine which archetype
 # pattern to apply to the core Enterprise-scale Management
 # Groups. To ensure a valid value is always provided, we
@@ -65,13 +57,13 @@ locals {
       parameters   = local.empty_map
     }
   }
-  es_archetype_config_overrides = {
-    for key, value in var.es_archetype_config_overrides :
+  es_archetype_config_overrides_map = {
+    for key, value in local.es_archetype_config_overrides :
     key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
   }
   es_archetype_config_map = merge(
     local.es_archetype_config_defaults,
-    local.es_archetype_config_overrides,
+    local.es_archetype_config_overrides_map,
   )
 }
 
@@ -94,13 +86,13 @@ locals {
     "${local.es_root_id}-demo-online"    = local.empty_list
     "${local.es_root_id}-demo-sap"       = local.empty_list
   }
-  es_subscription_ids_overrides = {
-    for key, value in var.es_subscription_ids_map :
+  es_subscription_ids_overrides_map = {
+    for key, value in local.es_subscription_ids_overrides :
     key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
   }
   es_subscription_ids_map = merge(
     local.es_subscription_ids_defaults,
-    local.es_subscription_ids_overrides,
+    local.es_subscription_ids_overrides_map,
   )
 }
 
@@ -183,15 +175,15 @@ locals {
   }
   # Logic to determine whether to include the core Enterprise-scale
   # Management Groups as part of the deployment
-  es_core_landing_zones_to_include = var.es_deploy_core_landing_zones ? local.es_core_management_groups : local.empty_map
+  es_core_landing_zones_to_include = local.es_deploy_core_landing_zones ? local.es_core_management_groups : local.empty_map
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
-  es_demo_landing_zones_to_include = var.es_deploy_demo_landing_zones ? local.es_demo_landing_zones : local.empty_map
+  es_demo_landing_zones_to_include = local.es_deploy_demo_landing_zones ? local.es_demo_landing_zones : local.empty_map
   # Local map containing all Management Groups to deploy
   es_management_groups_merge = merge(
     local.es_core_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
-    var.es_custom_management_groups,
+    local.es_custom_management_groups,
   )
   # Logic to auto-generate values for Management Groups if needed
   # Allows the user to specify the Management Group ID when working with existing

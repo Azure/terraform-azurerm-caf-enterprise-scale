@@ -7,8 +7,8 @@ locals {
 
 # Load the custom archetype definitions from the custom library path if specified
 locals {
-  custom_library_path_specified     = try(length(var.archetype_library_path) > 0, false)
-  custom_library_path               = local.custom_library_path_specified ? replace(var.archetype_library_path, "//$/", "") : null
+  custom_library_path_specified     = try(length(local.archetype_library_path) > 0, false)
+  custom_library_path               = local.custom_library_path_specified ? replace(local.archetype_library_path, "//$/", "") : null
   custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**archetype_definition_*.json")) : []
   custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**archetype_definition_*.{yml,yaml}")) : []
 }
@@ -71,7 +71,7 @@ locals {
     local.custom_archetype_definitions_map_from_json,
     local.custom_archetype_definitions_map_from_yaml,
   )
-  archetype_definition = local.archetype_definitions[var.archetype_id]
+  archetype_definition = local.archetype_definitions[local.archetype_id]
 }
 
 # Generate the configuration output object for the specified archetype

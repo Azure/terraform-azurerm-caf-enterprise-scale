@@ -49,7 +49,7 @@ variable "es_archetype_config_overrides" {
   default     = {}
 }
 
-variable "es_subscription_ids_map" {
+variable "es_subscription_ids_overrides" {
   type        = map(list(string))
   description = "OPTIONAL: If specified, will be used to assign subscription_ids to the default Enterprise-scale Management Groups"
   default     = {}
@@ -93,3 +93,10 @@ variable "es_archetype_library_path" {
   # }
 }
 
+variable "es_default_location" {
+  type        = string
+  description = "OPTIONAL: If specified, will use set the default location used for resource deployments where needed."
+  default     = "eastus"
+
+  # Need to add validation covering all Azure locations
+}
