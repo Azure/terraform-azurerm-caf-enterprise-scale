@@ -13,9 +13,10 @@ resource "azurerm_management_group" "level_1" {
     if value.parent_management_group_id == null || value.parent_management_group_id == local.es_root_parent_id
   }
 
-  name             = each.value.id
-  display_name     = each.value.display_name
-  subscription_ids = each.value.subscription_ids
+  name                       = each.value.id
+  display_name               = each.value.display_name
+  parent_management_group_id = try(length(each.value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${each.value.parent_management_group_id}" : local.empty_string
+  subscription_ids           = each.value.subscription_ids
 
 }
 
