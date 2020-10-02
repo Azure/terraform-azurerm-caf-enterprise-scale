@@ -6,7 +6,7 @@
 # groups of Resources within a Subscription.
 module "management_group_archetypes" {
   for_each = {
-    for key, value in local.es_management_group_map :
+    for key, value in local.es_landing_zones_map :
     key => value
   }
   source = "./modules/terraform-azurerm-enterprise-scale-archetypes"

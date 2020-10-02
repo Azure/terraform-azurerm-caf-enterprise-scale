@@ -102,7 +102,7 @@ locals {
 # hierarchy.
 locals {
   # Mandatory core Enterprise-scale Management Groups
-  es_core_management_groups = {
+  es_core_landing_zones = {
     "${local.es_root_id}" = {
       display_name               = local.es_root_name
       parent_management_group_id = local.es_root_parent_id
@@ -175,12 +175,12 @@ locals {
   }
   # Logic to determine whether to include the core Enterprise-scale
   # Management Groups as part of the deployment
-  es_core_landing_zones_to_include = local.es_deploy_core_landing_zones ? local.es_core_management_groups : local.empty_map
+  es_core_landing_zones_to_include = local.es_deploy_core_landing_zones ? local.es_core_landing_zones : local.empty_map
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
   es_demo_landing_zones_to_include = local.es_deploy_demo_landing_zones ? local.es_demo_landing_zones : local.empty_map
   # Local map containing all Management Groups to deploy
-  es_management_groups_merge = merge(
+  es_landing_zones_merge = merge(
     local.es_core_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
     local.es_custom_landing_zones,
@@ -188,8 +188,8 @@ locals {
   # Logic to auto-generate values for Management Groups if needed
   # Allows the user to specify the Management Group ID when working with existing
   # Management Groups, or uses standard naming pattern if set to null
-  es_management_group_map = {
-    for key, value in local.es_management_groups_merge :
+  es_landing_zones_map = {
+    for key, value in local.es_landing_zones_merge :
     "${local.provider_path.management_groups}${key}" => {
       id                         = key
       display_name               = value.display_name
