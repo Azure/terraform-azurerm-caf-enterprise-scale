@@ -93,7 +93,7 @@ module "enterprise_scale" {
   # Set a path for the custom archetype library path
   es_archetype_library_path    = "${path.root}/lib"
 
-  es_custom_management_groups = {
+  es_custom_landing_zones = {
     #------------------------------------------------------#
     # This variable is used to add new Landing Zones using
     # the Enterprise-scale deployment model.

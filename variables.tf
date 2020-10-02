@@ -61,7 +61,7 @@ variable "es_deploy_demo_landing_zones" {
   default     = false
 }
 
-variable "es_custom_management_groups" {
+variable "es_custom_landing_zones" {
   type = map(
     object({
       display_name               = string
@@ -77,8 +77,8 @@ variable "es_custom_management_groups" {
   default     = {}
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{2,36}$", keys(var.es_custom_management_groups)[0])) || length(keys(var.es_custom_management_groups)) == 0
-    error_message = "The es_custom_management_groups value must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
+    condition     = can(regex("^[a-z0-9-]{2,36}$", keys(var.es_custom_landing_zones)[0])) || length(keys(var.es_custom_landing_zones)) == 0
+    error_message = "The es_custom_landing_zones value must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
   }
 }
 

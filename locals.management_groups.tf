@@ -2,7 +2,7 @@
 # The locals defined within this file are used to generate
 # the data model used to deploy the core Enterprise-scale
 # Management Groups and any custom Management Groups
-# specified via the es_custom_management_groups variable.
+# specified via the es_custom_landing_zones variable.
 ########################################################
 
 # The following locals are used to determine which archetype
@@ -183,7 +183,7 @@ locals {
   es_management_groups_merge = merge(
     local.es_core_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
-    local.es_custom_management_groups,
+    local.es_custom_landing_zones,
   )
   # Logic to auto-generate values for Management Groups if needed
   # Allows the user to specify the Management Group ID when working with existing
