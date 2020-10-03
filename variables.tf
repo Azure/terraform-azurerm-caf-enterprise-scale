@@ -4,6 +4,16 @@
 # Further information provided within the description block
 # for each variable
 
+variable "es_root_parent_id" {
+  type        = string
+  description = "The es_root_parent_id is used to specify where to set the root for all Landing Zone deployments. Usually the Tenant ID when deploying the core Enterprise-scale Landing Zones."
+
+  validation {
+    condition     = can(regex("^[a-z0-9-]{2,36}$", var.es_root_parent_id))
+    error_message = "The es_root_parent_id value must be a valid GUID, or Management Group ID."
+  }
+}
+
 variable "es_root_id" {
   type        = string
   description = "OPTIONAL: If specified, will set a custom Name (ID) value for the Enterprise-scale \"root\" Management Group, and append this to the ID for all core Enterprise-scale Management Groups."
@@ -23,17 +33,6 @@ variable "es_root_name" {
   validation {
     condition     = can(regex("^[A-Za-z][A-Za-z0-9- ]{1,22}[A-Za-z0-9]?$", var.es_root_name))
     error_message = "The es_root_name value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space and hyphen characters."
-  }
-}
-
-variable "es_root_parent_id" {
-  type        = string
-  description = "OPTIONAL: The Parent ID used to specify where to deploy the Enterprise-scale root Management Group."
-  default     = null
-
-  validation {
-    condition     = can(regex("^[a-z0-9-]{2,36}$", var.es_root_parent_id)) || var.es_root_parent_id == null
-    error_message = "The es_root_parent_id value must be a valid GUID, Management Group ID, or null."
   }
 }
 
@@ -61,7 +60,7 @@ variable "es_deploy_demo_landing_zones" {
   default     = false
 }
 
-variable "es_custom_management_groups" {
+variable "es_custom_landing_zones" {
   type = map(
     object({
       display_name               = string
@@ -77,8 +76,8 @@ variable "es_custom_management_groups" {
   default     = {}
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{2,36}$", keys(var.es_custom_management_groups)[0])) || length(keys(var.es_custom_management_groups)) == 0
-    error_message = "The es_custom_management_groups value must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
+    condition     = can(regex("^[a-z0-9-]{2,36}$", keys(var.es_custom_landing_zones)[0])) || length(keys(var.es_custom_landing_zones)) == 0
+    error_message = "The es_custom_landing_zones value must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
   }
 }
 

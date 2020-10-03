@@ -19,7 +19,7 @@ The following resource types are deployed and managed by this module:
 
 | Azure Resource | Terraform Resource |
 | -------------- | ------------------ |
-| [Management Groups][arm_management_group]           | [`azurerm_policy_assignment`][azurerm_management_group] |
+| [Management Groups][arm_management_group]           | [`azurerm_management_group`][azurerm_management_group] |
 | [Policy Assignments][arm_policy_assignment]         | [`azurerm_policy_assignment`][azurerm_policy_assignment] |
 | [Policy Definitions][arm_policy_definition]         | [`azurerm_policy_definition`][azurerm_policy_definition] |
 | [Policy Set Definitions][arm_policy_set_definition] | [`azurerm_policy_set_definition`][azurerm_policy_set_definition] |
@@ -49,6 +49,8 @@ To use this module with all default settings, please include the following in yo
 
 > Please note, this module requires a minimum `azurerm` provider version of `2.29.0` to support correct operation with Policy Set Definitions. We also recommend using Terraform version `0.13.3` or greater.
 
+> This module has a single mandatory variable `es_root_parent_id` which is used to set the parent ID to use as the root for deployment. All other variables are optional but can be used to customise your deployment.
+
 ```hcl
 provider "azurerm" {
   version = ">= 2.29.0"
@@ -57,6 +59,9 @@ provider "azurerm" {
 
 module "enterprise_scale" {
   source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
+
+  es_root_parent_id = "{{ tenant_id }}"
+
 }
 ```
 
@@ -68,11 +73,10 @@ provider "azurerm" {
   features {}
 }
 
-data "azurerm_subscription" "current" {
-}
-
 module "enterprise_scale" {
   source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
+
+  es_root_parent_id            = "{{ tenant_id }}"
 
   # Define a custom ID to use for the root Management Group
   # Also used as a prefix for all core Management Group IDs
@@ -80,9 +84,6 @@ module "enterprise_scale" {
 
   # Define a custom "friendly name" for the root Management Group
   es_root_name                 = "ES Terraform Demo"
-
-  # Manually set the deployment root - useful for scoped deployments in larger environments
-  es_root_parent_id            = data.azurerm_subscription.current.tenant_id
 
   # Control whether to deploy the default core landing zones // default = true
   es_deploy_core_landing_zones = true
@@ -93,7 +94,7 @@ module "enterprise_scale" {
   # Set a path for the custom archetype library path
   es_archetype_library_path    = "${path.root}/lib"
 
-  es_custom_management_groups = {
+  es_custom_landing_zones = {
     #------------------------------------------------------#
     # This variable is used to add new Landing Zones using
     # the Enterprise-scale deployment model.
