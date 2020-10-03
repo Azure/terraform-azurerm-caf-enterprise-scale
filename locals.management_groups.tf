@@ -193,7 +193,7 @@ locals {
     "${local.provider_path.management_groups}${key}" => {
       id                         = key
       display_name               = value.display_name
-      parent_management_group_id = try(length(value.parent_management_group_id) > 0, false) ? replace(lower(value.parent_management_group_id), "/[^a-z0-9]/", "-") : null
+      parent_management_group_id = try(length(value.parent_management_group_id) > 0, false) ? replace(lower(value.parent_management_group_id), "/[^a-z0-9]/", "-") : local.es_root_parent_id
       subscription_ids           = value.subscription_ids
       archetype_config           = value.archetype_config
     }
