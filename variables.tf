@@ -84,7 +84,7 @@ variable "es_custom_landing_zones" {
 variable "es_archetype_library_path" {
   type        = string
   description = "OPTIONAL: If specified, sets the path to a custom library folder for archetype artefacts."
-  default     = null
+  default     = ""
 
   # validation {
   #   condition     = fileexists(var.es_archetype_library_path) // does not work with a directory
