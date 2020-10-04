@@ -47,9 +47,13 @@ The module contains a default library of templates for the official Enterprise-s
 
 To use this module with all default settings, please include the following in your root module:
 
-> Please note, this module requires a minimum `azurerm` provider version of `2.29.0` to support correct operation with Policy Set Definitions. We also recommend using Terraform version `0.13.3` or greater.
-
-> This module has a single mandatory variable `es_root_parent_id` which is used to set the parent ID to use as the root for deployment. All other variables are optional but can be used to customise your deployment.
+> **Module usage notes:**
+>
+> 1. Please note, this module requires a minimum `azurerm` provider version of `2.29.0` to support correct operation with Policy Set Definitions. We also recommend using Terraform version `0.13.3` or greater.
+>
+> 2. This module has a single mandatory variable `es_root_parent_id` which is used to set the parent ID to use as the root for deployment. All other variables are optional but can be used to customise your deployment.
+>
+> 3. If using the `azurerm_subscription` data source to provide a `tenant_id` value from the current context for `es_root_parent_id`, you are likely to get a warning that Terraform cannot determine the number of resources to create during the `plan` stage. To avoid the need to use `terraform apply -target=resource` or putting such values in source code, we recommend providing the `es_root_parent_id` value explicitly via the command-line using `-var 'es_root_parent_id={{ tenant_id }}'` or your preferred method of injecting variable values at runtime.
 
 ```hcl
 provider "azurerm" {
@@ -57,10 +61,15 @@ provider "azurerm" {
   features {}
 }
 
+variable "tenant_id" {
+  type        = string
+  description = "The tenant_id is used to set the es_root_parent_id value for the enterprise_scale module."
+}
+
 module "enterprise_scale" {
   source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
 
-  es_root_parent_id = "{{ tenant_id }}"
+  es_root_parent_id = var.tenant_id
 
 }
 ```
@@ -73,10 +82,15 @@ provider "azurerm" {
   features {}
 }
 
+variable "tenant_id" {
+  type        = string
+  description = "The tenant_id is used to set the es_root_parent_id value for the enterprise_scale module."
+}
+
 module "enterprise_scale" {
   source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
 
-  es_root_parent_id            = "{{ tenant_id }}"
+  es_root_parent_id            = var.tenant_id
 
   # Define a custom ID to use for the root Management Group
   # Also used as a prefix for all core Management Group IDs
