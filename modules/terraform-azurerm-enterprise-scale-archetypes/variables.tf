@@ -37,13 +37,13 @@ variable "archetype_id" {
 variable "archetype_parameters" {
   type        = map(any)
   description = "OPTIONAL: If specified, will use the specified parameters to override archetype defaults."
-  default     = null
+  default     = {}
 }
 
 variable "archetype_library_path" {
   type        = string
   description = "OPTIONAL: If specified, sets the path to a custom library folder for archetype artefacts."
-  default     = null
+  default     = ""
 
   # validation {
   #   condition     = fileexists(var.archetype_library_path) // does not work with a directory
@@ -54,7 +54,6 @@ variable "archetype_library_path" {
 variable "default_location" {
   type        = string
   description = "OPTIONAL: If specified, will use set the default location used for resource deployments where needed."
-  default     = "eastus"
 
   # Need to add validation covering all Azure locations
 }

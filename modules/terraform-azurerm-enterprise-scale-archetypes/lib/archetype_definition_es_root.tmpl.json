@@ -110,7 +110,7 @@
         ],
         "role_assignments": [],
         "role_definitions": [
-            "ES Network Subnet Contributor"
+            "ES-Network-Subnet-Contributor"
         ]
     }
 }

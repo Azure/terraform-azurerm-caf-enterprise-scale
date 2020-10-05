@@ -1,14 +1,11 @@
 # Load the built-in archetype definitions from the internal library path
 locals {
-  builtin_library_path               = "${path.module}/lib"
   builtin_archetype_definitions_json = tolist(fileset(local.builtin_library_path, "**archetype_definition_*.json"))
   builtin_archetype_definitions_yaml = tolist(fileset(local.builtin_library_path, "**archetype_definition_*.{yml,yaml}"))
 }
 
 # Load the custom archetype definitions from the custom library path if specified
 locals {
-  custom_library_path_specified     = try(length(local.archetype_library_path) > 0, false)
-  custom_library_path               = local.custom_library_path_specified ? replace(local.archetype_library_path, "//$/", "") : null
   custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**archetype_definition_*.json")) : []
   custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**archetype_definition_*.{yml,yaml}")) : []
 }

@@ -17,6 +17,16 @@ locals {
   default_location       = var.default_location
 }
 
+# The following locals are used to define the built-in
+# library path, and determine whether a custom library
+# path has been provided to enable conditional logic on
+# loading configuration files from the library path(s).
+locals {
+  builtin_library_path          = "${path.module}/lib"
+  custom_library_path_specified = try(length(local.archetype_library_path) > 0, false)
+  custom_library_path           = local.custom_library_path_specified ? replace(local.archetype_library_path, "//$/", "") : null
+}
+
 # The following locals are used to define base Azure
 # provider paths and resource types
 locals {
@@ -34,6 +44,6 @@ locals {
     policy_definition     = "${local.scope_id}/providers/Microsoft.Authorization/policyDefinitions/"
     policy_set_definition = "${local.scope_id}/providers/Microsoft.Authorization/policySetDefinitions/"
     role_assignment       = "${local.scope_id}/providers/Microsoft.Authorization/roleAssignments/"
-    role_definition       = "${local.scope_id}/providers/Microsoft.Authorization/roleDefinitions/"
+    role_definition       = "/providers/Microsoft.Authorization/roleDefinitions/"
   }
 }
