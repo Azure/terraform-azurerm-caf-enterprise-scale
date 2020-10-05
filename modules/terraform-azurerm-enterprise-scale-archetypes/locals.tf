@@ -44,6 +44,6 @@ locals {
     policy_definition     = "${local.scope_id}/providers/Microsoft.Authorization/policyDefinitions/"
     policy_set_definition = "${local.scope_id}/providers/Microsoft.Authorization/policySetDefinitions/"
     role_assignment       = "${local.scope_id}/providers/Microsoft.Authorization/roleAssignments/"
-    role_definition       = "${local.scope_id}/providers/Microsoft.Authorization/roleDefinitions/"
+    role_definition       = "/providers/Microsoft.Authorization/roleDefinitions/"
   }
 }

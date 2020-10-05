@@ -9,7 +9,7 @@ resource "azurerm_role_definition" "enterprise_scale" {
   role_definition_id = basename(each.key)
 
   # Mandatory resource attributes
-  name  = each.value.template.roleName
+  name  = "[${upper(local.es_root_id)}] ${each.value.template.roleName}"
   scope = each.value.scope_id
 
   permissions {

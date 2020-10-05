@@ -39,22 +39,22 @@ locals {
 locals {
   builtin_role_definitions_map_from_json = try(length(local.builtin_role_definitions_dataset_from_json) > 0, false) ? {
     for key, value in local.builtin_role_definitions_dataset_from_json :
-    value.name => value.properties
+    uuidv5(value.name, local.scope_id) => value.properties
     if value.type == local.resource_types.role_definition
   } : null
   builtin_role_definitions_map_from_yaml = try(length(local.builtin_role_definitions_dataset_from_yaml) > 0, false) ? {
     for key, value in local.builtin_role_definitions_dataset_from_yaml :
-    value.name => value.properties
+    uuidv5(value.name, local.scope_id) => value.properties
     if value.type == local.resource_types.role_definition
   } : null
   custom_role_definitions_map_from_json = try(length(local.custom_role_definitions_dataset_from_json) > 0, false) ? {
     for key, value in local.custom_role_definitions_dataset_from_json :
-    value.name => value.properties
+    uuidv5(value.name, local.scope_id) => value.properties
     if value.type == local.resource_types.role_definition
   } : null
   custom_role_definitions_map_from_yaml = try(length(local.custom_role_definitions_dataset_from_yaml) > 0, false) ? {
     for key, value in local.custom_role_definitions_dataset_from_yaml :
-    value.name => value.properties
+    uuidv5(value.name, local.scope_id) => value.properties
     if value.type == local.resource_types.role_definition
   } : null
 }
