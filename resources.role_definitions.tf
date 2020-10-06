@@ -21,7 +21,7 @@ resource "azurerm_role_definition" "enterprise_scale" {
 
   # Optional resource attributes
   description       = try(length(each.value.template.description) > 0, false) ? each.value.template.description : "${each.value.template.roleName} Role Definition at scope ${each.value.scope_id}"
-  assignable_scopes = try(length(each.value.assignableScopes) > 0, false) ? each.value.assignableScopes : ["${each.value.scope_id}"]
+  assignable_scopes = try(length(each.value.assignableScopes) > 0, false) ? each.value.assignableScopes : [each.value.scope_id, ]
 
   # Set explicit dependency on Management Group deployments
   depends_on = [

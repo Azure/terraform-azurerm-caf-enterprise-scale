@@ -12,7 +12,7 @@
 # can be overridden using the es_overrides variable.
 locals {
   es_archetype_config_defaults = {
-    "${local.es_root_id}" = {
+    (local.es_root_id) = {
       archetype_id = "es_root"
       parameters   = local.empty_map
     }
@@ -59,7 +59,7 @@ locals {
   }
   es_archetype_config_overrides_map = {
     for key, value in local.es_archetype_config_overrides :
-    key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
+    key == "root" ? local.es_root_id : "${local.es_root_id}-${key}" => value
   }
   es_archetype_config_map = merge(
     local.es_archetype_config_defaults,
@@ -74,7 +74,7 @@ locals {
 # can be overridden using the es_subscription_ids_map variable.
 locals {
   es_subscription_ids_defaults = {
-    "${local.es_root_id}"                = local.empty_list
+    (local.es_root_id)                   = local.empty_list
     "${local.es_root_id}-decommissioned" = local.empty_list
     "${local.es_root_id}-sandboxes"      = local.empty_list
     "${local.es_root_id}-landing-zones"  = local.empty_list
@@ -88,7 +88,7 @@ locals {
   }
   es_subscription_ids_overrides_map = {
     for key, value in local.es_subscription_ids_overrides :
-    key == "root" ? "${local.es_root_id}" : "${local.es_root_id}-${key}" => value
+    key == "root" ? local.es_root_id : "${local.es_root_id}-${key}" => value
   }
   es_subscription_ids_map = merge(
     local.es_subscription_ids_defaults,
@@ -103,11 +103,11 @@ locals {
 locals {
   # Mandatory core Enterprise-scale Management Groups
   es_core_landing_zones = {
-    "${local.es_root_id}" = {
+    (local.es_root_id) = {
       display_name               = local.es_root_name
       parent_management_group_id = local.es_root_parent_id
-      subscription_ids           = local.es_subscription_ids_map["${local.es_root_id}"]
-      archetype_config           = local.es_archetype_config_map["${local.es_root_id}"]
+      subscription_ids           = local.es_subscription_ids_map[local.es_root_id]
+      archetype_config           = local.es_archetype_config_map[local.es_root_id]
     }
     "${local.es_root_id}-decommissioned" = {
       display_name               = "Decommissioned"
