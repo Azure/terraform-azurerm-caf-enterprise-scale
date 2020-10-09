@@ -5,10 +5,7 @@
 # coverage for archetype patterns which deploy specific
 # groups of Resources within a Subscription.
 module "management_group_archetypes" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-  }
+  for_each = local.es_landing_zones_map
   source = "./modules/terraform-azurerm-enterprise-scale-archetypes"
 
   root_id                           = "${local.provider_path.management_groups}${local.es_root_id}"

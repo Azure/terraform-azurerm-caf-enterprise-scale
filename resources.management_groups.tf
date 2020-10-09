@@ -7,11 +7,7 @@
 # Azure only supports a Management Group depth of 6 levels.
 
 resource "azurerm_management_group" "level_1" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-    if value.parent_management_group_id == local.es_root_parent_id
-  }
+  for_each = local.azurerm_management_group_level_1
 
   name                       = each.value.id
   display_name               = each.value.display_name
@@ -21,11 +17,7 @@ resource "azurerm_management_group" "level_1" {
 }
 
 resource "azurerm_management_group" "level_2" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-    if contains(keys(azurerm_management_group.level_1), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
-  }
+  for_each = local.azurerm_management_group_level_2
 
   name                       = each.value.id
   display_name               = each.value.display_name
@@ -37,11 +29,7 @@ resource "azurerm_management_group" "level_2" {
 }
 
 resource "azurerm_management_group" "level_3" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-    if contains(keys(azurerm_management_group.level_2), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
-  }
+  for_each = local.azurerm_management_group_level_3
 
   name                       = each.value.id
   display_name               = each.value.display_name
@@ -53,11 +41,7 @@ resource "azurerm_management_group" "level_3" {
 }
 
 resource "azurerm_management_group" "level_4" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-    if contains(keys(azurerm_management_group.level_3), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
-  }
+  for_each = local.azurerm_management_group_level_4
 
   name                       = each.value.id
   display_name               = each.value.display_name
@@ -69,11 +53,7 @@ resource "azurerm_management_group" "level_4" {
 }
 
 resource "azurerm_management_group" "level_5" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-    if contains(keys(azurerm_management_group.level_4), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
-  }
+  for_each = local.azurerm_management_group_level_5
 
   name                       = each.value.id
   display_name               = each.value.display_name
@@ -85,11 +65,7 @@ resource "azurerm_management_group" "level_5" {
 }
 
 resource "azurerm_management_group" "level_6" {
-  for_each = {
-    for key, value in local.es_landing_zones_map :
-    key => value
-    if contains(keys(azurerm_management_group.level_5), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
-  }
+  for_each = local.azurerm_management_group_level_6
 
   name                       = each.value.id
   display_name               = each.value.display_name

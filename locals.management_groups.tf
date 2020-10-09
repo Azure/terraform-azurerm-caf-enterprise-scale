@@ -211,6 +211,41 @@ locals {
   }
 }
 
+# The following locals are used to build the map of Management
+# Groups to deploy at each level of the hierarchy.
+locals {
+  azurerm_management_group_level_1 = {
+    for key, value in local.es_landing_zones_map :
+    key => value
+    if value.parent_management_group_id == local.es_root_parent_id
+  }
+  azurerm_management_group_level_2 = {
+    for key, value in local.es_landing_zones_map :
+    key => value
+    if contains(keys(azurerm_management_group.level_1), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
+  }
+  azurerm_management_group_level_3 = {
+    for key, value in local.es_landing_zones_map :
+    key => value
+    if contains(keys(azurerm_management_group.level_2), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
+  }
+  azurerm_management_group_level_4 = {
+    for key, value in local.es_landing_zones_map :
+    key => value
+    if contains(keys(azurerm_management_group.level_3), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
+  }
+  azurerm_management_group_level_5 = {
+    for key, value in local.es_landing_zones_map :
+    key => value
+    if contains(keys(azurerm_management_group.level_4), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
+  }
+  azurerm_management_group_level_6 = {
+    for key, value in local.es_landing_zones_map :
+    key => value
+    if contains(keys(azurerm_management_group.level_5), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
+  }
+}
+
 # The following local is used to merge the Management Group
 # configuration from each level back into a single data
 # object to return in the module outputs.

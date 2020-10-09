@@ -1,8 +1,5 @@
 resource "azurerm_role_definition" "enterprise_scale" {
-  for_each = {
-    for role in local.es_role_definitions_by_management_group :
-    role.resource_id => role
-  }
+  for_each = local.azurerm_role_definition_enterprise_scale
 
   # Special handling of OPTIONAL role_definition_id to ensure consistent and
   # correct mapping of Terraform state ADDR value to Azure Resource ID value.
