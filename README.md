@@ -67,10 +67,10 @@ variable "tenant_id" {
 }
 
 module "enterprise_scale" {
-  source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
+  source  = "Azure/enterprise-scale/azurerm"
+  version = "0.0.2-preview"
 
   es_root_parent_id = var.tenant_id
-
 }
 ```
 
@@ -88,7 +88,8 @@ variable "tenant_id" {
 }
 
 module "enterprise_scale" {
-  source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
+  source  = "Azure/enterprise-scale/azurerm"
+  version = "0.0.2-preview"
 
   es_root_parent_id            = var.tenant_id
 
