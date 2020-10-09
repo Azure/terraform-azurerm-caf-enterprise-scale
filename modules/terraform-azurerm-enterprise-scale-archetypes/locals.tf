@@ -9,14 +9,14 @@ locals {
 # The following locals are used to convert basic input
 # variables to locals before use elsewhere in the module
 locals {
-  root_id                           = var.root_id
-  scope_id                          = var.scope_id
-  archetype_id                      = var.archetype_id
-  archetype_parameters              = var.archetype_parameters
-  archetype_access_control          = var.archetype_access_control
-  archetype_library_path            = var.archetype_library_path
-  archetype_template_file_variables = var.archetype_template_file_variables
-  default_location                  = var.default_location
+  root_id                 = var.root_id
+  scope_id                = var.scope_id
+  archetype_id            = var.archetype_id
+  parameters              = var.parameters
+  access_control          = var.access_control
+  library_path            = var.library_path
+  template_file_variables = var.template_file_variables
+  default_location        = var.default_location
 }
 
 # The following locals are used to define the built-in
@@ -25,8 +25,8 @@ locals {
 # loading configuration files from the library path(s).
 locals {
   builtin_library_path          = "${path.module}/lib"
-  custom_library_path_specified = try(length(local.archetype_library_path) > 0, false)
-  custom_library_path           = local.custom_library_path_specified ? replace(local.archetype_library_path, "//$/", "") : null
+  custom_library_path_specified = try(length(local.library_path) > 0, false)
+  custom_library_path           = local.custom_library_path_specified ? replace(local.library_path, "//$/", "") : null
 }
 
 # The following locals are used to define base Azure
@@ -64,8 +64,8 @@ locals {
     custom                    = local.custom_library_path
     custom_library_path       = local.custom_library_path
   }
-  template_file_variables = merge(
-    local.archetype_template_file_variables,
+  template_file_vars = merge(
+    local.template_file_variables,
     local.builtin_template_file_variables,
   )
 }

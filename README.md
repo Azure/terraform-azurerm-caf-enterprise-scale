@@ -1,8 +1,8 @@
-# AZURERM Enterprise-scale Landing Zones
+# Azure Cloud Adoption Framework - Enterprise-scale
 
-## Create Enterprise-scale Landing Zones
+## Create Cloud Adoption Framework enterprise-scale landing zones
 
-This module provides an opinionated approach for delivering the core platform capabilities of Enterprise-scale Landing Zones using Terraform, based on the architecture published in the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture]:
+This module provides an opinionated approach for delivering the core platform capabilities of enterprise-scale landing zones using Terraform, based on the architecture published in the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture]:
 
 ![Enterprise-scale Landing Zone Architecture][ESLZ-Architecture-Diagram]
 
@@ -35,8 +35,11 @@ The concept of ***archetypes*** is used to define configuration settings for eac
         "policy_assignments": [],
         "policy_definitions": [],
         "policy_set_definitions": [],
-        "role_assignments": [],
-        "role_definitions": []
+        "role_definitions": [],
+        "archetype_config": {
+            "parameters": {},
+            "access_control": {}
+        }
     }
 }
 ```
@@ -49,27 +52,28 @@ To use this module with all default settings, please include the following in yo
 
 > **Module usage notes:**
 >
-> 1. Please note, this module requires a minimum `azurerm` provider version of `2.29.0` to support correct operation with Policy Set Definitions. We also recommend using Terraform version `0.13.3` or greater.
+> 1. Please note, this module requires a minimum `azurerm` provider version of `2.31.1` to support correct operation with Policy Set Definitions. We also recommend using Terraform version `0.13.3` or greater.
 >
-> 2. This module has a single mandatory variable `es_root_parent_id` which is used to set the parent ID to use as the root for deployment. All other variables are optional but can be used to customise your deployment.
+> 2. This module has a single mandatory variable `root_parent_id` which is used to set the parent ID to use as the root for deployment. All other variables are optional but can be used to customise your deployment.
 >
-> 3. If using the `azurerm_subscription` data source to provide a `tenant_id` value from the current context for `es_root_parent_id`, you are likely to get a warning that Terraform cannot determine the number of resources to create during the `plan` stage. To avoid the need to use `terraform apply -target=resource` or putting such values in source code, we recommend providing the `es_root_parent_id` value explicitly via the command-line using `-var 'es_root_parent_id={{ tenant_id }}'` or your preferred method of injecting variable values at runtime.
+> 3. If using the `azurerm_subscription` data source to provide a `tenant_id` value from the current context for `root_parent_id`, you are likely to get a warning that Terraform cannot determine the number of resources to create during the `plan` stage. To avoid the need to use `terraform apply -target=resource` or putting such values in source code, we recommend providing the `root_parent_id` value explicitly via the command-line using `-var 'root_parent_id={{ tenant_id }}'` or your preferred method of injecting variable values at runtime.
 
 ```hcl
 provider "azurerm" {
-  version = ">= 2.29.0"
+  version = ">= 2.31.1"
   features {}
 }
 
 variable "tenant_id" {
   type        = string
-  description = "The tenant_id is used to set the es_root_parent_id value for the enterprise_scale module."
+  description = "The tenant_id is used to set the root_parent_id value for the enterprise_scale module."
 }
 
 module "enterprise_scale" {
-  source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
+  source  = "Azure/caf-enterprise-scale/azurerm"
+  version = "0.0.3-preview"
 
-  es_root_parent_id = var.tenant_id
+  root_parent_id = var.tenant_id
 
 }
 ```
@@ -78,37 +82,38 @@ To customise the module, you can add any of the following optional variables:
 
 ```hcl
 provider "azurerm" {
-  version = ">= 2.29.0"
+  version = ">= 2.31.1"
   features {}
 }
 
 variable "tenant_id" {
   type        = string
-  description = "The tenant_id is used to set the es_root_parent_id value for the enterprise_scale module."
+  description = "The tenant_id is used to set the root_parent_id value for the enterprise_scale module."
 }
 
 module "enterprise_scale" {
-  source = "https://github.com/Azure/terraform-azurerm-enterprise-scale.git"
+  source  = "Azure/caf-enterprise-scale/azurerm"
+  version = "0.0.3-preview"
 
-  es_root_parent_id            = var.tenant_id
+  root_parent_id            = var.tenant_id
 
   # Define a custom ID to use for the root Management Group
   # Also used as a prefix for all core Management Group IDs
-  es_root_id                   = "tf"
+  root_id                   = "tf"
 
   # Define a custom "friendly name" for the root Management Group
-  es_root_name                 = "ES Terraform Demo"
+  root_name                 = "ES Terraform Demo"
 
   # Control whether to deploy the default core landing zones // default = true
-  es_deploy_core_landing_zones = true
+  deploy_core_landing_zones = true
 
-  # Control whether to deploy the demo landing zones // default = false
-  es_deploy_demo_landing_zones = false
+  # Control whether to deploy the demo landing zones         // default = false
+  deploy_demo_landing_zones = false
 
   # Set a path for the custom archetype library path
-  es_archetype_library_path    = "${path.root}/lib"
+  library_path    = "${path.root}/lib"
 
-  es_custom_landing_zones = {
+  custom_landing_zones = {
     #------------------------------------------------------#
     # This variable is used to add new Landing Zones using
     # the Enterprise-scale deployment model.
@@ -128,6 +133,7 @@ module "enterprise_scale" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters   = {}
+        access_control = {}
       }
     }
     customer-web-dev = {
@@ -137,22 +143,32 @@ module "enterprise_scale" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {}
+        access_control = {}
       }
     }
     #------------------------------------------------------#
     # EXAMPLES
     #------------------------------------------------------#
-    # web-proxy = {
-    #   display_name               = "Web Proxy"
-    #   parent_management_group_id = "es-connectivity"
-    #   subscription_ids           = []
+    # example-mg = {
+    #   display_name               = "Example Management Group"
+    #   parent_management_group_id = "es-landing-zones"
+    #   subscription_ids           = [
+    #     "3117d098-8b43-433b-849d-b761742eb717",
+    #   ]
     #   archetype_config = {
-    #     archetype_id = "es_customer_online"
+    #     archetype_id = "es_landing_zones"
     #     parameters = {
     #       policy_assignment_id = {
     #         param_name_1 = param_value_1
     #         param_name_2 = param_value_2
     #         param_name_3 = param_value_3
+    #       }
+    #     }
+    #     access_control = {
+    #       role_definition_name = {
+    #         "member_1_object_id",
+    #         "member_2_object_id",
+    #         "member_3_object_id",
     #       }
     #     }
     #   }
@@ -162,7 +178,7 @@ module "enterprise_scale" {
 
   # The following var provides an example for how to specify
   # custom archetypes for the connectivity Landing Zones
-  es_archetype_config_overrides = {
+  archetype_config_overrides = {
     #------------------------------------------------------#
     # This variable is used to configure the built-in
     # Enterprise-scale Management Groups with alternate
@@ -171,48 +187,59 @@ module "enterprise_scale" {
     # provide the required values.
     #------------------------------------------------------#
     # root = {
-    #   archetype_id = "es_root"
-    #   parameters   = {}
+    #   archetype_id   = "es_root"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # decommissioned = {
-    #   archetype_id = "es_decommissioned"
-    #   parameters   = {}
+    #   archetype_id   = "es_decommissioned"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # sandboxes = {
-    #   archetype_id = "es_sandboxes"
-    #   parameters   = {}
+    #   archetype_id   = "es_sandboxes"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # landing_zones = {
-    #   archetype_id = "es_landing_zones"
-    #   parameters   = {}
+    #   archetype_id   = "es_landing_zones"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # platform = {
-    #   archetype_id = "es_platform"
-    #   parameters   = {}
+    #   archetype_id   = "es_platform"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # connectivity = {
-    #   archetype_id = "es_connectivity_foundation"
-    #   parameters   = {}
+    #   archetype_id   = "es_connectivity_foundation"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # management = {
-    #   archetype_id = "es_management"
-    #   parameters   = {}
+    #   archetype_id   = "es_management"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # identity = {
-    #   archetype_id = "es_identity"
-    #   parameters   = {}
+    #   archetype_id   = "es_identity"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # demo_corp = {
-    #   archetype_id = "es_demo_corp"
-    #   parameters   = {}
+    #   archetype_id   = "es_demo_corp"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # demo_online = {
-    #   archetype_id = "es_demo_online"
-    #   parameters   = {}
+    #   archetype_id   = "es_demo_online"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     # demo_sap = {
-    #   archetype_id = "es_demo_sap"
-    #   parameters   = {}
+    #   archetype_id   = "es_demo_sap"
+    #   parameters     = {}
+    #   access_control = {}
     # }
     #------------------------------------------------------#
     # EXAMPLES
@@ -224,6 +251,13 @@ module "enterprise_scale" {
     #       param_name_1 = param_value_1
     #       param_name_2 = param_value_2
     #       param_name_3 = param_value_3
+    #     }
+    #   }
+    #   access_control = {
+    #     role_definition_name = {
+    #       "member_1_object_id",
+    #       "member_2_object_id",
+    #       "member_3_object_id",
     #     }
     #   }
     # }

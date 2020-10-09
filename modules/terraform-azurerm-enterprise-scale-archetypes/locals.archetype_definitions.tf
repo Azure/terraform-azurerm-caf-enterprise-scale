@@ -14,19 +14,19 @@ locals {
 locals {
   builtin_archetype_definitions_dataset_from_json = {
     for filepath in local.builtin_archetype_definitions_json :
-    filepath => jsondecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_variables))
+    filepath => jsondecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_vars))
   }
   builtin_archetype_definitions_dataset_from_yaml = {
     for filepath in local.builtin_archetype_definitions_yaml :
-    filepath => yamldecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_variables))
+    filepath => yamldecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_vars))
   }
   custom_archetype_definitions_dataset_from_json = {
     for filepath in local.custom_archetype_definitions_json :
-    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_variables))
+    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
   custom_archetype_definitions_dataset_from_yaml = {
     for filepath in local.custom_archetype_definitions_yaml :
-    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_variables))
+    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
 }
 

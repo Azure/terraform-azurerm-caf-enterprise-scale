@@ -2,7 +2,7 @@
 locals {
   archetype_role_assignments_map = merge(
     try(local.archetype_definition.archetype_config.access_control, local.empty_map),
-    try(local.archetype_access_control, local.empty_map),
+    try(local.access_control, local.empty_map),
   )
 }
 

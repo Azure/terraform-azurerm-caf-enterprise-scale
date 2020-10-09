@@ -9,17 +9,17 @@ locals {
 # The following locals are used to convert basic input
 # variables to locals before use elsewhere in the module
 locals {
-  es_root_id                           = var.es_root_id
-  es_root_name                         = var.es_root_name
-  es_root_parent_id                    = var.es_root_parent_id
-  es_deploy_core_landing_zones         = var.es_deploy_core_landing_zones
-  es_archetype_config_overrides        = var.es_archetype_config_overrides
-  es_subscription_ids_overrides        = var.es_subscription_ids_overrides
-  es_deploy_demo_landing_zones         = var.es_deploy_demo_landing_zones
-  es_custom_landing_zones              = var.es_custom_landing_zones
-  es_archetype_library_path            = var.es_archetype_library_path
-  es_archetype_template_file_variables = var.es_archetype_template_file_variables
-  es_default_location                  = var.es_default_location
+  root_id                    = var.root_id
+  root_name                  = var.root_name
+  root_parent_id             = var.root_parent_id
+  deploy_core_landing_zones  = var.deploy_core_landing_zones
+  archetype_config_overrides = var.archetype_config_overrides
+  subscription_id_overrides  = var.subscription_id_overrides
+  deploy_demo_landing_zones  = var.deploy_demo_landing_zones
+  custom_landing_zones       = var.custom_landing_zones
+  library_path               = var.library_path
+  template_file_variables    = var.template_file_variables
+  default_location           = var.default_location
 }
 
 # The following locals are used to define base Azure
