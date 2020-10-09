@@ -108,9 +108,12 @@
             "ES-Deploy-Diagnostics-LogAnalytics",
             "ES-Deploy-Sql-Security"
         ],
-        "role_assignments": [],
         "role_definitions": [
             "ES-Network-Subnet-Contributor"
-        ]
+        ],
+        "archetype_config": {
+            "parameters": {},
+            "access_control": {}
+        }
     }
 }

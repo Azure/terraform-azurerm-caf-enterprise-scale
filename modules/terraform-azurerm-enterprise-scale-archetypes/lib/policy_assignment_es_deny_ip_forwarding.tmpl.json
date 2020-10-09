@@ -12,7 +12,7 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/bd352bd5-2853-4985-bf0d-73806b4a5744",
-    "scope": "${current_scope_id}"
+    "scope": "${current_scope_resource_id}"
   },
   "sku": {
     "name": "A0",

@@ -17,24 +17,21 @@ locals {
 
 # If Policy Set Definition files exist, load content into dataset
 locals {
-  policy_set_definitions_template_file_vars = {
-    current_scope_id = local.scope_id
-  }
   builtin_policy_set_definitions_dataset_from_json = try(length(local.builtin_policy_set_definitions_from_json) > 0, false) ? {
     for filepath in local.builtin_policy_set_definitions_from_json :
-    filepath => jsondecode(templatefile("${local.builtin_library_path}/${filepath}", local.policy_set_definitions_template_file_vars))
+    filepath => jsondecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_variables))
   } : null
   builtin_policy_set_definitions_dataset_from_yaml = try(length(local.builtin_policy_set_definitions_from_yaml) > 0, false) ? {
     for filepath in local.builtin_policy_set_definitions_from_yaml :
-    filepath => yamldecode(templatefile("${local.builtin_library_path}/${filepath}", local.policy_set_definitions_template_file_vars))
+    filepath => yamldecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_variables))
   } : null
   custom_policy_set_definitions_dataset_from_json = try(length(local.custom_policy_set_definitions_from_json) > 0, false) ? {
     for filepath in local.custom_policy_set_definitions_from_json :
-    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.policy_set_definitions_template_file_vars))
+    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_variables))
   } : null
   custom_policy_set_definitions_dataset_from_yaml = try(length(local.custom_policy_set_definitions_from_yaml) > 0, false) ? {
     for filepath in local.custom_policy_set_definitions_from_yaml :
-    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.policy_set_definitions_template_file_vars))
+    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_variables))
   } : null
 }
 

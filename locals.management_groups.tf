@@ -13,48 +13,59 @@
 locals {
   es_archetype_config_defaults = {
     (local.es_root_id) = {
-      archetype_id = "es_root"
-      parameters   = local.empty_map
+      archetype_id   = "es_root"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-decommissioned" = {
-      archetype_id = "es_decommissioned"
-      parameters   = local.empty_map
+      archetype_id   = "es_decommissioned"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-sandboxes" = {
-      archetype_id = "es_sandboxes"
-      parameters   = local.empty_map
+      archetype_id   = "es_sandboxes"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-landing-zones" = {
-      archetype_id = "es_landing_zones"
-      parameters   = local.empty_map
+      archetype_id   = "es_landing_zones"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-platform" = {
-      archetype_id = "es_platform"
-      parameters   = local.empty_map
+      archetype_id   = "es_platform"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-connectivity" = {
-      archetype_id = "es_connectivity_foundation"
-      parameters   = local.empty_map
+      archetype_id   = "es_connectivity_foundation"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-management" = {
-      archetype_id = "es_management"
-      parameters   = local.empty_map
+      archetype_id   = "es_management"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-identity" = {
-      archetype_id = "es_identity"
-      parameters   = local.empty_map
+      archetype_id   = "es_identity"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-demo-corp" = {
-      archetype_id = "es_demo_corp"
-      parameters   = local.empty_map
+      archetype_id   = "es_demo_corp"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-demo-online" = {
-      archetype_id = "es_demo_online"
-      parameters   = local.empty_map
+      archetype_id   = "es_demo_online"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
     "${local.es_root_id}-demo-sap" = {
-      archetype_id = "es_demo_sap"
-      parameters   = local.empty_map
+      archetype_id   = "es_demo_sap"
+      parameters     = local.empty_map
+      access_control = local.empty_map
     }
   }
   es_archetype_config_overrides_map = {

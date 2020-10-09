@@ -14,8 +14,8 @@
         "value": null
       }
     },
-    "policyDefinitionId": "${root_scope_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-ASC-ContinuousExportToWorkspace",
-    "scope": "${current_scope_id}"
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-ASC-ContinuousExportToWorkspace",
+    "scope": "${current_scope_resource_id}"
   },
   "sku": {
     "name": "A0",

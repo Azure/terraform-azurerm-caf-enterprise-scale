@@ -40,6 +40,12 @@ variable "archetype_parameters" {
   default     = {}
 }
 
+variable "archetype_access_control" {
+  type        = map(any)
+  description = "OPTIONAL: If specified, will use the specified access control map to set Role Assignments on the archetype instance at the current scope."
+  default     = {}
+}
+
 variable "archetype_library_path" {
   type        = string
   description = "OPTIONAL: If specified, sets the path to a custom library folder for archetype artefacts."
@@ -51,9 +57,15 @@ variable "archetype_library_path" {
   # }
 }
 
+variable "archetype_template_file_variables" {
+  type        = map(any)
+  description = "OPTIONAL: If specified, provides the ability to define custom template vars used when reading in template files from the archetype_library_path"
+  default     = {}
+}
+
 variable "default_location" {
   type        = string
-  description = "OPTIONAL: If specified, will use set the default location used for resource deployments where needed."
+  description = "Sets the default location used for resource deployments where needed."
 
   # Need to add validation covering all Azure locations
 }

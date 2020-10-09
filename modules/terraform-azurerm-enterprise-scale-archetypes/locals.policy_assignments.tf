@@ -1,5 +1,5 @@
 # Generate the Policy Assignment configurations for the specified archetype.
-# Logic implemented to determine whether Policy Definitions
+# Logic implemented to determine whether Policy Assignments
 # need to be loaded to save on compute and memory resources
 # when none defined in archetype definition.
 locals {
@@ -17,29 +17,21 @@ locals {
 
 # If Policy Assignment files exist, load content into dataset
 locals {
-  policy_assignments_template_file_vars = {
-    root_scope_id    = local.root_id
-    root_id          = local.root_id
-    current_scope_id = local.scope_id
-    scope_id         = local.scope_id
-    default_location = local.default_location
-    location         = local.default_location
-  }
   builtin_policy_assignments_dataset_from_json = try(length(local.builtin_policy_assignments_from_json) > 0, false) ? {
     for filepath in local.builtin_policy_assignments_from_json :
-    filepath => jsondecode(templatefile("${local.builtin_library_path}/${filepath}", local.policy_assignments_template_file_vars))
+    filepath => jsondecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_variables))
   } : null
   builtin_policy_assignments_dataset_from_yaml = try(length(local.builtin_policy_assignments_from_yaml) > 0, false) ? {
     for filepath in local.builtin_policy_assignments_from_yaml :
-    filepath => yamldecode(templatefile("${local.builtin_library_path}/${filepath}", local.policy_assignments_template_file_vars))
+    filepath => yamldecode(templatefile("${local.builtin_library_path}/${filepath}", local.template_file_variables))
   } : null
   custom_policy_assignments_dataset_from_json = try(length(local.custom_policy_assignments_from_json) > 0, false) ? {
     for filepath in local.custom_policy_assignments_from_json :
-    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.policy_assignments_template_file_vars))
+    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_variables))
   } : null
   custom_policy_assignments_dataset_from_yaml = try(length(local.custom_policy_assignments_from_yaml) > 0, false) ? {
     for filepath in local.custom_policy_assignments_from_yaml :
-    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.policy_assignments_template_file_vars))
+    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_variables))
   } : null
 }
 
@@ -68,7 +60,7 @@ locals {
 }
 
 # Merge the Policy Assignment maps into a single map.
-# If duplicates exist due to a custom policy set definition being
+# If duplicates exist due to a custom Policy Assignment being
 # defined to override a built-in definition, this is handled by
 # merging the custom policies after the built-in policies.
 locals {
@@ -80,7 +72,7 @@ locals {
   )
 }
 
-# Extract the desired Policy Set Definitions from archetype_policy_assignments_map.
+# Extract the desired Policy Assignment from archetype_policy_assignments_map.
 locals {
   archetype_policy_assignments_output = [
     for policy_assignment in local.archetype_policy_assignments_list :

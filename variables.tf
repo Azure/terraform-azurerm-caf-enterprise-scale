@@ -67,8 +67,9 @@ variable "es_custom_landing_zones" {
       parent_management_group_id = string
       subscription_ids           = list(string)
       archetype_config = object({
-        archetype_id = string
-        parameters   = any
+        archetype_id   = string
+        parameters     = any
+        access_control = any
       })
     })
   )
@@ -90,6 +91,12 @@ variable "es_archetype_library_path" {
   #   condition     = fileexists(var.es_archetype_library_path) // does not work with a directory
   #   error_message = "The es_archetype_library_path must be a valid file path accessible from the root module scope."
   # }
+}
+
+variable "es_archetype_template_file_variables" {
+  type        = map(any)
+  description = "OPTIONAL: If specified, provides the ability to define custom template vars used when reading in template files from the es_archetype_library_path"
+  default     = {}
 }
 
 variable "es_default_location" {

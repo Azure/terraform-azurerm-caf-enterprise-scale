@@ -11,8 +11,8 @@
         "value": null
       }
     },
-    "policyDefinitionId": "${root_scope_id}/providers/Microsoft.Authorization/policySetDefinitions/ES-Deploy-Diagnostics-LogAnalytics",
-    "scope": "${current_scope_id}"
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/ES-Deploy-Diagnostics-LogAnalytics",
+    "scope": "${current_scope_resource_id}"
   },
   "sku": {
     "name": "A0",

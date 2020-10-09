@@ -1,6 +1,23 @@
 # Generate the Role Assignment configurations for the specified archetype.
 locals {
-  archetype_role_assignments_list      = local.archetype_definition.role_assignments
-  archetype_role_assignments_specified = try(length(local.archetype_role_assignments_list) > 0, false)
-  archetype_role_assignments_output    = []
+  archetype_role_assignments_map = merge(
+    try(local.archetype_definition.archetype_config.access_control, local.empty_map),
+    try(local.archetype_access_control, local.empty_map),
+  )
+}
+
+# Extract the desired Role Assignments from archetype_role_assignments_map.
+locals {
+  archetype_role_assignments_output = flatten([
+    for role_definition_name, members in local.archetype_role_assignments_map : [
+      for member in members : [
+        {
+          resource_id          = "${local.provider_path.role_assignment}${uuidv5(uuidv5("url", role_definition_name), member)}"
+          scope_id             = local.scope_id
+          principal_id         = member
+          role_definition_name = role_definition_name
+        }
+      ]
+    ]
+  ])
 }

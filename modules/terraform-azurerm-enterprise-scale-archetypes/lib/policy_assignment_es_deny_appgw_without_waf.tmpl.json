@@ -7,8 +7,8 @@
     "displayName": "ES-Deny-AppGW-Without-WAF",
     "notScopes": [],
     "parameters": {},
-    "policyDefinitionId": "${root_scope_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-AppGW-Without-WAF",
-    "scope": "${current_scope_id}"
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-AppGW-Without-WAF",
+    "scope": "${current_scope_resource_id}"
   },
   "sku": {
     "name": "A0",

@@ -9,12 +9,14 @@ locals {
 # The following locals are used to convert basic input
 # variables to locals before use elsewhere in the module
 locals {
-  root_id                = var.root_id
-  scope_id               = var.scope_id
-  archetype_id           = var.archetype_id
-  archetype_parameters   = var.archetype_parameters
-  archetype_library_path = var.archetype_library_path
-  default_location       = var.default_location
+  root_id                           = var.root_id
+  scope_id                          = var.scope_id
+  archetype_id                      = var.archetype_id
+  archetype_parameters              = var.archetype_parameters
+  archetype_access_control          = var.archetype_access_control
+  archetype_library_path            = var.archetype_library_path
+  archetype_template_file_variables = var.archetype_template_file_variables
+  default_location                  = var.default_location
 }
 
 # The following locals are used to define the built-in
@@ -30,8 +32,8 @@ locals {
 # The following locals are used to define base Azure
 # provider paths and resource types
 locals {
-  scope_is_management_group = length(regexall("^/providers/Microsoft.Management/managementGroups/.*", local.scope_id)) > 0
-  scope_is_subscription     = length(regexall("^/subscriptions/.*", local.scope_id)) > 0
+  # scope_is_management_group = length(regexall("^/providers/Microsoft.Management/managementGroups/.*", local.scope_id)) > 0
+  # scope_is_subscription     = length(regexall("^/subscriptions/.*", local.scope_id)) > 0
   resource_types = {
     policy_assignment     = "Microsoft.Authorization/policyAssignments"
     policy_definition     = "Microsoft.Authorization/policyDefinitions"
@@ -46,4 +48,24 @@ locals {
     role_assignment       = "${local.scope_id}/providers/Microsoft.Authorization/roleAssignments/"
     role_definition       = "/providers/Microsoft.Authorization/roleDefinitions/"
   }
+}
+
+# The following locals are used in template functions to provide values
+locals {
+  builtin_template_file_variables = {
+    root_scope_id             = basename(local.root_id)
+    root_scope_resource_id    = local.root_id
+    current_scope_id          = basename(local.scope_id)
+    current_scope_resource_id = local.scope_id
+    default_location          = local.default_location
+    location                  = local.default_location
+    builtin                   = local.builtin_library_path
+    builtin_library_path      = local.builtin_library_path
+    custom                    = local.custom_library_path
+    custom_library_path       = local.custom_library_path
+  }
+  template_file_variables = merge(
+    local.archetype_template_file_variables,
+    local.builtin_template_file_variables,
+  )
 }
