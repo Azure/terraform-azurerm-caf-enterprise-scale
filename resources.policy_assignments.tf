@@ -24,6 +24,13 @@ resource "azurerm_policy_assignment" "enterprise_scale" {
   depends_on = [
     azurerm_policy_definition.enterprise_scale,
     azurerm_policy_set_definition.enterprise_scale,
+    azurerm_management_group.level_1,
+    azurerm_management_group.level_2,
+    azurerm_management_group.level_3,
+    azurerm_management_group.level_4,
+    azurerm_management_group.level_5,
+    azurerm_management_group.level_6,
+  
   ]
 
 }
