@@ -1,8 +1,5 @@
 resource "azurerm_policy_assignment" "enterprise_scale" {
-  for_each = {
-    for assignment in local.es_policy_assignments_by_management_group :
-    assignment.resource_id => assignment
-  }
+  for_each = local.azurerm_policy_assignment_enterprise_scale
 
   # Mandatory resource attributes
   # The policy assignment name length must not exceed '24' characters, but Terraform plan is unable to validate this in the plan stage. The following logic forces an error during plan if an invalid name length is specified.

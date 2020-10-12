@@ -1,0 +1,25 @@
+{
+  "name": "ES-Deploy-VM-Monitoring",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Ensures that Azure Monitor is configured for Virtual Machines.",
+    "displayName": "ES-Deploy-VM-Monitoring",
+    "notScopes": [],
+    "parameters": {
+      "logAnalytics": {
+        "value": null
+      }
+    },
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}

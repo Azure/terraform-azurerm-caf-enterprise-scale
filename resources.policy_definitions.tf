@@ -1,8 +1,5 @@
 resource "azurerm_policy_definition" "enterprise_scale" {
-  for_each = {
-    for policy in local.es_policy_definitions_by_management_group :
-    policy.resource_id => policy
-  }
+  for_each = local.azurerm_policy_definition_enterprise_scale
 
   # Mandatory resource attributes
   name         = each.value.template.displayName

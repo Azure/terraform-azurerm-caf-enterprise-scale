@@ -1,14 +1,17 @@
-# <<<<<<<< PENDING DEVELOPMENT >>>>>>>>
-# resource "azurerm_role_assignment" "enterprise_scale" {
-#   for_each = local.es_role_assignments_map
+resource "azurerm_role_assignment" "enterprise_scale" {
+  for_each = local.azurerm_role_assignment_enterprise_scale
 
-#   # Mandatory attributes
-#   scope        = each.value.scope
-#   principal_id = each.value.principal_id
+  # Special handling of OPTIONAL name to ensure consistent and correct
+  # mapping of Terraform state ADDR value to Azure Resource ID value.
+  name = basename(each.key)
 
-#   # Optional attributes
-#   name                             = try(length(each.value.name) > 0, false) ? each.value.name : null
-#   role_definition_id               = try(length(each.value.role_definition_id) > 0, false) ? each.value.role_definition_id : null
-#   skip_service_principal_aad_check = try(length(each.value.skip_service_principal_aad_check) > 0, false) ? each.value.skip_service_principal_aad_check : false
+  # Mandatory resource attributes
+  scope        = each.value.scope_id
+  principal_id = each.value.principal_id
 
-# }
+  # Optional attributes
+  role_definition_name             = try(length(each.value.role_definition_name) > 0, false) ? each.value.role_definition_name : null
+  role_definition_id               = null // Not currently used
+  skip_service_principal_aad_check = null // Not currently used
+
+}

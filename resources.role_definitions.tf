@@ -1,15 +1,12 @@
 resource "azurerm_role_definition" "enterprise_scale" {
-  for_each = {
-    for role in local.es_role_definitions_by_management_group :
-    role.resource_id => role
-  }
+  for_each = local.azurerm_role_definition_enterprise_scale
 
   # Special handling of OPTIONAL role_definition_id to ensure consistent and
   # correct mapping of Terraform state ADDR value to Azure Resource ID value.
   role_definition_id = basename(each.key)
 
   # Mandatory resource attributes
-  name  = "[${upper(local.es_root_id)}] ${each.value.template.roleName}"
+  name  = "[${upper(local.root_id)}] ${each.value.template.roleName}"
   scope = each.value.scope_id
 
   permissions {
@@ -21,7 +18,7 @@ resource "azurerm_role_definition" "enterprise_scale" {
 
   # Optional resource attributes
   description       = try(length(each.value.template.description) > 0, false) ? each.value.template.description : "${each.value.template.roleName} Role Definition at scope ${each.value.scope_id}"
-  assignable_scopes = try(length(each.value.assignableScopes) > 0, false) ? each.value.assignableScopes : ["${each.value.scope_id}"]
+  assignable_scopes = try(length(each.value.assignableScopes) > 0, false) ? each.value.assignableScopes : [each.value.scope_id, ]
 
   # Set explicit dependency on Management Group deployments
   depends_on = [

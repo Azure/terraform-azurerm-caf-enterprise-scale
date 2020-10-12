@@ -1,0 +1,28 @@
+{
+  "name": "ES-Deploy-ASC-ContExport",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Deploy ASC Continuous Export To Log Analytics Workspace.",
+    "displayName": "ES-Deploy-ASC-ContinuousExportToWorkspace",
+    "notScopes": [],
+    "parameters": {
+      "resourceGroupLocation": {
+        "value": null
+      },
+      "workspaceResourceId": {
+        "value": null
+      }
+    },
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-ASC-ContinuousExportToWorkspace",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}

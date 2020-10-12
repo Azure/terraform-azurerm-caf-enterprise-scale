@@ -1,0 +1,25 @@
+{
+  "name": "ES-Deploy-ForwardDiagLog",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Ensures that Azure resources are configured to forward diagnostic logs and metrics to an Azure Log Analytics workspace.",
+    "displayName": "ES-Deploy-Diagnostics-ForwardDiagnosticLogs",
+    "notScopes": [],
+    "parameters": {
+      "logAnalytics": {
+        "value": null
+      }
+    },
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/ES-Deploy-Diagnostics-LogAnalytics",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}

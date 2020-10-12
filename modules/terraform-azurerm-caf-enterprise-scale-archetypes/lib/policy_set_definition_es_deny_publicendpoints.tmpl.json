@@ -1,0 +1,53 @@
+{
+  "name": "ES-Deny-Public-Endpoints-for-PaaS-Services",
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Deny public endpoints for PaaS services which support PrivateLink (limited support).",
+    "displayName": "ES-Deny-Public-Endpoints-for-PaaS-Services",
+    "parameters": {},
+    "policyDefinitionGroups": [],
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "2305471075076999555",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-CosmosDB",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "9147011493650353598",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-MariaDB",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "12408670082151357639",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-MySQL",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "12661820429455827739",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-PostgreSql",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "4034941732885719677",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-KeyVault",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "3088050605787531398",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-Sql",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "9863399000097702281",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-Storage",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "8251035221074005943",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-Aks",
+        "parameters": {}
+      }
+    ]
+  }
+}

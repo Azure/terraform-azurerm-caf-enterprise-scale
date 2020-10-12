@@ -1,0 +1,88 @@
+{
+  "name": "ES-Deploy-ASC-Monitoring",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Enable Monitoring in Azure Security Center.",
+    "displayName": "ES-Deploy-ASC-Monitoring",
+    "notScopes": [],
+    "parameters": {
+      "aadAuthenticationInSqlServerMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "diskEncryptionMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "encryptionOfAutomationAccountMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityDesignateLessThanOwnersMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityDesignateMoreThanOneOwnerMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityEnableMFAForWritePermissionsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityRemoveDeprecatedAccountMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityRemoveDeprecatedAccountWithOwnerPermissionsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityRemoveExternalAccountWithOwnerPermissionsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityRemoveExternalAccountWithReadPermissionsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "identityRemoveExternalAccountWithWritePermissionsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "jitNetworkAccessMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "networkSecurityGroupsOnSubnetsMonitoringEffect": {
+        "value": "AuditIfNotExists"
+      },
+      "sqlDbEncryptionMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "sqlManagedInstanceAdvancedDataSecurityEmailAdminsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "sqlManagedInstanceAdvancedDataSecurityEmailsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "sqlServerAdvancedDataSecurityEmailAdminsMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "sqlServerAdvancedDataSecurityMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "systemUpdatesMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "useRbacRulesMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "vmssSystemUpdatesMonitoringEffect": {
+        "value": "Disabled"
+      },
+      "windowsDefenderExploitGuardMonitoringEffect": {
+        "value": "Disabled"
+      }
+    },
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
