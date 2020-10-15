@@ -23,10 +23,10 @@ The following resource types are deployed and managed by this module:
 | [Policy Assignments][arm_policy_assignment]         | [`azurerm_policy_assignment`][azurerm_policy_assignment] |
 | [Policy Definitions][arm_policy_definition]         | [`azurerm_policy_definition`][azurerm_policy_definition] |
 | [Policy Set Definitions][arm_policy_set_definition] | [`azurerm_policy_set_definition`][azurerm_policy_set_definition] |
-| [Role Assignments ][arm_role_assignment]            | [`azurerm_role_assignment`][azurerm_role_assignment] |
-| [Role Definitions ][arm_role_definition]            | [`azurerm_role_definition`][azurerm_role_definition] |
+| [Role Assignments][arm_role_assignment]             | [`azurerm_role_assignment`][azurerm_role_assignment] |
+| [Role Definitions][arm_role_definition]             | [`azurerm_role_definition`][azurerm_role_definition] |
 
-The concept of ***archetypes*** is used to define configuration settings for each ***Management Group*** using a template-driven approach. This approach is designed to make reading the high-level configuration settings easier, simplify the process of managing configuration and versioning, reduce code duplication (DRY), and to improve consistency in complex environments. An archetype is defined using a simple JSON structure (as below) and should define which policy and role settings should be deployed. This is associated to the scope (Management Group) as part of the ***Landing Zone*** definitions.
+The concept of ***archetypes*** is used to define configuration settings for each ***Management Group*** using a template-driven approach. This approach is designed to make reading the high-level configuration settings easier, simplify the process of managing configuration and versioning, reduce code duplication (DRY), and to improve consistency in complex environments. An archetype is defined using a simple JSON structure (as below) and should define which policy and role settings should be deployed. This is associated to the scope (i.e. Management Group) as part of the ***Landing Zone*** definitions and is what fundamentally transforms ***Management Groups*** into ***Landing Zones***.
 
 **Example archetype definition structure**
 ```json
@@ -44,7 +44,7 @@ The concept of ***archetypes*** is used to define configuration settings for eac
 }
 ```
 
-The module contains a default library of templates for the official Enterprise-scale Archetype Definitions, Policy Assignments, Policy Definitions, Policy Set Definitions, Role Assignments, and Role Definitions. These can be overridden using a custom library, details of which are provided under the usage section of this README.
+The module contains a default library of templates for the official Enterprise-scale Archetype Definitions, Policy Assignments, Policy Definitions, Policy Set Definitions, Role Assignments, and Role Definitions. These can be overridden using a custom library, details of which are provided under the usage section of this README (below).
 
 ## Usage in Terraform 0.13
 
@@ -71,7 +71,7 @@ variable "tenant_id" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.0.3-preview"
+  version = "0.0.5-preview"
 
   root_parent_id = var.tenant_id
 
@@ -93,25 +93,17 @@ variable "tenant_id" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.0.3-preview"
+  version = "0.0.5-preview"
 
+  # Mandatory Variables
   root_parent_id            = var.tenant_id
 
-  # Define a custom ID to use for the root Management Group
-  # Also used as a prefix for all core Management Group IDs
-  root_id                   = "tf"
-
-  # Define a custom "friendly name" for the root Management Group
-  root_name                 = "ES Terraform Demo"
-
-  # Control whether to deploy the default core landing zones // default = true
-  deploy_core_landing_zones = true
-
-  # Control whether to deploy the demo landing zones         // default = false
-  deploy_demo_landing_zones = false
-
-  # Set a path for the custom archetype library path
-  library_path    = "${path.root}/lib"
+  # Optional Variables
+  root_id                   = "tf"                // Define a custom ID to use for the root Management Group. Also used as a prefix for all core Management Group IDs.
+  root_name                 = "ES Terraform Demo" // Define a custom "friendly name" for the root Management Group
+  deploy_core_landing_zones = true                // Control whether to deploy the default core landing zones // default = true
+  deploy_demo_landing_zones = false               // Control whether to deploy the demo landing zones (default = false)
+  library_path              = "${path.root}/lib"  // Set a path for the custom archetype library path
 
   custom_landing_zones = {
     #------------------------------------------------------#
@@ -302,15 +294,15 @@ module "enterprise_scale" {
 ```
 
 
-# License
+## License
 
 Please refer to our official [license statement][TFAES-LICENSE].
 
-# Contributing
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+the rights to use your contribution. For details, visit [https://cla.opensource.microsoft.com](https://cla.opensource.microsoft.com).
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
