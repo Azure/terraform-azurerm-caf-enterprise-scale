@@ -264,7 +264,7 @@ module "enterprise_scale" {
     #------------------------------------------------------#
   }
 
-  es_subscription_ids_map = {
+  subscription_id_overrides = {
     #------------------------------------------------------#
     # This variable is used to associate Azure subscription_ids
     # with the built-in Enterprise-scale Management Groups.
