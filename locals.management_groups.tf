@@ -82,7 +82,7 @@ locals {
 # should be assigned to the core Enterprise-scale Management
 # Groups. To ensure a valid value is always provided, we
 # provide a list of defaults in es_subscription_ids_defaults which
-# can be overridden using the es_subscription_ids_map variable.
+# can be overridden using the subscription_id_overrides variable.
 locals {
   es_subscription_ids_defaults = {
     (local.root_id)                   = local.empty_list
