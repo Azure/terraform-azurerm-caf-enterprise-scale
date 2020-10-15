@@ -23,8 +23,8 @@ The following resource types are deployed and managed by this module:
 | [Policy Assignments][arm_policy_assignment]         | [`azurerm_policy_assignment`][azurerm_policy_assignment] |
 | [Policy Definitions][arm_policy_definition]         | [`azurerm_policy_definition`][azurerm_policy_definition] |
 | [Policy Set Definitions][arm_policy_set_definition] | [`azurerm_policy_set_definition`][azurerm_policy_set_definition] |
-| [Role Assignments ][arm_role_assignment]            | [`azurerm_role_assignment`][azurerm_role_assignment] |
-| [Role Definitions ][arm_role_definition]            | [`azurerm_role_definition`][azurerm_role_definition] |
+| [Role Assignments][arm_role_assignment]             | [`azurerm_role_assignment`][azurerm_role_assignment] |
+| [Role Definitions][arm_role_definition]             | [`azurerm_role_definition`][azurerm_role_definition] |
 
 The concept of ***archetypes*** is used to define configuration settings for each ***Management Group*** using a template-driven approach. This approach is designed to make reading the high-level configuration settings easier, simplify the process of managing configuration and versioning, reduce code duplication (DRY), and to improve consistency in complex environments. An archetype is defined using a simple JSON structure (as below) and should define which policy and role settings should be deployed. This is associated to the scope (i.e. Management Group) as part of the ***Landing Zone*** definitions and is what fundamentally transforms ***Management Groups*** into ***Landing Zones***.
 
@@ -294,15 +294,15 @@ module "enterprise_scale" {
 ```
 
 
-# License
+## License
 
 Please refer to our official [license statement][TFAES-LICENSE].
 
-# Contributing
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+the rights to use your contribution. For details, visit [https://cla.opensource.microsoft.com](https://cla.opensource.microsoft.com).
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
