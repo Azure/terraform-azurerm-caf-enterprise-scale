@@ -29,7 +29,7 @@ resource "azurerm_policy_assignment" "enterprise_scale" {
     azurerm_management_group.level_5,
     azurerm_management_group.level_6,
     azurerm_policy_definition.enterprise_scale,
-    azurerm_policy_set_definition.enterprise_scale,  
+    azurerm_policy_set_definition.enterprise_scale,
   ]
 
 }
