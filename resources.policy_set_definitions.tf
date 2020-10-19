@@ -30,8 +30,14 @@ resource "azurerm_policy_set_definition" "enterprise_scale" {
   metadata              = try(length(each.value.template.metadata) > 0, false) ? jsonencode(each.value.template.metadata) : local.empty_string
   parameters            = try(length(each.value.template.parameters) > 0, false) ? jsonencode(each.value.template.parameters) : local.empty_string
 
-  # Set explicit dependency on Policy Definition deployments
+  # Set explicit dependency on Management Group and Policy Definition deployments
   depends_on = [
+    azurerm_management_group.level_1,
+    azurerm_management_group.level_2,
+    azurerm_management_group.level_3,
+    azurerm_management_group.level_4,
+    azurerm_management_group.level_5,
+    azurerm_management_group.level_6,
     azurerm_policy_definition.enterprise_scale,
   ]
 
