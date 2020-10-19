@@ -71,7 +71,7 @@ variable "tenant_id" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.0.5-preview"
+  version = "0.0.6-preview"
 
   root_parent_id = var.tenant_id
 
@@ -93,7 +93,7 @@ variable "tenant_id" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.0.5-preview"
+  version = "0.0.6-preview"
 
   # Mandatory Variables
   root_parent_id            = var.tenant_id
