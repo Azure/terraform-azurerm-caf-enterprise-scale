@@ -14,4 +14,15 @@ resource "azurerm_role_assignment" "enterprise_scale" {
   role_definition_id               = null // Not currently used
   skip_service_principal_aad_check = null // Not currently used
 
+  # Set explicit dependency on Management Group and Role Definition deployments
+  depends_on = [
+    azurerm_management_group.level_1,
+    azurerm_management_group.level_2,
+    azurerm_management_group.level_3,
+    azurerm_management_group.level_4,
+    azurerm_management_group.level_5,
+    azurerm_management_group.level_6,
+    azurerm_role_definition.enterprise_scale,
+  ]
+
 }

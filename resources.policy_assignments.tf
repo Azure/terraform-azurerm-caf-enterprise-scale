@@ -20,7 +20,7 @@ resource "azurerm_policy_assignment" "enterprise_scale" {
   not_scopes       = try(length(each.value.template.properties.notScopes) > 0, false) ? each.value.template.properties.notScopes : local.empty_list
   enforcement_mode = try(length(each.value.template.properties.enforcementMode) > 0, false) ? each.value.template.properties.enforcementMode : true
 
-  # Set explicit dependency on Policy Definition and Policy Set Definition deployments
+  # Set explicit dependency on Management Group, Policy Definition and Policy Set Definition deployments
   depends_on = [
     azurerm_management_group.level_1,
     azurerm_management_group.level_2,
