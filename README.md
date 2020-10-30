@@ -13,7 +13,7 @@ Specifically, this module provides a consistent approach for deploying the follo
   - Assign Subscriptions to Management Groups
   - Create custom Policy Definitions, Policy Set Definitions (Initiatives), and Policy Assignments (Enterprise-scale policies and customer-defined policies)
 - Identity and access management
-  - Create custom Role Definitions, and Role Assignments (Enterprise-scale policies and customer-defined roles)
+  - Create custom Role Definitions, and Role Assignments (Enterprise-scale roles and customer-defined roles)
 
 The following resource types are deployed and managed by this module:
 
