@@ -46,6 +46,27 @@ The concept of ***archetypes*** is used to define configuration settings for eac
 
 The module contains a default library of templates for the official Enterprise-scale Archetype Definitions, Policy Assignments, Policy Definitions, Policy Set Definitions, Role Assignments, and Role Definitions. These can be overridden using a custom library, details of which are provided under the usage section of this README (below).
 
+To improve the ability to create a flexible Landing Zone hierarchy aligned with your operational requirements, the default library includes a `default_empty` archetype definition. You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
+
+```hcl
+  custom_landing_zones = {
+    example-landing-zone-id = {
+      display_name               = "Example Landing Zone"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id = "default_empty"
+        parameters   = {}
+        access_control = {}
+      }
+    }
+  }
+```
+
+This is equivalent to creating a standard `Management Group` without creating any custom Policy Definitions, Policy Set Definitions (Initiatives), Policy Assignments, or Role Definitions. You can still create Role Assignments using the `archetype_config` > `access_control` object.
+
+> Note that you still need to provide a full and valid Landing Zone object as per the example above.
+
 ## Usage in Terraform 0.13
 
 To use this module with all default settings, please include the following in your root module:
