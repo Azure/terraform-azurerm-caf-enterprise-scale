@@ -63,7 +63,7 @@ To improve the ability to create a flexible Landing Zone hierarchy aligned with 
   }
 ```
 
-This is equivalent to creating a standard `Management Group` without creating any custom Policy Definitions, Policy Set Definitions (Initiatives), Policy Assignments, or Role Definitions. You can still create Role Assignments using the `archetype_config` > `access_control` object.
+This is equivalent to creating a standard Management Group without creating any custom Policy Definitions, Policy Set Definitions (Initiatives), Policy Assignments, or Role Definitions. You can still create Role Assignments using the `archetype_config` > `access_control` object.
 
 > Note that you still need to provide a full and valid Landing Zone object as per the example above.
 
