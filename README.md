@@ -193,7 +193,7 @@ module "enterprise_scale" {
     #   parameters     = {}
     #   access_control = {}
     # }
-    # landing_zones = {
+    # landing-zones = {
     #   archetype_id   = "es_landing_zones"
     #   parameters     = {}
     #   access_control = {}
@@ -218,17 +218,17 @@ module "enterprise_scale" {
     #   parameters     = {}
     #   access_control = {}
     # }
-    # demo_corp = {
+    # demo-corp = {
     #   archetype_id   = "es_demo_corp"
     #   parameters     = {}
     #   access_control = {}
     # }
-    # demo_online = {
+    # demo-online = {
     #   archetype_id   = "es_demo_online"
     #   parameters     = {}
     #   access_control = {}
     # }
-    # demo_sap = {
+    # demo-sap = {
     #   archetype_id   = "es_demo_sap"
     #   parameters     = {}
     #   access_control = {}
