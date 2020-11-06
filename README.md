@@ -333,23 +333,23 @@ This template-based approach was chosen to make the desired-state easier to unde
 {
     "archetype_id": {
         "policy_assignments": [
-          {{ list of Policy Assignment names }}
+          // list of Policy Assignment names
         ],
         "policy_definitions": [
-          {{ list of Policy Definition names }}
+          // list of Policy Definition names
         ],
         "policy_set_definitions": [
-          {{ list of Policy Set Definition names }}
+          // list of Policy Set Definition names
         ],
         "role_definitions": [
-          {{ list of Role Definition names }}
+          // list of Role Definition names
         ],
         "archetype_config": {
             "parameters": {
-              {{ map of parameter objects, grouped by Policy Assignment }}
+              // map of parameter objects, grouped by Policy Assignment name
             },
             "access_control": {
-              {{ map of Role Assignments to create, grouped by role }}
+              // map of Role Assignments to create, grouped by Role Definition name
             }
         }
     }
