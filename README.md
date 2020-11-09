@@ -358,7 +358,7 @@ This template-based approach was chosen to make the desired-state easier to unde
 
 #### Using the `default_empty` archetype definition
 
-To improve the ability to create a flexible Landing Zone hierarchy aligned with your operational requirements, the default library includes a `default_empty` archetype definition. You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
+The default library includes a `default_empty` archetype definition which is useful when defining Management Groups which only require Role Assignments, or are being used for logical segregation of Landing Zones under a parent arcehtype. You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
 
 ```hcl
   custom_landing_zones = {
@@ -375,7 +375,9 @@ To improve the ability to create a flexible Landing Zone hierarchy aligned with 
   }
 ```
 
-This is equivalent to creating a standard Management Group without creating any custom Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) or Role Definitions. You can still create Role Assignments using the `archetype_config` > `access_control` object.
+This is equivalent to creating a standard Management Group without creating any custom Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) or Role Definitions.
+
+Role Assignments can be created using the `archetype_config` > `access_control` object within the `custom_landing_zones` instance.
 
 > Note that you still need to provide a full and valid Landing Zone object as per the example above.
 
