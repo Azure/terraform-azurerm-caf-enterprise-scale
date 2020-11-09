@@ -12,7 +12,7 @@ locals {
     for role_definition_name, members in local.archetype_role_assignments_map : [
       for member in members : [
         {
-          resource_id          = "${local.provider_path.role_assignment}${uuidv5(uuidv5("url", role_definition_name), member)}"
+          resource_id          = "${local.provider_path.role_assignment}${uuidv5(uuidv5(uuidv5("url", role_definition_name), local.scope_id), member)}"
           scope_id             = local.scope_id
           principal_id         = member
           role_definition_name = role_definition_name

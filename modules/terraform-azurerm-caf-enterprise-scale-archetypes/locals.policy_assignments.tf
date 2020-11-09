@@ -72,6 +72,16 @@ locals {
   )
 }
 
+# Generate a map of parameters from the archetype definition and merge
+# with the parameters provided using var.parameters.
+# Used to determine the parameter values for Policy Assignments.
+locals {
+  parameters_at_scope = merge(
+    local.archetype_definition.archetype_config.parameters,
+    local.parameters,
+  )
+}
+
 # Extract the desired Policy Assignment from archetype_policy_assignments_map.
 locals {
   archetype_policy_assignments_output = [
@@ -85,8 +95,8 @@ locals {
       # variable. These come from the archetype_config object in
       # the enterprise_scale module and are merged with the Policy
       # Assignment template values to provide overrides.
-      parameters = contains(keys(local.parameters), policy_assignment) ? {
-        for parameter_key, parameter_value in local.parameters[policy_assignment] :
+      parameters = contains(keys(local.parameters_at_scope), policy_assignment) ? {
+        for parameter_key, parameter_value in local.parameters_at_scope[policy_assignment] :
         parameter_key => {
           value = parameter_value
         }
