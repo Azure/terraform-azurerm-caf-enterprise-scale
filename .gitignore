@@ -30,3 +30,6 @@ override.tf.json
 
 # Ignore any files with .ignore. in the filename
 *.ignore.*
+
+# Ignore macOS .DS_Store files which are generated automatically by Finder.
+.DS_Store
