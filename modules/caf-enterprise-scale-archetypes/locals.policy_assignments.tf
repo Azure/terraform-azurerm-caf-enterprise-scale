@@ -98,7 +98,15 @@ locals {
       parameters = contains(keys(local.parameters_at_scope), policy_assignment) ? {
         for parameter_key, parameter_value in local.parameters_at_scope[policy_assignment] :
         parameter_key => {
-          value = parameter_value
+          # Due to object type limitations in Go, we can only support
+          # a single object type in the input parameter for parameters.
+          # To support processing parameters with different object
+          # types we've added support for converting the input value
+          # from JSON but can fallback to the raw value if that fails.
+          # This provides backwards compatibility for existing
+          # deployments, but also makes it easier to compose the input
+          # object if only one parameter value type is needed.
+          value = try(jsondecode(parameter_value), parameter_value)
         }
       } : null
     }
