@@ -97,7 +97,7 @@
             "ES-Deploy-Sql-AuditingSettings",
             "ES-Deploy-Sql-SecurityAlertPolicies",
             "ES-Deploy-Sql-Tde",
-            "ES-Deploy-Sql-vulnerabilityAssessments",
+            "ES-Deploy-Sql-VulnerabilityAssessments",
             "ES-Deploy-vHUB",
             "ES-Deploy-vNet",
             "ES-Deploy-vWAN",
