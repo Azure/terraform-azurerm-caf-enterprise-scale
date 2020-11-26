@@ -108,13 +108,13 @@ locals {
 # Identify all Policy Definitions which are external to this module
 locals {
   # From Policy Assignments using Policy Set Definitions
-  external_policy_definitions_ids_from_policy_set_definitions = flatten([
+  external_policy_definitions_ids_from_policy_set_definitions = distinct(flatten([
     for policy_definitions in values(local.policy_definitions_ids_from_policy_set_definitions) : [
       for policy_definition in policy_definitions :
       policy_definition
       if contains(local.internal_policy_definition_ids, policy_definition) != true
     ]
-  ])
+  ]))
   external_policy_definitions_from_azurerm_policy_set_definition_external_lookup = {
     for policy_set_definition_id in local.external_policy_definitions_ids_from_policy_set_definitions :
     policy_set_definition_id => {
