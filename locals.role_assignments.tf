@@ -9,6 +9,7 @@ locals {
   es_role_assignments = concat(
     local.es_role_assignments_by_management_group,
     local.es_role_assignments_by_subscription,
+    local.es_role_assignments_by_policy_assignment,
   )
 }
 
