@@ -37,6 +37,8 @@ To use this module with all default settings, please include the following in yo
 > 2. This module has a single mandatory variable `root_parent_id` which is used to set the parent ID to use as the root for deployment. All other variables are optional but can be used to customise your deployment.
 >
 > 3. If using the `azurerm_subscription` data source to provide a `tenant_id` value from the current context for `root_parent_id`, you are likely to get a warning that Terraform cannot determine the number of resources to create during the `plan` stage. To avoid the need to use `terraform apply -target=resource` or putting such values in source code, we recommend providing the `root_parent_id` value explicitly via the command-line using `-var 'root_parent_id={{ tenant_id }}'` or your preferred method of injecting variable values at runtime.
+>
+> 4. As of version `0.0.8` this module now supports the creation of Role Assignments for any valid Policy Assignment deployed using the module. This feature enumerates the appropriate role(s) needed by the assigned Policy Definition or Policy Set Definition and creates the necessary Role Assignments for the auto-generated Managed Identity at the same scope as the Policy Assignment. This capability provides feature parity with the Azure Portal experience when creating Policy Assignments using the `DeployIfNotExists` or `Modify` effects. If the Policy Assignment needs to interact with resources not under the same scope as the Policy Assignment, you will need to create additional Role Assignments at the appropriate scope.
 
 ### Simple Example
 
@@ -53,7 +55,7 @@ variable "tenant_id" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.0.7-preview"
+  version = "0.0.8"
 
   root_parent_id = var.tenant_id
 
@@ -77,7 +79,7 @@ variable "tenant_id" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.0.7-preview"
+  version = "0.0.8"
 
   # Mandatory Variables
   root_parent_id            = var.tenant_id
