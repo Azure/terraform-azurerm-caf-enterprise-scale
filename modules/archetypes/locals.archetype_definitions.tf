@@ -1,13 +1,13 @@
 # Load the built-in archetype definitions from the internal library path
 locals {
-  builtin_archetype_definitions_json = tolist(fileset(local.builtin_library_path, "**archetype_definition_*.json"))
-  builtin_archetype_definitions_yaml = tolist(fileset(local.builtin_library_path, "**archetype_definition_*.{yml,yaml}"))
+  builtin_archetype_definitions_json = tolist(fileset(local.builtin_library_path, "**/archetype_definition_*.json"))
+  builtin_archetype_definitions_yaml = tolist(fileset(local.builtin_library_path, "**/archetype_definition_*.{yml,yaml}"))
 }
 
 # Load the custom archetype definitions from the custom library path if specified
 locals {
-  custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**archetype_definition_*.json")) : []
-  custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**archetype_definition_*.{yml,yaml}")) : []
+  custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.json")) : []
+  custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.{yml,yaml}")) : []
 }
 
 # Create datasets containing all built-in and custom archetype definitions from each source and file type
