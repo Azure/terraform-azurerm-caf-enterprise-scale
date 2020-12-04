@@ -11,7 +11,7 @@ jobs:
     name: 'Test'
     runs-on: ubuntu-20.04
     strategy:
-      fail-fast: 
+      fail-fast: false
       matrix:
         terraform: [0.13.4, 0.13.5, 0.14.0]
     steps:
