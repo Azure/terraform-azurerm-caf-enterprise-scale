@@ -1,4 +1,4 @@
-name: 'Test'
+name: 'Tests'
 
 on:
   push:
@@ -8,13 +8,23 @@ on:
 
 jobs:
   terraform:
-    name: 'Test'
+    name: 'Terraform'
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
         terraform: [0.13.4, 0.13.5, 0.14.0]
     steps:
-      - uses: hashicorp/setup-terraform@v1
+      - name: 'Checkout repository'
+        uses: actions/checkout@v2
+      - name: 'Checkout template repository'
+        uses: actions/checkout@v2
+        with:
+          repository: 'ljtill/cae-azscale'
+      - name: 'Setup terraform'
+        uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ matrix.terraform }}
+      - name: 'Initialize terraform'
+        run: terraform init
+        working-directory: 'ljtill/cae-azscale'
