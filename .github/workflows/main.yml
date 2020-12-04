@@ -26,8 +26,7 @@ jobs:
           terraform_version: ${{ matrix.terraform }}
       - name: 'Replace provider verison'
         run: |
-          sed -i '' 's/version = ""/version = "${{ matrix.provider }}"/g' main.tf
-          cat main.tf | grep version
+          sed -i 's/version = ""/version = "${{ matrix.provider }}"/g' main.tf
         working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
@@ -37,7 +36,7 @@ jobs:
         working-directory: './tests/deployment'
       - name: 'Replace root value'
         run: |
-          sed -i '' 's/root_id = ""/root_id = "$GITHUB_RUN_ID"/g' main.tf
+          sed -i 's/root_id = ""/root_id = "$GITHUB_RUN_ID"/g' main.tf
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
         run: terraform apply -auto-approve -parallelism=256
