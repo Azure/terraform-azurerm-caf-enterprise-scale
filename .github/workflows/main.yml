@@ -23,10 +23,10 @@ jobs:
           terraform_version: ${{ matrix.terraform }}
       - name: 'Initialize terraform'
         run: terraform init
-        working-directory: 'tests/deployment'
+        working-directory: './tests/deployment'
       - name: 'Plan terraform'
         run: terraform plan
-        working-directory: 'tests/deployment'
+        working-directory: './tests/deployment'
     env:
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
