@@ -24,7 +24,7 @@ jobs:
         with:
           repository: ljtill/cae-azscale
           path: template
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
       - name: 'Setup terraform'
         uses: hashicorp/setup-terraform@v1
         with:
