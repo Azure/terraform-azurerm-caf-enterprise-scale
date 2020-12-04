@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [0.12.29, 0.13.3, 0.13.4, 0.13.5, 0.14.0]
-        provider: [2.31.1, 2.39.0]
+        provider: [2.32.0, 2.39.0]
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
