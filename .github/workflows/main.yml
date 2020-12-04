@@ -17,4 +17,4 @@ jobs:
     steps:
       - uses: hashicorp/setup-terraform@v1
         with:
-        terraform_version: ${{ matrix.terraform }}
+          terraform_version: ${{ matrix.terraform }}
