@@ -6,7 +6,7 @@
 # groups of Resources within a Subscription.
 module "management_group_archetypes" {
   for_each = local.es_landing_zones_map
-  source   = "./modules/archetypes"
+  source   = "${path.root}/modules/archetypes"
 
   root_id                 = "${local.provider_path.management_groups}${local.root_id}"
   scope_id                = each.key
