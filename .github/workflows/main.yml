@@ -40,8 +40,10 @@ jobs:
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
         run: terraform apply -auto-approve -parallelism=256
+        working-directory: './tests/deployment'
       - name: 'Destroy terraform'
         run: terraform destroy -auto-approve -parallelism=256
+        working-directory: './tests/deployment'
     env:
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
