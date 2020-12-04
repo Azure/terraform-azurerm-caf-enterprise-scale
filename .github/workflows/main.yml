@@ -36,7 +36,7 @@ jobs:
         working-directory: './tests/deployment'
       - name: 'Replace root value'
         run: |
-          sed -i 's/root_id = ""/root_id = "$GITHUB_RUN_ID"/g' main.tf
+          sed -i 's/root_id = ""/root_id = "${GITHUB_RUN_ID}"/g' main.tf
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
         run: terraform apply -auto-approve -parallelism=256
