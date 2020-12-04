@@ -9,30 +9,29 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     strategy:
       fail-fast: false
+      max-parallel: 2
       matrix:
-        version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
-        #version: [0.13.5]
-        provider: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
-        #provider: [2.39.0]
+        terraform_version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
+        azurerm_version: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
       - name: 'Setup terraform'
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: ${{ matrix.terraform }}
+          terraform_version: ${{ matrix.terraform_version }}
       - name: 'Replace provider version'
         run: |
-          sed -i 's/version = ""/version = "${{ matrix.provider }}"/g' main.tf
+          sed -i 's/version = ""/version = "${{ matrix.azurerm_version }}"/g' main.tf
         working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
         working-directory: './tests/deployment'
       - name: 'Plan terraform'
-        run: terraform plan -var "root_id=$RANDOM" -parallelism=256 -out=plan
+        run: terraform plan -var "root_id=$RANDOM" "root_name=${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" -parallelism=256 -out=plan
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
         run: terraform apply -auto-approve -parallelism=256 plan
