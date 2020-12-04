@@ -9,7 +9,7 @@ module "enterprise_scale" {
   source = "../../"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = "xx"
+  root_id        = ""
   root_name      = "ES"
 
   deploy_core_landing_zones = true
