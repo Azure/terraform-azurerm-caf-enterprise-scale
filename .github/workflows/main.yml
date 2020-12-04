@@ -30,7 +30,7 @@ jobs:
         working-directory: './tests/deployment'
       - name: 'Replace root id'
         run: |
-          sed -i 's/root_id = ""/root_id = "${{ github.run_number }}"/g' main.tf
+          sed -i 's/root_id        = ""/root_id        = "${{ github.run_number }}"/g' main.tf
         working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
