@@ -1,0 +1,22 @@
+{
+	"records": [
+		{
+			"key": "provider-types",
+			"source": "./policy/providers-types.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Extreme SSD/forks/github.com/ljtill/terraform-azurerm-enterprise-scale/tests/policy/providers-types.sentinel"
+		},
+		{
+			"key": "provider-version",
+			"source": "./policy/providers-versions.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Extreme SSD/forks/github.com/ljtill/terraform-azurerm-enterprise-scale/tests/policy/providers-versions.sentinel"
+		},
+		{
+			"key": "provider",
+			"source": "./policy/providers.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Extreme SSD/forks/github.com/ljtill/terraform-azurerm-enterprise-scale/tests/policy/providers.sentinel"
+		}
+	]
+}
