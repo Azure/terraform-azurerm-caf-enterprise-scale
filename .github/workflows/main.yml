@@ -31,13 +31,12 @@ jobs:
       - name: 'Replace root id'
         run: |
           sed -i 's/root_id = ""/root_id = "${{ github.run_number }}"/g' main.tf
+        working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
         working-directory: './tests/deployment'
       - name: 'Plan terraform'
         run: terraform plan
-        working-directory: './tests/deployment'
-
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
         run: terraform apply -auto-approve -parallelism=256
