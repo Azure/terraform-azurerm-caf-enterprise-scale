@@ -42,7 +42,7 @@ jobs:
         working-directory: './tests/deployment'
 
       - name: 'Plan terraform'
-        run: terraform plan -var "root_id=$RANDOM" -var "root_name=${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" -parallelism=256 -out=plan
+        run: terraform plan -var "root_id=$RANDOM" -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" -parallelism=256 -out=plan
         working-directory: './tests/deployment'
 
       - name: 'Apply terraform'
