@@ -24,19 +24,20 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ matrix.terraform }}
-      - name: 'Replace provider verison'
+      - name: 'Replace provider version'
         run: |
           sed -i 's/version = ""/version = "${{ matrix.provider }}"/g' main.tf
         working-directory: './tests/deployment'
+      - name: 'Replace root id'
+        run: |
+          sed -i 's/root_id = ""/root_id = "${{ github.run_number }}"/g' main.tf
       - name: 'Initialize terraform'
         run: terraform init
         working-directory: './tests/deployment'
       - name: 'Plan terraform'
         run: terraform plan
         working-directory: './tests/deployment'
-      - name: 'Replace root value'
-        run: |
-          sed -i 's/root_id = ""/root_id = "${{ github.run_number }}"/g' main.tf
+
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
         run: terraform apply -auto-approve -parallelism=256
