@@ -23,7 +23,9 @@ jobs:
         with:
           terraform_version: ${{ matrix.terraform }}
       - name: 'Replace provider verison'
-        run: cat main.tf | sed 's/version = ""/version = "{{ matrix.provider }}"/g' > main.tf
+        run: |
+          cat main.tf | sed 's/version = ""/version = "{{ matrix.provider }}"/g' > main.tf
+          cat main.tf | grep version
         working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
