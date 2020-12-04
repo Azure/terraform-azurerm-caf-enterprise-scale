@@ -17,10 +17,13 @@ jobs:
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
+        with:
+          path: source
       - name: 'Checkout template repository'
         uses: actions/checkout@v2
         with:
-          repository: 'ljtill/cae-azscale'
+          repository: ljtill/cae-azscale
+          path: template
           token: ${{ github.token }}
       - name: 'Setup terraform'
         uses: hashicorp/setup-terraform@v1
@@ -28,4 +31,4 @@ jobs:
           terraform_version: ${{ matrix.terraform }}
       - name: 'Initialize terraform'
         run: terraform init
-        working-directory: 'ljtill/cae-azscale'
+        working-directory: 'template'
