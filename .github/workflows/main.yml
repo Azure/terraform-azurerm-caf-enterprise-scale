@@ -13,7 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        terraform: [0.12.29, 0.13.3, 0.13.4, 0.13.5, 0.14.0]
+        version: [0.12.29, 0.13.3, 0.13.4, 0.13.5, 0.14.0]
+        provider: [2.31.1, 2.39.0]
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
@@ -21,6 +22,9 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ matrix.terraform }}
+      - name: 'Replace provider verison'
+        run: cat main.tf | sed 's/version = ""/version = "{{ matrix.provider }}"/g' > main.tf
+        working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
         working-directory: './tests/deployment'
