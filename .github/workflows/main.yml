@@ -28,18 +28,14 @@ jobs:
         run: |
           sed -i 's/version = ""/version = "${{ matrix.provider }}"/g' main.tf
         working-directory: './tests/deployment'
-      - name: 'Replace root id'
-        run: |
-          sed -i 's/root_id        = ""/root_id        = "${{ github.run_number }}"/g' main.tf
-        working-directory: './tests/deployment'
       - name: 'Initialize terraform'
         run: terraform init
         working-directory: './tests/deployment'
       - name: 'Plan terraform'
-        run: terraform plan
+        run: terraform plan -var "root_id=$RANDOM" -parallelism=256 -out=plan
         working-directory: './tests/deployment'
       - name: 'Apply terraform'
-        run: terraform apply -auto-approve -parallelism=256
+        run: terraform apply -auto-approve -parallelism=256 plan
         working-directory: './tests/deployment'
       - name: 'Destroy terraform'
         run: terraform destroy -auto-approve -parallelism=256
