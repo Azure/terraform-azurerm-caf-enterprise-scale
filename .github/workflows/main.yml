@@ -27,7 +27,6 @@ jobs:
           sed -i '' 's/version = ""/version = "${{ matrix.provider }}"/g' main.tf
           cat main.tf | grep version
         working-directory: './tests/deployment'
-
       - name: 'Initialize terraform'
         run: terraform init
         working-directory: './tests/deployment'
