@@ -20,7 +20,7 @@ variable "root_id" {
   default     = "es"
 
   # validation {
-  #   condition     = can(regex("^[a-z0-9]{2,5}$", var.root_id))
+  #   condition     = can(regex("^[a-z]{2,5}$", var.root_id))
   #   error_message = "The root_id value must be between 2 to 5 characters long and can only contain lowercase letters."
   # }
 }
