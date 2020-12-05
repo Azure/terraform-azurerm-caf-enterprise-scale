@@ -42,14 +42,28 @@ jobs:
         working-directory: './tests/deployment'
 
       - name: 'Plan terraform'
-        run: terraform plan -var "root_id=$RANDOM" -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" -parallelism=256 -out=plan
+        run: |
+          terraform plan \
+            -var "root_id=$RANDOM" \
+            -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" \
+            -parallelism=256 \
+            -out="terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
         working-directory: './tests/deployment'
 
       - name: 'Apply terraform'
-        run: terraform apply -auto-approve -parallelism=256 plan
+        run: |
+          terraform apply \
+            -auto-approve \
+            -parallelism=256 \
+            -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate" \
+            "terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
         working-directory: './tests/deployment'
 
       - name: 'Destroy terraform'
-        run: terraform destroy -auto-approve -parallelism=256
+        run: |
+          terraform destroy \
+            -auto-approve \
+            -parallelism=256 \
+            -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate"
         working-directory: './tests/deployment'
 
