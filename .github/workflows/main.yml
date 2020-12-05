@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 8
       matrix:
         terraform_version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
         azurerm_version: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
