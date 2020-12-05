@@ -33,6 +33,10 @@ jobs:
         with:
           terraform_version: ${{ matrix.terraform_version }}
           
+      - name: 'Generate id'
+        id: root_id
+        run: echo "::set-output name=root_id::$(echo $RANDOM)"
+
       - name: 'Replace provider version'
         run: |
           sed -i 's/version = ""/version = "${{ matrix.azurerm_version }}"/g' main.tf
@@ -45,9 +49,10 @@ jobs:
       - name: 'Plan terraform'
         run: |
           terraform plan \
-            -var "root_id=$RANDOM" \
+            -var "root_id=${{ steps.root_id.outputs.root_id }}" \
             -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" \
             -parallelism=256 \
+            -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate" \
             -out="terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
         working-directory: './tests/deployment'
 
@@ -63,6 +68,8 @@ jobs:
       - name: 'Destroy terraform'
         run: |
           terraform destroy \
+            -var "root_id=${{ steps.root_id.outputs.root_id }}" \
+            -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" \
             -auto-approve \
             -parallelism=256 \
             -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate"
