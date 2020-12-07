@@ -25,6 +25,8 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       TF_VERSION: ${{ matrix.terraform_version }}
       TF_AZ_VERSION: ${{ matrix.azurerm_version }}
+      TF_LOG: "INFO"
+      TF_LOG_PATH: "/tmp/tf-logs.txt"
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
@@ -46,3 +48,8 @@ jobs:
 
       - name: '[terraform] Destroy'
         run: make tf-destroy
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "Terraform-Logs"
+          path: /tmp/tf-logs.txt
