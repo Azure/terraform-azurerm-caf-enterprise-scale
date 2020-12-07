@@ -25,7 +25,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       TF_VERSION: ${{ matrix.terraform_version }}
       TF_AZ_VERSION: ${{ matrix.azurerm_version }}
-      TF_LOG: "INFO"
+      TF_LOG: "TRACE"
       TF_LOG_PATH: "/tmp/tf-logs.txt"
     steps:
       - name: 'Checkout repository'
