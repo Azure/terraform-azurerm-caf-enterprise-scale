@@ -3,7 +3,6 @@
 echo "==> Switching directory..."
 cd $PWD/tests/deployment
 
+echo "==> Updating provider version..."
 echo "==> Provider version - $TF_AZ_VERSION"
-
-#echo "==> Updating provider version..."
 sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
