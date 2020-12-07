@@ -8,13 +8,9 @@ tf-install:
 	@echo "==> Running script..."
 	./tests/scripts/tf-install.sh
 
-tf-generate:
+tf-prepare:
 	@echo "==> Running script..."
-	./tests/scripts/tf-generate.sh
-
-tf-replace:
-	@echo "==> Running script..."
-	./tests/scripts/tf-replace.sh
+	./tests/scripts/tf-prepare.sh
 
 tf-init:
 	@echo "==> Running script..."
@@ -32,7 +28,8 @@ tf-destroy:
 	@echo "==> Running script..."
 	./tests/scripts/tf-destroy.sh
 
-# Sentinel
+# Sentinel 
+# [Coming Soon]
 
 # sn-apply:
 # 	sentinel apply
