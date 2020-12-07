@@ -48,11 +48,8 @@ jobs:
       - name: 'Plan terraform'
         run: make tf-plan
 
-      # - name: 'Apply terraform'
-      #   run: make tf-apply
-      #   working-directory: './tests/deployment'
+      - name: 'Apply terraform'
+        run: make tf-apply
 
-      # - name: 'Destroy terraform'
-      #   run: make tf-destroy
-      #   working-directory: './tests/deployment'
-
+      - name: 'Destroy terraform'
+        run: make tf-destroy
