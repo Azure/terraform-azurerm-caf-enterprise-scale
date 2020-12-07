@@ -43,11 +43,11 @@ jobs:
       - name: 'Replace provider version'
         run: make tf-replace
 
-      # - name: 'Initialize terraform'
-      #   run: make tf-init
+      - name: 'Initialize terraform'
+        run: make tf-init
 
-      # - name: 'Plan terraform'
-      #   run: make tf-plan
+      - name: 'Plan terraform'
+        run: make tf-plan
 
       # - name: 'Apply terraform'
       #   run: make tf-apply
