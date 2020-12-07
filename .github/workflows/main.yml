@@ -7,15 +7,17 @@ on:
       - "dev"
 
 jobs:
-  terraform:
-    name: 'Terraform (E2E)'
+  e2e:
+    name: 'E2E'
     runs-on: ubuntu-20.04
     timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
-        terraform_version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
-        azurerm_version: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
+        #terraform_version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
+        terraform_version: [0.14.0]
+        #azurerm_version: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
+        azurerm_version: [2.39.0]
     env:
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
@@ -26,19 +28,24 @@ jobs:
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
-      - name: 'Setup terraform'
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: ${{ matrix.terraform_version }}
-      - name: 'Generate id'
+
+      - name: '[terraform] Install'
+        run: make tf-install
+
+      - name: '[terraform] Generate'
         run: make tf-generate
-      - name: 'Replace provider version'
+
+      - name: '[terraform] Replace'
         run: make tf-replace
-      - name: 'Initialize terraform'
+
+      - name: '[terraform] Initialize'
         run: make tf-init
-      - name: 'Plan terraform'
+
+      - name: '[terraform] Plan'
         run: make tf-plan
-      - name: 'Apply terraform'
+
+      - name: '[terraform] Apply'
         run: make tf-apply
-      - name: 'Destroy terraform'
+
+      - name: '[terraform] Destroy'
         run: make tf-destroy
