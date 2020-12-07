@@ -25,6 +25,8 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
       ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      TF_VERSION: ${{ matrix.terraform_version }}
+      TF_AZ_VERSION: ${{ matrix.azurerm_version }}
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
