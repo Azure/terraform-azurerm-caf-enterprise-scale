@@ -5,7 +5,7 @@ cd $PWD/tests/deployment
 
 echo "==> Destroying terraform..."
 terraform destroy \
-    -var "root_id=${{ steps.root_id.outputs.root_id }}" \
+    -var "root_id='$TF_ROOT_ID'" \
     -var "root_name=ES-'$TF_VERSION'-'$TF_AZ_VERSION'" \
     -auto-approve \
     -parallelism=256 \
