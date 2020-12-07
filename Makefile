@@ -2,25 +2,38 @@
 # Makefile
 #
 
+# General
+
 # Terraform
 
+tf-generate:
+	@echo "==> Running script..."
+	./tests/scripts/tf-generate.sh
+
+tf-replace:
+	@echo "==> Running script..."
+	./tests/scripts/tf-replace.sh
+
 tf-init:
-	terraform init
+	@echo "==> Running script..."
+	./tests/scripts/tf-init.sh
 
 tf-plan:
-	terraform plan
+	@echo "==> Running script..."
+	./tests/scripts/tf-plan.sh
 
 tf-apply:
-	terraform apply
+	@echo "==> Running script..."
+	./tests/scripts/tf-apply.sh
+
+tf-destroy:
+	@echo "==> Running script..."
+	./tests/scripts/tf-destroy.sh
 
 # Sentinel
 
-sn-apply:
-	sentinel apply
+# sn-apply:
+# 	sentinel apply
 
-sn-test:
-	sentinel test
-
-
-
-
+# sn-test:
+# 	sentinel test
