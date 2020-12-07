@@ -35,19 +35,19 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ matrix.terraform_version }}
-          
+
       - name: 'Generate id'
         run: make tf-generate
         id: root_id
 
       - name: 'Replace provider version'
         run: make tf-replace
-        
-      - name: 'Initialize terraform'
-        run: make tf-init
 
-      - name: 'Plan terraform'
-        run: make tf-plan
+      # - name: 'Initialize terraform'
+      #   run: make tf-init
+
+      # - name: 'Plan terraform'
+      #   run: make tf-plan
 
       # - name: 'Apply terraform'
       #   run: make tf-apply
