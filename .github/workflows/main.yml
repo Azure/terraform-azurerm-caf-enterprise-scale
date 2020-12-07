@@ -38,7 +38,6 @@ jobs:
 
       - name: 'Generate id'
         run: make tf-generate
-        id: root_id
 
       - name: 'Replace provider version'
         run: make tf-replace
