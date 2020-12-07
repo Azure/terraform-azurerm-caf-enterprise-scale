@@ -4,7 +4,7 @@ echo "==> Creating directory..."
 mkdir -p /home/runner/.terraform/bin/
 
 echo "==> Downloading archive..."
-wget 'https://releases.hashicorp.com/terraform/0.14.0/terraform_'$TF_VERSION'_linux_amd64.zip' -P /tmp
+wget 'https://releases.hashicorp.com/terraform/'$TF_VERSION'/terraform_'$TF_VERSION'_linux_amd64.zip' -P /tmp
 
 echo "==> Expanding archive..."
 unzip '/tmp/terraform_'$TF_VERSION'_linux_amd64.zip' -d /tmp
