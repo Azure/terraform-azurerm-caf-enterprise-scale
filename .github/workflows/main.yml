@@ -32,11 +32,8 @@ jobs:
       - name: '[terraform] Install'
         run: make tf-install
 
-      - name: '[terraform] Generate'
-        run: make tf-generate
-
-      - name: '[terraform] Replace'
-        run: make tf-replace
+      - name: '[terraform] Prepare'
+        run: make tf-prepare
 
       - name: '[terraform] Initialize'
         run: make tf-init
