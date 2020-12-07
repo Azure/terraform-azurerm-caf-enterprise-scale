@@ -4,6 +4,10 @@
 
 # Terraform
 
+tf-install:
+	@echo "==> Running script..."
+	./tests/scripts/tf-install.sh
+
 tf-generate:
 	@echo "==> Running script..."
 	./tests/scripts/tf-generate.sh
