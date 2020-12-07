@@ -15,8 +15,10 @@ jobs:
       fail-fast: false
       max-parallel: 8
       matrix:
-        terraform_version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
-        azurerm_version: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
+        #terraform_version: [0.12.29, 0.13.0, 0.13.5, 0.14.0]
+        terraform_version: [0.14.0]
+        #azurerm_version: [2.34.0, 2.35.0, 2.36.0, 2.37.0, 2.38.0, 2.39.0]
+        azurerm_version: [2.39.0]
     env:
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
@@ -32,44 +34,26 @@ jobs:
           terraform_version: ${{ matrix.terraform_version }}
           
       - name: 'Generate id'
+        run: make tf-generate
         id: root_id
-        run: echo "::set-output name=root_id::$(echo $RANDOM)"
 
       - name: 'Replace provider version'
-        run: |
-          sed -i 's/version = ""/version = "${{ matrix.azurerm_version }}"/g' main.tf
+        run: make tf-replace
         working-directory: './tests/deployment'
         
       - name: 'Initialize terraform'
-        run: terraform init
+        run: make tf-init
         working-directory: './tests/deployment'
 
       - name: 'Plan terraform'
-        run: |
-          terraform plan \
-            -var "root_id=${{ steps.root_id.outputs.root_id }}" \
-            -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" \
-            -parallelism=256 \
-            -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate" \
-            -out="terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
+        run: make tf-plan
         working-directory: './tests/deployment'
 
       - name: 'Apply terraform'
-        run: |
-          terraform apply \
-            -auto-approve \
-            -parallelism=256 \
-            -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate" \
-            "terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
+        run: make tf-apply
         working-directory: './tests/deployment'
 
       - name: 'Destroy terraform'
-        run: |
-          terraform destroy \
-            -var "root_id=${{ steps.root_id.outputs.root_id }}" \
-            -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" \
-            -auto-approve \
-            -parallelism=256 \
-            -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate"
+        run: make tf-destroy
         working-directory: './tests/deployment'
 
