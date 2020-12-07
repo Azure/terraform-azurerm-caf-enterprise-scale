@@ -6,7 +6,7 @@ cd $PWD/tests/deployment
 echo "==> Planning terraform..."
 terraform plan \
     -var "root_id=${{ steps.root_id.outputs.root_id }}" \
-    -var "root_name=ES-${{ matrix.terraform_version }}-${{ matrix.azurerm_version }}" \
+    -var "root_name=ES-$(TF_VERSION)-$(TF_AZ_VERSION)" \
     -parallelism=256 \
-    -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate" \
-    -out="terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
+    -state="./terraform_$(TF_VERSION)_$(TF_AZ_VERSION).tfstate" \
+    -out="terraform_plan_$(TF_VERSION)_$(TF_AZ_VERSION)"

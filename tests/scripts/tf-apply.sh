@@ -7,5 +7,5 @@ echo "==> Applying terraform..."
 terraform apply \
     -auto-approve \
     -parallelism=256 \
-    -state="./terraform_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}.tfstate" \
-    "terraform_plan_${{ matrix.terraform_version }}_${{ matrix.azurerm_version }}"
+    -state="./terraform_$(TF_VERSION)_$(TF_AZ_VERSION).tfstate" \
+    "terraform_plan_$(TF_VERSION)_$(TF_AZ_VERSION)"
