@@ -40,15 +40,12 @@ jobs:
 
       - name: 'Replace provider version'
         run: make tf-replace
-        working-directory: './tests/deployment'
         
       - name: 'Initialize terraform'
         run: make tf-init
-        working-directory: './tests/deployment'
 
       - name: 'Plan terraform'
         run: make tf-plan
-        working-directory: './tests/deployment'
 
       # - name: 'Apply terraform'
       #   run: make tf-apply
