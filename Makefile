@@ -2,8 +2,6 @@
 # Makefile
 #
 
-# General
-
 # Terraform
 
 tf-generate:
