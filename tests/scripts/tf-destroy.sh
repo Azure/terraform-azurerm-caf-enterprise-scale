@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-echo "==> Switching directory..."
+echo "==> Switching directories..."
 cd $PWD/tests/deployment
 
-echo "==> Destroying terraform..."
+echo "==> Destroying infrastructure..."
 echo "==> Root ID - $TF_ROOT_ID"
 echo "==> Root Name - ES-$TF_VERSION-$TF_AZ_VERSION"
 terraform destroy \

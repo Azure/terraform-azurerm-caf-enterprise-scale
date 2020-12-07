@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-echo "==> Switching directory..."
+echo "==> Switching directories..."
 cd $PWD/tests/deployment
 
-echo "==> Initializaing terraform..."
+echo "==> Initializaing infrastructure..."
 terraform init

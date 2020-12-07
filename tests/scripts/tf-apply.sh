@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-echo "==> Switching directory..."
+echo "==> Switching directories..."
 cd $PWD/tests/deployment
 
-echo "==> Applying terraform..."
+echo "==> Applying infrastructure..."
 terraform apply \
     -auto-approve \
     -parallelism=256 \
