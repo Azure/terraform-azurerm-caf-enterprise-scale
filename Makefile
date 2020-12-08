@@ -12,6 +12,10 @@ tf-prepare:
 	@echo "==> Running script..."
 	./tests/scripts/tf-prepare.sh
 
+tf-fmt:
+	@echo "==> Running script..."
+	./tests/scripts/tf-fmt.sh
+
 tf-init:
 	@echo "==> Running script..."
 	./tests/scripts/tf-init.sh
@@ -32,7 +36,7 @@ tf-destroy:
 # [Coming Soon]
 
 # sn-apply:
-# 	sentinel apply
+# 	./tests/scripts/sn-apply.sh
 
 # sn-test:
-# 	sentinel test
+#	./tets/scripts/sn-test.sh
