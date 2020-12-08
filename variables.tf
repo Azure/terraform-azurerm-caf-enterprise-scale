@@ -19,10 +19,10 @@ variable "root_id" {
   description = "OPTIONAL: If specified, will set a custom Name (ID) value for the Enterprise-scale \"root\" Management Group, and append this to the ID for all core Enterprise-scale Management Groups."
   default     = "es"
 
-  # validation {
-  #   condition     = can(regex("^[a-z]{2,5}$", var.root_id))
-  #   error_message = "The root_id value must be between 2 to 5 characters long and can only contain lowercase letters."
-  # }
+  validation {
+    condition     = can(regex("^[a-z]{2,5}$", var.root_id))
+    error_message = "The root_id value must be between 2 to 5 characters long and can only contain lowercase letters."
+  }
 }
 
 variable "root_name" {
@@ -30,10 +30,10 @@ variable "root_name" {
   description = "OPTIONAL: If specified, will set a custom DisplayName value for the Enterprise-scale \"root\" Management Group"
   default     = "Enterprise-Scale"
 
-  # validation {
-  #   condition     = can(regex("^[A-Za-z][A-Za-z0-9- ]{1,22}[A-Za-z0-9]?$", var.root_name))
-  #   error_message = "The root_name value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space and hyphen characters."
-  # }
+  validation {
+    condition     = can(regex("^[A-Za-z][A-Za-z0-9- ]{1,22}[A-Za-z0-9]?$", var.root_name))
+    error_message = "The root_name value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space and hyphen characters."
+  }
 }
 
 variable "deploy_core_landing_zones" {
