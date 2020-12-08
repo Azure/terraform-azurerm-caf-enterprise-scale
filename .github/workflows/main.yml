@@ -34,7 +34,7 @@ jobs:
         run: make tf-prepare
 
       - name: '[terraform] Format'
-        run: make tf-format
+        run: make tf-fmt
 
       - name: '[terraform] Initialize'
         run: make tf-init
