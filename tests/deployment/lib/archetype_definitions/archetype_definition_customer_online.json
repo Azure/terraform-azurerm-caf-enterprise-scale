@@ -1,0 +1,28 @@
+{
+    "customer_online": {
+        "policy_assignments": [
+            "ES-Allowed-Locations"
+        ],
+        "policy_definitions": [],
+        "policy_set_definitions": [],
+        "role_definitions": [],
+        "archetype_config": {
+            "parameters": {
+                "ES-Allowed-Locations": {
+                    "listOfAllowedLocations": [
+                        "eastus",
+                        "eastus2",
+                        "westus",
+                        "northcentralus",
+                        "southcentralus"
+                    ]
+                }
+            },
+            "access_control": {
+                "Reader": [
+                    "2cc10333-e3d6-46ea-8b25-3aa768145b58"
+                ]
+            }
+        }
+    }
+}
