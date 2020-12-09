@@ -4,7 +4,7 @@ module "enterprise_scale" {
   source = "../../"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = var.root_id
+  root_id        = var.root_id_1
   root_name      = var.root_name
 
 }
@@ -12,9 +12,10 @@ module "enterprise_scale" {
 module "enterprise_scale_demo" {
   source = "../../"
 
-  root_parent_id            = data.azurerm_client_config.current.tenant_id
-  root_id                   = var.root_id_2
-  root_name                 = var.root_name
+  root_parent_id = data.azurerm_client_config.current.tenant_id
+  root_id        = var.root_id_2
+  root_name      = var.root_name
+
   deploy_demo_landing_zones = true
 
 }
