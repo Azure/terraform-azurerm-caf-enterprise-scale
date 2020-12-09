@@ -9,8 +9,9 @@ echo "==> Switching directories..."
 cd $PWD/tests/deployment
 
 echo "==> Generating root id's..."
-echo "TF_ROOT_ID=$RANDOM" >> $GITHUB_ENV
+echo "TF_ROOT_ID_1=$RANDOM" >> $GITHUB_ENV
 echo "TF_ROOT_ID_2=$RANDOM" >> $GITHUB_ENV
+echo "TF_ROOT_ID_3=$RANDOM" >> $GITHUB_ENV
 
 echo "==> Replacing provider version..."
 sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
