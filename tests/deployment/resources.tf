@@ -6,6 +6,7 @@ module "enterprise_scale" {
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
+
 }
 
 module "enterprise_scale_demo" {
@@ -15,120 +16,121 @@ module "enterprise_scale_demo" {
   root_id                   = var.root_id_2
   root_name                 = var.root_name
   deploy_demo_landing_zones = true
+
 }
 
-# module "enterprise_scale_custom" {
-#   source = "../../"
+module "enterprise_scale_custom" {
+  source = "../../"
 
-#   root_parent_id = data.azurerm_client_config.current.tenant_id
-#   root_id        = local.custom_root_id
-#   root_name      = local.custom_root_name
-#   library_path   = local.custom_library_path
+  root_parent_id = data.azurerm_client_config.current.tenant_id
+  root_id        = var.root_id_3
+  root_name      = var.root_name
+  library_path   = "${path.root}/lib"
 
-#   custom_landing_zones = {
-#     customer-corp = {
-#       display_name               = "Corp Custom"
-#       parent_management_group_id = "tf-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id   = "customer_corp"
-#         parameters     = {}
-#         access_control = {}
-#       }
-#     }
-#     customer-online = {
-#       display_name               = "Online"
-#       parent_management_group_id = "tf-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id   = "default_empty"
-#         parameters     = {}
-#         access_control = {}
-#       }
-#     }
-#     customer-sap = {
-#       display_name               = "SAP"
-#       parent_management_group_id = "tf-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id   = "customer_sap"
-#         parameters     = {}
-#         access_control = {}
-#       }
-#     }
-#     customer-web-prod = {
-#       display_name               = "Prod Web Applications"
-#       parent_management_group_id = "tf-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id   = "default_empty"
-#         parameters     = {}
-#         access_control = {}
-#       }
-#     }
-#     customer-web-test = {
-#       display_name               = "Test Web Applications"
-#       parent_management_group_id = "tf-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id = "customer_online"
-#         parameters = {
-#           ES-Allowed-Locations = {
-#             listOfAllowedLocations = [
-#               "eastus"
-#             ]
-#           }
-#         }
-#         access_control = {}
-#       }
-#     }
-#     customer-web-dev = {
-#       display_name               = "Dev Web Applications"
-#       parent_management_group_id = "tf-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id   = "customer_online"
-#         parameters     = {}
-#         access_control = {}
-#       }
-#     }
+  custom_landing_zones = {
+    customer-corp = {
+      display_name               = "Corp Custom"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "customer_corp"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    customer-online = {
+      display_name               = "Online"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "default_empty"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    customer-sap = {
+      display_name               = "SAP"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "customer_sap"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    customer-web-prod = {
+      display_name               = "Prod Web Applications"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "default_empty"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    customer-web-test = {
+      display_name               = "Test Web Applications"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id = "customer_online"
+        parameters = {
+          ES-Allowed-Locations = {
+            listOfAllowedLocations = [
+              "eastus"
+            ]
+          }
+        }
+        access_control = {}
+      }
+    }
+    customer-web-dev = {
+      display_name               = "Dev Web Applications"
+      parent_management_group_id = "tf-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "customer_online"
+        parameters     = {}
+        access_control = {}
+      }
+    }
 
-#   }
+  }
 
-#   archetype_config_overrides = {
-#     root = {
-#       archetype_id = "custom_root"
-#       parameters = {
-#         Deploy-SQL-Auditing = {
-#           retentionDays                = jsonencode("10")
-#           storageAccountsResourceGroup = jsonencode("")
-#         }
-#         Deploy-HITRUST-HIPAA = {
-#           CertificateThumbprints                                        = jsonencode("")
-#           DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
-#           DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(local.custom_root_id)
-#           installedApplicationsOnWindowsVM                              = jsonencode("")
-#         }
-#       }
-#       access_control = {}
-#     }
-#   }
+  archetype_config_overrides = {
+    root = {
+      archetype_id = "custom_root"
+      parameters = {
+        Deploy-SQL-Auditing = {
+          retentionDays                = jsonencode("10")
+          storageAccountsResourceGroup = jsonencode("")
+        }
+        Deploy-HITRUST-HIPAA = {
+          CertificateThumbprints                                        = jsonencode("")
+          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
+          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(var.root_id_3)
+          installedApplicationsOnWindowsVM                              = jsonencode("")
+        }
+      }
+      access_control = {}
+    }
+  }
 
-#   subscription_id_overrides = {
-#     root           = []
-#     decommissioned = []
-#     sandboxes      = []
-#     landing-zones  = []
-#     platform       = []
-#     connectivity   = []
-#     management     = []
-#     identity       = []
-#     demo-corp      = []
-#     demo-online    = []
-#     demo-sap       = []
-#   }
+  subscription_id_overrides = {
+    root           = []
+    decommissioned = []
+    sandboxes      = []
+    landing-zones  = []
+    platform       = []
+    connectivity   = []
+    management     = []
+    identity       = []
+    demo-corp      = []
+    demo-online    = []
+    demo-sap       = []
+  }
 
-# }
+}
 
 # module "enterprise_scale_lz1" {
 #   source = "../../"
