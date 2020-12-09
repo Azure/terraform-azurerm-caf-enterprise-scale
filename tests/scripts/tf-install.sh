@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+#
+# Shell Script
+# - Terraform Install
+#
+
 echo "==> Creating directory..."
 mkdir -p /home/runner/.terraform/bin/
 

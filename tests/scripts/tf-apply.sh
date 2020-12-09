@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+#
+# Shell Script
+# - Terraform Apply
+#
+
 echo "==> Switching directories..."
 cd $PWD/tests/deployment
 

@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+#
+# Shell Script
+# - Terraform Destroy
+#
+
 echo "==> Switching directories..."
 cd $PWD/tests/deployment
 
