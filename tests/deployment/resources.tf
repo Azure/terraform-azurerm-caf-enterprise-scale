@@ -3,10 +3,6 @@ data "azurerm_client_config" "current" {}
 module "enterprise_scale" {
   source = "../../"
 
-  ########################################################
-  # Module variables to manage deployment configuration
-  ########################################################
-
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
@@ -16,10 +12,9 @@ module "enterprise_scale_demo" {
   source = "../../"
 
   root_parent_id            = data.azurerm_client_config.current.tenant_id
-  root_id                   = "demo"
-  root_name                 = "ESLZ with Demo"
+  root_id                   = var.root_id_2
+  root_name                 = var.root_name
   deploy_demo_landing_zones = true
-
 }
 
 # module "enterprise_scale_custom" {
