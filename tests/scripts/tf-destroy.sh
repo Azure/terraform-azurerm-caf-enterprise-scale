@@ -17,3 +17,20 @@ terraform destroy \
     -auto-approve \
     -parallelism=256 \
     -state="./terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
+status=$?
+
+if test $status -ne 0
+
+    echo "==> Authenticating cli..."
+    az login \
+        --service-principal \
+        --tenant $ARM_TENANT_ID \
+        --username $ARM_APPLICATION_ID \
+        --password $ARM_CLIENT_SECRET
+    
+    echo "==> Destroying infrastructure..."
+    az account management-group list \
+        --output json \
+        | jq '.[] | select(.displayName | contains("ES-"))'
+
+fi
