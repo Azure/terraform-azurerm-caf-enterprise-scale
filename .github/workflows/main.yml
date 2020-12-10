@@ -49,3 +49,4 @@ jobs:
 
       - name: '[terraform] Destroy'
         run: make tf-destroy
+        if: always()
