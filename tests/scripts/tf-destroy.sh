@@ -19,7 +19,7 @@ terraform destroy \
     -state="./terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
 status=$?
 
-if [ test $status -ne 0 ]
+if [ $status -ne 0 ]
 then
 
     echo "==> Authenticating cli..."
