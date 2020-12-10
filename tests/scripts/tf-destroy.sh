@@ -93,4 +93,5 @@ then
     unset IFS
 
 else
+    echo "==> Skipping manual management group deletion..."
 fi
