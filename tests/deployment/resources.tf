@@ -69,32 +69,32 @@ module "enterprise_scale_custom" {
         access_control = {}
       }
     }
-    customer-web-test = {
-      display_name               = "Test Web Applications"
-      parent_management_group_id = "tf-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {
-          ES-Allowed-Locations = {
-            listOfAllowedLocations = [
-              "eastus"
-            ]
-          }
-        }
-        access_control = {}
-      }
-    }
-    customer-web-dev = {
-      display_name               = "Dev Web Applications"
-      parent_management_group_id = "tf-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id   = "customer_online"
-        parameters     = {}
-        access_control = {}
-      }
-    }
+    # customer-web-test = {
+    #   display_name               = "Test Web Applications"
+    #   parent_management_group_id = "tf-landing-zones"
+    #   subscription_ids           = []
+    #   archetype_config = {
+    #     archetype_id = "customer_online"
+    #     parameters = {
+    #       ES-Allowed-Locations = {
+    #         listOfAllowedLocations = [
+    #           "eastus"
+    #         ]
+    #       }
+    #     }
+    #     access_control = {}
+    #   }
+    # }
+    # customer-web-dev = {
+    #   display_name               = "Dev Web Applications"
+    #   parent_management_group_id = "tf-landing-zones"
+    #   subscription_ids           = []
+    #   archetype_config = {
+    #     archetype_id   = "customer_online"
+    #     parameters     = {}
+    #     access_control = {}
+    #   }
+    # }
 
   }
 
