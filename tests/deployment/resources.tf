@@ -98,38 +98,38 @@ module "enterprise_scale_custom" {
 
   }
 
-  # archetype_config_overrides = {
-  #   root = {
-  #     archetype_id = "custom_root"
-  #     parameters = {
-  #       Deploy-SQL-Auditing = {
-  #         retentionDays                = jsonencode("10")
-  #         storageAccountsResourceGroup = jsonencode("")
-  #       }
-  #       Deploy-HITRUST-HIPAA = {
-  #         CertificateThumbprints                                        = jsonencode("")
-  #         DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
-  #         DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(var.root_id_3)
-  #         installedApplicationsOnWindowsVM                              = jsonencode("")
-  #       }
-  #     }
-  #     access_control = {}
-  #   }
-  # }
+  archetype_config_overrides = {
+    root = {
+      archetype_id = "custom_root"
+      parameters = {
+        Deploy-SQL-Auditing = {
+          retentionDays                = jsonencode("10")
+          storageAccountsResourceGroup = jsonencode("")
+        }
+        Deploy-HITRUST-HIPAA = {
+          CertificateThumbprints                                        = jsonencode("")
+          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
+          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(var.root_id_3)
+          installedApplicationsOnWindowsVM                              = jsonencode("")
+        }
+      }
+      access_control = {}
+    }
+  }
 
-  # subscription_id_overrides = {
-  #   root           = []
-  #   decommissioned = []
-  #   sandboxes      = []
-  #   landing-zones  = []
-  #   platform       = []
-  #   connectivity   = []
-  #   management     = []
-  #   identity       = []
-  #   demo-corp      = []
-  #   demo-online    = []
-  #   demo-sap       = []
-  # }
+  subscription_id_overrides = {
+    root           = []
+    decommissioned = []
+    sandboxes      = []
+    landing-zones  = []
+    platform       = []
+    connectivity   = []
+    management     = []
+    identity       = []
+    demo-corp      = []
+    demo-online    = []
+    demo-sap       = []
+  }
 
 }
 
