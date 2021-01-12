@@ -1,6 +1,6 @@
 data "azurerm_client_config" "current" {}
 
-module "enterprise_scale" {
+module "test_root_id_1" {
   source = "../../"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
@@ -9,7 +9,7 @@ module "enterprise_scale" {
 
 }
 
-module "enterprise_scale_demo" {
+module "test_root_id_2" {
   source = "../../"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
@@ -20,7 +20,7 @@ module "enterprise_scale_demo" {
 
 }
 
-module "enterprise_scale_custom" {
+module "test_root_id_3" {
   source = "../../"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
@@ -133,45 +133,38 @@ module "enterprise_scale_custom" {
 
 }
 
-# module "enterprise_scale_lz1" {
-#   source = "../../"
+module "test_root_id_3_lz1" {
+  source = "../../"
 
-#   root_parent_id            = "${local.custom_root_id}-landing-zones"
-#   root_id                   = local.custom_root_id
-#   deploy_core_landing_zones = false
-#   library_path              = local.custom_library_path
+  root_parent_id            = "${var.root_id_3}-landing-zones"
+  root_id                   = var.root_id_3
+  deploy_core_landing_zones = false
+  library_path              = "${path.root}/lib"
 
-#   custom_landing_zones = {
-#     self-serv-lz1 = {
-#       display_name               = "Self Serve LZ1"
-#       parent_management_group_id = "${local.custom_root_id}-landing-zones"
-#       subscription_ids           = []
-#       archetype_config = {
-#         archetype_id = "customer_online"
-#         parameters = {
-#           ES-Allowed-Locations = {
-#             listOfAllowedLocations = jsonencode([
-#               "northeurope",
-#               "westeurope",
-#               "uksouth",
-#               "ukwest",
-#             ])
-#           }
-#         }
-#         access_control = {
-#           "Owner" = [
-#             "7efe2a0d-12b4-4b40-a707-416920ec93f6" // Demo User 1
-#           ]
-#           "[${upper(local.custom_root_id)}] ES-Network-Subnet-Contributor" = [
-#             "2cc10333-e3d6-46ea-8b25-3aa768145b58" // Demo User 2
-#           ]
-#         }
-#       }
-#     }
-#   }
+  custom_landing_zones = {
+    scoped-lz1 = {
+      display_name               = "Scoped LZ1"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id = "customer_online"
+        parameters = {
+          ES-Allowed-Locations = {
+            listOfAllowedLocations = jsonencode([
+              "northeurope",
+              "westeurope",
+              "uksouth",
+              "ukwest",
+            ])
+          }
+        }
+        access_control = {}
+      }
+    }
+  }
 
-#   depends_on = [
-#     module.enterprise_scale_custom,
-#   ]
+  depends_on = [
+    module.test_root_id_3,
+  ]
 
-# }
+}
