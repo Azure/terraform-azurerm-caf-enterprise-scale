@@ -29,7 +29,7 @@ module "test_root_id_3" {
   library_path   = "${path.root}/lib"
 
   custom_landing_zones = {
-    customer-corp = {
+    "${var.root_id_3}-customer-corp" = {
       display_name               = "Corp Custom"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
@@ -39,7 +39,7 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
-    customer-online = {
+    "${var.root_id_3}-customer-online" = {
       display_name               = "Online"
       parent_management_group_id = "${var.root_id_3}landing-zones"
       subscription_ids           = []
@@ -49,7 +49,7 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
-    customer-sap = {
+    "${var.root_id_3}-customer-sap" = {
       display_name               = "SAP"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
@@ -59,7 +59,7 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
-    customer-web-prod = {
+    "${var.root_id_3}-customer-web-prod" = {
       display_name               = "Prod Web Applications"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
@@ -69,7 +69,7 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
-    customer-web-test = {
+    "${var.root_id_3}-customer-web-test" = {
       display_name               = "Test Web Applications"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
@@ -85,7 +85,7 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
-    customer-web-dev = {
+    "${var.root_id_3}-customer-web-dev" = {
       display_name               = "Dev Web Applications"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
@@ -142,7 +142,7 @@ module "test_root_id_3_lz1" {
   library_path              = "${path.root}/lib"
 
   custom_landing_zones = {
-    scoped-lz1 = {
+    "${var.root_id_3}-scoped-lz1" = {
       display_name               = "Scoped LZ1"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
