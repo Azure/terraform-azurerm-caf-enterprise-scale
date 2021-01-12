@@ -31,7 +31,7 @@ module "enterprise_scale_custom" {
   custom_landing_zones = {
     customer-corp = {
       display_name               = "Corp Custom"
-      parent_management_group_id = "tf-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "customer_corp"
@@ -41,7 +41,7 @@ module "enterprise_scale_custom" {
     }
     customer-online = {
       display_name               = "Online"
-      parent_management_group_id = "tf-landing-zones"
+      parent_management_group_id = "${var.root_id_3}landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "default_empty"
@@ -51,7 +51,7 @@ module "enterprise_scale_custom" {
     }
     customer-sap = {
       display_name               = "SAP"
-      parent_management_group_id = "tf-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "customer_sap"
@@ -61,7 +61,7 @@ module "enterprise_scale_custom" {
     }
     customer-web-prod = {
       display_name               = "Prod Web Applications"
-      parent_management_group_id = "tf-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "default_empty"
@@ -71,7 +71,7 @@ module "enterprise_scale_custom" {
     }
     customer-web-test = {
       display_name               = "Test Web Applications"
-      parent_management_group_id = "tf-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_online"
@@ -87,7 +87,7 @@ module "enterprise_scale_custom" {
     }
     customer-web-dev = {
       display_name               = "Dev Web Applications"
-      parent_management_group_id = "tf-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "customer_online"
@@ -98,38 +98,38 @@ module "enterprise_scale_custom" {
 
   }
 
-  archetype_config_overrides = {
-    root = {
-      archetype_id = "custom_root"
-      parameters = {
-        Deploy-SQL-Auditing = {
-          retentionDays                = jsonencode("10")
-          storageAccountsResourceGroup = jsonencode("")
-        }
-        Deploy-HITRUST-HIPAA = {
-          CertificateThumbprints                                        = jsonencode("")
-          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
-          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(var.root_id_3)
-          installedApplicationsOnWindowsVM                              = jsonencode("")
-        }
-      }
-      access_control = {}
-    }
-  }
+  # archetype_config_overrides = {
+  #   root = {
+  #     archetype_id = "custom_root"
+  #     parameters = {
+  #       Deploy-SQL-Auditing = {
+  #         retentionDays                = jsonencode("10")
+  #         storageAccountsResourceGroup = jsonencode("")
+  #       }
+  #       Deploy-HITRUST-HIPAA = {
+  #         CertificateThumbprints                                        = jsonencode("")
+  #         DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
+  #         DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(var.root_id_3)
+  #         installedApplicationsOnWindowsVM                              = jsonencode("")
+  #       }
+  #     }
+  #     access_control = {}
+  #   }
+  # }
 
-  subscription_id_overrides = {
-    root           = []
-    decommissioned = []
-    sandboxes      = []
-    landing-zones  = []
-    platform       = []
-    connectivity   = []
-    management     = []
-    identity       = []
-    demo-corp      = []
-    demo-online    = []
-    demo-sap       = []
-  }
+  # subscription_id_overrides = {
+  #   root           = []
+  #   decommissioned = []
+  #   sandboxes      = []
+  #   landing-zones  = []
+  #   platform       = []
+  #   connectivity   = []
+  #   management     = []
+  #   identity       = []
+  #   demo-corp      = []
+  #   demo-online    = []
+  #   demo-sap       = []
+  # }
 
 }
 
