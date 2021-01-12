@@ -26,7 +26,7 @@ then
     az login \
         --service-principal \
         --tenant $ARM_TENANT_ID \
-        --username $ARM_APPLICATION_ID \
+        --username $ARM_CLIENT_ID \
         --password $ARM_CLIENT_SECRET
 
     IFS=$'\n'
