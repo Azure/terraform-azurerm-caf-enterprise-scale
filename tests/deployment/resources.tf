@@ -5,7 +5,7 @@ module "test_root_id_1" {
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id_1
-  root_name      = var.root_name
+  root_name      = "${var.root_name}-1"
 
 }
 
@@ -14,7 +14,7 @@ module "test_root_id_2" {
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id_2
-  root_name      = var.root_name
+  root_name      = "${var.root_name}-2"
 
   deploy_demo_landing_zones = true
 
@@ -25,7 +25,7 @@ module "test_root_id_3" {
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id_3
-  root_name      = var.root_name
+  root_name      = "${var.root_name}-3"
   library_path   = "${path.root}/lib"
 
   custom_landing_zones = {
