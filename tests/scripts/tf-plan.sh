@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -e
 
 #
 # Shell Script
