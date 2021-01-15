@@ -31,12 +31,3 @@ tf-apply:
 tf-destroy:
 	@echo "==> Running script..."
 	./tests/scripts/tf-destroy.sh
-
-# Sentinel 
-# [Coming Soon]
-
-# sn-apply:
-# 	./tests/scripts/sn-apply.sh
-
-# sn-test:
-#	./tets/scripts/sn-test.sh
