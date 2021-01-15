@@ -39,16 +39,6 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
-    "${var.root_id_3}-customer-online" = {
-      display_name               = "Online"
-      parent_management_group_id = "${var.root_id_3}landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id   = "default_empty"
-        parameters     = {}
-        access_control = {}
-      }
-    }
     "${var.root_id_3}-customer-sap" = {
       display_name               = "SAP"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
@@ -59,9 +49,28 @@ module "test_root_id_3" {
         access_control = {}
       }
     }
+    "${var.root_id_3}-customer-online" = {
+      display_name               = "Online"
+      parent_management_group_id = "${var.root_id_3}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id = "customer_online"
+        parameters = {
+          ES-Allowed-Locations = {
+            listOfAllowedLocations = [
+              "eastus",
+              "westus",
+              "uksouth",
+              "ukwest",
+            ]
+          }
+        }
+        access_control = {}
+      }
+    }
     "${var.root_id_3}-customer-web-prod" = {
       display_name               = "Prod Web Applications"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-customer-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "default_empty"
@@ -71,7 +80,7 @@ module "test_root_id_3" {
     }
     "${var.root_id_3}-customer-web-test" = {
       display_name               = "Test Web Applications"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-customer-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_online"
@@ -79,7 +88,7 @@ module "test_root_id_3" {
           ES-Allowed-Locations = {
             listOfAllowedLocations = [
               "eastus",
-              "westus"
+              "westus",
             ]
           }
         }
@@ -88,11 +97,17 @@ module "test_root_id_3" {
     }
     "${var.root_id_3}-customer-web-dev" = {
       display_name               = "Dev Web Applications"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
+      parent_management_group_id = "${var.root_id_3}-customer-online"
       subscription_ids           = []
       archetype_config = {
-        archetype_id   = "customer_online"
-        parameters     = {}
+        archetype_id = "customer_online"
+        parameters = {
+          ES-Allowed-Locations = {
+            listOfAllowedLocations = [
+              "eastus",
+            ]
+          }
+        }
         access_control = {}
       }
     }
