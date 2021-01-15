@@ -41,6 +41,7 @@ jobs:
         run: make tf-plan
 
       - name: '[terraform] Apply'
+        timeout-minutes: 60
         run: make tf-apply
 
       - name: '[terraform] Destroy'
