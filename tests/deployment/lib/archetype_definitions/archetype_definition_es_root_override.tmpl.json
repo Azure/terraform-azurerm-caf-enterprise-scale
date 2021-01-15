@@ -121,7 +121,9 @@
                         "eastus2",
                         "westus",
                         "northcentralus",
-                        "southcentralus"
+                        "southcentralus",
+                        "uksouth",
+                        "ukwest"
                     ]
                 }
             },

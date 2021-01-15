@@ -78,7 +78,8 @@ module "test_root_id_3" {
         parameters = {
           ES-Allowed-Locations = {
             listOfAllowedLocations = [
-              "eastus"
+              "eastus",
+              "westus"
             ]
           }
         }
@@ -151,10 +152,8 @@ module "test_root_id_3_lz1" {
         parameters = {
           ES-Allowed-Locations = {
             listOfAllowedLocations = jsonencode([
-              "northeurope",
-              "westeurope",
-              "uksouth",
-              "ukwest",
+              "northcentralus",
+              "southcentralus",
             ])
           }
         }
