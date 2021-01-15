@@ -57,12 +57,12 @@ module "test_root_id_3" {
         archetype_id = "customer_online"
         parameters = {
           ES-Allowed-Locations = {
-            listOfAllowedLocations = [
+            listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
               "uksouth",
               "ukwest",
-            ]
+            ])
           }
         }
         access_control = {}
@@ -86,10 +86,10 @@ module "test_root_id_3" {
         archetype_id = "customer_online"
         parameters = {
           ES-Allowed-Locations = {
-            listOfAllowedLocations = [
+            listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
-            ]
+            ])
           }
         }
         access_control = {}
@@ -103,9 +103,9 @@ module "test_root_id_3" {
         archetype_id = "customer_online"
         parameters = {
           ES-Allowed-Locations = {
-            listOfAllowedLocations = [
+            listOfAllowedLocations = jsonencode([
               "eastus",
-            ]
+            ])
           }
         }
         access_control = {}
