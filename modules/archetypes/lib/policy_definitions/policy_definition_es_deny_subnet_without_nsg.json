@@ -17,6 +17,14 @@
           {
             "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id",
             "exists": "false"
+          },
+          {
+            "field": "name",
+            "notEquals": "GatewaySubnet"
+          },
+          {
+            "field": "name",
+            "notEquals": "AzureFirewallSubnet"
           }
         ]
       },
