@@ -6,24 +6,63 @@ set -e
 # - Terraform Prepare
 #
 
-echo "==> Switching directories..."
-cd $PWD/tests/deployment
+case $SCM in
+    'AzurePipelines')
+        echo "==> Switching directories..."
+        cd $PWD/tests/deployment
 
-echo "==> Generating root id's..."
-ROOT_ID_1=$RANDOM
-echo "==> Azure Root ID 1 - $ROOT_ID_1"
-echo "TF_ROOT_ID_1=$ROOT_ID_1" >> $GITHUB_ENV
-ROOT_ID_2=$RANDOM
-echo "==> Azure Root ID 2 - $ROOT_ID_2"
-echo "TF_ROOT_ID_2=$ROOT_ID_2" >> $GITHUB_ENV
-ROOT_ID_3=$RANDOM
-echo "==> Azure Root ID 3 - $ROOT_ID_3"
-echo "TF_ROOT_ID_3=$ROOT_ID_3" >> $GITHUB_ENV
+        echo "==> Generating root id's..."
+        ROOT_ID_1=$RANDOM
+        ROOT_ID_2=$RANDOM
+        ROOT_ID_3=$RANDOM
 
-echo "==> Replacing provider version..."
-sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
+        echo "==> Azure Root ID 1 - $ROOT_ID_1"
+        echo "##vso[task.setvariable TF_ROOT_ID_1=$ROOT_ID_1;]"
 
-echo "==> Displaying environment variables..."
-echo "==> Terraform Version - $TF_VERSION"
-echo "==> Terraform Provider Version - $TF_AZ_VERSION"
-echo "==> Terraform Variable (Root Name) - ES-$TF_VERSION-$TF_AZ_VERSION"
+        echo "==> Azure Root ID 2 - $ROOT_ID_2"
+        echo "##vso[task.setvariable TF_ROOT_ID_2=$ROOT_ID_2;]"
+
+        echo "==> Azure Root ID 3 - $ROOT_ID_3"
+        echo "##vso[task.setvariable TF_ROOT_ID_3=$ROOT_ID_3;]"
+
+        echo "==> Replacing provider version..."
+        sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
+
+        echo "==> Displaying environment variables..."
+        echo "==> Terraform Version - $TF_VERSION"
+        echo "==> Terraform Provider Version - $TF_AZ_VERSION"
+        echo "==> Terraform Variable (Root Name) - ES-$TF_VERSION-$TF_AZ_VERSION"
+        ;;
+    'GitHubActions')
+        echo "==> Switching directories..."
+        cd $PWD/tests/deployment
+
+        echo "==> Generating root id's..."
+        ROOT_ID_1=$RANDOM
+        ROOT_ID_2=$RANDOM
+        ROOT_ID_3=$RANDOM
+        
+        echo "==> Azure Root ID 1 - $ROOT_ID_1"
+        echo "TF_ROOT_ID_1=$ROOT_ID_1" >> $GITHUB_ENV
+        
+        echo "==> Azure Root ID 2 - $ROOT_ID_2"
+        echo "TF_ROOT_ID_2=$ROOT_ID_2" >> $GITHUB_ENV
+        
+        echo "==> Azure Root ID 3 - $ROOT_ID_3"
+        echo "TF_ROOT_ID_3=$ROOT_ID_3" >> $GITHUB_ENV
+
+        echo "==> Replacing provider version..."
+        sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
+
+        echo "==> Displaying environment variables..."
+        echo "==> Terraform Version - $TF_VERSION"
+        echo "==> Terraform Provider Version - $TF_AZ_VERSION"
+        echo "==> Terraform Variable (Root Name) - ES-$TF_VERSION-$TF_AZ_VERSION"
+        ;;
+    *)
+        echo "==> Unsupported platform..."
+        exit 1
+        ;;
+esac
+
+
