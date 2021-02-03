@@ -17,13 +17,13 @@ case $SCM in
         ROOT_ID_3=$RANDOM
 
         echo "==> Azure Root ID 1 - $ROOT_ID_1"
-        echo "##vso[task.setvariable TF_ROOT_ID_1=$ROOT_ID_1;]"
+        echo "##vso[task.setvariable variable=TF_ROOT_ID_1;]$ROOT_ID_1"
 
         echo "==> Azure Root ID 2 - $ROOT_ID_2"
-        echo "##vso[task.setvariable TF_ROOT_ID_2=$ROOT_ID_2;]"
+        echo "##vso[task.setvariable variable=TF_ROOT_ID_2;]$ROOT_ID_2"
 
         echo "==> Azure Root ID 3 - $ROOT_ID_3"
-        echo "##vso[task.setvariable TF_ROOT_ID_3=$ROOT_ID_3;]"
+        echo "##vso[task.setvariable variable=TF_ROOT_ID_3;]$ROOT_ID_3"
 
         echo "==> Replacing provider version..."
         sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
