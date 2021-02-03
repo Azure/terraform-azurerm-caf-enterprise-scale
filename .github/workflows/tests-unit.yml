@@ -20,6 +20,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       TF_VERSION: ${{ matrix.terraform_version }}
       TF_AZ_VERSION: ${{ matrix.azurerm_version }}
+      SCM: 'GitHubActions'
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
