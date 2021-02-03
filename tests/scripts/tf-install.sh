@@ -8,6 +8,9 @@ set -e
 
 case $SCM in
     'AzurePipelines')
+        echo "==> Flush credentials"
+        az account clear
+
         echo "==> Creating directory..."
         mkdir -p /home/vsts/.terraform/bin/
 
