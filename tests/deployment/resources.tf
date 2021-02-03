@@ -34,7 +34,7 @@ module "test_root_id_3" {
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id   = "customer_corp"
+        archetype_id   = "default_empty"
         parameters     = {}
         access_control = {}
       }
@@ -44,7 +44,7 @@ module "test_root_id_3" {
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id   = "customer_sap"
+        archetype_id   = "default_empty"
         parameters     = {}
         access_control = {}
       }
@@ -116,7 +116,7 @@ module "test_root_id_3" {
 
   archetype_config_overrides = {
     root = {
-      archetype_id = "custom_root"
+      archetype_id = "customer_root"
       parameters = {
         Deploy-SQL-Auditing = {
           retentionDays                = jsonencode("10")

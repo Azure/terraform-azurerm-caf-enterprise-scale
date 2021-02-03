@@ -2,7 +2,7 @@
 
 ## Create Cloud Adoption Framework enterprise-scale landing zones
 
-This module provides an opinionated approach for delivering the core platform capabilities of enterprise-scale landing zones using Terraform, based on the architecture published in the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture]:
+This module provides an opinionated approach for delivering the core platform capabilities of enterprise-scale landing zones using Terraform, based on the architecture published in the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
 
 ![Enterprise-scale Landing Zone Architecture][ESLZ-Architecture-Diagram]
 
@@ -407,7 +407,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[ESLZ-Architecture-Diagram]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/media/ns-arch-expanded.png "Diagram that shows Cloud Adoption Framework Enterprise-scale Landing Zone architecture."
+[ESLZ-Architecture-Diagram]: media/terraform-caf-enterprise-scale-overview.png "Diagram that shows Cloud Adoption Framework Enterprise-scale Landing Zone architecture."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
