@@ -1,0 +1,61 @@
+name: 'Tests (Unit)'
+
+trigger: none
+
+strategy:
+  matrix: 
+    '1 (2.34.0 / 0.13.2)':
+      TF_AZ_VERSION: 2.34.0
+      TF_VERSION: 0.13.2
+    '2 (2.45.1 / 0.13.2)':
+      TF_AZ_VERSION: 2.45.1
+      TF_VERSION: 0.13.2
+    '3 (2.34.0 / 0.13.5)':
+      TF_AZ_VERSION: 2.34.0
+      TF_VERSION: 0.13.5
+    '4 (2.45.1 / 0.13.5)':
+      TF_AZ_VERSION: 2.45.1
+      TF_VERSION: 0.13.5
+    '5 (2.34.0 / 0.14.0)':
+      TF_AZ_VERSION: 2.34.0
+      TF_VERSION: 0.14.0
+    '6 (2.45.1 / 0.14.0)':
+      TF_AZ_VERSION: 2.45.1
+      TF_VERSION: 0.14.0
+    '7 (2.34.0 / 0.14.6)':
+      TF_AZ_VERSION: 2.34.0
+      TF_VERSION: 0.14.6
+    '8 (2.45.1 / 0.14.6)':
+      TF_AZ_VERSION: 2.45.1
+      TF_VERSION: 0.14.6
+
+pool:
+  vmImage: ubuntu-20.04
+
+variables:
+  SCM: 'AzurePipelines'
+
+steps:
+- task: Bash@3
+  displayName: 'Terraform (install)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-install'
+
+- task: Bash@3
+  displayName: 'Terraform (prepare)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-prepare'
+
+- task: Bash@3
+  displayName: 'Terraform (fmt)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-fmt'
+
+- task: Bash@3
+  displayName: 'Terraform (init)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-init'

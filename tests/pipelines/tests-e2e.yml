@@ -22,12 +22,12 @@ strategy:
     '6 (2.45.1 / 0.14.0)':
       TF_AZ_VERSION: 2.45.1
       TF_VERSION: 0.14.0
-    '7 (2.34.0 / 0.14.5)':
+    '7 (2.34.0 / 0.14.6)':
       TF_AZ_VERSION: 2.34.0
-      TF_VERSION: 0.14.5
-    '8 (2.45.1 / 0.14.5)':
+      TF_VERSION: 0.14.6
+    '8 (2.45.1 / 0.14.6)':
       TF_AZ_VERSION: 2.45.1
-      TF_VERSION: 0.14.5
+      TF_VERSION: 0.14.6
 
 pool:
   vmImage: ubuntu-20.04
