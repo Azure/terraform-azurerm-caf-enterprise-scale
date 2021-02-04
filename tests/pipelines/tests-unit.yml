@@ -32,9 +32,6 @@ strategy:
 pool:
   vmImage: ubuntu-20.04
 
-variables:
-  SCM: 'AzurePipelines'
-
 steps:
 - task: Bash@3
   displayName: 'Terraform (install)'
