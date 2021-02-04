@@ -28,6 +28,9 @@ case $SCM in
         echo "==> Replacing provider version..."
         sed -i 's/version = ""/version = "'$TF_AZ_VERSION'"/g' main.tf
 
+        echo "==> Exporting runtime secret..."
+        echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET;]$(ARM_CLIENT_SECRET)"
+
         echo "==> Displaying environment variables..."
         echo "==> Terraform Version - $TF_VERSION"
         echo "==> Terraform Provider Version - $TF_AZ_VERSION"
