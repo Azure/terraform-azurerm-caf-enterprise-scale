@@ -6,6 +6,9 @@ set -e
 # - Terraform Prepare
 #
 
+echo "==> Listing directory..."
+ls -al $PIPELINE_WORKSPACE
+
 echo "==> Switching directories..."
 cd $PIPELINE_WORKSPACE/tests/deployment
 
