@@ -7,26 +7,26 @@ strategy:
     '1 (2.34.0 / 0.13.2)':
       TF_AZ_VERSION: 2.34.0
       TF_VERSION: 0.13.2
-    '2 (2.45.1 / 0.13.2)':
-      TF_AZ_VERSION: 2.45.1
+    '2 (2.46.1 / 0.13.2)':
+      TF_AZ_VERSION: 2.46.1
       TF_VERSION: 0.13.2
     '3 (2.34.0 / 0.13.5)':
       TF_AZ_VERSION: 2.34.0
       TF_VERSION: 0.13.5
-    '4 (2.45.1 / 0.13.5)':
-      TF_AZ_VERSION: 2.45.1
+    '4 (2.46.1 / 0.13.5)':
+      TF_AZ_VERSION: 2.46.1
       TF_VERSION: 0.13.5
     '5 (2.34.0 / 0.14.0)':
       TF_AZ_VERSION: 2.34.0
       TF_VERSION: 0.14.0
-    '6 (2.45.1 / 0.14.0)':
-      TF_AZ_VERSION: 2.45.1
+    '6 (2.46.1 / 0.14.0)':
+      TF_AZ_VERSION: 2.46.1
       TF_VERSION: 0.14.0
     '7 (2.34.0 / 0.14.6)':
       TF_AZ_VERSION: 2.34.0
       TF_VERSION: 0.14.6
-    '8 (2.45.1 / 0.14.6)':
-      TF_AZ_VERSION: 2.45.1
+    '8 (2.46.1 / 0.14.6)':
+      TF_AZ_VERSION: 2.46.1
       TF_VERSION: 0.14.6
 
 pool:
