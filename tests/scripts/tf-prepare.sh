@@ -7,7 +7,7 @@ set -e
 #
 
 echo "==> Listing directory..."
-ls -al $PIPELINE_WORKSPACE
+ls -al $PIPELINE_WORKSPACE/s
 
 echo "==> Switching directories..."
 cd $PIPELINE_WORKSPACE/tests/deployment
