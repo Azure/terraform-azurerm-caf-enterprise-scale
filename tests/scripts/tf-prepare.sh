@@ -7,7 +7,7 @@ set -e
 #
 
 echo "==> Switching directories..."
-cd $PIPELINE_WORKSPACE/s/s/tests/deployment
+cd $PIPELINE_WORKSPACE/s/tests/deployment
 
 echo "==> Generating root id's..."
 ROOT_ID_1=$RANDOM
