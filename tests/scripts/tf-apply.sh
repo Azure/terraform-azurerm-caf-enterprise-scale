@@ -7,7 +7,7 @@ set -e
 #
 
 echo "==> Switching directories..."
-cd $(Pipeline.Workspace)/tests/deployment
+cd $PIPELINE_WORKSPACE/tests/deployment
 
 echo "==> Applying infrastructure..."
 terraform apply \
