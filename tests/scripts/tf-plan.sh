@@ -7,7 +7,7 @@ set -e
 #
 
 echo "==> Switching directories..."
-cd $PIPELINE_WORKSPACE/tests/deployment
+cd $PIPELINE_WORKSPACE/s/tests/deployment
 
 echo "==> Planning infrastructure..."
 terraform plan \

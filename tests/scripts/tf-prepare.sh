@@ -6,11 +6,8 @@ set -e
 # - Terraform Prepare
 #
 
-echo "==> Listing directory..."
-ls -al $PIPELINE_WORKSPACE/s
-
 echo "==> Switching directories..."
-cd $PIPELINE_WORKSPACE/tests/deployment
+cd $PIPELINE_WORKSPACE/s/s/tests/deployment
 
 echo "==> Generating root id's..."
 ROOT_ID_1=$RANDOM
