@@ -56,3 +56,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'make tf-init'
+
+- task: Bash@3
+  displayName: 'Terraform (plan)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-plan'
+  env:
+    ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
