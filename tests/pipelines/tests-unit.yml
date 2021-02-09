@@ -1,0 +1,67 @@
+---
+name: 'Tests (Unit)'
+
+trigger: none
+
+strategy:
+  matrix: 
+    '1 (TF: 0.13.2, AZ: 2.34.0)':
+      TF_VERSION: 0.13.2
+      TF_AZ_VERSION: 2.34.0
+    '2 (TF: 0.13.2, AZ: 2.46.1)':
+      TF_VERSION: 0.13.2
+      TF_AZ_VERSION: 2.46.1
+    '3 (TF: 0.13.5, AZ: 2.34.0)':
+      TF_VERSION: 0.13.5
+      TF_AZ_VERSION: 2.34.0
+    '4 (TF: 0.13.5, AZ: 2.46.1)':
+      TF_VERSION: 0.13.5
+      TF_AZ_VERSION: 2.46.1
+    '5 (TF: 0.14.0, AZ: 2.34.0)':
+      TF_VERSION: 0.14.0
+      TF_AZ_VERSION: 2.34.0
+    '6 (TF: 0.14.0, AZ: 2.46.1)':
+      TF_VERSION: 0.14.0
+      TF_AZ_VERSION: 2.46.1
+    '7 (TF: 0.14.6, AZ: 2.34.0)':
+      TF_VERSION: 0.14.6
+      TF_AZ_VERSION: 2.34.0
+    '8 (TF: 0.14.6, AZ: 2.46.1)':
+      TF_VERSION: 0.14.6
+      TF_AZ_VERSION: 2.46.1
+
+pool:
+  vmImage: ubuntu-20.04
+
+steps:
+- task: Bash@3
+  displayName: 'Terraform (install)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-install'
+
+- task: Bash@3
+  displayName: 'Terraform (prepare)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-prepare'
+
+- task: Bash@3
+  displayName: 'Terraform (fmt)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-fmt'
+
+- task: Bash@3
+  displayName: 'Terraform (init)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-init'
+
+- task: Bash@3
+  displayName: 'Terraform (plan)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-plan'
+  env:
+    ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
