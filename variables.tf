@@ -9,7 +9,7 @@ variable "root_parent_id" {
   description = "The root_parent_id is used to specify where to set the root for all Landing Zone deployments. Usually the Tenant ID when deploying the core Enterprise-scale Landing Zones."
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{2,36}$", var.root_parent_id))
+    condition     = can(regex("^[a-zA-Z0-9-]{1,36}$", var.root_parent_id))
     error_message = "The root_parent_id value must be a valid GUID, or Management Group ID."
   }
 }
@@ -20,14 +20,14 @@ variable "root_id" {
   default     = "es"
 
   validation {
-    condition     = can(regex("^[a-z0-9]{2,5}$", var.root_id))
-    error_message = "The root_id value must be between 2 to 5 characters long and can only contain lowercase letters or numbers."
+    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))
+    error_message = "The root_id value must be between 2 to 10 characters long and can only contain alphanumeric characters and hyphens."
   }
 }
 
 variable "root_name" {
   type        = string
-  description = "If specified, will set a custom DisplayName value for the Enterprise-scale \"root\" Management Group"
+  description = "If specified, will set a custom Display Name value for the Enterprise-scale \"root\" Management Group."
   default     = "Enterprise-Scale"
 
   validation {
@@ -38,25 +38,25 @@ variable "root_name" {
 
 variable "deploy_core_landing_zones" {
   type        = bool
-  description = "If set to true, will include the core Enterprise-scale Management Group hierarchy"
+  description = "If set to true, will include the core Enterprise-scale Management Group hierarchy."
   default     = true
 }
 
 variable "archetype_config_overrides" {
   type        = map(any)
-  description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups"
+  description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups."
   default     = {}
 }
 
 variable "subscription_id_overrides" {
   type        = map(list(string))
-  description = "If specified, will be used to assign subscription_ids to the default Enterprise-scale Management Groups"
+  description = "If specified, will be used to assign subscription_ids to the default Enterprise-scale Management Groups."
   default     = {}
 }
 
 variable "deploy_demo_landing_zones" {
   type        = bool
-  description = "If set to true, will include the demo \"Landing Zone\" Management Groups"
+  description = "If set to true, will include the demo \"Landing Zone\" Management Groups."
   default     = false
 }
 
@@ -73,12 +73,12 @@ variable "custom_landing_zones" {
       })
     })
   )
-  description = "If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups"
+  description = "If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups."
   default     = {}
 
   validation {
     condition     = can(regex("^[a-z0-9-]{2,36}$", keys(var.custom_landing_zones)[0])) || length(keys(var.custom_landing_zones)) == 0
-    error_message = "The custom_landing_zones value must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
+    error_message = "The custom_landing_zones keys must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
   }
 }
 
@@ -86,16 +86,11 @@ variable "library_path" {
   type        = string
   description = "If specified, sets the path to a custom library folder for archetype artefacts."
   default     = ""
-
-  # validation {
-  #   condition     = fileexists(var.library_path) // does not work with a directory
-  #   error_message = "The library_path must be a valid file path accessible from the root module scope."
-  # }
 }
 
 variable "template_file_variables" {
   type        = map(any)
-  description = "If specified, provides the ability to define custom template variables used when reading in template files from the library_path"
+  description = "If specified, provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path."
   default     = {}
 }
 
