@@ -8,27 +8,27 @@ strategy:
     '1 (TF: 0.13.2, AZ: 2.34.0)':
       TF_VERSION: 0.13.2
       TF_AZ_VERSION: 2.34.0
-    '2 (TF: 0.13.2, AZ: 2.46.1)':
+    '2 (TF: 0.13.2, AZ: 2.47.0)':
       TF_VERSION: 0.13.2
-      TF_AZ_VERSION: 2.46.1
+      TF_AZ_VERSION: 2.47.0
     '3 (TF: 0.13.5, AZ: 2.34.0)':
       TF_VERSION: 0.13.5
       TF_AZ_VERSION: 2.34.0
-    '4 (TF: 0.13.5, AZ: 2.46.1)':
+    '4 (TF: 0.13.5, AZ: 2.47.0)':
       TF_VERSION: 0.13.5
-      TF_AZ_VERSION: 2.46.1
+      TF_AZ_VERSION: 2.47.0
     '5 (TF: 0.14.0, AZ: 2.34.0)':
       TF_VERSION: 0.14.0
       TF_AZ_VERSION: 2.34.0
-    '6 (TF: 0.14.0, AZ: 2.46.1)':
+    '6 (TF: 0.14.0, AZ: 2.47.0)':
       TF_VERSION: 0.14.0
-      TF_AZ_VERSION: 2.46.1
-    '7 (TF: 0.14.6, AZ: 2.34.0)':
-      TF_VERSION: 0.14.6
+      TF_AZ_VERSION: 2.47.0
+    '7 (TF: 0.14.7, AZ: 2.34.0)':
+      TF_VERSION: 0.14.7
       TF_AZ_VERSION: 2.34.0
-    '8 (TF: 0.14.6, AZ: 2.46.1)':
-      TF_VERSION: 0.14.6
-      TF_AZ_VERSION: 2.46.1
+    '8 (TF: 0.14.7, AZ: 2.47.0)':
+      TF_VERSION: 0.14.7
+      TF_AZ_VERSION: 2.47.0
 
 pool:
   vmImage: ubuntu-20.04
