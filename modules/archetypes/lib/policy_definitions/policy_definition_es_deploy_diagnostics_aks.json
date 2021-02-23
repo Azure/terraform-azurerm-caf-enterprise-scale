@@ -103,6 +103,14 @@
                         {
                           "category": "cluster-autoscaler",
                           "enabled": true
+                        },
+                        {
+                          "category": "kube-audit-admin",
+                          "enabled": true
+                        },
+                        {
+                          "category": "guard",
+                          "enabled": true
                         }
                       ]
                     }
