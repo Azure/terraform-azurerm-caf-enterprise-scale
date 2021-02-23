@@ -1,0 +1,25 @@
+---
+steps:
+- task: Bash@3
+  displayName: 'Terraform (install)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-install'
+
+- task: Bash@3
+  displayName: 'Terraform (prepare)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-prepare'
+
+- task: Bash@3
+  displayName: 'Terraform (fmt)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-fmt'
+
+- task: Bash@3
+  displayName: 'Terraform (init)'
+  inputs:
+    targetType: 'inline'
+    script: 'make tf-init'
