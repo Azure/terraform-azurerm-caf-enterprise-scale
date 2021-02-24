@@ -2,6 +2,12 @@
 # Makefile
 #
 
+# Pipeline
+
+azp-strategy:
+	@echo "==> Running script..."
+	./tests/scripts/azp-strategy.sh
+
 # Terraform
 
 tf-install:
