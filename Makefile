@@ -6,7 +6,7 @@
 
 azp-strategy:
 	@echo "==> Running script..."
-	./tests/scripts/azp-strategy.sh
+	./tests/scripts/azp-strategy.ps1
 
 # Terraform
 
