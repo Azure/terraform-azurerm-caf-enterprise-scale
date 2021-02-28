@@ -43,6 +43,7 @@ jobs:
 
       - name: Update Library Templates 
         run: make update-library-templates
+        working-directory: ${{ github.repository }}
 
       - name: Add files, commit and push
         run: |
