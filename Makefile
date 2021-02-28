@@ -2,7 +2,13 @@
 # Makefile
 #
 
-# Pipeline
+# GitHub Actions
+
+update-library-templates
+	@echo "==> Running script..."
+	./.github/scripts/Invoke-LibraryUpdate.ps1
+
+# Azure Pipelines
 
 azp-strategy:
 	@echo "==> Running script..."

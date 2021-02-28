@@ -1,0 +1,61 @@
+---
+name: Update Library Templates
+
+# on:
+#   schedule:
+#     - cron: '0 12 1 * *'
+
+on: workflow_dispatch
+
+env:
+  remote_repository: "Azure/Enterprise-Scale"
+  branch_name: "patch-library"
+  pr_title: "Update Library Templates (automated)"
+  pr_body: |
+    # Update Library Templates (automated)
+    This is an automated `pull_request` containing updates to the library templates stored in `modules/archetypes/lib`.
+    Please review the "files changed" tab to review changes.
+
+jobs:
+  update-templates:
+    name: Update Library Templates
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Local Repository Checkout
+        uses: actions/checkout@v2
+        with:
+          path: ${{ github.repository }}
+
+      - name: Remote Repository Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.remote_repository }}
+          path: ${{ env.remote_repository }}
+          ref: main
+
+      - name: Create and checkout branch
+        run: |
+          git config user.name github-actions
+          git config user.email action@github.com
+          git checkout -b ${{ env.branch_name }}
+        working-directory: ${{ github.repository }}
+
+      - name: Update Library Templates 
+        run: make update-library-templates
+
+      - name: Add files, commit and push
+        run: |
+          git add modules/archetypes/lib
+          git commit -m '${{ env.pr_title }}'
+          git push origin automated -f
+        working-directory: ${{ github.repository }}
+
+      - name: Create pull request
+        run: |
+          gh pr create \
+            --title ${{ env.pr_title }} \
+            --body ${{ env.pr_body }} \
+            --base ${{ github.ref }} \
+            --head ${{ env.branch_name }}
+        working-directory: ${{ github.repository }}
