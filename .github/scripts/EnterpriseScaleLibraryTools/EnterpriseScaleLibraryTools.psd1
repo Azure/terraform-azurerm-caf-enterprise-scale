@@ -1,3 +1,5 @@
+#!/usr/bin/pwsh
+
 #
 # Module manifest for module 'EnterpriseScaleLibraryTools'
 #
