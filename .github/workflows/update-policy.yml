@@ -1,0 +1,27 @@
+---
+name: Update Library Templates
+
+# on:
+#   schedule:
+#     - cron: '0 12 1 * *'
+
+on: workflow_dispatch
+
+env:
+  remote_repository: "Azure/Enterprise-Scale"
+  branch_name: "patch-library"
+  pr_title: "Update Library Templates (automated)"
+  pr_body: |
+    # Update Library Templates (automated)
+    This is an automated `pull_request` containing updates to the library templates stored in `modules/archetypes/lib`.
+    Please review the "files changed" tab to review changes.
+jobs:
+  update-templates:
+    name: Update Library Templates
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Local Repository Checkout
+        uses: actions/checkout@v2
+        with:
+          path: ${{ github.repository }}
