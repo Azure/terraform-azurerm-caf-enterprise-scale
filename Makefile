@@ -6,7 +6,7 @@
 
 update-library-templates:
 	@echo "==> Running script..."
-	./.github/scripts/Invoke-LibraryUpdate.ps1
+	./.github/scripts/Invoke-LibraryUpdate.ps1 -targetModulePath "./" -sourceModulePath $GITHUB_WORKSPACE/Azure/Enterprise-Scale
 
 # Azure Pipelines
 
