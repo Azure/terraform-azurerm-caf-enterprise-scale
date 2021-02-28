@@ -7,12 +7,10 @@ $ErrorActionPreference = "Stop"
 [System.Version]$azAccountsVersion = "2.2.3"
 
 $module = Get-Module Az.Accounts
-        if ($null -ne $module -and $module.Version -lt $azAccountsVersion)
-{
+if ($null -ne $module -and $module.Version -lt $azAccountsVersion) {
     Write-Error "This module requires Az.Accounts version $azAccountsVersion. An earlier version of Az.Accounts is imported in the current PowerShell session. Please open a new session before importing this module. This error could indicate that multiple incompatible versions of the Azure PowerShell cmdlets are installed on your system. Please see https://aka.ms/azps-version-error for troubleshooting information." -ErrorAction Stop
 }
-elseif ($null -eq $module)
-{
+elseif ($null -eq $module) {
     Import-Module Az.Accounts -MinimumVersion $azAccountsVersion -Scope Global
 }
 
@@ -35,6 +33,13 @@ enum PolicyAssignmentIdentityType {
     SystemAssigned
 }
 
+enum PolicySetDefinitionPropertiesPolicyType {
+    NotSpecified
+    BuiltIn
+    Custom
+    Static
+}
+
 enum GetFileNameCaseModifier {
     ToString
     ToLower
@@ -43,6 +48,7 @@ enum GetFileNameCaseModifier {
 
 [Regex]$regex_schema_deploymentParameters = "http[s]?:\/\/schema\.management\.azure\.com\/schemas\/([0-9-]{10})\/deploymentParameters\.json#"
 [Regex]$regex_schema_managementGroupDeploymentTemplate = "http[s]?:\/\/schema\.management\.azure\.com\/schemas\/([0-9-]{10})\/managementGroupDeploymentTemplate\.json#"
+[Regex]$regex_doubleLeftSquareBrace = "(?<=`"[\w-]+`": ?`")(\[\[)"
 
 #############################
 # ProviderApiVersions Class #
@@ -217,130 +223,212 @@ class ProviderApiVersions {
 
 }
 
-class ArmTemplateResourceProperties {
+class ESLTBase {
     
-    ArmTemplateResourceProperties() {}
+    ESLTBase() {}
 
     [String] ToString() {
-        return $this | ConvertTo-Json -Depth 1 -WarningAction SilentlyContinue | ConvertFrom-Json
+        if ($this.GetType() -notin "String", "Boolean", "Int") {
+            return $this | ConvertTo-Json -Depth 1 -WarningAction SilentlyContinue | ConvertFrom-Json
+        }
+        else {
+            return $this            
+        }
     }
 
 }
 
-class PolicyAssignmentProperties : ArmTemplateResourceProperties {
-    [String]$description = ""
+class PolicyAssignmentProperties : ESLTBase {
     [String]$displayName = ""
-    [String]$scope = ""
-    [Array]$notScopes = @()
-    [Object]$parameters = @{}
     [Object]$policyDefinitionId = ""
+    [String]$scope = ""
+    [String[]]$notScopes = @()
+    [Object]$parameters = @{}
+    [String]$description = ""
     [Object]$metadata = @{}
     [String]$enforcementMode = "Default"
 
-    PolicyAssignmentProperties() {}
+    PolicyAssignmentProperties(): base() {}
 
-    PolicyAssignmentProperties([Object]$PolicyAssignmentPropertiesObject) {
-        $this.displayName = $PolicyAssignmentPropertiesObject.displayName
-        $this.description = $PolicyAssignmentPropertiesObject.description ?? $PolicyAssignmentPropertiesObject.displayName
-        $this.scope = $PolicyAssignmentPropertiesObject.scope
-        $this.notScopes = $PolicyAssignmentPropertiesObject.notScopes ?? $this.notScopes
-        $this.parameters = $PolicyAssignmentPropertiesObject.parameters ?? $this.parameters
-        $this.policyDefinitionId = $PolicyAssignmentPropertiesObject.policyDefinitionId
-        $this.metadata = $PolicyAssignmentPropertiesObject.metadata ?? $this.metadata
-        $this.enforcementMode = [PolicyAssignmentPropertiesEnforcementMode]($PolicyAssignmentPropertiesObject.enforcementMode ?? $this.enforcementMode)
+    PolicyAssignmentProperties([Object]$that): base() {
+        $this.displayName = $that.displayName
+        $this.policyDefinitionId = $that.policyDefinitionId
+        $this.scope = $that.scope
+        $this.notScopes = $that.notScopes ?? $this.notScopes
+        $this.parameters = $that.parameters ?? $this.parameters
+        $this.description = $that.description ?? $that.displayName
+        $this.metadata = $that.metadata ?? $this.metadata
+        $this.enforcementMode = [PolicyAssignmentPropertiesEnforcementMode]($that.enforcementMode ?? $this.enforcementMode)
     }
 
 }
 
-class PolicyAssignmentIdentity : ArmTemplateResourceProperties {
+class PolicyAssignmentIdentity : ESLTBase {
     [String]$type = "None"
 
-    PolicyAssignmentIdentity() {}
+    PolicyAssignmentIdentity(): base() {}
 
-    PolicyAssignmentIdentity([Object]$PolicyAssignmentIdentityObject) {
-        $this.type = [PolicyAssignmentIdentityType]($PolicyAssignmentIdentityObject.type ?? $this.type)
+    PolicyAssignmentIdentity([Object]$that): base() {
+        $this.type = [PolicyAssignmentIdentityType]($that.type ?? $this.type)
     }
 
 }
 
-class PolicyDefinitionProperties : ArmTemplateResourceProperties {
-    [String]$description = ""
-    [String]$displayName = ""
+class PolicyDefinitionProperties : ESLTBase {
+    [String]$policyType = "NotSpecified"
     [String]$mode
-    [Object]$parameters = @{}
+    [String]$displayName = ""
+    [String]$description = ""
     [Object]$policyRule = @{}
     [Object]$metadata = @{}
-
-    PolicyDefinitionProperties() {}
-
-    PolicyDefinitionProperties([Object]$PolicyDefinitionPropertiesObject) {
-        $this.description = $PolicyDefinitionPropertiesObject.description ?? $PolicyDefinitionPropertiesObject.displayName
-        $this.displayName = $PolicyDefinitionPropertiesObject.displayName
-        $this.mode = [PolicyDefinitionPropertiesMode]($PolicyDefinitionPropertiesObject.mode)
-        $this.parameters = $PolicyDefinitionPropertiesObject.parameters ?? $this.parameters
-        $this.policyRule = $PolicyDefinitionPropertiesObject.policyRule
-        $this.metadata = $PolicyDefinitionPropertiesObject.metadata ?? $this.metadata
-    }
-
-}
-
-class PolicySetDefinitionProperties : ArmTemplateResourceProperties {
-    [String]$description = ""
-    [String]$displayName = ""
     [Object]$parameters = @{}
-    [Array]$policyDefinitionGroups = @()
-    [Array]$policyDefinitions = @()
-    [Object]$metadata = @{}
 
-    PolicySetDefinitionProperties() {}
+    PolicyDefinitionProperties(): base() {}
 
-    PolicySetDefinitionProperties([Object]$PolicySetDefinitionPropertiesObject) {
-        $this.description = $PolicySetDefinitionPropertiesObject.description ?? $PolicySetDefinitionPropertiesObject.displayName
-        $this.displayName = $PolicySetDefinitionPropertiesObject.displayName ?? ""
-        $this.parameters = $PolicySetDefinitionPropertiesObject.parameters ?? $this.parameters
-        $this.policyDefinitionGroups = $PolicySetDefinitionPropertiesObject.policyDefinitionGroups ?? $this.policyDefinitionGroups
-        $this.policyDefinitions = $PolicySetDefinitionPropertiesObject.policyDefinitions ?? $this.policyDefinitions
-        $this.metadata = $PolicySetDefinitionPropertiesObject.metadata ?? $this.metadata
+    PolicyDefinitionProperties([Object]$that): base() {
+        $this.policyType = [PolicySetDefinitionPropertiesPolicyType]($that.policyType ?? $this.policyType)
+        $this.mode = [PolicyDefinitionPropertiesMode]($that.mode)
+        $this.displayName = $that.displayName
+        $this.description = $that.description ?? $that.displayName
+        $this.policyRule = $that.policyRule
+        $this.metadata = $that.metadata ?? $this.metadata
+        $this.parameters = $that.parameters ?? $this.parameters
     }
 
 }
 
-class RoleAssignmentProperties : ArmTemplateResourceProperties {
-    RoleAssignmentProperties() {}
+class PolicySetDefinitionPropertiesPolicyDefinitions : ESLTBase {
+    [String]$policyDefinitionReferenceId = ""
+    [String]$policyDefinitionId = ""
+    [Object]$parameters = @{}
+    [Array]$groupNames = @()
+
+    PolicySetDefinitionPropertiesPolicyDefinitions(): base() {}
+
+    PolicySetDefinitionPropertiesPolicyDefinitions([Object]$that): base() {
+        $this.policyDefinitionReferenceId = $that.policyDefinitionReferenceId
+        $this.policyDefinitionId = $that.policyDefinitionId
+        $this.parameters = $that.parameters ?? $this.parameters
+        $this.groupNames = $that.groupNames ?? $this.groupNames
+    }
+
 }
 
-class RoleDefinitionProperties : ArmTemplateResourceProperties {
-    RoleDefinitionProperties() {}
+class PolicySetDefinitionPropertiesPolicyDefinitionGroup : ESLTBase {
+    [String]$name = ""
+    [String]$displayName = ""
+    [String]$category = ""
+    [String]$description = ""
+    [String]$additionalMetadataId = ""
+
+    PolicySetDefinitionPropertiesPolicyDefinitionGroup(): base() {}
+
+    PolicySetDefinitionPropertiesPolicyDefinitionGroup([Object]$that): base() {
+        $this.name = $that.name
+        $this.displayName = $that.displayName
+        $this.category = $that.category
+        $this.description = $that.description
+        $this.additionalMetadataId = $that.additionalMetadataId
+    }
+
 }
 
-class ArmTemplateResource {
+class PolicySetDefinitionProperties : ESLTBase {
+    [String]$policyType = "NotSpecified"
+    [String]$displayName = ""
+    [String]$description = ""
+    [Object]$metadata = @{}
+    [Object]$parameters = @{}
+    [Array]$policyDefinitions = @()
+    [Array]$policyDefinitionGroups = $null
+
+    PolicySetDefinitionProperties(): base() {}
+
+    PolicySetDefinitionProperties([Object]$that): base() {
+        $this.policyType = [PolicySetDefinitionPropertiesPolicyType]($that.policyType ?? $this.policyType)
+        $this.displayName = $that.displayName ?? ""
+        $this.description = $that.description ?? $that.displayName
+        $this.metadata = $that.metadata ?? $this.metadata
+        $this.parameters = $that.parameters ?? $this.parameters
+        $this.policyDefinitions = foreach ($policyDefinition in $that.policyDefinitions) {
+            [PolicySetDefinitionPropertiesPolicyDefinitions]::new($policyDefinition)
+        }
+        $this.policyDefinitionGroups = foreach ($policyDefinitionGroup in $that.policyDefinitionGroups) {
+            [PolicySetDefinitionPropertiesPolicyDefinitionGroup]::new($that.policyDefinitionGroups)
+        }
+    }
+
+}
+
+class RoleAssignmentProperties : ESLTBase {
+    RoleAssignmentProperties(): base() {}
+}
+
+class RoleDefinitionPropertiesPermissions {
+    [String[]]$actions = @()
+    [String[]]$notActions = @()
+    [String[]]$dataActions = @()
+    [String[]]$notDataActions = @()
+
+    RoleDefinitionPropertiesPermissions(): base() {}
+
+    RoleDefinitionPropertiesPermissions([Object]$that): base() {
+        $this.actions = $that.actions ?? $this.actions
+        $this.notActions = $that.notActions ?? $that.notActions
+        $this.dataActions = $that.dataActions ?? $this.dataActions
+        $this.notDataActions = $that.notDataActions ?? $this.notDataActions
+    }
+
+}
+
+class RoleDefinitionProperties : ESLTBase {
+    [String]$roleName = ""
+    [String]$description = ""
+    [String]$type = "customRole"
+    [Array]$permissions = @()
+    [Array]$assignableScopes = @()
+
+    RoleDefinitionProperties(): base() {}
+
+    RoleDefinitionProperties([Object]$that): base() {
+        $this.roleName = $that.roleName
+        $this.description = $that.description ?? $that.roleName
+        $this.type = $that.type ?? $this.type
+        $this.permissions = @(
+            [PolicyAssignmentIdentity]::new($that.permissions[0])
+        )
+        $this.assignableScopes = $that.assignableScopes ?? $this.assignableScopes
+    }
+
+}
+
+class ArmTemplateResource : ESLTBase {
 
     # Public class properties    
     [String]$name
     [String]$type
     [String]$apiVersion
+    [Object]$scope = $null # Needs to be declared as object to avoid null returning empty string in JSON output
     [Object]$properties
 
     # Hidden static class properties
     hidden static [GetFileNameCaseModifier]$GetFileNameCaseModifier = "ToLower" # Default to make lowercase
-    hidden static [Regex]$GetFileNameRegex = "\W" # Default to replace all non word characters
+    hidden static [Regex]$regexReplaceFileNameCharacters = "\W" # Default to replace all non word characters
     hidden static [String]$GetFileNameSubstituteCharacter = "_"
+    hidden static [Regex]$regexExtractProviderId = "\/providers\/(?!.*\/providers\/)[\/\w-.]+"
 
-    ArmTemplateResource() {}
+    ArmTemplateResource(): base() {}
 
-    ArmTemplateResource([PSCustomObject]$ResourceObject) {
-        $this.name = $ResourceObject.name
-        $this.type = $ResourceObject.ResourceType || $ResourceObject.type
-        $this.properties = $ResourceObject.properties
+    ArmTemplateResource([PSCustomObject]$that): base() {
+        $this.name = $that.name
+        $this.type = $that.ResourceType ?? $that.type
+        $this.scope = if ($that.scope.Length -gt 0) { $that.scope } else { $null }
+        $this.properties = $that.properties
     }
 
     # Initialize [ArmTemplateResource] object
     [Void] SetApiVersion([String]$ResourceType) {
         $this.apiVersion = [ProviderApiVersions]::GetLatestStableByType($ResourceType)
-    }
-
-    [String] ToString() {
-        return $this | ConvertTo-Json -Depth 1 -WarningAction SilentlyContinue | ConvertFrom-Json
     }
 
     # Update resource values as per requirements for Terraform Module
@@ -350,6 +438,22 @@ class ArmTemplateResource {
             $this.properties.scope = "`${current_scope_resource_id}"
             $this.properties.policyDefinitionId = "`${root_scope_resource_id}/"
             $this.location = "`${default_location}"
+        }
+        if ($this.type -eq "Microsoft.Authorization/policyDefinitions") {
+            $this.properties.mode = "All"
+            $this.properties.policyType = "Custom"
+        }
+        if ($this.type -eq "Microsoft.Authorization/policySetDefinitions") {
+            $this.properties.policyType = "Custom"
+            foreach ($policyDefinition in $this.properties.policyDefinitions) {
+                $regexMatches = [ArmTemplateResource]::regexExtractProviderId.Matches($policyDefinition.policyDefinitionId)
+                if ($regexMatches.Index -gt 0) {
+                    $policyDefinition.policyDefinitionId = "`${current_scope_resource_id}$($regexMatches.Value)"
+                }
+                else {
+                    $policyDefinition.policyDefinitionId = $regexMatches.Value
+                }
+            }
         }
         return $this
     }
@@ -361,7 +465,7 @@ class ArmTemplateResource {
 
     [String] GetFileName([String]$Prefix) {
         $fileNameBase = $this.name.$([ArmTemplateResource]::GetFileNameCaseModifier)()
-        $fileNameBase = [ArmTemplateResource]::GetFileNameRegex.Replace($fileNameBase, [ArmTemplateResource]::GetFileNameSubstituteCharacter)
+        $fileNameBase = [ArmTemplateResource]::regexReplaceFileNameCharacters.Replace($fileNameBase, [ArmTemplateResource]::GetFileNameSubstituteCharacter)
         $fileName = $Prefix + $fileNameBase
         return $fileName
     }
@@ -374,17 +478,18 @@ class PolicyAssignment : ArmTemplateResource {
     [String]$name
     [String]$type
     [String]$apiVersion
+    [String]$scope
     [Object]$properties
     [String]$location
     [Object]$identity
 
-    PolicyAssignment() {}
+    PolicyAssignment(): base() {}
 
-    PolicyAssignment([PSCustomObject]$ResourceObject): base($ResourceObject) {
+    PolicyAssignment([PSCustomObject]$that): base($that) {
         $this.type = "Microsoft.Authorization/policyAssignments"
         $this.SetApiVersion($this.type)
-        $this.location = $ResourceObject.location
-        $this.identity = [PolicyAssignmentIdentity]::new($ResourceObject.identity)
+        $this.location = $that.location
+        $this.identity = [PolicyAssignmentIdentity]::new($that.identity)
         $this.properties = [PolicyAssignmentProperties]::new($this.properties)
     }
 
@@ -392,9 +497,9 @@ class PolicyAssignment : ArmTemplateResource {
 
 class PolicyDefinition : ArmTemplateResource {
 
-    PolicyDefinition() {}
+    PolicyDefinition(): base() {}
 
-    PolicyDefinition([PSCustomObject]$ResourceObject): base($ResourceObject) {
+    PolicyDefinition([PSCustomObject]$that): base($that) {
         $this.type = "Microsoft.Authorization/policyDefinitions"
         $this.SetApiVersion($this.type)
         $this.properties = [PolicyDefinitionProperties]::new($this.properties)
@@ -404,9 +509,9 @@ class PolicyDefinition : ArmTemplateResource {
 
 class PolicySetDefinition : ArmTemplateResource {
 
-    PolicySetDefinition() {}
+    PolicySetDefinition(): base() {}
 
-    PolicySetDefinition([PSCustomObject]$ResourceObject): base($ResourceObject) {
+    PolicySetDefinition([PSCustomObject]$that): base($that) {
         $this.type = "Microsoft.Authorization/policySetDefinitions"
         $this.SetApiVersion($this.type)
         $this.properties = [PolicySetDefinitionProperties]::new($this.properties)
@@ -416,9 +521,9 @@ class PolicySetDefinition : ArmTemplateResource {
 
 class RoleAssignment : ArmTemplateResource {
 
-    RoleAssignment() {}
+    RoleAssignment(): base() {}
 
-    RoleAssignment([PSCustomObject]$ResourceObject): base($ResourceObject) {
+    RoleAssignment([PSCustomObject]$that): base($that) {
         $this.type = "Microsoft.Authorization/roleAssignments"
         $this.SetApiVersion($this.type)
         $this.properties = [RoleAssignmentProperties]::new($this.properties)
@@ -427,9 +532,9 @@ class RoleAssignment : ArmTemplateResource {
 
 class RoleDefinition : ArmTemplateResource {
 
-    RoleDefinition() {}
+    RoleDefinition(): base() {}
 
-    RoleDefinition([PSCustomObject]$ResourceObject): base($ResourceObject) {
+    RoleDefinition([PSCustomObject]$that): base($that) {
         $this.type = "Microsoft.Authorization/roleDefinitions"
         $this.SetApiVersion($this.type)
         $this.properties = [RoleDefinitionProperties]::new($this.properties)
@@ -530,7 +635,12 @@ function ProcessFile {
         [String]$FilePath
     )
 
-    $content = Get-Content -Path $FilePath
+    # A number of sources store the required definition in variables
+    # which use escaping for ARM functions so they are correctly
+    # processed within copy_loops. These need to be removed when
+    # converting to a native ARM template.
+    $content = Get-Content -Path $FilePath |
+    ForEach-Object { $_ -replace $regex_doubleLeftSquareBrace, "[" }
 
     $output = GetObjectByResourceTypeFromJson `
         -Id $FilePath `
@@ -603,8 +713,8 @@ function Export-LibraryArtifact {
 
     foreach ($libraryArtifact in $libraryArtifacts) {
         $libraryArtifactMessage = ("Processing file... `n" + `
-        " - Input  : $($libraryArtifact.InputFilePath) `n" + `
-        " - Output : $($libraryArtifact.OutputFilePath)")
+                " - Input  : $($libraryArtifact.InputFilePath) `n" + `
+                " - Output : $($libraryArtifact.OutputFilePath)")
 
         if ($libraryArtifact.OutputTemplate.type -in $TypeFilter) {
             if ($WhatIf) {
@@ -613,12 +723,12 @@ function Export-LibraryArtifact {
                 Write-Host "Output File : $($libraryArtifact.OutputFilePath) [WHATIF]"
                 Continue
             }
-            $libraryArtifact.OutputTemplate |
+            $libraryArtifactFile = $libraryArtifact.OutputTemplate |
             ConvertTo-Json -Depth 100 |
             New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
             $libraryArtifactMessage += "`n [COMPLETE]"
             Write-Verbose $libraryArtifactMessage
-            Write-Host "Output File : $($libraryArtifact.OutputFilePath) [COMPLETE]"
+            Write-Host "Output File : $($libraryArtifactFile.FullName) [COMPLETE]"
         }
         else {
             $libraryArtifactMessage += "`n [SKIPPING] Resource Type not in TypeFilter."
