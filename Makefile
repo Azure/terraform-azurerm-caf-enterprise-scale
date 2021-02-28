@@ -4,7 +4,7 @@
 
 # GitHub Actions
 
-update-library-templates
+update-library-templates:
 	@echo "==> Running script..."
 	./.github/scripts/Invoke-LibraryUpdate.ps1
 
