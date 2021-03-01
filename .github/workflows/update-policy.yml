@@ -11,10 +11,7 @@ env:
   remote_repository: "Azure/Enterprise-Scale"
   branch_name: "patch-library"
   pr_title: "Update Library Templates (automated)"
-  pr_body: |
-    # Update Library Templates (automated)
-    This is an automated `pull_request` containing updates to the library templates stored in `modules/archetypes/lib`.
-    Please review the "files changed" tab to review changes.
+  pr_body: "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\nPlease review the 'files changed' tab to review changes."
 
 jobs:
   update-templates:
@@ -62,8 +59,10 @@ jobs:
       - name: Create pull request
         run: |
           gh pr create \
-          --title "${{ env.pr_title }}" \
-          --body "${{ env.pr_body }}" \
-          --base "${{ github.ref }}" \
-          --head "${{ env.branch_name }}"
+          --title ${{ env.pr_title }} \
+          --body ${{ env.pr_body }} \
+          --base ${{ github.ref }} \
+          --head ${{ env.branch_name }}
         working-directory: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
