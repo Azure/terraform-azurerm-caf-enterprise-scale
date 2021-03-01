@@ -43,6 +43,7 @@ jobs:
 
       - name: Update Library Templates 
         run: |
+          Write-Host "==> Installing Az.Accounts PowerShell Module..."
           Install-Module -Name "Az.Accounts" -MinimumVersion "2.2.3" -Force
           Write-Host "==> Running script..."
           ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
