@@ -42,8 +42,13 @@ jobs:
         working-directory: ${{ github.repository }}
 
       - name: Update Library Templates 
-        run: make update-library-templates
-        working-directory: ${{ github.repository }}
+        run: |
+          Install-Module -Name "Az.Accounts" -MinimumVersion "2.2.3" -Force
+          Write-Host "==> Running script..."
+          ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
+            -targetModulePath ${{ github.workspace }}/${{ github.repository }} `
+            -sourceModulePath ${{ github.workspace }}/${{ env.remote_repository }}
+        shell: pwsh
 
       - name: Add files, commit and push
         run: |
