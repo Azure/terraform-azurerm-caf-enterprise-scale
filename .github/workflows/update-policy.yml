@@ -59,10 +59,10 @@ jobs:
       - name: Create pull request
         run: |
           gh pr create \
-          --title ${{ env.pr_title }} \
-          --body ${{ env.pr_body }} \
-          --base ${{ github.ref }} \
-          --head ${{ env.branch_name }}
+          --title "${{ env.pr_title }}" \
+          --body "${{ env.pr_body }}" \
+          --base "${{ github.ref }}" \
+          --head "${{ env.branch_name }}"
         working-directory: ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
