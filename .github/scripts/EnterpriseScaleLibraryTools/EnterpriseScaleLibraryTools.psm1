@@ -223,6 +223,63 @@ class ProviderApiVersions {
         [ProviderApiVersions]::InitializeCache()
     }
 
+    # Static method to save all entries from Cache to filesystem
+    static [Void] SaveCacheToDirectory() {
+        [ProviderApiVersions]::SaveCacheToDirectory("./")
+    }
+
+    # Static method to save all entries from Cache to filesystem
+    static [Void] SaveCacheToDirectory([String]$Directory) {
+        if ([ProviderApiVersions]::Cache.Count -lt 1) {
+            [ProviderApiVersions]::UpdateCache()
+        }
+        $private:saveCachePath = "$Directory/ProviderApiVersions"
+        [ProviderApiVersions]::Cache |
+        ConvertTo-Json -Depth 10 -Compress |
+        Out-File -FilePath "$($private:saveCachePath).json" `
+            -Force
+        try {
+            Compress-Archive -Path "$($private:saveCachePath).json" `
+                -DestinationPath "$($private:saveCachePath).zip" `
+                -Force
+        }
+        finally {
+            Remove-Item -Path "$($private:saveCachePath).json" `
+                -Force
+        }
+    }
+
+    # Static method to load all entries from filesystem to Cache
+    static [Void] LoadCacheFromDirectory() {
+        [ProviderApiVersions]::LoadCacheFromDirectory("./")
+    }
+
+    # Static method to load all entries from filesystem to Cache
+    static [Void] LoadCacheFromDirectory([String]$Directory) {
+        [ProviderApiVersions]::ClearCache()
+        $private:loadCachePath = "$Directory/ProviderApiVersions"
+        Expand-Archive -Path "$($private:loadCachePath).zip" `
+            -DestinationPath "$Directory" `
+            -Force
+        try {
+            $private:loadCacheObject = Get-Content `
+                -Path "$($private:loadCachePath).json" `
+                -Force |
+            ConvertFrom-Json
+            foreach ($key in $private:loadCacheObject.psobject.Properties.Name) {
+                $private:value = $private:loadCacheObject."$key"
+                ([ProviderApiVersions]::Cache).TryAdd($key, $private:value)
+            }
+        }
+        catch {
+            Write-Error $_.Exception.Message
+        }
+        finally {
+            Remove-Item -Path "$($private:loadCachePath).json" `
+                -Force
+        }
+    }
+
 }
 
 class ESLTBase {
@@ -651,6 +708,13 @@ function ProcessFile {
     return $output
 }
 
+function Invoke-UseCacheFromModule {
+    param (
+        [String]$Directory = "./"
+    )
+    [ProviderApiVersions]::LoadCacheFromDirectory($Directory)
+}
+
 function ConvertTo-LibraryArtifact {
     [CmdletBinding()]
     param (
@@ -746,6 +810,7 @@ $aliasesToExport = @()
 $functionsToExport = @(
     "ConvertTo-LibraryArtifact"
     "Export-LibraryArtifact"
+    "Invoke-UseCacheFromModule"
 )
 
 # Export module members

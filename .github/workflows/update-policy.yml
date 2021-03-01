@@ -47,8 +47,9 @@ jobs:
           Install-Module -Name "Az.Accounts" -MinimumVersion "2.2.3" -Force
           Write-Host "==> Running script..."
           ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
-            -targetModulePath ${{ github.workspace }}/${{ github.repository }} `
-            -sourceModulePath ${{ github.workspace }}/${{ env.remote_repository }}
+            -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
+            -SourceModulePath ${{ github.workspace }}/${{ env.remote_repository }} `
+            -UseCacheFromModule
         shell: pwsh
 
       - name: Add files, commit and push
