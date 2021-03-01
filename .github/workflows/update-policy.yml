@@ -56,7 +56,7 @@ jobs:
         run: |
           git add modules/archetypes/lib
           git commit -m '${{ env.pr_title }}'
-          git push origin automated -f
+          git push origin ${{ env.branch_name }} -f
         working-directory: ${{ github.repository }}
 
       - name: Create pull request
