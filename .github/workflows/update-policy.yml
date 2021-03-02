@@ -19,6 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: Local Repository Checkout
         uses: actions/checkout@v2
         with:
@@ -58,11 +63,22 @@ jobs:
 
       - name: Create pull request
         run: |
-          gh pr create \
-          --title "${{ env.pr_title }}" \
-          --body "${{ env.pr_body }}" \
-          --base "${{ github.ref }}" \
-          --head "${{ env.branch_name }}"
+          HEAD_OWNER="${{ github.repository_owner }}"
+          HEAD_REF="${{ env.branch_name }}"
+          BASE_OWNER="${{ github.repository_owner }}"
+          BASE_REF="$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
+          PULL_REQUEST_URL=$(gh api repos/${{ github.repository }}/pulls \
+          | jq '.[] | select(.head.label == "$HEAD_OWNER:$HEAD_REF") | select(.base.label == "$BASE_OWNER:$BASE_REF") | .url' \
+          | tr -d \")
+          if [ -z "$PULL_REQUEST_URL" ]
+          then
+            gh pr create \
+            --title "${{ env.pr_title }}" \
+            --body "${{ env.pr_body }}" \
+            --base "${{ github.ref }}" \
+            --head "${{ env.branch_name }}" \
+            --draft
+          fi
         working-directory: ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
