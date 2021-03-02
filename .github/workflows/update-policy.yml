@@ -75,6 +75,8 @@ jobs:
             --base "${{ github.ref }}" \
             --head "${{ env.branch_name }}" \
             --draft
+          else
+            echo "Existing PR found: $PULL_REQUEST_URL"
           fi
         working-directory: ${{ github.repository }}
         env:
