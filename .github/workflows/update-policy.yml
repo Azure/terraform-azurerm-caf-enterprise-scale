@@ -10,6 +10,7 @@ on: workflow_dispatch
 env:
   remote_repository: "Azure/Enterprise-Scale"
   branch_name: "patch-library"
+  az_accounts_minimum_version: "2.2.3"
   pr_title: "Update Library Templates (automated)"
   pr_body: "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\nPlease review the 'files changed' tab to review changes."
 
@@ -46,7 +47,7 @@ jobs:
       - name: Update Library Templates 
         run: |
           Write-Host "==> Installing Az.Accounts PowerShell Module..."
-          Install-Module -Name "Az.Accounts" -MinimumVersion "2.2.3" -Force
+          Install-Module -Name "Az.Accounts" -MinimumVersion "${{ env.az_accounts_minimum_version }}" -Force
           Write-Host "==> Running script..."
           ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
             -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
