@@ -63,13 +63,10 @@ jobs:
 
       - name: Create pull request
         run: |
-          HEAD_OWNER="${{ github.repository_owner }}"
-          HEAD_REF="${{ env.branch_name }}"
-          BASE_OWNER="${{ github.repository_owner }}"
-          BASE_REF="$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
+          HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
+          BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
           PULL_REQUEST_URL=$(gh api repos/${{ github.repository }}/pulls \
-          | jq '.[] | select(.head.label == "$HEAD_OWNER:$HEAD_REF") | select(.base.label == "$BASE_OWNER:$BASE_REF") | .url' \
-          | tr -d \")
+          | jq -r ".[] | select(.head.label == \"$HEAD_LABEL\") | select(.base.label == \"$BASE_LABEL\") | .url")
           if [ -z "$PULL_REQUEST_URL" ]
           then
             gh pr create \
