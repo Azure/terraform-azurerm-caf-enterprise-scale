@@ -1,12 +1,32 @@
 {
-  "name": "ES-Deny-AA-child-resources",
+  "name": "Deny-AA-child-resources",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Denies creation of child resources on the Automation Account",
-    "displayName": "ES-Deny-AA-child-resources",
+    "policyType": "Custom",
     "mode": "All",
-    "parameters": {},
+    "displayName": "No child resources in Automation Account",
+    "description": "This policy denies the creation of child resources on the Automation Account",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Automation"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      }
+    },
     "policyRule": {
       "if": {
         "allOf": [
@@ -18,13 +38,13 @@
               "Microsoft.Automation/automationAccounts/modules",
               "Microsoft.Automation/automationAccounts/credentials",
               "Microsoft.Automation/automationAccounts/connections",
-              "Microsoft.Automation/automationAccounts/certificates"
+              "Microsoft.Automation/automationAccount/certificates"
             ]
           }
         ]
       },
       "then": {
-        "effect": "deny"
+        "effect": "[parameters('effect')]"
       }
     }
   }

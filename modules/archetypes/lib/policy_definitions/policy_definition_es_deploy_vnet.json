@@ -1,19 +1,37 @@
 {
-  "name": "ES-Deploy-vNet",
+  "name": "Deploy-vNet",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploy-vNet",
-    "displayName": "ES-Deploy-vNet",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy spoke network with configuration to hub network based on ipam configuration object",
+    "description": "Deploy spoke network with configuration to hub network based on ipam configuration object",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "ipam": {
         "type": "Array",
         "metadata": {
           "displayName": "ipam",
-          "description": ""
+          "description": null
         },
         "defaultValue": []
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -26,13 +44,13 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Resources/resourceGroups",
           "deploymentScope": "Subscription",
           "existenceScope": "Subscription",
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
           ],
           "existenceCondition": {
             "allOf": [
@@ -61,7 +79,39 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "ipam": {
-                    "defaultValue": [],
+                    "defaultValue": [
+                      {
+                        "name": "bu1-weu-msx3-vNet1",
+                        "location": "westeurope",
+                        "virtualNetworks": {
+                          "properties": {
+                            "addressSpace": {
+                              "addressPrefixes": [
+                                "10.51.217.0/24"
+                              ]
+                            }
+                          }
+                        },
+                        "networkSecurityGroups": {
+                          "properties": {
+                            "securityRules": []
+                          }
+                        },
+                        "routeTables": {
+                          "properties": {
+                            "routes": []
+                          }
+                        },
+                        "hubVirtualNetworkConnection": {
+                          "vWanVhubResourceId": "/subscriptions/99c2838f-a548-4884-a6e2-38c1f8fb4c0b/resourceGroups/contoso-global-vwan/providers/Microsoft.Network/virtualHubs/contoso-vhub-weu",
+                          "properties": {
+                            "allowHubToRemoteVnetTransit": true,
+                            "allowRemoteVnetToUseHubVnetGateways": false,
+                            "enableInternetSecurity": true
+                          }
+                        }
+                      }
+                    ],
                     "type": "Array"
                   }
                 },
@@ -114,7 +164,7 @@
                     "apiVersion": "2020-06-01",
                     "name": "[concat('es-ipam-',subscription().displayName,'-nsg-udr-vnet-hub-vwan-peering-',copyIndex())]",
                     "dependsOn": [
-                      "[concat('es-ipam-',subscription().displayName,'-RG-',copyIndex())]"
+                      "[[concat('es-ipam-',subscription().displayName,'-RG-',copyIndex())]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -147,8 +197,8 @@
                             "name": "[concat(subscription().displayName, '-vnet')]",
                             "location": "[parameters('ipam')[copyIndex()].location]",
                             "dependsOn": [
-                              "[concat(subscription().displayName, '-nsg')]",
-                              "[concat(subscription().displayName, '-udr')]"
+                              "[[concat(subscription().displayName, '-nsg')]",
+                              "[[concat(subscription().displayName, '-udr')]"
                             ],
                             "properties": "[if(contains(parameters('ipam')[copyIndex()],'virtualNetworks'),parameters('ipam')[copyIndex()].virtualNetworks.properties,json('null'))]"
                           },
@@ -158,7 +208,7 @@
                             "apiVersion": "2020-05-01",
                             "name": "[concat(variables('vNetName'), '/peerToHub')]",
                             "dependsOn": [
-                              "[concat(subscription().displayName, '-vnet')]"
+                              "[[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": "[if(contains(parameters('ipam')[copyIndex()],'virtualNetworkPeerings'),parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties,json('null'))]"
                           },
@@ -170,7 +220,7 @@
                             "subscriptionId": "[if(and(contains(parameters('ipam')[copyIndex()],'hubVirtualNetworkConnection'),contains(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection,'vWanVhubResourceId')),split(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection.vWanVhubResourceId,'/')[2],json('null'))]",
                             "resourceGroup": "[if(and(contains(parameters('ipam')[copyIndex()],'hubVirtualNetworkConnection'),contains(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection,'vWanVhubResourceId')),split(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection.vWanVhubResourceId,'/')[4],json('null'))]",
                             "dependsOn": [
-                              "[concat(subscription().displayName, '-vnet')]"
+                              "[[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
                               "mode": "Incremental",
@@ -246,7 +296,7 @@
                             "subscriptionId": "[if(and(contains(parameters('ipam')[copyIndex()],'virtualNetworkPeerings'),contains(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork,'id')),split(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork.id,'/')[2],json('null'))]",
                             "resourceGroup": "[if(and(contains(parameters('ipam')[copyIndex()],'virtualNetworkPeerings'),contains(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork,'id')),split(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork.id,'/')[4],json('null'))]",
                             "dependsOn": [
-                              "[concat(subscription().displayName, '-vnet')]"
+                              "[[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
                               "mode": "Incremental",

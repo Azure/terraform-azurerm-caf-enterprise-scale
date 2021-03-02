@@ -1,53 +1,204 @@
 {
-  "name": "ES-Deny-Public-Endpoints-for-PaaS-Services",
+  "name": "Deny-PublicEndpoints",
   "type": "Microsoft.Authorization/policySetDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deny public endpoints for PaaS services which support PrivateLink (limited support).",
-    "displayName": "ES-Deny-Public-Endpoints-for-PaaS-Services",
-    "parameters": {},
-    "policyDefinitionGroups": [],
+    "policyType": "Custom",
+    "displayName": "Public network access should be disabled for PAAS services",
+    "description": "This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. ",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
+    "parameters": {
+      "CosmosPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access should be disabled for CosmosDB",
+          "description": "This policy denies that  Cosmos database accounts  are created with out public network access is disabled."
+        }
+      },
+      "MariaDBPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access should be disabled for MariaDB",
+          "description": "This policy denies the creation of Maria DB accounts with exposed public endpoints"
+        }
+      },
+      "MySQLPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access should be disabled for MySQL",
+          "description": "This policy denies creation of MySql DB accounts with exposed public endpoints"
+        }
+      },
+      "PostgreSQLPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access should be disabled for PostgreSql",
+          "description": "This policy denies creation of Postgre SQL DB accounts with exposed public endpoints"
+        }
+      },
+      "KeyVaultPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access should be disabled for KeyVault",
+          "description": "This policy denies creation of Key Vaults with IP Firewall exposed to all public endpoints"
+        }
+      },
+      "SqlServerPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access on Azure SQL Database should be disabled",
+          "description": "This policy denies creation of Sql servers with exposed public endpoints"
+        }
+      },
+      "StoragePublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access onStorage accounts should be disabled",
+          "description": "This policy denies creation of storage accounts with IP Firewall exposed to all public endpoints"
+        }
+      },
+      "AKSPublicIpDenyEffect": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Public network access on AKS API should be disabled",
+          "description": "This policy denies  the creation of  Azure Kubernetes Service non-private clusters"
+        }
+      }
+    },
     "policyDefinitions": [
       {
-        "policyDefinitionReferenceId": "2305471075076999555",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-CosmosDB",
-        "parameters": {}
+        "policyDefinitionReferenceId": "CosmosDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-CosmosDB",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('CosmosPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "9147011493650353598",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-MariaDB",
-        "parameters": {}
+        "policyDefinitionReferenceId": "MariaDBDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-MariaDB",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('MariaDBPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "12408670082151357639",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-MySQL",
-        "parameters": {}
+        "policyDefinitionReferenceId": "MySQLDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-MySQL",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('MySQLPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "12661820429455827739",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-PostgreSql",
-        "parameters": {}
+        "policyDefinitionReferenceId": "PostgreSQLDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-PostgreSql",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('PostgreSQLPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "4034941732885719677",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-KeyVault",
-        "parameters": {}
+        "policyDefinitionReferenceId": "KeyVaultDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-KeyVault",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('KeyVaultPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "3088050605787531398",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-Sql",
-        "parameters": {}
+        "policyDefinitionReferenceId": "SqlServerDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-Sql",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('SqlServerPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "9863399000097702281",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-Storage",
-        "parameters": {}
+        "policyDefinitionReferenceId": "StorageDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-Storage",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('StoragePublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "8251035221074005943",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-PublicEndpoint-Aks",
-        "parameters": {}
+        "policyDefinitionReferenceId": "AKSDenyPaasPublicIP",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicEndpoint-Aks",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('AKSPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       }
-    ]
+    ],
+    "policyDefinitionGroups": null
   }
 }

@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-HUB",
+  "name": "Deploy-HUB",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploys Azure VNet to be used as hub virtual network in desired regions",
-    "displayName": "ES-Deploy-HUB",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Virtual Network to be used as hub virtual network in desired region",
+    "description": "Deploys Virtual Network to be used as hub virtual network in desired region in the subscription where this policy is assigned.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "hubName": {
         "type": "String",
@@ -51,6 +57,18 @@
           "displayName": "rgName",
           "description": "Provide name for resource group."
         }
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -63,7 +81,7 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/virtualNetworks",
           "name": "[parameters('hubName')]",
@@ -157,7 +175,7 @@
                     "name": "[concat(parameters('hubName'),'-', parameters('HUB').location)]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -175,7 +193,7 @@
                             "properties": {
                               "addressSpace": {
                                 "addressPrefixes": [
-                                  "[parameters('HUB').addressPrefix]"
+                                  "[[parameters('HUB').addressPrefix]"
                                 ]
                               },
                               "subnets": [
@@ -210,7 +228,7 @@
                     "condition": "[greater(length(parameters('vpngw')),0)]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[concat(parameters('hubName'),'-', parameters('HUB').location)]"
+                      "[[concat(parameters('hubName'),'-', parameters('HUB').location)]"
                     ],
                     "name": "[concat(parameters('hubName'),'-vpngw')]",
                     "properties": {
@@ -237,7 +255,7 @@
                             "type": "Microsoft.Network/virtualNetworkGateways",
                             "location": "[parameters('HUB').location]",
                             "dependsOn": [
-                              "[concat('Microsoft.Network/publicIPAddresses/', parameters('vpngw').name,'-pip')]"
+                              "[[concat('Microsoft.Network/publicIPAddresses/', parameters('vpngw').name,'-pip')]"
                             ],
                             "tags": {},
                             "properties": {
@@ -273,7 +291,7 @@
                     "condition": "[greater(length(parameters('ergw')),0)]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[concat(parameters('hubName'),'-', parameters('HUB').location)]"
+                      "[[concat(parameters('hubName'),'-', parameters('HUB').location)]"
                     ],
                     "name": "[concat(parameters('hubName'),'-ergw')]",
                     "properties": {
@@ -300,7 +318,7 @@
                             "type": "Microsoft.Network/virtualNetworkGateways",
                             "location": "[parameters('HUB').location]",
                             "dependsOn": [
-                              "[concat('Microsoft.Network/publicIPAddresses/', parameters('ergw').name,'-pip')]"
+                              "[[concat('Microsoft.Network/publicIPAddresses/', parameters('ergw').name,'-pip')]"
                             ],
                             "tags": {},
                             "properties": {
@@ -336,7 +354,7 @@
                     "name": "[concat(parameters('hubName'),'-azfw')]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[concat(parameters('hubName'),'-', parameters('HUB').location)]"
+                      "[[concat(parameters('hubName'),'-', parameters('HUB').location)]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -367,7 +385,7 @@
                             "location": "[parameters('azfw').location]",
                             "zones": "[if(contains(parameters('azfw'),'fwZones'),parameters('azfw').fwZones,json('null'))]",
                             "dependsOn": [
-                              "[concat(parameters('azfw').name,'-pip')]"
+                              "[[concat(parameters('azfw').name,'-pip')]"
                             ],
                             "properties": {
                               "threatIntelMode": "[parameters('azfw').threatIntelMode]",

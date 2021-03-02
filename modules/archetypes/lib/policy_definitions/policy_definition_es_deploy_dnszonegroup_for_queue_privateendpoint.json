@@ -1,17 +1,35 @@
 {
-  "name": "ES-Deploy-DNSZoneGroup-For-Queue-PrivateEndpoint",
+  "name": "Deploy-DNSZoneGroup-For-Queue-PrivateEndpoint",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "This policy deploys a DNS Zone Group for Storage-Queue Private Endpoint",
-    "displayName": "ES-Deploy-DNSZoneGroup-For-Queue-PrivateEndpoint",
-    "mode": "Indexed",
+    "policyType": "Custom",
+    "mode": "All",
+    "displayName": "Deploy DNS  Zone Group for Storage-Queue Private Endpoint",
+    "description": "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. ",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "privateDnsZoneId": {
         "type": "String",
         "metadata": {
           "displayName": "privateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones"
+        }
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
         }
       }
     },
@@ -35,11 +53,11 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
           ],
           "deployment": {
             "properties": {

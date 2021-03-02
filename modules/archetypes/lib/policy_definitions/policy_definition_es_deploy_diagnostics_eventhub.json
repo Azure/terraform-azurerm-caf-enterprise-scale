@@ -1,18 +1,68 @@
 {
-  "name": "ES-Deploy-Diagnostics-EventHub",
+  "name": "Deploy-Diagnostics-EventHub",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Apply diagnostic settings for Event Hub Namespaces - Log Analytics",
-    "displayName": "ES-Deploy-Diagnostics-EventHub",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Diagnostic Settings for Event Hubs to Log Analytics workspace",
+    "description": "Deploys the diagnostic settings for Event Hubs to stream to a Log Analytics workspace when any Event Hubs which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Monitoring"
+    },
     "parameters": {
       "logAnalytics": {
         "type": "String",
         "metadata": {
           "displayName": "Log Analytics workspace",
-          "description": "Select the Log Analytics workspace from dropdown list",
+          "description": "Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.",
           "strongType": "omsWorkspace"
+        }
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      },
+      "profileName": {
+        "type": "string",
+        "defaultValue": "setbypolicy",
+        "metadata": {
+          "displayName": "Profile name",
+          "description": "The diagnostic settings profile name"
+        }
+      },
+      "metricsEnabled": {
+        "type": "string",
+        "defaultValue": "True",
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "metadata": {
+          "displayName": "Enable metrics",
+          "description": "Whether to enable metrics stream to the Log Analytics workspace - True or False"
+        }
+      },
+      "logsEnabled": {
+        "type": "string",
+        "defaultValue": "True",
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "metadata": {
+          "displayName": "Enable logs",
+          "description": "Whether to enable logs stream to the Log Analytics workspace - True or False"
         }
       }
     },
@@ -22,7 +72,7 @@
         "equals": "Microsoft.EventHub/namespaces"
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Insights/diagnosticSettings",
           "name": "setByPolicy",
@@ -43,7 +93,8 @@
             ]
           },
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+            "/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
           ],
           "deployment": {
             "properties": {
@@ -60,6 +111,15 @@
                   },
                   "location": {
                     "type": "string"
+                  },
+                  "profileName": {
+                    "type": "string"
+                  },
+                  "metricsEnabled": {
+                    "type": "string"
+                  },
+                  "logsEnabled": {
+                    "type": "string"
                   }
                 },
                 "variables": {},
@@ -67,7 +127,7 @@
                   {
                     "type": "Microsoft.EventHub/namespaces/providers/diagnosticSettings",
                     "apiVersion": "2017-05-01-preview",
-                    "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/setByPolicy')]",
+                    "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]",
                     "location": "[parameters('location')]",
                     "dependsOn": [],
                     "properties": {
@@ -75,7 +135,7 @@
                       "metrics": [
                         {
                           "category": "AllMetrics",
-                          "enabled": true,
+                          "enabled": "[parameters('metricsEnabled')]",
                           "retentionPolicy": {
                             "days": 0,
                             "enabled": false
@@ -86,15 +146,31 @@
                       "logs": [
                         {
                           "category": "ArchiveLogs",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "OperationalLogs",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "AutoScaleLogs",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "KafkaCoordinatorLogs",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "KafkaUserErrorLogs",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "EventHubVNetConnectionEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "CustomerManagedKeyUserLogs",
+                          "enabled": "[parameters('logsEnabled')]"
                         }
                       ]
                     }
@@ -111,6 +187,15 @@
                 },
                 "resourceName": {
                   "value": "[field('name')]"
+                },
+                "profileName": {
+                  "value": "[parameters('profileName')]"
+                },
+                "metricsEnabled": {
+                  "value": "[parameters('metricsEnabled')]"
+                },
+                "logsEnabled": {
+                  "value": "[parameters('logsEnabled')]"
                 }
               }
             }

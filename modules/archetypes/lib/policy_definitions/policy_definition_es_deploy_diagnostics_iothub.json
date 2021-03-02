@@ -1,18 +1,68 @@
 {
-  "name": "ES-Deploy-Diagnostics-iotHub",
+  "name": "Deploy-Diagnostics-iotHub",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Apply diagnostic settings for IoT Hubs - Log Analytics",
-    "displayName": "ES-Deploy-Diagnostics-iotHub",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Diagnostic Settings for IoT Hub to Log Analytics workspace",
+    "description": "Deploys the diagnostic settings for IoT Hub to stream to a Log Analytics workspace when any IoT Hub which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Monitoring"
+    },
     "parameters": {
       "logAnalytics": {
         "type": "String",
         "metadata": {
           "displayName": "Log Analytics workspace",
-          "description": "Select the Log Analytics workspace from dropdown list",
+          "description": "Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.",
           "strongType": "omsWorkspace"
+        }
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      },
+      "profileName": {
+        "type": "string",
+        "defaultValue": "setbypolicy",
+        "metadata": {
+          "displayName": "Profile name",
+          "description": "The diagnostic settings profile name"
+        }
+      },
+      "metricsEnabled": {
+        "type": "string",
+        "defaultValue": "True",
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "metadata": {
+          "displayName": "Enable metrics",
+          "description": "Whether to enable metrics stream to the Log Analytics workspace - True or False"
+        }
+      },
+      "logsEnabled": {
+        "type": "string",
+        "defaultValue": "True",
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "metadata": {
+          "displayName": "Enable logs",
+          "description": "Whether to enable logs stream to the Log Analytics workspace - True or False"
         }
       }
     },
@@ -22,7 +72,7 @@
         "equals": "Microsoft.Devices/IotHubs"
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Insights/diagnosticSettings",
           "name": "setByPolicy",
@@ -43,7 +93,8 @@
             ]
           },
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+            "/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
           ],
           "deployment": {
             "properties": {
@@ -60,6 +111,15 @@
                   },
                   "location": {
                     "type": "string"
+                  },
+                  "profileName": {
+                    "type": "string"
+                  },
+                  "metricsEnabled": {
+                    "type": "string"
+                  },
+                  "logsEnabled": {
+                    "type": "string"
                   }
                 },
                 "variables": {},
@@ -67,7 +127,7 @@
                   {
                     "type": "Microsoft.Devices/IotHubs/providers/diagnosticSettings",
                     "apiVersion": "2017-05-01-preview",
-                    "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/setByPolicy')]",
+                    "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]",
                     "location": "[parameters('location')]",
                     "dependsOn": [],
                     "properties": {
@@ -75,7 +135,7 @@
                       "metrics": [
                         {
                           "category": "AllMetrics",
-                          "enabled": true,
+                          "enabled": "[parameters('metricsEnabled')]",
                           "retentionPolicy": {
                             "days": 0,
                             "enabled": false
@@ -86,55 +146,59 @@
                       "logs": [
                         {
                           "category": "Connections",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "DeviceTelemetry",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "C2DCommands",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "DeviceIdentityOperations",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "FileUploadOperations",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "Routes",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "D2CTwinOperations",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "C2DTwinOperations",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "TwinQueries",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "JobsOperations",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "DirectMethods",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
-                          "category": "E2EDiagnostics",
-                          "enabled": true
+                          "category": "DistributedTracing",
+                          "enabled": "[parameters('logsEnabled')]"
                         },
                         {
                           "category": "Configurations",
-                          "enabled": true
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DeviceStreams",
+                          "enabled": "[parameters('logsEnabled')]"
                         }
                       ]
                     }
@@ -151,6 +215,15 @@
                 },
                 "resourceName": {
                   "value": "[field('name')]"
+                },
+                "profileName": {
+                  "value": "[parameters('profileName')]"
+                },
+                "metricsEnabled": {
+                  "value": "[parameters('metricsEnabled')]"
+                },
+                "logsEnabled": {
+                  "value": "[parameters('logsEnabled')]"
                 }
               }
             }

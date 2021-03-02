@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-FirewallPolicy",
+  "name": "Deploy-FirewallPolicy",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploys Azure Firewall Policy/Manager",
-    "displayName": "ES-Deploy-FirewallPolicy",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Azure Firewall Manager policy in the subscription",
+    "description": "Deploys Azure Firewall Manager policy in subscription where the policy is assigned.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "fwpolicy": {
         "type": "Object",
@@ -29,6 +35,18 @@
           "displayName": "rgName",
           "description": "Provide name for resource group."
         }
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -41,7 +59,7 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/firewallPolicies",
           "deploymentScope": "Subscription",
@@ -93,7 +111,7 @@
                     "name": "fwpolicies",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -117,7 +135,7 @@
                                 "apiVersion": "2019-09-01",
                                 "name": "[parameters('fwpolicy').ruleGroups.name]",
                                 "dependsOn": [
-                                  "[resourceId('Microsoft.Network/firewallPolicies',parameters('fwpolicy').firewallPolicyName)]"
+                                  "[[resourceId('Microsoft.Network/firewallPolicies',parameters('fwpolicy').firewallPolicyName)]"
                                 ],
                                 "properties": {
                                   "priority": "[parameters('fwpolicy').ruleGroups.properties.priority]",

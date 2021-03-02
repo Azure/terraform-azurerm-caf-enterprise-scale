@@ -1,19 +1,38 @@
 {
-  "name": "ES-Deploy-Sql-AuditingSettings",
+  "name": "Deploy-Sql-AuditingSettings",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Configures SQL Server",
-    "displayName": "ES-Deploy-Sql-AuditingSettings",
+    "policyType": "Custom",
     "mode": "All",
-    "parameters": {},
+    "displayName": "Deploy SQL database auditing settings",
+    "description": "Deploy auditing settings to SQL Database when it not exist in the deployment",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "SQL"
+    },
+    "parameters": {
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      }
+    },
     "policyRule": {
       "if": {
         "field": "type",
         "equals": "Microsoft.Sql/servers/databases"
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Sql/servers/databases/auditingSettings",
           "name": "default",
@@ -91,7 +110,7 @@
             }
           },
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3"
           ]
         }
       }

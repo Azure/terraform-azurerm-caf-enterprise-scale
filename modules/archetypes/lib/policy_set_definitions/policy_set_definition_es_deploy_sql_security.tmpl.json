@@ -1,10 +1,16 @@
 {
-  "name": "ES-Deploy-Sql-Security",
+  "name": "Deploy-Sql-Security",
   "type": "Microsoft.Authorization/policySetDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Recommended built-in security policies for the Enterprise-scale architecture",
-    "displayName": "ES-Deploy-Sql-Security",
+    "policyType": "Custom",
+    "displayName": "Deploy SQL Database built-in SQL security configuration",
+    "description": "Deploy auditing, Alert, TDE and SQL vulnerability to SQL Databases when it not exist in the deployment",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "SQL"
+    },
     "parameters": {
       "vulnerabilityAssessmentsEmail": {
         "metadata": {
@@ -15,41 +21,108 @@
       },
       "vulnerabilityAssessmentsStorageID": {
         "metadata": {
-          "description": "The storage account to store assessments",
-          "displayName": "The storage account to store assessments"
+          "description": "The storage account ID to store assessments",
+          "displayName": "The storage account ID to store assessments"
         },
         "type": "String"
+      },
+      "SqlDbTdeDeploySqlSecurityEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy SQL Database Transparent Data Encryption ",
+          "description": "Deploy the Transparent Data Encryption when it is not enabled in the deployment"
+        }
+      },
+      "SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy SQL Database security Alert Policies configuration with email admin accounts",
+          "description": "Deploy the security Alert Policies configuration with email admin accounts when it not exist in current configuration"
+        }
+      },
+      "SqlDbAuditingSettingsDeploySqlSecurityEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy SQL database auditing settings",
+          "description": "Deploy auditing settings to SQL Database when it not exist in the deployment"
+        }
+      },
+      "SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy SQL Database vulnerability Assessments",
+          "description": "Deploy SQL Database vulnerability Assessments when it not exist in the deployment. To the specific  storage account in the parameters"
+        }
       }
     },
-    "policyDefinitionGroups": null,
     "policyDefinitions": [
       {
-        "policyDefinitionReferenceId": "ES-Deploy-Sql-Tde",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-Sql-Tde",
-        "parameters": {}
-      },
-      {
-        "policyDefinitionReferenceId": "ES-Deploy-Sql-SecurityAlertPolicies",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-Sql-SecurityAlertPolicies",
-        "parameters": {}
-      },
-      {
-        "policyDefinitionReferenceId": "ES-Deploy-Sql-AuditingSettings",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-Sql-AuditingSettings",
-        "parameters": {}
-      },
-      {
-        "policyDefinitionReferenceId": "ES-Deploy-Sql-VulnerabilityAssessments",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deploy-Sql-VulnerabilityAssessments",
+        "policyDefinitionReferenceId": "SqlDbTdeDeploySqlSecurity",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-Tde",
         "parameters": {
+          "effect": {
+            "value": "[parameters('SqlDbTdeDeploySqlSecurityEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "SqlDbSecurityAlertPoliciesDeploySqlSecurity",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-SecurityAlertPolicies",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "SqlDbAuditingSettingsDeploySqlSecurity",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-AuditingSettings",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('SqlDbAuditingSettingsDeploySqlSecurityEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "SqlDbVulnerabilityAssessmentsDeploySqlSecurity",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-vulnerabilityAssessments",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect')]"
+          },
           "vulnerabilityAssessmentsEmail": {
             "value": "[parameters('vulnerabilityAssessmentsEmail')]"
           },
           "vulnerabilityAssessmentsStorageID": {
             "value": "[parameters('vulnerabilityAssessmentsStorageID')]"
           }
-        }
+        },
+        "groupNames": []
       }
-    ]
+    ],
+    "policyDefinitionGroups": null
   }
 }

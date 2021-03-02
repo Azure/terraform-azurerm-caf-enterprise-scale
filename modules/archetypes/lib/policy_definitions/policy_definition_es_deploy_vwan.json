@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-vWAN",
+  "name": "Deploy-vWAN",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploy-vWAN",
-    "displayName": "ES-Deploy-vWAN",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy the Virtual WAN in the specific region",
+    "description": "Deploy the Virtual WAN in the specific region.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "vwanname": {
         "type": "String",
@@ -28,6 +34,18 @@
           "displayName": "rgName",
           "description": "Provide name for resource group."
         }
+      },
+      "effect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -40,7 +58,7 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/virtualWans",
           "deploymentScope": "Subscription",
@@ -96,7 +114,7 @@
                     "name": "vwan",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
