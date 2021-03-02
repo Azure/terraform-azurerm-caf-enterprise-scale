@@ -282,9 +282,9 @@ class ProviderApiVersions {
 
 }
 
-class ESLTBase {
+class ESLTBase : System.Collections.Specialized.OrderedDictionary {
     
-    ESLTBase() {}
+    ESLTBase(): base() {}
 
     [String] ToString() {
         if ($this.GetType() -notin "String", "Boolean", "Int") {
@@ -335,12 +335,12 @@ class PolicyAssignmentIdentity : ESLTBase {
 
 class PolicyDefinitionProperties : ESLTBase {
     [String]$policyType = "NotSpecified"
-    [String]$mode
+    [String]$mode = ""
     [String]$displayName = ""
     [String]$description = ""
-    [Object]$policyRule = @{}
     [Object]$metadata = @{}
     [Object]$parameters = @{}
+    [Object]$policyRule = @{}
 
     PolicyDefinitionProperties(): base() {}
 
@@ -349,9 +349,9 @@ class PolicyDefinitionProperties : ESLTBase {
         $this.mode = [PolicyDefinitionPropertiesMode]($that.mode)
         $this.displayName = $that.displayName
         $this.description = $that.description ?? $that.displayName
-        $this.policyRule = $that.policyRule
         $this.metadata = $that.metadata ?? $this.metadata
         $this.parameters = $that.parameters ?? $this.parameters
+        $this.policyRule = $that.policyRule
     }
 
 }
@@ -463,12 +463,13 @@ class RoleDefinitionProperties : ESLTBase {
 
 class ArmTemplateResource : ESLTBase {
 
-    # Public class properties    
-    [String]$name
-    [String]$type
-    [String]$apiVersion
+    # Public class properties
+    # Need to declare base object properties with default values to set order
+    [String]$name = ""
+    [String]$type = ""
+    [String]$apiVersion = ""
     [Object]$scope = $null # Needs to be declared as object to avoid null returning empty string in JSON output
-    [Object]$properties
+    [Object]$properties = @{}
 
     # Hidden static class properties
     hidden static [GetFileNameCaseModifier]$GetFileNameCaseModifier = "ToLower" # Default to make lowercase
@@ -481,6 +482,7 @@ class ArmTemplateResource : ESLTBase {
     ArmTemplateResource([PSCustomObject]$that): base() {
         $this.name = $that.name
         $this.type = $that.ResourceType ?? $that.type
+        $this.apiVersion = $that.apiVersion
         $this.scope = if ($that.scope.Length -gt 0) { $that.scope } else { $null }
         $this.properties = $that.properties
     }
@@ -533,14 +535,14 @@ class ArmTemplateResource : ESLTBase {
 
 class PolicyAssignment : ArmTemplateResource {
 
-    # Need to re-declare base object properties to maintain order
-    [String]$name
-    [String]$type
-    [String]$apiVersion
-    [String]$scope
-    [Object]$properties
-    [String]$location
-    [Object]$identity
+    # Need to re-declare base object properties with default values to maintain order
+    [String]$name = ""
+    [String]$type = ""
+    [String]$apiVersion = ""
+    [String]$scope = ""
+    [Object]$properties = @{}
+    [String]$location = ""
+    [Object]$identity = @{}
 
     PolicyAssignment(): base() {}
 
