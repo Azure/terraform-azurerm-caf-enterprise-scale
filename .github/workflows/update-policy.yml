@@ -42,7 +42,7 @@ jobs:
       - name: Create and checkout branch
         run: |
           BRANCH_URL="repos/${{ github.repository }}/branches"
-          JQ_FILTER=".[] | select(.name == "${{ env.branch_name }}").name"
+          JQ_FILTER=".[] | select(.name == \"${{ env.branch_name }}\").name"
           CHECK_BRANCH_ORIGIN=$(gh api $BRANCH_URL | jq -r "$JQ_FILTER")
           if [ -z "$CHECK_BRANCH_ORIGIN" ]
           then
