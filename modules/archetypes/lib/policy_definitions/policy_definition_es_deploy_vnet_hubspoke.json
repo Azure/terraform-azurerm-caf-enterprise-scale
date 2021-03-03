@@ -166,7 +166,7 @@
                     "apiVersion": "2020-06-01",
                     "name": "[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6))]",
                     "dependsOn": [
-                      "[[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6),'-rg')]"
+                      "[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6),'-rg')]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -185,7 +185,7 @@
                             "properties": {
                               "addressSpace": {
                                 "addressPrefixes": [
-                                  "[[parameters('vNetCidrRange')]"
+                                  "[parameters('vNetCidrRange')]"
                                 ]
                               }
                             }
@@ -195,7 +195,7 @@
                             "apiVersion": "2020-05-01",
                             "name": "[concat(parameters('vNetName'), '/peerToHub')]",
                             "dependsOn": [
-                              "[[parameters('vNetName')]"
+                              "[parameters('vNetName')]"
                             ],
                             "properties": {
                               "remoteVirtualNetwork": {
@@ -214,7 +214,7 @@
                             "subscriptionId": "[split(parameters('hubResourceId'),'/')[2]]",
                             "resourceGroup": "[split(parameters('hubResourceId'),'/')[4]]",
                             "dependsOn": [
-                              "[[parameters('vNetName')]"
+                              "[parameters('vNetName')]"
                             ],
                             "properties": {
                               "mode": "Incremental",

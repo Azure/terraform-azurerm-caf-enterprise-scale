@@ -164,7 +164,7 @@
                     "apiVersion": "2020-06-01",
                     "name": "[concat('es-ipam-',subscription().displayName,'-nsg-udr-vnet-hub-vwan-peering-',copyIndex())]",
                     "dependsOn": [
-                      "[[concat('es-ipam-',subscription().displayName,'-RG-',copyIndex())]"
+                      "[concat('es-ipam-',subscription().displayName,'-RG-',copyIndex())]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -197,8 +197,8 @@
                             "name": "[concat(subscription().displayName, '-vnet')]",
                             "location": "[parameters('ipam')[copyIndex()].location]",
                             "dependsOn": [
-                              "[[concat(subscription().displayName, '-nsg')]",
-                              "[[concat(subscription().displayName, '-udr')]"
+                              "[concat(subscription().displayName, '-nsg')]",
+                              "[concat(subscription().displayName, '-udr')]"
                             ],
                             "properties": "[if(contains(parameters('ipam')[copyIndex()],'virtualNetworks'),parameters('ipam')[copyIndex()].virtualNetworks.properties,json('null'))]"
                           },
@@ -208,7 +208,7 @@
                             "apiVersion": "2020-05-01",
                             "name": "[concat(variables('vNetName'), '/peerToHub')]",
                             "dependsOn": [
-                              "[[concat(subscription().displayName, '-vnet')]"
+                              "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": "[if(contains(parameters('ipam')[copyIndex()],'virtualNetworkPeerings'),parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties,json('null'))]"
                           },
@@ -220,7 +220,7 @@
                             "subscriptionId": "[if(and(contains(parameters('ipam')[copyIndex()],'hubVirtualNetworkConnection'),contains(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection,'vWanVhubResourceId')),split(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection.vWanVhubResourceId,'/')[2],json('null'))]",
                             "resourceGroup": "[if(and(contains(parameters('ipam')[copyIndex()],'hubVirtualNetworkConnection'),contains(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection,'vWanVhubResourceId')),split(parameters('ipam')[copyIndex()].hubVirtualNetworkConnection.vWanVhubResourceId,'/')[4],json('null'))]",
                             "dependsOn": [
-                              "[[concat(subscription().displayName, '-vnet')]"
+                              "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
                               "mode": "Incremental",
@@ -296,7 +296,7 @@
                             "subscriptionId": "[if(and(contains(parameters('ipam')[copyIndex()],'virtualNetworkPeerings'),contains(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork,'id')),split(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork.id,'/')[2],json('null'))]",
                             "resourceGroup": "[if(and(contains(parameters('ipam')[copyIndex()],'virtualNetworkPeerings'),contains(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork,'id')),split(parameters('ipam')[copyIndex()].virtualNetworkPeerings.properties.remoteVirtualNetwork.id,'/')[4],json('null'))]",
                             "dependsOn": [
-                              "[[concat(subscription().displayName, '-vnet')]"
+                              "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
                               "mode": "Incremental",

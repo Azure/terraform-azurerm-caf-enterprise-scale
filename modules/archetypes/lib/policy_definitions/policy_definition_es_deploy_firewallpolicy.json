@@ -111,7 +111,7 @@
                     "name": "fwpolicies",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -135,7 +135,7 @@
                                 "apiVersion": "2019-09-01",
                                 "name": "[parameters('fwpolicy').ruleGroups.name]",
                                 "dependsOn": [
-                                  "[[resourceId('Microsoft.Network/firewallPolicies',parameters('fwpolicy').firewallPolicyName)]"
+                                  "[resourceId('Microsoft.Network/firewallPolicies',parameters('fwpolicy').firewallPolicyName)]"
                                 ],
                                 "properties": {
                                   "priority": "[parameters('fwpolicy').ruleGroups.properties.priority]",

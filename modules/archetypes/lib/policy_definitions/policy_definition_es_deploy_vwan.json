@@ -114,7 +114,7 @@
                     "name": "vwan",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",

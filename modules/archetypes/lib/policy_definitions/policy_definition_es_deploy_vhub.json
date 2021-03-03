@@ -197,7 +197,7 @@
                     "name": "[concat('vHUBdeploy-',parameters('vHUB').location)]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -230,7 +230,7 @@
                     "condition": "[greater(length(parameters('vpngw')),0)]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[[concat('vHUBdeploy-',parameters('vHUB').location)]"
+                      "[concat('vHUBdeploy-',parameters('vHUB').location)]"
                     ],
                     "name": "[concat(parameters('vHUBName'),'-vpngw')]",
                     "properties": {
@@ -264,7 +264,7 @@
                     "condition": "[greater(length(parameters('ergw')),0)]",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[[concat('vHUBdeploy-',parameters('vHUB').location)]"
+                      "[concat('vHUBdeploy-',parameters('vHUB').location)]"
                     ],
                     "name": "[concat(parameters('vHUBName'),'-ergw')]",
                     "properties": {

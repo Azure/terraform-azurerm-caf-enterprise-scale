@@ -203,7 +203,7 @@
                                   "targetResourceId": "[parameters('networkSecurityGroup')]"
                                 },
                                 "dependsOn": [
-                                  "[[concat('NetworkWatcher_', toLower(parameters('location')))]"
+                                  "[concat('NetworkWatcher_', toLower(parameters('location')))]"
                                 ]
                               }
                             ]
@@ -212,7 +212,7 @@
                       }
                     },
                     "dependsOn": [
-                      "[[concat(variables('resourceGroupName'), '.', variables('securityGroupName'))]"
+                      "[concat(variables('resourceGroupName'), '.', variables('securityGroupName'))]"
                     ]
                   }
                 ],

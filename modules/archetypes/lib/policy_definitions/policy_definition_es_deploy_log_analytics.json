@@ -158,7 +158,7 @@
                     "name": "log-analytics",
                     "resourceGroup": "[parameters('rgName')]",
                     "dependsOn": [
-                      "[[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+                      "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -198,8 +198,8 @@
                                 "type": "linkedServices",
                                 "apiVersion": "2015-11-01-preview",
                                 "dependsOn": [
-                                  "[[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
-                                  "[[resourceId('Microsoft.Automation/automationAccounts/', parameters('AutomationAccountName'))]"
+                                  "[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
+                                  "[resourceId('Microsoft.Automation/automationAccounts/', parameters('AutomationAccountName'))]"
                                 ],
                                 "properties": {
                                   "resourceId": "[concat(subscription().id, '/resourceGroups/', parameters('rgName'), '/providers/Microsoft.Automation/automationAccounts/', parameters('AutomationAccountName'))]"
