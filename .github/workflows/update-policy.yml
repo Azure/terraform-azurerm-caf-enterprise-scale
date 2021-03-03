@@ -76,7 +76,7 @@ jobs:
         working-directory: ${{ github.repository }}
 
       - name: Add files, commit and push
-        if: ${{ steps.git_status.outputs.changes }} > 0
+        if: ${{ steps.git_status.outputs.changes > 0 }}
         run: |
           echo "Pushing changes to origin..."
           git add modules/archetypes/lib
@@ -85,7 +85,7 @@ jobs:
         working-directory: ${{ github.repository }}
 
       - name: Create pull request
-        if: ${{ steps.git_status.outputs.changes }} > 0
+        if: ${{ steps.git_status.outputs.changes > 0 }}
         run: |
           HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
           BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
