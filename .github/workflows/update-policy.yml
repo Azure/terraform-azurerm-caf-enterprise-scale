@@ -50,6 +50,8 @@ jobs:
             git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
           fi
         working-directory: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
 
       - name: Update library templates 
         run: |
