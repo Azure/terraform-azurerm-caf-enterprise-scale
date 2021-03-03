@@ -48,9 +48,15 @@ enum GetFileNameCaseModifier {
     ToUpper
 }
 
+################################
+# Variables used within module #
+################################
+
+[Int]$jsonDepth = 100
+
 [Regex]$regex_schema_deploymentParameters = "http[s]?:\/\/schema\.management\.azure\.com\/schemas\/([0-9-]{10})\/deploymentParameters\.json#"
 [Regex]$regex_schema_managementGroupDeploymentTemplate = "http[s]?:\/\/schema\.management\.azure\.com\/schemas\/([0-9-]{10})\/managementGroupDeploymentTemplate\.json#"
-[Regex]$regex_doubleLeftSquareBrace = "(?<=`"[\w-]+`": ?`")(\[\[)"
+[Regex]$regex_doubleLeftSquareBrace = "(?<=`")(\[\[)"
 
 #############################
 # ProviderApiVersions Class #
@@ -642,6 +648,24 @@ function ProcessObjectByResourceType {
 
 }
 
+function RemoveEscaping {
+    [CmdletBinding()]
+    param (
+        [Object]$InputObject
+    )
+
+    # A number of sources store the required definition in variables
+    # which use escaping for ARM functions so they are correctly
+    # processed within copy_loops. These may need to be removed when
+    # converting to a native ARM template.
+    $output = $InputObject |
+    ConvertTo-Json -Depth $jsonDepth |
+    ForEach-Object { $_ -replace $regex_doubleLeftSquareBrace, "[" } |
+    ConvertFrom-Json
+    
+    return $output
+}
+
 function GetObjectByResourceTypeFromJson {
     [CmdletBinding()]
     [OutputType([Object])]
@@ -672,12 +696,12 @@ function GetObjectByResourceTypeFromJson {
     elseif ($regex_schema_managementGroupDeploymentTemplate.IsMatch($objectFromJson."`$schema")) {
         foreach ($policyDefinition in $objectFromJson.variables.policies.policyDefinitions) {
             ProcessObjectByResourceType `
-                -ResourceObject ($policyDefinition) `
+                -ResourceObject (RemoveEscaping -InputObject $policyDefinition) `
                 -ResourceType ("Microsoft.Authorization/policyDefinitions")                
         }
         foreach ($policySetDefinition in $objectFromJson.variables.initiatives.policySetDefinitions) {
             ProcessObjectByResourceType `
-                -ResourceObject ($policySetDefinition) `
+                -ResourceObject (RemoveEscaping -InputObject $policySetDefinition) `
                 -ResourceType ("Microsoft.Authorization/policySetDefinitions")                
         }
     }
@@ -696,12 +720,7 @@ function ProcessFile {
         [String]$FilePath
     )
 
-    # A number of sources store the required definition in variables
-    # which use escaping for ARM functions so they are correctly
-    # processed within copy_loops. These need to be removed when
-    # converting to a native ARM template.
-    $content = Get-Content -Path $FilePath |
-    ForEach-Object { $_ -replace $regex_doubleLeftSquareBrace, "[" }
+    $content = Get-Content -Path $FilePath
 
     $output = GetObjectByResourceTypeFromJson `
         -Id $FilePath `
