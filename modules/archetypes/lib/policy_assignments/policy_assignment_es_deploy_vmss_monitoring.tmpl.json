@@ -1,0 +1,25 @@
+{
+  "name": "Deploy-VMSS-Monitoring",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Ensures that Azure Monitor is configured for Virtual Machine Scale Sets.",
+    "displayName": "Deploy-VMSS-Monitoring",
+    "notScopes": [],
+    "parameters": {
+      "logAnalytics_1": {
+        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la-00000000-0000-0000-0000-000000000000"
+      }
+    },
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/75714362-cae7-409e-9b99-a8e5075b7fad",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}

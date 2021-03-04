@@ -1,6 +1,18 @@
 {
     "es_landing_zones": {
-        "policy_assignments": [],
+        "policy_assignments": [
+            "Deny-IP-Forwarding",
+            "Deny-RDP-From-Internet",
+            "Deny-Storage-http",
+            "Deny-Subnet-Without-Nsg",
+            "Deploy-AKS-Policy",
+            "Deploy-SQL-DB-Auditing",
+            "Deploy-VM-Backup",
+            "Deploy-SQL-Security",
+            "Deny-Priv-Escalation-AKS",
+            "Deny-Priv-Containers-AKS",
+            "Deny-http-Ingress-AKS"
+        ],
         "policy_definitions": [],
         "policy_set_definitions": [],
         "role_definitions": [],

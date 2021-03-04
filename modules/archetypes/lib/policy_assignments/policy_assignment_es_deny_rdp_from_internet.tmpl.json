@@ -1,17 +1,13 @@
 {
-  "name": "ES-Deny-RDPFromInternet",
+  "name": "Deny-RDP-From-Internet",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
     "description": "Deny RDP access from the Internet.",
-    "displayName": "ES-Deny-RDP-From-Internet",
+    "displayName": "Deny-RDP-From-Internet",
     "notScopes": [],
-    "parameters": {
-      "effect": {
-        "value": "Disabled"
-      }
-    },
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e372f825-a257-4fb8-9175-797a8a8627d6",
+    "parameters": {},
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",
     "scope": "${current_scope_resource_id}"
   },
   "sku": {

@@ -21,7 +21,7 @@
         }
       },
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -67,13 +67,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "privateDnsZoneId": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "privateEndpointName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "location": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "resources": [

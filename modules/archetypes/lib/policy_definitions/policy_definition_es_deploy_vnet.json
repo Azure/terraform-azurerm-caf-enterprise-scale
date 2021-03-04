@@ -17,12 +17,12 @@
         "type": "Array",
         "metadata": {
           "displayName": "ipam",
-          "description": null
+          "description": ""
         },
         "defaultValue": []
       },
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -232,10 +232,10 @@
                                 "contentVersion": "1.0.0.0",
                                 "parameters": {
                                   "remoteVirtualNetwork": {
-                                    "type": "string"
+                                    "type": "String"
                                   },
                                   "vWanVhubName": {
-                                    "Type": "string",
+                                    "type": "String",
                                     "defaultValue": ""
                                   },
                                   "allowHubToRemoteVnetTransit": {
@@ -308,11 +308,11 @@
                                 "contentVersion": "1.0.0.0",
                                 "parameters": {
                                   "remoteVirtualNetwork": {
-                                    "Type": "string",
+                                    "type": "String",
                                     "defaultValue": false
                                   },
                                   "hubName": {
-                                    "Type": "string",
+                                    "type": "String",
                                     "defaultValue": false
                                   }
                                 },

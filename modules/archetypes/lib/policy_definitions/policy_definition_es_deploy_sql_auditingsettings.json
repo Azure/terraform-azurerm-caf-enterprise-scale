@@ -14,7 +14,7 @@
     },
     "parameters": {
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -56,13 +56,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "location": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "sqlServerName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "sqlServerDataBaseName": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "variables": {},

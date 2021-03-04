@@ -67,7 +67,7 @@
         }
       },
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -131,7 +131,7 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "vwanname": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "Name of the Virtual WAN"
                     }

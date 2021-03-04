@@ -1,0 +1,43 @@
+{
+  "name": "Deploy-Log-Analytics",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Deploy-Log-Analytics.",
+    "displayName": "Deploy-Log-Analytics",
+    "notScopes": [],
+    "parameters": {
+      "workspaceName": {
+        "value": "${root_scope_id}-a-00000000-0000-0000-0000-000000000000"
+      },
+      "automationAccountName": {
+        "value": "${root_scope_id}-la-00000000-0000-0000-0000-000000000000"
+      },
+      "workspaceRegion": {
+        "value": "${default_location}"
+      },
+      "automationRegion": {
+        "value": "${default_location}"
+      },
+      "retentionInDays": {
+        "value": "30"
+      },
+      "rgName": {
+        "value": "${root_scope_id}-mgmt"
+      },
+      "effect": {
+        "value": "DeployIfNotExists"
+      }
+    },
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Log-Analytics",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
