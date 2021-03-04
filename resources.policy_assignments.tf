@@ -14,7 +14,7 @@ resource "azurerm_policy_assignment" "enterprise_scale" {
 
   location         = try(length(each.value.template.location) > 0, false) ? each.value.template.location : null
   description      = try(length(each.value.template.properties.description) > 0, false) ? each.value.template.properties.description : "${each.value.template.name} Policy Assignment at scope ${each.value.scope_id}"
-  display_name     = try(length(each.value.template.properties.display_name) > 0, false) ? each.value.template.properties.display_name : each.value.template.name
+  display_name     = try(length(each.value.template.properties.displayName) > 0, false) ? each.value.template.properties.displayName : each.value.template.name
   metadata         = try(length(each.value.template.properties.metadata) > 0, false) ? jsonencode(each.value.template.properties.metadata) : local.empty_string
   parameters       = try(length(each.value.template.properties.parameters) > 0, false) ? jsonencode(merge(each.value.template.properties.parameters, each.value.parameters)) : jsonencode(each.value.parameters)
   not_scopes       = try(length(each.value.template.properties.notScopes) > 0, false) ? each.value.template.properties.notScopes : local.empty_list
