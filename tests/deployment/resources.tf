@@ -56,7 +56,15 @@ module "test_root_id_3" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          ES-Allowed-Locations = {
+          Allow-Resource-Locations = {
+            listOfAllowedLocations = jsonencode([
+              "eastus",
+              "westus",
+              "uksouth",
+              "ukwest",
+            ])
+          }
+          Allow-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
@@ -85,7 +93,13 @@ module "test_root_id_3" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          ES-Allowed-Locations = {
+          Allow-Resource-Locations = {
+            listOfAllowedLocations = jsonencode([
+              "eastus",
+              "westus",
+            ])
+          }
+          Allow-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
@@ -102,7 +116,12 @@ module "test_root_id_3" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          ES-Allowed-Locations = {
+          Allow-Resource-Locations = {
+            listOfAllowedLocations = jsonencode([
+              "eastus",
+            ])
+          }
+          Allow-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
             ])
@@ -165,7 +184,13 @@ module "test_root_id_3_lz1" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          ES-Allowed-Locations = {
+          Allow-Resource-Locations = {
+            listOfAllowedLocations = jsonencode([
+              "northcentralus",
+              "southcentralus",
+            ])
+          }
+          Allow-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "northcentralus",
               "southcentralus",
