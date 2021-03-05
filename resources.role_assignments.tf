@@ -16,16 +16,29 @@ resource "azurerm_role_assignment" "enterprise_scale" {
 
   # Set explicit dependency on Management Group, Policy, and Role Definition deployments
   depends_on = [
-    azurerm_management_group.level_1,
-    azurerm_management_group.level_2,
-    azurerm_management_group.level_3,
-    azurerm_management_group.level_4,
-    azurerm_management_group.level_5,
-    azurerm_management_group.level_6,
-    azurerm_policy_definition.enterprise_scale,
-    azurerm_policy_set_definition.enterprise_scale,
-    azurerm_policy_assignment.enterprise_scale,
-    azurerm_role_definition.enterprise_scale,
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+    time_sleep.after_azurerm_role_definition,
   ]
 
+}
+
+resource "time_sleep" "after_azurerm_role_assignment" {
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+    time_sleep.after_azurerm_role_definition,
+    azurerm_role_assignment.enterprise_scale,
+  ]
+
+  triggers = {
+    "azurerm_policy_assignment_enterprise_scale" = jsonencode(keys(azurerm_role_assignment.enterprise_scale))
+  }
+
+  create_duration = local.create_duration_delay["after_azurerm_role_assignment"]
+  destroy_duration = local.destroy_duration_delay["after_azurerm_role_assignment"]
 }

@@ -16,12 +16,21 @@ resource "azurerm_policy_definition" "enterprise_scale" {
 
   # Set explicit dependency on Management Group deployments
   depends_on = [
-    azurerm_management_group.level_1,
-    azurerm_management_group.level_2,
-    azurerm_management_group.level_3,
-    azurerm_management_group.level_4,
-    azurerm_management_group.level_5,
-    azurerm_management_group.level_6,
+    time_sleep.after_azurerm_management_group,
   ]
 
+}
+
+resource "time_sleep" "after_azurerm_policy_definition" {
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    azurerm_policy_definition.enterprise_scale,
+  ]
+
+  triggers = {
+    "azurerm_policy_definition_enterprise_scale" = jsonencode(keys(azurerm_policy_definition.enterprise_scale))
+  }
+
+  create_duration = local.create_duration_delay["after_azurerm_policy_definition"]
+  destroy_duration = local.destroy_duration_delay["after_azurerm_policy_definition"]
 }

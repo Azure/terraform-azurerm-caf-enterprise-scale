@@ -101,3 +101,39 @@ variable "default_location" {
 
   # Need to add validation covering all Azure locations
 }
+
+variable "create_duration_delay" {
+  type        = map(string)
+  description = "Used to tune terraform apply when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after creation of the specified resource type."
+  default = {
+    azurerm_management_group      = "30s"
+    azurerm_policy_assignment     = "30s"
+    azurerm_policy_definition     = "30s"
+    azurerm_policy_set_definition = "30s"
+    azurerm_role_assignment       = "0s"
+    azurerm_role_definition       = "60s"
+  }
+
+  validation {
+    condition     = can([for v in values(var.create_duration_delay) : regex("^[0-9]{1,6}(s|m|h)$", v)])
+    error_message = "The create_duration_delay values must be a string containing the duration in numbers (1-6 digits) followed by the measure of time represented by s (seconds), m (minutes), or h (hours)."
+  }
+}
+
+variable "destroy_duration_delay" {
+  type        = map(string)
+  description = "Used to tune terraform deploy when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after destruction of the specified resource type."
+  default = {
+    azurerm_management_group      = "0s"
+    azurerm_policy_assignment     = "0s"
+    azurerm_policy_definition     = "0s"
+    azurerm_policy_set_definition = "0s"
+    azurerm_role_assignment       = "0s"
+    azurerm_role_definition       = "0s"
+  }
+
+  validation {
+    condition     = can([for v in values(var.destroy_duration_delay) : regex("^[0-9]{1,6}(s|m|h)$", v)])
+    error_message = "The destroy_duration_delay values must be a string containing the duration in numbers (1-6 digits) followed by the measure of time represented by s (seconds), m (minutes), or h (hours)."
+  }
+}
