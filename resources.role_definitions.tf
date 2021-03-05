@@ -37,6 +37,6 @@ resource "time_sleep" "after_azurerm_role_definition" {
     "azurerm_role_definition_enterprise_scale" = jsonencode(keys(azurerm_role_definition.enterprise_scale))
   }
 
-  create_duration = local.create_duration_delay["after_azurerm_role_definition"]
+  create_duration  = local.create_duration_delay["after_azurerm_role_definition"]
   destroy_duration = local.destroy_duration_delay["after_azurerm_role_definition"]
 }

@@ -95,6 +95,6 @@ resource "time_sleep" "after_azurerm_management_group" {
     "azurerm_management_group_level_6" = jsonencode(keys(azurerm_management_group.level_6))
   }
 
-  create_duration = local.create_duration_delay["after_azurerm_management_group"]
+  create_duration  = local.create_duration_delay["after_azurerm_management_group"]
   destroy_duration = local.destroy_duration_delay["after_azurerm_management_group"]
 }

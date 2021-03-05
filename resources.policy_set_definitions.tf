@@ -49,6 +49,6 @@ resource "time_sleep" "after_azurerm_policy_set_definition" {
     "azurerm_policy_set_definition_enterprise_scale" = jsonencode(keys(azurerm_policy_set_definition.enterprise_scale))
   }
 
-  create_duration = local.create_duration_delay["after_azurerm_policy_set_definition"]
+  create_duration  = local.create_duration_delay["after_azurerm_policy_set_definition"]
   destroy_duration = local.destroy_duration_delay["after_azurerm_policy_set_definition"]
 }
