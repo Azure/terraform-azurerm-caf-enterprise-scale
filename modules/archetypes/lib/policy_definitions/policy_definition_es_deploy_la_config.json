@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-LA-Config",
+  "name": "Deploy-LA-Config",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploy-LA-Config",
-    "displayName": "ES-Deploy-LA-Config",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy the configurations to the Log Analytics in the subscription",
+    "description": "Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. ",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Monitoring"
+    },
     "parameters": {
       "workspaceName": {
         "type": "String",
@@ -20,6 +26,18 @@
           "displayName": "workspaceRegion",
           "description": "Select region of existing Log Analytics workspace"
         }
+      },
+      "effect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -32,13 +50,14 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.OperationalInsights/workspaces",
           "deploymentScope": "resourceGroup",
           "existenceScope": "Subscription",
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+            "/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+            "/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
           ],
           "existenceCondition": {
             "allOf": [
@@ -68,10 +87,10 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "workspaceName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "workspaceRegion": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "variables": {

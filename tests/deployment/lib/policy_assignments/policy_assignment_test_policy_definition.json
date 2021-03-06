@@ -4,7 +4,7 @@
     "apiVersion": "2019-09-01",
     "properties": {
         "description": "Deploy Auditing on SQL servers.",
-        "displayName": "Deploy-SQL-Auditing",
+        "displayName": "Deploy Auditing on SQL servers",
         "notScopes": [],
         "parameters": {
             "retentionDays": {

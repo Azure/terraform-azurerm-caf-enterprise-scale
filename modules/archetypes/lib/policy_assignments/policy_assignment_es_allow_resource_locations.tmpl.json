@@ -1,10 +1,10 @@
 {
-  "name": "ES-Allowed-Locations",
+  "name": "Allow-Resource-Locations",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
-    "description": "Specifies the allowed locations (regions) where resources can be deployed",
-    "displayName": "ES-Allowed-Resource-Locations",
+    "description": "Specifies the allowed locations (regions) where Resources can be deployed.",
+    "displayName": "Limit allowed locations for Resources",
     "notScopes": [],
     "parameters": {
       "listOfAllowedLocations": {

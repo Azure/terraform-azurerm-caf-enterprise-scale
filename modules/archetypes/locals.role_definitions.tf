@@ -39,22 +39,22 @@ locals {
 locals {
   builtin_role_definitions_map_from_json = try(length(local.builtin_role_definitions_dataset_from_json) > 0, false) ? {
     for key, value in local.builtin_role_definitions_dataset_from_json :
-    uuidv5(value.name, local.scope_id) => value.properties
+    uuidv5(value.name, local.scope_id) => value
     if value.type == local.resource_types.role_definition
   } : null
   builtin_role_definitions_map_from_yaml = try(length(local.builtin_role_definitions_dataset_from_yaml) > 0, false) ? {
     for key, value in local.builtin_role_definitions_dataset_from_yaml :
-    uuidv5(value.name, local.scope_id) => value.properties
+    uuidv5(value.name, local.scope_id) => value
     if value.type == local.resource_types.role_definition
   } : null
   custom_role_definitions_map_from_json = try(length(local.custom_role_definitions_dataset_from_json) > 0, false) ? {
     for key, value in local.custom_role_definitions_dataset_from_json :
-    uuidv5(value.name, local.scope_id) => value.properties
+    uuidv5(value.name, local.scope_id) => value
     if value.type == local.resource_types.role_definition
   } : null
   custom_role_definitions_map_from_yaml = try(length(local.custom_role_definitions_dataset_from_yaml) > 0, false) ? {
     for key, value in local.custom_role_definitions_dataset_from_yaml :
-    uuidv5(value.name, local.scope_id) => value.properties
+    uuidv5(value.name, local.scope_id) => value
     if value.type == local.resource_types.role_definition
   } : null
 }
@@ -82,7 +82,7 @@ locals {
 locals {
   convert_role_definition_name_to_id = try(length(local.archetype_role_definitions_map) > 0, false) ? {
     for key, value in local.archetype_role_definitions_map :
-    value.roleName => key
+    value.properties.roleName => key
   } : null
 }
 
@@ -95,7 +95,7 @@ locals {
       resource_id_path     = local.provider_path.role_definition
       scope_id             = local.scope_id
       template             = local.archetype_role_definitions_map[local.convert_role_definition_name_to_id[role]]
-      role_definition_name = "[${basename(upper(local.scope_id))}] ${local.archetype_role_definitions_map[local.convert_role_definition_name_to_id[role]].roleName}"
+      role_definition_name = "[${basename(upper(local.scope_id))}] ${local.archetype_role_definitions_map[local.convert_role_definition_name_to_id[role]].properties.roleName}"
     }
   ]
 }

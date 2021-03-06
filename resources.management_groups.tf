@@ -75,3 +75,26 @@ resource "azurerm_management_group" "level_6" {
   depends_on = [azurerm_management_group.level_5]
 
 }
+
+resource "time_sleep" "after_azurerm_management_group" {
+  depends_on = [
+    azurerm_management_group.level_1,
+    azurerm_management_group.level_2,
+    azurerm_management_group.level_3,
+    azurerm_management_group.level_4,
+    azurerm_management_group.level_5,
+    azurerm_management_group.level_6,
+  ]
+
+  triggers = {
+    "azurerm_management_group_level_1" = jsonencode(keys(azurerm_management_group.level_1))
+    "azurerm_management_group_level_2" = jsonencode(keys(azurerm_management_group.level_2))
+    "azurerm_management_group_level_3" = jsonencode(keys(azurerm_management_group.level_3))
+    "azurerm_management_group_level_4" = jsonencode(keys(azurerm_management_group.level_4))
+    "azurerm_management_group_level_5" = jsonencode(keys(azurerm_management_group.level_5))
+    "azurerm_management_group_level_6" = jsonencode(keys(azurerm_management_group.level_6))
+  }
+
+  create_duration  = local.create_duration_delay["after_azurerm_management_group"]
+  destroy_duration = local.destroy_duration_delay["after_azurerm_management_group"]
+}

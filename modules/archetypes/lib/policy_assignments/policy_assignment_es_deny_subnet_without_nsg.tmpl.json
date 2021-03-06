@@ -1,13 +1,13 @@
 {
-  "name": "ES-Deny-SubnetWithoutNsg",
+  "name": "Deny-Subnet-Without-Nsg",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
     "description": "Deny provisioning of subnet without NSG attached.",
-    "displayName": "ES-Deny-Subnet-Without-Nsg",
+    "displayName": "Deny-Subnet-Without-Nsg",
     "notScopes": [],
     "parameters": {},
-    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/ES-Deny-Subnets-Without-NSG",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
     "scope": "${current_scope_resource_id}"
   },
   "sku": {

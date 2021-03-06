@@ -4,7 +4,7 @@
     "apiVersion": "2019-09-01",
     "properties": {
         "description": "This assignment includes audit and virtual machine extension deployment policies that address a subset of HITRUST/HIPAA controls. Additional policies will be added in upcoming releases. For more information, visit https://aka.ms/hipaa-blueprint.",
-        "displayName": "Deploy-HITRUST-HIPAA-Standards",
+        "displayName": "Assign policies for HITRUST and HIPAA controls",
         "notScopes": [],
         "parameters": {
             "installedApplicationsOnWindowsVM": {

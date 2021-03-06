@@ -1,12 +1,32 @@
 {
-  "name": "ES-Deny-PublicEndpoint-KeyVault",
+  "name": "Deny-PublicEndpoint-KeyVault",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "This policy restrict creation of Key Vaults with IP Firewall exposed to all public endpoints",
-    "displayName": "ES-Deny-PublicEndpoint-KeyVault",
+    "policyType": "Custom",
     "mode": "All",
-    "parameters": {},
+    "displayName": "Public network access should be disabled for KeyVault",
+    "description": "This policy denies creation of Key Vaults with IP Firewall exposed to all public endpoints",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Key Vault"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      }
+    },
     "policyRule": {
       "if": {
         "allOf": [
@@ -21,7 +41,7 @@
         ]
       },
       "then": {
-        "effect": "Deny"
+        "effect": "[parameters('effect')]"
       }
     }
   }

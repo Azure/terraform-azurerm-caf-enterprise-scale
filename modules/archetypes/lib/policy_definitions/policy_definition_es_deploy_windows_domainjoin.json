@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-Windows-DomainJoin",
+  "name": "Deploy-Windows-DomainJoin",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploy-Windows-DomainJoin",
-    "displayName": "ES-Deploy-Windows-DomainJoin",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Windows Domain Join Extension with keyvault configuration",
+    "description": "Deploy Windows Domain Join Extension with keyvault configuration when the extension does not exist on a given windows Virtual Machine",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Guest Configuration"
+    },
     "parameters": {
       "domainUsername": {
         "type": "String",
@@ -40,6 +46,18 @@
         "metadata": {
           "displayName": "keyVaultResourceId",
           "description": ""
+        }
+      },
+      "effect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
         }
       }
     },
@@ -123,11 +141,11 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Compute/virtualMachines/extensions",
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c"
           ],
           "existenceCondition": {
             "allOf": [
@@ -182,25 +200,25 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "vmName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "location": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "domainUsername": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "domainPassword": {
                     "type": "securestring"
                   },
                   "domainFQDN": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "domainOUPath": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "keyVaultResourceId": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "variables": {

@@ -1,19 +1,39 @@
 {
-  "name": "ES-Deny-PublicIP",
+  "name": "Deny-PublicIP",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Denies creation of Public IPs under the assigned scope.",
-    "displayName": "ES-Deny-PublicIP",
+    "policyType": "Custom",
     "mode": "All",
-    "parameters": {},
+    "displayName": "Deny the creation of public IP",
+    "description": "This policy denies creation of Public IPs under the assigned scope.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      }
+    },
     "policyRule": {
       "if": {
         "field": "type",
         "equals": "Microsoft.Network/publicIPAddresses"
       },
       "then": {
-        "effect": "deny"
+        "effect": "[parameters('effect')]"
       }
     }
   }

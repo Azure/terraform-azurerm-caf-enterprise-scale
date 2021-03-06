@@ -1,0 +1,21 @@
+{
+  "name": "Deny-Storage-http",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Enforce-Secure-Storage.",
+    "displayName": "Enforce-Secure-Storage",
+    "notScopes": [],
+    "parameters": {},
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
+    "scope": "${current_scope_resource_id}"
+  },
+  "sku": {
+    "name": "A0",
+    "tier": "Free"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "None"
+  }
+}
