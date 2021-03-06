@@ -2,7 +2,7 @@
 # Makefile
 #
 
-# Pipeline
+# Azure Pipelines
 
 azp-strategy:
 	@echo "==> Running script..."

@@ -147,14 +147,28 @@ data "azurerm_policy_definition" "external_lookup" {
 
 # Extract the Role Definition IDs from the internal and external
 # Policy Definitions, then combine into a single lookup map.
+# Loop on list of roleDefinitionIds ensures correct character
+# case to prevent duplicate values
 locals {
   internal_policy_definition_roles = {
     for policy_definition in local.es_policy_definitions :
-    policy_definition.resource_id => try(policy_definition.template.policyRule.then.details.roleDefinitionIds, local.empty_list)
+    policy_definition.resource_id => try(
+      [
+        for role_definition in policy_definition.template.policyRule.then.details.roleDefinitionIds :
+        "/providers/Microsoft.Authorization/roleDefinitions/${basename(role_definition)}"
+      ],
+      local.empty_list
+    )
   }
   external_policy_definition_roles = {
     for policy_definition_id, policy_definition_config in data.azurerm_policy_definition.external_lookup :
-    policy_definition_id => try(jsondecode(policy_definition_config.policy_rule).then.details.roleDefinitionIds, local.empty_list)
+    policy_definition_id => try(
+      [
+        for role_definition in jsondecode(policy_definition_config.policy_rule).then.details.roleDefinitionIds :
+        "/providers/Microsoft.Authorization/roleDefinitions/${basename(role_definition)}"
+      ],
+      local.empty_list
+    )
   }
   policy_definition_roles = merge(
     local.internal_policy_definition_roles,

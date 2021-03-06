@@ -1,0 +1,109 @@
+---
+name: Update Library Templates
+
+# on:
+#   schedule:
+#     - cron: '0 12 1 * *'
+
+on: workflow_dispatch
+
+env:
+  remote_repository: "Azure/Enterprise-Scale"
+  branch_name: "patch-library"
+  az_accounts_minimum_version: "2.2.3"
+  pr_title: "Update Library Templates (automated)"
+  pr_body: "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\nPlease review the 'files changed' tab to review changes."
+
+jobs:
+  update-templates:
+    name: Update Library Templates
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Local repository checkout
+        uses: actions/checkout@v2
+        with:
+          path: ${{ github.repository }}
+          fetch-depth: 0
+
+      - name: Remote repository checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.remote_repository }}
+          path: ${{ env.remote_repository }}
+          ref: main
+
+      - name: Configure local git
+        run: |
+          git config user.name github-actions
+          git config user.email action@github.com
+        working-directory: ${{ github.repository }}
+
+      - name: Create and checkout branch
+        run: |
+          BRANCH_URL="repos/${{ github.repository }}/branches"
+          JQ_FILTER=".[] | select(.name == \"${{ env.branch_name }}\").name"
+          CHECK_BRANCH_ORIGIN=$(gh api $BRANCH_URL | jq -r "$JQ_FILTER")
+          if [ -z "$CHECK_BRANCH_ORIGIN" ]
+          then
+            echo "Checkout local branch (create new, no origin)..."
+            git checkout -b ${{ env.branch_name }}
+          else
+            echo "Checkout local branch (create new, track from origin)..."
+            git checkout -b ${{ env.branch_name }} --track origin/${{ env.branch_name }}
+          fi
+        working-directory: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+
+      - name: Update library templates 
+        run: |
+          Write-Host "==> Installing Az.Accounts PowerShell Module..."
+          Install-Module -Name "Az.Accounts" -MinimumVersion "${{ env.az_accounts_minimum_version }}" -Force
+          Write-Host "==> Running script..."
+          ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
+            -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
+            -SourceModulePath ${{ github.workspace }}/${{ env.remote_repository }} `
+            -UseCacheFromModule
+        shell: pwsh
+
+      - name: Check for changes
+        id: git_status
+        run: |
+          CHECK_GIT_STATUS=($(git status -s))
+          git status -s
+          echo "::set-output name=changes::${#CHECK_GIT_STATUS[@]}"
+        working-directory: ${{ github.repository }}
+
+      - name: Add files, commit and push
+        if: steps.git_status.outputs.changes > 0
+        run: |
+          echo "Pushing changes to origin..."
+          git add modules/archetypes/lib
+          git commit -m '${{ env.pr_title }}'
+          git push origin ${{ env.branch_name }}
+        working-directory: ${{ github.repository }}
+
+      - name: Create pull request
+        if: steps.git_status.outputs.changes > 0
+        run: |
+          HEAD_LABEL="${{ github.repository_owner }}:${{ env.branch_name }}"
+          BASE_LABEL="${{ github.repository_owner }}:$(echo '${{ github.ref }}' | sed 's:refs/heads/::')"
+          PULL_REQUEST_URL="repos/${{ github.repository }}/pulls"
+          JQ_FILTER=".[] | select(.head.label == \"$HEAD_LABEL\") | select(.base.label == \"$BASE_LABEL\") | .url"
+          CHECK_PULL_REQUEST_URL=$(gh api $PULL_REQUEST_URL | jq -r "$JQ_FILTER")
+          if [ -z "$CHECK_PULL_REQUEST_URL" ]
+          then
+            CHECK_PULL_REQUEST_URL=$(gh pr create \
+            --title "${{ env.pr_title }}" \
+            --body "${{ env.pr_body }}" \
+            --base "${{ github.ref }}" \
+            --head "${{ env.branch_name }}" \
+            --draft)
+            echo "Created new PR: $CHECK_PULL_REQUEST_URL"
+          else
+            echo "Existing PR found: $CHECK_PULL_REQUEST_URL"
+          fi
+        working-directory: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}

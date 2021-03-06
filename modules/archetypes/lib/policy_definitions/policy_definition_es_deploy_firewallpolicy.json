@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-FirewallPolicy",
+  "name": "Deploy-FirewallPolicy",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deploys Azure Firewall Policy/Manager",
-    "displayName": "ES-Deploy-FirewallPolicy",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Azure Firewall Manager policy in the subscription",
+    "description": "Deploys Azure Firewall Manager policy in subscription where the policy is assigned.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "fwpolicy": {
         "type": "Object",
@@ -29,6 +35,18 @@
           "displayName": "rgName",
           "description": "Provide name for resource group."
         }
+      },
+      "effect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -41,7 +59,7 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/firewallPolicies",
           "deploymentScope": "Subscription",
@@ -70,13 +88,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "rgName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "fwPolicy": {
                     "type": "object"
                   },
                   "fwPolicyRegion": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "resources": [

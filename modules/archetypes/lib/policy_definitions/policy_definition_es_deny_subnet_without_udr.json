@@ -1,12 +1,32 @@
 {
-  "name": "ES-Deny-Subnets-Without-UDR",
+  "name": "Deny-Subnet-Without-Udr",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Deny-Subnets-Without-UDR",
-    "displayName": "ES-Deny-Subnets-Without-UDR",
+    "policyType": "Custom",
     "mode": "All",
-    "parameters": {},
+    "displayName": "Subnets should have a User Defined Route",
+    "description": "This policy denies the creation of a subsnet with out a User Defined Route.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      }
+    },
     "policyRule": {
       "if": {
         "allOf": [
@@ -21,7 +41,7 @@
         ]
       },
       "then": {
-        "effect": "deny"
+        "effect": "[parameters('effect')]"
       }
     }
   }
