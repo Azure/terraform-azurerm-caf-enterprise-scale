@@ -22,7 +22,7 @@
         }
       },
       "effect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -34,7 +34,7 @@
         }
       },
       "profileName": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "setbypolicy",
         "metadata": {
           "displayName": "Profile name",
@@ -42,7 +42,7 @@
         }
       },
       "metricsEnabled": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "True",
         "allowedValues": [
           "True",
@@ -54,7 +54,7 @@
         }
       },
       "logsEnabled": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "True",
         "allowedValues": [
           "True",
@@ -112,22 +112,22 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "resourceName": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "logAnalytics": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "location": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "profileName": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "metricsEnabled": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "logsEnabled": {
-                    "type": "String"
+                    "type": "string"
                   }
                 },
                 "variables": {},

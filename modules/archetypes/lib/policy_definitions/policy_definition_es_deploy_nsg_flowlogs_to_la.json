@@ -37,7 +37,7 @@
         "defaultValue": ""
       },
       "effect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -107,13 +107,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "location": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "networkSecurityGroup": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "workspace": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "retention": {
                     "type": "int"
@@ -122,7 +122,7 @@
                     "type": "int"
                   },
                   "time": {
-                    "type": "String",
+                    "type": "string",
                     "defaultValue": "[utcNow()]"
                   }
                 },

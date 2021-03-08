@@ -38,7 +38,7 @@
               "Microsoft.Automation/automationAccounts/modules",
               "Microsoft.Automation/automationAccounts/credentials",
               "Microsoft.Automation/automationAccounts/connections",
-              "Microsoft.Automation/automationAccounts/certificates"
+              "Microsoft.Automation/automationAccount/certificates"
             ]
           }
         ]

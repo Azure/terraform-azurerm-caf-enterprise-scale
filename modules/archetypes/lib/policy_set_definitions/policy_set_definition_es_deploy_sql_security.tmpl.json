@@ -27,7 +27,7 @@
         "type": "String"
       },
       "SqlDbTdeDeploySqlSecurityEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -39,7 +39,7 @@
         }
       },
       "SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -51,7 +51,7 @@
         }
       },
       "SqlDbAuditingSettingsDeploySqlSecurityEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -63,7 +63,7 @@
         }
       },
       "SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",

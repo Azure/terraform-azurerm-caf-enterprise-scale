@@ -22,7 +22,7 @@
         }
       },
       "effect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -34,7 +34,7 @@
         }
       },
       "logsEnabled": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "True",
         "allowedValues": [
           "True",
@@ -82,10 +82,10 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "logAnalytics": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "logsEnabled": {
-                    "type": "String"
+                    "type": "string"
                   }
                 },
                 "variables": {},

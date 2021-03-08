@@ -36,7 +36,7 @@
         }
       },
       "effect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -88,13 +88,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "rgName": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "ddosname": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "ddosRegion": {
-                    "type": "String"
+                    "type": "string"
                   }
                 },
                 "resources": [

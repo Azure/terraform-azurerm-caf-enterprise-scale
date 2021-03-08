@@ -107,23 +107,23 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "vNetRgName": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "vNetName": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "vNetLocation": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "vNetCidrRange": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "vNetPeerUseRemoteGateway": {
                     "type": "bool",
                     "defaultValue": false
                   },
                   "hubResourceId": {
-                    "type": "String"
+                    "type": "string"
                   }
                 },
                 "variables": {},
@@ -226,11 +226,11 @@
                                 "contentVersion": "1.0.0.0",
                                 "parameters": {
                                   "remoteVirtualNetwork": {
-                                    "type": "String",
+                                    "Type": "string",
                                     "defaultValue": false
                                   },
                                   "hubName": {
-                                    "type": "String",
+                                    "Type": "string",
                                     "defaultValue": false
                                   }
                                 },

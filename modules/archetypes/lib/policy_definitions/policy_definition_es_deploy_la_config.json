@@ -28,7 +28,7 @@
         }
       },
       "effect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -87,10 +87,10 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "workspaceName": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "workspaceRegion": {
-                    "type": "String"
+                    "type": "string"
                   }
                 },
                 "variables": {

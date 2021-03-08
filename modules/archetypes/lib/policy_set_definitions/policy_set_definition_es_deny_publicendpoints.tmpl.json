@@ -13,7 +13,7 @@
     },
     "parameters": {
       "CosmosPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -26,7 +26,7 @@
         }
       },
       "MariaDBPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -39,7 +39,7 @@
         }
       },
       "MySQLPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -52,7 +52,7 @@
         }
       },
       "PostgreSQLPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -65,7 +65,7 @@
         }
       },
       "KeyVaultPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -78,7 +78,7 @@
         }
       },
       "SqlServerPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -91,7 +91,7 @@
         }
       },
       "StoragePublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -104,7 +104,7 @@
         }
       },
       "AKSPublicIpDenyEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",

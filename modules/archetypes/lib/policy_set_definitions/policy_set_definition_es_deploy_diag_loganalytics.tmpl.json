@@ -21,7 +21,7 @@
         "type": "String"
       },
       "profileName": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "setbypolicy",
         "metadata": {
           "displayName": "Profile name",
@@ -29,7 +29,7 @@
         }
       },
       "ACILogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -41,7 +41,7 @@
         }
       },
       "ACRLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -53,7 +53,7 @@
         }
       },
       "AKSLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -65,7 +65,7 @@
         }
       },
       "AnalysisServiceLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -77,7 +77,7 @@
         }
       },
       "APIMgmtLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -89,7 +89,7 @@
         }
       },
       "ApplicationGatewayLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -101,7 +101,7 @@
         }
       },
       "AutomationLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -113,7 +113,7 @@
         }
       },
       "BatchLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -125,7 +125,7 @@
         }
       },
       "CDNEndpointsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -137,7 +137,7 @@
         }
       },
       "CognitiveServicesLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -149,7 +149,7 @@
         }
       },
       "CosmosLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -161,7 +161,7 @@
         }
       },
       "DatabricksLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -173,7 +173,7 @@
         }
       },
       "DataFactoryLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -185,7 +185,7 @@
         }
       },
       "DataLakeStoreLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -197,7 +197,7 @@
         }
       },
       "DataLakeAnalyticsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -209,7 +209,7 @@
         }
       },
       "EventGridSubLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -221,7 +221,7 @@
         }
       },
       "EventGridTopicLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -233,7 +233,7 @@
         }
       },
       "EventHubLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -245,7 +245,7 @@
         }
       },
       "EventSystemTopicLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -257,7 +257,7 @@
         }
       },
       "ExpressRouteLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -269,7 +269,7 @@
         }
       },
       "FirewallLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -281,7 +281,7 @@
         }
       },
       "FrontDoorLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -293,7 +293,7 @@
         }
       },
       "FunctionAppLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -305,7 +305,7 @@
         }
       },
       "HDInsightLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -317,7 +317,7 @@
         }
       },
       "IotHubLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -329,7 +329,7 @@
         }
       },
       "KeyVaultLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -341,7 +341,7 @@
         }
       },
       "LoadBalancerLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -353,7 +353,7 @@
         }
       },
       "LogicAppsISELogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -365,7 +365,7 @@
         }
       },
       "LogicAppsWFLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -377,7 +377,7 @@
         }
       },
       "MariaDBLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -389,7 +389,7 @@
         }
       },
       "MlWorkspaceLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -401,7 +401,7 @@
         }
       },
       "MySQLLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -413,7 +413,7 @@
         }
       },
       "NetworkSecurityGroupsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -425,7 +425,7 @@
         }
       },
       "NetworkNICLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -437,7 +437,7 @@
         }
       },
       "PostgreSQLLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -449,7 +449,7 @@
         }
       },
       "PowerBIEmbeddedLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -461,7 +461,7 @@
         }
       },
       "NetworkPublicIPNicLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -473,7 +473,7 @@
         }
       },
       "RecoveryVaultLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -485,7 +485,7 @@
         }
       },
       "RedisCacheLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -497,7 +497,7 @@
         }
       },
       "RelayLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -509,7 +509,7 @@
         }
       },
       "SearchServicesLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -521,7 +521,7 @@
         }
       },
       "ServiceBusLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -533,7 +533,7 @@
         }
       },
       "SignalRLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -545,7 +545,7 @@
         }
       },
       "SQLDBsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -557,7 +557,7 @@
         }
       },
       "SQLElasticPoolsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -569,7 +569,7 @@
         }
       },
       "SQLMLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -581,7 +581,7 @@
         }
       },
       "StreamAnalyticsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -593,7 +593,7 @@
         }
       },
       "TimeSeriesInsightsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -605,7 +605,7 @@
         }
       },
       "TrafficManagerLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -617,7 +617,7 @@
         }
       },
       "VirtualNetworkLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -629,7 +629,7 @@
         }
       },
       "VirtualMachinesLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -641,7 +641,7 @@
         }
       },
       "VMSSLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -653,7 +653,7 @@
         }
       },
       "VNetGWLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -665,7 +665,7 @@
         }
       },
       "AppServiceLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -677,7 +677,7 @@
         }
       },
       "AppServiceWebappLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -689,7 +689,7 @@
         }
       },
       "WVDAppGroupsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -701,7 +701,7 @@
         }
       },
       "WVDWorkspaceLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -713,7 +713,7 @@
         }
       },
       "WVDHostPoolsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -725,7 +725,7 @@
         }
       },
       "StorageAccountsLogAnalyticsEffect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",

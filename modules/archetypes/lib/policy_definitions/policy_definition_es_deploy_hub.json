@@ -59,7 +59,7 @@
         }
       },
       "effect": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -120,7 +120,7 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "hubName": {
-                    "type": "String",
+                    "type": "string",
                     "metadata": {
                       "description": "Name of the HUB"
                     }

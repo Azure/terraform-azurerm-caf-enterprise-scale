@@ -14,14 +14,14 @@
     },
     "parameters": {
       "amount": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "1000",
         "metadata": {
           "description": "The total amount of cost or usage to track with the budget"
         }
       },
       "timeGrain": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "Monthly",
         "allowedValues": [
           "Monthly",
@@ -36,21 +36,21 @@
         }
       },
       "firstThreshold": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "90",
         "metadata": {
           "description": "Threshold value associated with a notification. Notification is sent when the cost exceeded the threshold. It is always percent and has to be between 0 and 1000."
         }
       },
       "secondThreshold": {
-        "type": "String",
+        "type": "string",
         "defaultValue": "100",
         "metadata": {
           "description": "Threshold value associated with a notification. Notification is sent when the cost exceeded the threshold. It is always percent and has to be between 0 and 1000."
         }
       },
       "contactRoles": {
-        "type": "Array",
+        "type": "array",
         "defaultValue": [
           "Owner",
           "Contributor"
@@ -60,14 +60,14 @@
         }
       },
       "contactEmails": {
-        "type": "Array",
+        "type": "array",
         "defaultValue": [],
         "metadata": {
           "description": "The list of email addresses, in an array, to send the budget notification to when the threshold is exceeded."
         }
       },
       "contactGroups": {
-        "type": "Array",
+        "type": "array",
         "defaultValue": [],
         "metadata": {
           "description": "The list of action groups, in an array, to send the budget notification to when the threshold is exceeded. It accepts array of strings."
@@ -140,28 +140,28 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "amount": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "timeGrain": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "firstThreshold": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "secondThreshold": {
-                    "type": "String"
+                    "type": "string"
                   },
                   "contactEmails": {
-                    "type": "Array"
+                    "type": "array"
                   },
                   "contactRoles": {
-                    "type": "Array"
+                    "type": "array"
                   },
                   "contactGroups": {
-                    "type": "Array"
+                    "type": "array"
                   },
                   "startDate": {
-                    "type": "String",
+                    "type": "string",
                     "defaultValue": "[concat(utcNow('MM'), '/01/', utcNow('yyyy'))]"
                   }
                 },
