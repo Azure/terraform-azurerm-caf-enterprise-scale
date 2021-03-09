@@ -1,14 +1,24 @@
 {
     "customer_online": {
         "policy_assignments": [
-            "ES-Allowed-Locations"
+            "Allow-Resource-Locations",
+            "Allow-RSG-Locations"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],
         "role_definitions": [],
         "archetype_config": {
             "parameters": {
-                "ES-Allowed-Locations": {
+                "Allow-Resource-Locations": {
+                    "listOfAllowedLocations": [
+                        "eastus",
+                        "eastus2",
+                        "westus",
+                        "northcentralus",
+                        "southcentralus"
+                    ]
+                },
+                "Allow-RSG-Locations": {
                     "listOfAllowedLocations": [
                         "eastus",
                         "eastus2",

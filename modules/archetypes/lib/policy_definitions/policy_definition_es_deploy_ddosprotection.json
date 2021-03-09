@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-DDoSProtection",
+  "name": "Deploy-DDoSProtection",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "This policy deploys an Azure DDoS Protection Standard plan",
-    "displayName": "ES-Deploy-DDoSProtection",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy an Azure DDoS Protection Standard plan",
+    "description": "Deploys an Azure DDoS Protection Standard plan",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Network"
+    },
     "parameters": {
       "ddosName": {
         "type": "String",
@@ -28,6 +34,18 @@
           "displayName": "rgName",
           "description": "Provide name for resource group."
         }
+      },
+      "effect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -40,7 +58,7 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/ddosProtectionPlans",
           "deploymentScope": "Subscription",
@@ -48,7 +66,7 @@
           "resourceGroupName": "[parameters('rgName')]",
           "name": "[parameters('ddosName')]",
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
           ],
           "deployment": {
             "location": "northeurope",
@@ -70,13 +88,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "rgName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "ddosname": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "ddosRegion": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "resources": [

@@ -1,11 +1,17 @@
 {
-  "name": "ES-Deploy-ASC-Standard",
+  "name": "Deploy-ASC-Standard",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2020-09-01",
+  "scope": null,
   "properties": {
-    "description": "Ensures that subscriptions have Security Center Standard enabled.",
-    "displayName": "ES-Deploy-ASC-Standard",
+    "policyType": "Custom",
     "mode": "All",
+    "displayName": "Deploy Azure Defender settings in Azure Security Center.",
+    "description": "Deploys  the Azure Defender settings in Azure Security Center for  the specific services.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Security Center"
+    },
     "parameters": {
       "pricingTierVMs": {
         "type": "String",
@@ -90,6 +96,42 @@
           "Free"
         ],
         "defaultValue": "Standard"
+      },
+      "pricingTierDns": {
+        "type": "String",
+        "metadata": {
+          "displayName": "pricingTierDns",
+          "description": ""
+        },
+        "allowedValues": [
+          "Standard",
+          "Free"
+        ],
+        "defaultValue": "Standard"
+      },
+      "pricingTierArm": {
+        "type": "String",
+        "metadata": {
+          "displayName": "pricingTierArm",
+          "description": ""
+        },
+        "allowedValues": [
+          "Standard",
+          "Free"
+        ],
+        "defaultValue": "Standard"
+      },
+      "effect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
       }
     },
     "policyRule": {
@@ -102,13 +144,13 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Security/pricings",
           "deploymentScope": "subscription",
           "existenceScope": "subscription",
           "roleDefinitionIds": [
-            "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+            "/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd"
           ],
           "existenceCondition": {
             "allOf": [
@@ -147,6 +189,12 @@
                 },
                 "pricingTierKubernetesService": {
                   "value": "[parameters('pricingTierKubernetesService')]"
+                },
+                "pricingTierDns": {
+                  "value": "[parameters('pricingTierDns')]"
+                },
+                "pricingTierArm": {
+                  "value": "[parameters('pricingTierArm')]"
                 }
               },
               "template": {
@@ -154,43 +202,55 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "pricingTierVMs": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "pricingTierVMs"
                     }
                   },
                   "pricingTierSqlServers": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "pricingTierSqlServers"
                     }
                   },
                   "pricingTierAppServices": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "pricingTierAppServices"
                     }
                   },
                   "pricingTierStorageAccounts": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "pricingTierStorageAccounts"
                     }
                   },
                   "pricingTierContainerRegistry": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "ContainerRegistry"
                     }
                   },
                   "pricingTierKeyVaults": {
-                    "type": "string",
+                    "type": "String",
                     "metadata": {
                       "description": "KeyVaults"
                     }
                   },
                   "pricingTierKubernetesService": {
-                    "type": "string",
+                    "type": "String",
+                    "metadata": {
+                      "description": "KubernetesService"
+                    }
+                  },
+                  "pricingTierDns": {
+                    "type": "String",
+                    "metadata": {
+                      "description": "KubernetesService"
+                    }
+                  },
+                  "pricingTierArm": {
+                    "type": "String",
                     "metadata": {
                       "description": "KubernetesService"
                     }
@@ -270,6 +330,28 @@
                     ],
                     "properties": {
                       "pricingTier": "[parameters('pricingTierContainerRegistry')]"
+                    }
+                  },
+                  {
+                    "type": "Microsoft.Security/pricings",
+                    "apiVersion": "2018-06-01",
+                    "name": "Dns",
+                    "dependsOn": [
+                      "[concat('Microsoft.Security/pricings/ContainerRegistry')]"
+                    ],
+                    "properties": {
+                      "pricingTier": "[parameters('pricingTierDns')]"
+                    }
+                  },
+                  {
+                    "type": "Microsoft.Security/pricings",
+                    "apiVersion": "2018-06-01",
+                    "name": "Arm",
+                    "dependsOn": [
+                      "[concat('Microsoft.Security/pricings/Dns')]"
+                    ],
+                    "properties": {
+                      "pricingTier": "[parameters('pricingTierArm')]"
                     }
                   }
                 ],
