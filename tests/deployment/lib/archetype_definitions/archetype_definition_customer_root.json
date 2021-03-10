@@ -1,8 +1,8 @@
 {
     "customer_root": {
         "policy_assignments": [
-            "Allow-Resource-Locations",
-            "Allow-RSG-Locations",
+            "Deny-Resource-Locations",
+            "Deny-RSG-Locations",
             "Deploy-ASC-Monitoring",
             "Deploy-ASC-Defender",
             "Deploy-AzActivity-Log",
@@ -126,7 +126,7 @@
         ],
         "archetype_config": {
             "parameters": {
-                "Allow-Resource-Locations": {
+                "Deny-Resource-Locations": {
                     "listOfAllowedLocations": [
                         "eastus",
                         "eastus2",
@@ -137,7 +137,7 @@
                         "ukwest"
                     ]
                 },
-                "Allow-RSG-Locations": {
+                "Deny-RSG-Locations": {
                     "listOfAllowedLocations": [
                         "eastus",
                         "eastus2",

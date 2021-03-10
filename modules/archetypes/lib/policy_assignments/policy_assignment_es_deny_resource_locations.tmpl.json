@@ -1,10 +1,10 @@
 {
-  "name": "Allow-RSG-Locations",
+  "name": "Deny-Resource-Locations",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
-    "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed.",
-    "displayName": "Limit allowed locations for Resource Groups",
+    "description": "Specifies the allowed locations (regions) where Resources can be deployed.",
+    "displayName": "Limit allowed locations for Resources",
     "notScopes": [],
     "parameters": {
       "listOfAllowedLocations": {
@@ -14,7 +14,7 @@
         ]
       }
     },
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
     "scope": "${current_scope_resource_id}"
   },
   "sku": {

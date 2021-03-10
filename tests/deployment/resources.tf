@@ -56,7 +56,7 @@ module "test_root_id_3" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          Allow-Resource-Locations = {
+          Deny-Resource-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
@@ -64,7 +64,7 @@ module "test_root_id_3" {
               "ukwest",
             ])
           }
-          Allow-RSG-Locations = {
+          Deny-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
@@ -93,13 +93,13 @@ module "test_root_id_3" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          Allow-Resource-Locations = {
+          Deny-Resource-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
             ])
           }
-          Allow-RSG-Locations = {
+          Deny-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
               "westus",
@@ -116,12 +116,12 @@ module "test_root_id_3" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          Allow-Resource-Locations = {
+          Deny-Resource-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
             ])
           }
-          Allow-RSG-Locations = {
+          Deny-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "eastus",
             ])
@@ -184,13 +184,13 @@ module "test_root_id_3_lz1" {
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
-          Allow-Resource-Locations = {
+          Deny-Resource-Locations = {
             listOfAllowedLocations = jsonencode([
               "northcentralus",
               "southcentralus",
             ])
           }
-          Allow-RSG-Locations = {
+          Deny-RSG-Locations = {
             listOfAllowedLocations = jsonencode([
               "northcentralus",
               "southcentralus",
