@@ -36,6 +36,22 @@ The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-r
 
 ![Enterprise-scale Landing Zone Architecture][TFAES-Overview]
 
+## Resources
+
+The following resource types are deployed and managed by this module:
+
+|     | Azure Resource | Terraform Resource |
+| --- | -------------- | ------------------ |
+| Management Groups | [`Microsoft.Management/managementGroups`][arm_management_group] | [`azurerm_management_group`][azurerm_management_group] |
+| Management Group Subscriptions | [`Microsoft.Management/managementGroups/subscriptions`][arm_management_group_subscriptions] | [`azurerm_management_group`][azurerm_management_group] |
+| Policy Assignments | [`Microsoft.Authorization/policyAssignments`][arm_policy_assignment] | [`azurerm_policy_assignment`][azurerm_policy_assignment] |
+| Policy Definitions | [`Microsoft.Authorization/policyDefinitions`][arm_policy_definition] | [`azurerm_policy_definition`][azurerm_policy_definition] |
+| Policy Set Definitions | [`Microsoft.Authorization/policySetDefinitions`][arm_policy_set_definition] | [`azurerm_policy_set_definition`][azurerm_policy_set_definition] |
+| Role Assignments | [`Microsoft.Authorization/roleAssignments`][arm_role_assignment] | [`azurerm_role_assignment`][azurerm_role_assignment] |
+| Role Definitions | [`Microsoft.Authorization/roleDefinitions`][arm_role_definition] | [`azurerm_role_definition`][azurerm_role_definition] |
+
+The exact number of resources created depends on the module configuration, but you can expect upwards of `100` resources to be created by this module for a default installation based on the example below.
+
 ## Terraform versions
 
 This module has been tested using Terraform `0.13.2` onwards. It is also tested against the AzureRM Provider `2.34.0` onwards. In some cases, individual versions of the AzureRM provider may cause errors. If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
@@ -124,12 +140,13 @@ module "enterprise_scale" {
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
 [ESLZ-Architecture]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
 
-[arm_management_group]:      https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups
-[arm_policy_assignment]:     https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policyassignments
-[arm_policy_definition]:     https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policydefinitions
-[arm_policy_set_definition]: https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policysetdefinitions
-[arm_role_assignment]:       https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roleassignments
-[arm_role_definition]:       https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions
+[arm_management_group]:               https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups
+[arm_management_group_subscriptions]: https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups/subscriptions
+[arm_policy_assignment]:              https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policyassignments
+[arm_policy_definition]:              https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policydefinitions
+[arm_policy_set_definition]:          https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policysetdefinitions
+[arm_role_assignment]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roleassignments
+[arm_role_definition]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions
 
 [azurerm_management_group]:      https://www.terraform.io/docs/providers/azurerm/r/management_group.html
 [azurerm_policy_assignment]:     https://www.terraform.io/docs/providers/azurerm/r/policy_assignment.html
