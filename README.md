@@ -44,7 +44,9 @@ This module has some known issues with the pre-release Terraform `0.15.x` versio
 
 ## Usage
 
-As a basic starting point, we recommend starting with the following configuration in your root module:
+As a basic starting point, we recommend starting with the following configuration in your root module.
+
+> :memo: For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below. Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
 
 **File: `main.tf`**
 
