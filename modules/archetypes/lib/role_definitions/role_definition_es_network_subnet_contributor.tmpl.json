@@ -1,5 +1,5 @@
 {
-    "name": "54d02acb-25b6-5569-b8ee-5ef01a73a6d4",
+    "name": "3485cc09-cc28-5b69-9679-1732b147a79a",
     "type": "Microsoft.Authorization/roleDefinitions",
     "apiVersion": "2018-01-01-preview",
     "properties": {
@@ -24,7 +24,7 @@
             }
         ],
         "assignableScopes": [
-            "/"
+            "${current_scope_resource_id}"
         ]
     }
 }
