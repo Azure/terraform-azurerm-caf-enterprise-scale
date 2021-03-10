@@ -1,6 +1,34 @@
 # Terraform Module for Cloud Adoption Framework Enterprise-scale
 
+<br>
+
 > :warning: **WARNING**: Please note that the latest `0.1.0` release contains a number of changes which may impact your deployment. Please review the [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0] guidance before upgrading.
+
+<br>
+
+## Documentation
+
+For detailed information about how to use, configure and extend this module, please refer to the documentation on our Wiki:
+
+- [Home][wiki_home]
+- [User Guide][wiki_user_guide]
+  - [Getting Started][wiki_getting_started]
+  - [Module Variables][wiki_module_variables]
+  - [Archetype Definitions][wiki_archetype_definitions]
+  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
+- [Examples][wiki_examples]
+  - [Deploy Default Configuration][wiki_deploy_default_configuration]
+  - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
+  - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
+- [Frequently Asked Questions][wiki_frequently_asked_questions]
+- [Troubleshooting][wiki_troubleshooting]
+- [Contributing][wiki_contributing]
+  - [Raising an Issue][wiki_raising_an_issue]
+  - [Feature Requests][wiki_feature_requests]
+  - [Contributing to Code][wiki_contributing_to_code]
+  - [Contributing to Documentation][wiki_contributing_to_documentation]
+
+## Overview
 
 The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for delivering the core platform capabilities needed to start building Azure landing zones using Terraform. This module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
 
@@ -69,28 +97,6 @@ module "enterprise_scale" {
 ```
 
 > For additional guidance on how to customise your deployment using the advanced configuration options for this module, please refer to our [User Guide][wiki_user_guide] and the additional [examples][wiki_examples] in our documentation.
-
-## Documentation
-
-For detailed information about how to use, configure and extend this module, please refer to the documentation on our Wiki:
-
-- [Home][wiki_home]
-- [User Guide][wiki_user_guide]
-  - [Getting Started][wiki_getting_started]
-  - [Module Variables][wiki_module_variables]
-  - [Archetype Definitions][wiki_archetype_definitions]
-  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
-- [Examples][wiki_examples]
-  - [Deploy Default Configuration][wiki_deploy_default_configuration]
-  - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
-  - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
-- [Frequently Asked Questions][wiki_frequently_asked_questions]
-- [Troubleshooting][wiki_troubleshooting]
-- [Contributing][wiki_contributing]
-  - [Raising an Issue][wiki_raising_an_issue]
-  - [Feature Requests][wiki_feature_requests]
-  - [Contributing to Code][wiki_contributing_to_code]
-  - [Contributing to Documentation][wiki_contributing_to_documentation]
 
 ## License
 
