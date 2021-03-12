@@ -808,7 +808,7 @@ function Export-LibraryArtifact {
                 ConvertTo-Json -Depth $jsonDepth |
                 New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
                 $libraryArtifactMessage += "`n [COMPLETE]"
-                Write-Verbose $libraryArtifactMessage                    
+                Write-Verbose $libraryArtifactMessage
                 Write-Information "Output File : $($libraryArtifactFile.FullName) [COMPLETE]" -InformationAction Continue
             }
         }
