@@ -2,7 +2,7 @@
 
 <br>
 
-> :warning: **WARNING**: Please note that the latest `0.1.0` release contains a number of changes which may impact your deployment.
+> **WARNING**: Please note that the latest `0.1.0` release contains a number of changes which may impact your deployment.
 > Please review the [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0] guidance before upgrading.
 
 <br>
@@ -66,7 +66,7 @@ This module has some known issues with the pre-release Terraform `0.15.x` versio
 
 As a basic starting point, we recommend starting with the following configuration in your root module.
 
-> :memo: For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
+> **NOTE**: For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
 > Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
 
 **File: `main.tf`**
