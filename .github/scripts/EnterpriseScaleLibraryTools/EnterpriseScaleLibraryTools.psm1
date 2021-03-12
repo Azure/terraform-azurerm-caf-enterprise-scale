@@ -768,7 +768,7 @@ function ConvertTo-LibraryArtifact {
 }
 
 function Export-LibraryArtifact {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [String[]]$InputPath,
         [String]$InputFilter = "*.json",
@@ -777,8 +777,7 @@ function Export-LibraryArtifact {
         [String]$FileNamePrefix = "",
         [String]$FileNameSuffix = ".json",
         [Switch]$AsTemplate,
-        [Switch]$Recurse,
-        [Switch]$WhatIf
+        [Switch]$Recurse
     )
 
     $libraryArtifacts = ConvertTo-LibraryArtifact `
@@ -804,18 +803,14 @@ function Export-LibraryArtifact {
                 " - Output : $($libraryArtifact.OutputFilePath)")
 
         if ($libraryArtifact.OutputTemplate.type -in $TypeFilter) {
-            if ($WhatIf) {
-                $libraryArtifactMessage += "`n [WHATIF]"
-                Write-Verbose $libraryArtifactMessage
-                Write-Information "Output File : $($libraryArtifact.OutputFilePath) [WHATIF]" -InformationAction Continue
-                Continue
+            if ($PSCmdlet.ShouldProcess($libraryArtifact.OutputFilePath)) {
+                $libraryArtifactFile = $libraryArtifact.OutputTemplate |
+                ConvertTo-Json -Depth $jsonDepth |
+                New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
+                $libraryArtifactMessage += "`n [COMPLETE]"
+                Write-Verbose $libraryArtifactMessage                    
+                Write-Information "Output File : $($libraryArtifactFile.FullName) [COMPLETE]" -InformationAction Continue
             }
-            $libraryArtifactFile = $libraryArtifact.OutputTemplate |
-            ConvertTo-Json -Depth 100 |
-            New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
-            $libraryArtifactMessage += "`n [COMPLETE]"
-            Write-Verbose $libraryArtifactMessage
-            Write-Information "Output File : $($libraryArtifactFile.FullName) [COMPLETE]" -InformationAction Continue
         }
         else {
             $libraryArtifactMessage += "`n [SKIPPING] Resource Type not in TypeFilter."

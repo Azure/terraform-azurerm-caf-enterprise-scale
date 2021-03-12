@@ -19,12 +19,11 @@
 # }
 #
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
 param (
     [Parameter()][String]$TargetModulePath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourceModulePath = "$PWD/enterprise-scale",
-    [Parameter()][Switch]$UseCacheFromModule,
-    [Parameter()][Switch]$WhatIf
+    [Parameter()][Switch]$UseCacheFromModule
 )
 
 $ErrorActionPreference = "Stop"
@@ -55,7 +54,6 @@ $defaultConfig = @{
     fileNameSuffix = ".json"
     asTemplate     = $true
     recurse        = $false
-    whatIf         = $WhatIf ?? $true
 }
 
 # The esltConfig array controls the foreach loop used to run
@@ -88,5 +86,5 @@ foreach ($config in $esltConfig) {
         -FileNameSuffix ($config.fileNameSuffix ?? $defaultConfig.fileNameSuffix) `
         -AsTemplate:($config.asTemplate ?? $defaultConfig.asTemplate) `
         -Recurse:($config.recurse ?? $defaultConfig.recurse) `
-        -WhatIf:($config.whatIf ?? $defaultConfig.whatIf)
+        -WhatIf:$WhatIfPreference
 }
