@@ -41,7 +41,7 @@ Import-Module $esltModulePath -ErrorAction Stop
 # stored state in the module if the UseCacheFromModule flag
 # is set and the ProviderApiVersions.zip file is present.
 if ($UseCacheFromModule -and (Test-Path "$esltModuleDirectory/ProviderApiVersions.zip")) {
-    Write-Host "Pre-loading ProviderApiVersions from saved cache."
+    Write-Information "Pre-loading ProviderApiVersions from saved cache." -InformationAction Continue
     Invoke-UseCacheFromModule($esltModuleDirectory)
 }
 

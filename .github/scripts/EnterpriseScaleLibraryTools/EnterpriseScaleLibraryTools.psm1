@@ -807,7 +807,7 @@ function Export-LibraryArtifact {
             if ($WhatIf) {
                 $libraryArtifactMessage += "`n [WHATIF]"
                 Write-Verbose $libraryArtifactMessage
-                Write-Host "Output File : $($libraryArtifact.OutputFilePath) [WHATIF]"
+                Write-Information "Output File : $($libraryArtifact.OutputFilePath) [WHATIF]" -InformationAction Continue
                 Continue
             }
             $libraryArtifactFile = $libraryArtifact.OutputTemplate |
@@ -815,7 +815,7 @@ function Export-LibraryArtifact {
             New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
             $libraryArtifactMessage += "`n [COMPLETE]"
             Write-Verbose $libraryArtifactMessage
-            Write-Host "Output File : $($libraryArtifactFile.FullName) [COMPLETE]"
+            Write-Information "Output File : $($libraryArtifactFile.FullName) [COMPLETE]" -InformationAction Continue
         }
         else {
             $libraryArtifactMessage += "`n [SKIPPING] Resource Type not in TypeFilter."
