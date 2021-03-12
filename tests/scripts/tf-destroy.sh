@@ -10,6 +10,7 @@ echo "==> Switching directories..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 
 echo "==> Destroying infrastructure..."
+# shellcheck disable=SC2153 # Environment variables set by pipeline
 terraform destroy \
     -var "root_id_1=$TF_ROOT_ID_1" \
     -var "root_id_2=$TF_ROOT_ID_2" \
