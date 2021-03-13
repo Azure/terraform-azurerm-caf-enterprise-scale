@@ -19,12 +19,11 @@
 # }
 #
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
 param (
     [Parameter()][String]$TargetModulePath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourceModulePath = "$PWD/enterprise-scale",
-    [Parameter()][Switch]$UseCacheFromModule,
-    [Parameter()][Switch]$WhatIf
+    [Parameter()][Switch]$UseCacheFromModule
 )
 
 $ErrorActionPreference = "Stop"
@@ -41,7 +40,7 @@ Import-Module $esltModulePath -ErrorAction Stop
 # stored state in the module if the UseCacheFromModule flag
 # is set and the ProviderApiVersions.zip file is present.
 if ($UseCacheFromModule -and (Test-Path "$esltModuleDirectory/ProviderApiVersions.zip")) {
-    Write-Host "Pre-loading ProviderApiVersions from saved cache."
+    Write-Information "Pre-loading ProviderApiVersions from saved cache." -InformationAction Continue
     Invoke-UseCacheFromModule($esltModuleDirectory)
 }
 
@@ -55,7 +54,6 @@ $defaultConfig = @{
     fileNameSuffix = ".json"
     asTemplate     = $true
     recurse        = $false
-    whatIf         = $WhatIf ?? $true
 }
 
 # The esltConfig array controls the foreach loop used to run
@@ -88,5 +86,5 @@ foreach ($config in $esltConfig) {
         -FileNameSuffix ($config.fileNameSuffix ?? $defaultConfig.fileNameSuffix) `
         -AsTemplate:($config.asTemplate ?? $defaultConfig.asTemplate) `
         -Recurse:($config.recurse ?? $defaultConfig.recurse) `
-        -WhatIf:($config.whatIf ?? $defaultConfig.whatIf)
+        -WhatIf:$WhatIfPreference
 }

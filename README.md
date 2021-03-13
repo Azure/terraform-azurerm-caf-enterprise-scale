@@ -2,7 +2,8 @@
 
 <br>
 
-> :warning: **WARNING**: Please note that the latest `0.1.0` release contains a number of changes which may impact your deployment. Please review the [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0] guidance before upgrading.
+> **WARNING**: Please note that the latest `0.1.0` release contains a number of changes which may impact your deployment.
+> Please review the [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0] guidance before upgrading.
 
 <br>
 
@@ -32,7 +33,8 @@ For detailed information about how to use, configure and extend this module, ple
 
 ## Overview
 
-The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for delivering the core platform capabilities needed to start building Azure landing zones using Terraform. This module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
+The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for delivering the core platform capabilities needed to start building Azure landing zones using Terraform.
+This module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
 
 ![Enterprise-scale Landing Zone Architecture][TFAES-Overview]
 
@@ -54,7 +56,9 @@ The exact number of resources created depends on the module configuration, but y
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.13.2` onwards. It is also tested against the AzureRM Provider `2.34.0` onwards. In some cases, individual versions of the AzureRM provider may cause errors. If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
+This module has been tested using Terraform `0.13.2` onwards.
+It is also tested against the AzureRM Provider `2.34.0` onwards. In some cases, individual versions of the AzureRM provider may cause errors.
+If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
 This module has some known issues with the pre-release Terraform `0.15.x` versions which we plan to resolve in a future release.
 
@@ -62,7 +66,8 @@ This module has some known issues with the pre-release Terraform `0.15.x` versio
 
 As a basic starting point, we recommend starting with the following configuration in your root module.
 
-> :memo: For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below. Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
+> **NOTE**: For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
+> Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
 
 **File: `main.tf`**
 

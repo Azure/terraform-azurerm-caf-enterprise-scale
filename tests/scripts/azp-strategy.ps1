@@ -5,7 +5,7 @@
 # - Generate Azure Pipelines Strategy
 #
 
-Write-Host "==> Generating Azure Pipelines Strategy Matrix..."
+Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -InformationAction Continue
 
 $jsonDepth = 4
 $terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
@@ -67,4 +67,4 @@ for ($i = 0; $i -lt $terraformVersions.Count; $i++) {
 $matrixJsonOutput = $matrixObject | ConvertTo-Json -Depth $jsonDepth -Compress
 
 # Save the matrix value to an output variable for downstream consumption .
-Write-Host "##vso[task.setVariable variable=matrix_json;isOutput=true]$matrixJsonOutput"
+Write-Output "##vso[task.setVariable variable=matrix_json;isOutput=true]$matrixJsonOutput"
