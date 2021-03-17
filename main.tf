@@ -1,5 +1,5 @@
 # The following module is used to generate the configuration
-# data used to deploy all archetype resources at the 
+# data used to deploy all archetype resources at the
 # Management Group scope. Future plans include repeating this
 # for Subscription scope configuration so we can improve
 # coverage for archetype patterns which deploy specific

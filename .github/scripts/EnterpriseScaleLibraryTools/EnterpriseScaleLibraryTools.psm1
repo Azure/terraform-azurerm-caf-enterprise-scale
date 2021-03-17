@@ -109,7 +109,7 @@ class ProviderApiVersions {
         Select-Object -First 1
         return $private:GetLatestByType
     }
-    
+
     # Static method to get latest stable Api Version using Type
     # If no stable release, will return latest
     static [String] GetLatestStableByType([String]$Type) {
@@ -133,7 +133,7 @@ class ProviderApiVersions {
         $private:ShowCacheTypes = [ProviderApiVersions]::ShowCache().Type | Sort-Object
         return $private:ShowCacheTypes
     }
-    
+
     # Static property to store cache of ProviderApiVersions using a threadsafe
     # dictionary variable to allow caching across parallel jobs
     # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object#example-14--using-thread-safe-variable-references
@@ -289,7 +289,7 @@ class ProviderApiVersions {
 }
 
 class ESLTBase : System.Collections.Specialized.OrderedDictionary {
-    
+
     ESLTBase(): base() {}
 
     [String] ToString() {
@@ -297,7 +297,7 @@ class ESLTBase : System.Collections.Specialized.OrderedDictionary {
             return $this | ConvertTo-Json -Depth 1 -WarningAction SilentlyContinue | ConvertFrom-Json
         }
         else {
-            return $this            
+            return $this
         }
     }
 
@@ -662,7 +662,7 @@ function RemoveEscaping {
     ConvertTo-Json -Depth $jsonDepth |
     ForEach-Object { $_ -replace $regex_doubleLeftSquareBrace, "[" } |
     ConvertFrom-Json
-    
+
     return $output
 }
 
@@ -697,12 +697,12 @@ function GetObjectByResourceTypeFromJson {
         foreach ($policyDefinition in $objectFromJson.variables.policies.policyDefinitions) {
             ProcessObjectByResourceType `
                 -ResourceObject (RemoveEscaping -InputObject $policyDefinition) `
-                -ResourceType ("Microsoft.Authorization/policyDefinitions")                
+                -ResourceType ("Microsoft.Authorization/policyDefinitions")
         }
         foreach ($policySetDefinition in $objectFromJson.variables.initiatives.policySetDefinitions) {
             ProcessObjectByResourceType `
                 -ResourceObject (RemoveEscaping -InputObject $policySetDefinition) `
-                -ResourceType ("Microsoft.Authorization/policySetDefinitions")                
+                -ResourceType ("Microsoft.Authorization/policySetDefinitions")
         }
     }
     # The following block handles processing generic files where the source content is unknown
@@ -725,7 +725,7 @@ function ProcessFile {
     $output = GetObjectByResourceTypeFromJson `
         -Id $FilePath `
         -InputJSON $content
-    
+
     return $output
 }
 
@@ -768,7 +768,7 @@ function ConvertTo-LibraryArtifact {
 }
 
 function Export-LibraryArtifact {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [String[]]$InputPath,
         [String]$InputFilter = "*.json",
@@ -777,8 +777,7 @@ function Export-LibraryArtifact {
         [String]$FileNamePrefix = "",
         [String]$FileNameSuffix = ".json",
         [Switch]$AsTemplate,
-        [Switch]$Recurse,
-        [Switch]$WhatIf
+        [Switch]$Recurse
     )
 
     $libraryArtifacts = ConvertTo-LibraryArtifact `
@@ -804,18 +803,14 @@ function Export-LibraryArtifact {
                 " - Output : $($libraryArtifact.OutputFilePath)")
 
         if ($libraryArtifact.OutputTemplate.type -in $TypeFilter) {
-            if ($WhatIf) {
-                $libraryArtifactMessage += "`n [WHATIF]"
+            if ($PSCmdlet.ShouldProcess($libraryArtifact.OutputFilePath)) {
+                $libraryArtifactFile = $libraryArtifact.OutputTemplate |
+                ConvertTo-Json -Depth $jsonDepth |
+                New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
+                $libraryArtifactMessage += "`n [COMPLETE]"
                 Write-Verbose $libraryArtifactMessage
-                Write-Host "Output File : $($libraryArtifact.OutputFilePath) [WHATIF]"
-                Continue
+                Write-Information "Output File : $($libraryArtifactFile.FullName) [COMPLETE]" -InformationAction Continue
             }
-            $libraryArtifactFile = $libraryArtifact.OutputTemplate |
-            ConvertTo-Json -Depth 100 |
-            New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
-            $libraryArtifactMessage += "`n [COMPLETE]"
-            Write-Verbose $libraryArtifactMessage
-            Write-Host "Output File : $($libraryArtifactFile.FullName) [COMPLETE]"
         }
         else {
             $libraryArtifactMessage += "`n [SKIPPING] Resource Type not in TypeFilter."

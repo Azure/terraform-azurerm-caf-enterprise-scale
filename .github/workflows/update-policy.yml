@@ -56,11 +56,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
 
-      - name: Update library templates 
+      - name: Update library templates
         run: |
-          Write-Host "==> Installing Az.Accounts PowerShell Module..."
+          Write-Information "==> Installing Az.Accounts PowerShell Module..." -InformationAction Continue
           Install-Module -Name "Az.Accounts" -MinimumVersion "${{ env.az_accounts_minimum_version }}" -Force
-          Write-Host "==> Running script..."
+          Write-Information "==> Running script..." -InformationAction Continue
           ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
             -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
             -SourceModulePath ${{ github.workspace }}/${{ env.remote_repository }} `
