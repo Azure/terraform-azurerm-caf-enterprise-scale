@@ -2,8 +2,8 @@
 
 <br>
 
-> **WARNING**: Please note that the latest `0.1.0` release contains a number of changes which may impact your deployment.
-> Please review the [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0] guidance before upgrading.
+> **WARNING**: Please note that the `v0.1.0` release contained a number of changes which may impact your deployment.
+> Please review the [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0] guidance before upgrading to v0.1.0 or later.
 
 <br>
 
@@ -112,7 +112,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.1.0"
+  version = "0.1.1"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id
