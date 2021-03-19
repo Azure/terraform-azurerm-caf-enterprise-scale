@@ -1,5 +1,5 @@
 {
-  "name": "Deploy-Diagnostics-DataExplorerCLuster",
+  "name": "Deploy-Diagnostics-DataExplorerCluster",
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2020-09-01",
   "scope": null,

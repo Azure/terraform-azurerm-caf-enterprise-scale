@@ -59,7 +59,7 @@
             "Deploy-Diagnostics-CognitiveServices",
             "Deploy-Diagnostics-CosmosDB",
             "Deploy-Diagnostics-Databricks",
-            "Deploy-Diagnostics-DataExplorerCLuster",
+            "Deploy-Diagnostics-DataExplorerCluster",
             "Deploy-Diagnostics-DataFactory",
             "Deploy-Diagnostics-DataLakeStore",
             "Deploy-Diagnostics-DLAnalytics",
