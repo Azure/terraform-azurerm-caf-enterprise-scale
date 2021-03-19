@@ -14,10 +14,9 @@
     },
     "parameters": {
       "pricingTierVMs": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierVMs",
-          "description": null
+          "displayName": "pricingTierVMs"
         },
         "allowedValues": [
           "Standard",
@@ -26,10 +25,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierSqlServers": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierSqlServers",
-          "description": null
+          "displayName": "pricingTierSqlServers"
         },
         "allowedValues": [
           "Standard",
@@ -38,10 +36,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierAppServices": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierAppServices",
-          "description": null
+          "displayName": "pricingTierAppServices"
         },
         "allowedValues": [
           "Standard",
@@ -50,10 +47,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierStorageAccounts": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierStorageAccounts",
-          "description": null
+          "displayName": "pricingTierStorageAccounts"
         },
         "allowedValues": [
           "Standard",
@@ -62,10 +58,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierContainerRegistry": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierContainerRegistry",
-          "description": null
+          "displayName": "pricingTierContainerRegistry"
         },
         "allowedValues": [
           "Standard",
@@ -74,10 +69,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierKeyVaults": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierKeyVaults",
-          "description": null
+          "displayName": "pricingTierKeyVaults"
         },
         "allowedValues": [
           "Standard",
@@ -86,10 +80,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierKubernetesService": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierKubernetesService",
-          "description": null
+          "displayName": "pricingTierKubernetesService"
         },
         "allowedValues": [
           "Standard",
@@ -98,10 +91,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierDns": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierDns",
-          "description": null
+          "displayName": "pricingTierDns"
         },
         "allowedValues": [
           "Standard",
@@ -110,10 +102,9 @@
         "defaultValue": "Standard"
       },
       "pricingTierArm": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "pricingTierArm",
-          "description": null
+          "displayName": "pricingTierArm"
         },
         "allowedValues": [
           "Standard",

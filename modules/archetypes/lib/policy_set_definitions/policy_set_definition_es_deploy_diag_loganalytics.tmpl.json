@@ -18,7 +18,7 @@
           "displayName": "Log Analytics workspace",
           "strongType": "omsWorkspace"
         },
-        "type": "String"
+        "type": "string"
       },
       "profileName": {
         "type": "string",
@@ -74,6 +74,18 @@
         "metadata": {
           "displayName": "Deploy Diagnostic Settings for Analysis Services to Log Analytics workspace",
           "description": "Deploys the diagnostic settings for Analysis Services to stream to a Log Analytics workspace when any Analysis Services which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled"
+        }
+      },
+      "APIforFHIRLogAnalyticsEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy Diagnostic Settings for Azure API for FHIR to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for Azure API for FHIR to stream to a Log Analytics workspace when any Azure API for FHIR which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled"
         }
       },
       "APIMgmtLogAnalyticsEffect": {
@@ -170,6 +182,18 @@
         "metadata": {
           "displayName": "Deploy Diagnostic Settings for Databricks to Log Analytics workspace",
           "description": "Deploys the diagnostic settings for Databricks to stream to a Log Analytics workspace when any Databricks which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled"
+        }
+      },
+      "DataExplorerClusterLogAnalyticsEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy Diagnostic Settings for Azure Data Explorer Cluster to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for Azure Data Explorer Cluster to stream to a Log Analytics workspace when any Azure Data Explorer Cluster which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled"
         }
       },
       "DataFactoryLogAnalyticsEffect": {
@@ -386,6 +410,18 @@
         "metadata": {
           "displayName": "Deploy Diagnostic Settings for MariaDB to Log Analytics workspace",
           "description": "Deploys the diagnostic settings for MariaDB to stream to a Log Analytics workspace when any MariaDB  which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled"
+        }
+      },
+      "MediaServiceLogAnalyticsEffect": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy Diagnostic Settings for Azure Media Service to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for Azure Media Service to stream to a Log Analytics workspace when any Azure Media Service which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled"
         }
       },
       "MlWorkspaceLogAnalyticsEffect": {
@@ -864,6 +900,22 @@
         "groupNames": []
       },
       {
+        "policyDefinitionReferenceId": "APIforFHIRDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ApiForFHIR",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('APIforFHIRLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
         "policyDefinitionReferenceId": "APIMgmtDeployDiagnosticLogDeployLogAnalytics",
         "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-APIMgmt",
         "parameters": {
@@ -984,6 +1036,22 @@
           },
           "effect": {
             "value": "[parameters('DatabricksLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DataExplorerClusterDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataExplorerCLuster",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('DataExplorerClusterLogAnalyticsEffect')]"
           },
           "profileName": {
             "value": "[parameters('profileName')]"
@@ -1272,6 +1340,22 @@
           },
           "effect": {
             "value": "[parameters('MariaDBLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "MediaServiceDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MediaService",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('MediaServiceLogAnalyticsEffect')]"
           },
           "profileName": {
             "value": "[parameters('profileName')]"

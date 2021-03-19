@@ -14,14 +14,14 @@
     },
     "parameters": {
       "vwanname": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vwanname",
           "description": "Name of the Virtual WAN"
         }
       },
       "vwanRegion": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vwanRegion",
           "description": "Select Azure region for Virtual WAN",
@@ -29,7 +29,7 @@
         }
       },
       "rgName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "rgName",
           "description": "Provide name for resource group."
@@ -117,7 +117,7 @@
                       "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
                         "contentVersion": "1.0.0.0",

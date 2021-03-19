@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "All",
-    "displayName": "Deploy a default budget on subscriptions",
-    "description": "Depoloys a default budget on subscriptions.",
+    "displayName": "Deploy a default budget on all subscriptions under the assigned scope",
+    "description": "Deploy a default budget on all subscriptions under the assigned scope",
     "metadata": {
       "version": "1.0.0",
       "category": "Budget"

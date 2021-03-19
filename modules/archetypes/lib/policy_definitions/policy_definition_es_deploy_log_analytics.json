@@ -14,28 +14,28 @@
     },
     "parameters": {
       "workspaceName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "workspaceName",
           "description": "Provide name for log analytics workspace"
         }
       },
       "automationAccountName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "automationAccountName",
           "description": "Provide name for automation account"
         }
       },
       "workspaceRegion": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "workspaceRegion",
           "description": "Select Azure region for Log Analytics"
         }
       },
       "automationRegion": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "automationRegion",
           "description": "Select Azure region for Automation account"
@@ -50,7 +50,7 @@
         }
       },
       "rgName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "rgName",
           "description": "Provide name for resource group."
@@ -161,7 +161,7 @@
                       "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
                         "contentVersion": "1.0.0.0",
@@ -169,7 +169,7 @@
                         "variables": {},
                         "resources": [
                           {
-                            "apiversion": "2015-10-31",
+                            "apiVersion": "2015-10-31",
                             "location": "[parameters('AutomationRegion')]",
                             "name": "[parameters('AutomationAccountName')]",
                             "type": "Microsoft.Automation/automationAccounts",

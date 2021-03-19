@@ -17,14 +17,14 @@
           "description": "The email address to send alerts",
           "displayName": "The email address to send alerts"
         },
-        "type": "String"
+        "type": "string"
       },
       "vulnerabilityAssessmentsStorageID": {
         "metadata": {
           "description": "The storage account ID to store assessments",
           "displayName": "The storage account ID to store assessments"
         },
-        "type": "String"
+        "type": "string"
       },
       "SqlDbTdeDeploySqlSecurityEffect": {
         "type": "string",

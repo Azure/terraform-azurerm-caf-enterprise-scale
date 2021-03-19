@@ -14,14 +14,14 @@
     },
     "parameters": {
       "vwanname": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vwanname",
           "description": "Name of the Virtual WAN"
         }
       },
       "vHubName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vHubName",
           "description": "Name of the vHUB"
@@ -60,7 +60,7 @@
         "defaultValue": {}
       },
       "rgName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "rgName",
           "description": "Provide name for resource group."
@@ -95,7 +95,7 @@
           "name": "[parameters('vHubName')]",
           "deploymentScope": "Subscription",
           "existenceScope": "ResourceGroup",
-          "ResourceGroupName": "[parameters('rgName')]",
+          "resourceGroupName": "[parameters('rgName')]",
           "roleDefinitionIds": [
             "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
           ],
@@ -164,14 +164,14 @@
                     }
                   },
                   "rgName": {
-                    "type": "String",
+                    "type": "string",
                     "metadata": {
                       "displayName": "rgName",
                       "description": "Provide name for resource group."
                     }
                   },
                   "vHUBName": {
-                    "type": "String",
+                    "type": "string",
                     "metadata": {
                       "displayName": "vHUBName",
                       "description": "Name of the vHUB"
@@ -200,7 +200,7 @@
                       "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -234,7 +234,7 @@
                     ],
                     "name": "[concat(parameters('vHUBName'),'-vpngw')]",
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -268,7 +268,7 @@
                     ],
                     "name": "[concat(parameters('vHUBName'),'-ergw')]",
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",

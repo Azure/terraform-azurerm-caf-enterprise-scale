@@ -28,7 +28,7 @@
         "defaultValue": 60
       },
       "workspace": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "strongType": "omsWorkspace",
           "displayName": "Resource ID of Log Analytics workspace",
@@ -84,7 +84,7 @@
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "Incremental",
+              "mode": "incremental",
               "parameters": {
                 "location": {
                   "value": "[field('location')]"
@@ -138,7 +138,7 @@
                     "name": "[concat(variables('resourceGroupName'), '.', variables('securityGroupName'))]",
                     "resourceGroup": "[variables('resourceGroupName')]",
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -165,7 +165,7 @@
                     "name": "[concat('NetworkWatcherRG', '.', variables('securityGroupName'))]",
                     "resourceGroup": "NetworkWatcherRG",
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",

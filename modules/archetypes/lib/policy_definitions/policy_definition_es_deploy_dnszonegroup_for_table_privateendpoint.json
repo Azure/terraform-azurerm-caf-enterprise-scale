@@ -14,7 +14,7 @@
     },
     "parameters": {
       "privateDnsZoneId": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "privateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones"

@@ -16,8 +16,7 @@
       "ipam": {
         "type": "Array",
         "metadata": {
-          "displayName": "ipam",
-          "description": null
+          "displayName": "ipam"
         },
         "defaultValue": []
       },
@@ -128,7 +127,7 @@
                     "location": "[parameters('ipam')[copyIndex()].location]",
                     "dependsOn": [],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -167,7 +166,7 @@
                       "[concat('es-ipam-',subscription().displayName,'-RG-',copyIndex())]"
                     ],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -223,7 +222,7 @@
                               "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
-                              "mode": "Incremental",
+                              "mode": "incremental",
                               "expressionEvaluationOptions": {
                                 "scope": "inner"
                               },
@@ -235,19 +234,19 @@
                                     "type": "string"
                                   },
                                   "vWanVhubName": {
-                                    "Type": "string",
+                                    "type": "string",
                                     "defaultValue": ""
                                   },
                                   "allowHubToRemoteVnetTransit": {
-                                    "Type": "bool",
+                                    "type": "bool",
                                     "defaultValue": true
                                   },
                                   "allowRemoteVnetToUseHubVnetGateways": {
-                                    "Type": "bool",
+                                    "type": "bool",
                                     "defaultValue": false
                                   },
                                   "enableInternetSecurity": {
-                                    "Type": "bool",
+                                    "type": "bool",
                                     "defaultValue": true
                                   }
                                 },
@@ -299,7 +298,7 @@
                               "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
-                              "mode": "Incremental",
+                              "mode": "incremental",
                               "expressionEvaluationOptions": {
                                 "scope": "inner"
                               },
@@ -308,11 +307,11 @@
                                 "contentVersion": "1.0.0.0",
                                 "parameters": {
                                   "remoteVirtualNetwork": {
-                                    "Type": "string",
+                                    "type": "string",
                                     "defaultValue": false
                                   },
                                   "hubName": {
-                                    "Type": "string",
+                                    "type": "string",
                                     "defaultValue": false
                                   }
                                 },

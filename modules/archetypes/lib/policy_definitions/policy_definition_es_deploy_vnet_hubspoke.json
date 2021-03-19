@@ -14,35 +14,35 @@
     },
     "parameters": {
       "vNetName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vNetName",
           "description": "Name of the landing zone vNet"
         }
       },
       "vNetRgName": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vNetRgName",
           "description": "Name of the landing zone vNet RG"
         }
       },
       "vNetLocation": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vNetLocation",
           "description": "Location for the vNet"
         }
       },
       "vNetCidrRange": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "vNetCidrRange",
           "description": "CIDR Range for the vNet"
         }
       },
       "hubResourceId": {
-        "type": "String",
+        "type": "string",
         "metadata": {
           "displayName": "hubResourceId",
           "description": "Resource ID for the HUB vNet"
@@ -135,7 +135,7 @@
                     "location": "[parameters('vNetLocation')]",
                     "dependsOn": [],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -169,7 +169,7 @@
                       "[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6),'-rg')]"
                     ],
                     "properties": {
-                      "mode": "Incremental",
+                      "mode": "incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -217,7 +217,7 @@
                               "[parameters('vNetName')]"
                             ],
                             "properties": {
-                              "mode": "Incremental",
+                              "mode": "incremental",
                               "expressionEvaluationOptions": {
                                 "scope": "inner"
                               },

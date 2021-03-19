@@ -14,38 +14,33 @@
     },
     "parameters": {
       "domainUsername": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "domainUsername",
-          "description": null
+          "displayName": "domainUsername"
         }
       },
       "domainPassword": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "domainPassword",
-          "description": null
+          "displayName": "domainPassword"
         }
       },
       "domainFQDN": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "domainFQDN",
-          "description": null
+          "displayName": "domainFQDN"
         }
       },
       "domainOUPath": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "domainOUPath",
-          "description": null
+          "displayName": "domainOUPath"
         }
       },
       "keyVaultResourceId": {
-        "type": "String",
+        "type": "string",
         "metadata": {
-          "displayName": "keyVaultResourceId",
-          "description": null
+          "displayName": "keyVaultResourceId"
         }
       },
       "effect": {
