@@ -14,14 +14,14 @@
     },
     "parameters": {
       "ddosName": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "ddosName",
           "description": "DDoSVnet"
         }
       },
       "ddosRegion": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "ddosRegion",
           "description": "DDoSVnet location",
@@ -29,14 +29,14 @@
         }
       },
       "rgName": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "rgName",
           "description": "Provide name for resource group."
         }
       },
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -71,7 +71,7 @@
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "rgName": {
                   "value": "[parameters('rgName')]"
@@ -88,13 +88,13 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "rgName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "ddosname": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "ddosRegion": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "resources": [
@@ -114,7 +114,7 @@
                       "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
                     ],
                     "properties": {
-                      "mode": "incremental",
+                      "mode": "Incremental",
                       "template": {
                         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
                         "contentVersion": "1.0.0.0",

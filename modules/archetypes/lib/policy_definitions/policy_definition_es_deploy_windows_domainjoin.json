@@ -14,37 +14,37 @@
     },
     "parameters": {
       "domainUsername": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "domainUsername"
         }
       },
       "domainPassword": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "domainPassword"
         }
       },
       "domainFQDN": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "domainFQDN"
         }
       },
       "domainOUPath": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "domainOUPath"
         }
       },
       "keyVaultResourceId": {
-        "type": "string",
+        "type": "String",
         "metadata": {
           "displayName": "keyVaultResourceId"
         }
       },
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -156,7 +156,7 @@
           },
           "deployment": {
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "vmName": {
                   "value": "[field('name')]"
@@ -195,25 +195,25 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "vmName": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "location": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "domainUsername": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "domainPassword": {
                     "type": "securestring"
                   },
                   "domainFQDN": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "domainOUPath": {
-                    "type": "string"
+                    "type": "String"
                   },
                   "keyVaultResourceId": {
-                    "type": "string"
+                    "type": "String"
                   }
                 },
                 "variables": {

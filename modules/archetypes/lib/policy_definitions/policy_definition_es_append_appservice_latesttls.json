@@ -14,7 +14,7 @@
     },
     "parameters": {
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "Append",
         "allowedValues": [
           "Append",
@@ -26,7 +26,7 @@
         }
       },
       "minTlsVersion": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "1.2",
         "allowedValues": [
           "1.2",

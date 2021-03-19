@@ -21,7 +21,7 @@
         "defaultValue": []
       },
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -66,7 +66,7 @@
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "ipam": {
                   "value": "[parameters('ipam')]",
@@ -127,7 +127,7 @@
                     "location": "[parameters('ipam')[copyIndex()].location]",
                     "dependsOn": [],
                     "properties": {
-                      "mode": "incremental",
+                      "mode": "Incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -166,7 +166,7 @@
                       "[concat('es-ipam-',subscription().displayName,'-RG-',copyIndex())]"
                     ],
                     "properties": {
-                      "mode": "incremental",
+                      "mode": "Incremental",
                       "template": {
                         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                         "contentVersion": "1.0.0.0",
@@ -222,7 +222,7 @@
                               "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
-                              "mode": "incremental",
+                              "mode": "Incremental",
                               "expressionEvaluationOptions": {
                                 "scope": "inner"
                               },
@@ -231,10 +231,10 @@
                                 "contentVersion": "1.0.0.0",
                                 "parameters": {
                                   "remoteVirtualNetwork": {
-                                    "type": "string"
+                                    "type": "String"
                                   },
                                   "vWanVhubName": {
-                                    "type": "string",
+                                    "type": "String",
                                     "defaultValue": ""
                                   },
                                   "allowHubToRemoteVnetTransit": {
@@ -298,7 +298,7 @@
                               "[concat(subscription().displayName, '-vnet')]"
                             ],
                             "properties": {
-                              "mode": "incremental",
+                              "mode": "Incremental",
                               "expressionEvaluationOptions": {
                                 "scope": "inner"
                               },
@@ -307,11 +307,11 @@
                                 "contentVersion": "1.0.0.0",
                                 "parameters": {
                                   "remoteVirtualNetwork": {
-                                    "type": "string",
+                                    "type": "String",
                                     "defaultValue": false
                                   },
                                   "hubName": {
-                                    "type": "string",
+                                    "type": "String",
                                     "defaultValue": false
                                   }
                                 },

@@ -17,17 +17,17 @@
           "description": "The email address to send alerts",
           "displayName": "The email address to send alerts"
         },
-        "type": "string"
+        "type": "String"
       },
       "vulnerabilityAssessmentsStorageID": {
         "metadata": {
           "description": "The storage account ID to store assessments",
           "displayName": "The storage account ID to store assessments"
         },
-        "type": "string"
+        "type": "String"
       },
       "SqlDbTdeDeploySqlSecurityEffect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -39,7 +39,7 @@
         }
       },
       "SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -51,7 +51,7 @@
         }
       },
       "SqlDbAuditingSettingsDeploySqlSecurityEffect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
@@ -63,7 +63,7 @@
         }
       },
       "SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",

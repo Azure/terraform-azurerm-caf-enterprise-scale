@@ -14,7 +14,7 @@
     },
     "parameters": {
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
@@ -27,7 +27,7 @@
         }
       },
       "minimumTlsVersion": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "1.2",
         "allowedValues": [
           "1.2",

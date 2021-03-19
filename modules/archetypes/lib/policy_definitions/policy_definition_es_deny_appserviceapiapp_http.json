@@ -14,7 +14,7 @@
     },
     "parameters": {
       "effect": {
-        "type": "string",
+        "type": "String",
         "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
