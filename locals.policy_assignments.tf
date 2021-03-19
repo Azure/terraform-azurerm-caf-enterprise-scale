@@ -154,7 +154,7 @@ locals {
     for policy_definition in local.es_policy_definitions :
     policy_definition.resource_id => try(
       [
-        for role_definition in policy_definition.template.policyRule.then.details.roleDefinitionIds :
+        for role_definition in policy_definition.template.properties.policyRule.then.details.roleDefinitionIds :
         "/providers/Microsoft.Authorization/roleDefinitions/${basename(role_definition)}"
       ],
       local.empty_list
