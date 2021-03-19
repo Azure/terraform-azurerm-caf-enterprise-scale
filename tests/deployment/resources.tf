@@ -1,6 +1,6 @@
 data "azurerm_client_config" "current" {}
 
-locals = {
+locals {
   create_duration_delay = {
     azurerm_management_group      = "30s"
     azurerm_policy_assignment     = "30s"
