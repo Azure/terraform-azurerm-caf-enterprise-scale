@@ -16,8 +16,7 @@
       "ipam": {
         "type": "Array",
         "metadata": {
-          "displayName": "ipam",
-          "description": ""
+          "displayName": "ipam"
         },
         "defaultValue": []
       },
@@ -67,7 +66,7 @@
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "ipam": {
                   "value": "[parameters('ipam')]",
@@ -239,15 +238,15 @@
                                     "defaultValue": ""
                                   },
                                   "allowHubToRemoteVnetTransit": {
-                                    "Type": "bool",
+                                    "type": "bool",
                                     "defaultValue": true
                                   },
                                   "allowRemoteVnetToUseHubVnetGateways": {
-                                    "Type": "bool",
+                                    "type": "bool",
                                     "defaultValue": false
                                   },
                                   "enableInternetSecurity": {
-                                    "Type": "bool",
+                                    "type": "bool",
                                     "defaultValue": true
                                   }
                                 },

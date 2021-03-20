@@ -46,8 +46,8 @@
       "azfw": {
         "type": "Object",
         "metadata": {
-          "displayName": "ergw",
-          "description": "Object describing ExpressRoute gateway"
+          "displayName": "azfw",
+          "description": "Object describing Azure Firewall"
         },
         "defaultValue": {}
       },
@@ -87,14 +87,14 @@
           "name": "[parameters('hubName')]",
           "deploymentScope": "Subscription",
           "existenceScope": "ResourceGroup",
-          "ResourceGroupName": "[parameters('rgName')]",
+          "resourceGroupName": "[parameters('rgName')]",
           "roleDefinitionIds": [
             "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
           ],
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "rgName": {
                   "value": "[parameters('rgName')]"

@@ -73,7 +73,7 @@
           },
           "deployment": {
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "workspaceName": {
                   "value": "[parameters('workspaceName')]"

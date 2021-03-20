@@ -71,7 +71,7 @@
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "rgName": {
                   "value": "[parameters('rgName')]"

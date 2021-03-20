@@ -16,36 +16,31 @@
       "domainUsername": {
         "type": "String",
         "metadata": {
-          "displayName": "domainUsername",
-          "description": ""
+          "displayName": "domainUsername"
         }
       },
       "domainPassword": {
         "type": "String",
         "metadata": {
-          "displayName": "domainPassword",
-          "description": ""
+          "displayName": "domainPassword"
         }
       },
       "domainFQDN": {
         "type": "String",
         "metadata": {
-          "displayName": "domainFQDN",
-          "description": ""
+          "displayName": "domainFQDN"
         }
       },
       "domainOUPath": {
         "type": "String",
         "metadata": {
-          "displayName": "domainOUPath",
-          "description": ""
+          "displayName": "domainOUPath"
         }
       },
       "keyVaultResourceId": {
         "type": "String",
         "metadata": {
-          "displayName": "keyVaultResourceId",
-          "description": ""
+          "displayName": "keyVaultResourceId"
         }
       },
       "effect": {
@@ -161,7 +156,7 @@
           },
           "deployment": {
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "vmName": {
                   "value": "[field('name')]"

@@ -98,7 +98,7 @@
           ],
           "deployment": {
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "template": {
                 "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                 "contentVersion": "1.0.0.0",
@@ -134,34 +134,7 @@
                       "workspaceId": "[parameters('logAnalytics')]",
                       "metrics": [
                         {
-                          "category": "Gateway Requests",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
-                        },
-                        {
-                          "category": "Capacity",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
-                        },
-                        {
-                          "category": "EventHub Events",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
-                        },
-                        {
-                          "category": "Network Status",
+                          "category": "AllMetrics",
                           "enabled": "[parameters('metricsEnabled')]",
                           "retentionPolicy": {
                             "days": 0,

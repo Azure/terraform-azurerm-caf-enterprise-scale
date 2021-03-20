@@ -84,7 +84,7 @@
           "deployment": {
             "location": "northeurope",
             "properties": {
-              "mode": "incremental",
+              "mode": "Incremental",
               "parameters": {
                 "vNetRgName": {
                   "value": "[parameters('vNetRgName')]"
