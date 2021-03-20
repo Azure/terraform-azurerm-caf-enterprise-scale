@@ -1,24 +1,11 @@
 data "azurerm_client_config" "current" {}
 
-locals {
-  create_duration_delay = {
-    azurerm_management_group      = "30s"
-    azurerm_policy_assignment     = "30s"
-    azurerm_policy_definition     = "60s"
-    azurerm_policy_set_definition = "30s"
-    azurerm_role_assignment       = "0s"
-    azurerm_role_definition       = "60s"
-  }
-}
-
 module "test_root_id_1" {
   source = "../../"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id_1
   root_name      = "${var.root_name}-1"
-
-  create_duration_delay = local.create_duration_delay
 
 }
 
@@ -28,8 +15,6 @@ module "test_root_id_2" {
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id_2
   root_name      = "${var.root_name}-2"
-
-  create_duration_delay = local.create_duration_delay
 
   deploy_demo_landing_zones = true
 
@@ -42,8 +27,6 @@ module "test_root_id_3" {
   root_id        = var.root_id_3
   root_name      = "${var.root_name}-3"
   library_path   = "${path.root}/lib"
-
-  create_duration_delay = local.create_duration_delay
 
   custom_landing_zones = {
     "${var.root_id_3}-customer-corp" = {
@@ -192,8 +175,6 @@ module "test_root_id_3_lz1" {
   root_id                   = var.root_id_3
   deploy_core_landing_zones = false
   library_path              = "${path.root}/lib"
-
-  create_duration_delay = local.create_duration_delay
 
   custom_landing_zones = {
     "${var.root_id_3}-scoped-lz1" = {
