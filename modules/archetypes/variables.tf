@@ -9,7 +9,7 @@ variable "root_id" {
   description = "Specifies the ID of the Enterprise-scale root Management Group where Policy Definitions are created by default."
 
   validation {
-    condition     = can(regex("^/providers/Microsoft.Management/managementGroups/[a-z0-9-]{2,36}$", var.root_id))
+    condition     = can(regex("^/providers/Microsoft.Management/managementGroups/[a-z0-9-_]{2,36}$", var.root_id))
     error_message = "The root_id value must be a valid Management Group ID."
   }
 }
@@ -19,7 +19,7 @@ variable "scope_id" {
   description = "Specifies the scope to apply the archetype resources against."
 
   validation {
-    condition     = can(regex("^/(subscriptions|providers/Microsoft.Management/managementGroups)/[a-z0-9-]{2,36}$", var.scope_id))
+    condition     = can(regex("^/(subscriptions|providers/Microsoft.Management/managementGroups)/[a-z0-9-_]{2,36}$", var.scope_id))
     error_message = "The scope_id value must be a valid Subscription or Management Group ID."
   }
 }
