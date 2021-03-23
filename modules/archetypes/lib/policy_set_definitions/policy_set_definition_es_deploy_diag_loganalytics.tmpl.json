@@ -1045,7 +1045,7 @@
       },
       {
         "policyDefinitionReferenceId": "DataExplorerClusterDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataExplorerCluster",
+        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataExplorerCLuster",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
