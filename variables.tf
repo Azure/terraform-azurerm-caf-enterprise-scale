@@ -10,7 +10,7 @@ variable "root_parent_id" {
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9-_\\(\\)\\.]{1,36}$", var.root_parent_id))
-    error_message = "The root_parent_id value must be a valid GUID, or Management Group ID."
+    error_message = "Value must be a valid Management Group ID, consisting of alphanumeric characters, hyphens, underscores, periods and parentheses."
   }
 }
 
@@ -21,7 +21,7 @@ variable "root_id" {
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))
-    error_message = "The root_id value must be between 2 to 10 characters long and can only contain alphanumeric characters and hyphens."
+    error_message = "Value must be between 2 to 10 characters long, consisting of alphanumeric characters and hyphens."
   }
 }
 
@@ -32,14 +32,100 @@ variable "root_name" {
 
   validation {
     condition     = can(regex("^[A-Za-z][A-Za-z0-9- ._]{1,22}[A-Za-z0-9]?$", var.root_name))
-    error_message = "The root_name value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space, hyphen, underscore or period characters."
+    error_message = "Value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space, hyphen, underscore or period characters."
   }
 }
 
 variable "deploy_core_landing_zones" {
   type        = bool
-  description = "If set to true, will include the core Enterprise-scale Management Group hierarchy."
+  description = "If set to true, module will deploy the core Enterprise-scale Management Group hierarchy, including \"out of the box\" policies and roles."
   default     = true
+}
+
+variable "deploy_demo_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"SAP\") into the core Enterprise-scale Management Group hierarchy."
+  default     = false
+}
+
+variable "deploy_management_resources" {
+  type = object({
+    enabled = bool
+    settings_log_analytics = object({
+      enabled = bool
+      config = object({
+        retention_in_days                         = number
+        enable_arc_monitoring                     = bool
+        enable_vm_monitoring                      = bool
+        enable_vmss_monitoring                    = bool
+        enable_solution_for_AgentHealthAssessment = bool
+        enable_solution_for_AntiMalware           = bool
+        enable_solution_for_AzureActivity         = bool
+        enable_solution_for_ChangeTracking        = bool
+        enable_solution_for_ServiceMap            = bool
+        enable_solution_for_SQLAssessment         = bool
+        enable_solution_for_Updates               = bool
+        enable_solution_for_VMInsights            = bool
+        enable_sentinel                           = bool
+      })
+    })
+    settings_security_center = object({
+      enabled = bool
+      config = object({
+        enable_asc_for_acr          = bool
+        enable_asc_for_app_services = bool
+        enable_asc_for_arm          = bool
+        enable_asc_for_dns          = bool
+        enable_asc_for_key_vault    = bool
+        enable_asc_for_kubernetes   = bool
+        enable_asc_for_servers      = bool
+        enable_asc_for_sql          = bool
+        enable_asc_for_storage      = bool
+      })
+    })
+    location = any
+    tags     = any
+    advanced = any
+  })
+  description = "If specified, will deploy the \"Management\" landing zone resources into the current Subscription context."
+  default = {
+    enabled = false
+    settings_log_analytics = {
+      enabled = true
+      config = {
+        retention_in_days                         = 30
+        enable_arc_monitoring                     = true
+        enable_vm_monitoring                      = true
+        enable_vmss_monitoring                    = true
+        enable_solution_for_AgentHealthAssessment = true
+        enable_solution_for_AntiMalware           = true
+        enable_solution_for_AzureActivity         = true
+        enable_solution_for_ChangeTracking        = true
+        enable_solution_for_ServiceMap            = true
+        enable_solution_for_SQLAssessment         = true
+        enable_solution_for_Updates               = true
+        enable_solution_for_VMInsights            = true
+        enable_sentinel                           = true
+      }
+    }
+    settings_security_center = {
+      enabled = true
+      config = {
+        enable_asc_for_acr          = true
+        enable_asc_for_app_services = true
+        enable_asc_for_arm          = true
+        enable_asc_for_dns          = true
+        enable_asc_for_key_vault    = true
+        enable_asc_for_kubernetes   = true
+        enable_asc_for_servers      = true
+        enable_asc_for_sql          = true
+        enable_asc_for_storage      = true
+      }
+    }
+    location = null
+    tags     = null
+    advanced = null
+  }
 }
 
 variable "archetype_config_overrides" {
@@ -54,10 +140,37 @@ variable "subscription_id_overrides" {
   default     = {}
 }
 
-variable "deploy_demo_landing_zones" {
-  type        = bool
-  description = "If set to true, will include the demo \"Landing Zone\" Management Groups."
-  default     = false
+variable "subscription_id_connectivity" {
+  type        = string
+  description = "If specified, identifies the Platform subscription for \"Connectivity\" for resource deployment and correct placement in the Management Group hierarchy."
+  default     = ""
+
+  validation {
+    condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_connectivity)) || var.subscription_id_connectivity == ""
+    error_message = "Value must be a valid Subscription ID (GUID)."
+  }
+}
+
+variable "subscription_id_identity" {
+  type        = string
+  description = "If specified, identifies the Platform subscription for \"Identity\" for resource deployment and correct placement in the Management Group hierarchy."
+  default     = ""
+
+  validation {
+    condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_identity)) || var.subscription_id_identity == ""
+    error_message = "Value must be a valid Subscription ID (GUID)."
+  }
+}
+
+variable "subscription_id_management" {
+  type        = string
+  description = "If specified, identifies the Platform subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy."
+  default     = ""
+
+  validation {
+    condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_management)) || var.subscription_id_management == ""
+    error_message = "Value must be a valid Subscription ID (GUID)."
+  }
 }
 
 variable "custom_landing_zones" {
@@ -100,6 +213,12 @@ variable "default_location" {
   default     = "eastus"
 
   # Need to add validation covering all Azure locations
+}
+
+variable "default_tags" {
+  type        = map(string)
+  description = "If specified, will set the default tags for all resources deployed by this module where supported."
+  default     = {}
 }
 
 variable "create_duration_delay" {

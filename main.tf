@@ -17,3 +17,30 @@ module "management_group_archetypes" {
   template_file_variables = local.template_file_variables
   default_location        = local.default_location
 }
+
+# The following module is used to generate the configuration
+# data used to deploy platform resources based on the
+# "management" landing zone archetype.
+module "management_resources" {
+  source = "./modules/management"
+
+  # Mandatory input variables 
+  enabled                  = local.deploy_management_resources.enabled
+  root_id                  = local.root_id
+  subscription_id          = local.subscription_id_management
+  settings_log_analytics   = local.deploy_management_resources.settings_log_analytics
+  settings_security_center = local.deploy_management_resources.settings_security_center
+
+  # Optional input variables (basic configuration)
+  location = coalesce(local.deploy_management_resources.location, local.default_location)
+  tags     = coalesce(local.deploy_management_resources.tags, local.default_tags)
+
+  # Optional input variables (advanced configuration)
+  resource_prefix                              = try(local.deploy_management_resources.advanced.resource_prefix, local.empty_string)
+  resource_suffix                              = try(local.deploy_management_resources.advanced.resource_suffix, local.empty_string)
+  existing_resource_group_name                 = try(local.deploy_management_resources.advanced.existing_resource_group_name, local.empty_string)
+  existing_log_analytics_workspace_resource_id = try(local.deploy_management_resources.advanced.existing_log_analytics_workspace_resource_id, local.empty_string)
+  existing_automation_account_resource_id      = try(local.deploy_management_resources.advanced.existing_automation_account_resource_id, local.empty_string)
+  link_log_analytics_to_automation_account     = try(local.deploy_management_resources.advanced.link_log_analytics_to_automation_account, true)
+  custom_settings_by_resource_type             = try(local.deploy_management_resources.advanced.custom_settings_by_resource_type, local.empty_map)
+}
