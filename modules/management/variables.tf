@@ -46,20 +46,20 @@ variable "settings" {
     log_analytics = object({
       enabled = bool
       config = object({
-        retention_in_days                         = number
-        link_log_analytics_to_automation_account  = bool
-        enable_arc_monitoring                     = bool
-        enable_vm_monitoring                      = bool
-        enable_vmss_monitoring                    = bool
-        enable_solution_for_AgentHealthAssessment = bool
-        enable_solution_for_AntiMalware           = bool
-        enable_solution_for_AzureActivity         = bool
-        enable_solution_for_ChangeTracking        = bool
-        enable_solution_for_ServiceMap            = bool
-        enable_solution_for_SQLAssessment         = bool
-        enable_solution_for_Updates               = bool
-        enable_solution_for_VMInsights            = bool
-        enable_sentinel                           = bool
+        retention_in_days                           = number
+        link_log_analytics_to_automation_account    = bool
+        enable_arc_monitoring                       = bool
+        enable_vm_monitoring                        = bool
+        enable_vmss_monitoring                      = bool
+        enable_solution_for_agent_health_assessment = bool
+        enable_solution_for_anti_malware            = bool
+        enable_solution_for_azure_activity          = bool
+        enable_solution_for_change_tracking         = bool
+        enable_solution_for_service_map             = bool
+        enable_solution_for_sql_assessment          = bool
+        enable_solution_for_updates                 = bool
+        enable_solution_for_vm_insights             = bool
+        enable_sentinel                             = bool
       })
     })
     security_center = object({

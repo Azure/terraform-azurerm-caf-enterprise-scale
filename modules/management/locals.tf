@@ -45,16 +45,16 @@ locals {
   deploy_log_analytics_linked_service = local.deploy_monitoring && local.settings.log_analytics.config.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
-    AgentHealthAssessment = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_AgentHealthAssessment
-    AntiMalware           = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_AntiMalware
-    AzureActivity         = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_AzureActivity
-    ChangeTracking        = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_ChangeTracking
+    AgentHealthAssessment = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
+    AntiMalware           = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_anti_malware
+    AzureActivity         = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_azure_activity
+    ChangeTracking        = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_change_tracking
     Security              = local.deploy_monitoring && local.settings.log_analytics.config.enable_sentinel
     SecurityInsights      = local.deploy_monitoring && local.settings.log_analytics.config.enable_sentinel
-    ServiceMap            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_ServiceMap
-    SQLAssessment         = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_SQLAssessment
-    Updates               = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_Updates
-    VMInsights            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_VMInsights
+    ServiceMap            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_service_map
+    SQLAssessment         = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_sql_assessment
+    Updates               = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_updates
+    VMInsights            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_vm_insights
   }
   deploy_security             = local.enabled && local.settings.security_center.enabled
   deploy_asc_for_acr          = local.deploy_security && local.settings.security_center.config.enable_asc_for_acr
@@ -118,7 +118,7 @@ locals {
 locals {
   log_analytics_solution_resource_id = {
     for resource in local.azurerm_log_analytics_solution :
-    resource.solution_name => "${local.resource_group_resource_id}/providers/Microsoft.OperationsManagement/solutions/${resource.solution_name}"
+    resource.solution_name => "${local.resource_group_resource_id}/providers/Microsoft.OperationsManagement/solutions/${resource.solution_name}(${local.azurerm_log_analytics_workspace.name})"
   }
   azurerm_log_analytics_solution = [
     for solution_name, solution_enabled in local.deploy_azure_monitor_solutions :
