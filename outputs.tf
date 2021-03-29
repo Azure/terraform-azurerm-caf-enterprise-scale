@@ -53,3 +53,48 @@ output "azurerm_role_assignment" {
   }
   description = "Returns the configuration data for all Role Assignments created by this module."
 }
+
+# The following output is used to ensure all Role
+# Assignment data is returned to the root module.
+output "azurerm_resource_group" {
+  value = {
+    enterprise_scale = azurerm_resource_group.enterprise_scale
+  }
+  description = "Returns the configuration data for all Resource Groups created by this module."
+}
+
+# The following output is used to ensure all Role
+# Assignment data is returned to the root module.
+output "azurerm_log_analytics_workspace" {
+  value = {
+    enterprise_scale = azurerm_log_analytics_workspace.enterprise_scale
+  }
+  description = "Returns the configuration data for all Log Analytics workspaces created by this module."
+}
+
+# The following output is used to ensure all Role
+# Assignment data is returned to the root module.
+output "azurerm_log_analytics_solution" {
+  value = {
+    enterprise_scale = azurerm_log_analytics_solution.enterprise_scale
+  }
+  description = "Returns the configuration data for all Log Analytics solutions created by this module."
+}
+
+# The following output is used to ensure all Role
+# Assignment data is returned to the root module.
+output "azurerm_automation_account" {
+  value = {
+    enterprise_scale = azurerm_automation_account.enterprise_scale
+  }
+  description = "Returns the configuration data for all Automation Accounts created by this module."
+}
+
+# The following output is used to ensure all Role
+# Assignment data is returned to the root module.
+output "azurerm_log_analytics_linked_service" {
+  value = {
+    enterprise_scale = azurerm_log_analytics_linked_service.enterprise_scale
+  }
+  description = "Returns the configuration data for all Log Analytics linked services created by this module."
+}
