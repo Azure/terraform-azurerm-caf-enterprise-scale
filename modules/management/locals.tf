@@ -15,6 +15,7 @@ locals {
   enabled                                      = var.enabled
   root_id                                      = var.root_id
   subscription_id                              = var.subscription_id
+  settings                                     = var.settings
   location                                     = var.location
   tags                                         = var.tags
   resource_prefix                              = coalesce(var.resource_prefix, var.root_id)
@@ -22,12 +23,7 @@ locals {
   existing_resource_group_name                 = var.existing_resource_group_name
   existing_log_analytics_workspace_resource_id = var.existing_log_analytics_workspace_resource_id
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
-  link_log_analytics_to_automation_account     = var.link_log_analytics_to_automation_account
   custom_settings_by_resource_type             = var.custom_settings_by_resource_type
-  settings = {
-    log_analytics   = var.settings_log_analytics
-    security_center = var.settings_security_center
-  }
 }
 
 # Extract individual custom settings blocks from
@@ -46,7 +42,7 @@ locals {
   deploy_monitoring                   = local.enabled && local.settings.log_analytics.enabled
   deploy_resource_group               = local.deploy_monitoring && local.existing_resource_group_name == local.empty_string
   deploy_log_analytics_workspace      = local.deploy_monitoring && local.existing_log_analytics_workspace_resource_id == local.empty_string
-  deploy_log_analytics_linked_service = local.deploy_monitoring && local.link_log_analytics_to_automation_account == local.empty_string
+  deploy_log_analytics_linked_service = local.deploy_monitoring && local.settings.log_analytics.config.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
     AgentHealthAssessment = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_AgentHealthAssessment
@@ -127,7 +123,7 @@ locals {
   azurerm_log_analytics_solution = [
     for solution_name, solution_enabled in local.deploy_azure_monitor_solutions :
     {
-      solution_name         = "${solution_name}(${local.resource_suffix})"
+      solution_name         = solution_name
       location              = try(local.custom_settings_la_solution.location, local.location)
       workspace_resource_id = local.log_analytics_workspace_resource_id
       workspace_name        = basename(local.log_analytics_workspace_resource_id)
@@ -172,6 +168,7 @@ locals {
     workspace_id    = try(local.custom_settings_la_linked_service.workspace_id, local.log_analytics_workspace_resource_id)
     read_access_id  = try(local.custom_settings_la_linked_service.read_access_id, local.automation_account_resource_id) # This should be used for linking to an Automation Account resource.
     write_access_id = null                                                                                              # DO NOT USE. This should be used for linking to a Log Analytics Cluster resource
+    tags            = try(local.custom_settings_la_linked_service.tags, local.tags)
     resource_group_name = coalesce(
       try(local.custom_settings_la_linked_service.resource_group_name, null),
       local.resource_group_name,

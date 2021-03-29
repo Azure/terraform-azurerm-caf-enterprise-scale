@@ -16,20 +16,7 @@ locals {
 locals {
   azurerm_resource_group_enterprise_scale = {
     for resource in local.es_resource_groups :
-    resource.resource_id => resource.template
+    resource.resource_id => resource
     if resource.managed_by_module
   }
-}
-
-# The following locals are used to build the map of Resource
-# Groups to get configuration.
-locals {
-  data_azurerm_resource_group_enterprise_scale = {
-    for resource in local.es_resource_groups :
-    resource.resource_id => resource.template
-  }
-}
-
-output "data_azurerm_resource_group_enterprise_scale" {
-  value = local.data_azurerm_resource_group_enterprise_scale
 }

@@ -41,44 +41,43 @@ variable "tags" {
   default     = {}
 }
 
-variable "settings_log_analytics" {
+variable "settings" {
   type = object({
-    enabled = bool
-    config = object({
-      retention_in_days                         = number
-      enable_arc_monitoring                     = bool
-      enable_vm_monitoring                      = bool
-      enable_vmss_monitoring                    = bool
-      enable_solution_for_AgentHealthAssessment = bool
-      enable_solution_for_AntiMalware           = bool
-      enable_solution_for_AzureActivity         = bool
-      enable_solution_for_ChangeTracking        = bool
-      enable_solution_for_ServiceMap            = bool
-      enable_solution_for_SQLAssessment         = bool
-      enable_solution_for_Updates               = bool
-      enable_solution_for_VMInsights            = bool
-      enable_sentinel                           = bool
+    log_analytics = object({
+      enabled = bool
+      config = object({
+        retention_in_days                         = number
+        link_log_analytics_to_automation_account  = bool
+        enable_arc_monitoring                     = bool
+        enable_vm_monitoring                      = bool
+        enable_vmss_monitoring                    = bool
+        enable_solution_for_AgentHealthAssessment = bool
+        enable_solution_for_AntiMalware           = bool
+        enable_solution_for_AzureActivity         = bool
+        enable_solution_for_ChangeTracking        = bool
+        enable_solution_for_ServiceMap            = bool
+        enable_solution_for_SQLAssessment         = bool
+        enable_solution_for_Updates               = bool
+        enable_solution_for_VMInsights            = bool
+        enable_sentinel                           = bool
+      })
+    })
+    security_center = object({
+      enabled = bool
+      config = object({
+        enable_asc_for_acr          = bool
+        enable_asc_for_app_services = bool
+        enable_asc_for_arm          = bool
+        enable_asc_for_dns          = bool
+        enable_asc_for_key_vault    = bool
+        enable_asc_for_kubernetes   = bool
+        enable_asc_for_servers      = bool
+        enable_asc_for_sql          = bool
+        enable_asc_for_storage      = bool
+      })
     })
   })
-  description = "Configuration settings for the Log Analytics workspace and Azure Monitor solutions."
-}
-
-variable "settings_security_center" {
-  type = object({
-    enabled = bool
-    config = object({
-      enable_asc_for_acr          = bool
-      enable_asc_for_app_services = bool
-      enable_asc_for_arm          = bool
-      enable_asc_for_dns          = bool
-      enable_asc_for_key_vault    = bool
-      enable_asc_for_kubernetes   = bool
-      enable_asc_for_servers      = bool
-      enable_asc_for_sql          = bool
-      enable_asc_for_storage      = bool
-    })
-  })
-  description = "Configuration settings for Azure Security Center."
+  description = "Configuration settings for the \"Management\" landing zone resources."
 }
 
 variable "resource_prefix" {
@@ -120,12 +119,6 @@ variable "existing_automation_account_resource_id" {
   type        = string
   description = "If specified, module will skip creation of Automation Account and use existing."
   default     = ""
-}
-
-variable "link_log_analytics_to_automation_account" {
-  type        = bool
-  description = "If specified, allows control over whether to create the \"azurerm_log_analytics_linked_service\" connection between the Log Analytics workspace and Automation Account."
-  default     = true
 }
 
 variable "custom_settings_by_resource_type" {

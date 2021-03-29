@@ -49,77 +49,87 @@ variable "deploy_demo_landing_zones" {
 }
 
 variable "deploy_management_resources" {
+  type        = bool
+  description = "If set to true, will deploy the \"Management\" landing zone resources into the current Subscription context."
+  default     = false
+}
+
+variable "configure_management_resources" {
   type = object({
-    enabled = bool
-    settings_log_analytics = object({
-      enabled = bool
-      config = object({
-        retention_in_days                         = number
-        enable_arc_monitoring                     = bool
-        enable_vm_monitoring                      = bool
-        enable_vmss_monitoring                    = bool
-        enable_solution_for_AgentHealthAssessment = bool
-        enable_solution_for_AntiMalware           = bool
-        enable_solution_for_AzureActivity         = bool
-        enable_solution_for_ChangeTracking        = bool
-        enable_solution_for_ServiceMap            = bool
-        enable_solution_for_SQLAssessment         = bool
-        enable_solution_for_Updates               = bool
-        enable_solution_for_VMInsights            = bool
-        enable_sentinel                           = bool
+    settings = object({
+      log_analytics = object({
+        enabled = bool
+        config = object({
+          retention_in_days                         = number
+          link_log_analytics_to_automation_account  = bool
+          enable_arc_monitoring                     = bool
+          enable_vm_monitoring                      = bool
+          enable_vmss_monitoring                    = bool
+          enable_solution_for_AgentHealthAssessment = bool
+          enable_solution_for_AntiMalware           = bool
+          enable_solution_for_AzureActivity         = bool
+          enable_solution_for_ChangeTracking        = bool
+          enable_solution_for_ServiceMap            = bool
+          enable_solution_for_SQLAssessment         = bool
+          enable_solution_for_Updates               = bool
+          enable_solution_for_VMInsights            = bool
+          enable_sentinel                           = bool
+        })
       })
-    })
-    settings_security_center = object({
-      enabled = bool
-      config = object({
-        enable_asc_for_acr          = bool
-        enable_asc_for_app_services = bool
-        enable_asc_for_arm          = bool
-        enable_asc_for_dns          = bool
-        enable_asc_for_key_vault    = bool
-        enable_asc_for_kubernetes   = bool
-        enable_asc_for_servers      = bool
-        enable_asc_for_sql          = bool
-        enable_asc_for_storage      = bool
+      security_center = object({
+        enabled = bool
+        config = object({
+          enable_asc_for_acr          = bool
+          enable_asc_for_app_services = bool
+          enable_asc_for_arm          = bool
+          enable_asc_for_dns          = bool
+          enable_asc_for_key_vault    = bool
+          enable_asc_for_kubernetes   = bool
+          enable_asc_for_servers      = bool
+          enable_asc_for_sql          = bool
+          enable_asc_for_storage      = bool
+        })
       })
     })
     location = any
     tags     = any
     advanced = any
   })
-  description = "If specified, will deploy the \"Management\" landing zone resources into the current Subscription context."
+  description = "If specified, will customize the \"Management\" landing zone resources."
   default = {
-    enabled = false
-    settings_log_analytics = {
-      enabled = true
-      config = {
-        retention_in_days                         = 30
-        enable_arc_monitoring                     = true
-        enable_vm_monitoring                      = true
-        enable_vmss_monitoring                    = true
-        enable_solution_for_AgentHealthAssessment = true
-        enable_solution_for_AntiMalware           = true
-        enable_solution_for_AzureActivity         = true
-        enable_solution_for_ChangeTracking        = true
-        enable_solution_for_ServiceMap            = true
-        enable_solution_for_SQLAssessment         = true
-        enable_solution_for_Updates               = true
-        enable_solution_for_VMInsights            = true
-        enable_sentinel                           = true
+    settings = {
+      log_analytics = {
+        enabled = true
+        config = {
+          retention_in_days                         = 30
+          link_log_analytics_to_automation_account  = true
+          enable_arc_monitoring                     = true
+          enable_vm_monitoring                      = true
+          enable_vmss_monitoring                    = true
+          enable_solution_for_AgentHealthAssessment = true
+          enable_solution_for_AntiMalware           = true
+          enable_solution_for_AzureActivity         = true
+          enable_solution_for_ChangeTracking        = true
+          enable_solution_for_ServiceMap            = true
+          enable_solution_for_SQLAssessment         = true
+          enable_solution_for_Updates               = true
+          enable_solution_for_VMInsights            = true
+          enable_sentinel                           = true
+        }
       }
-    }
-    settings_security_center = {
-      enabled = true
-      config = {
-        enable_asc_for_acr          = true
-        enable_asc_for_app_services = true
-        enable_asc_for_arm          = true
-        enable_asc_for_dns          = true
-        enable_asc_for_key_vault    = true
-        enable_asc_for_kubernetes   = true
-        enable_asc_for_servers      = true
-        enable_asc_for_sql          = true
-        enable_asc_for_storage      = true
+      security_center = {
+        enabled = true
+        config = {
+          enable_asc_for_acr          = true
+          enable_asc_for_app_services = true
+          enable_asc_for_arm          = true
+          enable_asc_for_dns          = true
+          enable_asc_for_key_vault    = true
+          enable_asc_for_kubernetes   = true
+          enable_asc_for_servers      = true
+          enable_asc_for_sql          = true
+          enable_asc_for_storage      = true
+        }
       }
     }
     location = null
