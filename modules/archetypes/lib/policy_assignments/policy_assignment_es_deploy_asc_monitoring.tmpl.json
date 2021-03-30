@@ -83,6 +83,6 @@
   },
   "location": "${default_location}",
   "identity": {
-    "type": "SystemAssigned"
+    "type": "None"
   }
 }
