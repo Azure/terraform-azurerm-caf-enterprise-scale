@@ -90,7 +90,7 @@ data "azurerm_policy_set_definition" "external_lookup" {
 locals {
   policy_definitions_ids_from_internal_policy_set_definitions = {
     for policy_set_definition in local.es_policy_set_definitions :
-    policy_set_definition.resource_id => try(policy_set_definition.template.policyDefinitions.*.policyDefinitionId, local.empty_list)
+    policy_set_definition.resource_id => try(policy_set_definition.template.properties.policyDefinitions.*.policyDefinitionId, local.empty_list)
   }
   policy_definitions_ids_from_external_policy_set_definitions = {
     for policy_set_definition_id, policy_set_definition_config in data.azurerm_policy_set_definition.external_lookup :
