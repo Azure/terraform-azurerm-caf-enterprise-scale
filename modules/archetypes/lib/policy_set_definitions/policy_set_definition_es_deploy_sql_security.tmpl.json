@@ -78,7 +78,7 @@
     "policyDefinitions": [
       {
         "policyDefinitionReferenceId": "SqlDbTdeDeploySqlSecurity",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-Tde",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-Tde",
         "parameters": {
           "effect": {
             "value": "[parameters('SqlDbTdeDeploySqlSecurityEffect')]"
@@ -88,7 +88,7 @@
       },
       {
         "policyDefinitionReferenceId": "SqlDbSecurityAlertPoliciesDeploySqlSecurity",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-SecurityAlertPolicies",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-SecurityAlertPolicies",
         "parameters": {
           "effect": {
             "value": "[parameters('SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect')]"
@@ -98,7 +98,7 @@
       },
       {
         "policyDefinitionReferenceId": "SqlDbAuditingSettingsDeploySqlSecurity",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-AuditingSettings",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-AuditingSettings",
         "parameters": {
           "effect": {
             "value": "[parameters('SqlDbAuditingSettingsDeploySqlSecurityEffect')]"
@@ -108,7 +108,7 @@
       },
       {
         "policyDefinitionReferenceId": "SqlDbVulnerabilityAssessmentsDeploySqlSecurity",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-vulnerabilityAssessments",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Sql-vulnerabilityAssessments",
         "parameters": {
           "effect": {
             "value": "[parameters('SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect')]"

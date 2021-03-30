@@ -515,7 +515,7 @@ class ArmTemplateResource : ESLTBase {
             foreach ($policyDefinition in $this.properties.policyDefinitions) {
                 $regexMatches = [ArmTemplateResource]::regexExtractProviderId.Matches($policyDefinition.policyDefinitionId)
                 if ($regexMatches.Index -gt 0) {
-                    $policyDefinition.policyDefinitionId = "`${current_scope_resource_id}$($regexMatches.Value)"
+                    $policyDefinition.policyDefinitionId = "`${root_scope_resource_id}$($regexMatches.Value)"
                 }
                 else {
                     $policyDefinition.policyDefinitionId = $regexMatches.Value

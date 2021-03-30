@@ -789,7 +789,7 @@
       },
       {
         "policyDefinitionReferenceId": "WVDAppGroupDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WVDAppGroup",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WVDAppGroup",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -805,7 +805,7 @@
       },
       {
         "policyDefinitionReferenceId": "WVDWorkspaceDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WVDWorkspace",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WVDWorkspace",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -821,7 +821,7 @@
       },
       {
         "policyDefinitionReferenceId": "WVDHostPoolsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WVDHostPools",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WVDHostPools",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -837,7 +837,7 @@
       },
       {
         "policyDefinitionReferenceId": "ACIDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ACI",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ACI",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -853,7 +853,7 @@
       },
       {
         "policyDefinitionReferenceId": "ACRDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ACR",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ACR",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -869,7 +869,7 @@
       },
       {
         "policyDefinitionReferenceId": "AKSDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AKS",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AKS",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -885,7 +885,7 @@
       },
       {
         "policyDefinitionReferenceId": "AnalysisServiceDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AnalysisService",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AnalysisService",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -901,7 +901,7 @@
       },
       {
         "policyDefinitionReferenceId": "APIforFHIRDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ApiForFHIR",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ApiForFHIR",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -917,7 +917,7 @@
       },
       {
         "policyDefinitionReferenceId": "APIMgmtDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-APIMgmt",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-APIMgmt",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -933,7 +933,7 @@
       },
       {
         "policyDefinitionReferenceId": "ApplicationGatewayDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ApplicationGateway",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ApplicationGateway",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -949,7 +949,7 @@
       },
       {
         "policyDefinitionReferenceId": "AutomationDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AA",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AA",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -965,7 +965,7 @@
       },
       {
         "policyDefinitionReferenceId": "BatchDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Batch",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Batch",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -981,7 +981,7 @@
       },
       {
         "policyDefinitionReferenceId": "CDNEndpointsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-CDNEndpoints",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-CDNEndpoints",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -997,7 +997,7 @@
       },
       {
         "policyDefinitionReferenceId": "CognitiveServicesDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-CognitiveServices",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-CognitiveServices",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1013,7 +1013,7 @@
       },
       {
         "policyDefinitionReferenceId": "CosmosDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-CosmosDB",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-CosmosDB",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1029,7 +1029,7 @@
       },
       {
         "policyDefinitionReferenceId": "DatabricksDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Databricks",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Databricks",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1045,7 +1045,7 @@
       },
       {
         "policyDefinitionReferenceId": "DataExplorerClusterDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataExplorerCluster",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataExplorerCluster",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1061,7 +1061,7 @@
       },
       {
         "policyDefinitionReferenceId": "DataFactoryDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataFactory",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataFactory",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1077,7 +1077,7 @@
       },
       {
         "policyDefinitionReferenceId": "DataLakeStoreDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataLakeStore",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DataLakeStore",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1093,7 +1093,7 @@
       },
       {
         "policyDefinitionReferenceId": "DataLakeAnalyticsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DLAnalytics",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-DLAnalytics",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1109,7 +1109,7 @@
       },
       {
         "policyDefinitionReferenceId": "EventGridSubDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventGridSub",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventGridSub",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1125,7 +1125,7 @@
       },
       {
         "policyDefinitionReferenceId": "EventGridTopicDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventGridTopic",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventGridTopic",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1141,7 +1141,7 @@
       },
       {
         "policyDefinitionReferenceId": "EventHubDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventHub",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventHub",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1157,7 +1157,7 @@
       },
       {
         "policyDefinitionReferenceId": "EventSystemTopicDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventGridSystemTopic",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-EventGridSystemTopic",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1173,7 +1173,7 @@
       },
       {
         "policyDefinitionReferenceId": "ExpressRouteDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ExpressRoute",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ExpressRoute",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1189,7 +1189,7 @@
       },
       {
         "policyDefinitionReferenceId": "FirewallDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Firewall",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Firewall",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1205,7 +1205,7 @@
       },
       {
         "policyDefinitionReferenceId": "FrontDoorDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-FrontDoor",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-FrontDoor",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1221,7 +1221,7 @@
       },
       {
         "policyDefinitionReferenceId": "FunctionAppDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Function",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Function",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1237,7 +1237,7 @@
       },
       {
         "policyDefinitionReferenceId": "HDInsightDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-HDInsight",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-HDInsight",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1253,7 +1253,7 @@
       },
       {
         "policyDefinitionReferenceId": "IotHubDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-iotHub",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-iotHub",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1269,7 +1269,7 @@
       },
       {
         "policyDefinitionReferenceId": "KeyVaultDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-KeyVault",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-KeyVault",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1285,7 +1285,7 @@
       },
       {
         "policyDefinitionReferenceId": "LoadBalancerDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LoadBalancer",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LoadBalancer",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1301,7 +1301,7 @@
       },
       {
         "policyDefinitionReferenceId": "LogicAppsISEDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LogicAppsISE",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LogicAppsISE",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1317,7 +1317,7 @@
       },
       {
         "policyDefinitionReferenceId": "LogicAppsWFDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LogicAppsWF",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LogicAppsWF",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1333,7 +1333,7 @@
       },
       {
         "policyDefinitionReferenceId": "MariaDBDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MariaDB",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MariaDB",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1349,7 +1349,7 @@
       },
       {
         "policyDefinitionReferenceId": "MediaServiceDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MediaService",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MediaService",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1365,7 +1365,7 @@
       },
       {
         "policyDefinitionReferenceId": "MlWorkspaceDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MlWorkspace",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MlWorkspace",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1381,7 +1381,7 @@
       },
       {
         "policyDefinitionReferenceId": "MySQLDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MySQL",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-MySQL",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1397,7 +1397,7 @@
       },
       {
         "policyDefinitionReferenceId": "NetworkSecurityGroupsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-NetworkSecurityGroups",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-NetworkSecurityGroups",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1413,7 +1413,7 @@
       },
       {
         "policyDefinitionReferenceId": "NetworkNICDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-NIC",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-NIC",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1429,7 +1429,7 @@
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PostgreSQL",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PostgreSQL",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1445,7 +1445,7 @@
       },
       {
         "policyDefinitionReferenceId": "PowerBIEmbeddedDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PowerBIEmbedded",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PowerBIEmbedded",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1461,7 +1461,7 @@
       },
       {
         "policyDefinitionReferenceId": "NetworkPublicIPNicDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PublicIP",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PublicIP",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1477,7 +1477,7 @@
       },
       {
         "policyDefinitionReferenceId": "RecoveryVaultDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-RecoveryVault",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-RecoveryVault",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1493,7 +1493,7 @@
       },
       {
         "policyDefinitionReferenceId": "RedisCacheDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-RedisCache",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-RedisCache",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1509,7 +1509,7 @@
       },
       {
         "policyDefinitionReferenceId": "RelayDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Relay",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Relay",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1525,7 +1525,7 @@
       },
       {
         "policyDefinitionReferenceId": "SearchServicesDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SearchServices",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SearchServices",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1541,7 +1541,7 @@
       },
       {
         "policyDefinitionReferenceId": "ServiceBusDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ServiceBus",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ServiceBus",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1557,7 +1557,7 @@
       },
       {
         "policyDefinitionReferenceId": "SignalRDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SignalR",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SignalR",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1573,7 +1573,7 @@
       },
       {
         "policyDefinitionReferenceId": "SQLDBsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SQLDBs",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SQLDBs",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1589,7 +1589,7 @@
       },
       {
         "policyDefinitionReferenceId": "SQLElasticPoolsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SQLElasticPools",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SQLElasticPools",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1605,7 +1605,7 @@
       },
       {
         "policyDefinitionReferenceId": "SQLMDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SQLMI",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-SQLMI",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1621,7 +1621,7 @@
       },
       {
         "policyDefinitionReferenceId": "StreamAnalyticsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-StreamAnalytics",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-StreamAnalytics",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1637,7 +1637,7 @@
       },
       {
         "policyDefinitionReferenceId": "TimeSeriesInsightsDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-TimeSeriesInsights",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-TimeSeriesInsights",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1653,7 +1653,7 @@
       },
       {
         "policyDefinitionReferenceId": "TrafficManagerDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-TrafficManager",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-TrafficManager",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1669,7 +1669,7 @@
       },
       {
         "policyDefinitionReferenceId": "VirtualNetworkDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VirtualNetwork",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VirtualNetwork",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1685,7 +1685,7 @@
       },
       {
         "policyDefinitionReferenceId": "VirtualMachinesDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VM",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VM",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1701,7 +1701,7 @@
       },
       {
         "policyDefinitionReferenceId": "VMSSDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VMSS",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VMSS",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1717,7 +1717,7 @@
       },
       {
         "policyDefinitionReferenceId": "VNetGWDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VNetGW",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-VNetGW",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1733,7 +1733,7 @@
       },
       {
         "policyDefinitionReferenceId": "AppServiceDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WebServerFarm",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-WebServerFarm",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1749,7 +1749,7 @@
       },
       {
         "policyDefinitionReferenceId": "AppServiceWebappDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${current_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Website",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Website",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
