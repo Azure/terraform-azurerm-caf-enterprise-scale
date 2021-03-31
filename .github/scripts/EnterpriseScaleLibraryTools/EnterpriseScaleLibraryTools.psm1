@@ -323,7 +323,7 @@ class PolicyAssignmentProperties : ESLTBase {
         $this.parameters = $that.parameters ?? $this.parameters
         $this.description = $that.description ?? $that.displayName
         $this.metadata = $that.metadata ?? $this.metadata
-        $this.enforcementMode = [PolicyAssignmentPropertiesEnforcementMode]($that.enforcementMode ?? $this.enforcementMode)
+        $this.enforcementMode = ([PolicyAssignmentPropertiesEnforcementMode]($that.enforcementMode ?? $this.enforcementMode)).ToString()
     }
 
 }
@@ -334,7 +334,7 @@ class PolicyAssignmentIdentity : ESLTBase {
     PolicyAssignmentIdentity(): base() {}
 
     PolicyAssignmentIdentity([Object]$that): base() {
-        $this.type = [PolicyAssignmentIdentityType]($that.type ?? $this.type)
+        $this.type = ([PolicyAssignmentIdentityType]($that.type ?? $this.type)).ToString()
     }
 
 }
@@ -351,8 +351,8 @@ class PolicyDefinitionProperties : ESLTBase {
     PolicyDefinitionProperties(): base() {}
 
     PolicyDefinitionProperties([Object]$that): base() {
-        $this.policyType = [PolicySetDefinitionPropertiesPolicyType]($that.policyType ?? $this.policyType)
-        $this.mode = [PolicyDefinitionPropertiesMode]($that.mode)
+        $this.policyType = ([PolicySetDefinitionPropertiesPolicyType]($that.policyType ?? $this.policyType)).ToString()
+        $this.mode = ([PolicyDefinitionPropertiesMode]($that.mode)).ToString()
         $this.displayName = $that.displayName
         $this.description = $that.description ?? $that.displayName
         $this.metadata = $that.metadata ?? $this.metadata
@@ -410,7 +410,7 @@ class PolicySetDefinitionProperties : ESLTBase {
     PolicySetDefinitionProperties(): base() {}
 
     PolicySetDefinitionProperties([Object]$that): base() {
-        $this.policyType = [PolicySetDefinitionPropertiesPolicyType]($that.policyType ?? $this.policyType)
+        $this.policyType = ([PolicySetDefinitionPropertiesPolicyType]($that.policyType ?? $this.policyType)).ToString()
         $this.displayName = $that.displayName ?? ""
         $this.description = $that.description ?? $that.displayName
         $this.metadata = $that.metadata ?? $this.metadata
@@ -507,7 +507,6 @@ class ArmTemplateResource : ESLTBase {
             $this.location = "`${default_location}"
         }
         if ($this.type -eq "Microsoft.Authorization/policyDefinitions") {
-            $this.properties.mode = "All"
             $this.properties.policyType = "Custom"
         }
         if ($this.type -eq "Microsoft.Authorization/policySetDefinitions") {
