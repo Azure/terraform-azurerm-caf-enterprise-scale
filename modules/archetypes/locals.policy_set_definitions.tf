@@ -79,7 +79,7 @@ locals {
     {
       resource_id = "${local.provider_path.policy_set_definition}${policy_set}"
       scope_id    = local.scope_id
-      template    = local.archetype_policy_set_definitions_map[policy_set]
+      template    = try(local.archetype_policy_set_definitions_map[policy_set], null)
     }
   ]
 }
