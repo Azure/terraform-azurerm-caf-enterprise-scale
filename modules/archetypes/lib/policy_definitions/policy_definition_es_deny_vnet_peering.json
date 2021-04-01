@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deny vNet peering ",
     "description": "This policy denies the creation of vNet Peerings under the assigned scope.",
     "metadata": {

@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Application Gateway should be deployed with WAF enabled",
     "description": "This policy enables you to restrict that Application Gateways is always deployed with WAF enabled",
     "metadata": {

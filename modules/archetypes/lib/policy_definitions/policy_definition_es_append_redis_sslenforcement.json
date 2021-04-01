@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Azure Cache for Redis Append a specific min TLS version requirement and enforce TLS.",
     "description": "Append a specific min TLS version requirement and enforce SSL on Azure Cache for Redis. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
     "metadata": {

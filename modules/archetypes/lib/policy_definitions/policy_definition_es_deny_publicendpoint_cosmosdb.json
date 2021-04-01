@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Public network access should be disabled for CosmosDB",
     "description": "This policy denies that  Cosmos database accounts  are created with out public network access is disabled.",
     "metadata": {

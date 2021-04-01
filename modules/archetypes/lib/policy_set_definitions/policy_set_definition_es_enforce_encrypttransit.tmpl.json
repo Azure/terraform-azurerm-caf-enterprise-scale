@@ -490,7 +490,7 @@
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLEnableSSLDeployEffect",
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-PostgreSQL-sslEnforcement",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-PostgreSql-sslEnforcement",
         "parameters": {
           "effect": {
             "value": "[parameters('PostgreSQLEnableSSLDeployEffect')]"
