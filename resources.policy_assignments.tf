@@ -18,7 +18,7 @@ resource "azurerm_policy_assignment" "enterprise_scale" {
   metadata         = try(length(each.value.template.properties.metadata) > 0, false) ? jsonencode(each.value.template.properties.metadata) : local.empty_string
   parameters       = try(length(each.value.template.properties.parameters) > 0, false) ? jsonencode(merge(each.value.template.properties.parameters, each.value.parameters)) : jsonencode(each.value.parameters)
   not_scopes       = try(length(each.value.template.properties.notScopes) > 0, false) ? each.value.template.properties.notScopes : local.empty_list
-  enforcement_mode = try(length(each.value.template.properties.enforcementMode) > 0, false) ? each.value.template.properties.enforcementMode : true
+  enforcement_mode = try(lower(each.value.template.properties.enforcementMode) == "default", true) ? true : false
 
   # Set explicit dependency on Management Group, Policy Definition and Policy Set Definition deployments
   depends_on = [
