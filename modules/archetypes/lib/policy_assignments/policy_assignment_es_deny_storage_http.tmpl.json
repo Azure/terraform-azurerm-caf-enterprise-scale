@@ -8,7 +8,8 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
-    "scope": "${current_scope_resource_id}"
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
   },
   "sku": {
     "name": "A0",

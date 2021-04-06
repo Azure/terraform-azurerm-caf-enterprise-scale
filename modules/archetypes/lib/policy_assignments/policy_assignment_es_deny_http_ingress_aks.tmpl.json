@@ -12,7 +12,8 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
-    "scope": "${current_scope_resource_id}"
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
   },
   "sku": {
     "name": "A0",

@@ -12,7 +12,8 @@
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-ActivityLog",
-    "scope": "${current_scope_resource_id}"
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
   },
   "sku": {
     "name": "A0",
