@@ -33,10 +33,6 @@
     "scope": "${current_scope_resource_id}",
     "enforcementMode": "Default"
   },
-  "sku": {
-    "name": "A0",
-    "tier": "Free"
-  },
   "location": "${default_location}",
   "identity": {
     "type": "SystemAssigned"
