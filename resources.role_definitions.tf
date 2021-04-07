@@ -10,14 +10,14 @@ resource "azurerm_role_definition" "enterprise_scale" {
   scope = each.value.scope_id
 
   permissions {
-    actions          = try(length(each.value.template.properties.permissions[0].actions) > 0, false) ? each.value.template.properties.permissions[0].actions : local.empty_list
-    not_actions      = try(length(each.value.template.properties.permissions[0].notActions) > 0, false) ? each.value.template.properties.permissions[0].notActions : local.empty_list
-    data_actions     = try(length(each.value.template.properties.permissions[0].dataActions) > 0, false) ? each.value.template.properties.permissions[0].dataActions : local.empty_list
-    not_data_actions = try(length(each.value.template.properties.permissions[0].notDataActions) > 0, false) ? each.value.template.properties.permissions[0].notDataActions : local.empty_list
+    actions          = try(each.value.template.properties.permissions[0].actions, local.empty_list)
+    not_actions      = try(each.value.template.properties.permissions[0].notActions, local.empty_list)
+    data_actions     = try(each.value.template.properties.permissions[0].dataActions, local.empty_list)
+    not_data_actions = try(each.value.template.properties.permissions[0].notDataActions, local.empty_list)
   }
 
   # Optional resource attributes
-  description       = try(length(each.value.template.properties.description) > 0, false) ? each.value.template.properties.description : "${each.value.template.properties.roleName} Role Definition at scope ${each.value.scope_id}"
+  description       = try(each.value.template.properties.description, "${each.value.template.properties.roleName} Role Definition at scope ${each.value.scope_id}")
   assignable_scopes = try(length(each.value.template.properties.assignableScopes) > 0, false) ? each.value.template.properties.assignableScopes : [each.value.scope_id, ]
 
   # Set explicit dependency on Management Group deployments
