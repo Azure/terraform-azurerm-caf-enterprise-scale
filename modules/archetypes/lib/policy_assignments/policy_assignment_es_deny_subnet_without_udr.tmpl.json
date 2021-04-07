@@ -8,11 +8,8 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Udr",
-    "scope": "${current_scope_resource_id}"
-  },
-  "sku": {
-    "name": "A0",
-    "tier": "Free"
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
   },
   "location": "${default_location}",
   "identity": {
