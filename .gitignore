@@ -36,3 +36,6 @@ override.tf.json
 
 # Ignore macOS .DS_Store files which are generated automatically by Finder.
 .DS_Store
+
+# Ignore Visual Studio Code config
+**/.vscode/*

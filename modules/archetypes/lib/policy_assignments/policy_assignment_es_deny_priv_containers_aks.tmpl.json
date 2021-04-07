@@ -12,11 +12,8 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/95edb821-ddaf-4404-9732-666045e056b4",
-    "scope": "${current_scope_resource_id}"
-  },
-  "sku": {
-    "name": "A0",
-    "tier": "Free"
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
   },
   "location": "${default_location}",
   "identity": {

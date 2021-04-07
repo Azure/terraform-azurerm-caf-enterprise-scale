@@ -12,23 +12,22 @@ resource "azurerm_policy_set_definition" "enterprise_scale" {
       for item in each.value.template.properties.policyDefinitions :
       {
         policyDefinitionId          = item.policyDefinitionId
-        parameters                  = item.parameters
-        policyDefinitionReferenceId = item.policyDefinitionReferenceId
+        parameters                  = try(jsonencode(item.parameters), null)
+        policyDefinitionReferenceId = try(item.policyDefinitionReferenceId, null)
       }
-      if try(length(each.value.template.properties.policyDefinitions) > 0, false)
     ]
     content {
       policy_definition_id = policy_definition_reference.value["policyDefinitionId"]
-      parameter_values     = try(length(policy_definition_reference.value["parameters"]) > 0, false) ? jsonencode(policy_definition_reference.value["parameters"]) : null
-      reference_id         = try(length(policy_definition_reference.value["policyDefinitionReferenceId"]) > 0, false) ? policy_definition_reference.value["policyDefinitionReferenceId"] : policy_definition_reference.value["policyDefinitionId"]
+      parameter_values     = policy_definition_reference.value["parameters"]
+      reference_id         = policy_definition_reference.value["policyDefinitionReferenceId"]
     }
   }
 
   # Optional resource attributes
-  description           = try(length(each.value.template.properties.description) > 0, false) ? each.value.template.properties.description : "${each.value.template.properties.displayName} Policy Set Definition at scope ${each.value.scope_id}"
-  management_group_name = try(length(each.value.scope_id) > 0, false) ? basename(each.value.scope_id) : null
-  metadata              = try(length(each.value.template.properties.metadata) > 0, false) ? jsonencode(each.value.template.properties.metadata) : local.empty_string
-  parameters            = try(length(each.value.template.properties.parameters) > 0, false) ? jsonencode(each.value.template.properties.parameters) : local.empty_string
+  description           = try(each.value.template.properties.description, "${each.value.template.properties.displayName} Policy Set Definition at scope ${each.value.scope_id}")
+  management_group_name = try(basename(each.value.scope_id), null)
+  metadata              = try(length(each.value.template.properties.metadata) > 0, false) ? jsonencode(each.value.template.properties.metadata) : null
+  parameters            = try(length(each.value.template.properties.parameters) > 0, false) ? jsonencode(each.value.template.properties.parameters) : null
 
   # Set explicit dependency on Management Group and Policy Definition deployments
   depends_on = [

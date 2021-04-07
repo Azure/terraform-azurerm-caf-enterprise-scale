@@ -21,7 +21,8 @@
             }
         },
         "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
-        "scope": "${current_scope_resource_id}"
+        "scope": "${current_scope_resource_id}",
+        "enforcementMode": "Default"
     },
     "location": "${default_location}",
     "identity": {

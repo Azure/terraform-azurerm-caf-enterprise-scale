@@ -56,13 +56,17 @@ locals {
   # Policy Definitions
   policy_assignments_with_managed_identity_using_external_policy_definition = {
     for policy_assignment_id, policy_definition_id in local.policy_assignments_with_managed_identity :
-    policy_assignment_id => policy_definition_id
+    policy_assignment_id => [
+      policy_definition_id,
+    ]
     if length(regexall(local.resource_types.policy_definition, policy_definition_id)) > 0 && contains(local.internal_policy_definition_ids, policy_definition_id) != true
   }
   # Policy Set Definitions
   policy_assignments_with_managed_identity_using_external_policy_set_definition = {
     for policy_assignment_id, policy_set_definition_id in local.policy_assignments_with_managed_identity :
-    policy_assignment_id => policy_set_definition_id
+    policy_assignment_id => [
+      policy_set_definition_id,
+    ]
     if length(regexall(local.resource_types.policy_set_definition, policy_set_definition_id)) > 0 && contains(local.internal_policy_set_definition_ids, policy_set_definition_id) != true
   }
 }
@@ -70,7 +74,7 @@ locals {
 # Generate list of Policy Set Definitions to lookup from Azure.
 locals {
   azurerm_policy_set_definition_external_lookup = {
-    for policy_set_definition_id in local.policy_assignments_with_managed_identity_using_external_policy_set_definition :
+    for policy_set_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_set_definition)) :
     policy_set_definition_id => {
       name                  = basename(policy_set_definition_id)
       management_group_name = try(regex(local.regex_extract_provider_scope, policy_set_definition_id), null)
@@ -88,46 +92,49 @@ data "azurerm_policy_set_definition" "external_lookup" {
 
 # Create a list of Policy Definitions IDs used by all assigned Policy Set Definitions
 locals {
-  policy_definitions_ids_from_internal_policy_set_definitions = {
+  policy_definition_ids_from_internal_policy_set_definitions = {
     for policy_set_definition in local.es_policy_set_definitions :
-    policy_set_definition.resource_id => try(policy_set_definition.template.policyDefinitions.*.policyDefinitionId, local.empty_list)
-  }
-  policy_definitions_ids_from_external_policy_set_definitions = {
-    for policy_set_definition_id, policy_set_definition_config in data.azurerm_policy_set_definition.external_lookup :
-    policy_set_definition_id => [
-      for policy_definition_reference in policy_set_definition_config.policy_definition_reference :
-      policy_definition_reference.policy_definition_id
+    policy_set_definition.resource_id => [
+      for policy_definition in policy_set_definition.template.properties.policyDefinitions :
+      policy_definition.policyDefinitionId
     ]
   }
-  policy_definitions_ids_from_policy_set_definitions = merge(
-    local.policy_definitions_ids_from_internal_policy_set_definitions,
-    local.policy_definitions_ids_from_external_policy_set_definitions,
+  policy_definition_ids_from_external_policy_set_definitions = {
+    for policy_set_definition_id, policy_set_definition_config in data.azurerm_policy_set_definition.external_lookup :
+    policy_set_definition_id => [
+      for policy_definition in policy_set_definition_config.policy_definition_reference :
+      policy_definition.policy_definition_id
+    ]
+  }
+  policy_definition_ids_from_policy_set_definitions = merge(
+    local.policy_definition_ids_from_internal_policy_set_definitions,
+    local.policy_definition_ids_from_external_policy_set_definitions,
   )
 }
 
 # Identify all Policy Definitions which are external to this module
 locals {
   # From Policy Assignments using Policy Set Definitions
-  external_policy_definitions_ids_from_policy_set_definitions = distinct(flatten([
-    for policy_definitions in values(local.policy_definitions_ids_from_policy_set_definitions) : [
-      for policy_definition in policy_definitions :
-      policy_definition
-      if contains(local.internal_policy_definition_ids, policy_definition) != true
+  external_policy_definition_ids_from_policy_set_definitions = distinct(flatten([
+    for policy_definition_ids in values(local.policy_definition_ids_from_policy_set_definitions) : [
+      for policy_definition_id in policy_definition_ids :
+      policy_definition_id
+      if contains(local.internal_policy_definition_ids, policy_definition_id) != true
     ]
   ]))
   external_policy_definitions_from_azurerm_policy_set_definition_external_lookup = {
-    for policy_set_definition_id in local.external_policy_definitions_ids_from_policy_set_definitions :
-    policy_set_definition_id => {
-      name                  = basename(policy_set_definition_id)
-      management_group_name = try(regex(local.regex_extract_provider_scope, policy_set_definition_id), null)
+    for policy_definition_id in local.external_policy_definition_ids_from_policy_set_definitions :
+    policy_definition_id => {
+      name                  = basename(policy_definition_id)
+      management_group_name = try(regex(local.regex_extract_provider_scope, policy_definition_id), null)
     }
   }
   # From Policy Assignments using Policy Definitions
   external_policy_definitions_from_internal_policy_assignments = {
-    for policy_set_definition_id in local.policy_assignments_with_managed_identity_using_external_policy_definition :
-    policy_set_definition_id => {
-      name                  = basename(policy_set_definition_id)
-      management_group_name = try(regex(local.regex_extract_provider_scope, policy_set_definition_id), null)
+    for policy_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_definition)) :
+    policy_definition_id => {
+      name                  = basename(policy_definition_id)
+      management_group_name = try(regex(local.regex_extract_provider_scope, policy_definition_id), null)
     }
   }
   # Then create a single list containing all Policy Definitions to lookup from Azure
@@ -181,7 +188,7 @@ locals {
 # of roles for each.
 locals {
   policy_set_definition_roles = {
-    for policy_set_definition_id, policy_definition_ids in local.policy_definitions_ids_from_policy_set_definitions :
+    for policy_set_definition_id, policy_definition_ids in local.policy_definition_ids_from_policy_set_definitions :
     policy_set_definition_id => distinct(flatten([
       for policy_definition_id in policy_definition_ids :
       local.policy_definition_roles[policy_definition_id]
