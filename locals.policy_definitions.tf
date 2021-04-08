@@ -3,7 +3,7 @@
 locals {
   es_policy_definitions_by_management_group = flatten([
     for archetype in values(module.management_group_archetypes) :
-    archetype.configuration.policy_definitions
+    archetype.configuration.azurerm_policy_definition
   ])
   es_policy_definitions_by_subscription = []
   es_policy_definitions = concat(

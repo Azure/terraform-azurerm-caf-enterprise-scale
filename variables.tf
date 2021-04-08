@@ -139,7 +139,13 @@ variable "configure_management_resources" {
 }
 
 variable "archetype_config_overrides" {
-  type        = map(any)
+  type = map(
+    object({
+      archetype_id   = string
+      parameters     = any
+      access_control = any
+    })
+  )
   description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups."
   default     = {}
 }

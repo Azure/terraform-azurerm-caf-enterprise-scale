@@ -12,6 +12,7 @@ module "management_group_archetypes" {
   scope_id                = each.key
   archetype_id            = each.value.archetype_config.archetype_id
   parameters              = each.value.archetype_config.parameters
+  enforcement_mode        = try(module.management_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null)
   access_control          = each.value.archetype_config.access_control
   library_path            = local.library_path
   template_file_variables = local.template_file_variables

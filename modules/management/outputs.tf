@@ -1,4 +1,4 @@
 output "configuration" {
-  value       = local.resources_output
-  description = "Returns the resources to deploy for the management solution."
+  value       = local.module_output
+  description = "Returns the resources to deploy for the management solution and additional configuration settings."
 }

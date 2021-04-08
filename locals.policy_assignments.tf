@@ -3,7 +3,7 @@
 locals {
   es_policy_assignments_by_management_group = flatten([
     for archetype in values(module.management_group_archetypes) :
-    archetype.configuration.policy_assignments
+    archetype.configuration.azurerm_policy_assignment
   ])
   es_policy_assignments_by_subscription = []
   es_policy_assignments = concat(

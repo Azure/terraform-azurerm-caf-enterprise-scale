@@ -40,6 +40,9 @@ locals {
 # should be created by this module
 locals {
   deploy_monitoring                   = local.enabled && local.settings.log_analytics.enabled
+  deploy_arc_monitoring               = local.deploy_monitoring && local.settings.log_analytics.config.enable_arc_monitoring
+  deploy_vm_monitoring                = local.deploy_monitoring && local.settings.log_analytics.config.enable_vm_monitoring
+  deploy_vmss_monitoring              = local.deploy_monitoring && local.settings.log_analytics.config.enable_vmss_monitoring
   deploy_resource_group               = local.deploy_monitoring && local.existing_resource_group_name == local.empty_string
   deploy_log_analytics_workspace      = local.deploy_monitoring && local.existing_log_analytics_workspace_resource_id == local.empty_string
   deploy_log_analytics_linked_service = local.deploy_monitoring && local.settings.log_analytics.config.link_log_analytics_to_automation_account
@@ -57,20 +60,16 @@ locals {
     VMInsights            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_vm_insights
   }
   deploy_security             = local.enabled && local.settings.security_center.enabled
-  deploy_asc_for_acr          = local.deploy_security && local.settings.security_center.config.enable_asc_for_acr
-  deploy_asc_for_app_services = local.deploy_security && local.settings.security_center.config.enable_asc_for_app_services
-  deploy_asc_for_arm          = local.deploy_security && local.settings.security_center.config.enable_asc_for_arm
-  deploy_asc_for_dns          = local.deploy_security && local.settings.security_center.config.enable_asc_for_dns
-  deploy_asc_for_key_vault    = local.deploy_security && local.settings.security_center.config.enable_asc_for_key_vault
-  deploy_asc_for_kubernetes   = local.deploy_security && local.settings.security_center.config.enable_asc_for_kubernetes
-  deploy_asc_for_servers      = local.deploy_security && local.settings.security_center.config.enable_asc_for_servers
-  deploy_asc_for_sql          = local.deploy_security && local.settings.security_center.config.enable_asc_for_sql
-  deploy_asc_for_storage      = local.deploy_security && local.settings.security_center.config.enable_asc_for_storage
+  deploy_asc_for_acr          = local.settings.security_center.config.enable_asc_for_acr
+  deploy_asc_for_app_services = local.settings.security_center.config.enable_asc_for_app_services
+  deploy_asc_for_arm          = local.settings.security_center.config.enable_asc_for_arm
+  deploy_asc_for_dns          = local.settings.security_center.config.enable_asc_for_dns
+  deploy_asc_for_key_vault    = local.settings.security_center.config.enable_asc_for_key_vault
+  deploy_asc_for_kubernetes   = local.settings.security_center.config.enable_asc_for_kubernetes
+  deploy_asc_for_servers      = local.settings.security_center.config.enable_asc_for_servers
+  deploy_asc_for_sql          = local.settings.security_center.config.enable_asc_for_sql
+  deploy_asc_for_storage      = local.settings.security_center.config.enable_asc_for_storage
 }
-
-# Configuration settings for resource type:
-#  - Azure Security Center Standard
-
 
 # Configuration settings for resource type:
 #  - azurerm_resource_group
@@ -176,9 +175,67 @@ locals {
   }
 }
 
+# Archetype configuration overrides
+locals {
+  archetype_config_overrides = {
+    (local.root_id) = {
+      parameters = {
+        Deploy-ASC-Defender = {
+          pricingTierContainerRegistry = local.deploy_asc_for_acr ? "Standard" : "Free"
+          pricingTierAppServices       = local.deploy_asc_for_app_services ? "Standard" : "Free"
+          pricingTierArm               = local.deploy_asc_for_arm ? "Standard" : "Free"
+          pricingTierDns               = local.deploy_asc_for_dns ? "Standard" : "Free"
+          pricingTierKeyVaults         = local.deploy_asc_for_key_vault ? "Standard" : "Free"
+          pricingTierKubernetesService = local.deploy_asc_for_kubernetes ? "Standard" : "Free"
+          pricingTierVMs               = local.deploy_asc_for_servers ? "Standard" : "Free"
+          pricingTierSqlServers        = local.deploy_asc_for_sql ? "Standard" : "Free"
+          pricingTierStorageAccounts   = local.deploy_asc_for_storage ? "Standard" : "Free"
+        }
+        Deploy-LX-Arc-Monitoring = {
+          logAnalytics = local.log_analytics_workspace_resource_id
+
+        }
+        Deploy-VM-Monitoring = {
+          logAnalytics_1 = local.log_analytics_workspace_resource_id
+
+        }
+        Deploy-VMSS-Monitoring = {
+          logAnalytics_1 = local.log_analytics_workspace_resource_id
+        }
+        Deploy-WS-Arc-Monitoring = {
+          logAnalytics = local.log_analytics_workspace_resource_id
+        }
+      }
+      enforcement_mode = {
+        Deploy-ASC-Defender      = local.deploy_security
+        Deploy-LX-Arc-Monitoring = local.deploy_arc_monitoring
+        Deploy-VM-Monitoring     = local.deploy_vm_monitoring
+        Deploy-VMSS-Monitoring   = local.deploy_vmss_monitoring
+        Deploy-WS-Arc-Monitoring = local.deploy_arc_monitoring
+      }
+    }
+    "${local.root_id}-management" = {
+      parameters = {
+        Deploy-Log-Analytics = {
+          automationAccountName = local.azurerm_automation_account.name
+          automationRegion      = local.azurerm_automation_account.location
+          retentionInDays       = jsonencode(tostring(local.settings.log_analytics.config.retention_in_days)) # Need to ensure this gets handled as a string
+          rgName                = local.azurerm_resource_group.name
+          workspaceName         = local.azurerm_log_analytics_workspace.name
+          workspaceRegion       = local.azurerm_log_analytics_workspace.location
+        }
+      }
+      enforcement_mode = {
+        Deploy-Log-Analytics = local.deploy_monitoring
+      }
+    }
+  }
+}
+
+
 # Generate the configuration output object for the management module
 locals {
-  resources_output = {
+  module_output = {
     azurerm_resource_group = [
       {
         resource_id   = local.resource_group_resource_id
@@ -236,5 +293,6 @@ locals {
         managed_by_module = local.deploy_log_analytics_linked_service
       },
     ]
+    archetype_config_overrides = local.archetype_config_overrides
   }
 }

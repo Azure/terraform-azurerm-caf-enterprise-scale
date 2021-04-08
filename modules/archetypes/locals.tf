@@ -13,6 +13,7 @@ locals {
   scope_id                = var.scope_id
   archetype_id            = var.archetype_id
   parameters              = var.parameters
+  enforcement_mode        = var.enforcement_mode
   access_control          = var.access_control
   library_path            = var.library_path
   template_file_variables = var.template_file_variables
@@ -68,4 +69,22 @@ locals {
     local.template_file_variables,
     local.builtin_template_file_variables,
   )
+}
+
+# Generate the configuration output object for the specified archetype
+# depends_on_files = [
+#   locals.policy_assignments.tf
+#   locals.policy_definitions.tf
+#   locals.policy_set_definitions.tf
+#   locals.role_assignments.tf
+#   locals.role_definitions.tf
+# ]
+locals {
+  module_output = {
+    azurerm_policy_assignment     = local.archetype_policy_assignments_output
+    azurerm_policy_definition     = local.archetype_policy_definitions_output
+    azurerm_policy_set_definition = local.archetype_policy_set_definitions_output
+    azurerm_role_assignment       = local.archetype_role_assignments_output
+    azurerm_role_definition       = local.archetype_role_definitions_output
+  }
 }

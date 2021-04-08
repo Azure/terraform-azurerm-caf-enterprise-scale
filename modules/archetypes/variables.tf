@@ -30,8 +30,14 @@ variable "archetype_id" {
 }
 
 variable "parameters" {
-  type        = map(any) # Can we replace this with "any" to avoid "jsondecode()"?
-  description = "If specified, will use the specified parameters to override archetype defaults."
+  type        = any
+  description = "If specified, will use the specified parameters to override defaults for Policy Assignments."
+  default     = {}
+}
+
+variable "enforcement_mode" {
+  type        = map(string)
+  description = "If specified, will use the specified enforcement_mode values to override defaults for Policy Assignments."
   default     = {}
 }
 
