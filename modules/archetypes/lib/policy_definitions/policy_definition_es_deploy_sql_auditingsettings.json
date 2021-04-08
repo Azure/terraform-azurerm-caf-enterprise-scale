@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deploy SQL database auditing settings",
     "description": "Deploy auditing settings to SQL Database when it not exist in the deployment",
     "metadata": {

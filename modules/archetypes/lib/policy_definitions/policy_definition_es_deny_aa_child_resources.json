@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "No child resources in Automation Account",
     "description": "This policy denies the creation of child resources on the Automation Account",
     "metadata": {
