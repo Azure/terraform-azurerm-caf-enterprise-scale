@@ -14,12 +14,12 @@ locals {
 locals {
   enabled                                      = var.enabled
   root_id                                      = var.root_id
-  subscription_id                              = var.subscription_id
+  subscription_id                              = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
   settings                                     = var.settings
   location                                     = var.location
   tags                                         = var.tags
-  resource_prefix                              = coalesce(var.resource_prefix, var.root_id)
-  resource_suffix                              = try(coalesce(var.resource_suffix, var.subscription_id), local.empty_string)
+  resource_prefix                              = coalesce(var.resource_prefix, local.root_id)
+  resource_suffix                              = coalesce(var.resource_suffix, local.subscription_id)
   existing_resource_group_name                 = var.existing_resource_group_name
   existing_log_analytics_workspace_resource_id = var.existing_log_analytics_workspace_resource_id
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
