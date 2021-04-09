@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deploy Diagnostic Settings for Azure Data Lake Store to Log Analytics workspace",
     "description": "Deploys the diagnostic settings for Azure Data Lake Store to stream to a Log Analytics workspace when anyAzure Data Lake Store which is missing this diagnostic settings is created or updated. The policy wil  set the diagnostic with all metrics and category enabled",
     "metadata": {

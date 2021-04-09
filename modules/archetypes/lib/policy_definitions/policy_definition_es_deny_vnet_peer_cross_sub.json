@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deny vNet peering cross subscription.",
     "description": "This policy denies the creation of vNet Peerings outside of the same subscriptions under the assigned scope.",
     "metadata": {

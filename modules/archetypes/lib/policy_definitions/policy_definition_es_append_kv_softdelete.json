@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "KeyVault SoftDelete should be enabled",
     "description": "This policy enables you to ensure when a Key Vault is created with out soft delete enabled it will be added.",
     "metadata": {
