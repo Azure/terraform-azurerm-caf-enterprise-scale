@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deploy DNS  Zone Group for SQL Private Endpoint",
     "description": "Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. ",
     "metadata": {

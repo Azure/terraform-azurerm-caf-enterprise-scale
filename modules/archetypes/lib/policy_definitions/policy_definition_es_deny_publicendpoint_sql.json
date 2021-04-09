@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Public network access on Azure SQL Database should be disabled",
     "description": "This policy denies creation of Sql servers with exposed public endpoints",
     "metadata": {

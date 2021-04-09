@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Public network access should be disabled for PostgreSql",
     "description": "This policy denies creation of Postgre SQL DB accounts with exposed public endpoints",
     "metadata": {

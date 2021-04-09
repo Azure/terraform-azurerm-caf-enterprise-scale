@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Public network access on AKS API should be disabled",
     "description": "This policy denies  the creation of  Azure Kubernetes Service non-private clusters",
     "metadata": {

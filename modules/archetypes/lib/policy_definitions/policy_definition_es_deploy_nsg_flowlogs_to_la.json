@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deploys NSG flow logs and traffic analytics to Log Analytics",
     "description": "Deploys NSG flow logs and traffic analytics to Log Analytics with a specfied retention period.",
     "metadata": {

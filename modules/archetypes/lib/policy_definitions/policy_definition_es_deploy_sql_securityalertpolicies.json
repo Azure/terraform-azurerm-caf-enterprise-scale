@@ -5,7 +5,7 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "All",
+    "mode": "Indexed",
     "displayName": "Deploy SQL Database security Alert Policies configuration with email admin accounts",
     "description": "Deploy the security Alert Policies configuration with email admin accounts when it not exist in current configuration",
     "metadata": {
