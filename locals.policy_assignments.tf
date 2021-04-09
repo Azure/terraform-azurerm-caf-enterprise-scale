@@ -222,7 +222,6 @@ locals {
           principal_id                     = try(azurerm_policy_assignment.enterprise_scale[policy_assignment_id].identity[0].principal_id, null)
           role_definition_name             = null
           role_definition_id               = role_definition_id
-          skip_service_principal_aad_check = true
         }
       ]
     ]
