@@ -136,7 +136,7 @@ locals {
         local.resource_group_name,
       )
     }
-    if(solution_name != "disable_all") && (solution_enabled == true) && !(try(local.deploy_azure_monitor_solutions.disable_all, false))
+    if solution_enabled
   ]
 }
 
