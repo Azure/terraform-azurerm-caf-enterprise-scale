@@ -7,15 +7,15 @@ resource "azurerm_log_analytics_workspace" "enterprise_scale" {
   resource_group_name = each.value.template.resource_group_name
 
   # Optional resource attributes
-  sku                        = each.value.template.sku
-  retention_in_days          = each.value.template.retention_in_days
-  daily_quota_gb             = each.value.template.daily_quota_gb
-  internet_ingestion_enabled = each.value.template.internet_ingestion_enabled
-  tags                       = each.value.template.tags
+  sku               = each.value.template.sku
+  retention_in_days = each.value.template.retention_in_days
+  daily_quota_gb    = each.value.template.daily_quota_gb
+  tags              = each.value.template.tags
 
   # Optional resource attributes (removed for backward
   # compatibility with older azurerm provider versions,
   # as not currently used by Enterprise-scale)
+  # internet_ingestion_enabled        = each.value.template.internet_ingestion_enabled
   # internet_query_enabled            = each.value.template.internet_query_enabled
   # reservation_capcity_in_gb_per_day = each.value.template.reservation_capcity_in_gb_per_day
 
