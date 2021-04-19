@@ -1461,7 +1461,7 @@
       },
       {
         "policyDefinitionReferenceId": "NetworkPublicIPNicDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-PublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/752154a7-1e0f-45c6-a880-ac75a7e4f648",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
@@ -1471,6 +1471,9 @@
           },
           "profileName": {
             "value": "[parameters('profileName')]"
+          },
+          "metricsEnabled": {
+            "value": "True"
           }
         },
         "groupNames": []
