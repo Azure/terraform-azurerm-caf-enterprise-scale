@@ -137,3 +137,9 @@ variable "destroy_duration_delay" {
     error_message = "The destroy_duration_delay values must be a string containing the duration in numbers (1-6 digits) followed by the measure of time represented by s (seconds), m (minutes), or h (hours)."
   }
 }
+
+variable "custom_policy_roles" {
+  type        = map(list(string))
+  description = "The custom_policy_roles will assign specific role definition id(s) to the specified policy assignments"
+  default     = {}
+}

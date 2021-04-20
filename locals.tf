@@ -20,6 +20,7 @@ locals {
   library_path               = var.library_path
   template_file_variables    = var.template_file_variables
   default_location           = var.default_location
+  custom_policy_roles        = var.custom_policy_roles
 }
 
 # The following locals are used to define base Azure
