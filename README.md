@@ -59,7 +59,7 @@ The exact number of resources created depends on the module configuration, but y
 ## Terraform versions
 
 This module has been tested using Terraform `0.13.2` onwards.
-It is also tested against the AzureRM Provider `2.34.0` onwards. In some cases, individual versions of the AzureRM provider may cause errors.
+It is also tested against the AzureRM Provider `2.41.0` onwards. In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
 This module has some known issues with the pre-release Terraform `0.15.x` versions which we plan to resolve in a future release.
