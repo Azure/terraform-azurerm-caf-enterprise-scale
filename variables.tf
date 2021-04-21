@@ -140,6 +140,6 @@ variable "destroy_duration_delay" {
 
 variable "custom_policy_roles" {
   type        = map(list(string))
-  description = "The custom_policy_roles will assign specific role definition id(s) to the specified policy assignments"
+  description = "If specified, the custom_policy_roles variable overrides which Role Definition ID(s) (value) to assign for Policy Assignments with a Managed Identity, if the assigned \"policyDefinitionId\" (key) is included in this variable."
   default     = {}
 }

@@ -59,8 +59,8 @@ locals {
     policy_assignment_id => [
       policy_definition_id,
     ]
-    if length(regexall(local.resource_types.policy_definition, policy_definition_id)) > 0 &&
-    contains(local.internal_policy_definition_ids, policy_definition_id) != true &&
+    if length(regexall(local.resource_types.policy_definition, policy_definition_id)) > 0
+    && contains(local.internal_policy_definition_ids, policy_definition_id) != true &&
     contains(keys(local.custom_policy_roles), policy_definition_id) != true
   }
   # Policy Set Definitions
