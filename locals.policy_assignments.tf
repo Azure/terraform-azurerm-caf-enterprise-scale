@@ -60,8 +60,8 @@ locals {
       policy_definition_id,
     ]
     if length(regexall(local.resource_types.policy_definition, policy_definition_id)) > 0
-    && contains(local.internal_policy_definition_ids, policy_definition_id) != true &&
-    contains(keys(local.custom_policy_roles), policy_definition_id) != true
+    && contains(local.internal_policy_definition_ids, policy_definition_id) != true
+    && contains(keys(local.custom_policy_roles), policy_definition_id) != true
   }
   # Policy Set Definitions
   policy_assignments_with_managed_identity_using_external_policy_set_definition = {
@@ -70,8 +70,8 @@ locals {
       policy_set_definition_id,
     ]
     if length(regexall(local.resource_types.policy_set_definition, policy_set_definition_id)) > 0
-    && contains(local.internal_policy_set_definition_ids, policy_set_definition_id) != true &&
-    contains(keys(local.custom_policy_roles), policy_set_definition_id) != true
+    && contains(local.internal_policy_set_definition_ids, policy_set_definition_id) != true
+    && contains(keys(local.custom_policy_roles), policy_set_definition_id) != true
   }
 }
 
