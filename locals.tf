@@ -43,15 +43,25 @@ locals {
 
 # The following locals are used to define RegEx
 # patterns used within this module
-
 locals {
   regex_extract_provider_scope = "(?i)/(?=.*/providers/)[^/]+/[\\S]+(?=.*/providers/)"
+}
+
+# The following locals are used to identify known
+# sensitive attributes generated when resources
+# are created
+locals {
+  sensitive_attributes = {
+    azurerm_log_analytics_workspace = [
+      "primary_shared_key",
+      "secondary_shared_key",
+    ]
+  }
 }
 
 # The following locals are used to control time_sleep
 # delays between resources to reduce transient errors
 # relating to replication delays in Azure
-
 locals {
   default_create_duration_delay  = "30s"
   default_destroy_duration_delay = "0s"

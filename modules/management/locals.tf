@@ -103,7 +103,7 @@ locals {
     daily_quota_gb                    = try(local.custom_settings_la_workspace.daily_quota_gb, null)
     internet_ingestion_enabled        = try(local.custom_settings_la_workspace.internet_ingestion_enabled, true)
     internet_query_enabled            = try(local.custom_settings_la_workspace.internet_query_enabled, true)
-    reservation_capcity_in_gb_per_day = try(local.custom_settings_la_workspace.reservation_capcity_in_gb_per_day, null)
+    reservation_capcity_in_gb_per_day = try(local.custom_settings_la_workspace.reservation_capcity_in_gb_per_day, null) # Requires version = "~> 2.48.0"
     tags                              = try(local.custom_settings_la_workspace.tags, local.tags)
     resource_group_name = coalesce(
       try(local.custom_settings_la_workspace.resource_group_name, null),
