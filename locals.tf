@@ -22,6 +22,7 @@ locals {
   subscription_id_identity       = var.subscription_id_identity
   subscription_id_management     = var.subscription_id_management
   custom_landing_zones           = var.custom_landing_zones
+  custom_policy_roles            = var.custom_policy_roles
   library_path                   = var.library_path
   template_file_variables        = var.template_file_variables
   default_location               = var.default_location
