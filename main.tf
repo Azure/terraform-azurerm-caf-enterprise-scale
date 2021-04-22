@@ -41,5 +41,6 @@ module "management_resources" {
   existing_resource_group_name                 = try(local.configure_management_resources.advanced.existing_resource_group_name, local.empty_string)
   existing_log_analytics_workspace_resource_id = try(local.configure_management_resources.advanced.existing_log_analytics_workspace_resource_id, local.empty_string)
   existing_automation_account_resource_id      = try(local.configure_management_resources.advanced.existing_automation_account_resource_id, local.empty_string)
+  link_log_analytics_to_automation_account     = try(local.configure_management_resources.advanced.link_log_analytics_to_automation_account, true)
   custom_settings_by_resource_type             = try(local.configure_management_resources.advanced.custom_settings_by_resource_type, local.empty_map)
 }

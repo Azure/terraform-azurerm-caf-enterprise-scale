@@ -61,10 +61,9 @@ variable "configure_management_resources" {
         enabled = bool
         config = object({
           retention_in_days                           = number
-          link_log_analytics_to_automation_account    = bool
-          enable_arc_monitoring                       = bool
-          enable_vm_monitoring                        = bool
-          enable_vmss_monitoring                      = bool
+          enable_monitoring_for_arc                   = bool
+          enable_monitoring_for_vm                    = bool
+          enable_monitoring_for_vmss                  = bool
           enable_solution_for_agent_health_assessment = bool
           enable_solution_for_anti_malware            = bool
           enable_solution_for_azure_activity          = bool
@@ -79,15 +78,17 @@ variable "configure_management_resources" {
       security_center = object({
         enabled = bool
         config = object({
-          enable_asc_for_acr          = bool
-          enable_asc_for_app_services = bool
-          enable_asc_for_arm          = bool
-          enable_asc_for_dns          = bool
-          enable_asc_for_key_vault    = bool
-          enable_asc_for_kubernetes   = bool
-          enable_asc_for_servers      = bool
-          enable_asc_for_sql          = bool
-          enable_asc_for_storage      = bool
+          email_security_contact             = string
+          enable_defender_for_acr            = bool
+          enable_defender_for_app_services   = bool
+          enable_defender_for_arm            = bool
+          enable_defender_for_dns            = bool
+          enable_defender_for_key_vault      = bool
+          enable_defender_for_kubernetes     = bool
+          enable_defender_for_servers        = bool
+          enable_defender_for_sql_servers    = bool
+          enable_defender_for_sql_server_vms = bool
+          enable_defender_for_storage        = bool
         })
       })
     })
@@ -102,10 +103,9 @@ variable "configure_management_resources" {
         enabled = true
         config = {
           retention_in_days                           = 30
-          link_log_analytics_to_automation_account    = true
-          enable_arc_monitoring                       = true
-          enable_vm_monitoring                        = true
-          enable_vmss_monitoring                      = true
+          enable_monitoring_for_arc                   = true
+          enable_monitoring_for_vm                    = true
+          enable_monitoring_for_vmss                  = true
           enable_solution_for_agent_health_assessment = true
           enable_solution_for_anti_malware            = true
           enable_solution_for_azure_activity          = true
@@ -120,15 +120,17 @@ variable "configure_management_resources" {
       security_center = {
         enabled = true
         config = {
-          enable_asc_for_acr          = true
-          enable_asc_for_app_services = true
-          enable_asc_for_arm          = true
-          enable_asc_for_dns          = true
-          enable_asc_for_key_vault    = true
-          enable_asc_for_kubernetes   = true
-          enable_asc_for_servers      = true
-          enable_asc_for_sql          = true
-          enable_asc_for_storage      = true
+          email_security_contact             = "security_contact@replace_me"
+          enable_defender_for_acr            = true
+          enable_defender_for_app_services   = true
+          enable_defender_for_arm            = true
+          enable_defender_for_dns            = true
+          enable_defender_for_key_vault      = true
+          enable_defender_for_kubernetes     = true
+          enable_defender_for_servers        = true
+          enable_defender_for_sql_servers    = true
+          enable_defender_for_sql_server_vms = true
+          enable_defender_for_storage        = true
         }
       }
     }

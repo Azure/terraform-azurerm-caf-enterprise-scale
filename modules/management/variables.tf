@@ -47,10 +47,9 @@ variable "settings" {
       enabled = bool
       config = object({
         retention_in_days                           = number
-        link_log_analytics_to_automation_account    = bool
-        enable_arc_monitoring                       = bool
-        enable_vm_monitoring                        = bool
-        enable_vmss_monitoring                      = bool
+        enable_monitoring_for_arc                   = bool
+        enable_monitoring_for_vm                    = bool
+        enable_monitoring_for_vmss                  = bool
         enable_solution_for_agent_health_assessment = bool
         enable_solution_for_anti_malware            = bool
         enable_solution_for_azure_activity          = bool
@@ -65,15 +64,17 @@ variable "settings" {
     security_center = object({
       enabled = bool
       config = object({
-        enable_asc_for_acr          = bool
-        enable_asc_for_app_services = bool
-        enable_asc_for_arm          = bool
-        enable_asc_for_dns          = bool
-        enable_asc_for_key_vault    = bool
-        enable_asc_for_kubernetes   = bool
-        enable_asc_for_servers      = bool
-        enable_asc_for_sql          = bool
-        enable_asc_for_storage      = bool
+        email_security_contact             = string
+        enable_defender_for_acr            = bool
+        enable_defender_for_app_services   = bool
+        enable_defender_for_arm            = bool
+        enable_defender_for_dns            = bool
+        enable_defender_for_key_vault      = bool
+        enable_defender_for_kubernetes     = bool
+        enable_defender_for_servers        = bool
+        enable_defender_for_sql_servers    = bool
+        enable_defender_for_sql_server_vms = bool
+        enable_defender_for_storage        = bool
       })
     })
   })
@@ -119,6 +120,12 @@ variable "existing_automation_account_resource_id" {
   type        = string
   description = "If specified, module will skip creation of Automation Account and use existing."
   default     = ""
+}
+
+variable "link_log_analytics_to_automation_account" {
+  type        = bool
+  description = "If set to true, module will link the Log Analytics workspace and Automation Account."
+  default     = true
 }
 
 variable "custom_settings_by_resource_type" {

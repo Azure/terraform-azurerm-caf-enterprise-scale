@@ -23,6 +23,7 @@ locals {
   existing_resource_group_name                 = var.existing_resource_group_name
   existing_log_analytics_workspace_resource_id = var.existing_log_analytics_workspace_resource_id
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
+  link_log_analytics_to_automation_account     = var.link_log_analytics_to_automation_account
   custom_settings_by_resource_type             = var.custom_settings_by_resource_type
 }
 
@@ -40,12 +41,12 @@ locals {
 # should be created by this module
 locals {
   deploy_monitoring                   = local.enabled && local.settings.log_analytics.enabled
-  deploy_arc_monitoring               = local.deploy_monitoring && local.settings.log_analytics.config.enable_arc_monitoring
-  deploy_vm_monitoring                = local.deploy_monitoring && local.settings.log_analytics.config.enable_vm_monitoring
-  deploy_vmss_monitoring              = local.deploy_monitoring && local.settings.log_analytics.config.enable_vmss_monitoring
+  deploy_monitoring_for_arc           = local.deploy_monitoring && local.settings.log_analytics.config.enable_monitoring_for_arc
+  deploy_monitoring_for_vm            = local.deploy_monitoring && local.settings.log_analytics.config.enable_monitoring_for_vm
+  deploy_monitoring_for_vmss          = local.deploy_monitoring && local.settings.log_analytics.config.enable_monitoring_for_vmss
   deploy_resource_group               = local.deploy_monitoring && local.existing_resource_group_name == local.empty_string
   deploy_log_analytics_workspace      = local.deploy_monitoring && local.existing_log_analytics_workspace_resource_id == local.empty_string
-  deploy_log_analytics_linked_service = local.deploy_monitoring && local.settings.log_analytics.config.link_log_analytics_to_automation_account
+  deploy_log_analytics_linked_service = local.deploy_monitoring && local.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
     AgentHealthAssessment = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
@@ -59,16 +60,17 @@ locals {
     Updates               = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_updates
     VMInsights            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_vm_insights
   }
-  deploy_security             = local.enabled && local.settings.security_center.enabled
-  deploy_asc_for_acr          = local.settings.security_center.config.enable_asc_for_acr
-  deploy_asc_for_app_services = local.settings.security_center.config.enable_asc_for_app_services
-  deploy_asc_for_arm          = local.settings.security_center.config.enable_asc_for_arm
-  deploy_asc_for_dns          = local.settings.security_center.config.enable_asc_for_dns
-  deploy_asc_for_key_vault    = local.settings.security_center.config.enable_asc_for_key_vault
-  deploy_asc_for_kubernetes   = local.settings.security_center.config.enable_asc_for_kubernetes
-  deploy_asc_for_servers      = local.settings.security_center.config.enable_asc_for_servers
-  deploy_asc_for_sql          = local.settings.security_center.config.enable_asc_for_sql
-  deploy_asc_for_storage      = local.settings.security_center.config.enable_asc_for_storage
+  deploy_security                    = local.enabled && local.settings.security_center.enabled
+  deploy_defender_for_acr            = local.settings.security_center.config.enable_defender_for_acr
+  deploy_defender_for_app_services   = local.settings.security_center.config.enable_defender_for_app_services
+  deploy_defender_for_arm            = local.settings.security_center.config.enable_defender_for_arm
+  deploy_defender_for_dns            = local.settings.security_center.config.enable_defender_for_dns
+  deploy_defender_for_key_vault      = local.settings.security_center.config.enable_defender_for_key_vault
+  deploy_defender_for_kubernetes     = local.settings.security_center.config.enable_defender_for_kubernetes
+  deploy_defender_for_servers        = local.settings.security_center.config.enable_defender_for_servers
+  deploy_defender_for_sql_servers    = local.settings.security_center.config.enable_defender_for_sql_servers
+  deploy_defender_for_sql_server_vms = local.settings.security_center.config.enable_defender_for_sql_server_vms
+  deploy_defender_for_storage        = local.settings.security_center.config.enable_defender_for_storage
 }
 
 # Configuration settings for resource type:
@@ -181,15 +183,18 @@ locals {
     (local.root_id) = {
       parameters = {
         Deploy-ASC-Defender = {
-          pricingTierContainerRegistry = local.deploy_asc_for_acr ? "Standard" : "Free"
-          pricingTierAppServices       = local.deploy_asc_for_app_services ? "Standard" : "Free"
-          pricingTierArm               = local.deploy_asc_for_arm ? "Standard" : "Free"
-          pricingTierDns               = local.deploy_asc_for_dns ? "Standard" : "Free"
-          pricingTierKeyVaults         = local.deploy_asc_for_key_vault ? "Standard" : "Free"
-          pricingTierKubernetesService = local.deploy_asc_for_kubernetes ? "Standard" : "Free"
-          pricingTierVMs               = local.deploy_asc_for_servers ? "Standard" : "Free"
-          pricingTierSqlServers        = local.deploy_asc_for_sql ? "Standard" : "Free"
-          pricingTierStorageAccounts   = local.deploy_asc_for_storage ? "Standard" : "Free"
+          emailSecurityContact                = local.settings.security_center.config.email_security_contact
+          logAnalytics                        = local.log_analytics_workspace_resource_id
+          pricingTierContainerRegistry        = local.deploy_defender_for_acr ? "Standard" : "Free"
+          pricingTierAppServices              = local.deploy_defender_for_app_services ? "Standard" : "Free"
+          pricingTierArm                      = local.deploy_defender_for_arm ? "Standard" : "Free"
+          pricingTierDns                      = local.deploy_defender_for_dns ? "Standard" : "Free"
+          pricingTierKeyVaults                = local.deploy_defender_for_key_vault ? "Standard" : "Free"
+          pricingTierKubernetesService        = local.deploy_defender_for_kubernetes ? "Standard" : "Free"
+          pricingTierVMs                      = local.deploy_defender_for_servers ? "Standard" : "Free"
+          pricingTierSqlServers               = local.deploy_defender_for_sql_servers ? "Standard" : "Free"
+          pricingTierSqlServerVirtualMachines = local.deploy_defender_for_sql_server_vms ? "Standard" : "Free"
+          pricingTierStorageAccounts          = local.deploy_defender_for_storage ? "Standard" : "Free"
         }
         Deploy-LX-Arc-Monitoring = {
           logAnalytics = local.log_analytics_workspace_resource_id
@@ -208,10 +213,10 @@ locals {
       }
       enforcement_mode = {
         Deploy-ASC-Defender      = local.deploy_security
-        Deploy-LX-Arc-Monitoring = local.deploy_arc_monitoring
-        Deploy-VM-Monitoring     = local.deploy_vm_monitoring
-        Deploy-VMSS-Monitoring   = local.deploy_vmss_monitoring
-        Deploy-WS-Arc-Monitoring = local.deploy_arc_monitoring
+        Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
+        Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
+        Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
+        Deploy-WS-Arc-Monitoring = local.deploy_monitoring_for_arc
       }
     }
     "${local.root_id}-management" = {
