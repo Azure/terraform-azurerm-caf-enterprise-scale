@@ -3,7 +3,7 @@
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-> **NOTE**: The latest `v0.2.0` release adds new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
+> **NOTE:** The latest `v0.2.0` release adds new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
 > Please refer to the [Deploy Management Resources][wiki_deploy_management_resources] page on our Wiki for more information about how to use this.
 
 ## Documentation
@@ -95,7 +95,7 @@ If this happens, we advise upgrading to the latest version and checking our [tro
 
 As a basic starting point, we recommend starting with the following configuration in your root module.
 
-> **NOTE**: For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
+> **NOTE:** For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
 > Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
 
 **File: `main.tf`**
