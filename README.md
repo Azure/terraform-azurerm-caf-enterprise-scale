@@ -3,7 +3,7 @@
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-> **NOTE**: The latest `v0.2.0` release adds new functionality to enable deployment of "Management" resources into the Management Subscription.
+> **NOTE**: The latest `v0.2.0` release adds new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
 > Please refer to the [Deploy Management Resources][wiki_deploy_management_resources] page on our Wiki for more information about how to use this.
 
 ## Documentation
@@ -15,8 +15,9 @@ For detailed information about how to use, configure and extend this module, ple
   - [Getting Started][wiki_getting_started]
   - [Module Variables][wiki_module_variables]
   - [Archetype Definitions][wiki_archetype_definitions]
-  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
   - [Deploy Management Resources][wiki_deploy_management_resources]
+  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
+  - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
 - [Examples][wiki_examples]
   - [Deploy Default Configuration][wiki_deploy_default_configuration]
   - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
@@ -66,7 +67,7 @@ The exact number of resources created depends on the module configuration, but y
 
 ### Management resources
 
-From release `v0.2.0` onwards, the module also includes the ability to deploy the [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
+From release `v0.2.0` onwards, the module includes new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
 This brings the benefit of being able to manage the full lifecycle of these resources using Terraform, with native integration into the corresponding Policy Assignments to ensure full policy compliance.
 
 ![Enterprise-scale Management Landing Zone Architecture][TFAES-Management]
@@ -210,6 +211,7 @@ module "enterprise_scale" {
 [wiki_module_variables]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
 [wiki_archetype_definitions]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
 [wiki_upgrade_from_v0_0_8_to_v0_1_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
+[wiki_upgrade_from_v0_1_2_to_v0_2_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_deploy_management_resources]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
 [wiki_examples]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples "Wiki - Examples"
 [wiki_deploy_default_configuration]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
