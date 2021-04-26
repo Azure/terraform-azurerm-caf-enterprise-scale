@@ -122,7 +122,7 @@ locals {
   )
 }
 
-# Add or remove configuration settings from an existing [built-in] archetype definition.
+# Add or remove configuration settings from an existing [built-in] or custom archetype definition.
 # Get full description context in github #issue_72
 locals {
   archetype_definitions = {
