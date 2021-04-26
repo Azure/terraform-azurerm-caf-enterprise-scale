@@ -9,17 +9,16 @@ locals {
   custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.json")) : []
   custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.{yml,yaml}")) : []
 }
-
 # Load the archetype definition extensions
 locals {
-  extend_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.json")) : []       ##issue_72
-  extend_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.{yml,yaml}")) : [] ##issue_72
+  extend_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.json")) : []
+  extend_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.{yml,yaml}")) : []
 }
 
 # Load the archetype definition exclusions
 locals {
-  exclude_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.json")) : []       ##issue_72
-  exclude_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.{yml,yaml}")) : [] ##issue_72
+  exclude_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.json")) : []
+  exclude_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.{yml,yaml}")) : []
 }
 
 # Create datasets containing all built-in and custom archetype definitions from each source and file type
@@ -40,19 +39,19 @@ locals {
     for filepath in local.custom_archetype_definitions_yaml :
     filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
-    extend_archetype_definitions_dataset_from_json = { ##issue_72
+  extend_archetype_definitions_dataset_from_json = {
     for filepath in local.extend_archetype_definitions_json :
     filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
-  extend_archetype_definitions_dataset_from_yaml = { ##issue_72
+  extend_archetype_definitions_dataset_from_yaml = {
     for filepath in local.extend_archetype_definitions_yaml :
     filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
-  exclude_archetype_definitions_dataset_from_json = { ##issue_72
+  exclude_archetype_definitions_dataset_from_json = {
     for filepath in local.exclude_archetype_definitions_json :
     filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
-  exclude_archetype_definitions_dataset_from_yaml = { ##issue_72
+  exclude_archetype_definitions_dataset_from_yaml = {
     for filepath in local.exclude_archetype_definitions_yaml :
     filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
@@ -76,19 +75,19 @@ locals {
     for key, value in local.custom_archetype_definitions_dataset_from_yaml :
     keys(value)[0] => values(value)[0]
   }
-    extend_archetype_definitions_map_from_json = { ##issue_72
+  extend_archetype_definitions_map_from_json = {
     for key, value in local.extend_archetype_definitions_dataset_from_json :
     keys(value)[0] => values(value)[0]
   }
-  extend_archetype_definitions_map_from_yaml = { ##issue_72
+  extend_archetype_definitions_map_from_yaml = {
     for key, value in local.extend_archetype_definitions_dataset_from_yaml :
     keys(value)[0] => values(value)[0]
   }
-  exclude_archetype_definitions_map_from_json = { ##issue_72
+  exclude_archetype_definitions_map_from_json = {
     for key, value in local.exclude_archetype_definitions_dataset_from_json :
     keys(value)[0] => values(value)[0]
   }
-  exclude_archetype_definitions_map_from_yaml = { ##issue_72
+  exclude_archetype_definitions_map_from_yaml = {
     for key, value in local.exclude_archetype_definitions_dataset_from_yaml :
     keys(value)[0] => values(value)[0]
   }
@@ -110,16 +109,16 @@ locals {
 # Merge the extend archetype maps into a single map.
 locals {
   extend_archetype_definitions = merge(
-    local.extend_archetype_definitions_map_from_json, ##issue_72 
-    local.extend_archetype_definitions_map_from_yaml, ##issue_72 
+    local.extend_archetype_definitions_map_from_json,
+    local.extend_archetype_definitions_map_from_yaml,
   )
 }
 
 # Merge the exclude archetype maps into a single map.
 locals {
   exclude_archetype_definitions = merge(
-    local.exclude_archetype_definitions_map_from_json, ##issue_72 
-    local.exclude_archetype_definitions_map_from_yaml, ##issue_72 
+    local.exclude_archetype_definitions_map_from_json,
+    local.exclude_archetype_definitions_map_from_yaml,
   )
 }
 
@@ -177,13 +176,6 @@ locals {
 }
 
 # Generate the configuration output object for the specified archetype
-# depends_on_files = [
-#   locals.policy_assignments.tf
-#   locals.policy_definitions.tf
-#   locals.policy_set_definitions.tf
-#   locals.role_assignments.tf
-#   locals.role_definitions.tf
-# ]
 locals {
   archetype_output = {
     policy_assignments     = local.archetype_policy_assignments_output
