@@ -185,6 +185,8 @@ locals {
         Deploy-ASC-Defender = {
           emailSecurityContact                = local.settings.security_center.config.email_security_contact
           logAnalytics                        = local.log_analytics_workspace_resource_id
+          ascExportResourceGroupName          = "${local.root_id}-asc-export"
+          ascExportResourceGroupLocation      = local.location
           pricingTierContainerRegistry        = local.deploy_defender_for_acr ? "Standard" : "Free"
           pricingTierAppServices              = local.deploy_defender_for_app_services ? "Standard" : "Free"
           pricingTierArm                      = local.deploy_defender_for_arm ? "Standard" : "Free"

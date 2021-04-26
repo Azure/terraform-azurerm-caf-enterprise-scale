@@ -12,6 +12,12 @@
       },
       "logAnalytics": {
         "value": "${root_scope_id}-a-00000000-0000-0000-0000-000000000000"
+      },
+      "ascExportResourceGroupName": {
+        "value": "${root_scope_id}-asc-export"
+      },
+      "ascExportResourceGroupLocation": {
+        "value": "${default_location}"
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-ASC-Config",
