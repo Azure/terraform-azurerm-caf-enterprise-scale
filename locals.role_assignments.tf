@@ -3,7 +3,7 @@
 locals {
   es_role_assignments_by_management_group = flatten([
     for archetype in values(module.management_group_archetypes) :
-    archetype.configuration.role_assignments
+    archetype.configuration.azurerm_role_assignment
   ])
   es_role_assignments_by_subscription = []
   es_role_assignments = concat(

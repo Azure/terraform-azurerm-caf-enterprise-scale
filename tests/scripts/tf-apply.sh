@@ -12,6 +12,6 @@ cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 echo "==> Applying infrastructure..."
 terraform apply \
     -auto-approve \
-    -parallelism=256 \
+    -parallelism=100 \
     -state="./terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate" \
     "terraform-plan-$TF_VERSION-$TF_AZ_VERSION"

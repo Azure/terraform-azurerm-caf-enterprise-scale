@@ -3,7 +3,7 @@
 locals {
   es_policy_assignments_by_management_group = flatten([
     for archetype in values(module.management_group_archetypes) :
-    archetype.configuration.policy_assignments
+    archetype.configuration.azurerm_policy_assignment
   ])
   es_policy_assignments_by_subscription = []
   es_policy_assignments = concat(
@@ -221,12 +221,11 @@ locals {
     for policy_assignment_id, policy_id in local.policy_assignments_with_managed_identity : [
       for role_definition_id in try(local.policy_roles[policy_id], local.empty_list) : [
         {
-          resource_id                      = "${local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id}${local.provider_path.role_assignment}${uuidv5(uuidv5("url", role_definition_id), policy_assignment_id)}"
-          scope_id                         = local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id
-          principal_id                     = try(azurerm_policy_assignment.enterprise_scale[policy_assignment_id].identity[0].principal_id, null)
-          role_definition_name             = null
-          role_definition_id               = role_definition_id
-          skip_service_principal_aad_check = true
+          resource_id          = "${local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id}${local.provider_path.role_assignment}${uuidv5(uuidv5("url", role_definition_id), policy_assignment_id)}"
+          scope_id             = local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id
+          principal_id         = try(azurerm_policy_assignment.enterprise_scale[policy_assignment_id].identity[0].principal_id, null)
+          role_definition_name = null
+          role_definition_id   = role_definition_id
         }
       ]
     ]

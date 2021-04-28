@@ -10,9 +10,8 @@ resource "azurerm_role_assignment" "enterprise_scale" {
   principal_id = each.value.principal_id
 
   # Optional attributes
-  role_definition_name             = try(each.value.role_definition_name, null)
-  role_definition_id               = try(each.value.role_definition_id, null)
-  skip_service_principal_aad_check = try(each.value.skip_service_principal_aad_check, null)
+  role_definition_name = try(each.value.role_definition_name, null)
+  role_definition_id   = try(each.value.role_definition_id, null)
 
   # Set explicit dependency on Management Group, Policy, and Role Definition deployments
   depends_on = [

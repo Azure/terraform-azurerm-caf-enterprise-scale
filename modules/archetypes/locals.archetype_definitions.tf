@@ -174,14 +174,3 @@ locals {
 locals {
   archetype_definition = local.archetype_definitions[local.archetype_id]
 }
-
-# Generate the configuration output object for the specified archetype
-locals {
-  archetype_output = {
-    policy_assignments     = local.archetype_policy_assignments_output
-    policy_definitions     = local.archetype_policy_definitions_output
-    policy_set_definitions = local.archetype_policy_set_definitions_output
-    role_assignments       = local.archetype_role_assignments_output
-    role_definitions       = local.archetype_role_definitions_output
-  }
-}
