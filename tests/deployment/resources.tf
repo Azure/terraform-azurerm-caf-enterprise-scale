@@ -135,12 +135,8 @@ module "test_root_id_3" {
 
   archetype_config_overrides = {
     root = {
-      archetype_id = "customer_root"
+      archetype_id = "es_root"
       parameters = {
-        Deploy-SQL-Auditing = {
-          retentionDays                = jsonencode("10")
-          storageAccountsResourceGroup = jsonencode("")
-        }
         Deploy-HITRUST-HIPAA = {
           CertificateThumbprints                                        = jsonencode("")
           DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
