@@ -26,7 +26,7 @@ $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 $terraformVersions = @("0.13.2")
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.13.\d{1,2}(?!-)" } | Select-Object -First 1
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.14.\d{1,2}(?!-)" } | Select-Object -First 1
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15.\d{1,2}(?!-)" } | Select-Object -First 2
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15.\d{1,2}(?!-)" } | Select-Object -First 1
 
 $terraformVersions = $terraformVersions | Sort-Object
 
