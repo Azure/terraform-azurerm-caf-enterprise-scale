@@ -40,7 +40,7 @@ terraform {
 }
 
 provider "azurerm" {
-  features = {}
+  features {}
 
   subscription_id             = "$ARM_SUBSCRIPTION_ID"
   client_id                   = "$(echo "$ARM_CLIENT" | jq -r '.appId')"
@@ -50,13 +50,13 @@ provider "azurerm" {
 }
 TFCONFIG
 
-echo "==> TF_VAR_client_certificate_path - <redacted>"
+echo "==> TF_VAR_CLIENT_CERTIFICATE_PATH - <redacted>"
 VAR_CLIENT_CERTIFICATE_PATH=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
-echo "##vso[task.setvariable variable=TF_VAR_client_certificate_path;]$VAR_CLIENT_CERTIFICATE_PATH"
+echo "##vso[task.setvariable variable=TF_VAR_CLIENT_CERTIFICATE_PATH;]$VAR_CLIENT_CERTIFICATE_PATH"
 
-echo "==> TF_VAR_client_certificate_password - <redacted>"
-VAR_CLIENT_CERTIFICATE_PASSWORD=$(echo "$ARM_CLIENT" | jq -r '.client_certificate_password')
-echo "##vso[task.setvariable variable=TF_VAR_client_certificate_password;]$VAR_CLIENT_CERTIFICATE_PASSWORD"
+echo "==> TF_VAR_CLIENT_CERTIFICATE_PASSWORD - <redacted>"
+VAR_CLIENT_CERTIFICATE_PASSWORD=$(echo "$ARM_CLIENT" | jq -r '.client_certificate_password' | sed 's:^null$::g')
+echo "##vso[task.setvariable variable=TF_VAR_CLIENT_CERTIFICATE_PASSWORD;]$VAR_CLIENT_CERTIFICATE_PASSWORD"
 
 echo "==> Generating root id's..."
 ROOT_ID_1="$RANDOM"
