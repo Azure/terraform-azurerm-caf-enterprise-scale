@@ -17,7 +17,7 @@ $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azur
 # - Latest Versions:
 #     0.13.* (latest 1)
 #     0.14.* (latest 1)
-#     0.15.* (latest 2)
+#     0.15.* (latest 1)
 ########################################
 
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl
