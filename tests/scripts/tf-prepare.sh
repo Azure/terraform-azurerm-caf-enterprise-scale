@@ -30,6 +30,9 @@ CERTIFICATE_PASSWORD='estf'"$RANDOM"'!ohawe'"$RANDOM"''
 CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
 TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
 
+echo "==> Pause to allow Azure AD replication of SPN credentials..."
+sleep 30s
+
 echo "==> Converting SPN certificate to PFX..."
 openssl pkcs12 \
   -export \
