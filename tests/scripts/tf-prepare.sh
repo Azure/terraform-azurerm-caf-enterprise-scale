@@ -27,9 +27,6 @@ ARM_CLIENT=$(az ad sp create-for-rbac \
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
 cat > provider.tf <<TFCONFIG
-variable "client_certificate_path" {}
-variable "client_certificate_password" {}
-
 terraform {
   required_providers {
     azurerm = {
@@ -44,19 +41,11 @@ provider "azurerm" {
 
   subscription_id             = "$ARM_SUBSCRIPTION_ID"
   client_id                   = "$(echo "$ARM_CLIENT" | jq -r '.appId')"
-  client_certificate_path     = var.client_certificate_path
-  client_certificate_password = var.client_certificate_password
+  client_certificate_path     = "$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')"
+  client_certificate_password = ""
   tenant_id                   = "$(echo "$ARM_CLIENT" | jq -r '.tenant')"
 }
 TFCONFIG
-
-echo "==> TF_VAR_CLIENT_CERTIFICATE_PATH - <redacted>"
-VAR_CLIENT_CERTIFICATE_PATH=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
-echo "##vso[task.setvariable variable=TF_VAR_CLIENT_CERTIFICATE_PATH;]$VAR_CLIENT_CERTIFICATE_PATH"
-
-echo "==> TF_VAR_CLIENT_CERTIFICATE_PASSWORD - <redacted>"
-VAR_CLIENT_CERTIFICATE_PASSWORD=$(echo "$ARM_CLIENT" | jq -r '.client_certificate_password' | sed 's:^null$::g')
-echo "##vso[task.setvariable variable=TF_VAR_CLIENT_CERTIFICATE_PASSWORD;]$VAR_CLIENT_CERTIFICATE_PASSWORD"
 
 echo "==> Generating root id's..."
 ROOT_ID_1="$RANDOM"
