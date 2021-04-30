@@ -20,7 +20,7 @@ echo "==> Creating SPN and Role Assignments..."
 ARM_CLIENT=$(az ad sp create-for-rbac \
     --name "ES-$TF_VERSION-$TF_AZ_VERSION" \
     --role "Owner" \
-    --scope "/providers/Microsoft.Management/managementGroups/"$ARM_TENANT_ID"" \
+    --scope "/providers/Microsoft.Management/managementGroups/$ARM_TENANT_ID" \
     --create-cert \
     --only-show-errors
 )
@@ -42,20 +42,21 @@ terraform {
 provider "azurerm" {
   features = {}
 
-  subscription_id             = "$(echo $ARM_SUBSCRIPTION_ID)"
-  client_id                   = "$(echo $ARM_CLIENT | jq -r '.appId')"
+  subscription_id             = "$ARM_SUBSCRIPTION_ID"
+  client_id                   = "$(echo "$ARM_CLIENT" | jq -r '.appId')"
   client_certificate_path     = var.client_certificate_path
   client_certificate_password = var.client_certificate_password
-  tenant_id                   = "$(echo $ARM_CLIENT | jq -r '.tenant')"
+  tenant_id                   = "$(echo "$ARM_CLIENT" | jq -r '.tenant')"
 }
 TFCONFIG
 
+echo "==> TF_VAR_client_certificate_path - <redacted>"
+VAR_CLIENT_CERTIFICATE_PATH=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
+echo "##vso[task.setvariable variable=TF_VAR_client_certificate_path;]$VAR_CLIENT_CERTIFICATE_PATH"
 
-echo "##vso[task.setvariable variable=TF_VAR_client_certificate_path;]$(echo $ARM_CLIENT | jq -r '.fileWithCertAndPrivateKey')"
-echo "##vso[task.setvariable variable=TF_VAR_client_certificate_password;]$(echo $ARM_CLIENT | jq -r '.client_certificate_password')"
-
-export TF_VAR_client_certificate_path="$(echo $ARM_CLIENT | jq -r '.fileWithCertAndPrivateKey')"
-export TF_VAR_client_certificate_password="$(echo $ARM_CLIENT | jq -r '.client_certificate_password' | sed 's:^null$::g')"
+echo "==> TF_VAR_client_certificate_password - <redacted>"
+VAR_CLIENT_CERTIFICATE_PASSWORD=$(echo "$ARM_CLIENT" | jq -r '.client_certificate_password')
+echo "##vso[task.setvariable variable=TF_VAR_client_certificate_password;]$VAR_CLIENT_CERTIFICATE_PASSWORD"
 
 echo "==> Generating root id's..."
 ROOT_ID_1="$RANDOM"
