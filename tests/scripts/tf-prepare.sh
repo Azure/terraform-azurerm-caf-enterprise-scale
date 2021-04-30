@@ -24,6 +24,18 @@ ARM_CLIENT=$(az ad sp create-for-rbac \
     --create-cert \
     --only-show-errors
 )
+CERTIFICATE_PATH_PEM=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
+CERTIFICATE_PATH_PFX=$(echo "$CERTIFICATE_PATH_PEM" | sed 's:pem$:pfx:g')
+CERTIFICATE_PASSWORD='estf'"$RANDOM"'!ohawe'"$RANDOM"''
+CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
+TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
+
+echo "==> Converting SPN certificate to PFX..."
+openssl pkcs12 \
+  -export \
+  -out "$CERTIFICATE_PATH_PFX" \
+  -in "$CERTIFICATE_PATH_PEM" \
+  -passout pass:"$CERTIFICATE_PASSWORD"
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
 cat > provider.tf <<TFCONFIG
@@ -40,10 +52,10 @@ provider "azurerm" {
   features {}
 
   subscription_id             = "$ARM_SUBSCRIPTION_ID"
-  client_id                   = "$(echo "$ARM_CLIENT" | jq -r '.appId')"
-  client_certificate_path     = "$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')"
-  client_certificate_password = ""
-  tenant_id                   = "$(echo "$ARM_CLIENT" | jq -r '.tenant')"
+  client_id                   = "$CLIENT_ID"
+  client_certificate_path     = "$CERTIFICATE_PATH_PFX"
+  client_certificate_password = "$CERTIFICATE_PASSWORD"
+  tenant_id                   = "$TENANT_ID"
 }
 TFCONFIG
 
