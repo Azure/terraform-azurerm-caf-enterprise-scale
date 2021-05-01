@@ -53,7 +53,7 @@ LOOP_COUNTER=0
 while [ $LOOP_COUNTER -lt 10 ]
 do
     CERTIFICATE_THUMBPRINT_FROM_AZ_AD=$(az ad sp credential list \
-        --id $CLIENT_ID \
+        --id "$CLIENT_ID" \
         --cert \
         | jq -r '.[].customKeyIdentifier'
         )
@@ -64,7 +64,7 @@ do
     fi
     echo " Sleep for 10 seconds..."
     sleep 10s
-    LOOP_COUNTER=$(expr $LOOP_COUNTER + 1)
+    LOOP_COUNTER=$(($LOOP_COUNTER + 1))
 done
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
