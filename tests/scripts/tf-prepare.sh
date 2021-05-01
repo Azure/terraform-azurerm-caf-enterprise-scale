@@ -64,7 +64,7 @@ do
     fi
     echo " Sleep for 10 seconds..."
     sleep 10s
-    LOOP_COUNTER=$(($LOOP_COUNTER + 1))
+    LOOP_COUNTER=$((LOOP_COUNTER + 1))
 done
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
