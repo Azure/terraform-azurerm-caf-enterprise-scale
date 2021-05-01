@@ -58,7 +58,9 @@ do
         | jq -r '.[].customKeyIdentifier'
         )
     echo " CERTIFICATE_THUMBPRINT_FROM_AZ_AD : $CERTIFICATE_THUMBPRINT_FROM_AZ_AD"
-    if [[ "$CERTIFICATE_THUMBPRINT_FROM_AZ_AD" -eq "$CERTIFICATE_THUMBPRINT_FROM_PFX" ]]
+    # Need to prefix the thumbprints with a letter to ensure
+    # string comparison when value starts with a digit.
+    if [[ "A$CERTIFICATE_THUMBPRINT_FROM_AZ_AD" -eq "A$CERTIFICATE_THUMBPRINT_FROM_PFX" ]]
     then
       break
     fi
