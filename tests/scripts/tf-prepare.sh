@@ -25,8 +25,8 @@ ARM_CLIENT=$(az ad sp create-for-rbac \
     --only-show-errors
 )
 CERTIFICATE_PATH_PEM=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
-CERTIFICATE_PATH_PFX=$(echo "$CERTIFICATE_PATH_PEM" | sed 's:pem$:pfx:g')
-CERTIFICATE_PASSWORD='estf'"$RANDOM"'!ohawe'"$RANDOM"''
+CERTIFICATE_PATH_PFX=${CERTIFICATE_PATH_PEM//.pem/.pfx}
+CERTIFICATE_PASSWORD='estf-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-pwd'
 CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
 TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
 
@@ -48,23 +48,23 @@ CERTIFICATE_THUMBPRINT_FROM_PFX=$(openssl pkcs12 \
     | sed 's/://g'
 )
 
-echo "==> CERTIFICATE_THUMBPRINT_FROM_PFX: $CERTIFICATE_THUMBPRINT_FROM_PFX"
+echo " CERTIFICATE_THUMBPRINT_FROM_PFX   : $CERTIFICATE_THUMBPRINT_FROM_PFX"
 LOOP_COUNTER=0
 while [ $LOOP_COUNTER -lt 10 ]
 do
-    echo "Sleep for 10 seconds..."
-    sleep 10s
     CERTIFICATE_THUMBPRINT_FROM_AZ_AD=$(az ad sp credential list \
-        --id 94d2881c-1aab-4f90-989a-97a39d5a9e27 \
+        --id $CLIENT_ID \
         --cert \
         | jq -r '.[].customKeyIdentifier'
         )
-    echo "==> CERTIFICATE_THUMBPRINT_FROM_AZ_AD: $CERTIFICATE_THUMBPRINT_FROM_AZ_AD"
-   if [ $CERTIFICATE_THUMBPRINT_FROM_AZ_AD -eq $CERTIFICATE_THUMBPRINT_FROM_PFX ]
-   then
+    echo " CERTIFICATE_THUMBPRINT_FROM_AZ_AD : $CERTIFICATE_THUMBPRINT_FROM_AZ_AD"
+    if [[ "$CERTIFICATE_THUMBPRINT_FROM_AZ_AD" -eq "$CERTIFICATE_THUMBPRINT_FROM_PFX" ]]
+    then
       break
-   fi
-   LOOP_COUNTER=`expr $LOOP_COUNTER + 1`
+    fi
+    echo " Sleep for 10 seconds..."
+    sleep 10s
+    LOOP_COUNTER=$(expr $LOOP_COUNTER + 1)
 done
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
