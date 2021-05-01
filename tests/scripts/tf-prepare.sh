@@ -30,6 +30,12 @@ CERTIFICATE_PASSWORD='estf-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-pwd'
 CERTIFICATE_CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
 CERTIFICATE_TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
 
+# Due to Azure AD replication, terraform plan fails if
+# insufficient time is allowed for the certificate to
+# be created/updated.
+echo "==> Wait 60s for SPN replication..."
+sleep 60s
+
 echo "==> Converting SPN certificate to PFX..."
 openssl pkcs12 \
     -export \
@@ -37,10 +43,7 @@ openssl pkcs12 \
     -in "$CERTIFICATE_PATH_PEM" \
     -passout pass:"$CERTIFICATE_PASSWORD"
 
-echo "==> Save CERTIFICATE_CLIENT_ID to environment..."
-echo "##vso[task.setvariable variable=CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CLIENT_ID"
-
-echo "==> Save CERTIFICATE_THUMBPRINT_FROM_PFX to environment..."
+echo "==> Checking Azure AD for matching certificate thumbprint..."
 CERTIFICATE_THUMBPRINT_FROM_PFX=$(openssl pkcs12 \
     -nodes \
     -in "$CERTIFICATE_PATH_PFX" \
@@ -49,7 +52,28 @@ CERTIFICATE_THUMBPRINT_FROM_PFX=$(openssl pkcs12 \
     | sed 's:.*=::g' \
     | sed 's/://g'
 )
-echo "##vso[task.setvariable variable=CERTIFICATE_THUMBPRINT_FROM_PFX;]$CERTIFICATE_THUMBPRINT_FROM_PFX"
+echo " CERTIFICATE_THUMBPRINT_FROM_PFX   : $CERTIFICATE_THUMBPRINT_FROM_PFX"
+LOOP_COUNTER=0
+CERTIFICATE_THUMBPRINT_FROM_AZ_AD=""
+while [ $LOOP_COUNTER -lt 10 ]
+do
+    CERTIFICATE_THUMBPRINT_FROM_AZ_AD=$(az ad sp credential list \
+        --id "$CERTIFICATE_CLIENT_ID" \
+        --cert \
+        | jq -r '.[].customKeyIdentifier' \
+        2> /dev/null
+        )
+    echo " CERTIFICATE_THUMBPRINT_FROM_AZ_AD : $CERTIFICATE_THUMBPRINT_FROM_AZ_AD"
+    # Need to prefix the thumbprints with a letter to ensure
+    # string comparison when value starts with a digit.
+    if [[ "A$CERTIFICATE_THUMBPRINT_FROM_AZ_AD" -eq "A$CERTIFICATE_THUMBPRINT_FROM_PFX" ]]
+    then
+      break
+    fi
+    echo " Sleep for 10 seconds..."
+    sleep 10s
+    LOOP_COUNTER=$((LOOP_COUNTER + 1))
+done
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
 cat > provider.tf <<TFCONFIG
