@@ -27,8 +27,8 @@ ARM_CLIENT=$(az ad sp create-for-rbac \
 CERTIFICATE_PATH_PEM=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
 CERTIFICATE_PATH_PFX=${CERTIFICATE_PATH_PEM//.pem/.pfx}
 CERTIFICATE_PASSWORD='estf-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-pwd'
-CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
-TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
+CERTIFICATE_CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
+CERTIFICATE_TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
 
 echo "==> Converting SPN certificate to PFX..."
 openssl pkcs12 \
@@ -37,8 +37,10 @@ openssl pkcs12 \
     -in "$CERTIFICATE_PATH_PEM" \
     -passout pass:"$CERTIFICATE_PASSWORD"
 
-echo "==> Pause to allow Azure AD replication of SPN credentials..."
-CERTIFICATE_THUMBPRINT_FROM_AZ_AD=""
+echo "==> Save CERTIFICATE_CLIENT_ID to environment..."
+echo "##vso[task.setvariable variable=CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CLIENT_ID"
+
+echo "==> Save CERTIFICATE_THUMBPRINT_FROM_PFX to environment..."
 CERTIFICATE_THUMBPRINT_FROM_PFX=$(openssl pkcs12 \
     -nodes \
     -in "$CERTIFICATE_PATH_PFX" \
@@ -47,27 +49,7 @@ CERTIFICATE_THUMBPRINT_FROM_PFX=$(openssl pkcs12 \
     | sed 's:.*=::g' \
     | sed 's/://g'
 )
-
-echo " CERTIFICATE_THUMBPRINT_FROM_PFX   : $CERTIFICATE_THUMBPRINT_FROM_PFX"
-LOOP_COUNTER=0
-while [ $LOOP_COUNTER -lt 10 ]
-do
-    CERTIFICATE_THUMBPRINT_FROM_AZ_AD=$(az ad sp credential list \
-        --id "$CLIENT_ID" \
-        --cert \
-        | jq -r '.[].customKeyIdentifier'
-        )
-    echo " CERTIFICATE_THUMBPRINT_FROM_AZ_AD : $CERTIFICATE_THUMBPRINT_FROM_AZ_AD"
-    # Need to prefix the thumbprints with a letter to ensure
-    # string comparison when value starts with a digit.
-    if [[ "A$CERTIFICATE_THUMBPRINT_FROM_AZ_AD" -eq "A$CERTIFICATE_THUMBPRINT_FROM_PFX" ]]
-    then
-      break
-    fi
-    echo " Sleep for 10 seconds..."
-    sleep 10s
-    LOOP_COUNTER=$((LOOP_COUNTER + 1))
-done
+echo "##vso[task.setvariable variable=CERTIFICATE_THUMBPRINT_FROM_PFX;]$CERTIFICATE_THUMBPRINT_FROM_PFX"
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
 cat > provider.tf <<TFCONFIG
@@ -84,10 +66,10 @@ provider "azurerm" {
   features {}
 
   subscription_id             = "$ARM_SUBSCRIPTION_ID"
-  client_id                   = "$CLIENT_ID"
+  client_id                   = "$CERTIFICATE_CLIENT_ID"
   client_certificate_path     = "$CERTIFICATE_PATH_PFX"
   client_certificate_password = "$CERTIFICATE_PASSWORD"
-  tenant_id                   = "$TENANT_ID"
+  tenant_id                   = "$CERTIFICATE_TENANT_ID"
 }
 TFCONFIG
 
