@@ -6,20 +6,27 @@ locals {
   empty_string = ""
 }
 
-# The following locals are used to convert basic input
+# The following locals are used to convert provided input
 # variables to locals before use elsewhere in the module
 locals {
-  root_id                    = var.root_id
-  root_name                  = var.root_name
-  root_parent_id             = var.root_parent_id
-  deploy_core_landing_zones  = var.deploy_core_landing_zones
-  archetype_config_overrides = var.archetype_config_overrides
-  subscription_id_overrides  = var.subscription_id_overrides
-  deploy_demo_landing_zones  = var.deploy_demo_landing_zones
-  custom_landing_zones       = var.custom_landing_zones
-  library_path               = var.library_path
-  template_file_variables    = var.template_file_variables
-  default_location           = var.default_location
+  root_id                        = var.root_id
+  root_name                      = var.root_name
+  root_parent_id                 = var.root_parent_id
+  deploy_core_landing_zones      = var.deploy_core_landing_zones
+  deploy_demo_landing_zones      = var.deploy_demo_landing_zones
+  deploy_management_resources    = var.deploy_management_resources
+  configure_management_resources = var.configure_management_resources
+  archetype_config_overrides     = var.archetype_config_overrides
+  subscription_id_overrides      = var.subscription_id_overrides
+  subscription_id_connectivity   = var.subscription_id_connectivity
+  subscription_id_identity       = var.subscription_id_identity
+  subscription_id_management     = var.subscription_id_management
+  custom_landing_zones           = var.custom_landing_zones
+  custom_policy_roles            = var.custom_policy_roles
+  library_path                   = var.library_path
+  template_file_variables        = var.template_file_variables
+  default_location               = var.default_location
+  default_tags                   = var.default_tags
 }
 
 # The following locals are used to define base Azure
@@ -37,15 +44,25 @@ locals {
 
 # The following locals are used to define RegEx
 # patterns used within this module
-
 locals {
   regex_extract_provider_scope = "(?i)/(?=.*/providers/)[^/]+/[\\S]+(?=.*/providers/)"
+}
+
+# The following locals are used to identify known
+# sensitive attributes generated when resources
+# are created
+locals {
+  sensitive_attributes = {
+    azurerm_log_analytics_workspace = [
+      "primary_shared_key",
+      "secondary_shared_key",
+    ]
+  }
 }
 
 # The following locals are used to control time_sleep
 # delays between resources to reduce transient errors
 # relating to replication delays in Azure
-
 locals {
   default_create_duration_delay  = "30s"
   default_destroy_duration_delay = "0s"

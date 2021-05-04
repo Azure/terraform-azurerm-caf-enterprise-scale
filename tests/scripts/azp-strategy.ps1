@@ -16,28 +16,27 @@ $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azur
 # - Base Version: "0.13.2"
 # - Latest Versions:
 #     0.13.* (latest 1)
-#     0.14.* (latest 3)
-#     0.15.* (latest 1)
+#     0.14.* (latest 1)
+#     0.15.* (latest 2)
 ########################################
 
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
 $terraformVersions = @("0.13.2")
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.13" } | Select-Object -First 1
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.14" } | Select-Object -First 3
-# Terraform v0.15.x currently causes validation errors. Needs further investigation.
-# $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15" } | Select-Object -First 1
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.13.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.14.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15.\d{1,2}(?!-)" } | Select-Object -First 2
 
 $terraformVersions = $terraformVersions | Sort-Object
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (2.34.0)
+# - Base Version: (2.41.0)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "2.34.0"
+$azurermProviderVersionBase = "2.41.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #############################################################################
