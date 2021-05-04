@@ -20,7 +20,6 @@ locals {
   tags                                         = var.tags
   resource_prefix                              = coalesce(var.resource_prefix, local.root_id)
   resource_suffix                              = length(var.resource_suffix) > 0 ? "-${var.resource_suffix}" : local.empty_string
-  resource_suffix_automation_account           = length(local.root_id) + length(local.resource_suffix) < 3 ? "cc${local.resource_suffix}" : local.resource_suffix
   existing_resource_group_name                 = var.existing_resource_group_name
   existing_log_analytics_workspace_resource_id = var.existing_log_analytics_workspace_resource_id
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
@@ -151,7 +150,7 @@ locals {
     "${local.resource_group_resource_id}/providers/Microsoft.Automation/automationAccounts/${local.azurerm_automation_account.name}"
   )
   azurerm_automation_account = {
-    name     = try(local.custom_settings_aa.name, "${local.resource_prefix}-aa${local.resource_suffix_automation_account}")
+    name     = try(local.custom_settings_aa.name, "${local.resource_prefix}-automation${local.resource_suffix}")
     location = try(local.custom_settings_aa.location, local.location)
     sku_name = try(local.custom_settings_aa.sku_name, "Basic")
     tags     = try(local.custom_settings_aa.tags, local.tags)
