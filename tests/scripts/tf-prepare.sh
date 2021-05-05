@@ -17,63 +17,36 @@ az login \
     --password "$ARM_CLIENT_SECRET"
 
 echo "==> Creating SPN and Role Assignments..."
-ARM_CLIENT=$(az ad sp create-for-rbac \
-    --name "ES-$TF_VERSION-$TF_AZ_VERSION" \
+SPN_NAME="ES-TestFramework-Job$TF_JOB_ID"
+CERTIFICATE_CLIENT_ID=$(az ad sp create-for-rbac \
+    --name "$SPN_NAME" \
     --role "Owner" \
     --scope "/providers/Microsoft.Management/managementGroups/$ARM_TENANT_ID" \
-    --create-cert \
-    --only-show-errors
+    --keyvault "$KEY_VAULT_NAME" \
+    --cert "$SPN_NAME" \
+    --only-show-errors \
+    --query 'appId' \
+    --out tsv
 )
-CERTIFICATE_PATH_PEM=$(echo "$ARM_CLIENT" | jq -r '.fileWithCertAndPrivateKey')
-CERTIFICATE_PATH_PFX=${CERTIFICATE_PATH_PEM//.pem/.pfx}
-CERTIFICATE_PASSWORD='estf-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-pwd'
-CERTIFICATE_CLIENT_ID=$(echo "$ARM_CLIENT" | jq -r '.appId')
-CERTIFICATE_TENANT_ID=$(echo "$ARM_CLIENT" | jq -r '.tenant')
 
-# Due to Azure AD replication, terraform plan fails if
-# insufficient time is allowed for the certificate to
-# be created/updated.
-echo "==> Wait 60s for SPN replication..."
-sleep 60s
+echo "==> Retrieve SPN certificate for authentication..."
+az keyvault secret download \
+    --file "$SPN_NAME.pem" \
+    --vault-name "$KEY_VAULT_NAME" \
+    --name "$SPN_NAME"
+
+echo "==> Generating SPN certificate password..."
+CERTIFICATE_PASSWORD='estf-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-pwd'
 
 echo "==> Converting SPN certificate to PFX..."
 openssl pkcs12 \
     -export \
-    -out "$CERTIFICATE_PATH_PFX" \
-    -in "$CERTIFICATE_PATH_PEM" \
+    -in "$SPN_NAME.pem" \
+    -out "$SPN_NAME.pfx" \
     -passout pass:"$CERTIFICATE_PASSWORD"
 
-echo "==> Checking Azure AD for matching certificate thumbprint..."
-CERTIFICATE_THUMBPRINT_FROM_PFX=$(openssl pkcs12 \
-    -nodes \
-    -in "$CERTIFICATE_PATH_PFX" \
-    -passin pass:$CERTIFICATE_PASSWORD \
-    | openssl x509 -noout -fingerprint \
-    | sed 's:.*=::g' \
-    | sed 's/://g'
-)
-echo " CERTIFICATE_THUMBPRINT_FROM_PFX   : $CERTIFICATE_THUMBPRINT_FROM_PFX"
-LOOP_COUNTER=0
-CERTIFICATE_THUMBPRINT_FROM_AZ_AD=""
-while [ $LOOP_COUNTER -lt 10 ]
-do
-    CERTIFICATE_THUMBPRINT_FROM_AZ_AD=$(az ad sp credential list \
-        --id "$CERTIFICATE_CLIENT_ID" \
-        --cert \
-        | jq -r '.[].customKeyIdentifier' \
-        2> /dev/null
-        )
-    echo " CERTIFICATE_THUMBPRINT_FROM_AZ_AD : $CERTIFICATE_THUMBPRINT_FROM_AZ_AD"
-    # Need to prefix the thumbprints with a letter to ensure
-    # string comparison when value starts with a digit.
-    if [[ "A$CERTIFICATE_THUMBPRINT_FROM_AZ_AD" -eq "A$CERTIFICATE_THUMBPRINT_FROM_PFX" ]]
-    then
-      break
-    fi
-    echo " Sleep for 10 seconds..."
-    sleep 10s
-    LOOP_COUNTER=$((LOOP_COUNTER + 1))
-done
+echo "==> Deleting SPN certificate in PEM format..."
+rm "$SPN_NAME.pem"
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
 cat > provider.tf <<TFCONFIG
@@ -91,9 +64,9 @@ provider "azurerm" {
 
   subscription_id             = "$ARM_SUBSCRIPTION_ID"
   client_id                   = "$CERTIFICATE_CLIENT_ID"
-  client_certificate_path     = "$CERTIFICATE_PATH_PFX"
+  client_certificate_path     = "$SPN_NAME.pfx"
   client_certificate_password = "$CERTIFICATE_PASSWORD"
-  tenant_id                   = "$CERTIFICATE_TENANT_ID"
+  tenant_id                   = "$ARM_TENANT_ID"
 }
 TFCONFIG
 

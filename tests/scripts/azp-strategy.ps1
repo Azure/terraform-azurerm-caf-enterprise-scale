@@ -53,12 +53,14 @@ for ($i = 0; $i -lt $terraformVersions.Count; $i++) {
         -NotePropertyValue @{
         TF_VERSION    = $terraformVersion;
         TF_AZ_VERSION = $azurermProviderVersionBase
+        TF_JOB_ID     = $job1
     }
     $matrixObject | Add-Member `
         -NotePropertyName "$job2. (TF: $terraformVersion, AZ: $azurermProviderVersionLatest)" `
         -NotePropertyValue @{
         TF_VERSION    = $terraformVersion;
         TF_AZ_VERSION = $azurermProviderVersionLatest
+        TF_JOB_ID     = $job2
     }
 }
 
