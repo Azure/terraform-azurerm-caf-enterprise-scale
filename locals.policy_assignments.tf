@@ -206,6 +206,7 @@ locals {
   policy_roles = merge(
     local.policy_definition_roles,
     local.policy_set_definition_roles,
+    local.custom_policy_roles
   )
 }
 
