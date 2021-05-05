@@ -15,18 +15,20 @@ az login \
 
 echo "==> Create or update Resource Group..."
 RSG_NAME="$DEFAULT_PREFIX"
-RSG_CONFIG=$(az group create \
+az group create \
     --name "$RSG_NAME" \
-    --location "$DEFAULT_LOCATION"
-)
+    --location "$DEFAULT_LOCATION" \
+    --query 'properties.provisioningState' \
+    --out tsv
 
 echo "==> Create or update Key Vault..."
 KEY_VAULT_NAME="$DEFAULT_PREFIX-kv"
-KEY_VAULT_CONFIG=$(az keyvault create \
+az keyvault create \
     --resource-group "$RSG_NAME" \
     --name "$KEY_VAULT_NAME" \
-    --location "$DEFAULT_LOCATION"
-)
+    --location "$DEFAULT_LOCATION" \
+    --query 'properties.provisioningState' \
+    --out tsv
 
 echo "==> Create or update SPNs with Role Assignments..."
 for i in {1..10}
@@ -44,14 +46,14 @@ do
     )
 
     echo "[SPN ID $i] Upload certificate to Key Vault... ($CERTIFICATE_PATH_PEM)"
-    CERTIFICATE_ID=$(az keyvault certificate import \
+    CERTIFICATE_NAME=$(az keyvault certificate import \
         --file "$CERTIFICATE_PATH_PEM" \
         --vault-name "$KEY_VAULT_NAME" \
         --name "$SPN_NAME" \
-        --query 'id' \
+        --query 'name' \
         --out tsv
     )
-    echo "[SPN ID $i] Upload certificate complete... ($CERTIFICATE_ID)"
+    echo "[SPN ID $i] Upload certificate complete... ($CERTIFICATE_NAME)"
 
     echo "[SPN ID $i] Delete certificate from local storage... ($CERTIFICATE_PATH_PEM)"
     rm "$CERTIFICATE_PATH_PEM"
