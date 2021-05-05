@@ -30,7 +30,7 @@ CERTIFICATE_CLIENT_ID=$(az ad sp create-for-rbac \
     --out tsv
 )
 
-echo "==> Retrieve SPN certificate for authentication..."
+echo "==> Retrieving SPN certificate for authentication..."
 az keyvault secret download \
     --file "$SPN_NAME.pem" \
     --vault-name "$KEY_VAULT_NAME" \
