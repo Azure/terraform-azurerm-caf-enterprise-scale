@@ -11,6 +11,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'make tf-prepare'
+  env:
+    ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
 - task: Bash@3
   displayName: 'Terraform (fmt)'
