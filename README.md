@@ -3,7 +3,9 @@
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-> **NOTE:** The latest `v0.2.0` release adds new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
+> **NOTE:** The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`. When upgrading to this release, please ensure to update your code to use native HCL values as documented in the [release notes][release_notes_v0_3_0].
+
+> **NOTE:** The `v0.2.0` release added new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
 > Please refer to the [Deploy Management Resources][wiki_deploy_management_resources] page on our Wiki for more information about how to use this.
 
 ## Documentation
@@ -141,7 +143,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.2.0"
+  version = "0.3.0"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id
@@ -225,3 +227,5 @@ module "enterprise_scale" {
 [wiki_feature_requests]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Feature-Requests "Wiki - Feature Requests"
 [wiki_contributing_to_code]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Code "Wiki - Contributing to Code"
 [wiki_contributing_to_documentation]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Documentation "Wiki - Contributing to Documentation"
+
+[release_notes_v0_3_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v0.3.0 "Release notes for v0.3.0"
