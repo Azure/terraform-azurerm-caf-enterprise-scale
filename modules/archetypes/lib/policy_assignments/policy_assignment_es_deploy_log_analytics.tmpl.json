@@ -8,10 +8,10 @@
     "notScopes": [],
     "parameters": {
       "workspaceName": {
-        "value": "${root_scope_id}-a-00000000-0000-0000-0000-000000000000"
+        "value": "${root_scope_id}-la"
       },
       "automationAccountName": {
-        "value": "${root_scope_id}-la-00000000-0000-0000-0000-000000000000"
+        "value": "${root_scope_id}-automation"
       },
       "workspaceRegion": {
         "value": "${default_location}"

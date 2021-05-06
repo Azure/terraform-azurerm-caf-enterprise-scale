@@ -8,7 +8,7 @@
     "notScopes": [],
     "parameters": {
       "logAnalytics": {
-        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la-00000000-0000-0000-0000-000000000000"
+        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/9d2b61b4-1d14-4a63-be30-d4498e7ad2cf",

@@ -212,6 +212,12 @@ locals {
         Deploy-WS-Arc-Monitoring = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
+        Deploy-AzActivity-Log = {
+          logAnalytics = local.log_analytics_workspace_resource_id
+        }
+        Deploy-Resource-Diag = {
+          logAnalytics = local.log_analytics_workspace_resource_id
+        }
       }
       enforcement_mode = {
         Deploy-ASC-Defender      = local.deploy_security
