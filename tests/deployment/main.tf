@@ -57,20 +57,20 @@ module "test_root_id_3" {
         archetype_id = "customer_online"
         parameters = {
           Deny-Resource-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "eastus",
               "westus",
               "uksouth",
               "ukwest",
-            ])
+            ]
           }
           Deny-RSG-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "eastus",
               "westus",
               "uksouth",
               "ukwest",
-            ])
+            ]
           }
         }
         access_control = {}
@@ -94,16 +94,16 @@ module "test_root_id_3" {
         archetype_id = "customer_online"
         parameters = {
           Deny-Resource-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "eastus",
               "westus",
-            ])
+            ]
           }
           Deny-RSG-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "eastus",
               "westus",
-            ])
+            ]
           }
         }
         access_control = {}
@@ -117,14 +117,14 @@ module "test_root_id_3" {
         archetype_id = "customer_online"
         parameters = {
           Deny-Resource-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "eastus",
-            ])
+            ]
           }
           Deny-RSG-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "eastus",
-            ])
+            ]
           }
         }
         access_control = {}
@@ -138,10 +138,13 @@ module "test_root_id_3" {
       archetype_id = "es_root"
       parameters = {
         Deploy-HITRUST-HIPAA = {
-          CertificateThumbprints                                        = jsonencode("")
-          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = jsonencode("true")
-          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = jsonencode(var.root_id_3)
-          installedApplicationsOnWindowsVM                              = jsonencode("")
+          CertificateThumbprints                                        = ""
+          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"
+          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id_3
+          installedApplicationsOnWindowsVM                              = ""
+          listOfLocations = [
+            "eastus",
+          ]
         }
       }
       access_control = {}
@@ -181,16 +184,16 @@ module "test_root_id_3_lz1" {
         archetype_id = "customer_online"
         parameters = {
           Deny-Resource-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "northcentralus",
               "southcentralus",
-            ])
+            ]
           }
           Deny-RSG-Locations = {
-            listOfAllowedLocations = jsonencode([
+            listOfAllowedLocations = [
               "northcentralus",
               "southcentralus",
-            ])
+            ]
           }
         }
         access_control = {}
