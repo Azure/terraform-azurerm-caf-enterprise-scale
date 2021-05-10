@@ -28,12 +28,16 @@
 - removed feature 1
 - removed feature 2
 
-### Optional:
+### Optional
 
 - [ ] **test added**:
+
+<!-- Tests that prove my fix is effective or that my feature works. -->
 
 - test 1
 
 - [ ] **documentation update**:
+
+<!-- Changes made to the documentation. -->
 
 - page 1
