@@ -1,6 +1,6 @@
 ## Overview
 
-[**root_name**](#) `string` (optional)
+[**root_name**](#overview) `string` (optional)
 
 If specified, will set a custom Display Name value for the Enterprise-scale "root" Management Group.
 

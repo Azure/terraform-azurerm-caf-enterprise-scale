@@ -1,6 +1,6 @@
 ## Overview
 
-[**deploy_core_landing_zones**](#) `bool` (optional)
+[**deploy_core_landing_zones**](#overview) `bool` (optional)
 
 If set to true, will include the core Enterprise-scale Management Group hierarchy.
 

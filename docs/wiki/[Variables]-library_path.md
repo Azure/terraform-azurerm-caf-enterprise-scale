@@ -1,6 +1,6 @@
 ## Overview
 
-[**library_path**](#) `string` (optional)
+[**library_path**](#overview) `string` (optional)
 
 If specified, sets the path to a custom library folder for archetype artifacts.
 

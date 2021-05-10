@@ -1,6 +1,6 @@
 ## Overview
 
-[**custom_landing_zones**](#) `map` (optional)
+[**custom_landing_zones**](#overview) `map` (optional)
 
 ```hcl
 variable "custom_landing_zones" {

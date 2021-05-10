@@ -1,6 +1,6 @@
 ## Overview
 
-[**root_id**](#) `string` (optional)
+[**root_id**](#overview) `string` (optional)
 
 If specified, will set a custom Name (ID) value for the Enterprise-scale "root" Management Group, and append this to the ID for all core Enterprise-scale Management Groups.
 

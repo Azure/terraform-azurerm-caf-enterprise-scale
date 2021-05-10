@@ -1,6 +1,6 @@
 ## Overview
 
-[**deploy_demo_landing_zones**](#) `bool` (optional)
+[**deploy_demo_landing_zones**](#overview) `bool` (optional)
 
 If set to true, will include the demo "Landing Zone" Management Groups.
 

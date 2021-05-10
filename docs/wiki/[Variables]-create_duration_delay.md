@@ -1,6 +1,6 @@
 ## Overview
 
-[**create_duration_delay**](#) `map(string)` (optional)
+[**create_duration_delay**](#overview) `map(string)` (optional)
 
 Sets a custom delay period after creation of the specified resource type. Used to tune `terraform apply` when faced with errors caused by API caching or eventual consistency.
 
