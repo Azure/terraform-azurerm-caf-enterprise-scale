@@ -197,15 +197,18 @@ To reflect the updated policies, and ensure policies are assigned according to t
 
 ### es_root
 
-In a default configuration, the `es_root` archetype definition is applied to the `${var.root_id}` Management Group. This is the default scope for all custom Policy Definitions, Policy Set Definitions (Initiatives), and Role Definitions defined by Enterprise-scale but is also where user-defined definitions should be created. This ensures all definitions are available for assignment anywhere within the Enterprise-scale Management Group hierarchy.
+In a default configuration, the `es_root` archetype definition is applied to the `${var.root_id}` Management Group. This is the default scope for all custom Policy Definitions, Policy Set Definitions (Initiatives), and Role Definitions defined by Enterprise-scale but is also where user-defined definitions should be created. 
+This ensures all definitions are available for assignment anywhere within the Enterprise-scale Management Group hierarchy.
 
 As such, this archetype definition contains references for ALL of the Policy Definitions, Policy Set Definitions (Initiatives), and Role Definitions listed in the previous sections.
 
 To bring this in alignment with the Enterprise-scale reference architecture, the following changes will be made to the Policy Assignments created by this archetype from v0.1.0 onwards:
 
+<!-- markdownlint-disable MD013 -->
 | Policy Assignments (v0.0.8)                                                                                                                                                                                                              | Policy Assignments (v0.1.0)                                                                                                                                                                                     |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ES-Allowed-Locations<br>ES-Allowed-RSG-Locations<br>ES-Deny-AppGW-No-WAF<br>ES-Deny-VMIPForwarding<br>ES-Deny-RDPFromInternet<br>ES-Deny-ResourceTypes<br>ES-Deny-SubnetWithoutNsg<br>ES-Deploy-ASC-Monitoring<br>ES-Deploy-ASC-Standard | Deploy-ASC-Monitoring<br>Deploy-ASC-Defender<br>Deploy-AzActivity-Log<br>Deploy-LX-Arc-Monitoring<br>Deploy-Resource-Diag<br>Deploy-VM-Monitoring<br>Deploy-VMSS-Monitoring<br>Deploy-WS-Arc-Monitoring<br><br> |
+<!-- markdownlint-restore -->
 
 If you are using a copy of this archetype in your custom library (as specified using the `library_path` variable), please ensure you update all applicable resource names from the v0.0.8 format to v0.1.0.
 
