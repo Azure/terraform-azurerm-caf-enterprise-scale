@@ -1,6 +1,6 @@
 ## Overview
 
-[**root_parent_id**][this_page] `string` (required)
+[**root_parent_id**](#) `string` (required)
 
 Represents an existing Management Group, under which the Enterprise-scale resource hierarchy will be deployed.
 Usually this will be the Tenant Root Group, which is the default Management Group referenced by the Tenant ID.

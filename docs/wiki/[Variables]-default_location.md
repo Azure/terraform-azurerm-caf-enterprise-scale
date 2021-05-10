@@ -1,6 +1,6 @@
 ## Overview
 
-[**default_location**][this_page] `string` (optional)
+[**default_location**](#) `string` (optional)
 
 Set the Azure region in which region bound resources will be deployed.
 

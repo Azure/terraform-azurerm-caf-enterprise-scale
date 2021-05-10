@@ -1,6 +1,6 @@
 ## Overview
 
-[**subscription_id_overrides**][this_page] `map(list(string))` (optional)
+[**subscription_id_overrides**](#) `map(list(string))` (optional)
 
 If specified, will be used to assign subscription_ids to the default Enterprise-scale Management Groups.
 

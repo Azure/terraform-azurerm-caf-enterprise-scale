@@ -1,6 +1,6 @@
 ## Overview
 
-[**destroy_duration_delay**][this_page] `map(string)` (optional)
+[**destroy_duration_delay**](#) `map(string)` (optional)
 
 Used to tune terraform deploy when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after destruction of the specified resource type.
 
