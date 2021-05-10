@@ -197,7 +197,7 @@ To reflect the updated policies, and ensure policies are assigned according to t
 
 ### es_root
 
-In a default configuration, the `es_root` archetype definition is applied to the `${var.root_id}` Management Group. This is the default scope for all custom Policy Definitions, Policy Set Definitions (Initiatives), and Role Definitions defined by Enterprise-scale but is also where user-defined definitions should be created. 
+In a default configuration, the `es_root` archetype definition is applied to the `${var.root_id}` Management Group. This is the default scope for all custom Policy Definitions, Policy Set Definitions (Initiatives), and Role Definitions defined by Enterprise-scale but is also where user-defined definitions should be created.
 This ensures all definitions are available for assignment anywhere within the Enterprise-scale Management Group hierarchy.
 
 As such, this archetype definition contains references for ALL of the Policy Definitions, Policy Set Definitions (Initiatives), and Role Definitions listed in the previous sections.

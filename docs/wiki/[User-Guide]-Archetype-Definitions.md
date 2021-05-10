@@ -13,7 +13,7 @@ This approach provides improved autonomy for application teams, whilst ensuring 
 
 ## Working with archetype definitions and the custom library
 
-The `archetype_definition` is a template file written in JSON or YAML. The default archetype definitions can be found in the [built-in module library][TFAES-Library], but custom archetype definitions can also be added to a custom library in the root module. 
+The `archetype_definition` is a template file written in JSON or YAML. The default archetype definitions can be found in the [built-in module library][TFAES-Library], but custom archetype definitions can also be added to a custom library in the root module.
 The archetype definition is associated to the scope (i.e. Management Group) by specifying the `archetype_id` within the ***Landing Zone*** configuration object.
 
 Both the built-in and custom libraries are also used to store ARM based templates for the Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) and Role Definitions. Role Assignments are an exception as these are defined as part of the `archetype_config` instead.
@@ -117,8 +117,8 @@ This template-based approach was chosen to make the desired-state easier to unde
 }
 ```
 
-> **WARNING** The `jsondecode()` function used by Terraform doesn't support comments in JSON. Please also note that HCL objects are Case-Sensitive so the JSON object must be created with the correct character case on anything referenced by Terraform. 
-> Typically this applies to each `key` in an object but there are also situations where the `value` also needs to be interpreted by the module. For archetype definitions, the case of all values within each section must match those used in the mapped field for each template being assigned. Incorrect casing can result in `terraform plan` identifying unnecessary resource updates. 
+> **WARNING** The `jsondecode()` function used by Terraform doesn't support comments in JSON. Please also note that HCL objects are Case-Sensitive so the JSON object must be created with the correct character case on anything referenced by Terraform.
+> Typically this applies to each `key` in an object but there are also situations where the `value` also needs to be interpreted by the module. For archetype definitions, the case of all values within each section must match those used in the mapped field for each template being assigned. Incorrect casing can result in `terraform plan` identifying unnecessary resource updates.
 > For example, the Azure REST API returns `"type": "String"` in parameter blocks, regardless of what case was used to create the resource. Not using the same casing in your source templates can result in Terraform trying to update resources when no real changes have occurred.
 
 ### Using the `default_empty` archetype definition
