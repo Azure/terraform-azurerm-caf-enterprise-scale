@@ -18,6 +18,7 @@ env:
 jobs:
   sync-wiki:
     name: Sync Wiki
+    if: github.repository == 'Azure/terraform-azurerm-caf-enterprise-scale'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Repo
