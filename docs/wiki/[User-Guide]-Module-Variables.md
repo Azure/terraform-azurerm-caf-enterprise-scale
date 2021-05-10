@@ -32,7 +32,7 @@ Used to tune `terraform apply` when faced with errors caused by API caching or e
 
 Default:
 
-```
+```hcl
 {
   azurerm_management_group      = "30s"
   azurerm_policy_assignment     = "30s"
@@ -83,7 +83,7 @@ Used to tune terraform deploy when faced with errors caused by API caching or ev
 
 Default:
 
-```
+```hcl
 {
   azurerm_management_group      = "0s"
   azurerm_policy_assignment     = "0s"

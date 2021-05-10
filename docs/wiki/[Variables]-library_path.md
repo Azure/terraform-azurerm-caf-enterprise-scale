@@ -22,7 +22,7 @@ Set the path to a custom directory within your root module.
 
 > Important: Please ensure you create the `/lib` directory first within your root module. You can use this custom directory to store all your custom archetype definition templates.
 
-> [//]: # "************************"
-> [//]: # "INSERT LINK LABELS BELOW"
-> [//]: # "************************"
-> [this_page]: # "Link for the current page."
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"
+[this_page]: # "Link for the current page."

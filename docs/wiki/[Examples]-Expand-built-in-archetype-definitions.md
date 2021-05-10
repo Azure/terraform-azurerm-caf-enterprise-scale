@@ -2,6 +2,8 @@
 
 This page describes how to deploy Enterprise-scale with a basic configuration based mainly on module defaults, including guidance on how to expand the built-in archetype definitions.
 
+> NOTE: This feature is available from version 0.2.0.
+
 We will use the `es_landing_zones` configuration as an example.
 
 The built-in definition contains the following settings:
@@ -38,8 +40,6 @@ We will update the built-in configuration by adding 2 new settings:
 - Create an extension `extend_es_landing_zones` which will **add** a Policy Assignment `Deny-Resource-Locations` and set the parameters of this Policy Assignment.
 
 - Create an exclusion `exclude_es_landing_zones` which will **remove** a set of Policy Assignments `Deny-Priv-Escalation-AKS`, `Deny-Priv-Containers-AKS` and `Deny-http-Ingress-AKS`.
-
-> NOTE: This feature is available from version 0.2.0.
 
 > IMPORTANT: Ensure the module version is set to the latest.
 
