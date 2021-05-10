@@ -1,4 +1,4 @@
-### This PR introduces:
+### This PR introduces
 
 - [ ] **breaking changes**:
 
