@@ -2,6 +2,8 @@
 
 This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to override the dynamically generated Role Assignments for a specific Policy Assignment with Managed Identity.
 
+> NOTE: This feature is available from version 0.2.2.
+
 We will use the `Deploy-HITRUST-HIPAA` and `Deploy-SQL-Auditing` policy assignments as an example.
 
 On deployment, the module will auto-generate the role assignments necessary for any Policy Assignment when a Managed Identity is required to support policies using `Modify` or `DeployIfNotExists` effects.
@@ -21,8 +23,6 @@ We will update the built-in configuration following these steps:
 - Override the dynamically generated Role Assignments for `Deploy-HITRUST-HIPAA` and `Deploy-SQL-Auditing` Policy Assignments in a custom Landing Zone Management Group.
 
 - Enable the role assignment override with `custom_policy_roles`
-
-> NOTE: This feature is available from version 0.2.2.
 
 > IMPORTANT: Ensure the module version is set to the latest.
 
