@@ -11,7 +11,7 @@
         "value": "security_contact@replace_me"
       },
       "logAnalytics": {
-        "value": "${root_scope_id}-a-00000000-0000-0000-0000-000000000000"
+        "value": "${root_scope_id}-la"
       },
       "ascExportResourceGroupName": {
         "value": "${root_scope_id}-asc-export"
