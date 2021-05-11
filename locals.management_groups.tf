@@ -186,10 +186,10 @@ locals {
   }
   # Logic to determine whether to include the core Enterprise-scale
   # Management Groups as part of the deployment
-  es_core_landing_zones_to_include = local.deploy_core_landing_zones ? local.es_core_landing_zones : local.empty_map
+  es_core_landing_zones_to_include = local.deploy_core_landing_zones ? local.es_core_landing_zones : null
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
-  es_demo_landing_zones_to_include = local.deploy_demo_landing_zones ? local.es_demo_landing_zones : local.empty_map
+  es_demo_landing_zones_to_include = local.deploy_demo_landing_zones ? local.es_demo_landing_zones : null
   # Local map containing all Management Groups to deploy
   es_landing_zones_merge = merge(
     local.es_core_landing_zones_to_include,
