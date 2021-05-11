@@ -186,7 +186,7 @@ variable "subscription_id_management" {
 }
 
 variable "custom_landing_zones" {
-  type = any
+  type        = any
   description = "If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups."
   default     = {}
 
