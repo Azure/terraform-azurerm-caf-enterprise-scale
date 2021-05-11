@@ -44,8 +44,30 @@ module "test_root_id_3" {
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id   = "default_empty"
-        parameters     = {}
+        archetype_id = "customer_secure"
+        parameters = {
+          Deny-Resource-Locations = {
+            listOfAllowedLocations = [
+              "eastus",
+              "westus",
+            ]
+          }
+          Deny-RSG-Locations = {
+            listOfAllowedLocations = [
+              "eastus",
+              "westus",
+            ]
+          }
+          Deploy-HITRUST-HIPAA = {
+            CertificateThumbprints                                        = ""
+            DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"
+            DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id_3
+            installedApplicationsOnWindowsVM                              = ""
+            listOfLocations = [
+              "eastus",
+            ]
+          }
+        }
         access_control = {}
       }
     }
@@ -137,6 +159,28 @@ module "test_root_id_3" {
     root = {
       archetype_id = "es_root"
       parameters = {
+        Deny-Resource-Locations = {
+          listOfAllowedLocations = [
+            "eastus",
+            "eastus2",
+            "westus",
+            "northcentralus",
+            "southcentralus",
+            "uksouth",
+            "ukwest",
+          ]
+        }
+        Deny-RSG-Locations = {
+          listOfAllowedLocations = [
+            "eastus",
+            "eastus2",
+            "westus",
+            "northcentralus",
+            "southcentralus",
+            "uksouth",
+            "ukwest",
+          ]
+        }
         Deploy-HITRUST-HIPAA = {
           CertificateThumbprints                                        = ""
           DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"

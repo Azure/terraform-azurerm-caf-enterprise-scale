@@ -210,6 +210,14 @@ locals {
   )
 }
 
+# Generate a list of principal_id values by Policy Assignment
+locals {
+  principal_id_by_policy_assignment = {
+    for pak, pav in azurerm_policy_assignment.enterprise_scale :
+    pak => pav.identity[0].principal_id
+  }
+}
+
 # Construct the array used to determine the list of
 # Role Assignments to create for the Managed Identities
 # used by Policy Assignments.
@@ -224,7 +232,7 @@ locals {
         {
           resource_id          = "${local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id}${local.provider_path.role_assignment}${uuidv5(uuidv5("url", role_definition_id), policy_assignment_id)}"
           scope_id             = local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id
-          principal_id         = try(azurerm_policy_assignment.enterprise_scale[policy_assignment_id].identity[0].principal_id, null)
+          principal_id         = try(local.principal_id_by_policy_assignment[policy_assignment_id], null)
           role_definition_name = null
           role_definition_id   = role_definition_id
         }

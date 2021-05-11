@@ -141,13 +141,7 @@ variable "configure_management_resources" {
 }
 
 variable "archetype_config_overrides" {
-  type = map(
-    object({
-      archetype_id   = string
-      parameters     = any
-      access_control = any
-    })
-  )
+  type        = any
   description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups."
   default     = {}
 }
@@ -192,18 +186,7 @@ variable "subscription_id_management" {
 }
 
 variable "custom_landing_zones" {
-  type = map(
-    object({
-      display_name               = string
-      parent_management_group_id = string
-      subscription_ids           = list(string)
-      archetype_config = object({
-        archetype_id   = string
-        parameters     = any
-        access_control = any
-      })
-    })
-  )
+  type        = any
   description = "If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups."
   default     = {}
 
