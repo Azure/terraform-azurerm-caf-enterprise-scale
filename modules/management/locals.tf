@@ -1,8 +1,6 @@
 # The following block of locals are used to avoid using
 # empty object types in the code.
 locals {
-  empty_list   = []
-  empty_map    = {}
   empty_string = ""
 }
 
@@ -101,7 +99,7 @@ locals {
     name                              = try(local.custom_settings_la_workspace.name, "${local.resource_prefix}-la${local.resource_suffix}")
     location                          = try(local.custom_settings_la_workspace.location, local.location)
     sku                               = try(local.custom_settings_la_workspace.sku, "PerGB2018")
-    retention_in_days                 = try(local.custom_settings_la_workspace.retention_in_days, 30)
+    retention_in_days                 = try(local.custom_settings_la_workspace.retention_in_days, local.settings.log_analytics.config.retention_in_days)
     daily_quota_gb                    = try(local.custom_settings_la_workspace.daily_quota_gb, null)
     internet_ingestion_enabled        = try(local.custom_settings_la_workspace.internet_ingestion_enabled, true)
     internet_query_enabled            = try(local.custom_settings_la_workspace.internet_query_enabled, true)
