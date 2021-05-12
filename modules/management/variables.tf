@@ -94,7 +94,7 @@ variable "resource_prefix" {
 
 variable "resource_suffix" {
   type        = string
-  description = "If specified, will set the resource name suffix for management resources (default value determined from \"var.subscription_id\")."
+  description = "If specified, will set the resource name suffix for management resources."
   default     = ""
 
   validation {
