@@ -44,3 +44,14 @@ module "management_resources" {
   link_log_analytics_to_automation_account     = try(local.configure_management_resources.advanced.link_log_analytics_to_automation_account, true)
   custom_settings_by_resource_type             = try(local.configure_management_resources.advanced.custom_settings_by_resource_type, local.empty_map)
 }
+
+# The following module is used to generate the configuration
+# data used to deploy platform resources based on the
+# "identity" landing zone archetype.
+module "identity_resources" {
+  source = "./modules/identity"
+
+  # Mandatory input variables 
+  enabled  = local.deploy_identity_resources
+  settings = local.configure_identity_resources.settings
+}
