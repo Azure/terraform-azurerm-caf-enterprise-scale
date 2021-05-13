@@ -6,7 +6,7 @@
 
 variable "enabled" {
   type        = bool
-  description = "Controls whether to deploy the management resources into the current Subscription context."
+  description = "Controls whether to manage the management landing zone policies and deploy the management resources into the current Subscription context."
 }
 
 variable "root_id" {
