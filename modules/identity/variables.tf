@@ -14,10 +14,10 @@ variable "settings" {
     identity = object({
       enabled = bool
       config = object({
-        enable_deny_rdp_from_internet     = bool
         enable_deny_public_ip             = bool
-        enable_deploy_azure_backup_on_vms = bool
+        enable_deny_rdp_from_internet     = bool
         enable_deny_subnet_without_nsg    = bool
+        enable_deploy_azure_backup_on_vms = bool
       })
     })
   })
