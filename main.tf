@@ -12,11 +12,14 @@ module "management_group_archetypes" {
   scope_id                = each.key
   archetype_id            = each.value.archetype_config.archetype_id
   parameters              = each.value.archetype_config.parameters
-  enforcement_mode        = try(module.management_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null)
   access_control          = each.value.archetype_config.access_control
   library_path            = local.library_path
   template_file_variables = local.template_file_variables
   default_location        = local.default_location
+  enforcement_mode = merge(
+    try(module.identity_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null),
+    try(module.management_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null),
+  )
 }
 
 # The following module is used to generate the configuration
@@ -53,5 +56,6 @@ module "identity_resources" {
 
   # Mandatory input variables 
   enabled  = local.deploy_identity_resources
+  root_id  = local.root_id
   settings = local.configure_identity_resources.settings
 }

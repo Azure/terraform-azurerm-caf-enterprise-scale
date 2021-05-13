@@ -5,6 +5,7 @@
 # no value for subscription_id is provided.
 locals {
   enabled  = var.enabled
+  root_id  = var.root_id
   settings = var.settings
 }
 

@@ -15,7 +15,9 @@ locals {
   deploy_core_landing_zones      = var.deploy_core_landing_zones
   deploy_demo_landing_zones      = var.deploy_demo_landing_zones
   deploy_management_resources    = var.deploy_management_resources
+  deploy_identity_resources      = var.deploy_identity_resources
   configure_management_resources = var.configure_management_resources
+  configure_identity_resources   = var.configure_identity_resources
   archetype_config_overrides     = var.archetype_config_overrides
   subscription_id_overrides      = var.subscription_id_overrides
   subscription_id_connectivity   = var.subscription_id_connectivity
