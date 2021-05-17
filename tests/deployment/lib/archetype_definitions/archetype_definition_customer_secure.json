@@ -1,9 +1,8 @@
 {
-    "extend_es_root": {
+    "customer_secure": {
         "policy_assignments": [
             "Deny-Resource-Locations",
             "Deny-RSG-Locations",
-            "Deploy-SQL-Auditing",
             "Deploy-HITRUST-HIPAA"
         ],
         "policy_definitions": [],
@@ -28,16 +27,6 @@
                         "northcentralus",
                         "southcentralus"
                     ]
-                },
-                "Deploy-SQL-Auditing": {
-                    "retentionDays": "10",
-                    "storageAccountsResourceGroup": ""
-                },
-                "Deploy-HITRUST-HIPAA": {
-                    "CertificateThumbprints": "",
-                    "DeployDiagnosticSettingsforNetworkSecurityGroupsrgName": "",
-                    "DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix": "",
-                    "installedApplicationsOnWindowsVM": ""
                 }
             },
             "access_control": {}

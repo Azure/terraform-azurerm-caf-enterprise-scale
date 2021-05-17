@@ -8,6 +8,10 @@ azp-strategy:
 	@echo "==> Running script..."
 	./tests/scripts/azp-strategy.ps1
 
+azp-spn-generator:
+	@echo "==> Running script..."
+	./tests/scripts/azp-spn-generator.sh
+
 # Terraform
 
 tf-install:

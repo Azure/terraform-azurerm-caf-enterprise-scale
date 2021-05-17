@@ -9,7 +9,7 @@
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Udr",
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": "Default"
+    "enforcementMode": null
   },
   "location": "${default_location}",
   "identity": {

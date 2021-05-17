@@ -110,8 +110,10 @@ locals {
       # default to true when neither exist (as per default platform
       # behaviour).
       enforcement_mode = coalesce(
+        try(lower(local.archetype_policy_assignments_map[policy_assignment].properties.enforcementMode) == "default", false) ? true : null,
+        try(lower(local.archetype_policy_assignments_map[policy_assignment].properties.enforcementMode) == "donotenforce", false) ? false : null,
         try(local.enforcement_mode[policy_assignment], null),
-        try(lower(local.archetype_policy_assignments_map[policy_assignment].properties.enforcementMode) == "default", true) ? true : false,
+        true,
       )
     }
   ]
