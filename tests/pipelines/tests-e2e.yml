@@ -6,6 +6,9 @@ trigger: none
 pool:
   vmImage: ubuntu-20.04
 
+variables:
+- group: csu-tf-environment
+
 jobs:
 - job: matrix_generator
   displayName: 'Matrix Generator'
