@@ -38,27 +38,28 @@ locals {
 # Logic to determine whether specific resources
 # should be created by this module
 locals {
-  deploy_monitoring                   = local.enabled && local.settings.log_analytics.enabled
-  deploy_monitoring_for_arc           = local.deploy_monitoring && local.settings.log_analytics.config.enable_monitoring_for_arc
-  deploy_monitoring_for_vm            = local.deploy_monitoring && local.settings.log_analytics.config.enable_monitoring_for_vm
-  deploy_monitoring_for_vmss          = local.deploy_monitoring && local.settings.log_analytics.config.enable_monitoring_for_vmss
-  deploy_resource_group               = local.deploy_monitoring && local.existing_resource_group_name == local.empty_string
-  deploy_log_analytics_workspace      = local.deploy_monitoring && local.existing_log_analytics_workspace_resource_id == local.empty_string
-  deploy_log_analytics_linked_service = local.deploy_monitoring && local.link_log_analytics_to_automation_account
-  deploy_automation_account           = local.deploy_monitoring && local.existing_automation_account_resource_id == local.empty_string
+  deploy_monitoring_settings          = local.settings.log_analytics.enabled
+  deploy_monitoring_for_arc           = local.deploy_monitoring_settings && local.settings.log_analytics.config.enable_monitoring_for_arc
+  deploy_monitoring_for_vm            = local.deploy_monitoring_settings && local.settings.log_analytics.config.enable_monitoring_for_vm
+  deploy_monitoring_for_vmss          = local.deploy_monitoring_settings && local.settings.log_analytics.config.enable_monitoring_for_vmss
+  deploy_monitoring_resources         = local.enabled && local.deploy_monitoring_settings
+  deploy_resource_group               = local.deploy_monitoring_resources && local.existing_resource_group_name == local.empty_string
+  deploy_log_analytics_workspace      = local.deploy_monitoring_resources && local.existing_log_analytics_workspace_resource_id == local.empty_string
+  deploy_log_analytics_linked_service = local.deploy_monitoring_resources && local.link_log_analytics_to_automation_account
+  deploy_automation_account           = local.deploy_monitoring_resources && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
-    AgentHealthAssessment = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
-    AntiMalware           = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_anti_malware
-    AzureActivity         = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_azure_activity
-    ChangeTracking        = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_change_tracking
-    Security              = local.deploy_monitoring && local.settings.log_analytics.config.enable_sentinel
-    SecurityInsights      = local.deploy_monitoring && local.settings.log_analytics.config.enable_sentinel
-    ServiceMap            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_service_map
-    SQLAssessment         = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_sql_assessment
-    Updates               = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_updates
-    VMInsights            = local.deploy_monitoring && local.settings.log_analytics.config.enable_solution_for_vm_insights
+    AgentHealthAssessment = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
+    AntiMalware           = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_anti_malware
+    AzureActivity         = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_azure_activity
+    ChangeTracking        = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_change_tracking
+    Security              = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
+    SecurityInsights      = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
+    ServiceMap            = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_service_map
+    SQLAssessment         = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_assessment
+    Updates               = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_updates
+    VMInsights            = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
   }
-  deploy_security                    = local.enabled && local.settings.security_center.enabled
+  deploy_security_settings           = local.settings.security_center.enabled
   deploy_defender_for_acr            = local.settings.security_center.config.enable_defender_for_acr
   deploy_defender_for_app_services   = local.settings.security_center.config.enable_defender_for_app_services
   deploy_defender_for_arm            = local.settings.security_center.config.enable_defender_for_arm
@@ -218,7 +219,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-ASC-Defender      = local.deploy_security
+        Deploy-ASC-Defender      = local.deploy_security_settings
         Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
@@ -237,7 +238,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-Log-Analytics = local.deploy_monitoring
+        Deploy-Log-Analytics = local.deploy_monitoring_settings
       }
     }
   }
