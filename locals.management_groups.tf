@@ -210,9 +210,8 @@ locals {
         archetype_id   = value.archetype_config.archetype_id
         access_control = value.archetype_config.access_control
         parameters = merge(
-          value.archetype_config.parameters,
-          try(module.identity_resources.configuration.archetype_config_overrides[key].parameters, null),
           try(module.management_resources.configuration.archetype_config_overrides[key].parameters, null),
+          value.archetype_config.parameters,
         )
       }
     }

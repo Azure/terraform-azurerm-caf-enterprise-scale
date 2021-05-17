@@ -22,7 +22,7 @@
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-ASC-Config",
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": "Default"
+    "enforcementMode": null
   },
   "location": "${default_location}",
   "identity": {
