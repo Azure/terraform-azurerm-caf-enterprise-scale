@@ -1,0 +1,22 @@
+---
+name: 'SPN generator'
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-20.04
+
+variables:
+- group: csu-tf-environment
+
+jobs:
+- job: run_spn_generator
+  displayName: 'Run SPN generator'
+  steps:
+  - task: Bash@3
+    displayName: 'Create or update SPN settings'
+    inputs:
+      targetType: 'inline'
+      script: 'make azp-spn-generator'
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
