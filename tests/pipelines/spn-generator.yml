@@ -1,5 +1,5 @@
 ---
-name: 'Tests (Unit)'
+name: 'SPN generator'
 
 trigger: none
 
