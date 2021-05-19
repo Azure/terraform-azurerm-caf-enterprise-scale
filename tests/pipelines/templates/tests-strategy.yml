@@ -6,3 +6,5 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'make azp-strategy'
+  env:
+    ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)

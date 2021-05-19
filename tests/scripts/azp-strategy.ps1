@@ -5,6 +5,18 @@
 # - Generate Azure Pipelines Strategy
 #
 
+###############################################
+# Configure PSScriptAnalyzer rule suppression.
+###############################################
+
+# The following SuppressMessageAttribute entries are used to surpress
+# PSScriptAnalyzer tests against known exceptions as per:
+# https://github.com/powershell/psscriptanalyzer#suppressing-rules
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingConvertToSecureStringWithPlainText', '', Justification = 'Required to enable authentication.')]
+param ()
+
+$ErrorActionPreference = "Stop"
+
 Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -InformationAction Continue
 
 $jsonDepth = 4
@@ -45,9 +57,15 @@ $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProv
 # Generate Subscription Aliases
 #######################################
 
+Write-Information "==> Checking for `"Az.Accounts`" PowerShell module..." -InformationAction Continue
+if ((Get-Module -ListAvailable "Az.Accounts").Count -eq 0) {
+    Install-Module -Name "Az.Accounts" -Force
+}
+Import-Module -Name "Az.Accounts" -Force
+
 Write-Information "==> Getting Subscription Aliases..." -InformationAction Continue
 
-Write-Verbose "Switching Azure Context using Client ID [$($env:ARM_CLIENT_ID)]"
+Write-Verbose "Switching Azure Context using Client ID [$($env:ARM_CLIENT_ID)]."
 $Credential = New-Object System.Management.Automation.PSCredential (
     $($env:ARM_CLIENT_ID),
     $($env:ARM_CLIENT_SECRET | ConvertTo-SecureString -AsPlainText -Force)
@@ -60,6 +78,7 @@ Connect-AzAccount `
     -Credential $Credential `
     -WarningAction SilentlyContinue
 
+Write-Verbose "Checking for Subscription Aliases."
 $subscriptionAliases = [PSCustomObject]@{}
 for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
     $alias = "csu-tf-management-$i"
