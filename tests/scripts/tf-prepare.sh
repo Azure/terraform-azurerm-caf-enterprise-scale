@@ -63,7 +63,7 @@ terraform {
 provider "azurerm" {
   features {}
 
-  subscription_id             = "$ARM_SUBSCRIPTION_ID"
+  subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
   client_id                   = "$CERTIFICATE_CLIENT_ID"
   client_certificate_path     = "$SPN_NAME.pfx"
   client_certificate_password = "$CERTIFICATE_PASSWORD"
