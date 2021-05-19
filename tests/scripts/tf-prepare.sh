@@ -14,7 +14,8 @@ az login \
     --service-principal \
     --tenant "$ARM_TENANT_ID" \
     --username "$ARM_CLIENT_ID" \
-    --password "$ARM_CLIENT_SECRET"
+    --password "$ARM_CLIENT_SECRET" \
+    --query [?isDefault]
 
 echo "==> Creating SPN and Role Assignments..."
 SPN_NAME="ES-TestFramework-Job$TF_JOB_ID"

@@ -29,7 +29,8 @@ then
         --service-principal \
         --tenant "$ARM_TENANT_ID" \
         --username "$ARM_CLIENT_ID" \
-        --password "$ARM_CLIENT_SECRET"
+        --password "$ARM_CLIENT_SECRET" \
+        --query [?isDefault]
 
     IFS=$'\n'
 
