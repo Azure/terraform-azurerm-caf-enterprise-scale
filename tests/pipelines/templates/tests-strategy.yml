@@ -1,6 +1,6 @@
 ---
 steps:
-- task: Bash@3
+- task: PowerShell@2
   name: build_strategy
   displayName: "Generate Build Strategy"
   inputs:
