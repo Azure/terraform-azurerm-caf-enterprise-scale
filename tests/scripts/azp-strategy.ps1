@@ -70,13 +70,14 @@ $Credential = New-Object System.Management.Automation.PSCredential (
     $($env:ARM_CLIENT_ID),
     $($env:ARM_CLIENT_SECRET | ConvertTo-SecureString -AsPlainText -Force)
 )
-Clear-AzContext -Force | Out-Null
-Connect-AzAccount `
+$ctx = Connect-AzAccount `
     -ServicePrincipal `
     -Tenant $($env:ARM_TENANT_ID) `
     -SubscriptionId $($env:ARM_SUBSCRIPTION_ID) `
     -Credential $Credential `
     -WarningAction SilentlyContinue
+
+Write-Information " Successfully authenticated account ($($ctx.Context.Account.Id))." -InformationAction Continue
 
 Write-Verbose "Checking for Subscription Aliases."
 $subscriptionAliases = [PSCustomObject]@{}
