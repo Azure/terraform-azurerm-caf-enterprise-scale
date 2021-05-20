@@ -22,7 +22,7 @@ A description of each parameter can be found in the chart below:
 
 > IMPORTANT: Ensure the module version is set version  0.2.0 or greater
 
-   module "enterprise_scale" {
+     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
       version = "0.3.1"
 
