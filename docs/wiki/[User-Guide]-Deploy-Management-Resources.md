@@ -92,7 +92,7 @@ If location is not specified, the resources will default to *eastus*
     root_id = "contoso" 
     root_name = "Contoso"
     deploy_management_resources = "true" //where do you set this?
-    subscription_id_management = "5216fe15-ea96-461b-adab-7c589a77ff2d" //This is mandatory for because this is getting controlled by yet another variable I don't have set
+    subscription_id_management = "<insert_subscription_id>" 
     configure_management_resources = {
         settings = {
       log_analytics = {
