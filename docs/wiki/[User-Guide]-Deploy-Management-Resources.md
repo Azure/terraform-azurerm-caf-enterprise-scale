@@ -46,7 +46,7 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
     subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
 
 The module allows for further configuration of log analytics and azure security center by setting the configure_management_resources 
-This requires 3 mandatory variables 
+This requires 3 mandatory variables: 
 
      location: //where the resource group will be deployed
      advanced:  [tbd]
