@@ -2,10 +2,10 @@
 This example will deploy resources for centrally managing the Enterprise Scale Landing Zone. This module will get deploy the following resources with default configurations that can be adjusted once you are up and going
 
 
-    * a resource group
-    * a log analytics workspace
-    * an automation account 
-    * a linked service to the analytics automation account
+   * resource group
+   * log analytics workspace
+   * automation account 
+   * linked service to the analytics automation account
 
 in the subscription of your specification.  
 
