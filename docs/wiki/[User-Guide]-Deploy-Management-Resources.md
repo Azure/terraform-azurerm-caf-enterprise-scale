@@ -21,18 +21,18 @@ A description of each parameter can be found in the chart below:
 
 
 > IMPORTANT: Ensure the module version is set version  0.2.0 or greater
-
+```hcl
      module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
       version = "0.3.1"
-
+```
 
 If upgrading to a later version of this module, make sure to run `terraform init`
 
 To initiate the resource creation,  `deploy_managagement_resources` must be set to true. The  `subscription_id_management` is a required variable so that the resources have somewhere to land. Enabling these two variables will deploy ~200 resources of which are mostly policies and RBAC permissions. 
 
 ## Example root module
-
+```hcl
     data "azurerm_client_config" current {}
 
     module "enterprise_scale" {
@@ -44,7 +44,7 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
     root_name = "Contoso"
     deploy_management_resources = "true" //where do you set this?
     subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
-
+```
 The module allows for further configuration of log analytics and azure security center by setting the configure_management_resources 
 This requires 3 mandatory variables: 
 
@@ -55,17 +55,17 @@ This requires 3 mandatory variables:
 For this configuration you must pass in both log analytics and security center. If you want to disable
 one or the other, set the enabled flag to *false*.
 
-
+```hcl
     settings = {
       log_analytics = {
         enabled = false
-
+```
 If you've already deployed management resources, this will allow you to enable or disable specific parameters. 
 Every parameter set to true will create new principal id's that will force replacement in place of the existing 
 RBAC and policies to reassign them to the log analytics and sentinel resources. Likewise, if set to false, existing configurations will be removed.  
 
 If location is not specified, the resources will default to *eastus*
-
+```hcl
     terraform {
       required_providers {
         azurerm = {
@@ -135,7 +135,7 @@ If location is not specified, the resources will default to *eastus*
       tags     = null
       }
     }
-
+```
 You should now have a deployment as seen below
 
 ![Deploy-Default-Configuration](./media/terraform-caf-enterprise-scale-management.png)
