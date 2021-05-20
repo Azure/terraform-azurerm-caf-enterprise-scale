@@ -1,4 +1,4 @@
-##Overview
+## Overview
 This example will deploy resources for centrally managing the Enterprise Scale Landing Zone. This module will get deploy the following resources with default configurations that can be adjusted once you are up and going
 
 
@@ -11,15 +11,16 @@ in the subscription of your specification.
 
 The module then goes onto configure Deploy if Not Exist policies to enable features within Log Analytics and Sentinel including
 but not limited to: 
-    - enabling monitoring for arc 
-    - enabling monitoring for vms
-    - enabling monitoring for vmss
-    - enabling defender for dns 
+    * enabling monitoring for arc 
+    * enabling monitoring for vms
+    * enabling monitoring for vmss
+    * enabling defender for dns 
+    * much more...
 
 A description of each parameter can be found in the chart below:
 
 
-Prior to configuring this , version of the module > 0.2.0 must be set and enabled 
+> IMPORTANT: Ensure the module version is set version  0.2.0 or greater
 
 module "enterprise_scale" {
     source = "Azure/caf-enterprise-scale/azurerm"
