@@ -1,5 +1,5 @@
 ## Overview
-This example will deploy resources for centrally managing the Enterprise Scale Landing Zone. This module will get deploy the following resources with default configurations that can be adjusted once you are up and going
+This example will deploy resources for centrally managing the Enterprise Scale Landing Zone. This module will deploy the following resources with default configurations that can be adjusted once you are up and going:
 
 
    * resource group
