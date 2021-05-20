@@ -53,12 +53,12 @@ This requires 3 mandatory variables:
      tags: add any specific tag that the resources permit 
 
 For this configuration you must pass in both log analytics and security center. If you want to disable
-one or the other, set the enabled flag to false.
+one or the other, set the enabled flag to *false*.
 
 
     settings = {
       log_analytics = {
-        enabled = *false*
+        enabled = false
 
 If you've already deployed management resources, this will allow you to enable or disable specific parameters. 
 Every parameter set to true will create new principal id's that will force replacement in place of the existing 
