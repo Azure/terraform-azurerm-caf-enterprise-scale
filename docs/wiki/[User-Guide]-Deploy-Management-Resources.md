@@ -1,12 +1,11 @@
-##
-The purpose of this document is to explain how to leverage the management module to create
-resources for centrally managing the Enterprise Scale Landing Zone. The module will deploy
+##Overview
+This example will deploy resources for centrally managing the Enterprise Scale Landing Zone. This module will get deploy the following resources with default configurations that can be adjusted once you are up and going
 
 
-    - a resource group
-    - a log analytics workspace
-    - an automation account 
-    - a linked service to the analytics automation account
+    * a resource group
+    * a log analytics workspace
+    * an automation account 
+    * a linked service to the analytics automation account
 
 in the subscription of your specification.  
 
