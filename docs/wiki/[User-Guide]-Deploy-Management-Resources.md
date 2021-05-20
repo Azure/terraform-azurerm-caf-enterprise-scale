@@ -29,82 +29,72 @@ A description of each parameter can be found in the chart below:
 
 If upgrading to a later version of this module, make sure to run `terraform init`
 
-Set deploy_managagement_resources to true. This will deploy several resources
+To initiate the resource creation,  `deploy_managagement_resources` must be set to true. 
 
-   -  a resource group
-    - a log analytics workspace
-    - an automation account 
-    - a linked service to an analytics automation account
-
-Pre-existing Deploy if Not Exist policies will set to true and deploy 
-    - enabling monitoring for arc 
-    - enabling monitoring for vms
-    - enabling monitoring for vmss
-    - ......
-
-Make sure to set the subscription using the subscription_id_management variable. If you set the subscription to the management group after the fact, you will have 
-to import the subscription. 
+The  `subscription_id_management` is a required variable so that the resources have somewhere to land. 
 
 Enabling these two variables will deploy ~200 resources including policies and RBAC roles. 
 
-data "azurerm_client_config" current {}
+## Example root module
 
-module "enterprise_scale" {
-    source = "Azure/caf-enterprise-scale/azurerm"
-    version = "0.3.1"
+    data "azurerm_client_config" current {}
+
+    module "enterprise_scale" {
+      source = "Azure/caf-enterprise-scale/azurerm"
+      version = "0.3.1"
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
-    root_id = "sblair2" 
-    root_name = "sblair organization"
+    root_id = "contoso" 
+    root_name = "Contoso"
     deploy_management_resources = "true" //where do you set this?
     subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
 
 The module allows for further configuration of log analytics and azure security center by setting the configure_management_resources 
 This requires 3 mandatory variables 
 
-  - location: where the resource group will be deployed
-    advanced:  []
-    tags: specific tag resources as allowed [have not tested]
+     location: //where the resource group will be deployed
+     advanced:  [tbd]
+     tags: add any specific tag that the resources permit 
 
 For this configuration you must pass in both log analytics and security center. If you want to disable
 one or the other, set the enabled flag to false.
 
-E.G 
 
-settings = {
+    settings = {
       log_analytics = {
         enabled = *false*
 
 If you've already deployed management resources, this will allow you to enable or disable specific parameters. 
-Every parameter set to true, will create new principal id's that will force replacement in place of the existing 
-RBAC and policies to reassign them to the log analytics and sentinel resources.  
+Every parameter set to true will create new principal id's that will force replacement in place of the existing 
+RBAC and policies to reassign them to the log analytics and sentinel resources. Likewise, if set to false, existing configurations will be removed.  
 
-If location is not specified, the resources will default to eastus
+If location is not specified, the resources will default to *eastus*
 
-terraform {
-    required_providers {
+    terraform {
+      required_providers {
         azurerm = {
             source = "hashicorp/azurerm"
             version = ">=2.46.1"
         }
    
-}
-}
+     }
+    }
 
-provider "azurerm"{
+    provider "azurerm"{
     features {}
-}
+    }
 
-#Pull current Tenant ID from connection settings and store to data source
-data "azurerm_client_config" current {}
+    #Pull current Tenant ID from connection settings and store to data source
+    
+    data "azurerm_client_config" current {}
 
-module "enterprise_scale" {
-    source = "Azure/caf-enterprise-scale/azurerm"
-    version = "0.3.1"
+    module "enterprise_scale" {
+      source = "Azure/caf-enterprise-scale/azurerm"
+      version = "0.3.1"
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
-    root_id = "sblair2" 
-    root_name = "sblair organization"
+    root_id = "contoso" 
+    root_name = "Contoso"
     deploy_management_resources = "true" //where do you set this?
     subscription_id_management = "5216fe15-ea96-461b-adab-7c589a77ff2d" //This is mandatory for because this is getting controlled by yet another variable I don't have set
     configure_management_resources = {
@@ -130,7 +120,7 @@ module "enterprise_scale" {
       security_center = {
         enabled = true
         config = {
-          email_security_contact             = "sablair@microsoft.com"
+          email_security_contact             = "email@contoso.com"
           enable_defender_for_acr            = true
           enable_defender_for_app_services   = true
           enable_defender_for_arm            = true
@@ -144,22 +134,12 @@ module "enterprise_scale" {
         }
       }
         }
-  location = "centralus"
-    advanced = null
-    tags     = null
-}
-}
+    location = "centralus"
+      advanced = null
+      tags     = null
+      }
+    }
 
+You should now have a deployment as seen below
 
-Notes: 
-
-Navigate to https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/management
-
-There you will find four files:
- - locals.tf // list of configuration parameters and features
- - main.tf // empty as resources are not deployed by the module itself
- - outputs.tf // where do we see the output values?
- - variables.tf - a list of required and optional variables the module is expecting to be set in your local terraform file configuration
-
- /empty string?
-/coalesce will look for a valid subscription_id_management
+![Deploy-Default-Configuration](./media/terraform-caf-enterprise-scale-management.png)
