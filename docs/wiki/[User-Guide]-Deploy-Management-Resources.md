@@ -29,11 +29,7 @@ A description of each parameter can be found in the chart below:
 
 If upgrading to a later version of this module, make sure to run `terraform init`
 
-To initiate the resource creation,  `deploy_managagement_resources` must be set to true. 
-
-The  `subscription_id_management` is a required variable so that the resources have somewhere to land. 
-
-Enabling these two variables will deploy ~200 resources including policies and RBAC roles. 
+To initiate the resource creation,  `deploy_managagement_resources` must be set to true. The  `subscription_id_management` is a required variable so that the resources have somewhere to land. Enabling these two variables will deploy ~200 resources including policies and RBAC roles. 
 
 ## Example root module
 
