@@ -36,7 +36,7 @@ module "test_root_id_3" {
   subscription_id_overrides  = local.subscription_id_overrides
 
   # Configuration settings for management resources
-  deploy_management_resources    = false
+  deploy_management_resources    = true
   configure_management_resources = local.configure_management_resources
   subscription_id_management     = data.azurerm_client_config.current.subscription_id
 

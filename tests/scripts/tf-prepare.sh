@@ -14,7 +14,8 @@ az login \
     --service-principal \
     --tenant "$ARM_TENANT_ID" \
     --username "$ARM_CLIENT_ID" \
-    --password "$ARM_CLIENT_SECRET"
+    --password "$ARM_CLIENT_SECRET" \
+    --query [?isDefault]
 
 echo "==> Creating SPN and Role Assignments..."
 SPN_NAME="ES-TestFramework-Job$TF_JOB_ID"
@@ -63,7 +64,7 @@ terraform {
 provider "azurerm" {
   features {}
 
-  subscription_id             = "$ARM_SUBSCRIPTION_ID"
+  subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
   client_id                   = "$CERTIFICATE_CLIENT_ID"
   client_certificate_path     = "$SPN_NAME.pfx"
   client_certificate_password = "$CERTIFICATE_PASSWORD"
