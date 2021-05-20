@@ -11,11 +11,11 @@ in the subscription of your specification.
 
 The module then goes onto configure Deploy if Not Exist policies to enable features within Log Analytics and Sentinel including
 but not limited to: 
-    * enabling monitoring for arc 
-    * enabling monitoring for vms
-    * enabling monitoring for vmss
-    * enabling defender for dns 
-    * much more...
+   * enabling monitoring for arc 
+   * enabling monitoring for vms
+   * enabling monitoring for vmss
+   * enabling defender for dns 
+   * much more...
 
 A description of each parameter can be found in the chart below:
 
