@@ -32,7 +32,7 @@ $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azur
 #     0.15.* (latest 1)
 ########################################
 
-$terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl
+$terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
 $terraformVersions = @("0.13.2")
