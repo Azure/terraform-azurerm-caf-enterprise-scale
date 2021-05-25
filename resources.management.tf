@@ -49,6 +49,7 @@ resource "azurerm_log_analytics_solution" "enterprise_scale" {
   depends_on = [
     azurerm_resource_group.enterprise_scale,
     azurerm_log_analytics_workspace.enterprise_scale,
+    azurerm_automation_account.enterprise_scale,
   ]
 
 }
