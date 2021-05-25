@@ -140,3 +140,28 @@ If location is not specified, the resources will default to *eastus*
 You should now have a deployment as seen below
 
 ![Deploy-Default-Configuration](./media/terraform-caf-enterprise-scale-management.png)
+
+IMPORTANT: Log Analytics and Security Center policies must enabled in order to deploy
+
+If you are using an `archetype_exclusion_root.json` in your code, make sure to  not disable Log Analytics or Security Center policies when using this module. ASC and Log Analytics will fail to deploy if the required policies are not in place. Here is an example of an exclusion that will not deploy Log Analytics or Security Center:
+
+```json
+{
+  "exclude_es_root": {
+    "policy_assignments": [
+      "Deploy-ASC-Monitoring",
+      "Deploy-ASC-Defender",
+      "Deploy-Log-Analytics"
+    ],
+    "policy_definitions": [],
+    "policy_set_definitions": [],
+    "role_definitions": [],
+    "archetype_config": {
+      "parameters": {},
+      "access_control": {}
+    }
+  }
+}
+```
+
+The module will see that it's not allowed to assign the required policies and will **not** create the resources. This follows the Enterprise Scale principle of governance by default ensuring that deploy if not exist create the resources and their required dependencies automatically. 
