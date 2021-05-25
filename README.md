@@ -5,7 +5,7 @@
 
 > **MODULE UPGRADE NOTES**
 >
->The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`.
+> The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`.
 > When upgrading to this release, please ensure to update your code to use native HCL values as documented in the [release notes][release_notes_v0_3_0].
 >
 > The `v0.2.0` release added new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
@@ -146,7 +146,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.1"
+  version = "0.3.2"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id

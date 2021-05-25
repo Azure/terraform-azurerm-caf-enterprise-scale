@@ -11,6 +11,7 @@ cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 
 echo "==> Planning infrastructure..."
 terraform plan \
+    -var "location=$DEFAULT_LOCATION" \
     -var "root_id_1=$TF_ROOT_ID_1" \
     -var "root_id_2=$TF_ROOT_ID_2" \
     -var "root_id_3=$TF_ROOT_ID_3" \

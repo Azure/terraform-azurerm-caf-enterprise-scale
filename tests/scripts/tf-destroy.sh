@@ -12,6 +12,7 @@ cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 echo "==> Destroying infrastructure..."
 # shellcheck disable=SC2153 # Environment variables set by pipeline
 terraform destroy \
+    -var "location=$DEFAULT_LOCATION" \
     -var "root_id_1=$TF_ROOT_ID_1" \
     -var "root_id_2=$TF_ROOT_ID_2" \
     -var "root_id_3=$TF_ROOT_ID_3" \
@@ -29,7 +30,8 @@ then
         --service-principal \
         --tenant "$ARM_TENANT_ID" \
         --username "$ARM_CLIENT_ID" \
-        --password "$ARM_CLIENT_SECRET"
+        --password "$ARM_CLIENT_SECRET" \
+        --query [?isDefault]
 
     IFS=$'\n'
 
