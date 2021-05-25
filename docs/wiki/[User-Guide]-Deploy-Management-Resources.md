@@ -25,6 +25,7 @@ A description of each parameter can be found in the chart below:
      module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
       version = "0.3.1"
+     }
 ```
 
 If upgrading to a later version of this module, make sure to run `terraform init`
