@@ -45,6 +45,8 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
     root_name = "Contoso"
     deploy_management_resources = "true" //where do you set this?
     subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
+    
+    }
 ```
 The module allows for further configuration of log analytics and azure security center by setting the configure_management_resources 
 This requires 3 mandatory variables: 
@@ -60,6 +62,7 @@ one or the other, set the enabled flag to *false*.
     settings = {
       log_analytics = {
         enabled = false
+     }
 ```
 If you've already deployed management resources, this will allow you to enable or disable specific parameters. 
 Every parameter set to true will create new principal id's that will force replacement in place of the existing 
