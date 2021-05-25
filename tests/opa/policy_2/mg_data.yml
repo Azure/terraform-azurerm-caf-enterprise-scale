@@ -1,0 +1,9 @@
+configuration_values:
+
+  mgs:
+    level_1: 4
+    level_2: 12
+    level_3: 15
+    level_4: 3
+    level_5: 0
+    level_6: 0
