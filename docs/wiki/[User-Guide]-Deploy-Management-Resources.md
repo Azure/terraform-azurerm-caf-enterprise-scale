@@ -43,7 +43,7 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
     root_parent_id = data.azurerm_client_config.current.tenant_id
     root_id = "contoso" 
     root_name = "Contoso"
-    deploy_management_resources = "true" //where do you set this?
+    deploy_management_resources = "true" 
     subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
     
     }
