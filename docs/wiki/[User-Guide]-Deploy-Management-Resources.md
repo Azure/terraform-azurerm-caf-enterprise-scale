@@ -20,7 +20,7 @@ but not limited to:
 A description of each parameter can be found in the chart below:
 
 
-> IMPORTANT: Ensure the module version is set version  0.2.0 or greater
+> PREREQUISITE: Ensure the module version is set version  0.2.0 or greater
 ```hcl
      module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
@@ -165,3 +165,23 @@ If you are using an `archetype_exclusion_root.json` in your code, make sure to  
 ```
 
 The module will see that it's not allowed to assign the required policies and will **not** create the resources. This follows the Enterprise Scale principle of governance by default ensuring that deploy if not exist create the resources and their required dependencies automatically. 
+
+### Deploying Resources across multiple  subscriptions 
+> NOTE: Terraform is unable to deploy resources across multiple Subscriptions using a single provider configuration. 
+
+You must be authenticated to the subscription where you want these resources deployed so by setting `deploy_management_resources` to true, you must also ensure you are running your module deployment against the management Subscription. In the event you are deploying resources across several subscriptions simultaneously, you could leverage multiple subscriptions at the provider level: 
+
+```hcl
+provider "azurerm" {
+  subscription_id = local.subscriptions.management_subscription_id
+  tenant_id       = local.tenant_id
+  features {}
+}
+
+provider "azurerm" {
+  alias           = "connectivity"
+  subscription_id = local.subscriptions.connectivity_subscription_id
+  tenant_id       = local.tenant_id
+  features {}
+}
+```
