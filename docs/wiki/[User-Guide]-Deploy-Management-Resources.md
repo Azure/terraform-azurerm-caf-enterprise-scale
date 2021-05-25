@@ -95,7 +95,7 @@ If location is not specified, the resources will default to *eastus*
     root_parent_id = data.azurerm_client_config.current.tenant_id
     root_id = "contoso" 
     root_name = "Contoso"
-    deploy_management_resources = "true" //where do you set this?
+    deploy_management_resources = "true"
     subscription_id_management = "<insert_subscription_id>" 
     configure_management_resources = {
         settings = {
