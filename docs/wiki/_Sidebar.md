@@ -8,6 +8,7 @@
   - [Module Variables][wiki_module_variables]
   - [Archetype Definitions][wiki_archetype_definitions]
   - [Deploy Management Resources][wiki_deploy_management_resources]
+  - [Deploy Custom Management Resources][wiki_deploy_custom_management_resources]
   - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
   - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
 - [Examples][wiki_examples]
