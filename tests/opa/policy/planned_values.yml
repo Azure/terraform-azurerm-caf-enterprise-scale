@@ -999,7 +999,7 @@ child_modules:
         schema_version: 0
         values:
           description: This policy denies the creation of a subsnet with out an Network Security Group. NSG help to protect traffic across subnet-level.
-          display_name: 'Subnets should have a Network Security Group '
+          display_name: Subnets should have a Network Security Group
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
           mode: All
@@ -1053,7 +1053,7 @@ child_modules:
         schema_version: 0
         values:
           description: This policy denies the creation of vNet Peerings under the assigned scope.
-          display_name: 'Deny vNet peering '
+          display_name: "Deny vNet peering "
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
           mode: Indexed
@@ -1304,7 +1304,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Blob Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Blob Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS Zone Group for Storage-Blob Private Endpoint
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -1322,7 +1322,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-File Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-File Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-File Private Endpoint
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -1340,7 +1340,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Key Vault Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Key Vault Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Key Vault Private Endpoint
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -1358,7 +1358,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-Queue Private Endpoint
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -1376,7 +1376,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for SQL Private Endpoint
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -1394,7 +1394,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Table Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Table Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-Table Private Endpoint
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -2546,7 +2546,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. '
+          description: "Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. "
           display_name: Deploy the configurations to the Log Analytics in the subscription
           management_group_name: myorg-1
           metadata: '{"category":"Monitoring","version":"1.0.0"}'
@@ -2637,7 +2637,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.
-          display_name: 'Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL '
+          display_name: "Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL "
           management_group_name: myorg-1
           metadata: '{"category":"SQL","version":"1.0.0"}'
           mode: Indexed
@@ -2709,7 +2709,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy the Transparent Data Encryption when it is not enabled in the deployment
-          display_name: 'Deploy SQL Database Transparent Data Encryption '
+          display_name: "Deploy SQL Database Transparent Data Encryption "
           management_group_name: myorg-1
           metadata: '{"category":"SQL","version":"1.0.0"}'
           mode: Indexed
@@ -2763,7 +2763,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy a specific min TLS version requirement and enforce SSL on Azure STorage. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.
-          display_name: 'Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS '
+          display_name: "Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS "
           management_group_name: myorg-1
           metadata: '{"category":"Storage","version":"1.0.0"}'
           mode: Indexed
@@ -2816,7 +2816,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured in the desired region. '
+          description: "Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured in the desired region. "
           display_name: Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured.
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -2870,7 +2870,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. '
+          description: "This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. "
           display_name: Public network access should be disabled for PAAS services
           management_group_name: myorg-1
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -2986,7 +2986,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included '
+          description: "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included "
           display_name: Deploy Diagnostic Settings to Azure Services
           management_group_name: myorg-1
           metadata: '{"category":"Monitoring","version":"1.0.0"}'
@@ -3286,7 +3286,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. '
+          description: "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. "
           display_name: Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit
           management_group_name: myorg-1
           metadata: '{"category":"Encryption","version":"1.0.0"}'
@@ -3677,7 +3677,7 @@ child_modules:
           assignable_scopes:
             - /providers/Microsoft.Management/managementGroups/myorg-1
           description: Enterprise-scale custom Role Definition. Grants full access to manage Virtual Network subnets, but no other network resources.
-          name: '[MYORG-1] Network-Subnet-Contributor'
+          name: "[MYORG-1] Network-Subnet-Contributor"
           permissions:
             - actions:
                 - Microsoft.Authorization/*/read
@@ -3707,9 +3707,9 @@ child_modules:
             azurerm_management_group_level_1: '["/providers/Microsoft.Management/managementGroups/myorg-1"]'
             azurerm_management_group_level_2: '["/providers/Microsoft.Management/managementGroups/myorg-1-decommissioned","/providers/Microsoft.Management/managementGroups/myorg-1-landing-zones","/providers/Microsoft.Management/managementGroups/myorg-1-platform","/providers/Microsoft.Management/managementGroups/myorg-1-sandboxes"]'
             azurerm_management_group_level_3: '["/providers/Microsoft.Management/managementGroups/myorg-1-connectivity","/providers/Microsoft.Management/managementGroups/myorg-1-identity","/providers/Microsoft.Management/managementGroups/myorg-1-management"]'
-            azurerm_management_group_level_4: '[]'
-            azurerm_management_group_level_5: '[]'
-            azurerm_management_group_level_6: '[]'
+            azurerm_management_group_level_4: "[]"
+            azurerm_management_group_level_5: "[]"
+            azurerm_management_group_level_6: "[]"
       - address: module.test_root_id_1.time_sleep.after_azurerm_policy_assignment
         mode: managed
         type: time_sleep
@@ -4805,7 +4805,7 @@ child_modules:
         schema_version: 0
         values:
           description: This policy denies the creation of a subsnet with out an Network Security Group. NSG help to protect traffic across subnet-level.
-          display_name: 'Subnets should have a Network Security Group '
+          display_name: "Subnets should have a Network Security Group "
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
           mode: All
@@ -4859,7 +4859,7 @@ child_modules:
         schema_version: 0
         values:
           description: This policy denies the creation of vNet Peerings under the assigned scope.
-          display_name: 'Deny vNet peering '
+          display_name: "Deny vNet peering "
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
           mode: Indexed
@@ -5110,7 +5110,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Blob Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Blob Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS Zone Group for Storage-Blob Private Endpoint
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -5128,7 +5128,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-File Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-File Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-File Private Endpoint
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -5146,7 +5146,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Key Vault Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Key Vault Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Key Vault Private Endpoint
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -5164,7 +5164,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-Queue Private Endpoint
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -5182,7 +5182,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for SQL Private Endpoint
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -5200,7 +5200,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Table Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Table Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-Table Private Endpoint
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -6352,7 +6352,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. '
+          description: "Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. "
           display_name: Deploy the configurations to the Log Analytics in the subscription
           management_group_name: myorg-2
           metadata: '{"category":"Monitoring","version":"1.0.0"}'
@@ -6443,7 +6443,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.
-          display_name: 'Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL '
+          display_name: "Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL "
           management_group_name: myorg-2
           metadata: '{"category":"SQL","version":"1.0.0"}'
           mode: Indexed
@@ -6515,7 +6515,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy the Transparent Data Encryption when it is not enabled in the deployment
-          display_name: 'Deploy SQL Database Transparent Data Encryption '
+          display_name: "Deploy SQL Database Transparent Data Encryption "
           management_group_name: myorg-2
           metadata: '{"category":"SQL","version":"1.0.0"}'
           mode: Indexed
@@ -6569,7 +6569,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy a specific min TLS version requirement and enforce SSL on Azure STorage. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.
-          display_name: 'Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS '
+          display_name: "Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS "
           management_group_name: myorg-2
           metadata: '{"category":"Storage","version":"1.0.0"}'
           mode: Indexed
@@ -6622,7 +6622,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured in the desired region. '
+          description: "Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured in the desired region. "
           display_name: Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured.
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -6676,7 +6676,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. '
+          description: "This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. "
           display_name: Public network access should be disabled for PAAS services
           management_group_name: myorg-2
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -6792,7 +6792,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included '
+          description: "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included "
           display_name: Deploy Diagnostic Settings to Azure Services
           management_group_name: myorg-2
           metadata: '{"category":"Monitoring","version":"1.0.0"}'
@@ -7092,7 +7092,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. '
+          description: "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. "
           display_name: Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit
           management_group_name: myorg-2
           metadata: '{"category":"Encryption","version":"1.0.0"}'
@@ -7483,7 +7483,7 @@ child_modules:
           assignable_scopes:
             - /providers/Microsoft.Management/managementGroups/myorg-2
           description: Enterprise-scale custom Role Definition. Grants full access to manage Virtual Network subnets, but no other network resources.
-          name: '[MYORG-2] Network-Subnet-Contributor'
+          name: "[MYORG-2] Network-Subnet-Contributor"
           permissions:
             - actions:
                 - Microsoft.Authorization/*/read
@@ -7513,9 +7513,9 @@ child_modules:
             azurerm_management_group_level_1: '["/providers/Microsoft.Management/managementGroups/myorg-2"]'
             azurerm_management_group_level_2: '["/providers/Microsoft.Management/managementGroups/myorg-2-decommissioned","/providers/Microsoft.Management/managementGroups/myorg-2-landing-zones","/providers/Microsoft.Management/managementGroups/myorg-2-platform","/providers/Microsoft.Management/managementGroups/myorg-2-sandboxes"]'
             azurerm_management_group_level_3: '["/providers/Microsoft.Management/managementGroups/myorg-2-connectivity","/providers/Microsoft.Management/managementGroups/myorg-2-demo-corp","/providers/Microsoft.Management/managementGroups/myorg-2-demo-online","/providers/Microsoft.Management/managementGroups/myorg-2-demo-sap","/providers/Microsoft.Management/managementGroups/myorg-2-identity","/providers/Microsoft.Management/managementGroups/myorg-2-management"]'
-            azurerm_management_group_level_4: '[]'
-            azurerm_management_group_level_5: '[]'
-            azurerm_management_group_level_6: '[]'
+            azurerm_management_group_level_4: "[]"
+            azurerm_management_group_level_5: "[]"
+            azurerm_management_group_level_6: "[]"
       - address: module.test_root_id_2.time_sleep.after_azurerm_policy_assignment
         mode: managed
         type: time_sleep
@@ -9080,7 +9080,7 @@ child_modules:
         schema_version: 0
         values:
           description: This policy denies the creation of a subsnet with out an Network Security Group. NSG help to protect traffic across subnet-level.
-          display_name: 'Subnets should have a Network Security Group '
+          display_name: "Subnets should have a Network Security Group "
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
           mode: All
@@ -9134,7 +9134,7 @@ child_modules:
         schema_version: 0
         values:
           description: This policy denies the creation of vNet Peerings under the assigned scope.
-          display_name: 'Deny vNet peering '
+          display_name: "Deny vNet peering "
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
           mode: Indexed
@@ -9385,7 +9385,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Blob Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Blob Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS Zone Group for Storage-Blob Private Endpoint
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -9403,7 +9403,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-File Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-File Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-File Private Endpoint
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -9421,7 +9421,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Key Vault Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Key Vault Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Key Vault Private Endpoint
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -9439,7 +9439,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Queue Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-Queue Private Endpoint
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -9457,7 +9457,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for SQL Private Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for SQL Private Endpoint
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -9475,7 +9475,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Table Private Endpoint. Used enforce the configuration to a single Private DNS Zone. '
+          description: "Deploys the configurations of a Private DNS Zone Group by a parameter for Storage-Table Private Endpoint. Used enforce the configuration to a single Private DNS Zone. "
           display_name: Deploy DNS  Zone Group for Storage-Table Private Endpoint
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -10627,7 +10627,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. '
+          description: "Deploy the configurations to the Log Analytics in the subscription. This includes a list of solutions like update, automation etc and  enables the vminsight counters. "
           display_name: Deploy the configurations to the Log Analytics in the subscription
           management_group_name: myorg-3
           metadata: '{"category":"Monitoring","version":"1.0.0"}'
@@ -10718,7 +10718,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.
-          display_name: 'Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL '
+          display_name: "Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL "
           management_group_name: myorg-3
           metadata: '{"category":"SQL","version":"1.0.0"}'
           mode: Indexed
@@ -10790,7 +10790,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy the Transparent Data Encryption when it is not enabled in the deployment
-          display_name: 'Deploy SQL Database Transparent Data Encryption '
+          display_name: "Deploy SQL Database Transparent Data Encryption "
           management_group_name: myorg-3
           metadata: '{"category":"SQL","version":"1.0.0"}'
           mode: Indexed
@@ -10844,7 +10844,7 @@ child_modules:
         schema_version: 0
         values:
           description: Deploy a specific min TLS version requirement and enforce SSL on Azure STorage. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.
-          display_name: 'Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS '
+          display_name: "Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS "
           management_group_name: myorg-3
           metadata: '{"category":"Storage","version":"1.0.0"}'
           mode: Indexed
@@ -10897,7 +10897,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured in the desired region. '
+          description: "Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured in the desired region. "
           display_name: Deploy Virtual Hub network with Virtual Wan and Gateway and Firewall configured.
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -10951,7 +10951,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. '
+          description: "This policy denies creation of Azure PAAS services with exposed public endpoints.  This policy set includes the policy for the following services KeyVault, Storage accounts, AKS, Cosmos, SQL Servers, MariaDB, MySQL and Postgress. "
           display_name: Public network access should be disabled for PAAS services
           management_group_name: myorg-3
           metadata: '{"category":"Network","version":"1.0.0"}'
@@ -11067,7 +11067,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included '
+          description: "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included "
           display_name: Deploy Diagnostic Settings to Azure Services
           management_group_name: myorg-3
           metadata: '{"category":"Monitoring","version":"1.0.0"}'
@@ -11367,7 +11367,7 @@ child_modules:
         provider_name: registry.terraform.io/hashicorp/azurerm
         schema_version: 0
         values:
-          description: 'Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. '
+          description: "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. "
           display_name: Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit
           management_group_name: myorg-3
           metadata: '{"category":"Encryption","version":"1.0.0"}'
@@ -11915,7 +11915,7 @@ child_modules:
           assignable_scopes:
             - /providers/Microsoft.Management/managementGroups/myorg-3
           description: Enterprise-scale custom Role Definition. Grants full access to manage Virtual Network subnets, but no other network resources.
-          name: '[MYORG-3] Network-Subnet-Contributor'
+          name: "[MYORG-3] Network-Subnet-Contributor"
           permissions:
             - actions:
                 - Microsoft.Authorization/*/read
@@ -11946,8 +11946,8 @@ child_modules:
             azurerm_management_group_level_2: '["/providers/Microsoft.Management/managementGroups/myorg-3-decommissioned","/providers/Microsoft.Management/managementGroups/myorg-3-landing-zones","/providers/Microsoft.Management/managementGroups/myorg-3-platform","/providers/Microsoft.Management/managementGroups/myorg-3-sandboxes"]'
             azurerm_management_group_level_3: '["/providers/Microsoft.Management/managementGroups/myorg-3-connectivity","/providers/Microsoft.Management/managementGroups/myorg-3-customer-corp","/providers/Microsoft.Management/managementGroups/myorg-3-customer-online","/providers/Microsoft.Management/managementGroups/myorg-3-customer-sap","/providers/Microsoft.Management/managementGroups/myorg-3-identity","/providers/Microsoft.Management/managementGroups/myorg-3-management"]'
             azurerm_management_group_level_4: '["/providers/Microsoft.Management/managementGroups/myorg-3-customer-web-dev","/providers/Microsoft.Management/managementGroups/myorg-3-customer-web-prod","/providers/Microsoft.Management/managementGroups/myorg-3-customer-web-test"]'
-            azurerm_management_group_level_5: '[]'
-            azurerm_management_group_level_6: '[]'
+            azurerm_management_group_level_5: "[]"
+            azurerm_management_group_level_6: "[]"
       - address: module.test_root_id_3.time_sleep.after_azurerm_policy_assignment
         mode: managed
         type: time_sleep
@@ -12069,11 +12069,11 @@ child_modules:
           destroy_duration: 0s
           triggers:
             azurerm_management_group_level_1: '["/providers/Microsoft.Management/managementGroups/myorg-3-scoped-lz1"]'
-            azurerm_management_group_level_2: '[]'
-            azurerm_management_group_level_3: '[]'
-            azurerm_management_group_level_4: '[]'
-            azurerm_management_group_level_5: '[]'
-            azurerm_management_group_level_6: '[]'
+            azurerm_management_group_level_2: "[]"
+            azurerm_management_group_level_3: "[]"
+            azurerm_management_group_level_4: "[]"
+            azurerm_management_group_level_5: "[]"
+            azurerm_management_group_level_6: "[]"
       - address: module.test_root_id_3_lz1.time_sleep.after_azurerm_policy_assignment
         mode: managed
         type: time_sleep
@@ -12095,7 +12095,7 @@ child_modules:
           create_duration: 30s
           destroy_duration: 0s
           triggers:
-            azurerm_policy_definition_enterprise_scale: '[]'
+            azurerm_policy_definition_enterprise_scale: "[]"
       - address: module.test_root_id_3_lz1.time_sleep.after_azurerm_policy_set_definition
         mode: managed
         type: time_sleep
@@ -12106,7 +12106,7 @@ child_modules:
           create_duration: 30s
           destroy_duration: 0s
           triggers:
-            azurerm_policy_set_definition_enterprise_scale: '[]'
+            azurerm_policy_set_definition_enterprise_scale: "[]"
       - address: module.test_root_id_3_lz1.time_sleep.after_azurerm_role_assignment
         mode: managed
         type: time_sleep
@@ -12117,7 +12117,7 @@ child_modules:
           create_duration: 0s
           destroy_duration: 0s
           triggers:
-            azurerm_policy_assignment_enterprise_scale: '[]'
+            azurerm_policy_assignment_enterprise_scale: "[]"
       - address: module.test_root_id_3_lz1.time_sleep.after_azurerm_role_definition
         mode: managed
         type: time_sleep
@@ -12128,5 +12128,5 @@ child_modules:
           create_duration: 60s
           destroy_duration: 0s
           triggers:
-            azurerm_role_definition_enterprise_scale: '[]'
+            azurerm_role_definition_enterprise_scale: "[]"
     address: module.test_root_id_3_lz1
