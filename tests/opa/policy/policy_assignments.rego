@@ -5,13 +5,13 @@ import data.child_modules
 #### values to test: 
 ####  display_name ----------------> Done
 ####  enforcement_mode ----------------> Done
-####  identity
-####  location
-####  name
-####  not_scopes
-####  parameters
-####  policy_definition_id
-####  scope
+####  identity ----------------> Done
+####  location ----------------> Done
+####  name ----------------> Done
+####  not_scopes ----------------> Done
+####  parameters ----------------> Done
+####  policy_definition_id ----------------> Done
+####  scope ----------------> Done
 ####
 ####
 ####
@@ -37,6 +37,42 @@ violation[policy_assignment_enforcement_mode] {
 violation[policy_assignment_identity] {
 	plc_assign_plan_identity != plc_assign_change_identity
 	policy_assignment_identity := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_identity, plc_assign_change_identity])
+}
+
+# # # Compare the policy assignments location and fail if they are not equal.
+violation[policy_assignment_location] {
+	plc_assign_plan_location != plc_assign_change_location
+	policy_assignment_location := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_location, plc_assign_change_location])
+}
+
+# # # Compare the policy assignments name and fail if they are not equal.
+violation[policy_assignment_name] {
+	plc_assign_plan_name != plc_assign_change_name
+	policy_assignment_name := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_name, plc_assign_change_name])
+}
+
+# # # Compare the policy assignments name and fail if they are not equal.
+violation[policy_assignment_not_scopes] {
+	plc_assign_plan_not_scopes != plc_assign_change_not_scopes
+	policy_assignment_not_scopes := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_not_scopes, plc_assign_change_not_scopes])
+}
+
+# # # Compare the policy assignments parameters and fail if they are not equal.
+violation[policy_assignment_parameters] {
+	plc_assign_plan_parameters != plc_assign_change_parameters
+	policy_assignment_parameters := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_parameters, plc_assign_change_parameters])
+}
+
+# # # Compare the policy assignments policy_definition_id and fail if they are not equal.
+violation[policy_assignment_policy_definition_id] {
+	plc_assign_plan_policy_definition_id != plc_assign_change_policy_definition_id
+	policy_assignment_policy_definition_id := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_policy_definition_id, plc_assign_change_policy_definition_id])
+}
+
+# # # Compare the policy assignments scope and fail if they are not equal.
+violation[policy_assignment_scope] {
+	plc_assign_plan_scope != plc_assign_change_scope
+	policy_assignment_scope := sprintf("The policy_assignment planned values: %v are not equal to the changed values %v", [plc_assign_plan_scope, plc_assign_change_scope])
 }
 
 ########################
@@ -102,5 +138,131 @@ plc_assign_change_identity[module_name] = plcs {
 		input.resource_changes[r].type == "azurerm_policy_assignment"
 		input.resource_changes[r].module_address == module.module_address
 		plc := input.resource_changes[r].change.after.identity
+	]
+}
+
+# # # Get the location from all policy assignments in planned_values.yml
+plc_assign_plan_location[module_name] = plcs {
+	module := child_modules[_]
+	module_name := module.address
+	plcs := [plc |
+		module.resources[i].type == "azurerm_policy_assignment"
+		plc := module.resources[i].values.location
+	]
+}
+
+# # # Get the location from all policy assignments in the opa.json
+plc_assign_change_location[module_name] = plcs {
+	module := input.resource_changes[_]
+	module_name := module.module_address
+	plcs := [plc |
+		input.resource_changes[r].type == "azurerm_policy_assignment"
+		input.resource_changes[r].module_address == module.module_address
+		plc := input.resource_changes[r].change.after.location
+	]
+}
+
+# # # Get the name from all policy assignments in planned_values.yml
+plc_assign_plan_name[module_name] = plcs {
+	module := child_modules[_]
+	module_name := module.address
+	plcs := [plc |
+		module.resources[i].type == "azurerm_policy_assignment"
+		plc := module.resources[i].values.name
+	]
+}
+
+# # # Get the name from all policy assignments in the opa.json
+plc_assign_change_name[module_name] = plcs {
+	module := input.resource_changes[_]
+	module_name := module.module_address
+	plcs := [plc |
+		input.resource_changes[r].type == "azurerm_policy_assignment"
+		input.resource_changes[r].module_address == module.module_address
+		plc := input.resource_changes[r].change.after.name
+	]
+}
+
+# # # Get the not_scopes from all policy assignments in planned_values.yml
+plc_assign_plan_not_scopes[module_name] = plcs {
+	module := child_modules[_]
+	module_name := module.address
+	plcs := [plc |
+		module.resources[i].type == "azurerm_policy_assignment"
+		plc := module.resources[i].values.not_scopes
+	]
+}
+
+# # # Get the not_scopes from all policy assignments in the opa.json
+plc_assign_change_not_scopes[module_name] = plcs {
+	module := input.resource_changes[_]
+	module_name := module.module_address
+	plcs := [plc |
+		input.resource_changes[r].type == "azurerm_policy_assignment"
+		input.resource_changes[r].module_address == module.module_address
+		plc := input.resource_changes[r].change.after.not_scopes
+	]
+}
+
+# # # Get the parameters from all policy assignments in planned_values.yml
+plc_assign_plan_parameters[module_name] = plcs {
+	module := child_modules[_]
+	module_name := module.address
+	plcs := [plc |
+		module.resources[i].type == "azurerm_policy_assignment"
+		plc := module.resources[i].values.parameters
+	]
+}
+
+# # # Get the parameters from all policy assignments in the opa.json
+plc_assign_change_parameters[module_name] = plcs {
+	module := input.resource_changes[_]
+	module_name := module.module_address
+	plcs := [plc |
+		input.resource_changes[r].type == "azurerm_policy_assignment"
+		input.resource_changes[r].module_address == module.module_address
+		plc := input.resource_changes[r].change.after.parameters
+	]
+}
+
+# # # Get the policy_definition_id from all policy assignments in planned_values.yml
+plc_assign_plan_policy_definition_id[module_name] = plcs {
+	module := child_modules[_]
+	module_name := module.address
+	plcs := [plc |
+		module.resources[i].type == "azurerm_policy_assignment"
+		plc := module.resources[i].values.policy_definition_id
+	]
+}
+
+# # # Get the policy_definition_id from all policy assignments in the opa.json
+plc_assign_change_policy_definition_id[module_name] = plcs {
+	module := input.resource_changes[_]
+	module_name := module.module_address
+	plcs := [plc |
+		input.resource_changes[r].type == "azurerm_policy_assignment"
+		input.resource_changes[r].module_address == module.module_address
+		plc := input.resource_changes[r].change.after.policy_definition_id
+	]
+}
+
+# # # Get the scope from all policy assignments in planned_values.yml
+plc_assign_plan_scope[module_name] = plcs {
+	module := child_modules[_]
+	module_name := module.address
+	plcs := [plc |
+		module.resources[i].type == "azurerm_policy_assignment"
+		plc := module.resources[i].values.scope
+	]
+}
+
+# # # Get the scope from all policy assignments in the opa.json
+plc_assign_change_scope[module_name] = plcs {
+	module := input.resource_changes[_]
+	module_name := module.module_address
+	plcs := [plc |
+		input.resource_changes[r].type == "azurerm_policy_assignment"
+		input.resource_changes[r].module_address == module.module_address
+		plc := input.resource_changes[r].change.after.scope
 	]
 }
