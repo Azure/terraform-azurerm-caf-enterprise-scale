@@ -5,7 +5,6 @@ import data.child_modules
 ########################
 # Rules
 ########################
-
 # # # Compare the policy assignments display_name and fail if they are not equal.
 violation[policy_assignment_display_name] {
 	plc_assign_plan_display_name != plc_assign_change_display_name

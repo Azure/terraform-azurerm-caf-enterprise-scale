@@ -2,12 +2,6 @@ package main
 
 import data.child_modules
 
-# # name  ----------------------------> Done
-# # management_group_name   ----------------------------> Done
-# # metadata   ----------------------------> Done
-# # parameters   ----------------------------> Done
-# # policy_rule   ----------------------------> Done
-
 ########################
 # Rules
 ########################
@@ -41,7 +35,6 @@ violation[policy_definition_policy_rule] {
 ########################
 # Library
 ########################
-
 # # # Get the name from all policy definitions in planned_values.yml
 plc_def_plan_name[module_name] = pl_defs {
 	module := child_modules[_]

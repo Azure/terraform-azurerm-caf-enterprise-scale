@@ -5,7 +5,6 @@ import data.child_modules
 ########################
 # Rules
 ########################
-
 # # # Compare the management groups display name and fail if they are not equal.
 violation[msg] {
 	mgs_plan_display_name != mgs_change_display_name
@@ -21,7 +20,6 @@ violation[msg] {
 ########################
 # Library
 ########################
-
 # # # Get the display name from all management groups in planned_values.yml
 mgs_plan_display_name[module_name] = mgs {
 	module := child_modules[_]
