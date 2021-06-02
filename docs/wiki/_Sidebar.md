@@ -15,7 +15,7 @@
   - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
   - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
   - [Deploy Management Resources][wiki_deploy_management_resources]
-  - [Deploy Custom Management Landing Zone ][wiki_deploy_custom_management_landing_zone]
+  - [Deploy Custom Management Landing Zone][wiki_deploy_custom_management_landing_zone]
   - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
