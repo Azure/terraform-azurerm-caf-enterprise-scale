@@ -6,15 +6,15 @@ import data.child_modules
 # Rules
 ########################
 # # # Compare the management groups display name and fail if they are not equal.
-violation[msg] {
+violation[management_group_display_name] {
 	mgs_plan_display_name != mgs_change_display_name
-	msg := sprintf("The management_group planned values:\n \n %v \n \n are not equal to the management_group changed values:\n \n %v", [mgs_plan_display_name, mgs_change_display_name])
+	management_group_display_name := sprintf("The management_group planned values:\n \n %v \n \n are not equal to the management_group changed values:\n \n %v", [mgs_plan_display_name, mgs_change_display_name])
 }
 
 # # # Compare the management groups name and fail if they are not equal.
-violation[msg] {
+violation[management_group_name] {
 	mgs_plan_name != mgs_change_name
-	msg := sprintf("The management_group planned values:\n \n %v \n \n are not equal to the management_group changed values:\n \n %v", [mgs_plan_name, mgs_change_name])
+	management_group_name := sprintf("The management_group planned values:\n \n %v \n \n are not equal to the management_group changed values:\n \n %v", [mgs_plan_name, mgs_change_name])
 }
 
 ########################
