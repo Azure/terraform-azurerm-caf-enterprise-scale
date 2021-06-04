@@ -44,10 +44,10 @@ rm $PLAN_NAME.test
 
 # # Extract the planned values from the tfplan.json in a temporary *.json file.
 # # To avoid an error from Conftest, "bad yml type", use '.planned_values.root_module' with jq.
-cmd <file | jq '.planned_values.root_module' >planned_values.json
+cat <$PLAN_NAME.json | jq '.planned_values.root_module' >planned_values.json
 
 # # Convert to yaml.
-cmd <file | yq e -P - | tee policy/planned_values.yml
+cat <planned_values.json | yq e -P - | tee policy/planned_values.yml
 
 # # Delete the *.json after converting to *.yml
 rm planned_values.json
