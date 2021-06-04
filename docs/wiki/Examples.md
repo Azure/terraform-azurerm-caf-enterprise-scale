@@ -18,6 +18,7 @@ Use the links below to explore these examples in more detail.
 
 - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 - [Override Module Role Assignments][wiki_override_module_role_assignments]
+- [Multi-Subscription Deployment]
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
