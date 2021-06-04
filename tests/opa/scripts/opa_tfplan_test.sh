@@ -12,7 +12,7 @@ VERSION=v4.9.3
 BINARY=yq_linux_amd64
 
 # Install Conftest on Linux:
-if [ $(command -v "conftest") ]; then
+if [ "$(command -v conftest)" ]; then
     echo "--> Conftest exists, skip install"
 else
     wget https://github.com/open-policy-agent/conftest/releases/download/v0.24.0/conftest_0.24.0_Linux_x86_64.tar.gz
@@ -22,7 +22,7 @@ else
 fi
 
 # # Install yq on Linux:
-if [ $(command -v "yq") ]; then
+if [ "$(command -v yq)" ]; then
     echo "--> yq exists, skip install"
 else
     wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&
