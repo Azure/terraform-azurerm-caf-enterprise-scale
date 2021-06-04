@@ -19,6 +19,7 @@
   - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
+  - [Multi-Subscription Deployment][wiki_multi-subscription_deployment]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
 - [Contributing][wiki_contributing]
@@ -53,3 +54,4 @@
 [wiki_contributing_to_documentation]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Documentation "Wiki - Contributing to Documentation"
 [wiki_expand_built_in_archetype_definitions]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+
