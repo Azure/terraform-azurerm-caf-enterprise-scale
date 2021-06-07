@@ -45,10 +45,14 @@ resource "azurerm_log_analytics_solution" "enterprise_scale" {
   # Optional resource attributes
   tags = each.value.template.tags
 
-  # Set explicit dependency on Resource Group and Log Analytics workspace deployments
+  # Set explicit dependency on Resource Group, Log Analytics
+  # workspace and Automation Account to fix issue #109.
+  # Ideally we would limit to specific solutions, but the
+  # depends_on block only supports static values.
   depends_on = [
     azurerm_resource_group.enterprise_scale,
     azurerm_log_analytics_workspace.enterprise_scale,
+    azurerm_automation_account.enterprise_scale,
   ]
 
 }
@@ -82,7 +86,6 @@ resource "azurerm_log_analytics_linked_service" "enterprise_scale" {
   # Optional resource attributes
   read_access_id  = each.value.template.read_access_id
   write_access_id = each.value.template.write_access_id
-  tags            = each.value.template.tags
 
   # Set explicit dependency on Resource Group, Log Analytics workspace and Automation Account deployments
   depends_on = [
