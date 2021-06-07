@@ -86,7 +86,6 @@ resource "azurerm_log_analytics_linked_service" "enterprise_scale" {
   # Optional resource attributes
   read_access_id  = each.value.template.read_access_id
   write_access_id = each.value.template.write_access_id
-  tags            = each.value.template.tags
 
   # Set explicit dependency on Resource Group, Log Analytics workspace and Automation Account deployments
   depends_on = [
