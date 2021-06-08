@@ -1,23 +1,23 @@
 ## Overview
 
-This page describes how to deploy Enterprise-scale management resources custom configuration, including guidance on how to customize Log Analytics and Azure Security Center customizations.
-In this example, we take a default configuration and make the following changes:
+This page describes how to deploy Enterprise-scale management resources custom configuration, including guidance on how to apply Log Analytics and Azure Security Center preferences.
+In this example, we take a default configuration and make the following code changes:
 
 ### Enable and configure management resources (Level 200)
 - Set and enable the `configure_management_resources`  variable
-- Parameters for enabling/disabling management resources
-- Add paramters to set location and resource tags
-- Custom configurations for Log Analytics and Azure security centers
+- Add parameters for enabling/disabling management resources
+- Add parameters to set location and resource tags
+- Create custom configurations for Log Analytics and ASC
 
 
-The module allows for further configuration of log analytics and azure security center by setting the configure_management_resources
-This configuration reqires three mandatory variables:
+The module allows for further configuration of log analytics and azure security center by setting the `configure_management_resources` variable. 
+This configuration requires three mandatory variables:
      location: where the resource group will be deployed
      advanced:  [tbd]
      tags: add any specific tag that the resources permit
 
 For this configuration you must pass in both log analytics and security center. If you want to disable
-one or the other, set the enabled flag to *false*.
+either or both of these resources, set the enabled flag to *false*.
 
 ```hcl
     settings = {
@@ -27,7 +27,7 @@ one or the other, set the enabled flag to *false*.
 ```
 If you've already deployed management resources, this will allow you to enable or disable specific parameters.
 Every parameter set to true will create new principal id's that will force replacement in place of the existing
-RBAC and policies to reassign them to the log analytics and sentinel resources. Likewise, if set to false, existing configurations will be removed.  
+roles and policies to reassign them to the log analytics and sentinel resources specified. Likewise, if set to false, existing configurations will be removed.  
 
 If location is not specified, the resources will default to *eastus*
 ```hcl
