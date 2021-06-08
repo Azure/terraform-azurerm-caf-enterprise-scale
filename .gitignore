@@ -39,6 +39,5 @@ override.tf.json
 
 # Ignore Visual Studio Code config
 **/.vscode/*
-
 super-linter.log
 
