@@ -103,7 +103,7 @@ If location is not specified, the resources will default to *eastus*
 ```
 You should now have a deployment as seen below
 
-![Deploy-Default-Configuration](./media/terraform-caf-enterprise-scale-management.png)
+![Deploy-Default-Configuration](./media/examples-deploy-management-resources.png)
 
 IMPORTANT: Log Analytics and Security Center policies must enabled in order to deploy
 
