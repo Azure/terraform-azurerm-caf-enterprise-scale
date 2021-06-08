@@ -32,6 +32,7 @@
 [root_id]: ./%5BVariables%5D-root_id "Instructions for how to use the root_id variable."
 [root_name]: ./%5BVariables%5D-root_name "Instructions for how to use the root_name variable."
 [deploy_core_landing_zones]: ./%5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
+[deploy_management_resources]: ./%5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
 [archetype_config_overrides]: ./%5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
 [subscription_id_overrides]: ./%5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
 [deploy_demo_landing_zones]: ./%5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
