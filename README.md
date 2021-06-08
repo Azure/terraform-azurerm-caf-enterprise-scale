@@ -27,6 +27,7 @@ For detailed information about how to use, configure and extend this module, ple
   - [Deploy Default Configuration][wiki_deploy_default_configuration]
   - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
   - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
+  - [Deploy Management Resources][wiki_deploy_management_resources]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
