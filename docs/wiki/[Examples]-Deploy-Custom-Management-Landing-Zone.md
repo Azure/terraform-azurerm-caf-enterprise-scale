@@ -10,7 +10,7 @@ In this example, we take a default configuration and make the following code cha
 - Create custom configurations for Log Analytics and ASC
 
 
-The module allows for further configuration of log analytics and azure security center by setting the `configure_management_resources` variable. 
+The module allows for further configuration of log analytics and azure security center by setting the `configure_management_resources` variable.
 This configuration requires three mandatory variables:
      location: where the resource group will be deployed
      advanced:  [tbd]
