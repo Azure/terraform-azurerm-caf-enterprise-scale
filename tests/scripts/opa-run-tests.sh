@@ -9,11 +9,11 @@ set -e
 TF_PLAN_JSON="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
 
 echo "==> Convert plan to JSON..."
-cd ../deployment && terraform show -json "$TF_PLAN_JSON" >$TF_PLAN_JSON.json # verify if saving to json is needed in pipelines
+cd ../deployment && terraform show -json "$TF_PLAN_JSON" >"$TF_PLAN_JSON".json
 
 echo "==> Load planned values..."
 cd ../opa/policy &&
-    cat planned_values_template.yml |
+    <planned_values_template.yml |
     sed -e 's:root-id-1:'"${root_id_1}"':g' \
         -e's:root-id-2:'"${root_id_2}"':g' \
         -e 's:root-id-3:'"${root_id_3}"':g' \

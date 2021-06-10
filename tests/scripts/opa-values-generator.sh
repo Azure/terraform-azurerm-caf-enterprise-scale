@@ -10,7 +10,7 @@ PLAN_NAME=terraform-plan
 VERSION=v4.9.3
 BINARY=yq_linux_amd64
 
-if [ $(command -v terraform) ]; then
+if [ "$(command -v terraform)" ]; then
     echo "==> Terraform exists, skip install"
     terraform version
     echo
@@ -22,7 +22,7 @@ else
     sudo apt-get update && sudo apt-get install terraform
 fi
 
-if [ $(command -v jq) ]; then
+if [ "$(command -v jq)" ]; then
     echo "==> jq exists, skip install"
     jq --version
     echo
@@ -31,7 +31,7 @@ else
     sudo apt-get install jq
 fi
 
-if [ $(command -v yq) ]; then
+if [ "$(command -v yq)" ]; then
     echo "==> yq exists, skip install"
     yq --version
     echo
@@ -41,7 +41,7 @@ else
         chmod +x /usr/bin/yq
 fi
 
-if [ $(command -v conftest) ]; then
+if [ "$(command -v conftest)" ]; then
     echo "--> Conftest exists, skip install"
     conftest --version
 else

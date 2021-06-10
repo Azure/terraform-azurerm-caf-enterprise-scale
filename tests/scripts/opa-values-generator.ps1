@@ -90,11 +90,11 @@ Remove-Item -Path .\planned_values.json
 $CONFIRM = Read-Host "Do you want to remove terraform-plan.json (y/n)?"
 if ($CONFIRM -eq 'y') {
     Remove-Item -Path .\terraform-plan.json
-    Write-Output "$PLAN_NAME.json has been removed from your root module" 
+    Write-Output "$PLAN_NAME.json has been removed from your root module"
 }
 else {
-    Write-Warning -Message "$PLAN_NAME.json  can contain sensitive data" 
-    Write-Warning -Message  "Exposing $PLAN_NAME.json in a repository can cause security breach" 
+    Write-Warning -Message "$PLAN_NAME.json  can contain sensitive data"
+    Write-Warning -Message  "Exposing $PLAN_NAME.json in a repository can cause security breach"
     Write-Host "From within your terraform root module:" -NoNewline
     Write-Host " conftest test $PLAN_NAME.json -p ../opa/policy/  -d ../opa/policy/planned_values_template.yml" -ForegroundColor Green
 }
