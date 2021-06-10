@@ -30,5 +30,3 @@ jobs:
           script: "make tf-plan"
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-
-      - template: templates/tests-opa.yml
