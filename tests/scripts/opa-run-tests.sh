@@ -6,10 +6,6 @@ set -e
 # - OPA Run Tests
 #
 # # Parameters
-TF_PLAN_JSON="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
-
-echo "==> Convert plan to JSON..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment" && terraform show -json "$TF_PLAN_JSON" >"$TF_PLAN_JSON".json
 
 echo "==> Load planned values..."
 cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" &&
@@ -22,6 +18,8 @@ sed -e 's:root-id-1:'"${ROOT_ID_1}"':g' \
 
 echo "==> Running conftest..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment" &&
-    conftest test "$TF_PLAN_JSON.json" \
-        -p "$PIPELINE_WORKSPACE/s/tests/opa/policy" \
-        -d "$PIPELINE_WORKSPACE/s/tests/opa/policy/planned_values.yml"
+    for PLAN in $TF_PLAN_JSON; do
+        conftest test "$PLAN" \
+            -p "$PIPELINE_WORKSPACE/s/tests/opa/policy" \
+            -d "$PIPELINE_WORKSPACE/s/tests/opa/policy/planned_values.yml"
+    done
