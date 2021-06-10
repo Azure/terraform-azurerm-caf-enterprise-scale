@@ -73,16 +73,16 @@ echo "==> Removing the original plan..."
 rm $PLAN_NAME
 
 echo "==> Saving planned values to a temporary planned_values.json..."
-cat $PLAN_NAME.json | jq '.planned_values.root_module' >planned_values.json
+<$PLAN_NAME.json | jq '.planned_values.root_module' >planned_values.json
 
 echo "==> Converting to yaml..."
-cat planned_values.json | yq e -P - | tee ../opa/policy/planned_values_template.yml
+<planned_values.json | yq e -P - | tee ../opa/policy/planned_values_template.yml
 
 echo "==> Removing the temporary planned_values.json..."
 rm planned_values.json
 
 echo
-read -p "Do you want to remove terraform-plan.json (y/n)?" CONT
+read -r "Do you want to remove terraform-plan.json (y/n)?" CONT
 if [ "$CONT" = "y" ]; then
     rm $PLAN_NAME.json
     echo
