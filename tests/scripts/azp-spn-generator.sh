@@ -14,6 +14,10 @@ az login \
     --password "$ARM_CLIENT_SECRET" \
     --query [?isDefault]
 
+echo "==> Setting active Subscription..."
+az account set \
+    --subscription "$ARM_SUBSCRIPTION_ID"
+
 echo "==> Create or update Resource Group..."
 RSG_NAME="$DEFAULT_PREFIX"
 az group create \
