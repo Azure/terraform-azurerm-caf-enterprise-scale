@@ -14,7 +14,7 @@ if (Get-command scoop) {
 }
 else {
     Write-Information "==> Install Scoop on Windows..."
-    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+    #Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 }
 
 # Install Terraform
@@ -95,6 +95,5 @@ if ($CONFIRM -eq 'y') {
 else {
     Write-Warning -Message "$PLAN_NAME.json  can contain sensitive data"
     Write-Warning -Message  "Exposing $PLAN_NAME.json in a repository can cause security breach"
-    Write-Host "From within your terraform root module:" -NoNewline
-    Write-Host " conftest test $PLAN_NAME.json -p ../opa/policy/  -d ../opa/policy/planned_values_template.yml" -ForegroundColor Green
+    Write-Output "From within your terraform root module: conftest test $PLAN_NAME.json -p ../opa/policy/  -d ../opa/policy/planned_values_template.yml"
 }

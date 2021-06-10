@@ -7598,8 +7598,7 @@ child_modules:
         values:
           read_access_id: /subscriptions/b472fb3a-8b1f-4494-bfdb-5f2f380d04f8/resourceGroups/root-id-3-mgmt/providers/Microsoft.Automation/automationAccounts/root-id-3-automation
           resource_group_name: root-id-3-mgmt
-          tags:
-            deployedBy: terraform/azure/caf-enterprise-scale
+          tags: null
           timeouts: null
           workspace_id: /subscriptions/b472fb3a-8b1f-4494-bfdb-5f2f380d04f8/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la
           write_access_id: null
