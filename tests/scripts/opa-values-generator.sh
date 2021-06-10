@@ -73,10 +73,10 @@ echo "==> Removing the original plan..."
 rm $PLAN_NAME
 
 echo "==> Saving planned values to a temporary planned_values.json..."
-<$PLAN_NAME.json | jq '.planned_values.root_module' >planned_values.json
+jq <$PLAN_NAME.json '.planned_values.root_module' >planned_values.json
 
 echo "==> Converting to yaml..."
-<planned_values.json | yq e -P - | tee ../opa/policy/planned_values_template.yml
+yq <planned_values.json e -P - | tee ../opa/policy/planned_values_template.yml
 
 echo "==> Removing the temporary planned_values.json..."
 rm planned_values.json
