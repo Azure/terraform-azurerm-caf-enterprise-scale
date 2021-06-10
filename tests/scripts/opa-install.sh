@@ -15,7 +15,7 @@ echo "==> Expanding archive..."
 cd /tmp && tar xzf 'conftest_'"$CONFTEST_VERSION"'_Linux_x86_64.tar.gz' -C /tmp
 
 echo "==> Moving binaries..."
-mv /tmp/conftest /usr/local/bin
+sudo mv /tmp/conftest /usr/local/bin
 
 echo "==> Exporting path..."
 echo "##vso[task.prependpath]/usr/local/bin"
