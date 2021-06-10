@@ -8,6 +8,9 @@ set -e
 # # Parameters
 CONFTEST_VERSION=0.24.0
 
+echo "==> Creating directory..."
+mkdir -p /home/vsts/.opa/bin/
+
 echo "==> Downloading archive..."
 wget 'https://github.com/open-policy-agent/conftest/releases/download/v'"$CONFTEST_VERSION"'/conftest_'"$CONFTEST_VERSION"'_Linux_x86_64.tar.gz' -P /tmp
 
