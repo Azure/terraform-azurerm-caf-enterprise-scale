@@ -22,3 +22,6 @@ terraform plan \
 
 echo "==> Convert plan to JSON..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment" && terraform show -json "$TF_PLAN_JSON" >"$TF_PLAN_JSON".json
+
+echo "==> List all plan to JSON..."
+cd "$PIPELINE_WORKSPACE/s/tests/deployment" && find . -name "*.json"
