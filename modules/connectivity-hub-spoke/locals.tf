@@ -273,7 +273,7 @@ locals {
   er_gateway_resource_id_prefix = {
     for location in local.hub_network_locations :
     location =>
-    "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/expressRouteGateways"
+    "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/virtualNetworkGateways"
   }
   er_gateway_resource_id = {
     for location in local.hub_network_locations :
@@ -336,7 +336,7 @@ locals {
   vpn_gateway_resource_id_prefix = {
     for location in local.hub_network_locations :
     location =>
-    "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/vpnGateways"
+    "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/virtualNetworkGateways"
   }
   vpn_gateway_resource_id = {
     for location in local.hub_network_locations :
