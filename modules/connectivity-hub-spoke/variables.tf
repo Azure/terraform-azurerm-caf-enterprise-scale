@@ -47,7 +47,7 @@ variable "settings" {
       object({
         enabled = bool
         config = object({
-          address_space                   = string
+          address_space                   = list(string)
           location                        = string
           enable_ddos_protection_standard = bool
           dns_servers                     = string
@@ -128,4 +128,15 @@ variable "existing_ddos_protection_plan_resource_id" {
   type        = string
   description = "If specified, module will skip creation of DDoS Protection Plan and use existing."
   default     = ""
+}
+
+variable "custom_settings_by_resource_type" {
+  type        = any
+  description = "If specified, allows full customization of common settings for all resources (by type) deployed by this module."
+  default     = {}
+
+  validation {
+    condition     = can([for k in keys(var.custom_settings_by_resource_type) : contains(["azurerm_resource_group", "azurerm_virtual_network", "azurerm_subnet", "azurerm_virtual_network_gateway", "azurerm_public_ip", "azurerm_firewall", "azurerm_network_ddos_protection_plan", "azurerm_dns_zone", "azurerm_virtual_network_peering"], k)]) || var.custom_settings_by_resource_type == {}
+    error_message = "Invalid key specified. Please check the list of allowed resource types supported by the connectivity module for caf-enterprise-scale."
+  }
 }
