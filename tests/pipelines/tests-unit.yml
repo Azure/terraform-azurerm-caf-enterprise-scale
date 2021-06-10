@@ -30,3 +30,15 @@ jobs:
           script: "make tf-plan"
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+
+      - task: Bash@3
+        displayName: "Opa Conftest (install)"
+        inputs:
+          targetType: "inline"
+          script: "make opa-install"
+
+      - task: Bash@3
+        displayName: "Conftest (run tests)"
+        inputs:
+          targetType: "inline"
+          script: "make opa-run-tests"
