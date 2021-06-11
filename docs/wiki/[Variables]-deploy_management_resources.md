@@ -25,13 +25,13 @@ A full list of default Management Groups:
 
     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.1"
+      version = "0.3.3"
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
     root_id = "contoso" 
     root_name = "Contoso"
     deploy_management_resources = "true" 
-    subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
+    subscription_id_management = data.azurerm_client_config.current.subscription_id //Required variable
     
     }
 ```
