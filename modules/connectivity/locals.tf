@@ -70,7 +70,8 @@ locals {
     for location, hub_network in local.hub_networks_by_location :
     location =>
     local.deploy_hub_network[location] &&
-    hub_network.config.virtual_network_gateway.enabled
+    hub_network.config.virtual_network_gateway.enabled &&
+    hub_network.config.virtual_network_gateway.config.address_prefix != local.empty_string
   }
   deploy_virtual_network_gateway_expressroute = {
     for location, hub_network in local.hub_networks_by_location :
@@ -293,7 +294,7 @@ locals {
       type                             = "ExpressRoute"
       sku                              = hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute
       vpn_type                         = try(local.custom.azurerm_virtual_network_gateway["connectivity"]["ergw"][location].vpn_type, "RouteBased")
-      enable_bgp                       = try(local.custom.azurerm_virtual_network_gateway["connectivity"]["ergw"][location].enable_bgp, false)
+      enable_bgp                       = try(local.custom.azurerm_virtual_network_gateway["connectivity"]["ergw"][location].enable_bgp, true)
       active_active                    = try(local.custom.azurerm_virtual_network_gateway["connectivity"]["ergw"][location].active_active, false)
       private_ip_address_enabled       = try(local.custom.azurerm_virtual_network_gateway["connectivity"]["ergw"][location].private_ip_address_enabled, null)
       default_local_network_gateway_id = try(local.custom.azurerm_virtual_network_gateway["connectivity"]["ergw"][location].default_local_network_gateway_id, null)
@@ -320,7 +321,6 @@ locals {
         tags                    = try(local.custom.azurerm_public_ip["connectivity"]["ergw"][location].tags, local.tags)
       }
     }
-    # if local.deploy_virtual_network_gateway_expressroute[location]
   ]
 }
 
@@ -383,7 +383,6 @@ locals {
         tags                    = try(local.custom.azurerm_public_ip["connectivity"]["vpngw"][location].tags, local.tags)
       }
     }
-    # if local.deploy_virtual_network_gateway_vpn[location]
   ]
 }
 
@@ -455,7 +454,6 @@ locals {
         tags                    = try(local.custom.azurerm_public_ip["connectivity"]["azfw"][location].tags, local.tags)
       }
     }
-    # if local.deploy_azure_firewall[location]
   ]
 }
 

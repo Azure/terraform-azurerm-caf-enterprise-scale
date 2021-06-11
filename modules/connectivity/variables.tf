@@ -83,6 +83,7 @@ variable "settings" {
         })
       })
     )
+    vwan_hub_networks = list(object({}))
     ddos_protection_plan = object({
       enabled = bool
       config = object({
