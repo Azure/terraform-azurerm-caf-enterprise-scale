@@ -23,5 +23,5 @@ cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" && find . -name "*.yml"
 echo "==> Running conftest..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment" &&
     conftest test "$TF_PLAN_JSON".json \
-        -p "$PIPELINE_WORKSPACE/s/tests/opa/policy" \
-        -d "$PIPELINE_WORKSPACE/s/tests/opa/policy/"$TF_PLAN_JSON"_planned_values.yml"
+        -p ../opa/policy \
+        -d "../opa/policy/"${TF_PLAN_JSON}"_planned_values.yml"
