@@ -2,7 +2,7 @@
 
 [**deploy_management_resources**](#overview) `map(list(string))` (optional)
 
-If specified, will be used to deploy log analytics, sentinel, and an automation account to the subscription provided for centralized, Enterprise-scale Management.
+If specified, will be used to deploy Log Analytics, Sentinel, and an Automation account to the subscription provided for centralized, Enterprise-scale Management.
 
 ## Default value
 
