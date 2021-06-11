@@ -29,11 +29,12 @@ cd "$PIPELINE_WORKSPACE/s/tests/deployment" && find . -name "*.json"
 echo "==> Load planned values..."
 cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" &&
     cat <planned_values_template.yml
-sed -e 's:root-id-1:'"${ROOT_ID_1}"':g' \
-    -e's:root-id-2:'"${ROOT_ID_2}"':g' \
-    -e 's:root-id-3:'"${ROOT_ID_3}"':g' \
-    -e 's:root-name:'"${ROOT_NAME}"':g' \
-    -e's:eastus:'"${LOCATION}"':g' >"$TF_PLAN_JSON"_planned_values.yml
+sed -e 's:root-id-1:'"${TF_ROOT_ID_1}"':g' \
+    -e's:root-id-2:'"${TF_ROOT_ID_2}"':g' \
+    -e 's:root-id-3:'"${TF_ROOT_ID_3}"':g' \
+    -e 's:root-name:'"ES-${TF_VERSION}-${TF_AZ_VERSION}"':g' \
+    -e's:eastus:'"${DEFAULT_LOCATION}"':g' \
+    >"$TF_PLAN_JSON"_planned_values.yml
 
 echo "==> List all planned values to yaml..."
 cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" && find . -name "*.yml"
