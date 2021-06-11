@@ -22,7 +22,7 @@ cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" && find . -name "*.yml"
 
 echo "==> Test Conftest..."
 which conftest
-echo $TF_PLAN_JSON
+echo "$TF_PLAN_JSON"
 conftest
 
 echo "==> Running conftest..."
