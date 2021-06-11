@@ -20,8 +20,12 @@ cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" &&
 echo "==> List all planned values to yaml..."
 cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" && find . -name "*.yml"
 
-echo "==> Running conftest..."
+echo "==> Show path..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment" &&
-    conftest test "$TF_PLAN_JSON".json \
-        -p ../opa/policy \
-        -d ../opa/policy/"${TF_PLAN_JSON}"_planned_values.yml
+    ls -l && cd .. && ls
+
+# echo "==> Running conftest..."
+# cd "$PIPELINE_WORKSPACE/s/tests/deployment" &&
+#     conftest test "$TF_PLAN_JSON".json \
+#         -p ../opa/policy \
+#         -d ../opa/policy/"${TF_PLAN_JSON}"_planned_values.yml

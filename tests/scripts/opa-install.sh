@@ -19,3 +19,8 @@ sudo mv /tmp/conftest /usr/local/bin
 
 echo "==> Exporting path..."
 echo "##vso[task.prependpath]/usr/local/bin"
+
+echo "==> Test Conftest..."
+which conftest
+echo
+conftest
