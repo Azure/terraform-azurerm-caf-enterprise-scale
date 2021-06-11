@@ -9,7 +9,7 @@ This example will deploy resources for centrally managing the Enterprise Scale L
 
 
 
-The module then goes onto configure Deploy if Not Exist policies to enable features within Log Analytics and Sentinel including
+The module then goes onto configure DeployIfNotExists policies to enable features within Log Analytics and Sentinel including
 but not limited to:
 * enabling monitoring for arc
 * enabling monitoring for vms
@@ -23,7 +23,7 @@ but not limited to:
 ```hcl
      module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.1"
+      version = "0.3.3"
      }
 ```
 
@@ -37,7 +37,7 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
 
     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.1"
+      version = "0.3.3"
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
     root_id = "contoso" 

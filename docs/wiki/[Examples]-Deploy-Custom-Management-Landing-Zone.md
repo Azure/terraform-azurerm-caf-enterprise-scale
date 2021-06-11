@@ -13,7 +13,7 @@ In this example, we take a default configuration and make the following code cha
 The module allows for further configuration of log analytics and azure security center by setting the `configure_management_resources` variable.
 This configuration requires three mandatory variables:
      location: where the resource group will be deployed
-     advanced:  [tbd]
+     advanced:  [experimental] provides additional options for customisation of your deployment (documentation to follow)
      tags: add any specific tag that the resources permit
 
 For this configuration you must pass in both log analytics and security center. If you want to disable
@@ -51,7 +51,7 @@ If location is not specified, the resources will default to *eastus*
 
     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.1"
+      version = "0.3.3"
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
     root_id = "contoso" 
@@ -81,7 +81,7 @@ If location is not specified, the resources will default to *eastus*
       security_center = {
         enabled = true
         config = {
-          email_security_contact             = "email@contoso.com"
+          email_security_contact             = ["email"]
           enable_defender_for_acr            = true
           enable_defender_for_app_services   = true
           enable_defender_for_arm            = true
@@ -95,7 +95,7 @@ If location is not specified, the resources will default to *eastus*
         }
       }
         }
-    location = "centralus"
+    location = "eastus"
       advanced = null
       tags     = null
       }
