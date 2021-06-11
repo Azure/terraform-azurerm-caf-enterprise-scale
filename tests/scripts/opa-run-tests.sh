@@ -24,4 +24,4 @@ echo "==> Running conftest..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment" &&
     conftest test "$TF_PLAN_JSON".json \
         -p ../opa/policy \
-        -d "../opa/policy/"${TF_PLAN_JSON}"_planned_values.yml"
+        -d ../opa/policy/"${TF_PLAN_JSON}"_planned_values.yml
