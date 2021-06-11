@@ -29,7 +29,7 @@ but not limited to:
 
 If upgrading to a later version of this module, make sure to run `terraform init`
 
-To initiate the resource creation,  `deploy_managagement_resources` must be set to true. The  `subscription_id_management` is used within the data model to ensure the correct Subscription ID is present when it needs to be referenced (e.g resource ID creation, setting values for Policy Assignments, etc..) 
+To initiate the resource creation,  `deploy_managagement_resources` must be set to true. The  `subscription_id_management` is used within the data model to ensure the correct Subscription ID is present when it needs to be referenced (e.g resource ID creation, setting values for Policy Assignments, etc..)
 
 Enabling these two variables and setting them both to true is required for a successful deployment. The module then proceeds to deploy ~200 resources mostly consisting of DeployIfNotExists policies and RBAC permissions.
 
