@@ -46,6 +46,7 @@ If location is not specified, the resources will default to *eastus*
     }
 
     #Pull current Tenant ID from connection settings and store to data source
+    In order to obtain the subscription id where the resources will deploy, set the subscription_id_management from the provider using a data source. 
     
     data "azurerm_client_config" current {}
 
@@ -57,7 +58,7 @@ If location is not specified, the resources will default to *eastus*
     root_id = "contoso" 
     root_name = "Contoso"
     deploy_management_resources = "true"
-    subscription_id_management = "<insert_subscription_id>" 
+    subscription_id_management = data.azurerm_client_config.current.subscription_id
     configure_management_resources = {
         settings = {
       log_analytics = {
