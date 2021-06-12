@@ -82,7 +82,7 @@ echo "==> Removing the temporary planned_values.json..."
 rm planned_values.json
 
 echo
-read -r "Do you want to remove terraform-plan.json (y/n)?" CONT
+read -p "Do you want to remove terraform-plan.json (y/n)?" CONT
 if [ "$CONT" = "y" ]; then
     rm $PLAN_NAME.json
     echo
