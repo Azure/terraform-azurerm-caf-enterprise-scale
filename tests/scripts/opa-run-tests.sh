@@ -13,7 +13,7 @@ cd "$PIPELINE_WORKSPACE/s/tests/opa/policy"
 sed -e 's:root-id-1:'"$ROOT_ID_1"':g' \
     -e 's:root-id-2:'"$ROOT_ID_2"':g' \
     -e 's:root-id-3:'"$ROOT_ID_3"':g' \
-    -e 's:root-name:'"ES-$VERSION-$AZ_VERSION"':g' \
+    -e 's:root-name:'"ES-"$VERSION"-"$AZ_VERSION""':g' \
     -e 's:eastus:'"$LOCATION"':g' planned_values_template.yml >"$TF_PLAN_JSON"_planned_values.yml
 
 echo "==> List all planned values to yaml..."
