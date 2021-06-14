@@ -10,11 +10,14 @@ TF_PLAN_JSON="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
 
 echo "==> Load planned values..."
 cd "$PIPELINE_WORKSPACE/s/tests/opa/policy"
-sed -e "s:root-id-1:$TF_ROOT_ID_1:g" \
-    -e "s:root-id-2:$TF_ROOT_ID_2:g" \
-    -e "s:root-id-3:$TF_ROOT_ID_3:g" \
-    -e 's:root-name:'"ES-${TF_VERSION}-${TF_AZ_VERSION}"':g' \
-    -e 's:eastus:'"$LOCATION"':g' planned_values_template.yml >"$TF_PLAN_JSON"_planned_values.yml
+sed -i -e "s:root-id-1:$TF_ROOT_ID_1:g" \
+    -i -e "s:root-id-2:$TF_ROOT_ID_2:g" \
+    -i -e "s:root-id-3:$TF_ROOT_ID_3:g" \
+    -i -e 's:root-name:'"ES-${TF_VERSION}-${TF_AZ_VERSION}"':g' \
+    -i -e 's:eastus:'"$LOCATION"':g' planned_values_template.yml
+
+echo "==> Verify yaml file..."
+yq e -P planned_values_template.yml >"$TF_PLAN_JSON"_planned_values.yml
 
 echo "==> List all planned values to yaml..."
 cd "$PIPELINE_WORKSPACE/s/tests/opa/policy" && find . -name "*.yml"
