@@ -32,3 +32,5 @@ cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 
 echo "==> Testing management groups..."
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/ ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
+
+cat <"$TF_PLAN_JSON".json
