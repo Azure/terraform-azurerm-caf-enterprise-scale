@@ -25,7 +25,4 @@ echo "==> Running conftest..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 
 echo "==> Testing management groups..."
-conftest test "$TF_PLAN_JSON".json -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
-
-echo "==> Testing role definitions..."
-conftest test "$TF_PLAN_JSON".json -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
+conftest test "$TF_PLAN_JSON".json -p ../opa/policy/ ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
