@@ -20,16 +20,10 @@ echo "==> Azure Root ID 1 - $ROOT_ID_1"
 echo "==> Azure {TF_ROOT_ID_1} - ${TF_ROOT_ID_1}"
 echo "==> Azure TF_ROOT_ID_1 - $TF_ROOT_ID_1"
 
-cat <"$TF_PLAN_JSON"_planned_values.yml
-
 echo "==> Get Conftest..."
 which conftest
 echo "$TF_PLAN_JSON"
 conftest
-
-echo "==> Running conftest..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment"
-cat <"$TF_PLAN_JSON".json
 
 echo "==> Testing management groups..."
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/ ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
