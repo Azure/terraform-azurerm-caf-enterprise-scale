@@ -7,8 +7,6 @@ set -e
 #
 # # Parameters
 CONFTEST_VERSION=0.24.0
-VERSION=v4.9.3
-BINARY=yq_linux_amd64
 
 echo "==> Downloading archive..."
 wget 'https://github.com/open-policy-agent/conftest/releases/download/v'"$CONFTEST_VERSION"'/conftest_'"$CONFTEST_VERSION"'_Linux_x86_64.tar.gz' -P /tmp
