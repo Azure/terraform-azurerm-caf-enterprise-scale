@@ -59,9 +59,9 @@ terraform init
 
 echo "==> Planning infrastructure..."
 terraform plan \
-    -var="root_id_1=$RANDOM" \
-    -var="root_id_2=$RANDOM" \
-    -var="root_id_3=$RANDOM" \
+    -var="root_id_1=root-id-1" \
+    -var="root_id_2=root-id-2" \
+    -var="root_id_3=root-id-3" \
     -var="root_name=root-name" \
     -var="location=eastus" \
     -out=$PLAN_NAME
