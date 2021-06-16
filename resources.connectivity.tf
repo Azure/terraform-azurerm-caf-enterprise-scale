@@ -1,11 +1,6 @@
 # locals {
 #   resource_types = [
-#     "azurerm_virtual_network_enterprise_scale",
-#     "azurerm_subnet_enterprise_scale",
-#     "azurerm_virtual_network_gateway_enterprise_scale",
-#     "azurerm_public_ip_enterprise_scale",
 #     "azurerm_firewall_enterprise_scale",
-#     "azurerm_network_ddos_protection_plan_enterprise_scale",
 #     "azurerm_dns_zone_enterprise_scale",
 #     "azurerm_virtual_network_peering_enterprise_scale",
 #   ]
@@ -231,3 +226,64 @@ resource "azurerm_virtual_network_gateway" "enterprise_scale" {
 
 }
 
+resource "azurerm_firewall" "enterprise_scale" {
+  for_each = local.azurerm_firewall_enterprise_scale
+
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+  location            = each.value.template.location
+
+  # Optional resource attributes
+  sku_name           = each.value.template.sku_name
+  sku_tier           = each.value.template.sku_tier
+  firewall_policy_id = each.value.template.firewall_policy_id
+  dns_servers        = each.value.template.dns_servers
+  private_ip_ranges  = each.value.template.private_ip_ranges
+  threat_intel_mode  = each.value.template.threat_intel_mode
+  zones              = each.value.template.zones
+  tags               = each.value.template.tags
+
+  # Dynamic configuration blocks
+  dynamic "ip_configuration" {
+    for_each = each.value.template.ip_configuration
+    content {
+      # Mandatory attributes
+      name                 = ip_configuration.value["name"]
+      public_ip_address_id = ip_configuration.value["public_ip_address_id"]
+      # Optional attributes
+      subnet_id = try(ip_configuration.value["subnet_id"], null)
+    }
+  }
+
+  dynamic "management_ip_configuration" {
+    for_each = each.value.template.management_ip_configuration
+    content {
+      # Mandatory attributes
+      name                 = management_ip_configuration.value["name"]
+      public_ip_address_id = management_ip_configuration.value["public_ip_address_id"]
+      # Optional attributes
+      subnet_id = try(management_ip_configuration.value["subnet_id"], null)
+    }
+  }
+
+  dynamic "virtual_hub" {
+    for_each = each.value.template.virtual_hub
+    content {
+      # Mandatory attributes
+      virtual_hub_id = virtual_hub.value["virtual_hub_id"]
+      # Optional attributes
+      public_ip_count = try(virtual_hub.value["public_ip_count"], null)
+    }
+  }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.enterprise_scale,
+    azurerm_virtual_network.enterprise_scale,
+    azurerm_subnet.enterprise_scale,
+    azurerm_public_ip.enterprise_scale,
+    azurerm_network_ddos_protection_plan.enterprise_scale,
+  ]
+
+}
