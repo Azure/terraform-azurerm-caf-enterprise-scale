@@ -176,6 +176,132 @@ variable "configure_identity_resources" {
   }
 }
 
+variable "deploy_connectivity_resources" {
+  type        = bool
+  description = "If set to true, will deploy the \"Connectivity\" landing zone settings and add resources into the current Subscription context."
+  default     = false
+}
+
+variable "configure_connectivity_resources" {
+  type = object({
+    settings = object({
+      hub_networks = list(
+        object({
+          enabled = bool
+          config = object({
+            address_space                   = list(string)
+            location                        = string
+            enable_ddos_protection_standard = bool
+            dns_servers                     = list(string)
+            bgp_community                   = string
+            subnets = list(
+              object({
+                name                      = string
+                address_prefixes          = list(string)
+                network_security_group_id = string
+                route_table_id            = string
+              })
+            )
+            virtual_network_gateway = object({
+              enabled = bool
+              config = object({
+                address_prefix           = string # Only support adding a single address prefix for GatewaySubnet subnet
+                gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
+                gateway_sku_vpn          = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+              })
+            })
+            azure_firewall = object({
+              enabled = bool
+              config = object({
+                address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+                enable_dns_proxy = bool
+                availability_zones = object({
+                  zone_1 = bool
+                  zone_2 = bool
+                  zone_3 = bool
+                })
+              })
+            })
+          })
+        })
+      )
+      vwan_hub_networks = list(object({}))
+      ddos_protection_plan = object({
+        enabled = bool
+        config = object({
+          location = string
+        })
+      })
+      dns = object({
+        enabled = bool
+        config = object({
+          location          = string
+          public_dns_zones  = list(string)
+          private_dns_zones = list(string)
+        })
+      })
+    })
+    location = any
+    tags     = any
+    advanced = any
+  })
+  description = "If specified, will customize the \"Connectivity\" landing zone settings and resources."
+  default = {
+    settings = {
+      hub_networks = [
+        {
+          enabled = true
+          config = {
+            address_space                   = ["10.100.0.0/16", ]
+            location                        = ""
+            enable_ddos_protection_standard = true
+            dns_servers                     = []
+            bgp_community                   = ""
+            subnets                         = []
+            virtual_network_gateway = {
+              enabled = false
+              config = {
+                address_prefix           = "10.100.1.0/24"
+                gateway_sku_expressroute = "ErGw2AZ"
+                gateway_sku_vpn          = "VpnGw3"
+              }
+            }
+            azure_firewall = {
+              enabled = false
+              config = {
+                address_prefix   = "10.100.0.0/24"
+                enable_dns_proxy = true
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = true
+                }
+              }
+            }
+          }
+      }, ]
+      vwan_hub_networks = []
+      ddos_protection_plan = {
+        enabled = false
+        config = {
+          location = ""
+        }
+      }
+      dns = {
+        enabled = false
+        config = {
+          location          = ""
+          public_dns_zones  = []
+          private_dns_zones = []
+        }
+      }
+    }
+    location = null
+    tags     = null
+    advanced = null
+  }
+}
+
 variable "archetype_config_overrides" {
   type        = any
   description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups."

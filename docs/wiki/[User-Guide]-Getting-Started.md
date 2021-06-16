@@ -2,7 +2,7 @@
 
 Before getting started with this module, please take note of the following considerations:
 
-1. This module requires a minimum `azurerm` provider version of `2.41.0`.
+1. This module requires a minimum `azurerm` provider version of `2.63.0`.
 
 2. This module requires a minimum Terraform version `0.13.2`.
 

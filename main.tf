@@ -59,3 +59,26 @@ module "identity_resources" {
   root_id  = local.root_id
   settings = local.configure_identity_resources.settings
 }
+
+# The following module is used to generate the configuration
+# data used to deploy platform resources based on the
+# "connectivity" landing zone archetype.
+module "connectivity_resources" {
+  source = "./modules/connectivity"
+
+  # Mandatory input variables 
+  enabled         = local.deploy_connectivity_resources
+  root_id         = local.root_id
+  subscription_id = local.subscription_id_connectivity
+  settings        = local.configure_connectivity_resources.settings
+
+  # Optional input variables (basic configuration)
+  location = coalesce(local.configure_connectivity_resources.location, local.default_location)
+  tags     = coalesce(local.configure_connectivity_resources.tags, local.default_tags)
+
+  # Optional input variables (advanced configuration)
+  resource_prefix                           = try(local.configure_connectivity_resources.advanced.resource_prefix, local.empty_string)
+  resource_suffix                           = try(local.configure_connectivity_resources.advanced.resource_suffix, local.empty_string)
+  existing_ddos_protection_plan_resource_id = try(local.configure_connectivity_resources.advanced.existing_resource_group_name, local.empty_string)
+  custom_settings_by_resource_type          = try(local.configure_connectivity_resources.advanced.custom_settings_by_resource_type, local.empty_map)
+}

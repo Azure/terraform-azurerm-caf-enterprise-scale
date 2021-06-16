@@ -91,7 +91,7 @@ Please refer to the [Deploy Management Resources][wiki_deploy_management_resourc
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.13.2` and AzureRM Provider `2.41.0` as a baseline, and various versions to up the most recent at the time of release.
+This module has been tested using Terraform `0.13.2` and AzureRM Provider `2.63.0` as a baseline, and various versions to up the most recent at the time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -113,7 +113,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.41.0"
+      version = ">= 2.63.0"
     }
   }
 }

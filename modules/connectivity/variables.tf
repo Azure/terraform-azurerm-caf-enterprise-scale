@@ -50,7 +50,7 @@ variable "settings" {
           address_space                   = list(string)
           location                        = string
           enable_ddos_protection_standard = bool
-          dns_servers                     = string
+          dns_servers                     = list(string)
           bgp_community                   = string
           subnets = list(
             object({
