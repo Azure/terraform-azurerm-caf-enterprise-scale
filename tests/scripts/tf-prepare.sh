@@ -74,9 +74,9 @@ provider "azurerm" {
 TFCONFIG
 
 echo "==> Generating root id's..."
-ROOT_ID_1="$RANDOM"
-ROOT_ID_2="$RANDOM"
-ROOT_ID_3="$RANDOM"
+ROOT_ID_1="${RANDOM}-es"
+ROOT_ID_2="${RANDOM}-es"
+ROOT_ID_3="${RANDOM}-es"
 
 echo "==> Azure Root ID 1 - $ROOT_ID_1"
 echo "##vso[task.setvariable variable=TF_ROOT_ID_1;]$ROOT_ID_1"
