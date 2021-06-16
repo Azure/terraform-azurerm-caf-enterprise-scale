@@ -17,7 +17,7 @@ sed -e 's:root-id-1:'"$ROOT_ID_1"':g' \
     -e 's:eastus:'"$LOCATION"':g' planned_values_template.yml >"$TF_PLAN_JSON"_planned_values.yml
 
 echo "==> Update root-id values..."
-id_1="$ROOT_ID_1" id_2="$ROOT_ID_2" id_3="$ROOT_ID_3" yq eval '(.child_modules[].resources[] |= select(.address == "*root_id_1*").values.name = strenv(id_1)) | (.child_modules[].resources[] |= select(.address == "*root_id_2*").values.name = strenv(id_2))| (.child_modules[].resources[] |= select(.address == "*root_id_3*").values.name = strenv(id_3))' -i "$TF_PLAN_JSON"_planned_values.yml
+id_1=${ROOT_ID_1} id_2=$ROOT_ID_2 id_3=$ROOT_ID_3 yq eval '(.child_modules[].resources[] |= select(.address == "*root_id_1*").values.name = strenv(id_1)) | (.child_modules[].resources[] |= select(.address == "*root_id_2*").values.name = strenv(id_2))| (.child_modules[].resources[] |= select(.address == "*root_id_3*").values.name = strenv(id_3))' -i "$TF_PLAN_JSON"_planned_values.yml
 
 echo "==> Test Conftest..."
 which conftest
