@@ -25,5 +25,6 @@ which conftest
 echo "$TF_PLAN_JSON"
 conftest
 
-echo "==> Testing management groups..."
+echo "==> Running conftest..."
+cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/ ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
