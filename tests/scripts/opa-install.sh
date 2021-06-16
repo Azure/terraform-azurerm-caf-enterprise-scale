@@ -7,6 +7,8 @@ set -e
 #
 # # Parameters
 CONFTEST_VERSION=0.24.0
+VERSION=v4.9.3
+BINARY=yq_linux_amd64
 
 echo "==> Downloading archive..."
 wget 'https://github.com/open-policy-agent/conftest/releases/download/v'"$CONFTEST_VERSION"'/conftest_'"$CONFTEST_VERSION"'_Linux_x86_64.tar.gz' -P /tmp
@@ -19,3 +21,13 @@ sudo mv /tmp/conftest /usr/local/bin
 
 echo "==> Exporting path..."
 echo "##vso[task.prependpath]/usr/local/bin"
+
+if [ $(command -v yq) ]; then
+    echo "==> yq exists, skip install"
+    yq --version
+    echo
+else
+    echo "==> Install yq on Linux..."
+    wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&
+        chmod +x /usr/bin/yq
+fi
