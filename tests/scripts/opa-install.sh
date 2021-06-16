@@ -21,13 +21,3 @@ sudo mv /tmp/conftest /usr/local/bin
 
 echo "==> Exporting path..."
 echo "##vso[task.prependpath]/usr/local/bin"
-
-if [ "$(command -v yq)" ]; then
-    echo "==> yq exists, skip install"
-    yq --version
-    echo
-else
-    echo "==> Install yq on Linux..."
-    sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&
-        sudo chmod +x /usr/bin/yq
-fi
