@@ -28,6 +28,6 @@ if [ $(command -v yq) ]; then
     echo
 else
     echo "==> Install yq on Linux..."
-    wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&
-        chmod +x /usr/bin/yq
+    sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&
+        sudo chmod +x /usr/bin/yq
 fi
