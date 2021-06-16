@@ -22,7 +22,7 @@ sudo mv /tmp/conftest /usr/local/bin
 echo "==> Exporting path..."
 echo "##vso[task.prependpath]/usr/local/bin"
 
-if [ $(command -v yq) ]; then
+if [ "$(command -v yq)" ]; then
     echo "==> yq exists, skip install"
     yq --version
     echo
