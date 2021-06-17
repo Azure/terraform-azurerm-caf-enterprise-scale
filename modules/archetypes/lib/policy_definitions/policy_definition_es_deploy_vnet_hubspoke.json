@@ -47,6 +47,14 @@
           "displayName": "hubResourceId",
           "description": "Resource ID for the HUB vNet"
         }
+      },
+      "dnsServers": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "DNSServers",
+          "description": "Default domain servers for the vNET."
+        },
+        "defaultValue": []
       }
     },
     "policyRule": {
@@ -100,6 +108,9 @@
                 },
                 "hubResourceId": {
                   "value": "[parameters('hubResourceId')]"
+                },
+                "dnsServers": {
+                  "value": "[parameters('dnsServers')]"
                 }
               },
               "template": {
@@ -124,6 +135,10 @@
                   },
                   "hubResourceId": {
                     "type": "String"
+                  },
+                  "dnsServers": {
+                    "type": "Array",
+                    "defaultValue": []
                   }
                 },
                 "variables": {},
@@ -187,6 +202,9 @@
                                 "addressPrefixes": [
                                   "[parameters('vNetCidrRange')]"
                                 ]
+                              },
+                              "dhcpOptions": {
+                                "dnsServers": "[parameters('dnsServers')]"
                               }
                             }
                           },
