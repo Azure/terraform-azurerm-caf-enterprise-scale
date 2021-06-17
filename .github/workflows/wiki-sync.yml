@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "docs/wiki/**"
+  workflow_dispatch: {}
 
 env:
   wiki_source_repo: "Azure/terraform-azurerm-caf-enterprise-scale"
