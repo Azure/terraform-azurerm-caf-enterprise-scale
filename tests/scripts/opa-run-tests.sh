@@ -27,8 +27,12 @@ conftest
 
 wait
 
-echo "==> Check yaml for errors..."
-yamllint -d relaxed "$TF_PLAN_JSON"_planned_values.yml
+echo "==> Print first and last 100 lines of planned values...\n"
+head --lines 100 "$TF_PLAN_JSON"_planned_values.yml
+echo "..."
+tail --lines 100 "$TF_PLAN_JSON"_planned_values.yml
+# echo "==> Check yaml for errors..."
+# yamllint -d relaxed "$TF_PLAN_JSON"_planned_values.yml
 
 echo "==> Running conftest..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment"
