@@ -25,6 +25,11 @@ which conftest
 echo "$TF_PLAN_JSON"
 conftest
 
+wait
+
+echo "==> Check yaml for errors..."
+yamllint -d relaxed "$TF_PLAN_JSON"_planned_values.yml
+
 echo "==> Running conftest..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment"
-conftest test "$TF_PLAN_JSON".json -p ../opa/policy/ ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml
+conftest test "$TF_PLAN_JSON".json -p ../opa/policy ../opa/policy/"$TF_PLAN_JSON"_planned_values.yml

@@ -19,3 +19,6 @@ sudo mv /tmp/conftest /usr/local/bin
 
 echo "==> Exporting path..."
 echo "##vso[task.prependpath]/usr/local/bin"
+
+echo "==> Install yamllint..."
+sudo apt install yamllint -y

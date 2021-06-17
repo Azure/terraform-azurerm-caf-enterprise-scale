@@ -76,9 +76,16 @@ echo "==> Saving planned values to a temporary planned_values.json..."
 jq <$PLAN_NAME.json '.planned_values.root_module' >planned_values.json
 
 echo "==> Converting to yaml..."
-yq <planned_values.json e -P - | tee ../opa/policy/planned_values_template.yml
+yq <planned_values.json e -P - >../opa/policy/planned_values_template.yml
 
-echo "==> Removing the temporary planned_values.json..."
+wait
+
+echo "==> Validate yaml..."
+yamllint -d relaxed ../opa/policy/planned_values_template.yml
+
+wait
+
+echo "==> Removing the temporary planned_values..."
 rm planned_values.json
 
 echo
