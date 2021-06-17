@@ -11,7 +11,12 @@ az login \
     --service-principal \
     --tenant "$ARM_TENANT_ID" \
     --username "$ARM_CLIENT_ID" \
-    --password "$ARM_CLIENT_SECRET"
+    --password "$ARM_CLIENT_SECRET" \
+    --query [?isDefault]
+
+echo "==> Setting active Subscription..."
+az account set \
+    --subscription "$ARM_SUBSCRIPTION_ID"
 
 echo "==> Create or update Resource Group..."
 RSG_NAME="$DEFAULT_PREFIX"

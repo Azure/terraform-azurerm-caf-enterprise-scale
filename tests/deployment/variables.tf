@@ -13,3 +13,7 @@ variable "root_id_3" {
 variable "root_name" {
   type = string
 }
+
+variable "location" {
+  type = string
+}
