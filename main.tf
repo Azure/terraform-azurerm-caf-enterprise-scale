@@ -28,7 +28,7 @@ module "management_group_archetypes" {
 module "management_resources" {
   source = "./modules/management"
 
-  # Mandatory input variables 
+  # Mandatory input variables
   enabled         = local.deploy_management_resources
   root_id         = local.root_id
   subscription_id = local.subscription_id_management
@@ -54,7 +54,7 @@ module "management_resources" {
 module "identity_resources" {
   source = "./modules/identity"
 
-  # Mandatory input variables 
+  # Mandatory input variables
   enabled  = local.deploy_identity_resources
   root_id  = local.root_id
   settings = local.configure_identity_resources.settings
@@ -66,7 +66,7 @@ module "identity_resources" {
 module "connectivity_resources" {
   source = "./modules/connectivity"
 
-  # Mandatory input variables 
+  # Mandatory input variables
   enabled         = local.deploy_connectivity_resources
   root_id         = local.root_id
   subscription_id = local.subscription_id_connectivity
