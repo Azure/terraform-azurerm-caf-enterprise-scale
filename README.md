@@ -1,4 +1,4 @@
-<div><img align="left" src="./docs/wiki/media/azure.svg"><h1>Terraform Module for Cloud Adoption Framework Enterprise-scale</h1></div>
+# Terraform Module for Cloud Adoption Framework Enterprise-scale
 
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
