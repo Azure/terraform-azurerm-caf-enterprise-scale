@@ -183,4 +183,4 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 
 You have successfully expanded the archetype(s) by adding or removing configuration settings from the built-in archetype definitions for Enterprise-scale.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 140 resources to be created by this module for a default installation.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
