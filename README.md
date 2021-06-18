@@ -1,4 +1,4 @@
-# Terraform Module for Cloud Adoption Framework Enterprise-scale
+<div><img align="left" src="./docs/wiki/media/azure.svg"><h1>Terraform Module for Cloud Adoption Framework Enterprise-scale</h1></div>
 
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
@@ -51,13 +51,16 @@ For detailed information about how to use, configure and extend this module, ple
 
 ## Overview
 
-The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for delivering Azure landing zones using Terraform.
-Depending on the selected options, this module is able to deploy different groups of resources as needed.
+The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture] using Terraform.
+
+Depending on selected options, this module can deploy different groups of resources as needed.
 
 This is currently split logically into the following capabilities:
 
-- Core resources
-- Management resources
+- [Core Resources](#core-resources)
+- [Management Resources](#management-resources)
+- [Connectivity Resources](#connectivity-resources)
+- [Identity Resources](#identity-resources)
 
 The following sections outline the different resource types deployed and managed by this module, depending on the configuration options specified.
 
@@ -219,10 +222,10 @@ module "enterprise_scale" {
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Overview]:     https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/media/terraform-caf-enterprise-scale-overview.png "Diagram showing the core Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
-[TFAES-Management]:   https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
-[TFAES-Connectivity]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/media/terraform-caf-enterprise-scale-connectivity.png "Diagram showing the Connectivity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
-[TFAES-Identity]:     https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Overview]:     ./docs/wiki/media/terraform-caf-enterprise-scale-overview.png "Diagram showing the core Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Management]:   ./docs/wiki/media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Connectivity]: ./docs/wiki/media/terraform-caf-enterprise-scale-connectivity.png "Diagram showing the Connectivity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Identity]:     ./docs/wiki/media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
