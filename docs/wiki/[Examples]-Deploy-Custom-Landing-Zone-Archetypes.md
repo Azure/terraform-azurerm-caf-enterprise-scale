@@ -43,7 +43,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.63.0"
     }
   }
 }
@@ -185,3 +185,25 @@ For more details about working with archetype definitions, please refer to the [
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 140 resources to be created by this module for a default installation.
+
+## Next steps
+
+Looking for further inspiration? Why not try some of our more advanced examples?
+
+- [Deploy management resources][wiki_deploy_management_resources]
+- [Deploy connectivity resources][wiki_deploy_connectivity_resources]
+- [Deploy identity resources][wiki_deploy_identity_resources]
+- [Expand the built-in archetype definitions][wiki_expand_built_in_archetype_definitions]
+- [Override Role Assignments for Policies with Managed Identity][wiki_override_module_role_assignments]
+- [Use module nesting to break up your deployment][wiki_deploy_using_module_nesting]
+
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"
+
+[wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_deploy_connectivity_resources]:         ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
+[wiki_deploy_identity_resources]:             ./%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
+[wiki_deploy_using_module_nesting]:           ./%5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
+[wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
+[wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"

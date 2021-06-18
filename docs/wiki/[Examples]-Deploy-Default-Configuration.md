@@ -25,7 +25,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.63.0"
     }
   }
 }
@@ -60,3 +60,7 @@ module "enterprise_scale" {
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 180 resources to be created by this module for a default installation.
+
+## Next steps
+
+Go to our next example to learn how to deploy the [demo landing zone archetypes](./%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes).
