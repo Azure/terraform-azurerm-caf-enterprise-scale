@@ -6,14 +6,14 @@ In this example, we take a default configuration and make the following changes:
 
 - Create a new custom archetype definition named `customer_online` which will create two Policy Assignments, `Deny-Resource-Locations` and `Deny-RSG-Locations` at the associated scope with a set of pre-configured default parameter values.
 - Add a new Management Group for standard workloads using the `customer_online` archetype definition:
-  - Management Group ID: `myorg-3-online-example-1`
-  - Management Group Name: `MYORG-3 Online Example 1`
-  - Parent Management Group ID: `myorg-3-landing-zones`
+  - Management Group ID: `myorg-online-example-1`
+  - Management Group Name: `MYORG Online Example 1`
+  - Parent Management Group ID: `myorg-landing-zones`
   - Allowed location list: _default_
 - Add a new Management Group for geo-restricted workloads using the `customer_online` archetype definition:
-  - Management Group ID: `myorg-3-online-example-2`
-  - Management Group Name: `MYORG-3 Online Example 2`
-  - Parent Management Group ID: `myorg-3-landing-zones`
+  - Management Group ID: `myorg-online-example-2`
+  - Management Group Name: `MYORG Online Example 2`
+  - Parent Management Group ID: `myorg-landing-zones`
   - Allowed location list: `["eastus"]`
 
 > IMPORTANT: Ensure the module version is set to the latest
@@ -62,12 +62,12 @@ The `variables.tf` file is used to declare a couple of example variables which a
 
 variable "root_id" {
   type    = string
-  default = "myorg-3"
+  default = "myorg"
 }
 
 variable "root_name" {
   type    = string
-  default = "My Organization 3"
+  default = "My Organization"
 }
 ```
 
@@ -94,7 +94,7 @@ data "azurerm_client_config" "current" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
   root_id        = var.root_id

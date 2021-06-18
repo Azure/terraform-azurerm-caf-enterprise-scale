@@ -70,12 +70,12 @@ The `variables.tf` file is used to declare a couple of example variables which a
 
 variable "root_id" {
   type    = string
-  default = "myorg-3"
+  default = "myorg"
 }
 
 variable "root_name" {
   type    = string
-  default = "My Organization 3"
+  default = "My Organization"
 }
 ```
 

@@ -51,11 +51,11 @@ data "azurerm_client_config" "current" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
 
   root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = "myorg-2"
-  root_name      = "My Organization 2"
+  root_id        = "myorg"
+  root_name      = "My Organization"
 
   deploy_demo_landing_zones = true
 
