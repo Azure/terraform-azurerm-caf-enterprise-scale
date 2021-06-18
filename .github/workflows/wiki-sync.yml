@@ -9,9 +9,9 @@ on:
   workflow_dispatch: {}
 
 env:
-  wiki_source_repo: "${{ env.wiki_source_repo }}"
-  wiki_source_repo_dir: "${{ env.wiki_source_repo }}/docs/wiki"
-  wiki_target_repo: "${{ env.wiki_source_repo }}.wiki"
+  wiki_source_repo: "${{ github.repository }}"
+  wiki_source_repo_dir: "${{ github.repository }}/docs/wiki"
+  wiki_target_repo: "${{ github.repository }}.wiki"
   github_user_name: "github-actions"
   github_email: "github-actions@github.com"
   github_commit_message: "GitHub Action syncing wiki from docs/wiki"
