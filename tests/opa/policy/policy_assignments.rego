@@ -23,11 +23,11 @@ violation[policy_assignment_identity] {
 	policy_assignment_identity := sprintf("The policy_assignment_identity planned values:\n \n %v \n \n are not equal to the policy_assignment_identity changed values:\n \n %v", [plc_assign_plan_identity, plc_assign_change_identity])
 }
 
-# # # Compare the policy_assignment_location and fail if they are not equal.
-violation[policy_assignment_location] {
-	plc_assign_plan_location != plc_assign_change_location
-	policy_assignment_location := sprintf("The policy_assignment_location planned values:\n \n %v \n \n are not equal to the policy_assignment_location changed values:\n \n %v", [plc_assign_plan_location, plc_assign_change_location])
-}
+# # # # Compare the policy_assignment_location and fail if they are not equal.
+# violation[policy_assignment_location] {
+# 	plc_assign_plan_location != plc_assign_change_location
+# 	policy_assignment_location := sprintf("The policy_assignment_location planned values:\n \n %v \n \n are not equal to the policy_assignment_location changed values:\n \n %v", [plc_assign_plan_location, plc_assign_change_location])
+# }
 
 # # # Compare the policy_assignment_name and fail if they are not equal.
 violation[policy_assignment_name] {
@@ -41,11 +41,11 @@ violation[policy_assignment_not_scopes] {
 	policy_assignment_not_scopes := sprintf("The policy_assignment_not_scopes planned values:\n \n %v \n \n are not equal to the policy_assignment_not_scopes changed values:\n \n %v", [plc_assign_plan_not_scopes, plc_assign_change_not_scopes])
 }
 
-# # # Compare the policy_assignment_parameters and fail if they are not equal.
-violation[policy_assignment_parameters] {
-	plc_assign_plan_parameters != plc_assign_change_parameters
-	policy_assignment_parameters := sprintf("The policy_assignment_parameters planned values:\n \n %v \n \n are not equal to the policy_assignment_parameters changed values:\n \n %v", [plc_assign_plan_parameters, plc_assign_change_parameters])
-}
+# # # # Compare the policy_assignment_parameters and fail if they are not equal.
+# violation[policy_assignment_parameters] {
+# 	plc_assign_plan_parameters != plc_assign_change_parameters
+# 	policy_assignment_parameters := sprintf("The policy_assignment_parameters planned values:\n \n %v \n \n are not equal to the policy_assignment_parameters changed values:\n \n %v", [plc_assign_plan_parameters, plc_assign_change_parameters])
+# }
 
 # # # Compare the policy_assignment_policy_definition_id and fail if they are not equal.
 violation[policy_assignment_policy_definition_id] {
