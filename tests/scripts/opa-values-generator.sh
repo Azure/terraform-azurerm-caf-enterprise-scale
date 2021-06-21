@@ -98,7 +98,7 @@ cd ../deployment
 conftest test "$PLAN_NAME".json -p ../opa/policy -d ../opa/policy/planned_values.yml
 
 echo
-read -p "Do you want to prepare files for repository (y/n)?" CONT
+read -r -p "Do you want to prepare files for repository (y/n)?" CONT
 if [ "$CONT" = "y" ]; then
     rm $PLAN_NAME.json
     echo
