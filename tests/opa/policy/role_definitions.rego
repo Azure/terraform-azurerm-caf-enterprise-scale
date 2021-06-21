@@ -6,11 +6,11 @@ import data.child_modules
 # Rules
 ########################
 
-# # # Compare the role_definition_name and fail if they are not equal.
-violation[role_definition_name] {
-	role_def_plan_name != role_def_change_name
-	role_definition_name := sprintf("The role_definition_name planned values:\n \n %v \n \n are not equal to the role_definition_name changed values:\n \n %v", [role_def_plan_name, role_def_change_name])
-}
+# # # # Compare the role_definition_name and fail if they are not equal.
+# violation[role_definition_name] {
+# 	role_def_plan_name != role_def_change_name
+# 	role_definition_name := sprintf("The role_definition_name planned values:\n \n %v \n \n are not equal to the role_definition_name changed values:\n \n %v", [role_def_plan_name, role_def_change_name])
+# }
 
 # # # Compare the role_definition_permissions and fail if they are not equal.
 violation[role_definition_permissions] {
@@ -18,11 +18,11 @@ violation[role_definition_permissions] {
 	role_definition_permissions := sprintf("The role_definition_permissions planned values:\n \n %v \n \n are not equal to the role_definition_permissions changed values:\n \n %v", [role_def_plan_permissions, role_def_change_permissions])
 }
 
-# # # Compare the role_definition_id and fail if they are not equal.
-violation[role_definition_id] {
-	role_def_plan_role_definition_id != role_def_change_role_definition_id
-	role_definition_id := sprintf("The role_definition_id planned values:\n \n %v \n \n are not equal to the role_definition_id changed values:\n \n %v", [role_def_plan_role_definition_id, role_def_change_role_definition_id])
-}
+# # # # Compare the role_definition_id and fail if they are not equal.
+# violation[role_definition_id] {
+# 	role_def_plan_role_definition_id != role_def_change_role_definition_id
+# 	role_definition_id := sprintf("The role_definition_id planned values:\n \n %v \n \n are not equal to the role_definition_id changed values:\n \n %v", [role_def_plan_role_definition_id, role_def_change_role_definition_id])
+# }
 
 # # # Compare the role_definition_scope and fail if they are not equal.
 violation[role_definition_scope] {
