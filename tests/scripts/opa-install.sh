@@ -35,7 +35,7 @@ if [ "$(command -v yq)" ]; then
 else
     echo "==> Install yq on Linux..."
     sudo wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY} -O /usr/bin/yq &&
-        chmod +x /usr/bin/yq
+        sudo chmod +x /usr/bin/yq
 fi
 
 if [ "$(command -v conftest)" ]; then
