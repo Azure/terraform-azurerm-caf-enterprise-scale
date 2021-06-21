@@ -31,6 +31,15 @@ else
     sudo apt-get install jq
 fi
 
+if [ "$(command -v yamllint)" ]; then
+    echo "==> yamllint exists, skip install"
+    yamllint -v
+    echo
+else
+    echo "==> Install yamllint on Linux..."
+    sudo apt-get install yamllint -y
+fi
+
 if [ "$(command -v yq)" ]; then
     echo "==> yq exists, skip install"
     yq --version
@@ -67,33 +76,36 @@ terraform plan \
     -out=$PLAN_NAME
 
 echo "==> Converting plan to *.json..."
-terraform show -json $PLAN_NAME >$PLAN_NAME.json
+terraform show -json "$PLAN_NAME" >"$PLAN_NAME".json
 
 echo "==> Removing the original plan..."
-rm $PLAN_NAME
+rm "$PLAN_NAME"
 
 echo "==> Saving planned values to a temporary planned_values.json..."
-jq <$PLAN_NAME.json '.planned_values.root_module' >planned_values.json
+jq <"$PLAN_NAME.json" '.planned_values.root_module' >planned_values.json
 
 echo "==> Converting to yaml..."
-yq <planned_values.json e -P - >../opa/policy/planned_values_template.yml
+yq <planned_values.json e -P - >../opa/policy/planned_values.yml
 
-wait
+# echo "==> Removing the temporary planned_values.json..."
+# rm planned_values.json
 
-echo "==> Validate yaml..."
-yamllint -d relaxed ../opa/policy/planned_values_template.yml
+echo "==> Check yaml for errors..."
+yamllint -d relaxed ../opa/policy/planned_values.yml
 
-wait
-
-echo "==> Removing the temporary planned_values..."
-rm planned_values.json
+echo "==> Running conftest..."
+cd ../deployment
+conftest test "$PLAN_NAME".json -p ../opa/policy -d ../opa/policy/planned_values.yml
 
 echo
-read -r -p "Do you want to remove terraform-plan.json (y/n)?" CONT
+read -p "Do you want to prepare files for repository (y/n)?" CONT
 if [ "$CONT" = "y" ]; then
     rm $PLAN_NAME.json
     echo
     echo "$PLAN_NAME.json has been removed from your root module"
+    echo
+    rm ../opa/policy/planned_values.yml
+    echo "planned_values.yml has been removed from your /opa/policy/ directory"
     echo
 else
     echo
@@ -101,5 +113,5 @@ else
     echo
     echo "Exposing $PLAN_NAME.json in a repository can cause security breach"
     echo
-    echo "From within your terraform root module: conftest test $PLAN_NAME.json -p ../opa/policy/  -d ../opa/policy/planned_values_template.yml"
+    echo "From within your terraform root module: conftest test $PLAN_NAME.json -p ../opa/policy/  -d ../opa/policy/planned_values.yml"
 fi
