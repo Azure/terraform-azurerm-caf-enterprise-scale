@@ -19,7 +19,7 @@ jq '(.. | strings) |= gsub("root-id-1"; "'"$TF_ROOT_ID_1"'")' planned_values.jso
 jq '(.. | strings) |= gsub("root-id-2"; "'"$TF_ROOT_ID_2"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
 jq '(.. | strings) |= gsub("root-id-3"; "'"$TF_ROOT_ID_3"'")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
 jq '(.. | strings) |= gsub("root-name"; "ES-'"$TF_VERSION"'-'"$TF_AZ_VERSION"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
-jq '(.. | strings) |= gsub("eastus"; "'"$DEFAULT_LOCATION"'")' "$TEMP_FILE_02" >"$TF_PLAN_JSON"_updated_planned_values.json
+jq '(.. | strings) |= gsub("eastus"; "eastus")' "$TEMP_FILE_02" >"$TF_PLAN_JSON"_updated_planned_values.json
 
 echo "==> Module Location - $DEFAULT_LOCATION"
 echo "==> Azure {TF_ROOT_ID_1} - ${TF_ROOT_ID_1}"
