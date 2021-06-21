@@ -14,7 +14,7 @@ TEMP_FILE_02=$(mktemp).json
 
 # # # Update the planned_values.json with the latest parameters
 echo "==> Update planned values..."
-cd ../deployment ###../opa/policy
+cd "$PIPELINE_WORKSPACE/s/tests/deployment"
 jq '(.. | strings) |= gsub("root-id-1"; "'"$TF_ROOT_ID_1"'")' planned_values.json >"$TEMP_FILE_01"
 jq '(.. | strings) |= gsub("root-id-2"; "'"$TF_ROOT_ID_2"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
 jq '(.. | strings) |= gsub("root-id-3"; "'"$TF_ROOT_ID_3"'")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
