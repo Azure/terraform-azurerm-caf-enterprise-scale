@@ -6,19 +6,19 @@ import data.child_modules
 # Rules
 ########################
 
-# # # Compare the role_assignment_name and fail if they are not equal.
-violation[role_assignment_name] {
-	role_assign_plan_name != role_assign_change_name
-	role_assignment_name := sprintf("The role_assignment_name planned values:\n \n %v \n \n are not equal to the role_assignment_name changed values:\n \n %v", [role_assign_plan_name, role_assign_change_name])
-}
+# # # # Compare the role_assignment_name and fail if they are not equal.
+# violation[role_assignment_name] {
+# 	role_assign_plan_name != role_assign_change_name
+# 	role_assignment_name := sprintf("The role_assignment_name planned values:\n \n %v \n \n are not equal to the role_assignment_name changed values:\n \n %v", [role_assign_plan_name, role_assign_change_name])
+# }
 
-# # # Compare the role_definition_id and fail if they are not equal.
-violation[role_assignment_definition_id] {
-	role_assign_plan_role_definition_id != role_assign_change_role_definition_id
-	role_assignment_definition_id := sprintf("The role_assignment_definition_id planned values:\n \n %v \n \n are not equal to the role_assignment_definition_id changed values:\n \n %v", [role_assign_plan_role_definition_id, role_assign_change_role_definition_id])
-}
+# # # # Compare the role_definition_id and fail if they are not equal.
+# violation[role_assignment_definition_id] {
+# 	role_assign_plan_role_definition_id != role_assign_change_role_definition_id
+# 	role_assignment_definition_id := sprintf("The role_assignment_definition_id planned values:\n \n %v \n \n are not equal to the role_assignment_definition_id changed values:\n \n %v", [role_assign_plan_role_definition_id, role_assign_change_role_definition_id])
+# }
 
-# # # Compare the rscope and fail if they are not equal.
+# # # Compare the role_assignment_scope and fail if they are not equal.
 violation[role_assignment_scope] {
 	role_assign_plan_scope != role_assign_change_scope
 	role_assignment_scope := sprintf("The role_assignment_scope planned values:\n \n %v \n \n are not equal to the role_assignment_scope changed values:\n \n %v", [role_assign_plan_scope, role_assign_change_scope])
