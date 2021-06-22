@@ -27,10 +27,10 @@ violation[policy_definition_management_group_name] {
 # 	policy_definition_parameters := sprintf("The policy_definition_parameters planned values:\n \n %v \n \n are not equal to the policy_definition_parameters changed values:\n \n %v", [plc_def_plan_parameters, plc_def_change_parameters])
 # }
 
-violation[policy_definition_policy_rule] {
-	plc_def_plan_policy_rule != plc_def_change_policy_rule
-	policy_definition_policy_rule := sprintf("The policy_definition_policy_rule planned values:\n \n %v \n \n are not equal to the policy_definition_policy_rule changed values:\n \n %v", [plc_def_plan_policy_rule, plc_def_change_policy_rule])
-}
+# violation[policy_definition_policy_rule] {
+# 	plc_def_plan_policy_rule != plc_def_change_policy_rule
+# 	policy_definition_policy_rule := sprintf("The policy_definition_policy_rule planned values:\n \n %v \n \n are not equal to the policy_definition_policy_rule changed values:\n \n %v", [plc_def_plan_policy_rule, plc_def_change_policy_rule])
+# }
 
 ########################
 # Library
