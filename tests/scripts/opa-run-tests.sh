@@ -36,4 +36,9 @@ echo "==> Check yaml for errors..."
 yamllint -d relaxed ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
 echo "==> Running conftest..."
-conftest test "$TF_PLAN_JSON".json -p ../opa/policy -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+echo
+echo "==> Testing management_groups..."
+conftest test "$TF_PLAN_JSON".json -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+echo
+echo "==> Testing role_definitions..."
+conftest test "$TF_PLAN_JSON".json -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
