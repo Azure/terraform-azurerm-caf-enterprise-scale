@@ -52,3 +52,7 @@ echo
 echo "==> Testing policy_set_definitions..."
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/policy_set_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 wait
+echo
+echo "==> Testing policy_definitions..."
+conftest test "$TF_PLAN_JSON".json -p ../opa/policy/policy_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+wait
