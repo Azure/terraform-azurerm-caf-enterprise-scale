@@ -5,11 +5,11 @@ import data.child_modules
 ########################
 # Rules
 ########################
-# # # Compare the policy_assignment_display_name and fail if they are not equal.
-violation[policy_assignment_display_name] {
-	plc_assign_plan_display_name != plc_assign_change_display_name
-	policy_assignment_display_name := sprintf("The policy_assignment_display_name planned values:\n \n %v \n \n are not equal to the policy_assignment_display_name changed values:\n \n %v", [plc_assign_plan_display_name, plc_assign_change_display_name])
-}
+# # # # Compare the policy_assignment_display_name and fail if they are not equal.
+# violation[policy_assignment_display_name] {
+# 	plc_assign_plan_display_name != plc_assign_change_display_name
+# 	policy_assignment_display_name := sprintf("The policy_assignment_display_name planned values:\n \n %v \n \n are not equal to the policy_assignment_display_name changed values:\n \n %v", [plc_assign_plan_display_name, plc_assign_change_display_name])
+# }
 
 # # # Compare the policy_assignment_enforcement_mode and fail if they are not equal.
 violation[policy_assignment_enforcement_mode] {
@@ -29,11 +29,11 @@ violation[policy_assignment_identity] {
 # 	policy_assignment_location := sprintf("The policy_assignment_location planned values:\n \n %v \n \n are not equal to the policy_assignment_location changed values:\n \n %v", [plc_assign_plan_location, plc_assign_change_location])
 # }
 
-# # # Compare the policy_assignment_name and fail if they are not equal.
-violation[policy_assignment_name] {
-	plc_assign_plan_name != plc_assign_change_name
-	policy_assignment_name := sprintf("The policy_assignment_name planned values:\n \n %v \n \n are not equal to the policy_assignment_name changed values:\n \n %v", [plc_assign_plan_name, plc_assign_change_name])
-}
+# # # # Compare the policy_assignment_name and fail if they are not equal.
+# violation[policy_assignment_name] {
+# 	plc_assign_plan_name != plc_assign_change_name
+# 	policy_assignment_name := sprintf("The policy_assignment_name planned values:\n \n %v \n \n are not equal to the policy_assignment_name changed values:\n \n %v", [plc_assign_plan_name, plc_assign_change_name])
+# }
 
 # # # Compare the policy_assignment_not_scopes and fail if they are not equal.
 violation[policy_assignment_not_scopes] {
@@ -53,11 +53,11 @@ violation[policy_assignment_policy_definition_id] {
 	policy_assignment_policy_definition_id := sprintf("The policy_assignment_policy_definition_id planned values:\n \n %v \n \n are not equal to the policy_assignment_policy_definition_id changed values:\n \n %v", [plc_assign_plan_policy_definition_id, plc_assign_change_policy_definition_id])
 }
 
-# # # Compare the policy_assignment_scope and fail if they are not equal.
-violation[policy_assignment_scope] {
-	plc_assign_plan_scope != plc_assign_change_scope
-	policy_assignment_scope := sprintf("The policy_assignment_scope planned values:\n \n %v \n \n are not equal to the policy_assignment_scope changed values:\n \n %v", [plc_assign_plan_scope, plc_assign_change_scope])
-}
+# # # # Compare the policy_assignment_scope and fail if they are not equal.
+# violation[policy_assignment_scope] {
+# 	plc_assign_plan_scope != plc_assign_change_scope
+# 	policy_assignment_scope := sprintf("The policy_assignment_scope planned values:\n \n %v \n \n are not equal to the policy_assignment_scope changed values:\n \n %v", [plc_assign_plan_scope, plc_assign_change_scope])
+# }
 
 ########################
 # Library
