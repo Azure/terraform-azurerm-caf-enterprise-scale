@@ -6,16 +6,16 @@ import data.child_modules
 # Rules
 ########################
 
-# # # # Compare the management groups display name and fail if they are not equal.
-# violation[policy_definition_name] {
-# 	plc_def_plan_name != plc_def_change_name
-# 	policy_definition_name := sprintf("The policy_definition_name planned values:\n \n %v \n \n are not equal to the policy_definition_name changed values:\n \n %v", [plc_def_plan_name, plc_def_change_name])
-# }
-
-violation[policy_definition_management_group_name] {
-	plc_def_plan_management_group_name != plc_def_change_management_group_name
-	policy_definition_management_group_name := sprintf("The policy_definition_management_group_name planned values:\n \n %v \n \n are not equal to the policy_definition_management_group_name changed values:\n \n %v", [plc_def_plan_management_group_name, plc_def_change_management_group_name])
+# # # Compare the management groups display name and fail if they are not equal.
+violation[policy_definition_name] {
+	plc_def_plan_name != plc_def_change_name
+	policy_definition_name := sprintf("The policy_definition_name planned values:\n \n %v \n \n are not equal to the policy_definition_name changed values:\n \n %v", [plc_def_plan_name, plc_def_change_name])
 }
+
+# violation[policy_definition_management_group_name] {
+# 	plc_def_plan_management_group_name != plc_def_change_management_group_name
+# 	policy_definition_management_group_name := sprintf("The policy_definition_management_group_name planned values:\n \n %v \n \n are not equal to the policy_definition_management_group_name changed values:\n \n %v", [plc_def_plan_management_group_name, plc_def_change_management_group_name])
+# }
 
 # violation[policy_definition_metadata] {
 # 	plc_def_plan_metadata != plc_def_change_metadata
