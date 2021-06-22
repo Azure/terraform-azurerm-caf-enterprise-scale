@@ -39,9 +39,16 @@ echo "==> Running conftest..."
 echo
 echo "==> Testing management_groups..."
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+wait
 echo
 echo "==> Testing role_definitions..."
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+wait
 echo
 echo "==> Testing role_assignments..."
 conftest test "$TF_PLAN_JSON".json -p ../opa/policy/role_assignments.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+wait
+echo
+echo "==> Testing policy_set_definitions..."
+conftest test "$TF_PLAN_JSON".json -p ../opa/policy/policy_set_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+wait
