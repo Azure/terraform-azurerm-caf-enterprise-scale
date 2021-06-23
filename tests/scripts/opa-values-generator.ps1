@@ -1,6 +1,10 @@
-#############################################
-### # # Opa Values Generator
-#############################################
+###############################################
+# Run tests and generate testing values.
+###############################################
+
+# Run this locally to test your terraform configuration and generate the values needed for the automation pipeline.
+# The script will install all the necessary components locally and run the tests.
+# After completing the tests, follow the script prompt for the next steps.
 
 
 # # Parameters
