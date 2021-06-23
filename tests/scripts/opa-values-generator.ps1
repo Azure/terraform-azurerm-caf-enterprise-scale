@@ -15,7 +15,7 @@ if (Get-command -name scoop) {
 else {
     Write-Output "==> To install Scoop on Windows, run this command from a new terminal:"
     Write-Output "Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https:\\get.scoop.sh')"
-    
+
 }
 
 # Install Terraform
