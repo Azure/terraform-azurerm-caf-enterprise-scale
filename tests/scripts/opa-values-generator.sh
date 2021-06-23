@@ -4,11 +4,20 @@ set -e
 #
 # Shell Script
 # - OPA Run Tests
+###############################################
+# Run tests and generate testing values.
+###############################################
+
+# Run this locally to test your terraform configuration and generate the values needed for the automation pipeline.
+# The script will install all the necessary components locally and run the tests.
+# After completing the tests, follow the script prompt for the next steps.
 #
+
 # # Parameters
 PLAN_NAME=terraform-plan
-VERSION=v4.9.3
-BINARY=yq_linux_amd64
+YQ_VERSION=v4.9.3
+YQ_BINARY=yq_linux_amd64
+CONFTEST_VERSION=0.24.0
 
 if [ "$(command -v terraform)" ]; then
     echo "==> Terraform exists, skip install"
@@ -46,18 +55,18 @@ if [ "$(command -v yq)" ]; then
     echo
 else
     echo "==> Install yq on Linux..."
-    wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq &&
-        chmod +x /usr/bin/yq
+    sudo wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY} -O /usr/bin/yq &&
+        sudo chmod +x /usr/bin/yq
 fi
 
 if [ "$(command -v conftest)" ]; then
     echo "--> Conftest exists, skip install"
     conftest --version
 else
-    wget https://github.com/open-policy-agent/conftest/releases/download/v0.24.0/conftest_0.24.0_Linux_x86_64.tar.gz
-    tar xzf conftest_0.24.0_Linux_x86_64.tar.gz
+    wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
+    tar xzf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
     sudo mv conftest /usr/local/bin
-    rm conftest_0.24.0_Linux_x86_64.tar.gz
+    rm conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
 fi
 
 echo "==> Change to the module root directory..."
@@ -87,15 +96,29 @@ jq <"$PLAN_NAME.json" '.planned_values.root_module' >planned_values.json
 echo "==> Converting to yaml..."
 yq <planned_values.json e -P - >../opa/policy/planned_values.yml
 
-# echo "==> Removing the temporary planned_values.json..."
-# rm planned_values.json
-
 echo "==> Check yaml for errors..."
 yamllint -d relaxed ../opa/policy/planned_values.yml
 
 echo "==> Running conftest..."
 cd ../deployment
-conftest test "$PLAN_NAME".json -p ../opa/policy -d ../opa/policy/planned_values.yml
+echo
+echo "==> Testing management_groups..."
+conftest test "$PLAN_NAME".json -p ../opa/policy/management_groups.rego -d ../opa/policy/planned_values.yml
+echo
+echo "==> Testing role_definitions..."
+conftest test "$PLAN_NAME".json -p ../opa/policy/role_definitions.rego -d ../opa/policy/planned_values.yml
+echo
+echo "==> Testing role_assignments..."
+conftest test "$PLAN_NAME".json -p ../opa/policy/role_assignments.rego -d ../opa/policy/planned_values.yml
+echo
+echo "==> Testing policy_set_definitions..."
+conftest test "$PLAN_NAME".json -p ../opa/policy/policy_set_definitions.rego -d ../opa/policy/planned_values.yml
+echo
+echo "==> Testing policy_definitions..."
+conftest test "$PLAN_NAME".json -p ../opa/policy/policy_definitions.rego -d ../opa/policy/planned_values.yml
+echo
+echo "==> Testing policy_assignments..."
+conftest test "$PLAN_NAME".json -p ../opa/policy/policy_assignments.rego -d ../opa/policy/planned_values.yml
 
 echo
 read -r -p "Do you want to prepare files for repository (y/n)?" CONT
