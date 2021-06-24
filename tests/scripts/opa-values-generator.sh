@@ -8,69 +8,25 @@ set -e
 # Run tests and generate testing values.
 ###############################################
 
+# # Parameters
+PLAN_NAME=terraform-plan
+
+source opa-install.sh
+
 # Run this locally to test your terraform configuration and generate the values needed for the automation pipeline.
 # The script will install all the necessary components locally and run the tests.
 # After completing the tests, follow the script prompt for the next steps.
 #
-
-# # Parameters
-PLAN_NAME=terraform-plan
-YQ_VERSION=v4.9.3
-YQ_BINARY=yq_linux_amd64
-CONFTEST_VERSION=0.24.0
-
-if [ "$(command -v terraform)" ]; then
-    echo "==> Terraform exists, skip install"
-    terraform version
-    echo
-else
-    echo "==> Install Terraform on Linux..."
-    sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
-    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-    sudo apt-get update && sudo apt-get install terraform
-fi
-
-if [ "$(command -v jq)" ]; then
-    echo "==> jq exists, skip install"
-    jq --version
-    echo
-else
-    echo "==> Install jq on Linux..."
-    sudo apt-get install jq
-fi
-
-if [ "$(command -v yamllint)" ]; then
-    echo "==> yamllint exists, skip install"
-    yamllint -v
-    echo
-else
-    echo "==> Install yamllint on Linux..."
-    sudo apt-get install yamllint -y
-fi
-
-if [ "$(command -v yq)" ]; then
-    echo "==> yq exists, skip install"
-    yq --version
-    echo
-else
-    echo "==> Install yq on Linux..."
-    sudo wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY} -O /usr/bin/yq &&
-        sudo chmod +x /usr/bin/yq
-fi
-
-if [ "$(command -v conftest)" ]; then
-    echo "--> Conftest exists, skip install"
-    conftest --version
-else
-    wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
-    tar xzf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
-    sudo mv conftest /usr/local/bin
-    rm conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
-fi
+# # #? Run a local test against a different module configuration:
+# # #* Update the path to run the tests on a different folder (example: ../deployment_2)
+# # #* Copy paste the variables.tf file from deployment folder and adjust your main.tf
+###############################################
+# # #* Path of the tested _es terraform module
+MODULE_PATH="../deployment"
+###############################################
 
 echo "==> Change to the module root directory..."
-cd ../deployment
+cd $MODULE_PATH
 
 echo "==> Initializing infrastructure..."
 terraform init
@@ -100,7 +56,7 @@ echo "==> Check yaml for errors..."
 yamllint -d relaxed ../opa/policy/planned_values.yml
 
 echo "==> Running conftest..."
-cd ../deployment
+cd $MODULE_PATH
 echo
 echo "==> Testing management_groups..."
 conftest test "$PLAN_NAME".json -p ../opa/policy/management_groups.rego -d ../opa/policy/planned_values.yml
