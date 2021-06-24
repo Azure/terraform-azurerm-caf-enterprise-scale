@@ -11,6 +11,7 @@ set -e
 # # Parameters
 PLAN_NAME=terraform-plan
 
+# shellcheck source=opa-install.sh
 source opa-install.sh
 
 # Run this locally to test your terraform configuration and generate the values needed for the automation pipeline.
