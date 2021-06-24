@@ -63,8 +63,16 @@ else {
     scoop install conftest
 }
 
+# # #? Run a local test against a different module configuration:
+# # #* Update the path to run the tests on a different folder (example: ../deployment_2)
+# # #* Copy paste the variables.tf file from deployment folder and adjust your main.tf
+###############################################
+# # #* Path of the tested _es terraform module
+$MODULE_PATH = "../deployment_2"
+###############################################
+
 Write-Output "==> Change to the module root directory..."
-Set-Location ..\deployment
+Set-Location $MODULE_PATH
 
 Write-Output "==> Initializing infrastructure..."
 terraform init
@@ -92,7 +100,7 @@ Get-Content -Path .\planned_values.json | yq e -P - | Tee-Object ..\opa\policy\p
 
 
 # # #  Run OPA Tests
-Set-Location ..\deployment
+Set-Location $MODULE_PATH
 Write-Output "==> Running conftest..."
 
 Write-Output "==> Testing management_groups..."
