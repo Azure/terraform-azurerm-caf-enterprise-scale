@@ -26,6 +26,12 @@ source opa-install.sh
 MODULE_PATH="../deployment"
 ###############################################
 
+echo
+if [ ! -d "$MODULE_PATH" ]; then
+    echo "The ${MODULE_PATH} directory does not exist, check path on .\opa-values-generator.sh :line 26"
+    exit
+fi
+
 echo "==> Change to the module root directory..."
 cd $MODULE_PATH
 
