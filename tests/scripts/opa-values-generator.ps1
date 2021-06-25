@@ -19,7 +19,7 @@ if (Get-command -name scoop) {
 else {
     Write-Output "==> To install Scoop on Windows, run this command from a new terminal:"
     Write-Output "Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https:\\get.scoop.sh')"
-
+    exit
 }
 
 # Install Terraform
@@ -68,7 +68,7 @@ else {
 # # #* Copy paste the variables.tf file from deployment folder and adjust your main.tf
 ###############################################
 # # #* Path of the tested _es terraform module
-$MODULE_PATH = "../deployment_2"
+$MODULE_PATH = "../deployment"
 ###############################################
 
 Write-Output "==> Change to the module root directory..."
