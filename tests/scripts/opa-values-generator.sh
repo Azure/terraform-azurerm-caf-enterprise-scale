@@ -10,6 +10,7 @@ set -e
 
 # # Parameters
 PLAN_NAME=terraform-plan
+CONFIRM="y"
 
 # shellcheck source=tests/scripts/opa-install.sh
 source opa-install.sh
@@ -83,8 +84,11 @@ echo
 echo "==> Testing policy_assignments..."
 conftest test "$PLAN_NAME".json -p ../opa/policy/policy_assignments.rego -d ../opa/policy/planned_values.yml
 
+# # # Remove "<<-EOF $CONFIRM EOF" for CMD prompt.
 echo
-read -r -p "Do you want to prepare files for repository (y/n)?" CONT
+read -r -p "Do you want to prepare files for repository (y/n)?" CONT <<-EOF
+$CONFIRM
+EOF
 if [ "$CONT" = "y" ]; then
     rm $PLAN_NAME.json
     echo
