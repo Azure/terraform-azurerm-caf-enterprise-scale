@@ -6,6 +6,8 @@ import data.child_modules
 # Rules
 ########################
 
+# # # Some rules are commented out to prevent Azure Pipelines runner running out of memory (error code 137)
+
 # # # # Compare the role_definition_name and fail if they are not equal.
 # violation[role_definition_name] {
 # 	role_def_plan_name != role_def_change_name

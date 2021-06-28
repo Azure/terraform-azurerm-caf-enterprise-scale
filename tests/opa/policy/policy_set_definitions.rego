@@ -6,31 +6,31 @@ import data.child_modules
 # Rules
 ########################
 
-# # # Compare the management_group_name and fail if they are not equal.
+# # # Compare the policy_set_definition_management_group_name and fail if they are not equal.
 violation[policy_set_definition_management_group_name] {
 	plc_set_def_plan_management_group_name != plc_set_def_change_management_group_name
 	policy_set_definition_management_group_name := sprintf("The policy_set_definition_management_group_name planned values:\n \n %v \n \n are not equal to the policy_set_definition_management_group_name changed values:\n \n %v", [plc_set_def_plan_management_group_name, plc_set_def_change_management_group_name])
 }
 
-# # # Compare the metadata and fail if they are not equal.
+# # # Compare the policy_set_definition_metadata and fail if they are not equal.
 violation[policy_set_definition_metadata] {
 	plc_set_def_plan_metadata != plc_set_def_change_metadata
 	policy_set_definition_metadata := sprintf("The policy_set_definition_metadata planned values:\n \n %v \n \n are not equal to the policy_set_definition_metadata changed values:\n \n %v", [plc_set_def_plan_metadata, plc_set_def_change_metadata])
 }
 
-# # # Compare the parameters and fail if they are not equal.
+# # # Compare the policy_set_definition_parameters and fail if they are not equal.
 violation[policy_set_definition_parameters] {
 	plc_set_def_plan_parameters != plc_set_def_change_parameters
 	policy_set_definition_parameters := sprintf("The policy_set_definition_parameters planned values:\n \n %v \n \n are not equal to the policy_set_definition_parameters changed values:\n \n %v", [plc_set_def_plan_parameters, plc_set_def_change_parameters])
 }
 
-# # # Compare the policy_definition_group and fail if they are not equal.
+# # # Compare the policy_set_definition_policy_definition_group and fail if they are not equal.
 violation[policy_set_definition_policy_definition_group] {
 	plc_set_def_plan_policy_definition_group != plc_set_def_change_policy_definition_group
 	policy_set_definition_policy_definition_group := sprintf("The policy_set_definition_policy_definition_group planned values:\n \n %v \n \n are not equal to the policy_set_definition_policy_definition_group changed values:\n \n %v", [plc_set_def_plan_policy_definition_group, plc_set_def_change_policy_definition_group])
 }
 
-# # # Compare the policy_definition_reference and fail if they are not equal.
+# # # Compare the policy_set_definition_reference and fail if they are not equal.
 violation[policy_set_definition_reference] {
 	plc_set_def_plan_definition_reference != plc_set_def_change_definition_reference
 	policy_set_definition_reference := sprintf("The policy_set_definition_reference planned values:\n \n %v \n \n are not equal to the policy_set_definition_reference changed values:\n \n %v", [plc_set_def_plan_definition_reference, plc_set_def_change_definition_reference])

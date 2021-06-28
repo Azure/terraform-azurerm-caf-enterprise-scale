@@ -5,6 +5,9 @@ import data.child_modules
 ########################
 # Rules
 ########################
+
+# # # Some rules are commented out to prevent Azure Pipelines runner running out of memory (error code 137)
+
 # # # # Compare the policy_assignment_display_name and fail if they are not equal.
 # violation[policy_assignment_display_name] {
 # 	plc_assign_plan_display_name != plc_assign_change_display_name

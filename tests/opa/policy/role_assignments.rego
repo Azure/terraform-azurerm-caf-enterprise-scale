@@ -6,13 +6,15 @@ import data.child_modules
 # Rules
 ########################
 
+# # # Some rules are commented out to prevent Azure Pipelines runner running out of memory (error code 137)
+
 # # # # Compare the role_assignment_name and fail if they are not equal.
 # violation[role_assignment_name] {
 # 	role_assign_plan_name != role_assign_change_name
 # 	role_assignment_name := sprintf("The role_assignment_name planned values:\n \n %v \n \n are not equal to the role_assignment_name changed values:\n \n %v", [role_assign_plan_name, role_assign_change_name])
 # }
 
-# # # # Compare the role_definition_id and fail if they are not equal.
+# # # # Compare the role_assignment_definition_id and fail if they are not equal.
 # violation[role_assignment_definition_id] {
 # 	role_assign_plan_role_definition_id != role_assign_change_role_definition_id
 # 	role_assignment_definition_id := sprintf("The role_assignment_definition_id planned values:\n \n %v \n \n are not equal to the role_assignment_definition_id changed values:\n \n %v", [role_assign_plan_role_definition_id, role_assign_change_role_definition_id])
