@@ -9,6 +9,7 @@
 
 # # Parameters
 $PLAN_NAME = "terraform-plan"
+$CONFIRM = "y"
 
 # # #? Run a local test against a different module configuration:
 # # #* Update the path to run the tests on a different folder (example: ../deployment_2)
@@ -132,7 +133,10 @@ conftest test "$PLAN_NAME.json" -p ..\opa\policy\policy_definitions.rego -d ..\o
 Write-Output "==> Testing policy_assignments..."
 conftest test "$PLAN_NAME.json" -p ..\opa\policy\policy_assignments.rego -d ..\opa\policy\planned_values.yml
 
-$CONFIRM = Read-Host "Do you want to prepare files for repository (y/n)?"
+
+
+# # # Remove comments and $CONFIRM parameter for CMD prompt.
+# # # $CONFIRM = Read-Host "Do you want to prepare files for repository (y/n)?"
 if ($CONFIRM -eq 'y') {
     Write-Output "`n"
     Remove-Item -Path .\$PLAN_NAME.json
