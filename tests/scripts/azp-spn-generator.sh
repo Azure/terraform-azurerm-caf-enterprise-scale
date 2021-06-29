@@ -36,27 +36,28 @@ az keyvault create \
     --out tsv
 
 echo "==> Create or update SPNs with Role Assignments..."
-for i in {1..10}
-do
+for i in {1..10}; do
     echo "[SPN ID $i] Processing SPN..."
     SPN_NAME="ES-TestFramework-Job$i"
-    CERTIFICATE_PATH_PEM=$(az ad sp create-for-rbac \
-        --name "$SPN_NAME" \
-        --role "Owner" \
-        --scope "/providers/Microsoft.Management/managementGroups/$ARM_TENANT_ID" \
-        --create-cert \
-        --only-show-errors \
-        --query 'fileWithCertAndPrivateKey' \
-        --out tsv
+    CERTIFICATE_PATH_PEM=$(
+        az ad sp create-for-rbac \
+            --name "$SPN_NAME" \
+            --role "Owner" \
+            --scope "/providers/Microsoft.Management/managementGroups/$ARM_TENANT_ID" \
+            --create-cert \
+            --only-show-errors \
+            --query 'fileWithCertAndPrivateKey' \
+            --out tsv
     )
 
     echo "[SPN ID $i] Upload certificate to Key Vault... ($CERTIFICATE_PATH_PEM)"
-    CERTIFICATE_NAME=$(az keyvault certificate import \
-        --file "$CERTIFICATE_PATH_PEM" \
-        --vault-name "$KEY_VAULT_NAME" \
-        --name "$SPN_NAME" \
-        --query 'name' \
-        --out tsv
+    CERTIFICATE_NAME=$(
+        az keyvault certificate import \
+            --file "$CERTIFICATE_PATH_PEM" \
+            --vault-name "$KEY_VAULT_NAME" \
+            --name "$SPN_NAME" \
+            --query 'name' \
+            --out tsv
     )
     echo "[SPN ID $i] Upload certificate complete... ($CERTIFICATE_NAME)"
 
