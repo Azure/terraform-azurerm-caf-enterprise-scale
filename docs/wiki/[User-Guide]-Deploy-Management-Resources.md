@@ -7,5 +7,5 @@ A dedicated log analytics will aggregate logs such as user access, performance, 
 Also the ability to deploy threat manager, patch systems, monitor resource health, and remediate are also key in making sure that there are consistent standards set across the landing zone for ease of operational visibility and management.
 
 Terraform Module for Cloud Adoption Framework Enterprise-scale leverages the creation of management resources in the dedicated Management subscription that you
-provide in the code. This module makes use of many `DeployIfNotExists` policies to create Azure Security Center (ASC), Log Analytics, and an automation account with a linked service.
+provide in the code. This module makes use of many `DeployIfNotExists` policies to create Azure Security Center (ASC), Log Analytics, and an Automation Account with a linked service.
 
