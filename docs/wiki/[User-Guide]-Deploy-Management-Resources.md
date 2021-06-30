@@ -1,5 +1,5 @@
 
- This document aims to provide prescriptive guidance on using a management module to deploy a management subscription geared towards production workloads incorporating key resources for central management of the platform, a core design design principle for Enterprise-Scale landing zones. 
+ This document aims to provide prescriptive guidance on using a management module to deploy a management subscription geared towards production workloads incorporating key resources for central management of the platform, a core design design principle for Enterprise-Scale landing zones.
  As the platform continues to expand, securing, logging, and monitoring from a central location is key to maintaining overarching, large scale management.
 
 A dedicated log analytics will aggregate logs such as user access, performance, network flow, amongst others to store and parse automatically whenever a new landing zone is created.
@@ -9,9 +9,9 @@ Also, the ability to deploy threat manager, patch systems, monitor resource heal
 Terraform Module for Cloud Adoption Framework Enterprise-scale leverages the creation of management resources in a dedicated Management subscription that you provide in the code. This module makes use of many `DeployIfNotExists` policies to create Azure Security Center (ASC), Log Analytics, and an Automation Account with a Linked Service.
 
 Management resources created by these policies are outside the scope of terraform, so these resources may still exists if running terraform-destroy. It is recommended to deploy all the resources in a single, uniform resource group for ease of deletion if from that scope.
-# Considerations 
+# Considerations
 
-Please ensure you are using version 0.3.3 of this module. Running with a lesser version and updating it later may result in deployment errors. 
+Please ensure you are using version 0.3.3 of this module. Running with a lesser version and updating it later may result in deployment errors.
 
  A specific variable needs to be defined for the management subscription `subscription_management_id` and should be a data source so that it can be referenced by the code as needed.
 
