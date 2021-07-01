@@ -107,3 +107,57 @@ output "azurerm_log_analytics_linked_service" {
   }
   description = "Returns the configuration data for all Log Analytics linked services created by this module."
 }
+
+# The following output is used to ensure all Virtual Network
+# data is returned to the root module.
+output "azurerm_virtual_network" {
+  value = {
+    connectivity = azurerm_virtual_network.connectivity
+  }
+  description = "Returns the configuration data for all Virtual Networks created by this module."
+}
+
+# The following output is used to ensure all Subnets
+# data is returned to the root module.
+output "azurerm_subnet" {
+  value = {
+    connectivity = azurerm_subnet.connectivity
+  }
+  description = "Returns the configuration data for all Subnets created by this module."
+}
+
+# The following output is used to ensure all DDoS Protection Plan
+# data is returned to the root module.
+output "azurerm_network_ddos_protection_plan" {
+  value = {
+    connectivity = azurerm_network_ddos_protection_plan.connectivity
+  }
+  description = "Returns the configuration data for all DDoS Protection Plans created by this module."
+}
+
+# The following output is used to ensure all Public IP
+# data is returned to the root module.
+output "azurerm_public_ip" {
+  value = {
+    connectivity = azurerm_public_ip.connectivity
+  }
+  description = "Returns the configuration data for all Public IPs created by this module."
+}
+
+# The following output is used to ensure all Virtual Network Gateway
+# data is returned to the root module.
+output "azurerm_virtual_network_gateway" {
+  value = {
+    connectivity = azurerm_virtual_network_gateway.connectivity
+  }
+  description = "Returns the configuration data for all Virtual Network Gateways created by this module."
+}
+
+# The following output is used to ensure all Azure Firewall
+# data is returned to the root module.
+output "azurerm_firewall" {
+  value = {
+    connectivity = azurerm_firewall.connectivity
+  }
+  description = "Returns the configuration data for all Azure Firewalls created by this module."
+}
