@@ -254,7 +254,7 @@ variable "configure_connectivity_resources" {
           config = {
             address_space                   = ["10.100.0.0/16", ]
             location                        = ""
-            enable_ddos_protection_standard = true
+            enable_ddos_protection_standard = false
             dns_servers                     = []
             bgp_community                   = ""
             subnets                         = []
@@ -279,7 +279,8 @@ variable "configure_connectivity_resources" {
               }
             }
           }
-      }, ]
+        },
+      ]
       vwan_hub_networks = []
       ddos_protection_plan = {
         enabled = false
