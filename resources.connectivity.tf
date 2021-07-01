@@ -6,8 +6,18 @@
 #   ]
 # }
 
-resource "azurerm_virtual_network" "enterprise_scale" {
-  for_each = local.azurerm_virtual_network_enterprise_scale
+resource "azurerm_resource_group" "connectivity" {
+  for_each = local.azurerm_resource_group_connectivity
+
+  # Mandatory resource attributes
+  name     = each.value.template.name
+  location = each.value.template.location
+  tags     = each.value.template.tags
+}
+
+
+resource "azurerm_virtual_network" "connectivity" {
+  for_each = local.azurerm_virtual_network_connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -32,14 +42,14 @@ resource "azurerm_virtual_network" "enterprise_scale" {
 
   # Set explicit dependencies
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
-    azurerm_network_ddos_protection_plan.enterprise_scale,
+    azurerm_resource_group.connectivity,
+    azurerm_network_ddos_protection_plan.connectivity,
   ]
 
 }
 
-resource "azurerm_subnet" "enterprise_scale" {
-  for_each = local.azurerm_subnet_enterprise_scale
+resource "azurerm_subnet" "connectivity" {
+  for_each = local.azurerm_subnet_connectivity
 
   # Mandatory resource attributes
   name                 = each.value.template.name
@@ -72,15 +82,15 @@ resource "azurerm_subnet" "enterprise_scale" {
 
   # Set explicit dependencies
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
-    azurerm_virtual_network.enterprise_scale,
-    azurerm_network_ddos_protection_plan.enterprise_scale,
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_network.connectivity,
+    azurerm_network_ddos_protection_plan.connectivity,
   ]
 
 }
 
-resource "azurerm_network_ddos_protection_plan" "enterprise_scale" {
-  for_each = local.azurerm_network_ddos_protection_plan_enterprise_scale
+resource "azurerm_network_ddos_protection_plan" "connectivity" {
+  for_each = local.azurerm_network_ddos_protection_plan_connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -92,13 +102,13 @@ resource "azurerm_network_ddos_protection_plan" "enterprise_scale" {
 
   # Set explicit dependencies
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
+    azurerm_resource_group.connectivity,
   ]
 
 }
 
-resource "azurerm_public_ip" "enterprise_scale" {
-  for_each = local.azurerm_public_ip_enterprise_scale
+resource "azurerm_public_ip" "connectivity" {
+  for_each = local.azurerm_public_ip_connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -119,13 +129,13 @@ resource "azurerm_public_ip" "enterprise_scale" {
 
   # Set explicit dependencies
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
+    azurerm_resource_group.connectivity,
   ]
 
 }
 
-resource "azurerm_virtual_network_gateway" "enterprise_scale" {
-  for_each = local.azurerm_virtual_network_gateway_enterprise_scale
+resource "azurerm_virtual_network_gateway" "connectivity" {
+  for_each = local.azurerm_virtual_network_gateway_connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -217,17 +227,17 @@ resource "azurerm_virtual_network_gateway" "enterprise_scale" {
 
   # Set explicit dependencies
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
-    azurerm_virtual_network.enterprise_scale,
-    azurerm_subnet.enterprise_scale,
-    azurerm_public_ip.enterprise_scale,
-    azurerm_network_ddos_protection_plan.enterprise_scale,
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_network.connectivity,
+    azurerm_subnet.connectivity,
+    azurerm_public_ip.connectivity,
+    azurerm_network_ddos_protection_plan.connectivity,
   ]
 
 }
 
-resource "azurerm_firewall" "enterprise_scale" {
-  for_each = local.azurerm_firewall_enterprise_scale
+resource "azurerm_firewall" "connectivity" {
+  for_each = local.azurerm_firewall_connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -279,11 +289,11 @@ resource "azurerm_firewall" "enterprise_scale" {
 
   # Set explicit dependencies
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
-    azurerm_virtual_network.enterprise_scale,
-    azurerm_subnet.enterprise_scale,
-    azurerm_public_ip.enterprise_scale,
-    azurerm_network_ddos_protection_plan.enterprise_scale,
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_network.connectivity,
+    azurerm_subnet.connectivity,
+    azurerm_public_ip.connectivity,
+    azurerm_network_ddos_protection_plan.connectivity,
   ]
 
 }

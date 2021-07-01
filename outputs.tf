@@ -58,7 +58,8 @@ output "azurerm_role_assignment" {
 # Group data is returned to the root module.
 output "azurerm_resource_group" {
   value = {
-    enterprise_scale = azurerm_resource_group.enterprise_scale
+    management = azurerm_resource_group.management
+    connectivity = azurerm_resource_group.connectivity
   }
   description = "Returns the configuration data for all Resource Groups created by this module."
 }
@@ -68,8 +69,8 @@ output "azurerm_resource_group" {
 # Includes logic to remove sensitive values.
 output "azurerm_log_analytics_workspace" {
   value = {
-    enterprise_scale = {
-      for rk, rv in azurerm_log_analytics_workspace.enterprise_scale :
+    management = {
+      for rk, rv in azurerm_log_analytics_workspace.management :
       rk => {
         for ak, av in rv :
         ak => av
@@ -84,7 +85,7 @@ output "azurerm_log_analytics_workspace" {
 # Solution data is returned to the root module.
 output "azurerm_log_analytics_solution" {
   value = {
-    enterprise_scale = azurerm_log_analytics_solution.enterprise_scale
+    management = azurerm_log_analytics_solution.management
   }
   description = "Returns the configuration data for all Log Analytics solutions created by this module."
 }
@@ -93,7 +94,7 @@ output "azurerm_log_analytics_solution" {
 # Account data is returned to the root module.
 output "azurerm_automation_account" {
   value = {
-    enterprise_scale = azurerm_automation_account.enterprise_scale
+    management = azurerm_automation_account.management
   }
   description = "Returns the configuration data for all Automation Accounts created by this module."
 }
@@ -102,7 +103,7 @@ output "azurerm_automation_account" {
 # Linked Service data is returned to the root module.
 output "azurerm_log_analytics_linked_service" {
   value = {
-    enterprise_scale = azurerm_log_analytics_linked_service.enterprise_scale
+    management = azurerm_log_analytics_linked_service.management
   }
   description = "Returns the configuration data for all Log Analytics linked services created by this module."
 }
