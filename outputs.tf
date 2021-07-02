@@ -58,7 +58,7 @@ output "azurerm_role_assignment" {
 # Group data is returned to the root module.
 output "azurerm_resource_group" {
   value = {
-    management = azurerm_resource_group.management
+    management   = azurerm_resource_group.management
     connectivity = azurerm_resource_group.connectivity
   }
   description = "Returns the configuration data for all Resource Groups created by this module."
