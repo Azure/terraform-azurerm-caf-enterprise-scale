@@ -49,7 +49,7 @@ openssl pkcs12 \
   -passout pass:"$CERTIFICATE_PASSWORD"
 
 echo "==> Deleting SPN certificate in PEM format..."
-rm "$SPN_NAME.pem"
+shred -uz "$SPN_NAME.pem"
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
 cat >provider.tf <<TFCONFIG
