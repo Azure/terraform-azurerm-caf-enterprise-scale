@@ -63,10 +63,9 @@ terraform {
 }
 
 provider "azurerm" {
-  alias = "connectivity"
-
   features {}
 
+  alias                       = "connectivity"
   subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
   client_id                   = "$CERTIFICATE_CLIENT_ID"
   client_certificate_path     = "$SPN_NAME.pfx"
@@ -75,10 +74,9 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias = "management"
-
   features {}
 
+  alias                       = "management"
   subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
   client_id                   = "$CERTIFICATE_CLIENT_ID"
   client_certificate_path     = "$SPN_NAME.pfx"
