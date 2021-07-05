@@ -79,14 +79,21 @@ $ctx = Connect-AzAccount `
 
 Write-Information " Successfully authenticated account ($($ctx.Context.Account.Id))." -InformationAction Continue
 
-Write-Verbose "Checking for Subscription Aliases."
-$subscriptionAliases = [PSCustomObject]@{}
+Write-Verbose "Checking for Management Subscription Aliases."
+$subscriptionAliasesManagement = [PSCustomObject]@{}
 for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
     $alias = "csu-tf-management-$i"
     $aliasesApiVersion = "2020-09-01"
     $requestPath = "/providers/Microsoft.Subscription/aliases/$($alias)?api-version=$($aliasesApiVersion)"
-    $requestMethod = "GET"
-    $aliasResponse = Invoke-AzRestMethod -Method $requestMethod -Path $requestPath
+    $requestMethod = "PUT"
+    $requestBody = @{
+        properties = @{
+            displayName  = $alias
+            billingScope = $($env:BILLING_SCOPE)
+            workload     = "Production"
+        }
+    } | ConvertTo-Json -Depth 10
+    $aliasResponse = Invoke-AzRestMethod -Method $requestMethod -Path $requestPath -Payload $requestBody
     if ($aliasResponse.StatusCode -eq "200") {
         $subscriptionId = ($aliasResponse.Content | ConvertFrom-Json).properties.subscriptionId
         Write-Information " Found Subscription Alias ($($alias))." -InformationAction Continue
@@ -95,7 +102,35 @@ for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
         Write-Warning "Unable to find Subscription Alias ($($alias)). Failing back to current Subscription context ($($env:ARM_SUBSCRIPTION_ID))."
         $subscriptionId = $env:ARM_SUBSCRIPTION_ID
     }
-    $subscriptionAliases | Add-Member `
+    $subscriptionAliasesManagement | Add-Member `
+        -NotePropertyName "$alias" `
+        -NotePropertyValue "$subscriptionId"
+}
+
+Write-Verbose "Checking for Connectivity Subscription Aliases."
+$subscriptionAliasesConnectivity = [PSCustomObject]@{}
+for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
+    $alias = "csu-tf-connectivity-$i"
+    $aliasesApiVersion = "2020-09-01"
+    $requestPath = "/providers/Microsoft.Subscription/aliases/$($alias)?api-version=$($aliasesApiVersion)"
+    $requestMethod = "PUT"
+    $requestBody = @{
+        properties = @{
+            displayName  = $alias
+            billingScope = $($env:BILLING_SCOPE)
+            workload     = "Production"
+        }
+    } | ConvertTo-Json -Depth 10
+    $aliasResponse = Invoke-AzRestMethod -Method $requestMethod -Path $requestPath -Payload $requestBody
+    if ($aliasResponse.StatusCode -eq "200") {
+        $subscriptionId = ($aliasResponse.Content | ConvertFrom-Json).properties.subscriptionId
+        Write-Information " Found Subscription Alias ($($alias))." -InformationAction Continue
+    }
+    else {
+        Write-Warning "Unable to find Subscription Alias ($($alias)). Failing back to current Subscription context ($($env:ARM_SUBSCRIPTION_ID))."
+        $subscriptionId = $env:ARM_SUBSCRIPTION_ID
+    }
+    $subscriptionAliasesConnectivity | Add-Member `
         -NotePropertyName "$alias" `
         -NotePropertyValue "$subscriptionId"
 }
@@ -116,19 +151,21 @@ for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
     $matrixObject | Add-Member `
         -NotePropertyName $jobName1 `
         -NotePropertyValue @{
-        TF_VERSION                    = $terraformVersion
-        TF_AZ_VERSION                 = $azurermProviderVersionBase
-        TF_JOB_ID                     = $jobId1
-        TF_SUBSCRIPTION_ID_MANAGEMENT = ($subscriptionAliases."csu-tf-management-$jobId1")
+        TF_VERSION                      = $terraformVersion
+        TF_AZ_VERSION                   = $azurermProviderVersionBase
+        TF_JOB_ID                       = $jobId1
+        TF_SUBSCRIPTION_ID_MANAGEMENT   = ($subscriptionAliasesManagement."csu-tf-management-$jobId1")
+        TF_SUBSCRIPTION_ID_CONNECTIVITY = ($subscriptionAliasesConnectivity."csu-tf-connectivity-$jobId1")
     }
     Write-Information " Added job to matrix ($($jobName1))." -InformationAction Continue
     $matrixObject | Add-Member `
         -NotePropertyName $jobName2 `
         -NotePropertyValue @{
-        TF_VERSION                    = $terraformVersion
-        TF_AZ_VERSION                 = $azurermProviderVersionLatest
-        TF_JOB_ID                     = $jobId2
-        TF_SUBSCRIPTION_ID_MANAGEMENT = ($subscriptionAliases."csu-tf-management-$jobId2")
+        TF_VERSION                      = $terraformVersion
+        TF_AZ_VERSION                   = $azurermProviderVersionLatest
+        TF_JOB_ID                       = $jobId2
+        TF_SUBSCRIPTION_ID_MANAGEMENT   = ($subscriptionAliasesManagement."csu-tf-management-$jobId2")
+        TF_SUBSCRIPTION_ID_CONNECTIVITY = ($subscriptionAliasesConnectivity."csu-tf-connectivity-$jobId2")
     }
     Write-Information " Added job to matrix ($($jobName2))." -InformationAction Continue
 }

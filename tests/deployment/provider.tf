@@ -8,5 +8,11 @@ terraform {
 }
 
 provider "azurerm" {
+  alias = "management"
+  features {}
+}
+
+provider "azurerm" {
+  alias = "connectivity"
   features {}
 }
