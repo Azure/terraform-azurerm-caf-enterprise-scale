@@ -53,7 +53,7 @@ locals {
     }
 
     location = null
-    tags = null
+    tags     = null
     advanced = null
   }
 }
