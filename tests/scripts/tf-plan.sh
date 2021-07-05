@@ -5,6 +5,7 @@ set -e
 # Shell Script
 # - Terraform Plan
 #
+TF_PLAN_JSON="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
 
 echo "==> Switching directories..."
 cd "$PIPELINE_WORKSPACE/s/tests/deployment"
@@ -18,3 +19,9 @@ terraform plan \
     -var "root_name=ES-$TF_VERSION-$TF_AZ_VERSION" \
     -state="./terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate" \
     -out="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
+
+echo "==> Convert plan to JSON..."
+cd "$PIPELINE_WORKSPACE/s/tests/deployment" && terraform show -json "$TF_PLAN_JSON" >"$TF_PLAN_JSON".json
+
+echo "==> List all plan to JSON..."
+cd "$PIPELINE_WORKSPACE/s/tests/deployment" && find . -name "*.json"

@@ -41,3 +41,13 @@ tf-apply:
 tf-destroy:
 	@echo "==> Running script..."
 	./tests/scripts/tf-destroy.sh
+
+# OPA Conftest
+
+opa-install:
+	@echo "==> Running script..."
+	./tests/scripts/opa-install.sh
+
+opa-run-tests:
+	@echo "==> Running script..."
+	./tests/scripts/opa-run-tests.sh
