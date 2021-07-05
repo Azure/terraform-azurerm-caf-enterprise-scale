@@ -52,14 +52,24 @@ echo "==> Deleting SPN certificate in PEM format..."
 shred -uz "$SPN_NAME.pem"
 
 echo "==> Creating provider.tf with required_provider version and credentials..."
-cat >provider.tf <<TFCONFIG
+if [[ "$(terraform --version | grep "Terraform v")" > "Terraform v0.15" ]]; then
+  echo " - Including configuration_aliases for required_providers"
+  cat >provider.tf <<TFCONFIG
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "$TF_AZ_VERSION"
+      configuration_aliases = [
+        azurerm.connectivity,
+        azurerm.management,
+      ]
     }
   }
+}
+
+provider "azurerm" {
+  features {}
 }
 
 provider "azurerm" {
@@ -84,6 +94,44 @@ provider "azurerm" {
   tenant_id                   = "$ARM_TENANT_ID"
 }
 TFCONFIG
+else
+  cat >provider.tf <<TFCONFIG
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "$TF_AZ_VERSION"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+provider "azurerm" {
+  features {}
+
+  alias                       = "connectivity"
+  subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
+  client_id                   = "$CERTIFICATE_CLIENT_ID"
+  client_certificate_path     = "$SPN_NAME.pfx"
+  client_certificate_password = "$CERTIFICATE_PASSWORD"
+  tenant_id                   = "$ARM_TENANT_ID"
+}
+
+provider "azurerm" {
+  features {}
+
+  alias                       = "management"
+  subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
+  client_id                   = "$CERTIFICATE_CLIENT_ID"
+  client_certificate_path     = "$SPN_NAME.pfx"
+  client_certificate_password = "$CERTIFICATE_PASSWORD"
+  tenant_id                   = "$ARM_TENANT_ID"
+}
+TFCONFIG
+fi
 
 echo "==> Generating root id's..."
 ROOT_ID_1="${RANDOM}-es"
