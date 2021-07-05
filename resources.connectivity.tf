@@ -9,6 +9,8 @@
 resource "azurerm_resource_group" "connectivity" {
   for_each = local.azurerm_resource_group_connectivity
 
+  provider = azurerm.connectivity
+
   # Mandatory resource attributes
   name     = each.value.template.name
   location = each.value.template.location
@@ -18,6 +20,8 @@ resource "azurerm_resource_group" "connectivity" {
 
 resource "azurerm_virtual_network" "connectivity" {
   for_each = local.azurerm_virtual_network_connectivity
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -50,6 +54,8 @@ resource "azurerm_virtual_network" "connectivity" {
 
 resource "azurerm_subnet" "connectivity" {
   for_each = local.azurerm_subnet_connectivity
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                 = each.value.template.name
@@ -92,6 +98,8 @@ resource "azurerm_subnet" "connectivity" {
 resource "azurerm_network_ddos_protection_plan" "connectivity" {
   for_each = local.azurerm_network_ddos_protection_plan_connectivity
 
+  provider = azurerm.connectivity
+
   # Mandatory resource attributes
   name                = each.value.template.name
   location            = each.value.template.location
@@ -109,6 +117,8 @@ resource "azurerm_network_ddos_protection_plan" "connectivity" {
 
 resource "azurerm_public_ip" "connectivity" {
   for_each = local.azurerm_public_ip_connectivity
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -136,6 +146,8 @@ resource "azurerm_public_ip" "connectivity" {
 
 resource "azurerm_virtual_network_gateway" "connectivity" {
   for_each = local.azurerm_virtual_network_gateway_connectivity
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -238,6 +250,8 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
 
 resource "azurerm_firewall" "connectivity" {
   for_each = local.azurerm_firewall_connectivity
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
