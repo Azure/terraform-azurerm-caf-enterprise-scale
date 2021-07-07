@@ -25,20 +25,18 @@ $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azur
 
 ########################################
 # Terraform Versions
-# - Base Version: "0.13.2"
+# - Base Version: "0.15.0"
 # - Latest Versions:
-#     0.13.* (latest 1)
-#     0.14.* (latest 1)
 #     0.15.* (latest 1)
+#     1.0.*  (latest 1)
 ########################################
 
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
-$terraformVersions = @("0.13.2")
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.13.\d{1,2}(?!-)" } | Select-Object -First 1
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.14.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions = @("0.15.0")
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.0.\d{1,2}(?!-)" } | Select-Object -First 1
 
 $terraformVersions = $terraformVersions | Sort-Object
 
@@ -46,11 +44,11 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (2.63.0)
+# - Base Version: (2.66.0)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "2.63.0"
+$azurermProviderVersionBase = "2.66.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################

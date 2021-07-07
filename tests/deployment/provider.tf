@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "2.63.0"
+      version = "2.66.0"
       configuration_aliases = [
         azurerm.connectivity,
         azurerm.management,
@@ -16,11 +16,11 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias = "management"
+  alias = "connectivity"
   features {}
 }
 
 provider "azurerm" {
-  alias = "connectivity"
+  alias = "management"
   features {}
 }
