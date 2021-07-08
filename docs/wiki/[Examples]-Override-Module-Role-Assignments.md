@@ -51,7 +51,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.63.0"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -95,16 +95,22 @@ To allow the declaration of custom templates, you must create a custom library f
 # current Tenant ID used as the ID for the "Tenant Root Group"
 # Management Group.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.2.2"
+  version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
+  providers = {
+    azurerm              = azurerm
+    azurerm.management   = azurerm
+    azurerm.connectivity = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
   library_path   = "${path.root}/lib"

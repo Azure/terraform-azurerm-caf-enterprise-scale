@@ -73,7 +73,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.63.0"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -85,7 +85,7 @@ provider "azurerm" {
 # You can use the azurerm_client_config data resource to dynamically
 # extract the current Tenant ID from your connection settings.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Call the caf-enterprise-scale module directly from the Terraform Registry
 # pinning to the latest version
@@ -94,7 +94,13 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
+  providers = {
+    azurerm              = azurerm
+    azurerm.management   = azurerm
+    azurerm.connectivity = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = "myorg"
   root_name      = "My Organization"
   library_path   = "${path.root}/lib"
