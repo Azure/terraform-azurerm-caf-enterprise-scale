@@ -6,9 +6,14 @@
 > **MODULE UPGRADE NOTES**
 >
 > The `v0.4.0` release represents a major milestone for the module, introducing capabilities for deploying `Identity` and `Connectivity` solutions from the Enterprise-scale architecture.
-> There should be no breaking changes from `v0.3.x` but please note that the minimum supported version of the AzureRM Provider is now set to `2.63.0`.
-> This is to support the latest features for Availability Zone configuration settings on the [`azurerm_public_ip`][azurerm_public_ip] resources.
-> We strongly recommend to review the [release notes][release_notes_v0_4_0] and test your deployment before upgrading.
+> The following breaking changes should be noted when upgrading from `v0.3.x`:
+> - The minimum supported version of Terraform is now set to `0.15.0`
+> - The minimum supported version of the AzureRM Provider is now set to `2.66.0`
+> - Resources have been renamed to support multiple providers within the module
+> - The [`azurerm_policy_assignment`][azurerm_policy_assignment] resource type has been replaced by the new [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] resource type
+>
+> These changes were necessary to support the latest features for Availability Zone configuration settings on the [`azurerm_public_ip`][azurerm_public_ip] resources, allow integration of multiple providers within the module to enable deploying resources to multiple Subscriptions, and to future proof against deprecation of the [`azurerm_policy_assignment`][azurerm_policy_assignment] resource. We believe this provides the best end-user experience going forward, so to make the transition as easy as possible, we have also provided documentation explaining how to [upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0].
+> We strongly recommend to review this, along with the [release notes][release_notes_v0_4_0] and test your deployment before upgrading.
 >
 > The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`.
 > When upgrading to this release, please ensure to update your code to use native HCL values as documented in the [release notes][release_notes_v0_3_0].
@@ -31,6 +36,7 @@ For detailed information about how to use, configure and extend this module, ple
   - [Identity Resources][wiki_identity_resources]
   - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
   - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
+  - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 - [Examples][wiki_examples]
   - [Deploy Default Configuration][wiki_deploy_default_configuration]
   - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
@@ -76,7 +82,7 @@ The following resource types are deployed and managed by this module when using 
 | --- | -------------- | ------------------ |
 | Management Groups | [`Microsoft.Management/managementGroups`][arm_management_group] | [`azurerm_management_group`][azurerm_management_group] |
 | Management Group Subscriptions | [`Microsoft.Management/managementGroups/subscriptions`][arm_management_group_subscriptions] | [`azurerm_management_group`][azurerm_management_group] |
-| Policy Assignments | [`Microsoft.Authorization/policyAssignments`][arm_policy_assignment] | [`azurerm_policy_assignment`][azurerm_policy_assignment] |
+| Policy Assignments | [`Microsoft.Authorization/policyAssignments`][arm_policy_assignment] | [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] |
 | Policy Definitions | [`Microsoft.Authorization/policyDefinitions`][arm_policy_definition] | [`azurerm_policy_definition`][azurerm_policy_definition] |
 | Policy Set Definitions | [`Microsoft.Authorization/policySetDefinitions`][arm_policy_set_definition] | [`azurerm_policy_set_definition`][azurerm_policy_set_definition] |
 | Role Assignments | [`Microsoft.Authorization/roleAssignments`][arm_role_assignment] | [`azurerm_role_assignment`][azurerm_role_assignment] |
@@ -144,7 +150,7 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.13.2` and AzureRM Provider `2.63.0` as a baseline, and various versions to up the most recent at the time of release.
+This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.66.0` as a baseline, and various versions to up the most recent at the time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -152,6 +158,8 @@ If this happens, we advise upgrading to the latest version and checking our [tro
 ## Usage
 
 As a basic starting point, we recommend starting with the following configuration in your root module.
+
+This will deploy the core components only.
 
 > **NOTE:** For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
 > Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
@@ -166,7 +174,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.63.0"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -180,7 +188,7 @@ provider "azurerm" {
 # current Tenant ID used as the ID for the "Tenant Root Group"
 # Management Group.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Use variables to customise the deployment
 
@@ -201,7 +209,13 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
+  providers = {
+    azurerm              = azurerm
+    azurerm.management   = azurerm
+    azurerm.connectivity = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
 
@@ -259,25 +273,26 @@ module "enterprise_scale" {
 [arm_dns_zone]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/dnszones
 [arm_virtual_network_peering]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 
-[azurerm_management_group]:             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
-[azurerm_policy_assignment]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_assignment
-[azurerm_policy_definition]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition
-[azurerm_policy_set_definition]:        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
-[azurerm_role_assignment]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
-[azurerm_role_definition]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
-[azurerm_resource_group]:               https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
-[azurerm_log_analytics_workspace]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
-[azurerm_log_analytics_solution]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_solution
-[azurerm_automation_account]:           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
-[azurerm_log_analytics_linked_service]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
-[azurerm_virtual_network]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
-[azurerm_subnet]:                       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
-[azurerm_virtual_network_gateway]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway
-[azurerm_firewall]:                     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall
-[azurerm_public_ip]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
-[azurerm_network_ddos_protection_plan]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan
-[azurerm_dns_zone]:                     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone
-[azurerm_virtual_network_peering]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering
+[azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
+[azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
+[azurerm_policy_assignment]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_assignment
+[azurerm_policy_definition]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition
+[azurerm_policy_set_definition]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
+[azurerm_role_assignment]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
+[azurerm_role_definition]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
+[azurerm_resource_group]:                     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
+[azurerm_log_analytics_workspace]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
+[azurerm_log_analytics_solution]:             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_solution
+[azurerm_automation_account]:                 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
+[azurerm_log_analytics_linked_service]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
+[azurerm_virtual_network]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
+[azurerm_subnet]:                             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
+[azurerm_virtual_network_gateway]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway
+[azurerm_firewall]:                           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall
+[azurerm_public_ip]:                          https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
+[azurerm_network_ddos_protection_plan]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan
+[azurerm_dns_zone]:                           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone
+[azurerm_virtual_network_peering]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering
 
 [TFAES-LICENSE]:      https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/LICENSE
 [TFAES-CONTRIBUTING]: https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/CONTRIBUTING
@@ -295,6 +310,7 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_archetype_definitions]:                 https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
 [wiki_upgrade_from_v0_0_8_to_v0_1_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
+[wiki_upgrade_from_v0_3_3_to_v0_4_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
 [wiki_core_resources]:                        https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
 [wiki_management_resources]:                  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:                https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
