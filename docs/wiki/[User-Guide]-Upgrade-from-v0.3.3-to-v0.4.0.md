@@ -14,23 +14,38 @@ Anyone using this module should be aware of the following when planning to upgra
    1. Policy Assignments
    1. Policy Set Definitions
 1. All Policy Assignments (and associated Role Assignments where a Managed Identity is required for policies with DeployIfNotExists or Modify effects) will be recreated to support moving these from the [`azurerm_policy_assignment` (deprecated)][azurerm_policy_assignment] to [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] resource types.
-1. Adds provider configuration within the module, allowing creation of resources across multiple Subscriptions. This impacts existing [Management and monitoring][ESLZ-Management] resources. To avoid the need to re-create these resources, please review the [moving management resources](#moving-management-resources) section below.
+1. Adds provider configuration within the module, allowing creation of resources across multiple Subscriptions. This impacts existing [Management and monitoring][ESLZ-Management] resources. To avoid the need to re-create these resources, please review the [management resources](#management-resources) section below.
 1. Adds new functionality to enable deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the connectivity Subscription context. Currently based on the hub & spoke deployment model.
 1. Adds new functionality to manage Policy Assignments as part of delivering the [Identity and access management][ESLZ-Identity]
 
 ## Resource changes
 
-_coming soon_
-
 ### Resource type: `azurerm_policy_assignment`
 
-The following Policy Assignments have been added to 
-            "Deny-Public-IP",
-            "Deny-RDP-From-Internet",
-            "Deny-Subnet-Without-Nsg",
-            "Deploy-VM-Backup"
+The following Policy Assignments have been added to the `es_root` archetype definition:
+- Audit-MachineLearning-PrivateEndpointId
+- Deny-MachineLearning-Aks
+- Deny-MachineLearning-Compute-SubnetId
+- Deny-MachineLearning-Compute-VmSize
+- Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess
+- Deny-MachineLearning-ComputeCluster-Scale
+- Deny-MachineLearning-HbiWorkspace
+- Deny-MachineLearning-PublicAccessWhenBehindVnet
+- Deploy-Default-Udr
 
-## Moving management resources
+The following Policy Assignments have been added to the `es_identity` archetype definition:
+- Deny-Public-IP
+- Deny-RDP-From-Internet
+- Deny-Subnet-Without-Nsg
+- Deploy-VM-Backup
+
+### Resource type: `azurerm_policy_definition`
+
+The following Policy Definition updates are included:
+- `Append-AppService-latestTLS` has been updated from `Indexed` to `All` for the `mode` attribute.
+- `Deny-Subnet-Without-Udr` now includes a new `excludedSubnets` parameter to allow exclusions (default value = `["AzureBastionSubnet"]`).
+
+### Management resources
 
 As part of enabling support for multiple providers within the module to allow resources to be deployed to multiple Subscriptions within a single module declaration, it has been necessary to rename some resources within the module. These are all resources relating to the management solution within the module.
 
