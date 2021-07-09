@@ -16,8 +16,8 @@ module "enterprise_scale_nested_landing_zone" {
 
   providers = {
     azurerm              = azurerm
-    azurerm.management   = azurerm
     azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
   }
 
 
@@ -138,8 +138,8 @@ module "enterprise_scale" {
 
   providers = {
     azurerm              = azurerm
-    azurerm.management   = azurerm
     azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
   }
 
   root_parent_id = data.azurerm_client_config.core.tenant_id
@@ -187,8 +187,8 @@ module "enterprise_scale_nested_landing_zone" {
 
   providers = {
     azurerm              = azurerm
-    azurerm.management   = azurerm.management
-    azurerm.connectivity = azurerm.connectivity
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
   }
 
 
