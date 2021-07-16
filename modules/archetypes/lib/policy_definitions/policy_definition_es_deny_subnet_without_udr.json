@@ -1,5 +1,5 @@
 {
-  "name": "Deny-Subnet-Without-UDR",
+  "name": "Deny-Subnet-Without-Udr",
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2020-09-01",
   "scope": null,
