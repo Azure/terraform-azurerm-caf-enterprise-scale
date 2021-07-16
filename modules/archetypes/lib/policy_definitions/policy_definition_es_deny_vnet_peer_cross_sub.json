@@ -5,11 +5,11 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "Indexed",
+    "mode": "All",
     "displayName": "Deny vNet peering cross subscription.",
     "description": "This policy denies the creation of vNet Peerings outside of the same subscriptions under the assigned scope.",
     "metadata": {
-      "version": "1.0.0.0",
+      "version": "1.0.1",
       "category": "Network"
     },
     "parameters": {
