@@ -91,6 +91,14 @@ locals {
     local.deploy_hub_network[location] &&
     hub_network.config.azure_firewall.enabled
   }
+  deploy_outbound_virtual_network_peering = {
+    for location, hub_network in local.hub_networks_by_location :
+    location =>
+    local.deploy_dns &&
+    hub_network.config.enable_outbound_virtual_network_peering
+  }
+  deploy_private_dns_zone_virtual_network_link_on_hubs   = local.deploy_dns && local.settings.dns.config.enable_private_dns_zone_virtual_network_link_on_hubs
+  deploy_private_dns_zone_virtual_network_link_on_spokes = local.deploy_dns && local.settings.dns.config.enable_private_dns_zone_virtual_network_link_on_spokes
 }
 
 # Configuration settings for resource type:
@@ -560,15 +568,230 @@ locals {
 }
 
 # Configuration settings for resource type:
+#  - azurerm_private_dns_zone
+locals {
+  enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
+  private_link_locations         = coalesce(local.settings.dns.config.private_link_locations, [local.location])
+  lookup_private_link_dns_zone_by_service = {
+    azure_automation_webhook             = ["privatelink.azure-automation.net"]
+    azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]
+    azure_sql_database_sqlserver         = ["privatelink.database.windows.net"]
+    azure_synapse_analytics_sqlserver    = ["privatelink.database.windows.net"]
+    azure_synapse_analytics_sql          = ["privatelink.sql.azuresynapse.net"]
+    storage_account_blob                 = ["privatelink.blob.core.windows.net"]
+    storage_account_table                = ["privatelink.table.core.windows.net"]
+    storage_account_queue                = ["privatelink.queue.core.windows.net"]
+    storage_account_file                 = ["privatelink.file.core.windows.net"]
+    storage_account_web                  = ["privatelink.web.core.windows.net"]
+    azure_data_lake_file_system_gen2     = ["privatelink.dfs.core.windows.net"]
+    azure_cosmos_db_sql                  = ["privatelink.documents.azure.com"]
+    azure_cosmos_db_mongodb              = ["privatelink.mongo.cosmos.azure.com"]
+    azure_cosmos_db_cassandra            = ["privatelink.cassandra.cosmos.azure.com"]
+    azure_cosmos_db_gremlin              = ["privatelink.gremlin.cosmos.azure.com"]
+    azure_cosmos_db_table                = ["privatelink.table.cosmos.azure.com"]
+    azure_database_for_postgresql_server = ["privatelink.postgres.database.azure.com"]
+    azure_database_for_mysql_server      = ["privatelink.mysql.database.azure.com"]
+    azure_database_for_mariadb_server    = ["privatelink.mariadb.database.azure.com"]
+    azure_key_vault                      = ["privatelink.vaultcore.azure.net"]
+    azure_kubernetes_service_management = [
+      for location in local.private_link_locations :
+      "privatelink.${location}.azmk8s.io"
+    ]
+    azure_search_service           = ["privatelink.search.windows.net"]
+    azure_container_registry       = ["privatelink.azurecr.io"]
+    azure_app_configuration_stores = ["privatelink.azconfig.io"]
+    azure_backup = [
+      for location in local.private_link_locations :
+      "privatelink.${location}.backup.windowsazure.com"
+    ]
+    azure_site_recovery = [
+      for location in local.private_link_locations :
+      "${location}.privatelink.siterecovery.windowsazure.com"
+    ]
+    azure_event_hubs_namespace       = ["privatelink.servicebus.windows.net"]
+    azure_service_bus_namespace      = ["privatelink.servicebus.windows.net"]
+    azure_iot_hub                    = ["privatelink.azure-devices.net", "privatelink.servicebus.windows.net"]
+    azure_relay_namespace            = ["privatelink.servicebus.windows.net"]
+    azure_event_grid_topic           = ["privatelink.eventgrid.azure.net"]
+    azure_event_grid_domain          = ["privatelink.eventgrid.azure.net"]
+    azure_web_apps_sites             = ["privatelink.azurewebsites.net"]
+    azure_machine_learning_workspace = ["privatelink.api.azureml.ms", "privatelink.notebooks.azure.net"]
+    signalr                          = ["privatelink.service.signalr.net"]
+    azure_monitor                    = ["privatelink.monitor.azure.com", "privatelink.oms.opinsights.azure.com", "privatelink.ods.opinsights.azure.com", "privatelink.agentsvc.azure-automation.net"]
+    cognitive_services_account       = ["privatelink.cognitiveservices.azure.com"]
+    azure_file_sync                  = ["privatelink.afs.azure.net"]
+    azure_data_factory               = ["privatelink.datafactory.azure.net"]
+    azure_data_factory_portal        = ["privatelink.adf.azure.com"]
+    azure_cache_for_redis            = ["privatelink.redis.cache.windows.net"]
+  }
+  lookup_private_link_group_id_by_service = {
+    azure_automation_webhook             = ""
+    azure_automation_dscandhybridworker  = ""
+    azure_sql_database_sqlserver         = "sqlServer"
+    azure_synapse_analytics_sqlserver    = ""
+    azure_synapse_analytics_sql          = ""
+    storage_account_blob                 = "blob"
+    storage_account_table                = "table"
+    storage_account_queue                = "queue"
+    storage_account_file                 = "file"
+    storage_account_web                  = "web"
+    azure_data_lake_file_system_gen2     = "dfs"
+    azure_cosmos_db_sql                  = ""
+    azure_cosmos_db_mongodb              = ""
+    azure_cosmos_db_cassandra            = ""
+    azure_cosmos_db_gremlin              = ""
+    azure_cosmos_db_table                = ""
+    azure_database_for_postgresql_server = ""
+    azure_database_for_mysql_server      = ""
+    azure_database_for_mariadb_server    = ""
+    azure_key_vault                      = "vault"
+    azure_kubernetes_service_management  = ""
+    azure_search_service                 = ""
+    azure_container_registry             = ""
+    azure_app_configuration_stores       = ""
+    azure_backup                         = ""
+    azure_site_recovery                  = ""
+    azure_event_hubs_namespace           = ""
+    azure_service_bus_namespace          = ""
+    azure_iot_hub                        = ""
+    azure_relay_namespace                = ""
+    azure_event_grid_topic               = ""
+    azure_event_grid_domain              = ""
+    azure_web_apps_sites                 = ""
+    azure_machine_learning_workspace     = ""
+    signalr                              = ""
+    azure_monitor                        = ""
+    cognitive_services_account           = ""
+    azure_file_sync                      = ""
+    azure_data_factory                   = ""
+    azure_data_factory_portal            = ""
+    azure_cache_for_redis                = ""
+  }
+  services_by_private_link_dns_zone = transpose(local.lookup_private_link_dns_zone_by_service)
+  private_dns_zone_enabled = {
+    for fqdn, services in local.services_by_private_link_dns_zone :
+    fqdn => anytrue(
+      [
+        for service in services : local.enable_private_link_by_service[service]
+      ]
+    )
+  }
+  azurerm_private_dns_zone = concat(
+    [
+      for fqdn, services in local.services_by_private_link_dns_zone :
+      {
+        # Resource logic attributes
+        resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/${fqdn}"
+        managed_by_module = local.deploy_dns && local.private_dns_zone_enabled[fqdn]
+        # Resource definition attributes
+        name = fqdn
+        resource_group_name = try(
+          local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].resource_group_name,
+          local.resource_group_names_by_scope_and_location["dns"][local.dns_location]
+        )
+        # Optional definition attributes
+        soa_record = try(local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].soa_record, local.empty_list)
+        tags       = try(local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].tags, local.tags)
+      }
+    ],
+    [
+      for fqdn in local.settings.dns.config.private_dns_zones :
+      {
+        # Resource logic attributes
+        resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/${fqdn}"
+        managed_by_module = local.deploy_dns
+        # Resource definition attributes
+        name = fqdn
+        resource_group_name = try(
+          local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].resource_group_name,
+          local.resource_group_names_by_scope_and_location["dns"][local.dns_location]
+        )
+        # Optional definition attributes
+        soa_record = try(local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].soa_record, local.empty_list)
+        tags       = try(local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].tags, local.tags)
+      }
+    ],
+  )
+}
+
+# Configuration settings for resource type:
 #  - azurerm_dns_zone
 locals {
-  azurerm_dns_zone = []
+  azurerm_dns_zone = [
+    for fqdn in local.settings.dns.config.public_dns_zones :
+    {
+      # Resource logic attributes
+      resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/dnszones/${fqdn}"
+      managed_by_module = local.deploy_dns
+      # Resource definition attributes
+      name = fqdn
+      resource_group_name = try(
+        local.custom.azurerm_private_dns_zone["connectivity"][fqdn]["global"].resource_group_name,
+        local.resource_group_names_by_scope_and_location["dns"][local.dns_location]
+      )
+      # Optional definition attributes
+      soa_record = try(local.custom.azurerm_dns_zone["connectivity"][fqdn]["global"].soa_record, local.empty_list)
+      tags       = try(local.custom.azurerm_dns_zone["connectivity"][fqdn]["global"].tags, local.tags)
+    }
+  ]
+}
+
+# Configuration settings for resource type:
+#  - azurerm_private_dns_zone_virtual_network_link
+locals {
+  hub_virtual_networks_for_dns = [
+    for hub_config in local.azurerm_virtual_network :
+    {
+      resource_id       = hub_config.resource_id
+      link_name         = "${split("/", hub_config.resource_id)[2]}-${uuidv5("url", hub_config.resource_id)}"
+      managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
+    }
+  ]
+  spoke_virtual_networks_for_dns = flatten(
+    [
+      for location, hub_config in local.hub_networks_by_location :
+      [
+        for spoke_resource_id in hub_config.config.spoke_virtual_network_resource_ids :
+        {
+          resource_id       = spoke_resource_id
+          link_name         = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
+        }
+      ]
+    ]
+  )
+  virtual_networks_for_dns = concat(
+    local.hub_virtual_networks_for_dns,
+    local.spoke_virtual_networks_for_dns,
+  )
+  azurerm_private_dns_zone_virtual_network_link = flatten(
+    [
+      for zone in local.azurerm_private_dns_zone :
+      [
+        for link_config in local.virtual_networks_for_dns :
+        {
+          # Resource logic attributes
+          resource_id       = "${zone.resource_id}/virtualNetworkLinks/${link_config.link_name}"
+          managed_by_module = link_config.managed_by_module
+          # Resource definition attributes
+          name                  = link_config.link_name
+          resource_group_name   = zone.resource_group_name
+          private_dns_zone_name = zone.name
+          virtual_network_id    = link_config.resource_id
+          # Optional definition attributes
+          registration_enabled = try(local.custom.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.link_name]["global"].registration_enabled, false)
+          tags                 = try(local.custom.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.link_name]["global"].tags, local.tags)
+        }
+      ]
+    ]
+  )
 }
 
 # Configuration settings for resource type:
 #  - azurerm_virtual_network_peering
 locals {
-  azurerm_virtual_network_peering = []
+  spoke_virtual_network_resource_ids_for_peering = {}
+  azurerm_virtual_network_peering                = []
 }
 
 # Archetype configuration overrides
@@ -589,6 +812,7 @@ locals {
           key => value
           if local.deploy_resource_groups[resource.scope][resource.location] &&
           key != "resource_id" &&
+          key != "managed_by_module" &&
           key != "scope"
         }
         managed_by_module = local.deploy_resource_groups[resource.scope][resource.location]
@@ -603,7 +827,8 @@ locals {
           for key, value in resource :
           key => value
           if local.deploy_hub_network[resource.location] &&
-          key != "resource_id"
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = local.deploy_hub_network[resource.location]
       }
@@ -618,6 +843,7 @@ locals {
           key => value
           if local.deploy_hub_network[resource.location] &&
           key != "resource_id" &&
+          key != "managed_by_module" &&
           key != "location" &&
           key != "network_security_group_id" &&
           key != "route_table_id"
@@ -650,7 +876,8 @@ locals {
           for key, value in resource :
           key => value
           if resource.managed_by_module &&
-          key != "resource_id"
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = resource.managed_by_module
       }
@@ -680,9 +907,25 @@ locals {
           for key, value in resource :
           key => value
           if local.deploy_ddos_protection_plan &&
-          key != "resource_id"
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = local.deploy_ddos_protection_plan
+      }
+    ]
+    azurerm_private_dns_zone = [
+      for resource in local.azurerm_private_dns_zone :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
       }
     ]
     azurerm_dns_zone = [
@@ -694,7 +937,23 @@ locals {
           for key, value in resource :
           key => value
           if resource.managed_by_module &&
-          key != "resource_id"
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_private_dns_zone_virtual_network_link = [
+      for resource in local.azurerm_private_dns_zone_virtual_network_link :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = resource.managed_by_module
       }
@@ -719,41 +978,53 @@ locals {
 
 locals {
   debug_output = {
-    deploy_resource_groups                      = local.deploy_resource_groups
-    deploy_hub_network                          = local.deploy_hub_network
-    deploy_virtual_network_gateway              = local.deploy_virtual_network_gateway
-    deploy_virtual_network_gateway_expressroute = local.deploy_virtual_network_gateway_expressroute
-    deploy_virtual_network_gateway_vpn          = local.deploy_virtual_network_gateway_vpn
-    deploy_azure_firewall                       = local.deploy_azure_firewall
-    resource_group_names_by_scope_and_location  = local.resource_group_names_by_scope_and_location
-    resource_group_config_by_scope_and_location = local.resource_group_config_by_scope_and_location
-    azurerm_resource_group                      = local.azurerm_resource_group
-    ddos_resource_group_id                      = local.ddos_resource_group_id
-    ddos_protection_plan_name                   = local.ddos_protection_plan_name
-    ddos_protection_plan_resource_id            = local.ddos_protection_plan_resource_id
-    azurerm_network_ddos_protection_plan        = local.azurerm_network_ddos_protection_plan
-    hub_network_locations                       = local.hub_network_locations
-    ddos_location                               = local.ddos_location
-    dns_location                                = local.dns_location
-    virtual_network_resource_group_id           = local.virtual_network_resource_group_id
-    virtual_network_resource_id_prefix          = local.virtual_network_resource_id_prefix
-    virtual_network_resource_id                 = local.virtual_network_resource_id
-    azurerm_virtual_network                     = local.azurerm_virtual_network
-    subnets_by_virtual_network                  = local.subnets_by_virtual_network
-    azurerm_subnet                              = local.azurerm_subnet
-    er_gateway_name                             = local.er_gateway_name
-    er_gateway_resource_id_prefix               = local.er_gateway_resource_id_prefix
-    er_gateway_resource_id                      = local.er_gateway_resource_id
-    er_gateway_config                           = local.er_gateway_config
-    vpn_gateway_name                            = local.vpn_gateway_name
-    vpn_gateway_resource_id_prefix              = local.vpn_gateway_resource_id_prefix
-    vpn_gateway_resource_id                     = local.vpn_gateway_resource_id
-    vpn_gateway_config                          = local.vpn_gateway_config
-    azurerm_virtual_network_gateway             = local.azurerm_virtual_network_gateway
-    azfw_name                                   = local.azfw_name
-    azfw_resource_id_prefix                     = local.azfw_resource_id_prefix
-    azfw_resource_id                            = local.azfw_resource_id
-    azurerm_firewall                            = local.azurerm_firewall
-    azurerm_public_ip                           = local.azurerm_public_ip
+    deploy_resource_groups                        = local.deploy_resource_groups
+    deploy_hub_network                            = local.deploy_hub_network
+    deploy_virtual_network_gateway                = local.deploy_virtual_network_gateway
+    deploy_virtual_network_gateway_expressroute   = local.deploy_virtual_network_gateway_expressroute
+    deploy_virtual_network_gateway_vpn            = local.deploy_virtual_network_gateway_vpn
+    deploy_azure_firewall                         = local.deploy_azure_firewall
+    resource_group_names_by_scope_and_location    = local.resource_group_names_by_scope_and_location
+    resource_group_config_by_scope_and_location   = local.resource_group_config_by_scope_and_location
+    azurerm_resource_group                        = local.azurerm_resource_group
+    ddos_resource_group_id                        = local.ddos_resource_group_id
+    ddos_protection_plan_name                     = local.ddos_protection_plan_name
+    ddos_protection_plan_resource_id              = local.ddos_protection_plan_resource_id
+    azurerm_network_ddos_protection_plan          = local.azurerm_network_ddos_protection_plan
+    hub_network_locations                         = local.hub_network_locations
+    ddos_location                                 = local.ddos_location
+    dns_location                                  = local.dns_location
+    virtual_network_resource_group_id             = local.virtual_network_resource_group_id
+    virtual_network_resource_id_prefix            = local.virtual_network_resource_id_prefix
+    virtual_network_resource_id                   = local.virtual_network_resource_id
+    azurerm_virtual_network                       = local.azurerm_virtual_network
+    subnets_by_virtual_network                    = local.subnets_by_virtual_network
+    azurerm_subnet                                = local.azurerm_subnet
+    er_gateway_name                               = local.er_gateway_name
+    er_gateway_resource_id_prefix                 = local.er_gateway_resource_id_prefix
+    er_gateway_resource_id                        = local.er_gateway_resource_id
+    er_gateway_config                             = local.er_gateway_config
+    vpn_gateway_name                              = local.vpn_gateway_name
+    vpn_gateway_resource_id_prefix                = local.vpn_gateway_resource_id_prefix
+    vpn_gateway_resource_id                       = local.vpn_gateway_resource_id
+    vpn_gateway_config                            = local.vpn_gateway_config
+    azurerm_virtual_network_gateway               = local.azurerm_virtual_network_gateway
+    azfw_name                                     = local.azfw_name
+    azfw_resource_id_prefix                       = local.azfw_resource_id_prefix
+    azfw_resource_id                              = local.azfw_resource_id
+    azurerm_firewall                              = local.azurerm_firewall
+    azurerm_public_ip                             = local.azurerm_public_ip
+    enable_private_link_by_service                = local.enable_private_link_by_service
+    private_link_locations                        = local.private_link_locations
+    lookup_private_link_dns_zone_by_service       = local.lookup_private_link_dns_zone_by_service
+    lookup_private_link_group_id_by_service       = local.lookup_private_link_group_id_by_service
+    services_by_private_link_dns_zone             = local.services_by_private_link_dns_zone
+    private_dns_zone_enabled                      = local.private_dns_zone_enabled
+    azurerm_private_dns_zone                      = local.azurerm_private_dns_zone
+    azurerm_dns_zone                              = local.azurerm_dns_zone
+    hub_virtual_networks_for_dns                  = local.hub_virtual_networks_for_dns
+    spoke_virtual_networks_for_dns                = local.spoke_virtual_networks_for_dns
+    virtual_networks_for_dns                      = local.virtual_networks_for_dns
+    azurerm_private_dns_zone_virtual_network_link = local.azurerm_private_dns_zone_virtual_network_link
   }
 }

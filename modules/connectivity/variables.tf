@@ -63,15 +63,15 @@ variable "settings" {
           virtual_network_gateway = object({
             enabled = bool
             config = object({
-              address_prefix           = string # Only support adding a single address prefix for GatewaySubnet subnet
-              gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
-              gateway_sku_vpn          = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+              address_prefix           = string
+              gateway_sku_expressroute = string
+              gateway_sku_vpn          = string
             })
           })
           azure_firewall = object({
             enabled = bool
             config = object({
-              address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+              address_prefix   = string
               enable_dns_proxy = bool
               availability_zones = object({
                 zone_1 = bool
@@ -80,6 +80,8 @@ variable "settings" {
               })
             })
           })
+          spoke_virtual_network_resource_ids      = list(string)
+          enable_outbound_virtual_network_peering = bool
         })
       })
     )
@@ -93,13 +95,58 @@ variable "settings" {
     dns = object({
       enabled = bool
       config = object({
-        location          = string
-        public_dns_zones  = list(string)
-        private_dns_zones = list(string)
+        location = string
+        enable_private_link_by_service = object({
+          azure_automation_webhook             = bool
+          azure_automation_dscandhybridworker  = bool
+          azure_sql_database_sqlserver         = bool
+          azure_synapse_analytics_sqlserver    = bool
+          azure_synapse_analytics_sql          = bool
+          storage_account_blob                 = bool
+          storage_account_table                = bool
+          storage_account_queue                = bool
+          storage_account_file                 = bool
+          storage_account_web                  = bool
+          azure_data_lake_file_system_gen2     = bool
+          azure_cosmos_db_sql                  = bool
+          azure_cosmos_db_mongodb              = bool
+          azure_cosmos_db_cassandra            = bool
+          azure_cosmos_db_gremlin              = bool
+          azure_cosmos_db_table                = bool
+          azure_database_for_postgresql_server = bool
+          azure_database_for_mysql_server      = bool
+          azure_database_for_mariadb_server    = bool
+          azure_key_vault                      = bool
+          azure_kubernetes_service_management  = bool
+          azure_search_service                 = bool
+          azure_container_registry             = bool
+          azure_app_configuration_stores       = bool
+          azure_backup                         = bool
+          azure_site_recovery                  = bool
+          azure_event_hubs_namespace           = bool
+          azure_service_bus_namespace          = bool
+          azure_iot_hub                        = bool
+          azure_relay_namespace                = bool
+          azure_event_grid_topic               = bool
+          azure_event_grid_domain              = bool
+          azure_web_apps_sites                 = bool
+          azure_machine_learning_workspace     = bool
+          signalr                              = bool
+          azure_monitor                        = bool
+          cognitive_services_account           = bool
+          azure_file_sync                      = bool
+          azure_data_factory                   = bool
+          azure_data_factory_portal            = bool
+          azure_cache_for_redis                = bool
+        })
+        private_link_locations                                 = list(string)
+        public_dns_zones                                       = list(string)
+        private_dns_zones                                      = list(string)
+        enable_private_dns_zone_virtual_network_link_on_hubs   = bool
+        enable_private_dns_zone_virtual_network_link_on_spokes = bool
       })
     })
   })
-  description = "Configuration settings for the \"Connectivity\" landing zone resources."
 }
 
 variable "resource_prefix" {
