@@ -47,11 +47,11 @@ variable "settings" {
       object({
         enabled = bool
         config = object({
-          address_space                   = list(string)
-          location                        = string
-          enable_ddos_protection_standard = bool
-          dns_servers                     = list(string)
-          bgp_community                   = string
+          address_space                = list(string)
+          location                     = string
+          link_to_ddos_protection_plan = bool
+          dns_servers                  = list(string)
+          bgp_community                = string
           subnets = list(
             object({
               name                      = string

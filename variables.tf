@@ -189,11 +189,11 @@ variable "configure_connectivity_resources" {
         object({
           enabled = bool
           config = object({
-            address_space                   = list(string)
-            location                        = string
-            enable_ddos_protection_standard = bool
-            dns_servers                     = list(string)
-            bgp_community                   = string
+            address_space                = list(string)
+            location                     = string
+            link_to_ddos_protection_plan = bool
+            dns_servers                  = list(string)
+            bgp_community                = string
             subnets = list(
               object({
                 name                      = string
@@ -300,12 +300,12 @@ variable "configure_connectivity_resources" {
         {
           enabled = true
           config = {
-            address_space                   = ["10.100.0.0/16", ]
-            location                        = ""
-            enable_ddos_protection_standard = false
-            dns_servers                     = []
-            bgp_community                   = ""
-            subnets                         = []
+            address_space                = ["10.100.0.0/16", ]
+            location                     = ""
+            link_to_ddos_protection_plan = false
+            dns_servers                  = []
+            bgp_community                = ""
+            subnets                      = []
             virtual_network_gateway = {
               enabled = false
               config = {

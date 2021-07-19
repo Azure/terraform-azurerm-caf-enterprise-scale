@@ -207,7 +207,7 @@ locals {
       bgp_community       = hub_config.config.bgp_community != local.empty_string ? hub_config.config.bgp_community : null
       dns_servers         = hub_config.config.dns_servers
       tags                = try(local.custom.azurerm_virtual_network["connectivity"][location].tags, local.tags)
-      ddos_protection_plan = hub_config.config.enable_ddos_protection_standard ? [
+      ddos_protection_plan = hub_config.config.link_to_ddos_protection_plan ? [
         {
           id     = local.ddos_protection_plan_resource_id
           enable = true
