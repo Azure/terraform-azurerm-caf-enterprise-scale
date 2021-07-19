@@ -1,4 +1,3 @@
-
 ## Overview
 
 [**deploy_management_resources**](#overview) `map(list(string))` (optional)
@@ -7,7 +6,7 @@ If specified, will be used to deploy log analytics, sentinel, and an automation 
 
 ## Default value
 
-`{}`
+`{enabled = "false"}`
 
 ## Validation
 
@@ -24,17 +23,59 @@ A full list of default Management Groups:
 ```hcl
     data "azurerm_client_config" current {}
 
-    module "enterprise_scale" {
-      source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.1"
-
-    root_parent_id = data.azurerm_client_config.current.tenant_id
-    root_id = "contoso" 
-    root_name = "Contoso"
-    deploy_management_resources = "true" 
-    subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
-    
+    variable "deploy_management_resources" {
+    type        = bool
+    description = "If set to true, will deploy the \"Management\" landing zone resources into the current Subscription context."
+    default     = false
     }
+
+    variable "configure_management_resources" {
+  type = object({
+    settings = object({
+      log_analytics = object({
+        enabled = bool
+        config = object({
+          retention_in_days                           = number
+          enable_monitoring_for_arc                   = bool
+          enable_monitoring_for_vm                    = bool
+          enable_monitoring_for_vmss                  = bool
+          enable_solution_for_agent_health_assessment = bool
+          enable_solution_for_anti_malware            = bool
+          enable_solution_for_azure_activity          = bool
+          enable_solution_for_change_tracking         = bool
+          enable_solution_for_service_map             = bool
+          enable_solution_for_sql_assessment          = bool
+          enable_solution_for_updates                 = bool
+          enable_solution_for_vm_insights             = bool
+          enable_sentinel                             = bool
+        })
+      })
+      security_center = object({
+        enabled = bool
+        config = object({
+          email_security_contact             = string
+          enable_defender_for_acr            = bool
+          enable_defender_for_app_services   = bool
+          enable_defender_for_arm            = bool
+          enable_defender_for_dns            = bool
+          enable_defender_for_key_vault      = bool
+          enable_defender_for_kubernetes     = bool
+          enable_defender_for_servers        = bool
+          enable_defender_for_sql_servers    = bool
+          enable_defender_for_sql_server_vms = bool
+          enable_defender_for_storage        = bool
+        })
+      })
+    })
+    location = any
+    tags     = any
+    advanced = any
+  })
+ 
+  }
+}
+    
+  
 ```
 
 > NOTE: You do not need to replace `root` with the actual root ID, or prefix the other Management Group IDs. The module will do this for you.
@@ -43,5 +84,3 @@ A full list of default Management Groups:
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 [this_page]: # "Link for the current page."
-=======
-
