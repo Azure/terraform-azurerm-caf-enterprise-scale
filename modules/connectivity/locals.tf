@@ -743,7 +743,7 @@ locals {
     for hub_config in local.azurerm_virtual_network :
     {
       resource_id       = hub_config.resource_id
-      link_name         = "${split("/", hub_config.resource_id)[2]}-${uuidv5("url", hub_config.resource_id)}"
+      name              = "${split("/", hub_config.resource_id)[2]}-${uuidv5("url", hub_config.resource_id)}"
       managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
     }
   ]
@@ -754,8 +754,8 @@ locals {
         for spoke_resource_id in hub_config.config.spoke_virtual_network_resource_ids :
         {
           resource_id       = spoke_resource_id
-          link_name         = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
-          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
+          name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
         }
       ]
     ]
@@ -771,16 +771,16 @@ locals {
         for link_config in local.virtual_networks_for_dns :
         {
           # Resource logic attributes
-          resource_id       = "${zone.resource_id}/virtualNetworkLinks/${link_config.link_name}"
+          resource_id       = "${zone.resource_id}/virtualNetworkLinks/${link_config.name}"
           managed_by_module = link_config.managed_by_module
           # Resource definition attributes
-          name                  = link_config.link_name
+          name                  = link_config.name
           resource_group_name   = zone.resource_group_name
           private_dns_zone_name = zone.name
           virtual_network_id    = link_config.resource_id
           # Optional definition attributes
-          registration_enabled = try(local.custom.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.link_name]["global"].registration_enabled, false)
-          tags                 = try(local.custom.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.link_name]["global"].tags, local.tags)
+          registration_enabled = try(local.custom.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.name]["global"].registration_enabled, false)
+          tags                 = try(local.custom.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.name]["global"].tags, local.tags)
         }
       ]
     ]
@@ -790,8 +790,29 @@ locals {
 # Configuration settings for resource type:
 #  - azurerm_virtual_network_peering
 locals {
-  spoke_virtual_network_resource_ids_for_peering = {}
-  azurerm_virtual_network_peering                = []
+  azurerm_virtual_network_peering = flatten(
+    [
+      for location, hub_config in local.hub_networks_by_location :
+      [
+        for spoke_resource_id in hub_config.config.spoke_virtual_network_resource_ids :
+        {
+          # Resource logic attributes
+          resource_id       = "${local.virtual_network_resource_id[location]}/virtualNetworkPeerings/peering-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_outbound_virtual_network_peering[location]
+          # Resource definition attributes
+          name                      = "peering-${uuidv5("url", spoke_resource_id)}"
+          resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          virtual_network_name      = local.virtual_network_name[location]
+          remote_virtual_network_id = spoke_resource_id
+          # Optional definition attributes
+          allow_virtual_network_access = true
+          allow_forwarded_traffic      = true
+          allow_gateway_transit        = true
+          use_remote_gateways          = false
+        }
+      ]
+    ]
+  )
 }
 
 # Archetype configuration overrides

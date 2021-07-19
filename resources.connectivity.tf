@@ -405,3 +405,28 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
   ]
 
 }
+
+resource "azurerm_virtual_network_peering" "connectivity" {
+  for_each = local.azurerm_virtual_network_peering_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                      = each.value.template.name
+  resource_group_name       = each.value.template.resource_group_name
+  virtual_network_name      = each.value.template.virtual_network_name
+  remote_virtual_network_id = each.value.template.remote_virtual_network_id
+
+  # Optional resource attributes
+  allow_virtual_network_access = each.value.template.allow_virtual_network_access
+  allow_forwarded_traffic      = each.value.template.allow_forwarded_traffic
+  allow_gateway_transit        = each.value.template.allow_gateway_transit
+  use_remote_gateways          = each.value.template.use_remote_gateways
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_network.connectivity,
+  ]
+
+}
