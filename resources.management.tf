@@ -1,5 +1,18 @@
-resource "azurerm_log_analytics_workspace" "enterprise_scale" {
-  for_each = local.azurerm_log_analytics_workspace_enterprise_scale
+resource "azurerm_resource_group" "management" {
+  for_each = local.azurerm_resource_group_management
+
+  provider = azurerm.management
+
+  # Mandatory resource attributes
+  name     = each.value.template.name
+  location = each.value.template.location
+  tags     = each.value.template.tags
+}
+
+resource "azurerm_log_analytics_workspace" "management" {
+  for_each = local.azurerm_log_analytics_workspace_management
+
+  provider = azurerm.management
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -22,13 +35,15 @@ resource "azurerm_log_analytics_workspace" "enterprise_scale" {
 
   # Set explicit dependency on Resource Group deployment
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
+    azurerm_resource_group.management,
   ]
 
 }
 
-resource "azurerm_log_analytics_solution" "enterprise_scale" {
-  for_each = local.azurerm_log_analytics_solution_enterprise_scale
+resource "azurerm_log_analytics_solution" "management" {
+  for_each = local.azurerm_log_analytics_solution_management
+
+  provider = azurerm.management
 
   # Mandatory resource attributes
   solution_name         = each.value.template.solution_name
@@ -45,16 +60,22 @@ resource "azurerm_log_analytics_solution" "enterprise_scale" {
   # Optional resource attributes
   tags = each.value.template.tags
 
-  # Set explicit dependency on Resource Group and Log Analytics workspace deployments
+  # Set explicit dependency on Resource Group, Log Analytics
+  # workspace and Automation Account to fix issue #109.
+  # Ideally we would limit to specific solutions, but the
+  # depends_on block only supports static values.
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
-    azurerm_log_analytics_workspace.enterprise_scale,
+    azurerm_resource_group.management,
+    azurerm_log_analytics_workspace.management,
+    azurerm_automation_account.management,
   ]
 
 }
 
-resource "azurerm_automation_account" "enterprise_scale" {
-  for_each = local.azurerm_automation_account_enterprise_scale
+resource "azurerm_automation_account" "management" {
+  for_each = local.azurerm_automation_account_management
+
+  provider = azurerm.management
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -67,13 +88,15 @@ resource "azurerm_automation_account" "enterprise_scale" {
 
   # Set explicit dependency on Resource Group deployment
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
+    azurerm_resource_group.management,
   ]
 
 }
 
-resource "azurerm_log_analytics_linked_service" "enterprise_scale" {
-  for_each = local.azurerm_log_analytics_linked_service_enterprise_scale
+resource "azurerm_log_analytics_linked_service" "management" {
+  for_each = local.azurerm_log_analytics_linked_service_management
+
+  provider = azurerm.management
 
   # Mandatory resource attributes
   resource_group_name = each.value.template.resource_group_name
@@ -82,13 +105,12 @@ resource "azurerm_log_analytics_linked_service" "enterprise_scale" {
   # Optional resource attributes
   read_access_id  = each.value.template.read_access_id
   write_access_id = each.value.template.write_access_id
-  tags            = each.value.template.tags
 
   # Set explicit dependency on Resource Group, Log Analytics workspace and Automation Account deployments
   depends_on = [
-    azurerm_resource_group.enterprise_scale,
-    azurerm_log_analytics_workspace.enterprise_scale,
-    azurerm_automation_account.enterprise_scale,
+    azurerm_resource_group.management,
+    azurerm_log_analytics_workspace.management,
+    azurerm_automation_account.management,
   ]
 
 }

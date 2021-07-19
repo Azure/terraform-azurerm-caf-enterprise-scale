@@ -13,7 +13,7 @@
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/9d2b61b4-1d14-4a63-be30-d4498e7ad2cf",
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": "Default"
+    "enforcementMode": null
   },
   "location": "${default_location}",
   "identity": {

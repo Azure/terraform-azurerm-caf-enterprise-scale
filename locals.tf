@@ -9,26 +9,28 @@ locals {
 # The following locals are used to convert provided input
 # variables to locals before use elsewhere in the module
 locals {
-  root_id                        = var.root_id
-  root_name                      = var.root_name
-  root_parent_id                 = var.root_parent_id
-  deploy_core_landing_zones      = var.deploy_core_landing_zones
-  deploy_demo_landing_zones      = var.deploy_demo_landing_zones
-  deploy_management_resources    = var.deploy_management_resources
-  deploy_identity_resources      = var.deploy_identity_resources
-  configure_management_resources = var.configure_management_resources
-  configure_identity_resources   = var.configure_identity_resources
-  archetype_config_overrides     = var.archetype_config_overrides
-  subscription_id_overrides      = var.subscription_id_overrides
-  subscription_id_connectivity   = var.subscription_id_connectivity
-  subscription_id_identity       = var.subscription_id_identity
-  subscription_id_management     = var.subscription_id_management
-  custom_landing_zones           = var.custom_landing_zones
-  custom_policy_roles            = var.custom_policy_roles
-  library_path                   = var.library_path
-  template_file_variables        = var.template_file_variables
-  default_location               = var.default_location
-  default_tags                   = var.default_tags
+  root_id                          = var.root_id
+  root_name                        = var.root_name
+  root_parent_id                   = var.root_parent_id
+  deploy_core_landing_zones        = var.deploy_core_landing_zones
+  deploy_demo_landing_zones        = var.deploy_demo_landing_zones
+  deploy_management_resources      = var.deploy_management_resources
+  deploy_identity_resources        = var.deploy_identity_resources
+  deploy_connectivity_resources    = var.deploy_connectivity_resources
+  configure_management_resources   = var.configure_management_resources
+  configure_identity_resources     = var.configure_identity_resources
+  configure_connectivity_resources = var.configure_connectivity_resources
+  archetype_config_overrides       = var.archetype_config_overrides
+  subscription_id_overrides        = var.subscription_id_overrides
+  subscription_id_connectivity     = var.subscription_id_connectivity
+  subscription_id_identity         = var.subscription_id_identity
+  subscription_id_management       = var.subscription_id_management
+  custom_landing_zones             = var.custom_landing_zones
+  custom_policy_roles              = var.custom_policy_roles
+  library_path                     = var.library_path
+  template_file_variables          = var.template_file_variables
+  default_location                 = var.default_location
+  default_tags                     = var.default_tags
 }
 
 # The following locals are used to define base Azure

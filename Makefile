@@ -8,6 +8,10 @@ azp-strategy:
 	@echo "==> Running script..."
 	./tests/scripts/azp-strategy.ps1
 
+azp-spn-generator:
+	@echo "==> Running script..."
+	./tests/scripts/azp-spn-generator.sh
+
 # Terraform
 
 tf-install:
@@ -37,3 +41,13 @@ tf-apply:
 tf-destroy:
 	@echo "==> Running script..."
 	./tests/scripts/tf-destroy.sh
+
+# OPA Conftest
+
+opa-install:
+	@echo "==> Running script..."
+	./tests/scripts/opa-install.sh
+
+opa-run-tests:
+	@echo "==> Running script..."
+	./tests/scripts/opa-run-tests.sh
