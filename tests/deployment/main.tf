@@ -1,20 +1,42 @@
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "management" {
+  provider = azurerm.management
+}
+
+data "azurerm_client_config" "connectivity" {
+  provider = azurerm.connectivity
+}
 
 module "test_root_id_1" {
   source = "../../"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = var.root_id_1
-  root_name      = "${var.root_name}-1"
+  providers = {
+    azurerm              = azurerm.management
+    azurerm.management   = azurerm.management
+    azurerm.connectivity = azurerm.connectivity
+  }
+
+  root_parent_id   = data.azurerm_client_config.management.tenant_id
+  root_id          = var.root_id_1
+  root_name        = "${var.root_name}-1"
+  default_location = var.location
+  default_tags     = local.default_tags
 
 }
 
 module "test_root_id_2" {
   source = "../../"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = var.root_id_2
-  root_name      = "${var.root_name}-2"
+  providers = {
+    azurerm              = azurerm.management
+    azurerm.management   = azurerm.management
+    azurerm.connectivity = azurerm.connectivity
+  }
+
+  root_parent_id   = data.azurerm_client_config.management.tenant_id
+  root_id          = var.root_id_2
+  root_name        = "${var.root_name}-2"
+  default_location = var.location
+  default_tags     = local.default_tags
 
   deploy_demo_landing_zones = true
 
@@ -23,201 +45,52 @@ module "test_root_id_2" {
 module "test_root_id_3" {
   source = "../../"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = var.root_id_3
-  root_name      = "${var.root_name}-3"
-  library_path   = "${path.root}/lib"
-
-  custom_landing_zones = {
-    "${var.root_id_3}-customer-corp" = {
-      display_name               = "Corp Custom"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id   = "default_empty"
-        parameters     = {}
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-sap" = {
-      display_name               = "SAP"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "customer_secure"
-        parameters = {
-          Deny-Resource-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-            ]
-          }
-          Deny-RSG-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-            ]
-          }
-          Deploy-HITRUST-HIPAA = {
-            CertificateThumbprints                                        = ""
-            DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"
-            DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id_3
-            installedApplicationsOnWindowsVM                              = ""
-            listOfLocations = [
-              "eastus",
-            ]
-          }
-        }
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-online" = {
-      display_name               = "Online"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {
-          Deny-Resource-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-              "uksouth",
-              "ukwest",
-            ]
-          }
-          Deny-RSG-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-              "uksouth",
-              "ukwest",
-            ]
-          }
-        }
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-web-prod" = {
-      display_name               = "Prod Web Applications"
-      parent_management_group_id = "${var.root_id_3}-customer-online"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id   = "default_empty"
-        parameters     = {}
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-web-test" = {
-      display_name               = "Test Web Applications"
-      parent_management_group_id = "${var.root_id_3}-customer-online"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {
-          Deny-Resource-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-            ]
-          }
-          Deny-RSG-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-            ]
-          }
-        }
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-web-dev" = {
-      display_name               = "Dev Web Applications"
-      parent_management_group_id = "${var.root_id_3}-customer-online"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {
-          Deny-Resource-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-            ]
-          }
-          Deny-RSG-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-            ]
-          }
-        }
-        access_control = {}
-      }
-    }
-
+  providers = {
+    azurerm              = azurerm.management
+    azurerm.management   = azurerm.management
+    azurerm.connectivity = azurerm.connectivity
   }
 
-  archetype_config_overrides = {
-    root = {
-      archetype_id = "es_root"
-      parameters = {
-        Deny-Resource-Locations = {
-          listOfAllowedLocations = [
-            "eastus",
-            "eastus2",
-            "westus",
-            "northcentralus",
-            "southcentralus",
-            "uksouth",
-            "ukwest",
-          ]
-        }
-        Deny-RSG-Locations = {
-          listOfAllowedLocations = [
-            "eastus",
-            "eastus2",
-            "westus",
-            "northcentralus",
-            "southcentralus",
-            "uksouth",
-            "ukwest",
-          ]
-        }
-        Deploy-HITRUST-HIPAA = {
-          CertificateThumbprints                                        = ""
-          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"
-          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id_3
-          installedApplicationsOnWindowsVM                              = ""
-          listOfLocations = [
-            "eastus",
-          ]
-        }
-      }
-      access_control = {}
-    }
-  }
+  # Base module configuration settings
+  root_parent_id   = data.azurerm_client_config.management.tenant_id
+  root_id          = var.root_id_3
+  root_name        = "${var.root_name}-3"
+  library_path     = "${path.root}/lib"
+  default_location = var.location
+  default_tags     = local.default_tags
 
-  subscription_id_overrides = {
-    root           = []
-    decommissioned = []
-    sandboxes      = []
-    landing-zones  = []
-    platform       = []
-    connectivity   = []
-    management     = []
-    identity       = []
-    demo-corp      = []
-    demo-online    = []
-    demo-sap       = []
-  }
+  # Configuration settings for core resources
+  custom_landing_zones       = local.custom_landing_zones
+  archetype_config_overrides = local.archetype_config_overrides
+  subscription_id_overrides  = local.subscription_id_overrides
+
+  # Configuration settings for management resources
+  deploy_management_resources    = true
+  configure_management_resources = local.configure_management_resources
+  subscription_id_management     = data.azurerm_client_config.management.subscription_id
+
+  # Configuration settings for connectivity resources.
+  deploy_connectivity_resources    = true
+  configure_connectivity_resources = local.configure_connectivity_resources
+  subscription_id_connectivity     = data.azurerm_client_config.connectivity.subscription_id
 
 }
 
 module "test_root_id_3_lz1" {
   source = "../../"
 
+  providers = {
+    azurerm              = azurerm.management
+    azurerm.management   = azurerm.management
+    azurerm.connectivity = azurerm.connectivity
+  }
+
   root_parent_id            = "${var.root_id_3}-landing-zones"
   root_id                   = var.root_id_3
   deploy_core_landing_zones = false
   library_path              = "${path.root}/lib"
+  default_location          = var.location
+  default_tags              = local.default_tags
 
   custom_landing_zones = {
     "${var.root_id_3}-scoped-lz1" = {

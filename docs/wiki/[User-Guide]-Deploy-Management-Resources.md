@@ -1,3 +1,4 @@
+
 # Deploying Management Resources
 
 This document aims to provide prescriptive guidance on how to leverage the provided management module to assist in deploying a management subscription geared towards production workloads, incorporating key resources for central management of the platform - a core design design principle for Enterprise-Scale landing zones.
@@ -23,4 +24,13 @@ If `deploy_core_landing_zone` is set to false, the code will not deploy any ente
 
 Support for additional customizations to the management groups hierarchies supported by this repo will be covered in later revisions.
 
-For single provider deployments, the module is enabled by setting the `deployment_management_resources` variable to true as found in this example: [deploy_management_resources]: ./%5BVariables%5D-deploy_management_resources
+Please go to the new [Management Resources][wiki_management_resources] page for more information, or [Deploy Management Resources][wiki_deploy_management_resources] for examples.
+
+
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"
+
+[wiki_management_resources]:        ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_deploy_management_resources]: ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+

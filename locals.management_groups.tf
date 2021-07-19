@@ -147,20 +147,29 @@ locals {
     "${local.root_id}-connectivity" = {
       display_name               = "Connectivity"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-connectivity"]
-      archetype_config           = local.es_archetype_config_map["${local.root_id}-connectivity"]
+      subscription_ids = distinct(compact(concat(
+        [local.subscription_id_connectivity],
+        local.es_subscription_ids_map["${local.root_id}-connectivity"],
+      )))
+      archetype_config = local.es_archetype_config_map["${local.root_id}-connectivity"]
     }
     "${local.root_id}-management" = {
       display_name               = "Management"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-management"]
-      archetype_config           = local.es_archetype_config_map["${local.root_id}-management"]
+      subscription_ids = distinct(compact(concat(
+        [local.subscription_id_management],
+        local.es_subscription_ids_map["${local.root_id}-management"],
+      )))
+      archetype_config = local.es_archetype_config_map["${local.root_id}-management"]
     }
     "${local.root_id}-identity" = {
       display_name               = "Identity"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-identity"]
-      archetype_config           = local.es_archetype_config_map["${local.root_id}-identity"]
+      subscription_ids = distinct(compact(concat(
+        [local.subscription_id_identity],
+        local.es_subscription_ids_map["${local.root_id}-identity"],
+      )))
+      archetype_config = local.es_archetype_config_map["${local.root_id}-identity"]
     }
   }
   # Optional demo "Landing Zone" Enterprise-scale Management Groups
@@ -210,9 +219,8 @@ locals {
         archetype_id   = value.archetype_config.archetype_id
         access_control = value.archetype_config.access_control
         parameters = merge(
-          value.archetype_config.parameters,
-          try(module.identity_resources.configuration.archetype_config_overrides[key].parameters, null),
           try(module.management_resources.configuration.archetype_config_overrides[key].parameters, null),
+          value.archetype_config.parameters,
         )
       }
     }
