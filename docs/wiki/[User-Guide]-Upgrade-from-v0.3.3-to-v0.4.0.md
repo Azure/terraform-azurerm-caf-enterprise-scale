@@ -8,7 +8,8 @@ This update provides a number of new features, helps keep this module up to date
 
 Anyone using this module should be aware of the following when planning to upgrade from release 0.3.3 to 0.4.0:
 
-1. A select number of policies and roles provided as part of this module will be redeployed. Please carefully review the output of `terraform plan` to ensure there are no issues with any custom configuration within your root module.
+1. A select number of policies and roles provided as part of this module will be redeployed.
+Please carefully review the output of `terraform plan` to ensure there are no issues with any custom configuration within your root module.
 
 1. The following library template types will need checking for references to policies as listed in the [resource changes](#resource-changes) section below:
     1. Archetype Definitions
@@ -17,9 +18,12 @@ Anyone using this module should be aware of the following when planning to upgra
 
 1. All Policy Assignments (and associated Role Assignments where a Managed Identity is required for policies with DeployIfNotExists or Modify effects) will be recreated to support moving these from the [`azurerm_policy_assignment` (deprecated)][azurerm_policy_assignment] to [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] resource types.
 
-1. Adds provider configuration within the module, allowing creation of resources across multiple Subscriptions. This impacts existing [Management and monitoring][ESLZ-Management] resources. To avoid the need to re-create these resources, please review the [management resources](#management-resources) section below. Please also review the [provider configuration][wiki_provider_configuration] page for more detail on how you should configure this in your module declaration.
+1. Adds provider configuration within the module, allowing creation of resources across multiple Subscriptions. This impacts existing [Management and monitoring][ESLZ-Management] resources.
+To avoid the need to re-create these resources, please review the [management resources](#management-resources) section below.
+Please also review the [provider configuration][wiki_provider_configuration] page for more detail on how you should configure this in your module declaration.
 
-1. Adds new functionality to enable deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the connectivity Subscription context. Currently based on the hub & spoke deployment model.
+1. Adds new functionality to enable deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the connectivity Subscription context.
+Currently based on the hub & spoke deployment model.
 
 1. Adds new functionality to manage Policy Assignments as part of delivering the [Identity and access management][ESLZ-Identity]
 
@@ -28,21 +32,21 @@ Anyone using this module should be aware of the following when planning to upgra
 The following changes have been made within the module which may cause issues when using custom archetype definitions:
 
 - The following Policy Definitions have been added to the `es_root` archetype definition:
-    - `Audit-MachineLearning-PrivateEndpointId`
-    - `Deny-MachineLearning-Aks`
-    - `Deny-MachineLearning-Compute-SubnetId`
-    - `Deny-MachineLearning-Compute-VmSize`
-    - `Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess`
-    - `Deny-MachineLearning-ComputeCluster-Scale`
-    - `Deny-MachineLearning-HbiWorkspace`
-    - `Deny-MachineLearning-PublicAccessWhenBehindVnet`
-    - `Deploy-Default-Udr`
+  - `Audit-MachineLearning-PrivateEndpointId`
+  - `Deny-MachineLearning-Aks`
+  - `Deny-MachineLearning-Compute-SubnetId`
+  - `Deny-MachineLearning-Compute-VmSize`
+  - `Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess`
+  - `Deny-MachineLearning-ComputeCluster-Scale`
+  - `Deny-MachineLearning-HbiWorkspace`
+  - `Deny-MachineLearning-PublicAccessWhenBehindVnet`
+  - `Deploy-Default-Udr`
 
 - The following Policy Assignments have been added to the `es_identity` archetype definition:
-    - `Deny-Public-IP`
-    - `Deny-RDP-From-Internet`
-    - `Deny-Subnet-Without-Nsg`
-    - `Deploy-VM-Backup`
+  - `Deny-Public-IP`
+  - `Deny-RDP-From-Internet`
+  - `Deny-Subnet-Without-Nsg`
+  - `Deploy-VM-Backup`
 
 > NOTE: All references to resource names are **_Case Sensitive_**. Failure to use the correct case will result in an `Invalid index` error when running `terraform plan`, such as the following example:
 

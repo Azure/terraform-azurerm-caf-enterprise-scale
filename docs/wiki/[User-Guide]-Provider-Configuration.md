@@ -39,7 +39,7 @@ The following section covers typical configuration scenarios.
 
 ## Provider configuration examples
 
-#### Single Subscription deployment
+### Single Subscription deployment
 
 The following example shows how you can map a single (default) provider from the root module using the providers object:
 
