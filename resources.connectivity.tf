@@ -17,7 +17,6 @@ resource "azurerm_resource_group" "connectivity" {
   tags     = each.value.template.tags
 }
 
-
 resource "azurerm_virtual_network" "connectivity" {
   for_each = local.azurerm_virtual_network_connectivity
 
@@ -308,6 +307,126 @@ resource "azurerm_firewall" "connectivity" {
     azurerm_subnet.connectivity,
     azurerm_public_ip.connectivity,
     azurerm_network_ddos_protection_plan.connectivity,
+  ]
+
+}
+
+resource "azurerm_private_dns_zone" "connectivity" {
+  for_each = local.azurerm_private_dns_zone_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+
+  # Optional resource attributes
+  tags = each.value.template.tags
+
+  # Dynamic configuration blocks
+  dynamic "soa_record" {
+    for_each = each.value.template.soa_record
+    content {
+      # Mandatory attributes
+      email = soa_record.value["email"]
+      # Optional attributes
+      expire_time  = try(soa_record.value["expire_time"], null)
+      minimum_ttl  = try(soa_record.value["minimum_ttl"], null)
+      refresh_time = try(soa_record.value["refresh_time"], null)
+      retry_time   = try(soa_record.value["retry_time"], null)
+      ttl          = try(soa_record.value["ttl"], null)
+      tags         = try(soa_record.value["tags"], each.value.template.tags)
+    }
+  }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+  ]
+
+}
+
+resource "azurerm_dns_zone" "connectivity" {
+  for_each = local.azurerm_dns_zone_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+
+  # Optional resource attributes
+  tags = each.value.template.tags
+
+  # Dynamic configuration blocks
+  dynamic "soa_record" {
+    for_each = each.value.template.soa_record
+    content {
+      # Mandatory attributes
+      email     = soa_record.value["email"]
+      host_name = soa_record.value["host_name"]
+      # Optional attributes
+      expire_time   = try(soa_record.value["expire_time"], null)
+      minimum_ttl   = try(soa_record.value["minimum_ttl"], null)
+      refresh_time  = try(soa_record.value["refresh_time"], null)
+      retry_time    = try(soa_record.value["retry_time"], null)
+      serial_number = try(soa_record.value["serial_number"], null)
+      ttl           = try(soa_record.value["ttl"], null)
+      tags          = try(soa_record.value["tags"], each.value.template.tags)
+    }
+  }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+  ]
+
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
+  for_each = local.azurerm_private_dns_zone_virtual_network_link_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                  = each.value.template.name
+  resource_group_name   = each.value.template.resource_group_name
+  private_dns_zone_name = each.value.template.private_dns_zone_name
+  virtual_network_id    = each.value.template.virtual_network_id
+
+  # Optional resource attributes
+  registration_enabled = each.value.template.registration_enabled
+  tags                 = each.value.template.tags
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_private_dns_zone.connectivity,
+  ]
+
+}
+
+resource "azurerm_virtual_network_peering" "connectivity" {
+  for_each = local.azurerm_virtual_network_peering_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                      = each.value.template.name
+  resource_group_name       = each.value.template.resource_group_name
+  virtual_network_name      = each.value.template.virtual_network_name
+  remote_virtual_network_id = each.value.template.remote_virtual_network_id
+
+  # Optional resource attributes
+  allow_virtual_network_access = each.value.template.allow_virtual_network_access
+  allow_forwarded_traffic      = each.value.template.allow_forwarded_traffic
+  allow_gateway_transit        = each.value.template.allow_gateway_transit
+  use_remote_gateways          = each.value.template.use_remote_gateways
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_network.connectivity,
   ]
 
 }

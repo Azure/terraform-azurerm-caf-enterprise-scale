@@ -12,7 +12,8 @@
 > - Resources have been renamed to support multiple providers within the module
 > - The [`azurerm_policy_assignment`][azurerm_policy_assignment] resource type has been replaced by the new [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] resource type
 >
-> These changes were necessary to support the latest features for Availability Zone configuration settings on the [`azurerm_public_ip`][azurerm_public_ip] resources, allow integration of multiple providers within the module to enable deploying resources to multiple Subscriptions, and to future proof against deprecation of the [`azurerm_policy_assignment`][azurerm_policy_assignment] resource. We believe this provides the best end-user experience going forward, so to make the transition as easy as possible, we have also provided documentation explaining how to [upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0].
+> These changes were necessary to support the latest features for Availability Zone configuration settings on the [`azurerm_public_ip`][azurerm_public_ip] resources, allow integration of multiple providers within the module to enable deploying resources to multiple Subscriptions, and to future proof against deprecation of the [`azurerm_policy_assignment`][azurerm_policy_assignment] resource.
+> We believe this provides the best end-user experience going forward, so to make the transition as easy as possible, we have also provided documentation explaining how to [upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0].
 > We strongly recommend to review this, along with the [release notes][release_notes_v0_4_0] and test your deployment before upgrading.
 >
 > The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`.
@@ -211,8 +212,8 @@ module "enterprise_scale" {
 
   providers = {
     azurerm              = azurerm
-    azurerm.management   = azurerm
     azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
   }
 
   root_parent_id = data.azurerm_client_config.core.tenant_id

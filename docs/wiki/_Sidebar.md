@@ -6,6 +6,7 @@
 - [User Guide][wiki_user_guide]
   - [Getting Started][wiki_getting_started]
   - [Module Variables][wiki_module_variables]
+  - [Provider Configuration][wiki_provider_configuration]
   - [Archetype Definitions][wiki_archetype_definitions]
   - [Core Resources][wiki_core_resources]
   - [Management Resources][wiki_management_resources]
@@ -40,6 +41,7 @@
 [wiki_user_guide]:                            ./User-Guide "Wiki - User Guide"
 [wiki_getting_started]:                       ./%5BUser-Guide%5D-Getting-Started "Wiki - Getting Started"
 [wiki_module_variables]:                      ./%5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
+[wiki_provider_configuration]:                ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
 [wiki_archetype_definitions]:                 ./%5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
 [wiki_core_resources]:                        ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
 [wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"

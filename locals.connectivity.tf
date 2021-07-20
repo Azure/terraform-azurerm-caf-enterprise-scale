@@ -110,17 +110,49 @@ locals {
   }
 }
 
-# The following locals are used to extract the DNS Zone
+# The following locals are used to extract the Private DNS Zone
+# configuration from the solution module outputs.
+locals {
+  es_connectivity_private_dns_zone = module.connectivity_resources.configuration.azurerm_private_dns_zone
+}
+
+# The following locals are used to build the map of Private DNS
+# Zones to deploy.
+locals {
+  azurerm_private_dns_zone_connectivity = {
+    for resource in local.es_connectivity_private_dns_zone :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
+# The following locals are used to extract the Public DNS Zone
 # configuration from the solution module outputs.
 locals {
   es_connectivity_dns_zone = module.connectivity_resources.configuration.azurerm_dns_zone
 }
 
-# The following locals are used to build the map of DNS
+# The following locals are used to build the map of Public DNS
 # Zones to deploy.
 locals {
   azurerm_dns_zone_connectivity = {
     for resource in local.es_connectivity_dns_zone :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
+# The following locals are used to extract the Private DNS Zone
+# Virtual Network Links configuration from the solution module outputs.
+locals {
+  es_connectivity_private_dns_zone_virtual_network_link = module.connectivity_resources.configuration.azurerm_private_dns_zone_virtual_network_link
+}
+
+# The following locals are used to build the map of Private DNS Zone
+# Virtual Network Links to deploy.
+locals {
+  azurerm_private_dns_zone_virtual_network_link_connectivity = {
+    for resource in local.es_connectivity_private_dns_zone_virtual_network_link :
     resource.resource_id => resource
     if resource.managed_by_module
   }

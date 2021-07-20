@@ -1,9 +1,9 @@
-data "azurerm_client_config" "management" {
-  provider = azurerm.management
-}
-
 data "azurerm_client_config" "connectivity" {
   provider = azurerm.connectivity
+}
+
+data "azurerm_client_config" "management" {
+  provider = azurerm.management
 }
 
 module "test_root_id_1" {
@@ -11,8 +11,8 @@ module "test_root_id_1" {
 
   providers = {
     azurerm              = azurerm.management
-    azurerm.management   = azurerm.management
     azurerm.connectivity = azurerm.connectivity
+    azurerm.management   = azurerm.management
   }
 
   root_parent_id   = data.azurerm_client_config.management.tenant_id
@@ -28,8 +28,8 @@ module "test_root_id_2" {
 
   providers = {
     azurerm              = azurerm.management
-    azurerm.management   = azurerm.management
     azurerm.connectivity = azurerm.connectivity
+    azurerm.management   = azurerm.management
   }
 
   root_parent_id   = data.azurerm_client_config.management.tenant_id
@@ -47,8 +47,8 @@ module "test_root_id_3" {
 
   providers = {
     azurerm              = azurerm.management
-    azurerm.management   = azurerm.management
     azurerm.connectivity = azurerm.connectivity
+    azurerm.management   = azurerm.management
   }
 
   # Base module configuration settings
@@ -81,8 +81,8 @@ module "test_root_id_3_lz1" {
 
   providers = {
     azurerm              = azurerm.management
-    azurerm.management   = azurerm.management
     azurerm.connectivity = azurerm.connectivity
+    azurerm.management   = azurerm.management
   }
 
   root_parent_id            = "${var.root_id_3}-landing-zones"

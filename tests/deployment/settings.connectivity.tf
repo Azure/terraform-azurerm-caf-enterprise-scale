@@ -6,12 +6,12 @@ locals {
         {
           enabled = true
           config = {
-            address_space                   = ["10.100.0.0/16", ]
-            location                        = var.location
-            enable_ddos_protection_standard = false
-            dns_servers                     = []
-            bgp_community                   = ""
-            subnets                         = []
+            address_space                = ["10.100.0.0/16", ]
+            location                     = var.location
+            link_to_ddos_protection_plan = false
+            dns_servers                  = []
+            bgp_community                = ""
+            subnets                      = []
             virtual_network_gateway = {
               enabled = true
               config = {
