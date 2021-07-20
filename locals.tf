@@ -49,7 +49,7 @@ locals {
 # The following locals are used to define RegEx
 # patterns used within this module
 locals {
-  regex_extract_provider_scope = "(?i)/(?=.*/providers/)[^/]+/[\\S]+(?=.*/providers/)"
+  regex_extract_provider_scope = "(?i)(?=.*/providers/).+(?=.*/providers/)"
 }
 
 # The following locals are used to identify known
