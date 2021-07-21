@@ -1,10 +1,13 @@
-# The following output is used to reconcile the multi-level
-# Management Group deployments into a single data object to
-# simplify consumption of configuration data from this group
-# of resources.
+# The following output is used to ensure all Management Group
+# data is returned to the root module.
 output "azurerm_management_group" {
   value = {
-    enterprise_scale = local.es_management_group_output
+    level_1 = azurerm_management_group.level_1
+    level_2 = azurerm_management_group.level_2
+    level_3 = azurerm_management_group.level_3
+    level_4 = azurerm_management_group.level_4
+    level_5 = azurerm_management_group.level_5
+    level_6 = azurerm_management_group.level_6
   }
   description = "Returns the configuration data for all Management Groups created by this module."
 }
@@ -160,4 +163,40 @@ output "azurerm_firewall" {
     connectivity = azurerm_firewall.connectivity
   }
   description = "Returns the configuration data for all Azure Firewalls created by this module."
+}
+
+# The following output is used to ensure all Private DNS Zone
+# data is returned to the root module.
+output "azurerm_private_dns_zone" {
+  value = {
+    connectivity = azurerm_private_dns_zone.connectivity
+  }
+  description = "Returns the configuration data for all Private DNS Zones created by this module."
+}
+
+# The following output is used to ensure all DNS Zone
+# data is returned to the root module.
+output "azurerm_dns_zone" {
+  value = {
+    connectivity = azurerm_dns_zone.connectivity
+  }
+  description = "Returns the configuration data for all DNS Zones created by this module."
+}
+
+# The following output is used to ensure all Private DNS Zone network link
+# data is returned to the root module.
+output "azurerm_private_dns_zone_virtual_network_link" {
+  value = {
+    connectivity = azurerm_private_dns_zone_virtual_network_link.connectivity
+  }
+  description = "Returns the configuration data for all Private DNS Zone network links created by this module."
+}
+
+# The following output is used to ensure all Virtual Network Peering
+# data is returned to the root module.
+output "azurerm_virtual_network_peering" {
+  value = {
+    connectivity = azurerm_virtual_network_peering.connectivity
+  }
+  description = "Returns the configuration data for all Virtual Network Peerings created by this module."
 }
