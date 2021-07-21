@@ -9,7 +9,6 @@ locals {
   es_role_assignments = concat(
     local.es_role_assignments_by_management_group,
     local.es_role_assignments_by_subscription,
-    local.es_role_assignments_by_policy_assignment,
   )
 }
 
@@ -18,6 +17,10 @@ locals {
 locals {
   azurerm_role_assignment_enterprise_scale = {
     for assignment in local.es_role_assignments :
+    assignment.resource_id => assignment
+  }
+  azurerm_role_assignment_policy_assignment = {
+    for assignment in local.es_role_assignments_by_policy_assignment :
     assignment.resource_id => assignment
   }
 }

@@ -13,11 +13,16 @@ locals {
 }
 
 # The following locals are used to build the map of Policy
-# Assignments to deploy.
+# Assignments to deploy and then split them by scope type.
 locals {
   azurerm_policy_assignment_enterprise_scale = {
     for assignment in local.es_policy_assignments :
     assignment.resource_id => assignment
+  }
+  azurerm_management_group_policy_assignment_enterprise_scale = {
+    for pak, pav in local.azurerm_policy_assignment_enterprise_scale :
+    pak => pav
+    if length(regexall(local.regex_scope_is_management_group, pav.scope_id)) > 0
   }
 }
 
@@ -81,7 +86,7 @@ locals {
     for policy_set_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_set_definition)) :
     policy_set_definition_id => {
       name                  = basename(policy_set_definition_id)
-      management_group_name = try(regex(local.regex_extract_provider_scope, policy_set_definition_id), null)
+      management_group_name = regex(local.regex_split_resource_id, policy_set_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_set_definition_id)[1] : null
     }
   }
 }
@@ -130,7 +135,7 @@ locals {
     for policy_definition_id in local.external_policy_definition_ids_from_policy_set_definitions :
     policy_definition_id => {
       name                  = basename(policy_definition_id)
-      management_group_name = try(regex(local.regex_extract_provider_scope, policy_definition_id), null)
+      management_group_name = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
     }
   }
   # From Policy Assignments using Policy Definitions
@@ -138,7 +143,7 @@ locals {
     for policy_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_definition)) :
     policy_definition_id => {
       name                  = basename(policy_definition_id)
-      management_group_name = try(regex(local.regex_extract_provider_scope, policy_definition_id), null)
+      management_group_name = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
     }
   }
   # Then create a single list containing all Policy Definitions to lookup from Azure
@@ -212,9 +217,12 @@ locals {
 
 # Generate a list of principal_id values by Policy Assignment
 locals {
+  merge_policy_assignments_by_type = merge(
+    azurerm_management_group_policy_assignment.enterprise_scale,
+  )
   principal_id_by_policy_assignment = {
-    for pak, pav in azurerm_policy_assignment.enterprise_scale :
-    pak => pav.identity[0].principal_id
+    for pak, pav in local.merge_policy_assignments_by_type :
+    pak => try(pav.identity[0].principal_id, null)
   }
 }
 
