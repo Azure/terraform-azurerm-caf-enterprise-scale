@@ -1,11 +1,3 @@
-# locals {
-#   resource_types = [
-#     "azurerm_firewall_enterprise_scale",
-#     "azurerm_dns_zone_enterprise_scale",
-#     "azurerm_virtual_network_peering_enterprise_scale",
-#   ]
-# }
-
 resource "azurerm_resource_group" "connectivity" {
   for_each = local.azurerm_resource_group_connectivity
 
