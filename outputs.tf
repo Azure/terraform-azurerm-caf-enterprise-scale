@@ -29,11 +29,11 @@ output "azurerm_policy_set_definition" {
 
 # The following output is used to ensure all Policy
 # Assignment data is returned to the root module.
-output "azurerm_policy_assignment" {
+output "azurerm_management_group_policy_assignment" {
   value = {
-    enterprise_scale = azurerm_policy_assignment.enterprise_scale
+    enterprise_scale = azurerm_management_group_policy_assignment.enterprise_scale
   }
-  description = "Returns the configuration data for all Policy Assignments created by this module."
+  description = "Returns the configuration data for all Management Group Policy Assignments created by this module."
 }
 
 # The following output is used to ensure all Role

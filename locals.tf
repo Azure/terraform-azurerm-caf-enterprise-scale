@@ -49,7 +49,18 @@ locals {
 # The following locals are used to define RegEx
 # patterns used within this module
 locals {
-  regex_extract_provider_scope = "(?i)(?=.*/providers/).+(?=.*/providers/)"
+  # The following regex is designed to consistently
+  # split a resource_id into the following capture
+  # groups, regardless of resource type:
+  # [0] Resource scope, type substring (e.g. "/providers/Microsoft.Management/managementGroups/")
+  # [1] Resource scope, name substring (e.g. "group1")
+  # [2] Resource, type substring (e.g. "/providers/Microsoft.Authorization/policyAssignments/")
+  # [3] Resource, name substring (e.g. "assignment1")
+  regex_split_resource_id         = "(?i)((?:/[^/]+){0,8}/)?([^/]+)?((?:/[^/]+){3}/)([^/]+)$"
+  regex_scope_is_management_group = "(?i)(/providers/Microsoft.Management/managementGroups/)([^/]+)$"
+  # regex_scope_is_subscription     = "(?i)(/subscriptions/)([^/]+)$"
+  # regex_scope_is_resource_group   = "(?i)(/subscriptions/[^/]+/resourceGroups/)([^/]+)$"
+  # regex_scope_is_resource         = "(?i)(/subscriptions/[^/]+/resourceGroups(?:/[^/]+){4}/)([^/]+)$"
 }
 
 # The following locals are used to identify known
