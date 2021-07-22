@@ -45,7 +45,7 @@ The main block parameters are `display_name`, `parent_management_group_id`, `sub
 
 ```hcl
   custom_landing_zones = {
-    myorg-1-customer-corp = {
+    myorg-customer-corp = {
       display_name               = ""
       parent_management_group_id = ""
       subscription_ids           = []

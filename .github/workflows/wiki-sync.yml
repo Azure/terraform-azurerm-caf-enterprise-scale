@@ -6,11 +6,18 @@ on:
       - main
     paths:
       - "docs/wiki/**"
+  workflow_dispatch: {}
 
 env:
+<<<<<<< HEAD
+  wiki_source_repo: "${{ github.repository }}"
+  wiki_source_repo_dir: "${{ github.repository }}/docs/wiki"
+  wiki_target_repo: "${{ github.repository }}.wiki"
+=======
   wiki_source_repo: "sblair01/terraform-azurerm-caf-enterprise-scale"
   wiki_source_repo_dir: "sblair01/terraform-azurerm-caf-enterprise-scale/docs/wiki"
   wiki_target_repo: "sblair01/terraform-azurerm-caf-enterprise-scale.wiki"
+>>>>>>> main
   github_user_name: "github-actions"
   github_email: "github-actions@github.com"
   github_commit_message: "GitHub Action syncing wiki from docs/wiki"
@@ -18,7 +25,11 @@ env:
 jobs:
   sync-wiki:
     name: Sync Wiki
+<<<<<<< HEAD
+    if: github.repository == 'Azure/terraform-azurerm-caf-enterprise-scale' || github.event_name == 'workflow_dispatch'
+=======
     if: github.repository == 'sblair01/terraform-azurerm-caf-enterprise-scale'
+>>>>>>> main
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Repo
@@ -50,4 +61,3 @@ jobs:
           git commit -m "$github_commit_message [$GITHUB_ACTOR/${GITHUB_SHA::8}]"
           git push --set-upstream https://$GITHUB_TOKEN@github.com/$wiki_target_repo.git master
         working-directory: ${{ env.wiki_target_repo }}
-          

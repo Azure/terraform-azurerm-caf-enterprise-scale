@@ -58,6 +58,10 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "$TF_AZ_VERSION"
+      configuration_aliases = [
+        azurerm.connectivity,
+        azurerm.management,
+      ]
     }
   }
 }
@@ -65,6 +69,18 @@ terraform {
 provider "azurerm" {
   features {}
 
+  alias                       = "connectivity"
+  subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
+  client_id                   = "$CERTIFICATE_CLIENT_ID"
+  client_certificate_path     = "$SPN_NAME.pfx"
+  client_certificate_password = "$CERTIFICATE_PASSWORD"
+  tenant_id                   = "$ARM_TENANT_ID"
+}
+
+provider "azurerm" {
+  features {}
+
+  alias                       = "management"
   subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
   client_id                   = "$CERTIFICATE_CLIENT_ID"
   client_certificate_path     = "$SPN_NAME.pfx"
