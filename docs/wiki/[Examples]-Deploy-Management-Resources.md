@@ -24,6 +24,7 @@ but not limited to:
      module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
       version = "0.3.3"
+
      }
 ```
 
@@ -37,7 +38,9 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
 
     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
+
       version = "0.3.3"
+
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
     root_id = "contoso" 
@@ -46,4 +49,5 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
     subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
     
     }
+
 ```
