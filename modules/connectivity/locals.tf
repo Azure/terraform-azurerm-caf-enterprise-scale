@@ -571,7 +571,7 @@ locals {
 #  - azurerm_private_dns_zone
 locals {
   enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
-  private_link_locations         = coalesce(local.settings.dns.config.private_link_locations, [local.location])
+  private_link_locations         = coalescelist(local.settings.dns.config.private_link_locations, [local.location])
   lookup_private_link_dns_zone_by_service = {
     azure_automation_webhook             = ["privatelink.azure-automation.net"]
     azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]

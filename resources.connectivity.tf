@@ -401,6 +401,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
   # Set explicit dependencies
   depends_on = [
     azurerm_resource_group.connectivity,
+    azurerm_virtual_network.connectivity,
     azurerm_private_dns_zone.connectivity,
   ]
 
