@@ -107,6 +107,37 @@ locals {
   )
 }
 
+# The following locals are used to determine Management Group
+# placement for the platform Subscriptions. Preference of
+# placement is based on the following:
+#   1. Management
+#   2. Connectivity
+#   3. Identity
+# If a duplicate value is found in 
+locals {
+  subscription_ids_management = distinct(compact(concat(
+    [local.subscription_id_management],
+    local.es_subscription_ids_map["${local.root_id}-management"],
+  )))
+  subscription_ids_connectivity = [
+    for id in distinct(compact(concat(
+      [local.subscription_id_connectivity],
+      local.es_subscription_ids_map["${local.root_id}-connectivity"],
+    ))) :
+    id
+    if !contains(local.subscription_ids_management, id)
+  ]
+  subscription_ids_identity = [
+    for id in distinct(compact(concat(
+      [local.subscription_id_identity],
+      local.es_subscription_ids_map["${local.root_id}-identity"],
+    ))) :
+    id
+    if !contains(local.subscription_ids_management, id) &&
+    !contains(local.subscription_ids_connectivity, id)
+  ]
+}
+
 # The following locals are used to define the core Enterprise
 # -scale Management Groups deployed by the module and uses
 # logic to determine the full Management Group deployment
@@ -147,29 +178,20 @@ locals {
     "${local.root_id}-connectivity" = {
       display_name               = "Connectivity"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids = distinct(compact(concat(
-        [local.subscription_id_connectivity],
-        local.es_subscription_ids_map["${local.root_id}-connectivity"],
-      )))
-      archetype_config = local.es_archetype_config_map["${local.root_id}-connectivity"]
+      subscription_ids           = local.subscription_ids_connectivity
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-connectivity"]
     }
     "${local.root_id}-management" = {
       display_name               = "Management"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids = distinct(compact(concat(
-        [local.subscription_id_management],
-        local.es_subscription_ids_map["${local.root_id}-management"],
-      )))
-      archetype_config = local.es_archetype_config_map["${local.root_id}-management"]
+      subscription_ids           = local.subscription_ids_management
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-management"]
     }
     "${local.root_id}-identity" = {
       display_name               = "Identity"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids = distinct(compact(concat(
-        [local.subscription_id_identity],
-        local.es_subscription_ids_map["${local.root_id}-identity"],
-      )))
-      archetype_config = local.es_archetype_config_map["${local.root_id}-identity"]
+      subscription_ids           = local.subscription_ids_identity
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-identity"]
     }
   }
   # Optional demo "Landing Zone" Enterprise-scale Management Groups
