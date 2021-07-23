@@ -20,9 +20,12 @@ The subscription can be a passed in string that is 36 characters long containing
 }
 ```
 ## Usage
+To assign a subscription id to the management subscription. This allows the flexibility to have a unique subscription for the management group if required. 
+
 ```hcl
 variable "subscription_id_management" {
   type        = string
   description = ""
   default     = ""
  ```
+}
