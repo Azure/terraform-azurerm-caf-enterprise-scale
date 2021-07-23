@@ -31,33 +31,32 @@ roles and policies to reassign them to the log analytics and sentinel resources 
 
 If location is not specified, the resources will default to *eastus*
 ```hcl
-    terraform {
-      required_providers {
-        azurerm = {
-            source = "hashicorp/azurerm"
-            version = ">=2.46.1"
-        }
-   
-     }
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 2.66.0"
     }
+  }
+}
 
-    provider "azurerm"{
-    features {}
-    }
+provider "azurerm" {
+  features {}
+}
 
     #Pull current Tenant ID from connection settings and store to data source
     
-    data "azurerm_client_config" current {}
+    data "azurerm_client_config" core {}
 
     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.1"
+      version = "0.4.0"
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
-    root_id = "contoso" 
-    root_name = "Contoso"
+    root_id = "var.root_id" 
+    root_name = "var.root_name"
     deploy_management_resources = "true"
-    subscription_id_management = "<insert_subscription_id>" 
+    subscription_id_management = [] 
     configure_management_resources = {
         settings = {
       log_analytics = {
@@ -81,7 +80,7 @@ If location is not specified, the resources will default to *eastus*
       security_center = {
         enabled = true
         config = {
-          email_security_contact             = "email@contoso.com"
+          email_security_contact             = "email@replace_me.com"
           enable_defender_for_acr            = true
           enable_defender_for_app_services   = true
           enable_defender_for_arm            = true
@@ -95,7 +94,7 @@ If location is not specified, the resources will default to *eastus*
         }
       }
         }
-    location = "centralus"
+    location = "eastus"
       advanced = null
       tags     = null
       }
