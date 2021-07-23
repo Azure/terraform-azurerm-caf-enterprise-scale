@@ -12,7 +12,7 @@ variable "subscription_id_management" {
  ```
 
 ## Validation
-The subscription can be a passed in string that is 36 characters long containing alphanumeric characters, a string passed in through the variable "subscription_id_management", or an empty white string in the event that it's pulled in from the provider/ 
+The subscription can be a passed in string that is 36 characters long containing alphanumeric characters, a string passed in through the variable "subscription_id_management", or an empty white string in the event that it's pulled in from the provider 
  ```hcl
   validation {
     condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_management)) || var.subscription_id_management == ""
