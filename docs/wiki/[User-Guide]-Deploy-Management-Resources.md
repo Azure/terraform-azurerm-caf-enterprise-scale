@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 # Deploying Management Resources
 
@@ -47,4 +47,4 @@ Also the ability to deploy threat manager, patch systems, monitor resource healt
 The Enterprise Scale Terraform CAF module leverages the creation of management resources in the dedicated Management subscription that your
 provide in the code. This module makes use of many Deploy If Not Exist policies to create Azure Security Center (ASC), Log Analytics, and an automation account with a linked service.
 
->>>>>>> main
+
