@@ -113,7 +113,8 @@ locals {
 #   1. Management
 #   2. Connectivity
 #   3. Identity
-# If a duplicate value is found in 
+# If a duplicate value is found in any of these scopes, the
+# value will be discarded as per the described logic.
 locals {
   subscription_ids_management = distinct(compact(concat(
     [local.subscription_id_management],
