@@ -34,6 +34,7 @@
 - [Identity Resources][wiki_identity_resources]
 - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
 - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
+- [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
