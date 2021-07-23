@@ -23,7 +23,7 @@ but not limited to:
 ```hcl
      module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
-      version = "0.3.3"
+      version = "0.4.0"
 
      }
 ```
@@ -39,14 +39,14 @@ To initiate the resource creation,  `deploy_managagement_resources` must be set 
     module "enterprise_scale" {
       source = "Azure/caf-enterprise-scale/azurerm"
 
-      version = "0.3.3"
+      version = "0.4.0"
 
 
     root_parent_id = data.azurerm_client_config.current.tenant_id
-    root_id = "contoso" 
-    root_name = "Contoso"
+    root_id = "var.root_id" 
+    root_name = "var.root_name"
     deploy_management_resources = "true" 
-    subscription_id_management = "XXXXXX-XXXX-XXXX-XXXX-XXXXXXX" //Required variable
+    subscription_id_management = var.subscription_id_management" //Required variable
     
     }
 
