@@ -80,7 +80,7 @@ Please refer to the [Deploy Management Resources](./%5BUser-Guide%5D-Deploy-Mana
 
 ## Next steps
 
-Check out the [User Guide](./User-Guide), or go straight to our [Examples](./Examples).
+Check out the [User Guide](./User-Guide.md), or go straight to our [Examples](./Examples).
 
  [//]: # (*****************************)
  [//]: # (INSERT IMAGE REFERENCES BELOW)
