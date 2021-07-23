@@ -35,7 +35,6 @@ Please go to the new [Management Resources][wiki_management_resources] page for 
 [wiki_management_resources]:        ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_deploy_management_resources]: ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
 
-=======
 [In Progress]
 
 Centrally managing the platform is a core design design principle for Enterprise Scale landing zones. As your platform continues to expand,securing, logging, and monitoring from a central location is key to maintaining governance at scale.
