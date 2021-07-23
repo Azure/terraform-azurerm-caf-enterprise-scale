@@ -57,7 +57,7 @@
 [wiki_examples]:                              ./Examples "Wiki - Examples"
 [wiki_deploy_default_configuration]:          ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 [wiki_deploy_demo_landing_zone_archetypes]:   ./%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy Demo Landing Zone Archetypes"
-[wiki_multi-subscription_deployment]          ./%5BExamples%5D-Multi-Subscription-Deployment "Wiki - Deploy multiple subscriptions"
+[wiki_multi-subscription_deployment]:         ./%5BExamples%5D-Multi-Subscription-Deployment "Wiki - Deploy multiple subscriptions"
 [wiki_deploy_custom_landing_zone_archetypes]: ./%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
 [wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
 [wiki_deploy_connectivity_resources]:         ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
