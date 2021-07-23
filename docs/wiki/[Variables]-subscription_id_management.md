@@ -5,11 +5,10 @@ If specified, identifies the Platform subscription for \"Management\" for resour
 
 ## Default value
 ```hcl
-variable "subscription_id_management" {
-  type        = string
-  description = ""
-  default     = ""
- ```
+{}
+```
+
+
 
 ## Validation
 The subscription can be a passed in string that is 36 characters long containing alphanumeric characters, a string passed in through the variable "subscription_id_management", or an empty white string in the event that it's pulled in from the provider 
@@ -20,3 +19,10 @@ The subscription can be a passed in string that is 36 characters long containing
   }
 }
 ```
+## Usage
+```hcl
+variable "subscription_id_management" {
+  type        = string
+  description = ""
+  default     = ""
+ ```
