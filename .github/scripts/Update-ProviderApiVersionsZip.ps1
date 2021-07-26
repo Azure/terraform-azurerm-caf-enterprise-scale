@@ -23,5 +23,8 @@ $esltModulePath = "$Directory/EnterpriseScaleLibraryTools.psm1"
 Import-Module $esltModulePath -ErrorAction Stop
 
 Write-Information "Updating ProviderApiVersions in module." -InformationAction Continue
-Invoke-UpdateCacheInModule($Directory)
+if ($PSCmdlet.ShouldProcess($Directory)) {
+    Invoke-UpdateCacheInModule($Directory)
+}
+
 Write-Information "... Complete" -InformationAction Continue
