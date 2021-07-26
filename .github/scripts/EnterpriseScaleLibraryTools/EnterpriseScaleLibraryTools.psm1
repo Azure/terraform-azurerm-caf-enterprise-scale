@@ -735,6 +735,13 @@ function Invoke-UseCacheFromModule {
     [ProviderApiVersions]::LoadCacheFromDirectory($Directory)
 }
 
+function Invoke-UpdateCacheInModule {
+    param (
+        [String]$Directory = "./"
+    )
+    [ProviderApiVersions]::SaveCacheToDirectory($Directory)
+}
+
 function ConvertTo-LibraryArtifact {
     [CmdletBinding()]
     param (
@@ -826,6 +833,7 @@ $functionsToExport = @(
     "ConvertTo-LibraryArtifact"
     "Export-LibraryArtifact"
     "Invoke-UseCacheFromModule"
+    "Invoke-UpdateCacheInModule"
 )
 
 # Export module members
