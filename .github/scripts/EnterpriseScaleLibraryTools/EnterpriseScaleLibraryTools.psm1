@@ -703,6 +703,24 @@ function GetObjectByResourceTypeFromJson {
                 -ResourceObject (RemoveEscaping -InputObject $policySetDefinition) `
                 -ResourceType ("Microsoft.Authorization/policySetDefinitions")
         }
+        foreach (
+            $policySetDefinition in $objectFromJson.resources |
+            Where-Object { $_.type -eq "Microsoft.Authorization/policyDefinitions" } |
+            Where-Object { $_.name -ne "[variables('policies').policyDefinitions[copyIndex()].name]" }
+        ) {
+            ProcessObjectByResourceType `
+                -ResourceObject (RemoveEscaping -InputObject $policySetDefinition) `
+                -ResourceType ("Microsoft.Authorization/policyDefinitions")
+        }
+        foreach (
+            $policySetDefinition in $objectFromJson.resources |
+            Where-Object { $_.type -eq "Microsoft.Authorization/policySetDefinitions" } |
+            Where-Object { $_.name -ne "[variables('initiatives').policySetDefinitions[copyIndex()].name]" }
+        ) {
+            ProcessObjectByResourceType `
+                -ResourceObject (RemoveEscaping -InputObject $policySetDefinition) `
+                -ResourceType ("Microsoft.Authorization/policySetDefinitions")
+        }
     }
     # The following block handles processing generic files where the source content is unknown
     # High probability of incorrect format if this happens.
@@ -733,6 +751,13 @@ function Invoke-UseCacheFromModule {
         [String]$Directory = "./"
     )
     [ProviderApiVersions]::LoadCacheFromDirectory($Directory)
+}
+
+function Invoke-UpdateCacheInModule {
+    param (
+        [String]$Directory = "./"
+    )
+    [ProviderApiVersions]::SaveCacheToDirectory($Directory)
 }
 
 function ConvertTo-LibraryArtifact {
@@ -826,6 +851,7 @@ $functionsToExport = @(
     "ConvertTo-LibraryArtifact"
     "Export-LibraryArtifact"
     "Invoke-UseCacheFromModule"
+    "Invoke-UpdateCacheInModule"
 )
 
 # Export module members

@@ -22,17 +22,17 @@ locals {
   existing_log_analytics_workspace_resource_id = var.existing_log_analytics_workspace_resource_id
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
   link_log_analytics_to_automation_account     = var.link_log_analytics_to_automation_account
-  custom_settings_by_resource_type             = var.custom_settings_by_resource_type
+  custom_settings                              = var.custom_settings_by_resource_type
 }
 
 # Extract individual custom settings blocks from
 # the custom_settings_by_resource_type variable.
 locals {
-  custom_settings_rsg               = try(local.custom_settings_by_resource_type.azurerm_resource_group, null)
-  custom_settings_la_workspace      = try(local.custom_settings_by_resource_type.azurerm_log_analytics_workspace, null)
-  custom_settings_la_solution       = try(local.custom_settings_by_resource_type.azurerm_log_analytics_solution, null)
-  custom_settings_aa                = try(local.custom_settings_by_resource_type.azurerm_automation_account, null)
-  custom_settings_la_linked_service = try(local.custom_settings_by_resource_type.azurerm_log_analytics_linked_service, null)
+  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], null)
+  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], null)
+  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], null)
+  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], null)
+  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], null)
 }
 
 # Logic to determine whether specific resources
@@ -77,7 +77,7 @@ locals {
 locals {
   resource_group_name = coalesce(
     local.existing_resource_group_name,
-    try(local.custom_settings_rsg.name, null),
+    try(local.custom_settings_rsg["management"].name, null),
     "${local.resource_prefix}-mgmt",
   )
   resource_group_resource_id = "/subscriptions/${local.subscription_id}/resourceGroups/${local.resource_group_name}"
