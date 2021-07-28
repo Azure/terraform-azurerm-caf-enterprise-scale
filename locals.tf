@@ -13,6 +13,9 @@ locals {
   root_name                        = var.root_name
   root_parent_id                   = var.root_parent_id
   deploy_core_landing_zones        = var.deploy_core_landing_zones
+  deploy_corp_landing_zones        = var.deploy_corp_landing_zones
+  deploy_online_landing_zones      = var.deploy_online_landing_zones
+  deploy_sap_landing_zones         = var.deploy_sap_landing_zones
   deploy_demo_landing_zones        = var.deploy_demo_landing_zones
   deploy_management_resources      = var.deploy_management_resources
   deploy_identity_resources        = var.deploy_identity_resources

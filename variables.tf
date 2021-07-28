@@ -42,6 +42,24 @@ variable "deploy_core_landing_zones" {
   default     = true
 }
 
+variable "deploy_corp_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
+variable "deploy_online_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"Online\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
+variable "deploy_sap_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"SAP\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
 variable "deploy_demo_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"SAP\") into the core Enterprise-scale Management Group hierarchy."

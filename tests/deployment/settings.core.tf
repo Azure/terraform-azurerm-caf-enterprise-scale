@@ -2,18 +2,8 @@
 # addition the core resource hierarchy.
 locals {
   custom_landing_zones = {
-    "${var.root_id_3}-customer-corp" = {
-      display_name               = "Corp Custom"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id   = "default_empty"
-        parameters     = {}
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-sap" = {
-      display_name               = "SAP"
+    "${var.root_id_3}-secure" = {
+      display_name               = "Secure Workloads (HITRUST/HIPAA)"
       parent_management_group_id = "${var.root_id_3}-landing-zones"
       subscription_ids           = []
       archetype_config = {
@@ -44,36 +34,9 @@ locals {
         access_control = {}
       }
     }
-    "${var.root_id_3}-customer-online" = {
-      display_name               = "Online"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {
-          Deny-Resource-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-              "uksouth",
-              "ukwest",
-            ]
-          }
-          Deny-RSG-Locations = {
-            listOfAllowedLocations = [
-              "eastus",
-              "westus",
-              "uksouth",
-              "ukwest",
-            ]
-          }
-        }
-        access_control = {}
-      }
-    }
-    "${var.root_id_3}-customer-web-prod" = {
-      display_name               = "Prod Web Applications"
-      parent_management_group_id = "${var.root_id_3}-customer-online"
+    "${var.root_id_3}-web-global" = {
+      display_name               = "Global Web Applications"
+      parent_management_group_id = "${var.root_id_3}-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "default_empty"
@@ -81,9 +44,9 @@ locals {
         access_control = {}
       }
     }
-    "${var.root_id_3}-customer-web-test" = {
-      display_name               = "Test Web Applications"
-      parent_management_group_id = "${var.root_id_3}-customer-online"
+    "${var.root_id_3}-web-us" = {
+      display_name               = "US Web Applications"
+      parent_management_group_id = "${var.root_id_3}-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_online"
@@ -104,21 +67,23 @@ locals {
         access_control = {}
       }
     }
-    "${var.root_id_3}-customer-web-dev" = {
-      display_name               = "Dev Web Applications"
-      parent_management_group_id = "${var.root_id_3}-customer-online"
+    "${var.root_id_3}-web-emea" = {
+      display_name               = "EMEA Web Applications"
+      parent_management_group_id = "${var.root_id_3}-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_online"
         parameters = {
           Deny-Resource-Locations = {
             listOfAllowedLocations = [
-              "eastus",
+              "northeurope",
+              "westeurope",
             ]
           }
           Deny-RSG-Locations = {
             listOfAllowedLocations = [
-              "eastus",
+              "northeurope",
+              "westeurope",
             ]
           }
         }
@@ -143,6 +108,8 @@ locals {
             "westus",
             "northcentralus",
             "southcentralus",
+            "northeurope",
+            "westeurope",
             "uksouth",
             "ukwest",
           ]
@@ -154,6 +121,8 @@ locals {
             "westus",
             "northcentralus",
             "southcentralus",
+            "northeurope",
+            "westeurope",
             "uksouth",
             "ukwest",
           ]
@@ -181,11 +150,14 @@ locals {
     root           = []
     decommissioned = []
     sandboxes      = []
-    landing-zones  = []
-    platform       = []
-    connectivity   = []
-    management     = []
-    identity       = []
+    landing-zones  = [] # Not recommended, put Subscriptions in child management groups.
+    platform       = [] # Not recommended, put Subscriptions in child management groups.
+    connectivity   = [] # Not recommended, use subscription_id_connectivity instead.
+    management     = [] # Not recommended, use subscription_id_management instead.
+    identity       = [] # Not recommended, use subscription_id_identity instead.
+    corp           = []
+    online         = []
+    sap            = []
     demo-corp      = []
     demo-online    = []
     demo-sap       = []

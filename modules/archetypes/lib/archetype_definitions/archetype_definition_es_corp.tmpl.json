@@ -1,6 +1,8 @@
 {
-    "es_demo_sap": {
-        "policy_assignments": [],
+    "es_corp": {
+        "policy_assignments": [
+            "Deny-PublicEndpoints"
+        ],
         "policy_definitions": [],
         "policy_set_definitions": [],
         "role_definitions": [],
