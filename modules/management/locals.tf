@@ -231,7 +231,8 @@ locals {
         Deploy-Log-Analytics = {
           automationAccountName = local.azurerm_automation_account.name
           automationRegion      = local.azurerm_automation_account.location
-          retentionInDays       = tostring(local.settings.log_analytics.config.retention_in_days) # Need to ensure this gets handled as a string
+          dataRetention         = tostring(local.azurerm_log_analytics_workspace.retention_in_days) # Need to ensure this gets handled as a string
+          sku                   = local.azurerm_log_analytics_workspace.sku
           rgName                = local.azurerm_resource_group.name
           workspaceName         = local.azurerm_log_analytics_workspace.name
           workspaceRegion       = local.azurerm_log_analytics_workspace.location
