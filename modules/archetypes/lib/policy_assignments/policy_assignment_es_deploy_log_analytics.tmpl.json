@@ -23,7 +23,7 @@
         "value": "30"
       },
       "sku": {
-        "value": "PerGB2018"
+        "value": "pergb2018"
       },
       "rgName": {
         "value": "${root_scope_id}-mgmt"

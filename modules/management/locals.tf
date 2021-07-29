@@ -231,11 +231,14 @@ locals {
         Deploy-Log-Analytics = {
           automationAccountName = local.azurerm_automation_account.name
           automationRegion      = local.azurerm_automation_account.location
-          dataRetention         = tostring(local.azurerm_log_analytics_workspace.retention_in_days) # Need to ensure this gets handled as a string
-          sku                   = local.azurerm_log_analytics_workspace.sku
           rgName                = local.azurerm_resource_group.name
           workspaceName         = local.azurerm_log_analytics_workspace.name
           workspaceRegion       = local.azurerm_log_analytics_workspace.location
+          # Need to ensure dataRetention gets handled as a string
+          dataRetention = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+          # Need to ensure sku value is set to lowercase only when "PerGB2018" specified
+          # Evaluating in lower() to ensure the correct error is surfaced on the resource if invalid casing is used
+          sku = lower(local.azurerm_log_analytics_workspace.sku) == "pergb2018" ? lower(local.azurerm_log_analytics_workspace.sku) : local.azurerm_log_analytics_workspace.sku
         }
       }
       enforcement_mode = {
