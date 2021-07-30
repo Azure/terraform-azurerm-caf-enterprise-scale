@@ -181,7 +181,7 @@ locals {
   archetype_config_overrides = {
     (local.root_id) = {
       parameters = {
-        Deploy-ASC-Defender = {
+        Deploy-ASC-Configuration = {
           emailSecurityContact                = local.settings.security_center.config.email_security_contact
           logAnalytics                        = local.log_analytics_workspace_resource_id
           ascExportResourceGroupName          = "${local.root_id}-asc-export"
@@ -219,7 +219,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-ASC-Defender      = local.deploy_security_settings
+        Deploy-ASC-Configuration = local.deploy_security_settings
         Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
