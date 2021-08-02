@@ -38,7 +38,7 @@ locals {
       access_control = local.empty_map
     }
     "${local.root_id}-connectivity" = {
-      archetype_id   = "es_connectivity_foundation"
+      archetype_id   = "es_connectivity"
       parameters     = local.empty_map
       access_control = local.empty_map
     }

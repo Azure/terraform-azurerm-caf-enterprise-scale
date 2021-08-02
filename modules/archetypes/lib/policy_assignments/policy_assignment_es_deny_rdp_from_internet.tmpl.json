@@ -3,8 +3,8 @@
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
-    "description": "Deny RDP access from the Internet.",
-    "displayName": "Deny-RDP-From-Internet",
+    "description": "This policy denies any network security rule that allows RDP access from Internet.",
+    "displayName": "RDP access from the Internet should be blocked",
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",

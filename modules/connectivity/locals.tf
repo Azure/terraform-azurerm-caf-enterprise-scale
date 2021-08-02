@@ -820,6 +820,13 @@ locals {
   archetype_config_overrides = {}
 }
 
+# Template file variable outputs
+locals {
+  template_file_variables = {
+    private_dns_zone_prefix = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
+  }
+}
+
 # Generate the configuration output object for the module
 locals {
   module_output = {
@@ -994,6 +1001,7 @@ locals {
       }
     ]
     archetype_config_overrides = local.archetype_config_overrides
+    template_file_variables    = local.template_file_variables
   }
 }
 
