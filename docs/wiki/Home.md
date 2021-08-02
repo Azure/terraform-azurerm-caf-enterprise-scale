@@ -4,6 +4,16 @@ The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-r
 
 ![Enterprise-scale Landing Zone Architecture][TFAES-Overview]
 
+Depending on selected options, this module can deploy different groups of resources as needed.
+
+This is currently split logically into the following capabilities:
+
+- [Core Resources][wiki_core_resources]
+- [Management Resources][wiki_management_resources]
+- [Connectivity Resources][wiki_connectivity_resources]
+- [Identity Resources][wiki_identity_resources]
+
+Please click on each of the above links for more details.
 
 ## Critical design areas
 
