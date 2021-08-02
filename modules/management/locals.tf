@@ -77,7 +77,7 @@ locals {
 locals {
   resource_group_name = coalesce(
     local.existing_resource_group_name,
-    try(local.custom_settings_rsg["management"].name, null),
+    try(local.custom_settings_rsg.name, null),
     "${local.resource_prefix}-mgmt",
   )
   resource_group_resource_id = "/subscriptions/${local.subscription_id}/resourceGroups/${local.resource_group_name}"
