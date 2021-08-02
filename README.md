@@ -43,12 +43,10 @@ For detailed information about how to use, configure and extend this module, ple
   - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
   - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
   - [Deploy Management Resources][wiki_deploy_management_resources]
-<<<<<<< HEAD
+
   - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
   - [Deploy Identity Resources][wiki_deploy_identity_resources]
   - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
-=======
->>>>>>> main
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
