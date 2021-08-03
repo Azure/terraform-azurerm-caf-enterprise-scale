@@ -160,7 +160,8 @@ locals {
   azurerm_network_ddos_protection_plan = [
     {
       # Resource logic attributes
-      resource_id = local.ddos_protection_plan_resource_id
+      resource_id       = local.ddos_protection_plan_resource_id
+      managed_by_module = local.deploy_ddos_protection_plan
       # Resource definition attributes
       name                = local.ddos_protection_plan_name
       location            = local.ddos_location
@@ -817,7 +818,29 @@ locals {
 
 # Archetype configuration overrides
 locals {
-  archetype_config_overrides = {}
+  archetype_config_overrides = {
+    "${local.root_id}-connectivity" = {
+      parameters = {
+        Enable-DDoS-VNET = {
+          ddosPlan = local.ddos_protection_plan_resource_id
+        }
+      }
+      enforcement_mode = {
+        Enable-DDoS-VNET = local.deploy_ddos_protection_plan
+      }
+    }
+    "${local.root_id}-corp" = {
+      parameters = {
+        Enable-DDoS-VNET = {
+          ddosPlan = local.ddos_protection_plan_resource_id
+        }
+      }
+      enforcement_mode = {
+        Deploy-Private-DNS-Zones = local.deploy_dns
+        Enable-DDoS-VNET         = local.deploy_ddos_protection_plan
+      }
+    }
+  }
 }
 
 # Template file variable outputs
@@ -934,11 +957,11 @@ locals {
         template = {
           for key, value in resource :
           key => value
-          if local.deploy_ddos_protection_plan &&
+          if resource.managed_by_module &&
           key != "resource_id" &&
           key != "managed_by_module"
         }
-        managed_by_module = local.deploy_ddos_protection_plan
+        managed_by_module = resource.managed_by_module
       }
     ]
     azurerm_private_dns_zone = [
