@@ -17,6 +17,7 @@ module "management_group_archetypes" {
   template_file_variables = local.template_file_variables
   default_location        = local.default_location
   enforcement_mode = merge(
+    try(module.connectivity_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null),
     try(module.identity_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null),
     try(module.management_resources.configuration.archetype_config_overrides[basename(each.key)].enforcement_mode, null),
   )
