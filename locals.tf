@@ -35,8 +35,27 @@ locals {
     module.connectivity_resources.configuration.template_file_variables,
     var.template_file_variables,
   )
-  default_location = var.default_location
-  default_tags     = var.default_tags
+  default_location         = var.default_location
+  default_tags             = var.default_tags
+  disable_base_module_tags = var.disable_base_module_tags
+}
+
+# The following locals are used to define a set of module
+# tags applied to all resources unless disabled by the
+# input variable "disable_module_tags" and prepare the
+# tag blocks for each sub-module
+locals {
+  base_module_tags = {
+    deployedBy = "terraform/azure/caf-enterprise-scale/v0.4.0"
+  }
+  connectivity_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    coalesce(local.configure_connectivity_resources.tags, local.default_tags),
+  )
+  management_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    coalesce(local.configure_management_resources.tags, local.default_tags),
+  )
 }
 
 # The following locals are used to define base Azure

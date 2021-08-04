@@ -487,16 +487,20 @@ variable "template_file_variables" {
 
 variable "default_location" {
   type        = string
-  description = "If specified, will use set the default location used for resource deployments where needed."
+  description = "If specified, will set the Azure region in which region bound resources will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/"
   default     = "eastus"
-
-  # Need to add validation covering all Azure locations
 }
 
 variable "default_tags" {
   type        = map(string)
   description = "If specified, will set the default tags for all resources deployed by this module where supported."
   default     = {}
+}
+
+variable "disable_base_module_tags" {
+  type        = bool
+  description = "If set to true, will remove the base module tags applied to all resources deployed by the module which support tags."
+  default     = false
 }
 
 variable "create_duration_delay" {

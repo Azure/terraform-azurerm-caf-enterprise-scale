@@ -37,7 +37,7 @@ module "management_resources" {
 
   # Optional input variables (basic configuration)
   location = coalesce(local.configure_management_resources.location, local.default_location)
-  tags     = coalesce(local.configure_management_resources.tags, local.default_tags)
+  tags     = local.management_resources_tags
 
   # Optional input variables (advanced configuration)
   resource_prefix                              = try(local.configure_management_resources.advanced.resource_prefix, local.empty_string)
@@ -75,7 +75,7 @@ module "connectivity_resources" {
 
   # Optional input variables (basic configuration)
   location = coalesce(local.configure_connectivity_resources.location, local.default_location)
-  tags     = coalesce(local.configure_connectivity_resources.tags, local.default_tags)
+  tags     = local.connectivity_resources_tags
 
   # Optional input variables (advanced configuration)
   resource_prefix                           = try(local.configure_connectivity_resources.advanced.resource_prefix, local.empty_string)
