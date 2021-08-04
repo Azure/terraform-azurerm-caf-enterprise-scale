@@ -16,7 +16,7 @@ None
 
 Although not set by the `default_tags` input variable, the module will apply a set of base tags to all resources allowing you to easily identify that they were created by this module, including the module version as per the below example:
 
-```
+```hcl
 {
    deployedBy = "terraform/azure/caf-enterprise-scale/{{module_version}}"
 }
