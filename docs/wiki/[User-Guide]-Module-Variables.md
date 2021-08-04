@@ -336,6 +336,14 @@ Default:
 
 <br>
 
+[**disable_base_module_tags**][disable_base_module_tags] `bool`
+
+If set to true, will remove the base module tags applied to all resources deployed by the module which support tags.
+
+Default: `false`
+
+<br>
+
 [**library_path**][library_path] `string`
 
 If specified, sets the path to a custom library folder for archetype artefacts. #check_value artefacts == is it artifacts? Update the code vars code
@@ -431,6 +439,7 @@ Now you understand how to customize your deployment using the input variables, c
 [deploy_identity_resources]:        ./%5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
 [deploy_management_resources]:      ./%5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
 [destroy_duration_delay]:           ./%5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
+[disable_base_module_tags]:         ./%5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
 [library_path]:                     ./%5BVariables%5D-library_path "Instructions for how to use the library_path variable."
 [root_id]:                          ./%5BVariables%5D-root_id "Instructions for how to use the root_id variable."
 [root_name]:                        ./%5BVariables%5D-root_name "Instructions for how to use the root_name variable."
