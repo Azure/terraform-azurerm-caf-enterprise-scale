@@ -47,4 +47,5 @@ The [`archetype_config`](https://github.com/Azure/terraform-azurerm-caf-enterpri
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
+
 [this_page]: # "Link for the current page."
