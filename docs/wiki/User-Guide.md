@@ -34,6 +34,7 @@
 - [Identity Resources][wiki_identity_resources]
 - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
 - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
+- [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
@@ -46,8 +47,9 @@
 [wiki_management_resources]:          ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:        ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_identity_resources]:            ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_upgrade_from_v0_0_8_to_v0_1_0]: ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0.md "Upgrade from v0.0.8 to v0.1.0"
-[wiki_upgrade_from_v0_1_2_to_v0_2_0]: ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0.md "Upgrade from v0.1.2 to v0.2.0"
+[wiki_upgrade_from_v0_0_8_to_v0_1_0]: ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Upgrade from v0.0.8 to v0.1.0"
+[wiki_upgrade_from_v0_1_2_to_v0_2_0]: ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Upgrade from v0.1.2 to v0.2.0"
+[wiki_upgrade_from_v0_3_3_to_v0_4_0]: ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Upgrade from v0.3.3 to v0.4.0"
 
 [wiki_module_variables_root_parent_id]:                   ./%5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
 [wiki_module_variables_archetype_config_overrides]:       ./%5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."

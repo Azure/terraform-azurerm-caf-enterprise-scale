@@ -49,12 +49,12 @@ Check out the [User Guide](./User-Guide), or go straight to our [Examples](./Exa
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Architecture]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Enterprise-scale Reference Architecture"
-[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
+[ESLZ-Architecture]:                              https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Enterprise-scale Reference Architecture"
+[terraform-registry-caf-enterprise-scale]:        https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
 [management-group-and-subscription-organization]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-subscription-organization "Cloud Adoption Framework: Management group and subscription organization"
-[identity-and-access-management]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management "Cloud Adoption Framework: Identity and access management"
-[management-and-monitoring]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring "Cloud Adoption Framework: Management and monitoring"
-[network-topology-and-connectivity]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity "Cloud Adoption Framework: Network topology and connectivity"
+[identity-and-access-management]:                 https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management "Cloud Adoption Framework: Identity and access management"
+[management-and-monitoring]:                      https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring "Cloud Adoption Framework: Management and monitoring"
+[network-topology-and-connectivity]:              https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity "Cloud Adoption Framework: Network topology and connectivity"
 
 [arm_management_group]:               https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups
 [arm_management_group_subscriptions]: https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups/subscriptions
@@ -81,7 +81,7 @@ Check out the [User Guide](./User-Guide), or go straight to our [Examples](./Exa
 [azurerm_automation_account]:           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
 [azurerm_log_analytics_linked_service]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
 
-[wiki_core_resources]:                        ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
-[wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]:                ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_identity_resources]:                    ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_core_resources]:         ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
+[wiki_management_resources]:   ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]: ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_identity_resources]:     ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
