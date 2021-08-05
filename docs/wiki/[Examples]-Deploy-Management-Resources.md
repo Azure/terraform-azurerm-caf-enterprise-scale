@@ -5,10 +5,10 @@ This page describes how to deploy Enterprise-scale with the [Management resource
 In this example, we take a default configuration and make the following changes:
 
 - Enable  `deploy_management_resources` which enable the creation of all Management resources. This includes:
-    - Resource Group to contain all Management resources.
-    - Log Analytics workspace to use for centralised logging.
-    - Automation Account to enable additional capabilities as part of the included Solutions for Azure Monitor.
-    - Recommended Solutions for Azure Monitor.
+  - Resource Group to contain all Management resources.
+  - Log Analytics workspace to use for centralised logging.
+  - Automation Account to enable additional capabilities as part of the included Solutions for Azure Monitor.
+  - Recommended Solutions for Azure Monitor.
 - Set the `subscription_id_management` value to ensure policies are updated with the correct values.
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features within Log Analytics and Sentinel including but not limited to:
@@ -18,7 +18,7 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 - Enable Azure Defender for various supported services;
 - much more...
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module. 
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 

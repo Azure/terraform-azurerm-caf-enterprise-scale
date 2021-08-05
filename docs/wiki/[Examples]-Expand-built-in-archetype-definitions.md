@@ -41,7 +41,7 @@ We will update the built-in configuration by adding 2 new settings:
 
 - Create an exclusion `exclude_es_landing_zones` which will **remove** a set of Policy Assignments `Deny-Priv-Escalation-AKS`, `Deny-Priv-Containers-AKS` and `Deny-http-Ingress-AKS`.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module. .
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 

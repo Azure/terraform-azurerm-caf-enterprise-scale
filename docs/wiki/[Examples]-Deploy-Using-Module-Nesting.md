@@ -56,7 +56,7 @@ In this example, we set and update the following values:
 
 Check the **`main.tf`** later on the example, for the full modules declaration.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module. 
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 
