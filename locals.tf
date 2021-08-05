@@ -13,6 +13,9 @@ locals {
   root_name                        = var.root_name
   root_parent_id                   = var.root_parent_id
   deploy_core_landing_zones        = var.deploy_core_landing_zones
+  deploy_corp_landing_zones        = var.deploy_corp_landing_zones
+  deploy_online_landing_zones      = var.deploy_online_landing_zones
+  deploy_sap_landing_zones         = var.deploy_sap_landing_zones
   deploy_demo_landing_zones        = var.deploy_demo_landing_zones
   deploy_management_resources      = var.deploy_management_resources
   deploy_identity_resources        = var.deploy_identity_resources
@@ -28,9 +31,31 @@ locals {
   custom_landing_zones             = var.custom_landing_zones
   custom_policy_roles              = var.custom_policy_roles
   library_path                     = var.library_path
-  template_file_variables          = var.template_file_variables
-  default_location                 = var.default_location
-  default_tags                     = var.default_tags
+  template_file_variables = merge(
+    module.connectivity_resources.configuration.template_file_variables,
+    var.template_file_variables,
+  )
+  default_location         = var.default_location
+  default_tags             = var.default_tags
+  disable_base_module_tags = var.disable_base_module_tags
+}
+
+# The following locals are used to define a set of module
+# tags applied to all resources unless disabled by the
+# input variable "disable_module_tags" and prepare the
+# tag blocks for each sub-module
+locals {
+  base_module_tags = {
+    deployedBy = "terraform/azure/caf-enterprise-scale/v0.4.0"
+  }
+  connectivity_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    coalesce(local.configure_connectivity_resources.tags, local.default_tags),
+  )
+  management_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    coalesce(local.configure_management_resources.tags, local.default_tags),
+  )
 }
 
 # The following locals are used to define base Azure

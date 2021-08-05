@@ -1,6 +1,9 @@
 {
-    "es_demo_corp": {
-        "policy_assignments": [],
+    "es_corp": {
+        "policy_assignments": [
+            "Deny-Public-Endpoints",
+            "Deploy-Private-DNS-Zones"
+        ],
         "policy_definitions": [],
         "policy_set_definitions": [],
         "role_definitions": [],

@@ -1,31 +1,33 @@
-## Overview 
-[**subscription_id_managmement**] `string` (optional)
+## Overview
+
+[**subscription_id_management**](#overview) `string` (optional)
 
 If specified, identifies the Platform subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy.
 
 ## Default value
-```hcl
-{}
-```
 
-
+`""`
 
 ## Validation
-The subscription can be a passed in string that is 36 characters long containing alphanumeric characters, a string passed in through the variable "subscription_id_management", or an empty white string in the event that it's pulled in from the provider 
- ```hcl
-  validation {
-    condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_management)) || var.subscription_id_management == ""
-    error_message = "Value must be a valid Subscription ID (GUID)."
-  }
-}
-```
+
+The `subscription_id_management` value must be a valid GUID, matching the following RegEx:
+
+`^[a-z0-9-]{36}$`
+
 ## Usage
-To assign a subscription id to the management subscription. This allows the flexibility to have a unique subscription for the management group if required. 
+
+To identify the Management Subscription by ID, set the `subscription_id_management` input variable in the module block and specify the desired Subscription ID as the value.
 
 ```hcl
-variable "subscription_id_management" {
-  type        = string
-  description = ""
-  default     = ""
- ```
-}
+  subscription_id_management = "00000000-0000-0000-0000-000000000000"
+```
+
+> **NOTE:** This input variable is used to control the data model for setting up the correct values for Policy Assignments and to move the Subscription to the "Management" Management Group, but does not control which Subscription the resources are deployed into. To ensure resources are deployed in the correct Subscription, please refer to our guidance on [Provider Configuration][wiki_provider_configuration].
+
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"
+
+[this_page]: # "Link for the current page."
+
+[wiki_provider_configuration]: ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"

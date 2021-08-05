@@ -15,6 +15,7 @@ module "test_root_id_1" {
     azurerm.management   = azurerm.management
   }
 
+  # Base module configuration settings
   root_parent_id   = data.azurerm_client_config.management.tenant_id
   root_id          = var.root_id_1
   root_name        = "${var.root_name}-1"
@@ -32,13 +33,18 @@ module "test_root_id_2" {
     azurerm.management   = azurerm.management
   }
 
+  # Base module configuration settings
   root_parent_id   = data.azurerm_client_config.management.tenant_id
   root_id          = var.root_id_2
   root_name        = "${var.root_name}-2"
   default_location = var.location
   default_tags     = local.default_tags
 
-  deploy_demo_landing_zones = true
+  # Configuration settings for optional landing zones
+  deploy_corp_landing_zones   = true
+  deploy_online_landing_zones = true
+  deploy_sap_landing_zones    = true
+  deploy_demo_landing_zones   = true
 
 }
 
@@ -58,6 +64,12 @@ module "test_root_id_3" {
   library_path     = "${path.root}/lib"
   default_location = var.location
   default_tags     = local.default_tags
+
+  # Configuration settings for optional landing zones
+  deploy_corp_landing_zones   = true
+  deploy_online_landing_zones = true
+  deploy_sap_landing_zones    = true
+  deploy_demo_landing_zones   = false
 
   # Configuration settings for core resources
   custom_landing_zones       = local.custom_landing_zones

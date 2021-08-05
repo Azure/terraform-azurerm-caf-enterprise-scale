@@ -23,6 +23,7 @@
 param (
     [Parameter()][String]$TargetModulePath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourceModulePath = "$PWD/enterprise-scale",
+    [Parameter()][Switch]$Reset,
     [Parameter()][Switch]$UseCacheFromModule
 )
 
@@ -56,26 +57,47 @@ $defaultConfig = @{
     recurse        = $false
 }
 
+# File locations from Enterprise-scale repository for
+# resources, organised by type
+$policyDefinitionFilePaths = (Get-ChildItem -Path "$SourceModulePath/eslzArm/managementGroupTemplates/policyDefinitions").FullName
+$policySetDefinitionFilePaths = (Get-ChildItem -Path "$SourceModulePath/eslzArm/managementGroupTemplates/policyDefinitions").FullName
+
 # The esltConfig array controls the foreach loop used to run
 # Export-LibraryArtifact. Each object provides a set of values
 # used to configure each run of Export-LibraryArtifact within
 # the loop. If a value needed by Export-LibraryArtifact is
 # missing, it will use the default value specified in the
 # defaultConfig object.
-$esltConfig = @(
-    @{
-        inputPath      = $SourceModulePath + "/docs/reference/wingtip/armTemplates/auxiliary/policies.json"
+$esltConfig = @()
+# Add Policy Definition source files to $esltConfig
+$esltConfig += $policyDefinitionFilePaths | ForEach-Object {
+    [PsCustomObject]@{
+        inputPath      = $_
         typeFilter     = "Microsoft.Authorization/policyDefinitions"
         fileNamePrefix = "policy_definitions/policy_definition_es_"
     }
-    @{
-        inputPath      = $SourceModulePath + "/docs/reference/wingtip/armTemplates/auxiliary/policies.json"
+}
+# Add Policy Set Definition source files to $esltConfig
+$esltConfig += $policySetDefinitionFilePaths | ForEach-Object {
+    [PsCustomObject]@{
+        inputPath      = $_
         typeFilter     = "Microsoft.Authorization/policySetDefinitions"
         fileNamePrefix = "policy_set_definitions/policy_set_definition_es_"
         fileNameSuffix = ".tmpl.json"
     }
-)
+}
 
+# If the -Reset parameter is set, delete all existing
+# artefacts (by resource type) from the library
+if ($Reset) {
+    Write-Information "Deleting existing Policy Definitions from library." -InformationAction Continue
+    Remove-Item -Path "$TargetModulePath/modules/archetypes/lib/policy_definitions/" -Recurse -Force
+    Write-Information "Deleting existing Policy Set Definitions from library." -InformationAction Continue
+    Remove-Item -Path "$TargetModulePath/modules/archetypes/lib/policy_set_definitions/" -Recurse -Force
+}
+
+# Process the files added to $esltConfig, to add content
+# to the library
 foreach ($config in $esltConfig) {
     Export-LibraryArtifact `
         -InputPath ($config.inputPath ?? $defaultConfig.inputPath) `
@@ -88,3 +110,28 @@ foreach ($config in $esltConfig) {
         -Recurse:($config.recurse ?? $defaultConfig.recurse) `
         -WhatIf:$WhatIfPreference
 }
+
+# Get a list of current Policy Definition names
+$policyDefinitionFiles = Get-ChildItem -Path "$TargetModulePath/modules/archetypes/lib/policy_definitions/"
+$policyDefinitionNames = $policyDefinitionFiles | ForEach-Object {
+    (Get-Content -Path $_ | ConvertFrom-Json).Name
+}
+
+# Get a list of current Policy Set Definition names
+$policySetDefinitionFiles = Get-ChildItem -Path "$TargetModulePath/modules/archetypes/lib/policy_set_definitions/"
+$policySetDefinitionNames = $policySetDefinitionFiles | ForEach-Object {
+    (Get-Content -Path $_ | ConvertFrom-Json).Name
+}
+
+# Update the es_root archetype definition to reflect
+# the current list of Policy Definitions and Policy
+# Set Definitions
+$esRootFilePath = $TargetModulePath + "/modules/archetypes/lib/archetype_definitions/archetype_definition_es_root.tmpl.json"
+Write-Information "Loading `"es_root`" archetype definition." -InformationAction Continue
+$esRootConfig = Get-Content -Path $esRootFilePath | ConvertFrom-Json
+Write-Information "Updating Policy Definitions in `"es_root`" archetype definition." -InformationAction Continue
+$esRootConfig.es_root.policy_definitions = $policyDefinitionNames
+Write-Information "Updating Policy Set Definitions in `"es_root`" archetype definition." -InformationAction Continue
+$esRootConfig.es_root.policy_set_definitions = $policySetDefinitionNames
+Write-Information "Saving `"es_root`" archetype definition." -InformationAction Continue
+$esRootConfig | ConvertTo-Json -Depth 10 | Out-File -FilePath $esRootFilePath -Force

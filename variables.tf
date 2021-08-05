@@ -42,6 +42,24 @@ variable "deploy_core_landing_zones" {
   default     = true
 }
 
+variable "deploy_corp_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
+variable "deploy_online_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"Online\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
+variable "deploy_sap_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"SAP\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
 variable "deploy_demo_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"SAP\") into the core Enterprise-scale Management Group hierarchy."
@@ -50,7 +68,7 @@ variable "deploy_demo_landing_zones" {
 
 variable "deploy_management_resources" {
   type        = bool
-  description = "If set to true, will deploy the \"Management\" landing zone settings and add resources into the current Subscription context."
+  description = "If set to true, will enable the \"Management\" landing zone settings and add \"Management\" resources into the current Subscription context."
   default     = false
 }
 
@@ -142,7 +160,7 @@ variable "configure_management_resources" {
 
 variable "deploy_identity_resources" {
   type        = bool
-  description = "If set to true, will deploy the \"Identity\" landing zone settings."
+  description = "If set to true, will enable the \"Identity\" landing zone settings."
   default     = false
 }
 
@@ -178,7 +196,7 @@ variable "configure_identity_resources" {
 
 variable "deploy_connectivity_resources" {
   type        = bool
-  description = "If set to true, will deploy the \"Connectivity\" landing zone settings and add resources into the current Subscription context."
+  description = "If set to true, will enable the \"Connectivity\" landing zone settings and add \"Connectivity\" resources into the current Subscription context."
   default     = false
 }
 
@@ -469,16 +487,20 @@ variable "template_file_variables" {
 
 variable "default_location" {
   type        = string
-  description = "If specified, will use set the default location used for resource deployments where needed."
+  description = "If specified, will set the Azure region in which region bound resources will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/"
   default     = "eastus"
-
-  # Need to add validation covering all Azure locations
 }
 
 variable "default_tags" {
   type        = map(string)
   description = "If specified, will set the default tags for all resources deployed by this module where supported."
   default     = {}
+}
+
+variable "disable_base_module_tags" {
+  type        = bool
+  description = "If set to true, will remove the base module tags applied to all resources deployed by the module which support tags."
+  default     = false
 }
 
 variable "create_duration_delay" {
