@@ -1,3 +1,5 @@
+## Overview
+
 The module can be customised using the input variables listed below (click on each `input name` for more details).
 
 To provide the depth of configuration options needed by the module without creating too many different input variables, we decided to use a number of complex `object({})` type variables.

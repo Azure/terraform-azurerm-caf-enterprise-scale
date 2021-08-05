@@ -25,7 +25,6 @@
   - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
-  - [Multi-Subscription Deployment][wiki_multi-subscription_deployment]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
 - [Contributing][wiki_contributing]
@@ -37,7 +36,6 @@
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
 
 [wiki_home]:                                  ./Home "Wiki - Home"
 [wiki_user_guide]:                            ./User-Guide "Wiki - User Guide"
@@ -55,7 +53,6 @@
 [wiki_examples]:                              ./Examples "Wiki - Examples"
 [wiki_deploy_default_configuration]:          ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 [wiki_deploy_demo_landing_zone_archetypes]:   ./%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy Demo Landing Zone Archetypes"
-[wiki_multi-subscription_deployment]:         ./%5BExamples%5D-Multi-Subscription-Deployment "Wiki - Deploy multiple subscriptions"
 [wiki_deploy_custom_landing_zone_archetypes]: ./%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
 [wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
 [wiki_deploy_connectivity_resources]:         ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
