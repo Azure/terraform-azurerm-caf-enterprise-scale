@@ -7,11 +7,13 @@
             "Deny-Subnet-Without-Nsg",
             "Deploy-AKS-Policy",
             "Deploy-SQL-DB-Auditing",
+            "Deploy-SQL-Threat",
             "Deploy-VM-Backup",
-            "Deploy-SQL-Security",
             "Deny-Priv-Escalation-AKS",
             "Deny-Priv-Containers-AKS",
-            "Deny-http-Ingress-AKS"
+            "Enable-DDoS-VNET",
+            "Enforce-AKS-HTTPS",
+            "Enforce-TLS-SSL"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],

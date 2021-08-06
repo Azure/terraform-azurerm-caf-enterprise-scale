@@ -24,7 +24,7 @@ We will update the built-in configuration following these steps:
 
 - Enable the role assignment override with `custom_policy_roles`
 
-> IMPORTANT: Ensure the module version is set to the latest.
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 
@@ -51,7 +51,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -70,12 +70,12 @@ The `variables.tf` file is used to declare a couple of example variables which a
 
 variable "root_id" {
   type    = string
-  default = "myorg-3"
+  default = "myorg"
 }
 
 variable "root_name" {
   type    = string
-  default = "My Organization 3"
+  default = "My Organization"
 }
 ```
 
@@ -95,16 +95,22 @@ To allow the declaration of custom templates, you must create a custom library f
 # current Tenant ID used as the ID for the "Tenant Root Group"
 # Management Group.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.2.2"
+  version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
   library_path   = "${path.root}/lib"

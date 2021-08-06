@@ -6,17 +6,17 @@ In this example, we take a default configuration and make the following changes:
 
 - Create a new custom archetype definition named `customer_online` which will create two Policy Assignments, `Deny-Resource-Locations` and `Deny-RSG-Locations` at the associated scope with a set of pre-configured default parameter values.
 - Add a new Management Group for standard workloads using the `customer_online` archetype definition:
-  - Management Group ID: `myorg-3-online-example-1`
-  - Management Group Name: `MYORG-3 Online Example 1`
-  - Parent Management Group ID: `myorg-3-landing-zones`
+  - Management Group ID: `myorg-online-example-1`
+  - Management Group Name: `MYORG Online Example 1`
+  - Parent Management Group ID: `myorg-landing-zones`
   - Allowed location list: _default_
 - Add a new Management Group for geo-restricted workloads using the `customer_online` archetype definition:
-  - Management Group ID: `myorg-3-online-example-2`
-  - Management Group Name: `MYORG-3 Online Example 2`
-  - Parent Management Group ID: `myorg-3-landing-zones`
+  - Management Group ID: `myorg-online-example-2`
+  - Management Group Name: `MYORG Online Example 2`
+  - Parent Management Group ID: `myorg-landing-zones`
   - Allowed location list: `["eastus"]`
 
-> IMPORTANT: Ensure the module version is set to the latest
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 
@@ -43,7 +43,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -62,12 +62,12 @@ The `variables.tf` file is used to declare a couple of example variables which a
 
 variable "root_id" {
   type    = string
-  default = "myorg-3"
+  default = "myorg"
 }
 
 variable "root_name" {
   type    = string
-  default = "My Organization 3"
+  default = "My Organization"
 }
 ```
 
@@ -87,16 +87,22 @@ To allow the declaration of custom templates, you must create a custom library f
 # current Tenant ID used as the ID for the "Tenant Root Group"
 # Management Group.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
   library_path   = "${path.root}/lib"
@@ -184,4 +190,26 @@ For more details about working with archetype definitions, please refer to the [
 
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 140 resources to be created by this module for a default installation.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
+
+## Next steps
+
+Looking for further inspiration? Why not try some of our more advanced examples?
+
+- [Deploy management resources][wiki_deploy_management_resources]
+- [Deploy connectivity resources][wiki_deploy_connectivity_resources]
+- [Deploy identity resources][wiki_deploy_identity_resources]
+- [Expand the built-in archetype definitions][wiki_expand_built_in_archetype_definitions]
+- [Override Role Assignments for Policies with Managed Identity][wiki_override_module_role_assignments]
+- [Use module nesting to break up your deployment][wiki_deploy_using_module_nesting]
+
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"
+
+[wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_deploy_connectivity_resources]:         ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
+[wiki_deploy_identity_resources]:             ./%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
+[wiki_deploy_using_module_nesting]:           ./%5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
+[wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
+[wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"

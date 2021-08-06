@@ -64,7 +64,8 @@ jobs:
           ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
             -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
             -SourceModulePath ${{ github.workspace }}/${{ env.remote_repository }} `
-            -UseCacheFromModule
+            -UseCacheFromModule `
+            -Reset
         shell: pwsh
 
       - name: Check for changes

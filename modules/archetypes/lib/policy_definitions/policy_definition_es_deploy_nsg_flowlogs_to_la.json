@@ -1,7 +1,7 @@
 {
   "name": "Deploy-Nsg-FlowLogs-to-LA",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2020-09-01",
+  "apiVersion": "2021-06-01",
   "scope": null,
   "properties": {
     "policyType": "Custom",

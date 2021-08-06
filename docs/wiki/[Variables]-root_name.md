@@ -16,14 +16,15 @@ The `root_name` value must be a string between 2 to 24 characters long, start wi
 
 ## Usage
 
-To set a custom Display Name value for the Enterprise-scale "root" Management Group to `My Organization 1`, set the value of `root_name` as below:
+To set a custom Display Name value for the Enterprise-scale "root" Management Group to `My Organization`, set the value of `root_name` as below:
 
 ```hcl
-  root_name = "My Organization 1"
+  root_name = "My Organization"
 
 ```
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
+
 [this_page]: # "Link for the current page."

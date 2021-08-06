@@ -38,7 +38,7 @@ locals {
       access_control = local.empty_map
     }
     "${local.root_id}-connectivity" = {
-      archetype_id   = "es_connectivity_foundation"
+      archetype_id   = "es_connectivity"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -52,18 +52,33 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
+    "${local.root_id}-corp" = {
+      archetype_id   = "es_corp"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-online" = {
+      archetype_id   = "es_online"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-sap" = {
+      archetype_id   = "es_sap"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
     "${local.root_id}-demo-corp" = {
-      archetype_id   = "es_demo_corp"
+      archetype_id   = "es_corp"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
     "${local.root_id}-demo-online" = {
-      archetype_id   = "es_demo_online"
+      archetype_id   = "es_online"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
     "${local.root_id}-demo-sap" = {
-      archetype_id   = "es_demo_sap"
+      archetype_id   = "es_sap"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -93,6 +108,9 @@ locals {
     "${local.root_id}-connectivity"   = local.empty_list
     "${local.root_id}-management"     = local.empty_list
     "${local.root_id}-identity"       = local.empty_list
+    "${local.root_id}-corp"           = local.empty_list
+    "${local.root_id}-online"         = local.empty_list
+    "${local.root_id}-sap"            = local.empty_list
     "${local.root_id}-demo-corp"      = local.empty_list
     "${local.root_id}-demo-online"    = local.empty_list
     "${local.root_id}-demo-sap"       = local.empty_list
@@ -105,6 +123,38 @@ locals {
     local.es_subscription_ids_defaults,
     local.subscription_id_overrides_map,
   )
+}
+
+# The following locals are used to determine Management Group
+# placement for the platform Subscriptions. Preference of
+# placement is based on the following:
+#   1. Management
+#   2. Connectivity
+#   3. Identity
+# If a duplicate value is found in any of these scopes, the
+# value will be discarded as per the described logic.
+locals {
+  subscription_ids_management = distinct(compact(concat(
+    [local.subscription_id_management],
+    local.es_subscription_ids_map["${local.root_id}-management"],
+  )))
+  subscription_ids_connectivity = [
+    for id in distinct(compact(concat(
+      [local.subscription_id_connectivity],
+      local.es_subscription_ids_map["${local.root_id}-connectivity"],
+    ))) :
+    id
+    if !contains(local.subscription_ids_management, id)
+  ]
+  subscription_ids_identity = [
+    for id in distinct(compact(concat(
+      [local.subscription_id_identity],
+      local.es_subscription_ids_map["${local.root_id}-identity"],
+    ))) :
+    id
+    if !contains(local.subscription_ids_management, id) &&
+    !contains(local.subscription_ids_connectivity, id)
+  ]
 }
 
 # The following locals are used to define the core Enterprise
@@ -147,47 +197,63 @@ locals {
     "${local.root_id}-connectivity" = {
       display_name               = "Connectivity"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids = distinct(compact(concat(
-        [local.subscription_id_connectivity],
-        local.es_subscription_ids_map["${local.root_id}-connectivity"],
-      )))
-      archetype_config = local.es_archetype_config_map["${local.root_id}-connectivity"]
+      subscription_ids           = local.subscription_ids_connectivity
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-connectivity"]
     }
     "${local.root_id}-management" = {
       display_name               = "Management"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids = distinct(compact(concat(
-        [local.subscription_id_management],
-        local.es_subscription_ids_map["${local.root_id}-management"],
-      )))
-      archetype_config = local.es_archetype_config_map["${local.root_id}-management"]
+      subscription_ids           = local.subscription_ids_management
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-management"]
     }
     "${local.root_id}-identity" = {
       display_name               = "Identity"
       parent_management_group_id = "${local.root_id}-platform"
-      subscription_ids = distinct(compact(concat(
-        [local.subscription_id_identity],
-        local.es_subscription_ids_map["${local.root_id}-identity"],
-      )))
-      archetype_config = local.es_archetype_config_map["${local.root_id}-identity"]
+      subscription_ids           = local.subscription_ids_identity
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-identity"]
+    }
+  }
+  # Optional "Landing Zone" Enterprise-scale Management Groups
+  es_corp_landing_zones = {
+    "${local.root_id}-corp" = {
+      display_name               = "Corp"
+      parent_management_group_id = "${local.root_id}-landing-zones"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-corp"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-corp"]
+    }
+  }
+  es_online_landing_zones = {
+    "${local.root_id}-online" = {
+      display_name               = "Online"
+      parent_management_group_id = "${local.root_id}-landing-zones"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-online"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-online"]
+    }
+  }
+  es_sap_landing_zones = {
+    "${local.root_id}-sap" = {
+      display_name               = "SAP"
+      parent_management_group_id = "${local.root_id}-landing-zones"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-sap"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-sap"]
     }
   }
   # Optional demo "Landing Zone" Enterprise-scale Management Groups
   es_demo_landing_zones = {
     "${local.root_id}-demo-corp" = {
-      display_name               = "Corp"
+      display_name               = "Corp (Demo)"
       parent_management_group_id = "${local.root_id}-landing-zones"
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-demo-corp"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-demo-corp"]
     }
     "${local.root_id}-demo-online" = {
-      display_name               = "Online"
+      display_name               = "Online (Demo)"
       parent_management_group_id = "${local.root_id}-landing-zones"
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-demo-online"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-demo-online"]
     }
     "${local.root_id}-demo-sap" = {
-      display_name               = "SAP"
+      display_name               = "SAP (Demo)"
       parent_management_group_id = "${local.root_id}-landing-zones"
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-demo-sap"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-demo-sap"]
@@ -195,13 +261,19 @@ locals {
   }
   # Logic to determine whether to include the core Enterprise-scale
   # Management Groups as part of the deployment
-  es_core_landing_zones_to_include = local.deploy_core_landing_zones ? local.es_core_landing_zones : null
+  es_core_landing_zones_to_include   = local.deploy_core_landing_zones ? local.es_core_landing_zones : null
+  es_corp_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_corp_landing_zones ? local.es_corp_landing_zones : null
+  es_online_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_online_landing_zones ? local.es_online_landing_zones : null
+  es_sap_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_sap_landing_zones ? local.es_sap_landing_zones : null
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
-  es_demo_landing_zones_to_include = local.deploy_demo_landing_zones ? local.es_demo_landing_zones : null
+  es_demo_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_demo_landing_zones ? local.es_demo_landing_zones : null
   # Local map containing all Management Groups to deploy
   es_landing_zones_merge = merge(
     local.es_core_landing_zones_to_include,
+    local.es_corp_landing_zones_to_include,
+    local.es_online_landing_zones_to_include,
+    local.es_sap_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
     local.custom_landing_zones,
   )
@@ -219,6 +291,8 @@ locals {
         archetype_id   = value.archetype_config.archetype_id
         access_control = value.archetype_config.access_control
         parameters = merge(
+          try(module.connectivity_resources.configuration.archetype_config_overrides[key].parameters, null),
+          try(module.identity_resources.configuration.archetype_config_overrides[key].parameters, null),
           try(module.management_resources.configuration.archetype_config_overrides[key].parameters, null),
           value.archetype_config.parameters,
         )

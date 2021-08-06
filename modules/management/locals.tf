@@ -22,17 +22,17 @@ locals {
   existing_log_analytics_workspace_resource_id = var.existing_log_analytics_workspace_resource_id
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
   link_log_analytics_to_automation_account     = var.link_log_analytics_to_automation_account
-  custom_settings_by_resource_type             = var.custom_settings_by_resource_type
+  custom_settings                              = var.custom_settings_by_resource_type
 }
 
 # Extract individual custom settings blocks from
 # the custom_settings_by_resource_type variable.
 locals {
-  custom_settings_rsg               = try(local.custom_settings_by_resource_type.azurerm_resource_group, null)
-  custom_settings_la_workspace      = try(local.custom_settings_by_resource_type.azurerm_log_analytics_workspace, null)
-  custom_settings_la_solution       = try(local.custom_settings_by_resource_type.azurerm_log_analytics_solution, null)
-  custom_settings_aa                = try(local.custom_settings_by_resource_type.azurerm_automation_account, null)
-  custom_settings_la_linked_service = try(local.custom_settings_by_resource_type.azurerm_log_analytics_linked_service, null)
+  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], null)
+  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], null)
+  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], null)
+  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], null)
+  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], null)
 }
 
 # Logic to determine whether specific resources
@@ -181,7 +181,7 @@ locals {
   archetype_config_overrides = {
     (local.root_id) = {
       parameters = {
-        Deploy-ASC-Defender = {
+        Deploy-ASC-Configuration = {
           emailSecurityContact                = local.settings.security_center.config.email_security_contact
           logAnalytics                        = local.log_analytics_workspace_resource_id
           ascExportResourceGroupName          = "${local.root_id}-asc-export"
@@ -219,7 +219,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-ASC-Defender      = local.deploy_security_settings
+        Deploy-ASC-Configuration = local.deploy_security_settings
         Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
@@ -231,10 +231,14 @@ locals {
         Deploy-Log-Analytics = {
           automationAccountName = local.azurerm_automation_account.name
           automationRegion      = local.azurerm_automation_account.location
-          retentionInDays       = tostring(local.settings.log_analytics.config.retention_in_days) # Need to ensure this gets handled as a string
           rgName                = local.azurerm_resource_group.name
           workspaceName         = local.azurerm_log_analytics_workspace.name
           workspaceRegion       = local.azurerm_log_analytics_workspace.location
+          # Need to ensure dataRetention gets handled as a string
+          dataRetention = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+          # Need to ensure sku value is set to lowercase only when "PerGB2018" specified
+          # Evaluating in lower() to ensure the correct error is surfaced on the resource if invalid casing is used
+          sku = lower(local.azurerm_log_analytics_workspace.sku) == "pergb2018" ? lower(local.azurerm_log_analytics_workspace.sku) : local.azurerm_log_analytics_workspace.sku
         }
       }
       enforcement_mode = {
