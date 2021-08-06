@@ -12,7 +12,13 @@ The extra code needed to extend your configuration, is the following:
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
+
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
 
 
   root_parent_id            = "${var.root_id}-landing-zones"
@@ -50,7 +56,7 @@ In this example, we set and update the following values:
 
 Check the **`main.tf`** later on the example, for the full modules declaration.
 
-> IMPORTANT: Ensure the module version is set to the latest
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 
@@ -77,7 +83,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -96,12 +102,12 @@ The `variables.tf` file is used to declare a couple of example variables which a
 
 variable "root_id" {
   type    = string
-  default = "myorg-3"
+  default = "myorg"
 }
 
 variable "root_name" {
   type    = string
-  default = "My Organization 3"
+  default = "My Organization"
 }
 ```
 
@@ -121,16 +127,22 @@ To allow the declaration of custom templates, you must create a custom library f
 # current Tenant ID used as the ID for the "Tenant Root Group"
 # Management Group.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = var.root_id
   root_name      = var.root_name
   library_path   = "${path.root}/lib"
@@ -171,7 +183,13 @@ module "enterprise_scale" {
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
+
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
 
 
   root_parent_id            = "${var.root_id}-landing-zones"
@@ -249,4 +267,4 @@ For more details about working with archetype definitions, please refer to the [
 
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale, using module nesting.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 140 resources to be created by this module for a default installation.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.

@@ -8,7 +8,7 @@ This page describes how to deploy Enterprise-scale with a starter configuration 
 
 These demo Landing Zone archetypes provides a good way to learn about archetypes within the Enterprise-scale architecture but should not be used for production workloads.
 
-> IMPORTANT: Ensure the module version is set to the latest
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 
@@ -32,7 +32,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -44,18 +44,24 @@ provider "azurerm" {
 # You can use the azurerm_client_config data resource to dynamically
 # extract the current Tenant ID from your connection settings.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = "myorg-2"
-  root_name      = "My Organization 2"
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
+  root_id        = "myorg"
+  root_name      = "My Organization"
 
   deploy_demo_landing_zones = true
 
@@ -68,4 +74,8 @@ module "enterprise_scale" {
 
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 140 resources to be created by this module for a default installation.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
+
+## Next steps
+
+Go to our next example to learn how to create your own [custom landing zone archetypes](./%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes).

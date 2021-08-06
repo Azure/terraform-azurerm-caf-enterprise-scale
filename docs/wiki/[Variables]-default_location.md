@@ -2,7 +2,8 @@
 
 [**default_location**](#overview) `string` (optional)
 
-Set the Azure region in which region bound resources will be deployed.
+If specified, will set the Azure region in which region bound resources will be deployed.
+Please see: [https://azure.microsoft.com/en-gb/global-infrastructure/geographies/][msdocs_azure_geographies]
 
 ## Default value
 
@@ -16,7 +17,7 @@ None
 
 ## Usage
 
-Set the value to your [Azure region](https://azure.microsoft.com/en-gb/global-infrastructure/geographies/) of choice.
+Set the value to your [Azure region][msdocs_azure_geographies] of choice.
 
 ```hcl
   default_location = "uksouth"
@@ -27,4 +28,7 @@ Set the value to your [Azure region](https://azure.microsoft.com/en-gb/global-in
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
+
 [this_page]: # "Link for the current page."
+
+[msdocs_azure_geographies]: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/ "Find the Azure geography that meets your needs"

@@ -8,3 +8,4 @@ steps:
     script: 'make azp-strategy'
   env:
     ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+    BILLING_SCOPE: $(BILLING_SCOPE)

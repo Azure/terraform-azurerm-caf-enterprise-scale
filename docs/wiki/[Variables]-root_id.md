@@ -16,10 +16,10 @@ The `root_id` must be a string between 2 to 10 characters long and can only cont
 
 ## Usage
 
-To set a custom Name (ID) value for the Enterprise-scale "root" Management Group to `myorg-1`, set the value of `root_id` as below:
+To set a custom Name (ID) value for the Enterprise-scale "root" Management Group to `myorg`, set the value of `root_id` as below:
 
 ```hcl
-  root_id = "myorg-1"
+  root_id = "myorg"
 ```
 
 > WARNING: Changing this value will cause Terraform to re-create <u>all</u> resources managed by this module
@@ -27,4 +27,5 @@ To set a custom Name (ID) value for the Enterprise-scale "root" Management Group
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
+
 [this_page]: # "Link for the current page."

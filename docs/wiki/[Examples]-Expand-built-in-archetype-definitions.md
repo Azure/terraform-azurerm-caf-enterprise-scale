@@ -41,7 +41,7 @@ We will update the built-in configuration by adding 2 new settings:
 
 - Create an exclusion `exclude_es_landing_zones` which will **remove** a set of Policy Assignments `Deny-Priv-Escalation-AKS`, `Deny-Priv-Containers-AKS` and `Deny-http-Ingress-AKS`.
 
-> IMPORTANT: Ensure the module version is set to the latest.
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
 
@@ -73,7 +73,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.46.1"
+      version = ">= 2.66.0"
     }
   }
 }
@@ -85,18 +85,24 @@ provider "azurerm" {
 # You can use the azurerm_client_config data resource to dynamically
 # extract the current Tenant ID from your connection settings.
 
-data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "core" {}
 
 # Call the caf-enterprise-scale module directly from the Terraform Registry
 # pinning to the latest version
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.3.3"
+  version = "0.4.0"
 
-  root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = "myorg-1"
-  root_name      = "My Organization 1"
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
+  root_id        = "myorg"
+  root_name      = "My Organization"
   library_path   = "${path.root}/lib"
 
 }
@@ -183,4 +189,4 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 
 You have successfully expanded the archetype(s) by adding or removing configuration settings from the built-in archetype definitions for Enterprise-scale.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 140 resources to be created by this module for a default installation.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.

@@ -1,15 +1,15 @@
 {
   "name": "Deny-VNet-Peering",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "apiVersion": "2020-09-01",
+  "apiVersion": "2021-06-01",
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "Indexed",
+    "mode": "All",
     "displayName": "Deny vNet peering ",
     "description": "This policy denies the creation of vNet Peerings under the assigned scope.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "Network"
     },
     "parameters": {
