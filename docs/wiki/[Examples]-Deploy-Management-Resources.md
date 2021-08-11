@@ -1,6 +1,6 @@
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Management resources][] created in the current Subscription context and using the default configuration settings.
+This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context and using the default configuration settings.
 
 In this example, we take a default configuration and make the following changes:
 
@@ -24,7 +24,7 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 
 ## Example root module
 
-To create the Management resources, `deploy_managagement_resources` must be set to `true`, and the `subscription_id_management` is also required.
+To create the Management resources, `deploy_management_resources` must be set to `true`, and the `subscription_id_management` is also required.
 
 To keep this example simple, the root module for this example is based on a single file:
 
@@ -91,4 +91,11 @@ You have also successfully created the default set of Management resources in yo
 
 ## Next steps
 
-Go to our next example to learn how to deploy the [Management resources with custom settings](./%5BExamples%5D-Deploy-Custom-Management-Resources).
+Go to our next example to learn how to deploy the [Management resources with custom settings][wiki_deploy_management_resources_custom].
+
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"
+
+[wiki_management_resources]:               ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_deploy_management_resources_custom]: ./%5BUser-Guide%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Management Resources"

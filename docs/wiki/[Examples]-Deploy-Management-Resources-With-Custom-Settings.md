@@ -1,10 +1,10 @@
 ## Overview
 
-This page describes how to deploy Enterprise-scale management resources custom configuration, including guidance on how to apply Log Analytics and Azure Security Center preferences.
+This page describes how to deploy Enterprise-scale management resources with custom settings, including guidance on how to apply Log Analytics and Azure Security Center preferences.
 In this example, we take a default configuration and make the following code changes:
 
 ### Enable and configure management resources (Level 200)
-- Set and enable the `configure_management_resources`  variable
+- Set and enable the `configure_management_resources` variable
 - Add parameters for enabling/disabling management resources
 - Add parameters to set location and resource tags
 - Create custom configurations for Log Analytics and ASC
