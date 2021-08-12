@@ -299,7 +299,7 @@ Default: `true`
 
 If set to true, module will deploy the "Corp" Management Group, including "out of the box" policies and roles.
 
-Default: `true`
+Default: `false`
 
 <br>
 
@@ -331,7 +331,7 @@ Default: `false`
 
 If set to true, module will deploy the "Online" Management Group, including "out of the box" policies and roles.
 
-Default: `true`
+Default: `false`
 
 <br>
 
@@ -339,7 +339,7 @@ Default: `true`
 
 If set to true, module will deploy the "SAP" Management Group, including "out of the box" policies and roles.
 
-Default: `true`
+Default: `false`
 
 <br>
 
