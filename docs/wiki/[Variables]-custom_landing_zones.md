@@ -32,8 +32,8 @@ The custom_landing_zones keys must be between 2 to 36 characters long and can on
 
 ## Usage
 
-In a deployment when `custom_landing_zones` block is configured, will deploy additional Management Groups alongside core Management Groups.
-The main block parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
+In a deployment when `custom_landing_zones` object is configured, will deploy additional Management Groups alongside core Management Groups.
+The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
 
 `display_name` is the name assigned to the Management Group.
 
