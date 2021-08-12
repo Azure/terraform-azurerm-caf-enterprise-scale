@@ -93,10 +93,10 @@ The following diagram shows how each property in the `archetype_config_overrides
 
 As with many other parts of the module, the Role Definition name in the `access_control` object is Case Sensitive.
 
-Please also note that the `roleName` for Role Definitions created by the module include a prefix in the format `[SCOPE_IN_UPPERCASE] ` before the `roleName` specified in the templates.
+Please also note that the `roleName` for Role Definitions created by the module include a prefix, creating the format `[SCOPE_IN_UPPERCASE] roleName`.
 
-If you look at the Role Definition `Network-Subnet-Contributor` provided in the module, this is deployed at the `root` scope.
-In a deployment where `root_id = "myorg"`, this Role Definition will have the `roleName` set to `[MYORG] Network-Subnet-Contributor`.
+If you look at the Role Definition `Network-Subnet-Contributor` provided in the module, this is deployed at the `root` scope by default.
+In a deployment where `root_id = "myorg"`, this Role Definition will have the `roleName` set to `[MYORG] Network-Subnet-Contributor` in Azure.
 This is the value you need to specify in the `access_control` object.
 
 [//]: # (*****************************)
