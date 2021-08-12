@@ -26,7 +26,7 @@ map(
 )
 ```
 
-> INFORMATION: The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic type object.
+> INFORMATION: The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.
 This was necessary to allow the `parameters` value to be correctly interpreted.
 Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
 
@@ -53,14 +53,14 @@ To do this, simply create an entry similar to the `root` example below for one o
 
 This variable can also be used to customize the [demo Management Groups](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-deploy_demo_landing_zones): `demo-corp`, `demo-online`, `demo-sap`
 
-The following code snippet shows the basic structure of a typical `archetype_config_overrides` object, setting an override for the `root` Management Group with examples of how to declare parameters with different value types:
+The `archetype_config_overrides` example below shows how to set an override for the `root` Management Group, setting the `archetype_id` to `custom_archetype_definition` showing example parameters with different value types for a Policy Assignment called `Example-Policy-Assignment`, and a Role Assignment adding two Object IDs to a Role Definition called `Example-Role-Definition`:
 
 ```hcl
   archetype_config_overrides = {
     root = {
-      archetype_id = "es_root"
+      archetype_id = "custom_archetype_definition"
       parameters = {
-        Policy-Assignment-Name = {
+        Example-Policy-Assignment = {
           parameterStringExample = "value1",
           parameterBoolExample   = true,
           parameterNumberExample = 10,
@@ -75,7 +75,7 @@ The following code snippet shows the basic structure of a typical `archetype_con
         }
       }
       access_control = {
-        Role-Definition-Name = [
+        Example-Role-Definition = [
           "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Azure AD
           "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Azure AD
         ]

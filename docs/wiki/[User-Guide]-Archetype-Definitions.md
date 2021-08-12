@@ -165,7 +165,7 @@ object({
 
 The `archetype_config` object must contain the following properties:
 
-- `archetype_id` specifies which `archetype_definition` (by `name`) to associate with the current scope.
+- `archetype_id` specifies which `archetype_definition` to associate with the current scope.
 This must reference a valid `archetype_definition` from the built-in or custom library.
 
 - `parameters` provides the option to set parameter values for any Policy Assignment(s) specified within the chosen archetype definition.
