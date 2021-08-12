@@ -91,6 +91,14 @@ The following diagram shows how each property in the `archetype_config_overrides
 
 ![archetype_config_overrides_mapping][archetype_config_overrides_mapping]
 
+As with many other parts of the module, the Role Definition name in the `access_control` object is Case Sensitive.
+
+Please also note that the `roleName` for Role Definitions created by the module include a prefix in the format `[SCOPE_IN_UPPERCASE] ` before the `roleName` specified in the templates.
+
+If you look at the Role Definition `Network-Subnet-Contributor` provided in the module, this is deployed at the `root` scope.
+In a deployment where `root_id = "myorg"`, this Role Definition will have the `roleName` set to `[MYORG] Network-Subnet-Contributor`.
+This is the value you need to specify in the `access_control` object.
+
 [//]: # (*****************************)
 [//]: # (INSERT IMAGE REFERENCES BELOW)
 [//]: # (*****************************)
