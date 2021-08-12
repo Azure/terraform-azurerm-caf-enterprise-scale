@@ -88,7 +88,7 @@ The value for each entry in the `archetype_config_overrides` object must be a va
 For more information, please refer to our documentation on [Working with the `archetype config` object][archetype_config_object].
 
 The following diagram shows how each property in the `archetype_config_overrides` object relates to external references:
- 
+
 ![archetype_config_overrides_mapping][archetype_config_overrides_mapping]
 
 [//]: # (*****************************)
