@@ -105,4 +105,4 @@ The following diagram shows how each property in the `archetype_config_overrides
 
 [azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
 
-[archetype_config_object]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"
+[archetype_config_object]: ./%5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"
