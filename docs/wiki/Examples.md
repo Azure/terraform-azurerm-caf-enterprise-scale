@@ -36,4 +36,4 @@ Use the links below to explore these examples in more detail.
 [wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
 [wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources.md "Wiki - Deploy Management Resources"
-[wiki_deploy_custom_management_landing_zone]: ./%5BExamples%5D-Deploy-Custom-Management-Landing-Zone.md "Wiki - Deploy Custom Management Landing Zone"
+[wiki_deploy_custom_management_landing_zone]: ./%5BExamples%5D-Deploy-Custom-Management-Landing-Zone "Wiki - Deploy Custom Management Landing Zone"
