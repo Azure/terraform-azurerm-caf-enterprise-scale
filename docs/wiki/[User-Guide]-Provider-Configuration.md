@@ -128,7 +128,7 @@ module "caf-enterprise-scale" {
 
 It may also be useful to make use of the [`azurerm_client_config`][azurerm_client_config] data source when working with multiple Subscriptions, as this allows you to extract values from each provider declaration for use elsewhere within the module.
 
-In the following example, you can see how we use the [`azurerm_client_config`][azurerm_client_config] data source to populate values in the ``, ``, and `` input variables.
+In the following example, you can see how we use the [`azurerm_client_config`][azurerm_client_config] data source to populate values in the `root_parent_id`, `subscription_id_connectivity`, and `subscription_id_management` input variables.
 These all use the same credentials, but are configured to target different Subscriptions.
 
 ```hcl
