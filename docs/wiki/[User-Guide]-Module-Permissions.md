@@ -33,7 +33,7 @@ By granting Terraform access to this Management Group, Terraform will be able to
 
 For brownfield environments, you may also wish to manually move existing Subscriptions into a custom [default Management Group][azure_hierarchy_set_default] ([as above](#reduce-scope-of-access-control)) to enable on-boarding into the module, but always check the impact this will have on any existing policy and access control settings.
 
-For more information around this scenario, please refer to our guidance on [transitioning existing Azure environments to Enterprise-scale][azure_transition].
+> For more information around this scenario, please refer to our guidance on [transitioning existing Azure environments to Enterprise-scale][azure_transition].
 
 ## Connectivity resources
 
