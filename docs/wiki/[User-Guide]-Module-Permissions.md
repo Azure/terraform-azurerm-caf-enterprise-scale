@@ -20,7 +20,8 @@ You also need to consider permissions needed for [Moving management groups and s
   - Built-in role example: **Owner, Contributor, Management Group Contributor**
 
 All Subscriptions will inherit `Owner` permissions from the Management Group hierarchy for the identity used to run Terraform.
-As the requirement for Role Assignment write permissions effectively gives this identity permissions to assign any other permissions, we do not recommend altering this configuration. In most cases, we advise running this module within a secure CI/CD pipeline and monitoring the Activity Log for suspicious activity (using suitable [SIEM tooling][azure_sentinel]) to mitigate the risks associated with high privileged identities.
+As the requirement for Role Assignment write permissions effectively gives this identity permissions to assign any other permissions, we do not recommend altering this configuration.
+In most cases, we advise running this module within a secure CI/CD pipeline and monitoring the Activity Log for suspicious activity (using suitable [SIEM tooling][azure_sentinel]) to mitigate the risks associated with high privileged identities.
 
 ### Reduce scope of access control
 
