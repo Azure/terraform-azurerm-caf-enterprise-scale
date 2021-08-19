@@ -48,7 +48,7 @@ The following example shows how you can map a single (default) provider from the
 ```hcl
 # Declare a standard provider block using your preferred configuration.
 # This will be used for all resource deployments.
-provider {
+provider "azurerm" {
   features {}
 }
 
@@ -91,13 +91,13 @@ The following example shows how you might configure multiple `provider` blocks a
 ```hcl
 # Declare a standard provider block using your preferred configuration.
 # This will be used for the deployment of all "Core resources".
-provider {
+provider "azurerm" {
   features {}
 }
 
 # Declare an aliased provider block using your preferred configuration.
 # This will be used for the deployment of all "Connectivity resources" to the specified `subscription_id`.
-provider {
+provider "azurerm" {
   alias           = "connectivity"
   subscription_id = "00000000-0000-0000-0000-000000000000"
   features {}
@@ -105,7 +105,7 @@ provider {
 
 # Declare a standard provider block using your preferred configuration.
 # This will be used for the deployment of all "Management resources" to the specified `subscription_id`.
-provider {
+provider "azurerm" {
   alias           = "management"
   subscription_id = "11111111-1111-1111-1111-111111111111"
   features {}
