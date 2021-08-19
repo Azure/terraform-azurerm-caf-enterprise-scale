@@ -26,7 +26,7 @@ We will update the built-in configuration following these steps:
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 ## Example root module
 
@@ -277,7 +277,7 @@ For this example the`custom_policy_roles` is this:
   }
 ```
 
-### **Override Module Role Assignments**
+### Override Module Role Assignments
 
 ![Override-Module-Role-Assignments-03](./media/examples-override-module-role-assignments-03.png)
 

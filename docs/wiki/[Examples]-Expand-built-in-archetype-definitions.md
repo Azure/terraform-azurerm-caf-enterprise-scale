@@ -43,7 +43,7 @@ We will update the built-in configuration by adding 2 new settings:
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 ## Example root module
 
@@ -144,7 +144,7 @@ In this example, we want to add the policy assignment `"Deny-Resource-Locations"
 }
 ```
 
-### **Extended Policy Assignment**
+### Extended Policy Assignment
 
 ![Expand-Built-In-Archetype-Definitions-01](./media/examples-expand-built-in-archetype-definitions-01.png)
 
@@ -183,7 +183,7 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 }
 ```
 
-### **Excluded Policy Assignments**
+### Excluded Policy Assignments
 
 ![Expand-Built-In-Archetype-Definitions-02](./media/examples-expand-built-in-archetype-definitions-02.png)
 

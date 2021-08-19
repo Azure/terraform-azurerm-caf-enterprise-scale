@@ -18,10 +18,10 @@ Set the value to true or false.
 If set to _false_ with all the other values as _default_, the module will deploy no resources.
 This is for advanced scenarios such as:
 
-- Nested deployments (see [example](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Using-Module-Nesting))
+- [Nested deployments][wiki_deploy_using_module_nesting]
 - Landing zone resources:
-  - Management (coming soon)
-  - Connectivity (coming soon)
+  - [Management][wiki_management_resources]
+  - [Connectivity][wiki_connectivity_resources]
 
 ```hcl
   deploy_core_landing_zones = false
@@ -34,3 +34,7 @@ This is for advanced scenarios such as:
 [//]: # "************************"
 
 [this_page]: # "Link for the current page."
+
+[wiki_management_resources]:        ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]:      ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_deploy_using_module_nesting]: ./%5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"

@@ -18,7 +18,7 @@ In this example, we take a default configuration and make the following changes:
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 ## Example root module
 
@@ -184,7 +184,7 @@ For more details about working with archetype definitions, please refer to the [
 }
 ```
 
-## **Deployed Management Groups**
+## Deployed Management Groups
 
 ![Deploy-Default-Configuration](./media/examples-deploy-custom-demo-landing-zone-archetypes.png)
 

@@ -125,7 +125,8 @@ This template-based approach was chosen to make the desired-state easier to unde
 
 Specifying an `archetype_id` value is mandatory for all Management Groups created by the module.
 
-The default library includes a `default_empty` archetype definition which is useful when defining Management Groups which only require Role Assignments, or are being used for logical segregation of Landing Zones under a parent arcehtype. You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
+The default library includes a `default_empty` archetype definition which is useful when defining Management Groups which only require Role Assignments, or are being used for logical segregation of Landing Zones under a parent archetype.
+You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
 
 ```hcl
   custom_landing_zones = {
@@ -148,8 +149,53 @@ Role Assignments can be created using the `custom_landing_zones.${management_gro
 
 > Note that you still need to provide a full and valid Landing Zone object as per the example above.
 
+### Working with the `archetype_config` object
+
+The `archetype_config` object appears in a number of places and can be used to control the configuration settings of your deployment.
+
+Below is the required structure for the `archetype_config` object:
+
+```hcl
+object({
+  archetype_id   = string
+  parameters     = map(any)
+  access_control = map(list(string))
+})
+```
+
+The `archetype_config` object must contain the following properties:
+
+- `archetype_id` specifies which `archetype_definition` to associate with the current scope.
+This must reference a valid `archetype_definition` from the built-in or custom library.
+
+- `parameters` provides the option to set parameter values for any Policy Assignment(s) specified within the chosen archetype definition.
+To target a specific Policy Assignment, create a new `map()` entry using the Policy Assignment `name` field as the `key`.
+The `value` should be an `object({})` containing `key/value` pairs for each `parameter` needed by the Policy Assignment.
+
+  > Note that parameters are specified as simple `key/value` pairs, and do not require the same structure used in native ARM templates.
+
+- `access_control` provides the option to add user-specified Role Assignments which will be added to the specified Management Group.
+To avoid a direct dependency on the [Azure Active Directory Provider][azuread_provider], this module requires the input to be a list of Object IDs for each Azure AD object you want to assign the specified permission.
+To add your own Role Assignments, specify the `name` of the Role Definition you want to assign as the `key`, and provide a list of Azure Active Directory Object IDs to assign to this role as the `value`.
+
+You will find the `archetype_config` object in the following places:
+
+- Within each `archetype_definition` template (as per the [example](#example-archetype-definition) above)
+- Within each entry of the [`custom_landing_zones`][wiki_variables_custom_landing_zones] input variable
+- As the value of each (optional) entry in the [`archetype_config_overrides`][wiki_variables_archetype_config_overrides] input variable
+
+When planning your configuration, keep in mind that the module uses a hierarchy to determine which values to apply.
+
+- For `parameters` entries are merged at the Policy Assignment level, so all required `parameters` must be specified per Policy Assignment.
+This allows you to override parameter values for as many or as few Policy Assignments as needed, but you cannot selectively override individual parameter values whilst inheriting others from a lower scope.
+
+- For `access_control` entries are merged at the Role Definition level, so any Role Assignments found under a duplicate Role Definition name will be overwritten by the higher scope.
+
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
 [TFAES-Library]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib
+
+[wiki_variables_archetype_config_overrides]: ./%5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
+[wiki_variables_custom_landing_zones]:       ./%5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
