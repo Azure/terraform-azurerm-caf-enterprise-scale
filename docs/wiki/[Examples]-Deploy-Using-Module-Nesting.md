@@ -261,7 +261,7 @@ For more details about working with archetype definitions, please refer to the [
 }
 ```
 
-## **Deployed Management Groups**
+## Deployed Management Groups
 
 ![Deploy-Using-Module-Nesting](./media/examples-deploy-using-module-nesting.png)
 

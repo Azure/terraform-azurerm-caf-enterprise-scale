@@ -144,7 +144,7 @@ In this example, we want to add the policy assignment `"Deny-Resource-Locations"
 }
 ```
 
-### **Extended Policy Assignment**
+### Extended Policy Assignment
 
 ![Expand-Built-In-Archetype-Definitions-01](./media/examples-expand-built-in-archetype-definitions-01.png)
 
@@ -183,7 +183,7 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 }
 ```
 
-### **Excluded Policy Assignments**
+### Excluded Policy Assignments
 
 ![Expand-Built-In-Archetype-Definitions-02](./media/examples-expand-built-in-archetype-definitions-02.png)
 

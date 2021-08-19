@@ -184,7 +184,7 @@ For more details about working with archetype definitions, please refer to the [
 }
 ```
 
-## **Deployed Management Groups**
+## Deployed Management Groups
 
 ![Deploy-Default-Configuration](./media/examples-deploy-custom-demo-landing-zone-archetypes.png)
 

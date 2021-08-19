@@ -68,7 +68,7 @@ module "enterprise_scale" {
 }
 ```
 
-## **Deployed Management Groups**
+## Deployed Management Groups
 
 ![Deploy-Default-Configuration](./media/examples-deploy-demo-landing-zone-archetypes.png)
 

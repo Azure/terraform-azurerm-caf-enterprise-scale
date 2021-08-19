@@ -277,7 +277,7 @@ For this example the`custom_policy_roles` is this:
   }
 ```
 
-### **Override Module Role Assignments**
+### Override Module Role Assignments
 
 ![Override-Module-Role-Assignments-03](./media/examples-override-module-role-assignments-03.png)
 
