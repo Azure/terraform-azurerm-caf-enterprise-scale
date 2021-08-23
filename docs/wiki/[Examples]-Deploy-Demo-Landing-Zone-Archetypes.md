@@ -10,7 +10,7 @@ These demo Landing Zone archetypes provides a good way to learn about archetypes
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 > TIP: What is an archetype?
 > An archetype defines which Azure Policy and Access control (IAM) settings are needed to secure and configure the Landing Zones with everything needed for safe handover to the Landing Zone owner.
@@ -68,7 +68,7 @@ module "enterprise_scale" {
 }
 ```
 
-## **Deployed Management Groups**
+## Deployed Management Groups
 
 ![Deploy-Default-Configuration](./media/examples-deploy-demo-landing-zone-archetypes.png)
 

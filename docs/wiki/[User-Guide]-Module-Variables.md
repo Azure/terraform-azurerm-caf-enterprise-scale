@@ -28,7 +28,7 @@ These variables have default values and don't have to be set to use this module.
 
 <br>
 
-[**archetype_config_overrides**][archetype_config_overrides] `map(any)`
+[**archetype_config_overrides**][archetype_config_overrides] `any`
 
 If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups.
 
@@ -37,7 +37,7 @@ Default: `{}`
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
-[**configure_connectivity_resources**][configure_connectivity_resources] `object({ settings = object({ hub_networks = list( object({ enabled = bool, config = object({ address_space = list(string), location = string, link_to_ddos_protection_plan = bool, dns_servers = list(string), bgp_community = string, subnets = list( object({ name = string, address_prefixes = list(string), network_security_group_id = string, route_table_id = string }) ), virtual_network_gateway = object({ enabled = bool, config = object({ address_prefix = string, gateway_sku_expressroute = string, gateway_sku_vpn = string }) }), azure_firewall = object({ enabled = bool, config = object({ address_prefix = string, enable_dns_proxy = bool, availability_zones = object({ zone_1 = bool, zone_2 = bool, zone_3 = bool }) }) }), spoke_virtual_network_resource_ids = list(string), enable_outbound_virtual_network_peering = bool }) }) ) vwan_hub_networks = list(object({})), ddos_protection_plan = object({ enabled = bool, config = object({ location = string }) }), dns = object({ enabled = bool, config = object({ location = string, enable_private_link_by_service = object({ azure_automation_webhook = bool, azure_automation_dscandhybridworker = bool, azure_sql_database_sqlserver = bool, azure_synapse_analytics_sqlserver = bool, azure_synapse_analytics_sql = bool, storage_account_blob = bool, storage_account_table = bool, storage_account_queue = bool, storage_account_file = bool, storage_account_web = bool, azure_data_lake_file_system_gen2 = bool, azure_cosmos_db_sql = bool, azure_cosmos_db_mongodb = bool, azure_cosmos_db_cassandra = bool, azure_cosmos_db_gremlin = bool, azure_cosmos_db_table = bool, azure_database_for_postgresql_server = bool, azure_database_for_mysql_server = bool, azure_database_for_mariadb_server = bool, azure_key_vault = bool, azure_kubernetes_service_management = bool, azure_search_service = bool, azure_container_registry = bool, azure_app_configuration_stores = bool, azure_backup = bool, azure_site_recovery = bool, azure_event_hubs_namespace = bool, azure_service_bus_namespace = bool, azure_iot_hub = bool, azure_relay_namespace = bool, azure_event_grid_topic = bool, azure_event_grid_domain = bool, azure_web_apps_sites = bool, azure_machine_learning_workspace = bool, signalr = bool, azure_monitor = bool, cognitive_services_account = bool, azure_file_sync = bool, azure_data_factory = bool, azure_data_factory_portal = bool, azure_cache_for_redis = bool }) private_link_locations = list(string), public_dns_zones = list(string), private_dns_zones = list(string), enable_private_dns_zone_virtual_network_link_on_hubs = bool, enable_private_dns_zone_virtual_network_link_on_spokes = bool }) }) }), location = any, tags     = any, advanced = any })`
+[**configure_connectivity_resources**][configure_connectivity_resources] `object({ settings = object({ hub_networks = list( object({ enabled = bool config = object({ address_space = list(string) location = string link_to_ddos_protection_plan = bool dns_servers = list(string) bgp_community = string subnets = list( object({ name = string address_prefixes = list(string) network_security_group_id = string route_table_id = string }) ) virtual_network_gateway = object({ enabled = bool config = object({ address_prefix = string # Only support adding a single address prefix for GatewaySubnet subnet gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet gateway_sku_vpn = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet }) }) azure_firewall = object({ enabled = bool config = object({ address_prefix = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet enable_dns_proxy = bool availability_zones = object({ zone_1 = bool zone_2 = bool zone_3 = bool }) }) }) spoke_virtual_network_resource_ids = list(string) enable_outbound_virtual_network_peering = bool }) }) ) vwan_hub_networks = list(object({})) ddos_protection_plan = object({ enabled = bool config = object({ location = string }) }) dns = object({ enabled = bool config = object({ location = string enable_private_link_by_service = object({ azure_automation_webhook = bool azure_automation_dscandhybridworker = bool azure_sql_database_sqlserver = bool azure_synapse_analytics_sqlserver = bool azure_synapse_analytics_sql = bool storage_account_blob = bool storage_account_table = bool storage_account_queue = bool storage_account_file = bool storage_account_web = bool azure_data_lake_file_system_gen2 = bool azure_cosmos_db_sql = bool azure_cosmos_db_mongodb = bool azure_cosmos_db_cassandra = bool azure_cosmos_db_gremlin = bool azure_cosmos_db_table = bool azure_database_for_postgresql_server = bool azure_database_for_mysql_server = bool azure_database_for_mariadb_server = bool azure_key_vault = bool azure_kubernetes_service_management = bool azure_search_service = bool azure_container_registry = bool azure_app_configuration_stores = bool azure_backup = bool azure_site_recovery = bool azure_event_hubs_namespace = bool azure_service_bus_namespace = bool azure_iot_hub = bool azure_relay_namespace = bool azure_event_grid_topic = bool azure_event_grid_domain = bool azure_web_apps_sites = bool azure_machine_learning_workspace = bool signalr = bool azure_monitor = bool cognitive_services_account = bool azure_file_sync = bool azure_data_factory = bool azure_data_factory_portal = bool azure_cache_for_redis = bool }) private_link_locations = list(string) public_dns_zones = list(string) private_dns_zones = list(string) enable_private_dns_zone_virtual_network_link_on_hubs = bool enable_private_dns_zone_virtual_network_link_on_spokes = bool }) }) }) location = any tags = any advanced = any })`
 
 If specified, will customize the \"Connectivity\" landing zone settings and resources.
 
@@ -247,7 +247,7 @@ Default:
 
 <br>
 
-[**custom_landing_zones**][custom_landing_zones] `map( object({ display_name = string parent_management_group_id = string subscription_ids = list(string) archetype_config = object({ archetype_id = string parameters = any access_control = any }) }) )`
+[**custom_landing_zones**][custom_landing_zones] `any`
 
 If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
 
@@ -295,6 +295,14 @@ Default: `true`
 
 <br>
 
+[**deploy_corp_landing_zones**][deploy_corp_landing_zones] `bool`
+
+If set to true, module will deploy the "Corp" Management Group, including "out of the box" policies and roles.
+
+Default: `false`
+
+<br>
+
 [**deploy_demo_landing_zones**][deploy_demo_landing_zones] `bool`
 
 If set to true, will include the demo "Landing Zone" Management Groups.
@@ -314,6 +322,22 @@ Default: `false`
 [**deploy_management_resources**][deploy_management_resources] `bool`
 
 If set to true, will deploy the \"Management\" landing zone settings and add resources into the current Subscription context.
+
+Default: `false`
+
+<br>
+
+[**deploy_online_landing_zones**][deploy_online_landing_zones] `bool`
+
+If set to true, module will deploy the "Online" Management Group, including "out of the box" policies and roles.
+
+Default: `false`
+
+<br>
+
+[**deploy_sap_landing_zones**][deploy_sap_landing_zones] `bool`
+
+If set to true, module will deploy the "SAP" Management Group, including "out of the box" policies and roles.
 
 Default: `false`
 
@@ -436,10 +460,13 @@ Now you understand how to customize your deployment using the input variables, c
 [default_location]:                 ./%5BVariables%5D-default_location "Instructions for how to use the default_location variable."
 [default_tags]:                     ./%5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
 [deploy_core_landing_zones]:        ./%5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
+[deploy_corp_landing_zones]:        ./%5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
 [deploy_demo_landing_zones]:        ./%5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
 [deploy_connectivity_resources]:    ./%5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
 [deploy_identity_resources]:        ./%5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
 [deploy_management_resources]:      ./%5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
+[deploy_online_landing_zones]:      ./%5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
+[deploy_sap_landing_zones]:         ./%5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
 [destroy_duration_delay]:           ./%5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
 [disable_base_module_tags]:         ./%5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
 [library_path]:                     ./%5BVariables%5D-library_path "Instructions for how to use the library_path variable."
