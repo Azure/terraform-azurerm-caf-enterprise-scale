@@ -208,7 +208,7 @@ locals {
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
-You can also see that the assigned Subscription has been moved to the `Management` Management Group.
+You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 
 ## Policy Assignment configuration
 
