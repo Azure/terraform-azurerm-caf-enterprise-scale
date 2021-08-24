@@ -573,6 +573,7 @@ locals {
 locals {
   enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
   private_link_locations         = coalescelist(local.settings.dns.config.private_link_locations, [local.location])
+  private_dns_zone_prefix        = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
   lookup_private_link_dns_zone_by_service = {
     azure_automation_webhook             = ["privatelink.azure-automation.net"]
     azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]
@@ -831,13 +832,31 @@ locals {
     }
     "${local.root_id}-corp" = {
       parameters = {
-        Enable-DDoS-VNET = {
-          ddosPlan = local.ddos_protection_plan_resource_id
+        Deploy-Private-DNS-Zones = {
+          azureFilePrivateDnsZoneId                     = "${local.private_dns_zone_prefix}privatelink.afs.azure.net"
+          azureWebPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.webpubsub.azure.com"
+          azureBatchPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.${local.location}.batch.azure.com"
+          azureAppPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azconfig.io"
+          azureAsrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}${local.location}.privatelink.siterecovery.windowsazure.com"
+          azureIoTPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azure-devices-provisioning.net"
+          azureKeyVaultPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.vaultcore.azure.net"
+          azureSignalRPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.service.signalr.net"
+          azureAppServicesPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.azurewebsites.net"
+          azureEventGridTopicsPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.eventgrid.azure.net"
+          azureDiskAccessPrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
+          azureCognitiveServicesPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.cognitiveservices.azure.com"
+          azureIotHubsPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.azure-devices.net"
+          azureEventGridDomainsPrivateDnsZoneId         = "${local.private_dns_zone_prefix}privatelink.eventgrid.azure.net"
+          azureRedisCachePrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.redis.cache.windows.net"
+          azureAcrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azurecr.io"
+          azureEventHubNamespacePrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.servicebus.windows.net"
+          azureMachineLearningWorkspacePrivateDnsZoneId = "${local.private_dns_zone_prefix}privatelink.api.azureml.ms"
+          azureServiceBusNamespacePrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.servicebus.windows.net"
+          azureCognitiveSearchPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.search.windows.net"
         }
       }
       enforcement_mode = {
         Deploy-Private-DNS-Zones = local.deploy_dns
-        Enable-DDoS-VNET         = local.deploy_ddos_protection_plan
       }
     }
   }
@@ -846,7 +865,7 @@ locals {
 # Template file variable outputs
 locals {
   template_file_variables = {
-    private_dns_zone_prefix = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
+    private_dns_zone_prefix = local.private_dns_zone_prefix
   }
 }
 
