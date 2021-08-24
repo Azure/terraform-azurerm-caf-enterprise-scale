@@ -18,7 +18,7 @@ The following resource types are deployed and managed by this module when using 
 | Role Assignments | [`Microsoft.Authorization/roleAssignments`][arm_role_assignment] | [`azurerm_role_assignment`][azurerm_role_assignment] |
 | Role Definitions | [`Microsoft.Authorization/roleDefinitions`][arm_role_definition] | [`azurerm_role_definition`][azurerm_role_definition] |
 
-The exact number of resources created depends on the module configuration, but you can expect upwards of `200` resources to be created by this module for a default installation based on the example below.
+The exact number of resources created depends on the module configuration, but you can expect upwards of `180` resources to be created by this module for a default installation based on the example below.
 
 > **NOTE:** None of these resources are deployed at the Subscription scope, however Terraform still requires a Subscription to establish an authenticated session with Azure.
 
