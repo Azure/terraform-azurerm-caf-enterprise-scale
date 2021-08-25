@@ -118,7 +118,7 @@ The Resource Group `myorg-connectivity-eastus` should be created, and will initi
 
 ![Deployed Resources](./media/examples-deploy-connectivity-rsg.png)
 
-When you explore the configuration, note that `myorg-hub-eastus` is pre-configured with Subnets for `GatewaySubnet` and `AzureFirewallSubnet`. 
+When you explore the configuration, note that `myorg-hub-eastus` is pre-configured with Subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
 DDoS Protection Standard should also be set to `Disable`, although we recommend you **enable this for production environments**.
 The location of both the Resource Group and Virtual Network is created in the region specified via the `default_location` input variable, which uses the default value of `eastus` in this example.
 These settings can all be changed if needed!
