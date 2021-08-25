@@ -40,7 +40,7 @@ To make the code easier to maintain when extending your configuration, we recomm
 - `main.tf`
 - `settings.management.tf`
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by this module for this example.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 
 **`terraform.tf`**
 

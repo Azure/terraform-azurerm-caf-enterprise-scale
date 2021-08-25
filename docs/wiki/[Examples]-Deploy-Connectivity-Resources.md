@@ -2,18 +2,24 @@
 
 This page describes how to deploy Enterprise-scale with the [Connectivity resources][wiki_connectivity_resources] created in the current Subscription context, using the default configuration settings.
 
-As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimising cost. Please refer to the Cloud Adoption Framework [Network topology and connectivity][ESLZ-Connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
+As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimising cost.
+Please refer to the Cloud Adoption Framework [Network topology and connectivity][ESLZ-Connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
 
 In this example, we take a default configuration and make the following changes:
 
-- Set `deploy_connectivity_resources` to enable creation of the default Connectivity resources,including:
+- Set `deploy_connectivity_resources` to enable creation of the default Connectivity resources, including:
   - Resource Group to contain all Connectivity resources.
   - Virtual Network to use as a hub for hybrid-connectivity.
-  - Azure Private DNS Zones for Private Endpoints (initially enabled for the `default_location` only when multi-region zones are supported).
+  - Azure Private DNS Zones for Private Endpoints.
   - Recommended Solutions for Azure Monitor.
 - Set the `subscription_id_connectivity` value to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features relating to the DDoS Protection Plan and Private DNS Zones for Private Endpoints.
+
+<!-- Some Private DNS Zones for Private Endpoints are bound to a specific Azure Region.
+By default, the module will use the location set for connectivity resources, or the `default_location` value (`eastus`), in order of precedence.
+To add more locations, simply add them to the `configure_connectivity_resources.settings.dns.config.private_link_locations` value.
+This must be in the short format (`uksouth`), and not DisplayName (`UK South`). -->
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
@@ -23,7 +29,10 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 
 To create the Connectivity resources, `deploy_connectivity_resources` must be set to `true`, and the `subscription_id_connectivity` is also required.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 260 resources to be created by this module for this example.
+Although `subscription_id_connectivity` is required, the create of resources is determined by provider settings.
+Please ensure you have a provider configured with access to the same Subscription specified by `subscription_id_connectivity`, and map this to `azurerm.connectivity` in the module providers object.
+
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 260 resources to be created by the module for this example.
 
 To keep this example simple, the root module for this example is based on a single file:
 
@@ -47,7 +56,7 @@ provider "azurerm" {
 }
 
 # You can use the azurerm_client_config data resource to dynamically
-# extract the current Tenant ID from your connection settings.
+# extract connection settings from the provider configuration.
 
 data "azurerm_client_config" "core" {}
 
@@ -124,7 +133,7 @@ All Private DNS Zone resources are `Global`.
 By default we create a Private DNS Zone for all services which currently [support Private Endpoints][azure_private_endpoint_support].
 New Private DNS Zones may be added in future releases as additional services release Private Endpoint support.
 
-In addition to creating the Private DNS Zones, we also create the `Virtual network links` to connect each zone to the `myorg-hub-eastus` Virtual Network.
+We also configure `Virtual network links` to connect each Private DNS Zone to the hub Virtual Network, which in this example is `myorg-hub-eastus`.
 
 ## Additional considerations
 

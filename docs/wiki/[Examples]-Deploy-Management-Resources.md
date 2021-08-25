@@ -26,7 +26,7 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 
 To create the Management resources, `deploy_management_resources` must be set to `true`, and the `subscription_id_management` is also required.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by this module for this example.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 
 To keep this example simple, the root module for this example is based on a single file:
 
@@ -50,7 +50,7 @@ provider "azurerm" {
 }
 
 # You can use the azurerm_client_config data resource to dynamically
-# extract the current Tenant ID from your connection settings.
+# extract connection settings from the provider configuration.
 
 data "azurerm_client_config" "core" {}
 
