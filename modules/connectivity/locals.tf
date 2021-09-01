@@ -780,7 +780,7 @@ locals {
           private_dns_zone_name = zone.name
           virtual_network_id    = link_config.resource_id
           # Optional definition attributes
-          registration_enabled = try(local.custom_settings.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.name]["global"].registration_enabled, false)
+          registration_enabled = try(local.custom_settings.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.name][zone.name].registration_enabled, try(local.custom_settings.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.name]["global"].registration_enabled, false))
           tags                 = try(local.custom_settings.azurerm_private_dns_zone_virtual_network_link["connectivity"][link_config.name]["global"].tags, local.tags)
         }
       ]
