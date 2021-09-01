@@ -17,7 +17,7 @@ variable "root_parent_id" {
 variable "root_id" {
   type        = string
   description = "If specified, will set a custom Name (ID) value for the Enterprise-scale \"root\" Management Group, and append this to the ID for all core Enterprise-scale Management Groups."
-  default     = "es"
+  default     = "caf"
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))

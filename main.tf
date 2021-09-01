@@ -4,6 +4,10 @@
 # for Subscription scope configuration so we can improve
 # coverage for archetype patterns which deploy specific
 # groups of Resources within a Subscription.
+
+provider "azurerm" {
+  features {}
+}
 module "management_group_archetypes" {
   for_each = local.es_landing_zones_map
   source   = "./modules/archetypes"
