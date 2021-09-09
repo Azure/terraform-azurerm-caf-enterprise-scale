@@ -59,7 +59,7 @@
 [wiki_upgrade_from_v0_0_8_to_v0_1_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_upgrade_from_v0_3_3_to_v0_4_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
-[wiki_considerations]                         ./%5BUser-Guide%5D-Considerations "Wiki - Considerations when deploying ESLZ with Terraform"
+[wiki_considerations]:                        ./%5BUser-Guide%5D-Considerations "Wiki - Considerations when deploying ESLZ with Terraform"
 [wiki_examples]:                              ./Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    ./Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    ./Examples#advanced-level-200 "Wiki - Examples"
