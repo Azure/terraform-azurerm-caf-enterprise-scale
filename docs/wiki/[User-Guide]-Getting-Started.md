@@ -1,4 +1,4 @@
-## Considerations
+## Initial Considerations
 
 Before getting started with this module, please take note of the following considerations:
 
