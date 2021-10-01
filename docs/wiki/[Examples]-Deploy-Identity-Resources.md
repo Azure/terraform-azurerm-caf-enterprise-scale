@@ -108,7 +108,7 @@ Unless you have deployed resources into the current Subscription context used fo
 
 ## Deployed Identity resources
 
-No resources will be deployed in your `Identity` Subscription by this module.
+No resources will be deployed in your `identity` Subscription by this module.
 
 ## Additional considerations
 
