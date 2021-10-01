@@ -46,13 +46,27 @@ The following section covers typical configuration scenarios.
 The following example shows how you can map a single (default) provider from the root module using the providers object:
 
 ```hcl
+# We strongly recommend using the required_providers block to set the
+# Azure Provider source and version being used.
+
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 2.66.0"
+    }
+  }
+}
+
 # Declare a standard provider block using your preferred configuration.
 # This will be used for all resource deployments.
+
 provider "azurerm" {
   features {}
 }
 
 # Map each module provider to your default `azurerm` provider using the providers input object.
+
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "0.4.0"
@@ -89,14 +103,33 @@ Details of how to [configure authentication settings][authenticating_to_azure] c
 The following example shows how you might configure multiple `provider` blocks and map them to the module for a Multi-Subscription deployment:
 
 ```hcl
+# When using multiple providers, you must add the required_providers block
+# to declare the configuration_aliases under the Azure Provider, along with
+# the source and version being used.
+
+terraform {
+  required_providers {
+    azurerm = {
+      source                = "hashicorp/azurerm"
+      version               = ">= 2.66.0"
+      configuration_aliases = [
+        azurerm.connectivity,
+        azurerm.management,
+      ]
+    }
+  }
+}
+
 # Declare a standard provider block using your preferred configuration.
 # This will be used for the deployment of all "Core resources".
+
 provider "azurerm" {
   features {}
 }
 
 # Declare an aliased provider block using your preferred configuration.
 # This will be used for the deployment of all "Connectivity resources" to the specified `subscription_id`.
+
 provider "azurerm" {
   alias           = "connectivity"
   subscription_id = "00000000-0000-0000-0000-000000000000"
@@ -105,6 +138,7 @@ provider "azurerm" {
 
 # Declare a standard provider block using your preferred configuration.
 # This will be used for the deployment of all "Management resources" to the specified `subscription_id`.
+
 provider "azurerm" {
   alias           = "management"
   subscription_id = "11111111-1111-1111-1111-111111111111"
@@ -112,6 +146,7 @@ provider "azurerm" {
 }
 
 # Map each module provider to their corresponding `azurerm` provider using the providers input object
+
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "0.4.0"
