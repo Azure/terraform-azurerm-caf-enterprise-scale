@@ -9,7 +9,7 @@ In this example, we take a default configuration and make the following changes:
   - Log Analytics workspace to use for centralised logging.
   - Automation Account to enable additional capabilities as part of the included Solutions for Azure Monitor.
   - Recommended Solutions for Azure Monitor.
-- Set the `subscription_id_management` value to ensure policies are updated with the correct values.
+- Set the `subscription_id_management` value to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features within Log Analytics and Sentinel including but not limited to:
 - Enable monitoring for devices managed through Azure Arc;
@@ -26,11 +26,11 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 
 To create the Management resources, `deploy_management_resources` must be set to `true`, and the `subscription_id_management` is also required.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by this module for this example.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 
 To keep this example simple, the root module for this example is based on a single file:
 
-**`main.tf`**
+### `main.tf`
 
 ```hcl
 # We strongly recommend using the required_providers block to set the
@@ -50,7 +50,7 @@ provider "azurerm" {
 }
 
 # You can use the azurerm_client_config data resource to dynamically
-# extract the current Tenant ID from your connection settings.
+# extract connection settings from the provider configuration.
 
 data "azurerm_client_config" "core" {}
 
@@ -82,6 +82,8 @@ module "enterprise_scale" {
 ![Deployed resource hierarchy](./media/examples-deploy-management-core.png)
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+
+You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 
 ## Policy Assignment configuration
 
@@ -123,7 +125,6 @@ You should also have the following resources deployed in your assigned Managemen
 
 If you are using [Archetype Exclusions][archetype_exclusions] or [custom Archetypes][custom_archetypes] in your code, make sure to not disable Log Analytics or Security Center policies if you require policy integration using this module.
 The relationship between the resources deployed and the Policy parameters is dependent on [specific Policy Assignments](#policy-assignment-configuration) being used.
-
 
 ## Next steps
 

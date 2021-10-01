@@ -35,14 +35,14 @@ If location is not specified, the resources will default to the same location se
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- `terraform.tf`
-- `variables.tf`
-- `main.tf`
-- `settings.management.tf`
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [settings.management.tf](#settingsmanagementtf)
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by this module for this example.
+> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 
-**`terraform.tf`**
+### `terraform.tf`
 
 The `terraform.tf` file is used to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider. For production use, we recommend pinning to a specific version, and not using ranges.
 
@@ -66,7 +66,7 @@ provider "azurerm" {
 
 If you wish to deploy the Management resources to a different Subscription context than the one used for Core resources, please refer to our guide for [Multi-Subscription deployment][wiki_provider_configuration_multi].
 
-**`variables.tf`**
+### `variables.tf`
 
 The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
@@ -111,7 +111,7 @@ variable "management_resources_tags" {
 }
 ```
 
-**`main.tf`**
+### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID and Subscription ID values from your user connection to Azure. These are used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_management` input variable.
 
@@ -149,7 +149,7 @@ module "enterprise_scale" {
 }
 ```
 
-**`settings.management.tf`**
+### `settings.management.tf`
 
 The `settings.management.tf` file contains a local variable containing the custom configuration for the `configure_management_resources` input variable.
 This helps to keep the module block clean, whilst providing clear separation between settings for different groups of resources.
@@ -208,7 +208,7 @@ locals {
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
-You can also see that the assigned Subscription has been moved to the `Management` Management Group.
+You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 
 ## Policy Assignment configuration
 
