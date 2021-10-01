@@ -36,7 +36,7 @@ Please ensure you have a provider configured with access to the same Subscriptio
 
 To keep this example simple, the root module for this example is based on a single file:
 
-**`main.tf`**
+### `main.tf`
 
 ```hcl
 # We strongly recommend using the required_providers block to set the

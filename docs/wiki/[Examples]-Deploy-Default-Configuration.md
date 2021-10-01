@@ -15,7 +15,7 @@ This is a good starting point when first discovering what resources are created 
 
 To keep things simple, the root module for this example is based on a single file:
 
-**`main.tf`**
+### `main.tf`
 
 ```hcl
 # We strongly recommend using the required_providers block to set the

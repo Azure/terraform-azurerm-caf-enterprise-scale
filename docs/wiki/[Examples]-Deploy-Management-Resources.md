@@ -30,7 +30,7 @@ To create the Management resources, `deploy_management_resources` must be set to
 
 To keep this example simple, the root module for this example is based on a single file:
 
-**`main.tf`**
+### `main.tf`
 
 ```hcl
 # We strongly recommend using the required_providers block to set the

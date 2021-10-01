@@ -173,7 +173,7 @@ This will deploy the core components only.
 > **NOTE:** For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
 > Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
 
-**File: `main.tf`**
+### `main.tf`
 
 ```hcl
 # Configure Terraform to set the required AzureRM provider
