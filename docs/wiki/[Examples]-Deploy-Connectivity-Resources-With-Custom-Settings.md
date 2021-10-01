@@ -2,7 +2,7 @@
 
 This page describes how to deploy Enterprise-scale with the [Connectivity resources][wiki_connectivity_resources] created in the current Subscription context, using custom configuration settings.
 
-> **WARNING:** This deployment includes resource types which can incur high consumption costs. Please take care to review the resources being deployed before proceeding.
+> **WARNING:** This deployment includes resource types which can incur increased consumption costs. Please take care to review the resources being deployed before proceeding.
 
 The module supports customising almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
 For the Connectivity resources, this is configured through the [`configure_connectivity_resources`][configure_connectivity_resources] input variable.
