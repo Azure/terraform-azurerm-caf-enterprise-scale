@@ -32,12 +32,12 @@ We will update the built-in configuration following these steps:
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- [terraform.tf](#terraform-tf)
-- [variables.tf](#variables-tf)
-- [main.tf](#main-tf)
-- [lib/policy_assignments/policy_assignment_dhh_policy_set_definition.json](#lib-policy-assignments-policy-assignment-dhh-policy-set-definition-json)
-- [lib/policy_assignments/policy_assignment_dsa_policy_set_definition.json](#lib-policy-assignments-policy-assignment-dsa-policy-set-definition-json)
-- [lib/archetype_definitions/archetype_definition_customer_online.json](#lib-archetype-definitions-archetype-definition-customer-online-json)
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [lib/policy_assignments/policy_assignment_dhh_policy_set_definition.json](#libpolicy_assignmentspolicy_assignment_dhh_policy_set_definitionjson)
+- [lib/policy_assignments/policy_assignment_dsa_policy_set_definition.json](#libpolicy_assignmentspolicy_assignment_dsa_policy_set_definitionjson)
+- [lib/archetype_definitions/archetype_definition_customer_online.json](#libarchetype_definitionsarchetype_definition_customer_onlinejson)
 
 ### `terraform.tf`
 

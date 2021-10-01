@@ -51,9 +51,9 @@ We will update the built-in configuration by adding 2 new settings:
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files.
 For the purpose of this example, we use the following:
 
-- [main.tf](#main-tf)
-- [lib/archetype_extension_es_landing_zones.tmpl.json](#lib-archetype-extension-es-landing-zones-tmpl-json)
-- [lib/archetype_exclusion_es_landing_zones.tmpl.json](#lib-archetype-exclusion-es-landing-zones-tmpl-json)
+- [main.tf](#maintf)
+- [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zonestmpljson)
+- [lib/archetype_exclusion_es_landing_zones.tmpl.json](#libarchetype_exclusion_es_landing_zonestmpljson)
 
 ![Expand-Built-In-Archetype-Definitions](./media/examples-expand-built-in-archetype-definitions.png)
 

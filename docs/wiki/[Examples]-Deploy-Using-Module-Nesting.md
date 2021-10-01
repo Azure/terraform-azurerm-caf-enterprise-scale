@@ -54,7 +54,7 @@ In this example, we set and update the following values:
 - display_name: `${upper(var.root_id)} Online Example 3 (nested)`
 - depends_on: `module.enterprise_scale`
 
-Check the [`main.tf`](#main-tf) example below for the full module declaration.
+Check the [`main.tf`](#maintf) example below for the full module declaration.
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
@@ -66,9 +66,9 @@ Check the [`main.tf`](#main-tf) example below for the full module declaration.
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- [terraform.tf](#terraform-tf)
-- [variables.tf](#variables-tf)
-- [main.tf](#main-tf)
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
 - [lib/archetype_definition_customer_online.json](#lib-archetype-definition-customer-online-json)
 
 ### `terraform.tf`

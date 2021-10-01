@@ -35,10 +35,10 @@ If location is not specified, the resources will default to the same location se
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- [terraform.tf](#terraform-tf)
-- [variables.tf](#variables-tf)
-- [main.tf](#main-tf)
-- [settings.management.tf](#settings-management-tf)
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [settings.management.tf](#settingsmanagementtf)
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 

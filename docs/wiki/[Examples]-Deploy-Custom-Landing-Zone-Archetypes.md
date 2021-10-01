@@ -26,10 +26,10 @@ In this example, we take a default configuration and make the following changes:
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- [terraform.tf](#terraform-tf)
-- [variables.tf](#variables-tf)
-- [main.tf](#main-tf)
-- [lib/archetype_definition_customer_online.json](#lib-archetype-definition-customer-online-json)
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [lib/archetype_definition_customer_online.json](#libarchetype_definition_customer_onlinejson)
 
 ### `terraform.tf`
 
