@@ -21,7 +21,7 @@ In this example, we take the base [Deploy Connectivity resources][wiki_deploy_co
   - Set a different default location for Connectivity resources (controlled through an input variable on the root module)
   - Add custom resource tags for Connectivity resources (controlled through an input variable on the root module)
 
-> <sup>1</sup> - The domain namespace for some Private Endpoints are bound to a specific Azure Region.
+> <sup>1</sup> - The domain namespace for some Private Endpoints (e.g. Azure Batch) are bound to a specific Azure Region.
 By default, the module will use the location set by the `configure_connectivity_resources.location` value, or the `default_location` value (`eastus`), in order of precedence.
 To deploy Private DNS Zones to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
 Each value in this list must be in the shortname format (`uksouth`), and not DisplayName (`UK South`).
