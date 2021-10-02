@@ -32,14 +32,14 @@ We will update the built-in configuration following these steps:
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- `terraform.tf`
-- `variables.tf`
-- `main.tf`
-- `lib/policy_assignments/policy_assignment_dhh_policy_set_definition.json`
-- `lib/policy_assignments/policy_assignment_dsa_policy_set_definition.json`
-- `lib/archetype_definitions/archetype_definition_customer_online.json`
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [lib/policy_assignments/policy_assignment_dhh_policy_set_definition.json](#libpolicy_assignmentspolicy_assignment_dhh_policy_set_definitionjson)
+- [lib/policy_assignments/policy_assignment_dsa_policy_set_definition.json](#libpolicy_assignmentspolicy_assignment_dsa_policy_set_definitionjson)
+- [lib/archetype_definitions/archetype_definition_customer_online.json](#libarchetype_definitionsarchetype_definition_customer_onlinejson)
 
-**`terraform.tf`**
+### `terraform.tf`
 
 The `terraform.tf` file is used to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider. For production use, we recommend pinning to a specific version, and not using ranges.
 
@@ -61,7 +61,7 @@ provider "azurerm" {
 }
 ```
 
-**`variables.tf`**
+### `variables.tf`
 
 The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
@@ -79,7 +79,7 @@ variable "root_name" {
 }
 ```
 
-**`main.tf`**
+### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure. This is used to ensure the deployment will target your `Tenant Root Group` by default.
 
@@ -151,7 +151,7 @@ module "enterprise_scale" {
 }
 ```
 
-**`lib/policy_assignments/policy_assignment_dhh_policy_set_definition.json`**
+### `lib/policy_assignments/policy_assignment_dhh_policy_set_definition.json`
 
 In the `/lib` directory create a `policy_assignments` subdirectory.
 
@@ -190,7 +190,7 @@ In the subdirectory `policy_assignments` create a `policy_assignment_dhh_policy_
 }
 ```
 
-**`lib/policy_assignments/policy_assignment_dsa_policy_set_definition.json`**
+### `lib/policy_assignments/policy_assignment_dsa_policy_set_definition.json`
 
 In the subdirectory `policy_assignments` create a `policy_assignment_dsa_policy_set_definition.json` file. This files contains the Policy Assignment definition for `Deploy-SQL-Auditing`
 
@@ -223,13 +223,11 @@ In the subdirectory `policy_assignments` create a `policy_assignment_dsa_policy_
 
 > IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
 
-**`lib/archetype_definitions/archetype_definition_customer_online.json`**
+### `lib/archetype_definitions/archetype_definition_customer_online.json`
 
 In the `/lib` directory create an `archetype_definitions` subdirectory.
 
 In the subdirectory `archetype_definitions` create an `archetype_definition_customer_online.json` file. This file contains a custom "archetype definition" including the creation of Policy Assignments for `Deploy-HITRUST-HIPAA` and `Deploy-SQL-Auditing`
-
-- **`lib/archetype_definitions/archetype_definition_customer_online.json`**
 
 ```json
 {
@@ -246,7 +244,7 @@ In the subdirectory `archetype_definitions` create an `archetype_definition_cust
 }
 ```
 
-### Override the dynamically generated Role Assignments
+## Override the dynamically generated Role Assignments
 
 To map a Role Definition against the Policy Assignments we need to assign the role definition id(s) to the policy definition id.
 This is the definition of the variable `custom_policy_roles` and the theoretical expected values:
@@ -277,7 +275,7 @@ For this example the`custom_policy_roles` is this:
   }
 ```
 
-### Override Module Role Assignments
+## Override Module Role Assignments
 
 ![Override-Module-Role-Assignments-03](./media/examples-override-module-role-assignments-03.png)
 
