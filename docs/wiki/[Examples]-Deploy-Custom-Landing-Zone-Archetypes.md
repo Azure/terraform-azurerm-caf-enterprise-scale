@@ -18,7 +18,7 @@ In this example, we take a default configuration and make the following changes:
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 ## Example root module
 
@@ -26,12 +26,12 @@ In this example, we take a default configuration and make the following changes:
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- `terraform.tf`
-- `variables.tf`
-- `main.tf`
-- `lib/archetype_definition_customer_online.json`
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [lib/archetype_definition_customer_online.json](#libarchetype_definition_customer_onlinejson)
 
-**`terraform.tf`**
+### `terraform.tf`
 
 The `terraform.tf` file is used to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider. For production use, we recommend pinning to a specific version, and not using ranges.
 
@@ -53,7 +53,7 @@ provider "azurerm" {
 }
 ```
 
-**`variables.tf`**
+### `variables.tf`
 
 The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
@@ -71,7 +71,7 @@ variable "root_name" {
 }
 ```
 
-**`main.tf`**
+### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure. This is used to ensure the deployment will target your `Tenant Root Group` by default.
 
@@ -140,7 +140,7 @@ module "enterprise_scale" {
 }
 ```
 
-**`lib/archetype_definition_customer_online.json`**
+### `lib/archetype_definition_customer_online.json`
 
 > IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
 
@@ -184,7 +184,7 @@ For more details about working with archetype definitions, please refer to the [
 }
 ```
 
-## **Deployed Management Groups**
+## Deployed Management Groups
 
 ![Deploy-Default-Configuration](./media/examples-deploy-custom-demo-landing-zone-archetypes.png)
 
