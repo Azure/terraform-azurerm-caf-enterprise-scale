@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deny-MachineLearning-PublicAccessWhenBehindVnet",
-    "description": "Deny public access behind vnet for machine learning workspaces.",
+    "displayName": "Deny public acces behind vnet to Azure Machine Learning workspace",
+    "description": "Deny public access behind vnet to Azure Machine Learning workspaces.",
     "metadata": {
       "version": "1.0.0",
       "category": "Machine Learning"
