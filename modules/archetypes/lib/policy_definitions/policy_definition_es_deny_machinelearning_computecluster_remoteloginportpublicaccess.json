@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess",
-    "description": "Deny public access of clusters via SSH.",
+    "displayName": "Deny public access of Azure Machine Learning clusters via SSH",
+    "description": "Deny public access of Azure Machine Learning clusters via SSH.",
     "metadata": {
       "version": "1.0.0",
       "category": "Machine Learning"

@@ -1,13 +1,13 @@
 {
-  "name": "Deny-MachineLearning-HbiWorkspace",
+  "name": "Deny-MachineLearning-PublicNetworkAccess",
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
   "scope": null,
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Enforces high business impact Azure Machine Learning Workspaces",
-    "description": "Enforces high business impact Azure Machine Learning workspaces.",
+    "displayName": "Azure Machine Learning should have disabled public network access",
+    "description": "Denies public network access for Azure Machine Learning workspaces.",
     "metadata": {
       "version": "1.0.0",
       "category": "Machine Learning"
@@ -35,16 +35,8 @@
             "equals": "Microsoft.MachineLearningServices/workspaces"
           },
           {
-            "anyOf": [
-              {
-                "field": "Microsoft.MachineLearningServices/workspaces/hbiWorkspace",
-                "exists": false
-              },
-              {
-                "field": "Microsoft.MachineLearningServices/workspaces/hbiWorkspace",
-                "notEquals": true
-              }
-            ]
+            "field": "Microsoft.MachineLearningServices/workspaces/publicNetworkAccess",
+            "notEquals": "Disabled"
           }
         ]
       },
