@@ -59,8 +59,8 @@ $defaultConfig = @{
 
 # File locations from Enterprise-scale repository for
 # resources, organised by type
-$policyDefinitionFilePaths = (Get-ChildItem -Path "$SourceModulePath/eslzArm/managementGroupTemplates/policyDefinitions").FullName
-$policySetDefinitionFilePaths = (Get-ChildItem -Path "$SourceModulePath/eslzArm/managementGroupTemplates/policyDefinitions").FullName
+$policyDefinitionFilePaths = "$SourceModulePath/eslzArm/managementGroupTemplates/policyDefinitions"
+$policySetDefinitionFilePaths = "$SourceModulePath/eslzArm/managementGroupTemplates/policyDefinitions"
 
 # The esltConfig array controls the foreach loop used to run
 # Export-LibraryArtifact. Each object provides a set of values
