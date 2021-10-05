@@ -2,7 +2,7 @@
 
 This page describes how to deploy Enterprise-scale with the [Connectivity resources][wiki_connectivity_resources] created in the current Subscription context, using custom configuration settings.
 
-> **WARNING:** This deployment includes resource types which can incur high consumption costs. Please take care to review the resources being deployed before proceeding.
+> **WARNING:** This deployment includes resource types which can incur increased consumption costs. Please take care to review the resources being deployed before proceeding.
 
 The module supports customising almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
 For the Connectivity resources, this is configured through the [`configure_connectivity_resources`][configure_connectivity_resources] input variable.
@@ -21,7 +21,7 @@ In this example, we take the base [Deploy Connectivity resources][wiki_deploy_co
   - Set a different default location for Connectivity resources (controlled through an input variable on the root module)
   - Add custom resource tags for Connectivity resources (controlled through an input variable on the root module)
 
-> <sup>1</sup> - The domain namespace for some Private Endpoints are bound to a specific Azure Region.
+> <sup>1</sup> - The domain namespace for some Private Endpoints (e.g. Azure Batch) are bound to a specific Azure Region.
 By default, the module will use the location set by the `configure_connectivity_resources.location` value, or the `default_location` value (`eastus`), in order of precedence.
 To deploy Private DNS Zones to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
 Each value in this list must be in the shortname format (`uksouth`), and not DisplayName (`UK South`).
@@ -47,14 +47,14 @@ If the `configure_connectivity_resources.location` value is not specified, the r
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- `terraform.tf`
-- `variables.tf`
-- `main.tf`
-- `settings.connectivity.tf`
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [settings.connectivity.tf](#settingsconnectivitytf)
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 320 resources to be created by the module for this example.
 
-**`terraform.tf`**
+### `terraform.tf`
 
 The `terraform.tf` file is used to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider. For production use, we recommend pinning to a specific version, and not using ranges.
 
@@ -78,7 +78,7 @@ provider "azurerm" {
 
 If you wish to deploy the Connectivity resources to a different Subscription context than the one used for Core resources, please refer to our guide for [Multi-Subscription deployment][wiki_provider_configuration_multi].
 
-**`variables.tf`**
+### `variables.tf`
 
 The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
@@ -123,7 +123,7 @@ variable "connectivity_resources_tags" {
 }
 ```
 
-**`main.tf`**
+### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID and Subscription ID values from your user connection to Azure. These are used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_connectivity` input variable.
 
@@ -161,7 +161,7 @@ module "enterprise_scale" {
 }
 ```
 
-**`settings.connectivity.tf`**
+### `settings.connectivity.tf`
 
 The `settings.connectivity.tf` file contains a local variable containing the custom configuration for the `configure_connectivity_resources` input variable.
 This helps to keep the module block clean, whilst providing clear separation between settings for different groups of resources.
@@ -433,6 +433,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [azure_private_endpoint_support]: https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
 [wiki_management_resources]:         ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
+[wiki_connectivity_resources]:         ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources."
 [wiki_deploy_connectivity_resources]:  ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources."
 [wiki_provider_configuration_multi]:   ./%5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
 [wiki_examples]:                       ./Examples "Wiki - Examples"

@@ -837,7 +837,7 @@ locals {
           azureWebPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.webpubsub.azure.com"
           azureBatchPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.${local.location}.batch.azure.com"
           azureAppPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azconfig.io"
-          azureAsrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}${local.location}.privatelink.siterecovery.windowsazure.com"
+          azureAsrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.siterecovery.windowsazure.com"
           azureIoTPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azure-devices-provisioning.net"
           azureKeyVaultPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.vaultcore.azure.net"
           azureSignalRPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.service.signalr.net"

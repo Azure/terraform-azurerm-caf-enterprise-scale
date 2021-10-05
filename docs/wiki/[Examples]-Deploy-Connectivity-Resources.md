@@ -36,7 +36,7 @@ Please ensure you have a provider configured with access to the same Subscriptio
 
 To keep this example simple, the root module for this example is based on a single file:
 
-**`main.tf`**
+### `main.tf`
 
 ```hcl
 # We strongly recommend using the required_providers block to set the
@@ -160,7 +160,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_deploy_connectivity_resources_custom]: ./%5BUser-Guide%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
 [wiki_examples]:                             ./Examples "Wiki - Examples"
 [wiki_management_resources]:                 ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_deploy_default_configuration]:         ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
 [archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
 [custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
