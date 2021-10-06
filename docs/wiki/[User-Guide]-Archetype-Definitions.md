@@ -42,7 +42,7 @@ The `archetype_definition` template contains lists of the Policy Assignments, Po
 
 To keep the `archetype_definition` template as lean as possible, we simply declare the value of the `name` field from the resource templates (by type). The exception is Role Definitions which must have a GUID for the `name` field, so we use the `roleName` value from `properties` instead.
 
-As long as you follows these patterns, you can create your own archetype definitions to start advanced customisation of your Enterprise-scale deployment.
+As long as you follow these patterns, you can create your own archetype definitions to start advanced customisation of your Enterprise-scale deployment.
 
 This template-based approach was chosen to make the desired-state easier to understand, simplify the process of managing configuration and versioning, reduce code duplication (DRY), and to improve consistency in complex environments.
 
