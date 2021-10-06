@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deny-MachineLearning-ComputeCluster-Scale",
-    "description": "Enforce scale settings for machine learning compute clusters.",
+    "displayName": "Enforce scale settings for Azure Machine Learning compute clusters",
+    "description": "Enforce scale settings for Azure Machine Learning compute clusters.",
     "metadata": {
       "version": "1.0.0",
       "category": "Budget"
