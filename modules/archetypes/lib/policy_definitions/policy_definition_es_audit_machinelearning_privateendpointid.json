@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Audit-MachineLearning-PrivateEndpointId",
-    "description": "Audit public endpoints that are created in other subscriptions for machine learning.",
+    "displayName": "Control private endpoint connections to Azure Machine Learning",
+    "description": "Audit private endpoints that are created in other subscriptions and/or tenants for Azure Machine Learning.",
     "metadata": {
       "version": "1.0.0",
       "category": "Machine Learning"
@@ -32,17 +32,23 @@
         "allOf": [
           {
             "field": "type",
-            "equals": "Microsoft.MachineLearningServices/workspaces"
+            "equals": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections"
           },
           {
-            "count": {
-              "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections[*]",
-              "where": {
-                "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections[*].privateEndpoint.id",
-                "notContains": "[subscription().id]"
+            "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/privateLinkServiceConnectionState.status",
+            "equals": "Approved"
+          },
+          {
+            "anyOf": [
+              {
+                "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/privateEndpoint.id",
+                "exists": false
+              },
+              {
+                "value": "[split(concat(field('Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/privateEndpoint.id'), '//'), '/')[2]]",
+                "notEquals": "[subscription().subscriptionId]"
               }
-            },
-            "greaterOrEquals": 1
+            ]
           }
         ]
       },

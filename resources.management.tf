@@ -68,6 +68,7 @@ resource "azurerm_log_analytics_solution" "management" {
     azurerm_resource_group.management,
     azurerm_log_analytics_workspace.management,
     azurerm_automation_account.management,
+    azurerm_log_analytics_linked_service.management,
   ]
 
 }
