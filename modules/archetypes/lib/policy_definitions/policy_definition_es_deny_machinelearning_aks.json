@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deny-MachineLearning-Aks",
-    "description": "Deny AKS cluster creation in machine learning and enforce connecting to existing clusters.",
+    "displayName": "Deny AKS cluster creation in Azure Machine Learning",
+    "description": "Deny AKS cluster creation in Azure Machine Learning and enforce connecting to existing clusters.",
     "metadata": {
       "version": "1.0.0",
       "category": "Machine Learning"
