@@ -5,7 +5,7 @@ This page describes how to deploy Enterprise-scale with the [Connectivity resour
 As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimising cost.
 Please refer to the Cloud Adoption Framework [Network topology and connectivity][ESLZ-Connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
 
-In this example, we take a default configuration and make the following changes:
+In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
 - Set `deploy_connectivity_resources` to enable creation of the default Connectivity resources, including:
   - Resource Group to contain all Connectivity resources.
@@ -160,6 +160,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_deploy_connectivity_resources_custom]: ./%5BUser-Guide%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
 [wiki_examples]:                             ./Examples "Wiki - Examples"
 [wiki_management_resources]:                 ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_deploy_default_configuration]:         ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
 [archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
 [custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
