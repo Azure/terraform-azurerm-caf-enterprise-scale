@@ -40,7 +40,7 @@ Please refer to the [upgrade guide][wiki_upgrade_from_v0_3_3_to_v0_4_0] for more
 
 ## Additional considerations when deploying Landing Zone resources with Terraform
 
-This module is not prescriptive on which deployment method is used for deploying landing zone resources.
+Although you may be considering managing your platform using this Terraform module, Enterprise-scale is not prescriptive on which deployment method is used for deploying resources inside Landing Zone Subscriptions.
 For example, application teams could use Bicep, ARM templates, or Terraform to deploy resources within their own subscriptions.
 However, when application teams choose to deploy resources with Terraform, the following additional considerations apply:
 
