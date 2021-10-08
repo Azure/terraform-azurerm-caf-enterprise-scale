@@ -18,7 +18,7 @@ Unfortunately this is a product limitation, but should have minimal impact due t
 
 If you've already deployed the [Identity resources using default settings][wiki_deploy_identity_resources], you will be able to see the changes made when moving to this configuration.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init -upgrade` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
