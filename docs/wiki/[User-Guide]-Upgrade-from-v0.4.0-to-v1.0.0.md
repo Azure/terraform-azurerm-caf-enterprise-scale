@@ -51,15 +51,15 @@ The given key does not identify an element in this collection value.
 ### Resource type: `azurerm_policy_definition`
 
 The following Policy Definitions had `name` and `description` fields updated, which will result in an in-place update:
-  - `Audit-MachineLearning-PrivateEndpointId`
-  - `Deny-MachineLearning-Aks`
-  - `Deny-MachineLearning-Compute-SubnetId`
-  - `Deny-MachineLearning-Compute-VmSize`
-  - `Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess`
-  - `Deny-MachineLearning-ComputeCluster-Scale`
-  - `Deny-MachineLearning-HbiWorkspace`
-  - `Deny-MachineLearning-PublicAccessWhenBehindVnet`
-  - `Deploy-VNET-HubSpoke`
+- `Audit-MachineLearning-PrivateEndpointId`
+- `Deny-MachineLearning-Aks`
+- `Deny-MachineLearning-Compute-SubnetId`
+- `Deny-MachineLearning-Compute-VmSize`
+- `Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess`
+- `Deny-MachineLearning-ComputeCluster-Scale`
+- `Deny-MachineLearning-HbiWorkspace`
+- `Deny-MachineLearning-PublicAccessWhenBehindVnet`
+- `Deploy-VNET-HubSpoke`
 
 ### Management resources
 
