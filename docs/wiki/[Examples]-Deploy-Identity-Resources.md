@@ -3,7 +3,8 @@
 This page describes how to deploy Enterprise-scale with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using the default configuration settings.
 
 Unlike the `connectivity` and `management` solutions, no resources are currently deployed when enabling `deploy_identity_resources`.
-Instead, the Policy Assignments associated with the `identity` Management Group are enabled and configured based.
+Instead, the Policy Assignments associated with the `identity` Management Group are enabled and configured based on the optional `configure_identity_resources` input variable.
+The module will also move the Subscription specified in `subscription_id_identity` to the `identity` Management Group, unless it is the same value specified in `subscription_id_connectivity` or `subscription_id_management`.
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
@@ -97,8 +98,7 @@ Check the following Policy Assignments to see how these have been configured wit
 
 ### Policy Assignment parameters example
 
-The following shows the `Deploy-VM-Backup` Policy Assignment with a user-defined value set by the module for the `logAnalytics` parameter.
-You will see that this value matches the resource ID of the Log Analytics workspace deployed by this module.
+The following shows the `Deploy-VM-Backup` Policy Assignment with a user-defined values set by the module for the parameters.
 
 ![Policy Assignment parameters example](./media/examples-deploy-identity-policy-parameters.png)
 

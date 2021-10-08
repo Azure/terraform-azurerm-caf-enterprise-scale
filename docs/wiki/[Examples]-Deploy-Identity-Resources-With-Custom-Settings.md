@@ -3,7 +3,8 @@
 This page describes how to deploy Enterprise-scale with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using custom configuration settings.
 
 Unlike the `connectivity` and `management` solutions, no resources are currently deployed when enabling `deploy_identity_resources`.
-Instead, the Policy Assignments associated with the `identity` Management Group are enabled and configured based.
+Instead, the Policy Assignments associated with the `identity` Management Group are enabled and configured based on the optional `configure_identity_resources` input variable.
+The module will also move the Subscription specified in `subscription_id_identity` to the `identity` Management Group, unless it is the same value specified in `subscription_id_connectivity` or `subscription_id_management`.
 
 For the Identity resources, it is still possible to configure a number of policy settings through the [`configure_identity_resources`][configure_identity_resources] input variable.
 
