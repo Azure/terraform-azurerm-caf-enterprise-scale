@@ -221,16 +221,16 @@ Please refer to our [Examples][wiki_examples] guide on the Wiki.
 
 ## Release Notes
 
- Release `v1.0.0` is now here.
- Functionality remains largely similar to `v0.4.0`, but we have made a few minor bug fixes
- The following breaking changes should be noted when upgrading from `v0.4.x`:
- - The minimum supported version of the AzureRM Provider is now set to `2.77.0`
+Release `v1.0.0` is now here.
+Functionality remains largely similar to `v0.4.0`, but we have made a few minor bug fixes
+The following breaking changes should be noted when upgrading from `v0.4.x`:
+- The minimum supported version of the AzureRM Provider is now set to `2.77.0`
 
- For upgrade guides, please refer to the following links:
-  - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
-  - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
-  - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
-  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
+For upgrade guides, please refer to the following links:
+- [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
+- [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
+- [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
+- [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
 
 ## License
 
