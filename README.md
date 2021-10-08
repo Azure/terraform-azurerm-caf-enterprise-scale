@@ -3,25 +3,6 @@
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-> **MODULE UPGRADE NOTES**
->
-> The `v0.4.0` release represents a major milestone for the module, introducing capabilities for deploying `Identity` and `Connectivity` solutions from the Enterprise-scale architecture.
-> The following breaking changes should be noted when upgrading from `v0.3.x`:
-> - The minimum supported version of Terraform is now set to `0.15.0`
-> - The minimum supported version of the AzureRM Provider is now set to `2.66.0`
-> - Resources have been renamed to support multiple providers within the module
-> - The [`azurerm_policy_assignment`][azurerm_policy_assignment] resource type has been replaced by the new [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] resource type
->
-> These changes were necessary to support the latest features for Availability Zone configuration settings on the [`azurerm_public_ip`][azurerm_public_ip] resources, allow integration of multiple providers within the module to enable deploying resources to multiple Subscriptions, and to future proof against deprecation of the [`azurerm_policy_assignment`][azurerm_policy_assignment] resource.
-> We believe this provides the best end-user experience going forward, so to make the transition as easy as possible, we have also provided documentation explaining how to [upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0].
-> We strongly recommend to review this, along with the [release notes][release_notes_v0_4_0] and test your deployment before upgrading.
->
-> The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`.
-> When upgrading to this release, please ensure to update your code to use native HCL values as documented in the [release notes][release_notes_v0_3_0].
->
-> The `v0.2.0` release added new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
-> Please refer to the [Deploy Management Resources][wiki_deploy_management_resources] page on our Wiki for more information about how to use this.
-
 ## Documentation
 
 For detailed information about how to use, configure and extend this module, please refer to the documentation on our Wiki:
@@ -37,9 +18,6 @@ For detailed information about how to use, configure and extend this module, ple
   - [Management Resources][wiki_management_resources]
   - [Connectivity Resources][wiki_connectivity_resources]
   - [Identity Resources][wiki_identity_resources]
-  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
-  - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
-  - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 - [Examples][wiki_examples]
   - [Level 100][wiki_examples_level_100]
     - [Deploy Default Configuration][wiki_deploy_default_configuration]
@@ -241,6 +219,19 @@ Please refer to our [Module Permissions][wiki_module_permissions] guide on the W
 
 Please refer to our [Examples][wiki_examples] guide on the Wiki.
 
+## Release Notes
+
+ Release `v1.0.0` is now here.
+ Functionality remains largely similar to `v0.4.0`, but we have made a few minor bug fixes
+ The following breaking changes should be noted when upgrading from `v0.4.x`:
+ - The minimum supported version of the AzureRM Provider is now set to `2.77.0`
+
+ For upgrade guides, please refer to the following links:
+  - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
+  - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
+  - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
+  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
+
 ## License
 
 [MIT License][TFAES-LICENSE]
@@ -315,9 +306,6 @@ Please refer to our [Examples][wiki_examples] guide on the Wiki.
 [TFAES-CONTRIBUTING]: https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/CONTRIBUTING
 [TFAES-Library]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/terraform-azurerm-caf-enterprise-scale-archetypes/lib
 
-[release_notes_v0_3_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v0.3.0 "Release notes for v0.3.0"
-[release_notes_v0_4_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v0.4.0 "Release notes for v0.4.0"
-
 <!--
 The following link references should be copied from `_sidebar.md` in the `./docs/wiki/` folder.
 Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/` when copying to here.
@@ -337,6 +325,7 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_upgrade_from_v0_0_8_to_v0_1_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_upgrade_from_v0_3_3_to_v0_4_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
+[wiki_upgrade_from_v0_4_0_to_v1_0_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
 [wiki_examples]:                              https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-200 "Wiki - Examples"
