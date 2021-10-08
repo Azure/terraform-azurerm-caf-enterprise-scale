@@ -2,7 +2,7 @@
 
 This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context, using the default configuration settings.
 
-In this example, we take a default configuration and make the following changes:
+In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
 - Set `deploy_management_resources` to enable creation of the default Management resources,including:
   - Resource Group to contain all Management resources.
@@ -141,6 +141,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_management_resources]:               ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_deploy_management_resources_custom]: ./%5BUser-Guide%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
 [wiki_examples]:                          ./Examples "Wiki - Examples"
+[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
 [archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
 [custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
