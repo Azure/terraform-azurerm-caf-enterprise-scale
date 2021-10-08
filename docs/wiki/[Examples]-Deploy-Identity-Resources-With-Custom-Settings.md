@@ -13,10 +13,10 @@ In this example, we take the base [Deploy Identity resources][wiki_deploy_identi
 - Add a local variable for `configure_identity_resources` and set custom values for the following:
   - Disable the `DeployIfNotExists` policy used to deploy and configure Azure Backup for Virtual Machines
 
-If you've already deployed the [Identity resources using default settings][wiki_deploy_identity_resources], you will be able to see the changes made when moving to this configuration.
-
 > Due to the way the Azure RM Provider manages dependencies, you may see a number of `azurerm_role_assignment` resources being replaced when updating Policy Assignments.
 Unfortunately this is a product limitation, but should have minimal impact due to the way Azure Policy works.
+
+If you've already deployed the [Identity resources using default settings][wiki_deploy_identity_resources], you will be able to see the changes made when moving to this configuration.
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
