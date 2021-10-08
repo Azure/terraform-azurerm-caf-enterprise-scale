@@ -222,8 +222,7 @@ Please refer to our [Examples][wiki_examples] guide on the Wiki.
 ## Release Notes
 
 Release `v1.0.0` is now here.
-Functionality remains largely similar to `v0.4.0`, but we have made a few minor bug fixes
-The following breaking changes should be noted when upgrading from `v0.4.x`:
+Functionality remains largely similar to `v0.4.0`, but we have made a few minor bug fixes and the following breaking changes should be noted:
 - The minimum supported version of the AzureRM Provider is now set to `2.77.0`
 
 For upgrade guides, please refer to the following links:
