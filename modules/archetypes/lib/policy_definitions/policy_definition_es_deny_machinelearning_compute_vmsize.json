@@ -6,8 +6,8 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deny-MachineLearning-Compute-VmSize",
-    "description": "Limit allowed vm sizes for machine learning compute clusters and instances.",
+    "displayName": "Limit allowed vm sizes for Azure Machine Learning compute clusters and compute instances",
+    "description": "Limit allowed vm sizes for Azure Machine Learning compute clusters and compute instances.",
     "metadata": {
       "version": "1.0.0",
       "category": "Budget"
