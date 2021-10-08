@@ -1,4 +1,4 @@
-## Considerations
+## Initial considerations
 
 Before getting started with this module, please take note of the following considerations:
 
@@ -38,7 +38,33 @@ When upgrading to this release, please ensure to update your code to use native 
 There are also updates to policies which should be considered before upgrading.
 Please refer to the [upgrade guide][wiki_upgrade_from_v0_3_3_to_v0_4_0] for more information.
 
-## Provisioning Instructions
+## Additional considerations when deploying Landing Zone resources with Terraform
+
+Although you may be considering managing your platform using this Terraform module, Enterprise-scale is not prescriptive on which deployment method is used for deploying resources inside Landing Zone Subscriptions.
+For example, application teams could use Bicep, ARM templates, or Terraform to deploy resources within their own subscriptions.
+However, when application teams choose to deploy resources with Terraform, the following additional considerations apply:
+
+1. `Deny-Subnet-Without-NSG` Policy Assignment
+
+    The reference architecture assigns the this policy to the `Landing Zones` management group.
+    In the event that a landing zone subscription is managed by Terraform, this policy will prevent Terraform from deploying `azurerm_subnet` resources due to the way that the Azure Terraform provider interacts with the Azure network resource provider.
+
+    > One remediation is to override the policy assignment and change the policy effect from `deny` to `audit`.
+
+1. Use of `DeployIfNotExists` and `Modify` Policy Effects
+
+    Terraform expects to be authoritative over the resources that it manages.
+    Any changes to the managed properties of Terraform managed resources in Azure will be rectified by Terraform during the next plan/apply cycle.
+
+    The reference architecture uses Azure policy with `DeployIfNotExists` and `modify` effects that can modify properties of the Terraform managed resources.
+
+    The combination of `DeployIfNotExists`/`modify` policy and Terraform can result in a loop, with resources being continuously remediated by Azure Policy, then reverted by Terraform, then again remediated by Policy.
+
+    Create guidance for landing zone owners so that they understand the effects of these policies and can deploy resources in a compliant manner.
+
+    > Notable exceptions to this are `DeployIfNotExists` policies that do not modify the in-scope resource. For example: Policies that deploy diagnostic settings.
+
+## Provisioning instructions
 
 Copy and paste the following 'module' block into your Terraform configuration, insert the required and optional [variables](%5BUser-Guide%5D-Module-Variables) needed for your configuration, and run `terraform init`:
 
