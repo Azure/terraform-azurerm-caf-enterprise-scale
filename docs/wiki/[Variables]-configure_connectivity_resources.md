@@ -154,6 +154,14 @@ Configure the Landing Zone resources: Hub Network, VWAN Hub Networks and DNS.
         }
       ]
     ```
+    - Address Space: IP Address range in CIDR (prefix) notation 
+    - DNS Servers: list of IP Addresses 
+    - BGP community: name of a BgpServiceCommunity resource in the Azure environment 
+    - Subnets: list of IP subnetworks in CIDR (prefix) notation 
+    - Virtaul Network Gateway: ExpressRoute or VPN 
+    - Azure Firewall: provide outbound connectivity settings 
+    - Spoke Virtual Network Resource IDs: list of Azure spoke Virtual Netowrk identifiers
+    
     
     
 - VWAN Hub Network
@@ -231,6 +239,10 @@ Configure the Landing Zone resources: Hub Network, VWAN Hub Networks and DNS.
         }
       }
     ```
+    - Enable Private Link by service: for each of the Private Link services, enable or disable DNS resolution
+    - Private Link locations: list of reference to Private Link locations
+    - Private DNS Zones: list of references to Private DNS zones to include 
+    - Public DNS Zones: list of references to Public DNS zones to include 
 
 
 
