@@ -3,44 +3,14 @@
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-## Documentation
-
-For detailed information about how to use, configure and extend this module, please refer to the documentation on our Wiki:
+Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
 - [Home][wiki_home]
 - [User Guide][wiki_user_guide]
-  - [Getting Started][wiki_getting_started]
-  - [Module Permissions][wiki_module_permissions]
-  - [Module Variables][wiki_module_variables]
-  - [Provider Configuration][wiki_provider_configuration]
-  - [Archetype Definitions][wiki_archetype_definitions]
-  - [Core Resources][wiki_core_resources]
-  - [Management Resources][wiki_management_resources]
-  - [Connectivity Resources][wiki_connectivity_resources]
-  - [Identity Resources][wiki_identity_resources]
 - [Examples][wiki_examples]
-  - [Level 100][wiki_examples_level_100]
-    - [Deploy Default Configuration][wiki_deploy_default_configuration]
-    - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
-  - [Level 200][wiki_examples_level_200]
-    - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
-    - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
-    - [Deploy Identity Resources][wiki_deploy_identity_resources]
-    - [Deploy Management Resources][wiki_deploy_management_resources]
-  - [Level 300][wiki_examples_level_300]
-    - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
-    - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
-    - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
-    - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
-    - [Override Module Role Assignments][wiki_override_module_role_assignments]
-    - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
 - [Contributing][wiki_contributing]
-  - [Raising an Issue][wiki_raising_an_issue]
-  - [Feature Requests][wiki_feature_requests]
-  - [Contributing to Code][wiki_contributing_to_code]
-  - [Contributing to Documentation][wiki_contributing_to_documentation]
 
 ## Overview
 
@@ -54,6 +24,8 @@ This is currently split logically into the following capabilities:
 - [Management Resources](#management-resources)
 - [Connectivity Resources](#connectivity-resources)
 - [Identity Resources](#identity-resources)
+
+These resources can be deployed to multiple Subscriptions by setting the [Provider Configuration][wiki_provider_configuration] on the module block.
 
 The following sections outline the different resource types deployed and managed by this module, depending on the configuration options specified.
 
@@ -141,7 +113,6 @@ This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.77.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
-
 ## Usage
 
 As a basic starting point, we recommend starting with the following configuration in your root module.
@@ -217,7 +188,23 @@ Please refer to our [Module Permissions][wiki_module_permissions] guide on the W
 
 ## Examples
 
-Please refer to our [Examples][wiki_examples] guide on the Wiki.
+For the latest examples, please refer to our [Examples][wiki_examples] guide on the Wiki.
+
+- [Examples - Level 100][wiki_examples_level_100]
+  - [Deploy Default Configuration][wiki_deploy_default_configuration]
+  - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
+- [Examples - Level 200][wiki_examples_level_200]
+  - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
+  - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
+  - [Deploy Identity Resources][wiki_deploy_identity_resources]
+  - [Deploy Management Resources][wiki_deploy_management_resources]
+- [Examples - Level 300][wiki_examples_level_300]
+  - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
+  - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
+  - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
+  - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
+  - [Override Module Role Assignments][wiki_override_module_role_assignments]
+  - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
 ## Release Notes
 
@@ -233,11 +220,16 @@ For upgrade guides, please refer to the following links:
 
 ## License
 
-[MIT License][TFAES-LICENSE]
+- [MIT License][TFAES-LICENSE]
 
 ## Contributing
 
-[Contributing Guide][TFAES-CONTRIBUTING]
+- [Contributing][wiki_contributing]
+  - [Raising an Issue][wiki_raising_an_issue]
+  - [Feature Requests][wiki_feature_requests]
+  - [Contributing to Code][wiki_contributing_to_code]
+  - [Contributing to Documentation][wiki_contributing_to_documentation]
+
 
  [//]: # (*****************************)
  [//]: # (INSERT IMAGE REFERENCES BELOW)
@@ -302,7 +294,6 @@ For upgrade guides, please refer to the following links:
 [azurerm_virtual_network_peering]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering
 
 [TFAES-LICENSE]:      https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/LICENSE
-[TFAES-CONTRIBUTING]: https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/CONTRIBUTING
 [TFAES-Library]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/terraform-azurerm-caf-enterprise-scale-archetypes/lib
 
 <!--
