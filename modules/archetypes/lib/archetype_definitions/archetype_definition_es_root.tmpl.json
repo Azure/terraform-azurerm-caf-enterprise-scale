@@ -8,7 +8,8 @@
       "Deploy-Resource-Diag",
       "Deploy-VM-Monitoring",
       "Deploy-VMSS-Monitoring",
-      "Deploy-WS-Arc-Monitoring"
+      "Deploy-WS-Arc-Monitoring",
+      "Es-Deploy-Def-OSS-DB"
     ],
     "policy_definitions": [
       "Append-AppService-httpsonly",
@@ -119,7 +120,12 @@
       "Deploy-SqlMi-minTLS",
       "Deploy-Storage-sslEnforcement",
       "Deploy-VNET-HubSpoke",
-      "Deploy-Windows-DomainJoin"
+      "Deploy-Windows-DomainJoin",
+      "Es-aks-diag-ev",
+      "AKS-Deny-Cluster-RBAC",
+      "Es-waf-apgw",
+      "Deploy-ASC-Defender-OSS"
+
     ],
     "policy_set_definitions": [
       "Deny-PublicPaaSEndpoints",

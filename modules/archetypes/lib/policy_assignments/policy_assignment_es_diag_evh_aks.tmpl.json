@@ -1,0 +1,23 @@
+{
+  "name": "Es-aks-diag-ev",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Deploy Diagnostics settings for AKS and send logs to an Event Hub.",
+    "displayName": "Es-Deploy-Diagnostics-AKS-EventHub",
+    "notScopes": [],
+    "parameters": {
+      "eventHubRuleId": {
+        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.EventHub/namespaces/${root_scope_id}-ns/AuthorizationRules/RootManageSharedAccessKey"
+      }
+
+    },
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Es-aks-diag-ev",
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": null
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}

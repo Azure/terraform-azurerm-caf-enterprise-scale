@@ -1,0 +1,330 @@
+{
+
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "Es-aks-diag-ev",
+  "properties": {
+    "displayName": "Deploy - Configure diagnostic settings for Azure Kubernetes Service to Event Hub workspace",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Deploys the diagnostic settings for Azure Kubernetes Service to stream resource logs to a Event Hub workspace.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Kubernetes"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "DeployIfNotExists"
+      },
+      "profileName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Profile name",
+          "description": "The diagnostic settings profile name"
+        },
+        "defaultValue": "setbypolicy_eventHub"
+      },
+      "eventHubRuleId": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Event Hub Authorization Rule Id",
+          "description": "The Event Hub authorization rule Id for Azure Diagnostics. The authorization rule needs to be at Event Hub namespace level. e.g. /subscriptions/{subscription Id}/resourceGroups/{resource group}/providers/Microsoft.EventHub/namespaces/{Event Hub namespace}/authorizationrules/{authorization rule}",
+          "strongType": "Microsoft.EventHub/Namespaces/AuthorizationRules",
+          "assignPermissions": true
+        }
+      },
+      "metricsEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Enable metrics",
+          "description": "Whether to enable metrics stream to the Event Hub - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "False"
+      },
+      "logsEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Enable logs",
+          "description": "Whether to enable logs stream to the Event Hub  - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "kube-apiserver": {
+        "type": "String",
+        "metadata": {
+          "displayName": "kube-apiserver - Enabled",
+          "description": "Whether to stream kube-apiserver logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "kube-audit": {
+        "type": "String",
+        "metadata": {
+          "displayName": "kube-audit - Enabled",
+          "description": "Whether to stream kube-audit logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "kube-controller-manager": {
+        "type": "String",
+        "metadata": {
+          "displayName": "kube-controller-manager - Enabled",
+          "description": "Whether to stream kube-controller-manager logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "kube-scheduler": {
+        "type": "String",
+        "metadata": {
+          "displayName": "kube-scheduler - Enabled",
+          "description": "Whether to stream kube-scheduler logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "cluster-autoscaler": {
+        "type": "String",
+        "metadata": {
+          "displayName": "cluster-autoscaler - Enabled",
+          "description": "Whether to stream cluster-autoscaler logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "kube-audit-admin": {
+        "type": "String",
+        "metadata": {
+          "displayName": "kube-audit-admin - Enabled",
+          "description": "Whether to stream kube-audit-admin logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      },
+      "guard": {
+        "type": "String",
+        "metadata": {
+          "displayName": "guard - Enabled",
+          "description": "Whether to stream guard logs to the Event Hub workspace - True or False"
+        },
+        "allowedValues": [
+          "True",
+          "False"
+        ],
+        "defaultValue": "True"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.ContainerService/managedClusters"
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "name": "[parameters('profileName')]",
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "[parameters('logsEnabled')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
+                "equals": "[parameters('metricsEnabled')]"
+              }
+            ]
+          },
+          "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+          ],
+
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "template": {
+                "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "resourceName": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "eventHubRuleId": {
+                    "type": "string"
+                  },
+                  "metricsEnabled": {
+                    "type": "string"
+                  },
+                  "logsEnabled": {
+                    "type": "string"
+                  },
+                  "profileName": {
+                    "type": "string"
+                  },
+                  "kube-apiserver": {
+                    "type": "string"
+                  },
+                  "kube-audit": {
+                    "type": "string"
+                  },
+                  "kube-controller-manager": {
+                    "type": "string"
+                  },
+                  "kube-scheduler": {
+                    "type": "string"
+                  },
+                  "cluster-autoscaler": {
+                    "type": "string"
+                  },
+                  "kube-audit-admin": {
+                    "type": "string"
+                  },
+                  "guard": {
+                    "type": "string"
+                  }
+                },
+                "variables": {},
+                "resources": [
+                  {
+                    "type": "Microsoft.ContainerService/managedClusters/providers/diagnosticSettings",
+                    "apiVersion": "2017-05-01-preview",
+                    "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]",
+                    "location": "[parameters('location')]",
+                    "dependsOn": [],
+                    "properties": {
+                      "eventHubAuthorizationRuleId": "[parameters('eventHubRuleId')]",
+                      "metrics": [
+                        {
+                          "category": "AllMetrics",
+                          "enabled": "[parameters('metricsEnabled')]",
+                          "retentionPolicy": {
+                            "enabled": false,
+                            "days": 0
+                        }
+                        }
+                        ],
+                      "logs": [
+                        {
+                          "category": "kube-apiserver",
+                          "enabled": "[parameters('kube-apiserver')]"
+                        },
+                        {
+                          "category": "kube-audit",
+                          "enabled": "[parameters('kube-audit')]"
+                        },
+                        {
+                          "category": "kube-controller-manager",
+                          "enabled": "[parameters('kube-controller-manager')]"
+                        },
+                        {
+                          "category": "kube-scheduler",
+                          "enabled": "[parameters('kube-scheduler')]"
+                        },
+                        {
+                          "category": "cluster-autoscaler",
+                          "enabled": "[parameters('cluster-autoscaler')]"
+                        },
+                        {
+                          "category": "kube-audit-admin",
+                          "enabled": "[parameters('kube-audit-admin')]"
+                        },
+                        {
+                          "category": "guard",
+                          "enabled": "[parameters('guard')]"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "outputs": {}
+              },
+              "parameters": {
+                "location": {
+                  "value": "[field('location')]"
+                },
+                "resourceName": {
+                  "value": "[field('name')]"
+                },
+                "eventHubRuleId": {
+                  "value": "[parameters('eventHubRuleId')]"
+                },
+                "metricsEnabled": {
+                  "value": "[parameters('metricsEnabled')]"
+                },
+                "logsEnabled": {
+                  "value": "[parameters('logsEnabled')]"
+                },
+                "profileName": {
+                  "value": "[parameters('profileName')]"
+                },
+
+                "guard": {
+                  "value": "[parameters('guard')]"
+                },
+
+                "kube-apiserver": {
+                  "value": "[parameters('kube-apiserver')]"
+                },
+                "kube-audit": {
+                  "value": "[parameters('kube-audit')]"
+                },
+                "kube-scheduler": {
+                  "value": "[parameters('kube-scheduler')]"
+                },
+                "kube-controller-manager": {
+                  "value": "[parameters('kube-controller-manager')]"
+                },
+                "cluster-autoscaler": {
+                  "value": "[parameters('cluster-autoscaler')]"
+                },
+                "kube-audit-admin": {
+                  "value": "[parameters('kube-audit-admin')]"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

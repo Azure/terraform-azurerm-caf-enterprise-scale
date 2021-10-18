@@ -1,0 +1,61 @@
+{
+
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "apiVersion": "2021-06-01",
+  "scope": null,
+  "name": "Es-waf-apgw",
+  "properties": {
+    "displayName": "Web Application Firewall (WAF) should be enabled for Application Gateway",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "description": "Deploy Azure Web Application Firewall (WAF) in front of public facing web applications for additional inspection of incoming traffic. Web Application Firewall (WAF) provides centralized protection of your web applications from common exploits and vulnerabilities such as SQL injections, Cross-Site Scripting, local and remote file executions. You can also restrict access to your web applications by countries, IP address ranges, and other http(s) parameters via custom rules.",
+    "metadata": {
+      "version": "1.0.1",
+      "category": "Network"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Audit"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+           "allOf": [
+            {
+              "field": "Microsoft.Network/applicationGateways/firewallPolicy.id",
+              "notContains": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies"
+            }
+          ] },
+          {
+          "allOf": [
+
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/applicationGateways"
+          },
+          {
+            "field": "Microsoft.Network/applicationGateways/webApplicationFirewallConfiguration",
+            "exists": "false"
+          }
+        ] }
+        ]
+
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
+  }
+}
