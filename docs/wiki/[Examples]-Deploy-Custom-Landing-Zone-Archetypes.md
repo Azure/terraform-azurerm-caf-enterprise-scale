@@ -2,7 +2,7 @@
 
 This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to customise the Management Group hierarchy.
 
-In this example, we take a default configuration and make the following changes:
+In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
 - Create a new custom archetype definition named `customer_online` which will create two Policy Assignments, `Deny-Resource-Locations` and `Deny-RSG-Locations` at the associated scope with a set of pre-configured default parameter values.
 - Add a new Management Group for standard workloads using the `customer_online` archetype definition:
@@ -26,12 +26,12 @@ In this example, we take a default configuration and make the following changes:
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
-- `terraform.tf`
-- `variables.tf`
-- `main.tf`
-- `lib/archetype_definition_customer_online.json`
+- [terraform.tf](#terraformtf)
+- [variables.tf](#variablestf)
+- [main.tf](#maintf)
+- [lib/archetype_definition_customer_online.json](#libarchetype_definition_customer_onlinejson)
 
-**`terraform.tf`**
+### `terraform.tf`
 
 The `terraform.tf` file is used to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider. For production use, we recommend pinning to a specific version, and not using ranges.
 
@@ -43,7 +43,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.66.0"
+      version = ">= 2.77.0"
     }
   }
 }
@@ -53,7 +53,7 @@ provider "azurerm" {
 }
 ```
 
-**`variables.tf`**
+### `variables.tf`
 
 The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
@@ -71,7 +71,7 @@ variable "root_name" {
 }
 ```
 
-**`main.tf`**
+### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure. This is used to ensure the deployment will target your `Tenant Root Group` by default.
 
@@ -94,7 +94,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.4.0"
+  version = "1.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -140,7 +140,7 @@ module "enterprise_scale" {
 }
 ```
 
-**`lib/archetype_definition_customer_online.json`**
+### `lib/archetype_definition_customer_online.json`
 
 > IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
 
@@ -213,3 +213,4 @@ Looking for further inspiration? Why not try some of our more advanced examples?
 [wiki_deploy_using_module_nesting]:           ./%5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
 [wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"

@@ -15,7 +15,7 @@ This is a good starting point when first discovering what resources are created 
 
 To keep things simple, the root module for this example is based on a single file:
 
-**`main.tf`**
+### `main.tf`
 
 ```hcl
 # We strongly recommend using the required_providers block to set the
@@ -25,7 +25,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.66.0"
+      version = ">= 2.77.0"
     }
   }
 }
@@ -35,7 +35,7 @@ provider "azurerm" {
 }
 
 # You can use the azurerm_client_config data resource to dynamically
-# extract the current Tenant ID from your connection settings.
+# extract connection settings from the provider configuration.
 
 data "azurerm_client_config" "core" {}
 
@@ -44,7 +44,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.4.0"
+  version = "1.0.0"
 
   providers = {
     azurerm              = azurerm
