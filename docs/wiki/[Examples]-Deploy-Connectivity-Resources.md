@@ -157,7 +157,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [azure_private_endpoint_support]: https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
 [wiki_connectivity_resources]:               ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_deploy_connectivity_resources_custom]: ./%5BUser-Guide%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
+[wiki_deploy_connectivity_resources_custom]: ./%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
 [wiki_examples]:                             ./Examples "Wiki - Examples"
 [wiki_management_resources]:                 ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_deploy_default_configuration]:         ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
