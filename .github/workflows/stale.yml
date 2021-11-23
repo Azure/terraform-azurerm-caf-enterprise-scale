@@ -1,0 +1,21 @@
+name: 'Close stale issues and PR'
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/stale@v4
+        with:
+          stale-issue-message: 'This issue is stale because it has been open 40 days with no activity. Remove stale label or comment or this will be closed in 10 days.'
+          stale-pr-message: 'This PR is stale because it has been open 40 days with no activity. Remove stale label or comment or this will be closed in 10 days.'
+          close-issue-message: 'This issue was closed because it has been staled for 10 days with no activity.'
+          close-pr-message: 'This issue was closed because it has been staled for 10 days with no activity.'
+          exempt-issue-labels: No-Stale
+          exempt-pr-labels: No-Stale
+          exempt-all-milestones: true
+          days-before-stale: 40
+          days-before-close: 10
