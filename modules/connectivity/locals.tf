@@ -774,7 +774,7 @@ locals {
         {
           # Resource logic attributes
           resource_id       = "${zone.resource_id}/virtualNetworkLinks/${link_config.name}"
-          managed_by_module = link_config.managed_by_module
+          managed_by_module = zone.managed_by_module && link_config.managed_by_module
           # Resource definition attributes
           name                  = link_config.name
           resource_group_name   = zone.resource_group_name
