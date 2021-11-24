@@ -859,6 +859,16 @@ locals {
         Deploy-Private-DNS-Zones = local.deploy_dns
       }
     }
+    "${local.root_id}-landing-zones" = {
+      parameters = {
+        Enable-DDoS-VNET = {
+          ddosPlan = local.ddos_protection_plan_resource_id
+        }
+      }
+      enforcement_mode = {
+        Enable-DDoS-VNET = local.deploy_ddos_protection_plan
+      }
+    }
   }
 }
 
