@@ -155,6 +155,10 @@
                         {
                           "category": "DscNodeStatus",
                           "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AuditEvent",
+                          "enabled": "[parameters('logsEnabled')]"
                         }
                       ]
                     }

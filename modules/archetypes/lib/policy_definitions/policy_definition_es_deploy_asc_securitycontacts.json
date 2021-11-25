@@ -46,8 +46,8 @@
         "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Security/securityContacts",
-          "deploymentScope": "Subscription",
-          "existenceScope": "Subscription",
+          "deploymentScope": "subscription",
+          "existenceScope": "subscription",
           "roleDefinitionIds": [
             "/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd"
           ],
