@@ -221,11 +221,11 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-ASCDF-Config = local.deploy_security_settings
-        Deploy-LX-Arc-Monitoring   = local.deploy_monitoring_for_arc
-        Deploy-VM-Monitoring       = local.deploy_monitoring_for_vm
-        Deploy-VMSS-Monitoring     = local.deploy_monitoring_for_vmss
-        Deploy-WS-Arc-Monitoring   = local.deploy_monitoring_for_arc
+        Deploy-ASCDF-Config      = local.deploy_security_settings
+        Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
+        Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
+        Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
+        Deploy-WS-Arc-Monitoring = local.deploy_monitoring_for_arc
       }
     }
     "${local.root_id}-management" = {
