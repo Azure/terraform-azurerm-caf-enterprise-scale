@@ -2,7 +2,7 @@
   "es_root": {
     "policy_assignments": [
       "Deploy-ASC-Monitoring",
-      "Deploy-ASCDF-Configuration",
+      "Deploy-ASCDF-Config",
       "Deploy-AzActivity-Log",
       "Deploy-LX-Arc-Monitoring",
       "Deploy-Resource-Diag",
