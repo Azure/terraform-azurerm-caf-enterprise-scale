@@ -18,6 +18,6 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Identity]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
+[ESLZ-Identity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
 
 [wiki_deploy_identity_resources]: ./%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"

@@ -1,6 +1,6 @@
 ## Overview
 
-This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to customise the Management Group hierarchy.
+This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to customize the Management Group hierarchy.
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
@@ -55,10 +55,10 @@ provider "azurerm" {
 
 ### `variables.tf`
 
-The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
+The `variables.tf` file is used to declare a couple of example variables which are used to customize deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
 ```hcl
-# Use variables to customise the deployment
+# Use variables to customize the deployment
 
 variable "root_id" {
   type    = string
@@ -94,7 +94,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm

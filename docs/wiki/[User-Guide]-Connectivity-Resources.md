@@ -39,17 +39,17 @@ Please refer to [Deploy Connectivity Examples][wiki_deploy_connectivity_resource
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Connectivity]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
+[ESLZ-Connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
 
-[arm_resource_group]:                 https://docs.microsoft.com/en-us/azure/templates/microsoft.resources/resourcegroups
-[arm_virtual_network]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks
-[arm_subnet]:                         https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/subnets
-[arm_virtual_network_gateway]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworkgateways
-[arm_firewall]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/azurefirewalls
-[arm_public_ip]:                      https://docs.microsoft.com/en-us/azure/templates/microsoft.network/publicipaddresses
-[arm_ddos_protection_plan]:           https://docs.microsoft.com/en-us/azure/templates/microsoft.network/ddosprotectionplans
-[arm_dns_zone]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/dnszones
-[arm_virtual_network_peering]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
+[arm_virtual_network]:                https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks
+[arm_subnet]:                         https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/subnets
+[arm_virtual_network_gateway]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworkgateways
+[arm_firewall]:                       https://docs.microsoft.com/azure/templates/microsoft.network/azurefirewalls
+[arm_public_ip]:                      https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses
+[arm_ddos_protection_plan]:           https://docs.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
+[arm_dns_zone]:                       https://docs.microsoft.com/azure/templates/microsoft.network/dnszones
+[arm_virtual_network_peering]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 
 [azurerm_resource_group]:               https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
 [azurerm_virtual_network]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network

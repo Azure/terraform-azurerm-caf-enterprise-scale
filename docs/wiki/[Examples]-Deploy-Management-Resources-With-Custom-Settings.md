@@ -68,10 +68,10 @@ If you wish to deploy the Management resources to a different Subscription conte
 
 ### `variables.tf`
 
-The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
+The `variables.tf` file is used to declare a couple of example variables which are used to customize deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
 ```hcl
-# Use variables to customise the deployment
+# Use variables to customize the deployment
 
 variable "root_id" {
   type    = string
@@ -130,7 +130,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -293,4 +293,4 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [archetype_exclusions]:           ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
 [custom_archetypes]:              ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
 
-[azure_tag_support]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"
+[azure_tag_support]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"
