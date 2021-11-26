@@ -148,7 +148,7 @@ provider "azurerm" {
 
 data "azurerm_client_config" "core" {}
 
-# Use variables to customise the deployment
+# Use variables to customize the deployment
 
 variable "root_id" {
   type    = string
@@ -180,7 +180,7 @@ module "enterprise_scale" {
 }
 ```
 
-> For additional guidance on how to customise your deployment using the advanced configuration options for this module, please refer to our [User Guide][wiki_user_guide] and the additional [examples][wiki_examples] in our documentation.
+> For additional guidance on how to customize your deployment using the advanced configuration options for this module, please refer to our [User Guide][wiki_user_guide] and the additional [examples][wiki_examples] in our documentation.
 
 ## Permissions
 
@@ -217,6 +217,7 @@ Will result in loss of policy compliance history.
 Consider making a copy of the removed policy templates to a custom `lib` folder and using the [archetype extension](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-extension-function) capability if you wish to retain the old Assignment to keep policy compliance history.
 - Updates to Wiki documentation
 - Multiple bug fixes covering:
+  - Fix "managed parameters" for `Enable-DDoS-VNET` Policy Assignment at `landing-zones` scope (no issue logged)
   - [Changing root_parent_id results in Management Groups not being deployed #190](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/190)
   - [Bug Report: Private DNS zone link in setting.connectivity.tf #204](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/204)
   - [Incorrect enforcementMode setting on Enable-DDoS-VNET Policy Assignment #216](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/216)
@@ -239,7 +240,6 @@ For upgrade guides from previous versions, please refer to the following links:
   - [Feature Requests][wiki_feature_requests]
   - [Contributing to Code][wiki_contributing_to_code]
   - [Contributing to Documentation][wiki_contributing_to_documentation]
-
 
  [//]: # (*****************************)
  [//]: # (INSERT IMAGE REFERENCES BELOW)
