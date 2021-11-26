@@ -187,6 +187,7 @@ locals {
           enable_defender_for_dns            = true
           enable_defender_for_key_vault      = true
           enable_defender_for_kubernetes     = true
+          enable_defender_for_oss_databases  = true
           enable_defender_for_servers        = true
           enable_defender_for_sql_servers    = true
           enable_defender_for_sql_server_vms = true
@@ -215,7 +216,7 @@ You have also assigned the current Subscription from your provider configuration
 Check the following Policy Assignments to see how these have been configured with settings matching your Management resources configuration set by `configure_management_resources`:
 
 - Scope = `root`
-  - `Deploy-ASC-Configuration`
+  - `Deploy-ASCDF-Config`
   - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
@@ -258,8 +259,8 @@ Take particular note of the following changes:
 
 - The `retentionInDays` setting is now configured to `50` days on the Log Analytics workspace.
 - The `dataRetention` parameter value is also configured to `50` days on the `Deploy-Log-Analytics` Policy Assignment.
-- The `emailSecurityContact` parameter value is set to your own email address on the `Deploy-ASC-Configuration` (*Deploy Azure Security Center configuration*) Policy Assignment. Once this policy is remediated, you can also view this setting in Azure Security Center.
-- The `pricingTierKubernetesService` parameter value is set to `Free` on the `Deploy-ASC-Configuration` (*Deploy Azure Security Center configuration*) Policy Assignment. In Security Center, you should be able to see that Azure Defender is set to `On` for all resource types except `Kubernetes` <sup>1</sup> which is set to `Off`.
+- The `emailSecurityContact` parameter value is set to your own email address on the `Deploy-ASCDF-Config` (*Deploy Azure Security Center configuration*) Policy Assignment. Once this policy is remediated, you can also view this setting in Azure Security Center.
+- The `pricingTierKubernetesService` parameter value is set to `Free` on the `Deploy-ASCDF-Config` (*Deploy Azure Security Center configuration*) Policy Assignment. In Security Center, you should be able to see that Azure Defender is set to `On` for all resource types except `Kubernetes` <sup>1</sup> which is set to `Off`.
 
   > <sup>1</sup> - Due to a pending feature addition, Azure Defender is also `Off` for `Open-source relational databases`.
   We plan to add this feature in a future release (date TBC).

@@ -285,7 +285,7 @@ locals {
     "${local.provider_path.management_groups}${key}" => {
       id                         = key
       display_name               = value.display_name
-      parent_management_group_id = try(length(value.parent_management_group_id) > 0, false) ? replace(lower(value.parent_management_group_id), "/[^a-z0-9]/", "-") : local.root_parent_id
+      parent_management_group_id = coalesce(value.parent_management_group_id, local.root_parent_id)
       subscription_ids           = value.subscription_ids
       archetype_config = {
         archetype_id   = value.archetype_config.archetype_id
