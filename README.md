@@ -210,9 +210,9 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
 
 Release `v1.1.0` introduces the following changes:
 
-- **BREAKING CHANGE**: Replace `Deploy-ASC-Configuration` Policy Assignment with `Deploy-ASCDF-Config`, utilizing built-in policies and adding support for [Microsoft Defender for open-source relational databases](https://docs.microsoft.com/azure/defender-for-cloud/defender-for-databases-introduction).
-  - Fixed [Add Defender support for Open-source relational databases #131](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/131).
-  - Will result in loss of policy compliance history.
+- **BREAKING CHANGE**: Replaced `Deploy-ASC-Configuration` Policy Assignment with `Deploy-ASCDF-Config`, utilizing built-in policies and also adds support for [Microsoft Defender for open-source relational databases](https://docs.microsoft.com/azure/defender-for-cloud/defender-for-databases-introduction).
+  - Fixing [Add Defender support for Open-source relational databases #131](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/131).
+  - **Note:** Will result in loss of policy compliance history.
   - Consider making a copy of the removed policy templates to a custom `lib` folder and using the [archetype extension](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-extension-function) capability if you wish to retain the old Assignment to keep policy compliance history.
   - Requires an update to the `configure_management_resources` input variable:
 
