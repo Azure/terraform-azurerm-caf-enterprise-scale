@@ -94,7 +94,7 @@ for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
     $aliasResponse = Invoke-AzRestMethod -Method $requestMethod -Path $requestPath -Payload $requestBody
     if ($aliasResponse.StatusCode -eq "200") {
         $subscriptionId = ($aliasResponse.Content | ConvertFrom-Json).properties.subscriptionId
-        Write-Information " Found Subscription Alias ($($alias))." -InformationAction Continue
+        Write-Information " Found Subscription Alias ($($alias)) ($($subscriptionId))." -InformationAction Continue
     }
     else {
         Write-Warning "Unable to find Subscription Alias ($($alias)). Failing back to current Subscription context ($($env:ARM_SUBSCRIPTION_ID))."
@@ -122,7 +122,7 @@ for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
     $aliasResponse = Invoke-AzRestMethod -Method $requestMethod -Path $requestPath -Payload $requestBody
     if ($aliasResponse.StatusCode -eq "200") {
         $subscriptionId = ($aliasResponse.Content | ConvertFrom-Json).properties.subscriptionId
-        Write-Information " Found Subscription Alias ($($alias))." -InformationAction Continue
+        Write-Information " Found Subscription Alias ($($alias)) ($($subscriptionId))." -InformationAction Continue
     }
     else {
         Write-Warning "Unable to find Subscription Alias ($($alias)). Failing back to current Subscription context ($($env:ARM_SUBSCRIPTION_ID))."

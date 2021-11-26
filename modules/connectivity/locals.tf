@@ -774,7 +774,7 @@ locals {
         {
           # Resource logic attributes
           resource_id       = "${zone.resource_id}/virtualNetworkLinks/${link_config.name}"
-          managed_by_module = zone.managed_by_module
+          managed_by_module = zone.managed_by_module && link_config.managed_by_module
           # Resource definition attributes
           name                  = link_config.name
           resource_group_name   = zone.resource_group_name
@@ -857,6 +857,16 @@ locals {
       }
       enforcement_mode = {
         Deploy-Private-DNS-Zones = local.deploy_dns
+      }
+    }
+    "${local.root_id}-landing-zones" = {
+      parameters = {
+        Enable-DDoS-VNET = {
+          ddosPlan = local.ddos_protection_plan_resource_id
+        }
+      }
+      enforcement_mode = {
+        Enable-DDoS-VNET = local.deploy_ddos_protection_plan
       }
     }
   }
