@@ -63,10 +63,10 @@ provider "azurerm" {
 
 ### `variables.tf`
 
-The `variables.tf` file is used to declare a couple of example variables which are used to customise deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
+The `variables.tf` file is used to declare a couple of example variables which are used to customize deployment of this root module. Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
 
 ```hcl
-# Use variables to customise the deployment
+# Use variables to customize the deployment
 
 variable "root_id" {
   type    = string

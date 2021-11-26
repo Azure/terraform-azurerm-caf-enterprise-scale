@@ -1,6 +1,6 @@
 ## Overview
 
-The module can be customised using the input variables listed below (click on each `input name` for more details).
+The module can be customized using the input variables listed below (click on each `input name` for more details).
 
 To provide the depth of configuration options needed by the module without creating too many different input variables, we decided to use a number of complex `object({})` type variables.
 Whilst these may look intimidating at first, these are all configured with default values and only need to be updated if you want to start customising the deployment.

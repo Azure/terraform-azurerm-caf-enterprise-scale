@@ -237,7 +237,7 @@ For more detailed instructions, follow the [next steps](#next-steps) listed belo
 
 ## Next steps
 
-Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to customise the module configuration.
+Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to customize the module configuration.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
