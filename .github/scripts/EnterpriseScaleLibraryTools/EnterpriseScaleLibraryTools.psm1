@@ -136,7 +136,7 @@ class ProviderApiVersions {
 
     # Static property to store cache of ProviderApiVersions using a threadsafe
     # dictionary variable to allow caching across parallel jobs
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object#example-14--using-thread-safe-variable-references
+    # https://docs.microsoft.com/powershell/module/microsoft.powershell.core/foreach-object#example-14--using-thread-safe-variable-references
     static [System.Collections.Concurrent.ConcurrentDictionary[String, ProviderApiVersions]]$Cache
 
     # Static method to show all entries in Cache

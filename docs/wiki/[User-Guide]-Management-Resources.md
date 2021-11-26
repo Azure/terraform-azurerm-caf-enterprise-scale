@@ -31,13 +31,13 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Management]:   https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
+[ESLZ-Management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
 
-[arm_resource_group]:                 https://docs.microsoft.com/en-us/azure/templates/microsoft.resources/resourcegroups
-[arm_log_analytics_workspace]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces
-[arm_log_analytics_solution]:         https://docs.microsoft.com/en-us/azure/templates/microsoft.operationsmanagement/solutions
-[arm_automation_account]:             https://docs.microsoft.com/en-us/azure/templates/microsoft.automation/automationaccounts
-[arm_log_analytics_linked_service]:   https://docs.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
+[arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
+[arm_log_analytics_workspace]:        https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
+[arm_log_analytics_solution]:         https://docs.microsoft.com/azure/templates/microsoft.operationsmanagement/solutions
+[arm_automation_account]:             https://docs.microsoft.com/azure/templates/microsoft.automation/automationaccounts
+[arm_log_analytics_linked_service]:   https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
 
 [azurerm_resource_group]:               https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
 [azurerm_log_analytics_workspace]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace

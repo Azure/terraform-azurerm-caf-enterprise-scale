@@ -71,7 +71,7 @@ Copy and paste the following 'module' block into your Terraform configuration, i
 ```hcl
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -93,7 +93,7 @@ Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to cu
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[ESLZ-Management]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
+[ESLZ-Management]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
 
 [wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:                ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"

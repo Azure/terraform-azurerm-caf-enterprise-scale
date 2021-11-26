@@ -165,7 +165,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -208,11 +208,21 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
 
 ## Release Notes
 
-Release `v1.0.0` is now here.
-Functionality remains largely similar to `v0.4.0`, but we have made a few minor bug fixes and the following breaking changes should be noted:
-- The minimum supported version of the AzureRM Provider is now set to `2.77.0`
+Release `v1.1.0` introduces the following changes:
 
-For upgrade guides, please refer to the following links:
+- **BREAKING CHANGE**: Replace `Deploy-ASC-Configuration` Policy Assignment with `Deploy-ASCDF-Config`, utilizing built-in policies and adding support for [Microsoft Defender for open-source relational databases](https://docs.microsoft.com/azure/defender-for-cloud/defender-for-databases-introduction).
+Requires updates to the `configure_management_resources` input variable.
+Fixed [Add Defender support for Open-source relational databases #131](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/131).
+Will result in loss of policy compliance history.
+Consider making a copy of the removed policy templates to a custom `lib` folder and using the [archetype extension](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-extension-function) capability if you wish to retain the old Assignment to keep policy compliance history.
+- Updates to Wiki documentation
+- Multiple bug fixes covering:
+  - [Changing root_parent_id results in Management Groups not being deployed #190](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/190)
+  - [Bug Report: Private DNS zone link in setting.connectivity.tf #204](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/204)
+  - [Incorrect enforcementMode setting on Enable-DDoS-VNET Policy Assignment #216](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/216)
+
+For upgrade guides from previous versions, please refer to the following links:
+
 - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
 - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
@@ -246,31 +256,31 @@ For upgrade guides, please refer to the following links:
 
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
 
-[ESLZ-Architecture]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
-[ESLZ-Management]:   https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
-[ESLZ-Connectivity]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
-[ESLZ-Identity]:     https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
+[ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
+[ESLZ-Management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
+[ESLZ-Connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
+[ESLZ-Identity]:     https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
 
-[arm_management_group]:               https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups
-[arm_management_group_subscriptions]: https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups/subscriptions
-[arm_policy_assignment]:              https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policyassignments
-[arm_policy_definition]:              https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policydefinitions
-[arm_policy_set_definition]:          https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policysetdefinitions
-[arm_role_assignment]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roleassignments
-[arm_role_definition]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions
-[arm_resource_group]:                 https://docs.microsoft.com/en-us/azure/templates/microsoft.resources/resourcegroups
-[arm_log_analytics_workspace]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces
-[arm_log_analytics_solution]:         https://docs.microsoft.com/en-us/azure/templates/microsoft.operationsmanagement/solutions
-[arm_automation_account]:             https://docs.microsoft.com/en-us/azure/templates/microsoft.automation/automationaccounts
-[arm_log_analytics_linked_service]:   https://docs.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
-[arm_virtual_network]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks
-[arm_subnet]:                         https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/subnets
-[arm_virtual_network_gateway]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworkgateways
-[arm_firewall]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/azurefirewalls
-[arm_public_ip]:                      https://docs.microsoft.com/en-us/azure/templates/microsoft.network/publicipaddresses
-[arm_ddos_protection_plan]:           https://docs.microsoft.com/en-us/azure/templates/microsoft.network/ddosprotectionplans
-[arm_dns_zone]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/dnszones
-[arm_virtual_network_peering]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[arm_management_group]:               https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups
+[arm_management_group_subscriptions]: https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups/subscriptions
+[arm_policy_assignment]:              https://docs.microsoft.com/azure/templates/microsoft.authorization/policyassignments
+[arm_policy_definition]:              https://docs.microsoft.com/azure/templates/microsoft.authorization/policydefinitions
+[arm_policy_set_definition]:          https://docs.microsoft.com/azure/templates/microsoft.authorization/policysetdefinitions
+[arm_role_assignment]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roleassignments
+[arm_role_definition]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roledefinitions
+[arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
+[arm_log_analytics_workspace]:        https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
+[arm_log_analytics_solution]:         https://docs.microsoft.com/azure/templates/microsoft.operationsmanagement/solutions
+[arm_automation_account]:             https://docs.microsoft.com/azure/templates/microsoft.automation/automationaccounts
+[arm_log_analytics_linked_service]:   https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
+[arm_virtual_network]:                https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks
+[arm_subnet]:                         https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/subnets
+[arm_virtual_network_gateway]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworkgateways
+[arm_firewall]:                       https://docs.microsoft.com/azure/templates/microsoft.network/azurefirewalls
+[arm_public_ip]:                      https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses
+[arm_ddos_protection_plan]:           https://docs.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
+[arm_dns_zone]:                       https://docs.microsoft.com/azure/templates/microsoft.network/dnszones
+[arm_virtual_network_peering]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 
 [azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
 [azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment

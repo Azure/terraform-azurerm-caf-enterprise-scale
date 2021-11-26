@@ -65,7 +65,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -152,9 +152,9 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[ESLZ-Connectivity]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
+[ESLZ-Connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
 
-[azure_private_endpoint_support]: https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
+[azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
 [wiki_connectivity_resources]:               ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_deploy_connectivity_resources_custom]: ./%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
