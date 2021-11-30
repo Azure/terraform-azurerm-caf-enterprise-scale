@@ -59,7 +59,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -90,7 +90,7 @@ You have also assigned the current Subscription from your provider configuration
 Check the following Policy Assignments to see how these have been configured with default settings for parameters and enforcement mode:
 
 - Scope = `root`
-  - `Deploy-ASC-Configuration`
+  - `Deploy-ASCDF-Config`
   - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
@@ -139,7 +139,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "************************"
 
 [wiki_management_resources]:               ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_deploy_management_resources_custom]: ./%5BUser-Guide%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
+[wiki_deploy_management_resources_custom]: ./%5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
 [wiki_examples]:                          ./Examples "Wiki - Examples"
 [wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 

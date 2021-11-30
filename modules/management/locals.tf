@@ -66,6 +66,7 @@ locals {
   deploy_defender_for_dns            = local.settings.security_center.config.enable_defender_for_dns
   deploy_defender_for_key_vault      = local.settings.security_center.config.enable_defender_for_key_vault
   deploy_defender_for_kubernetes     = local.settings.security_center.config.enable_defender_for_kubernetes
+  deploy_defender_for_oss_databases  = local.settings.security_center.config.enable_defender_for_oss_databases
   deploy_defender_for_servers        = local.settings.security_center.config.enable_defender_for_servers
   deploy_defender_for_sql_servers    = local.settings.security_center.config.enable_defender_for_sql_servers
   deploy_defender_for_sql_server_vms = local.settings.security_center.config.enable_defender_for_sql_server_vms
@@ -181,21 +182,22 @@ locals {
   archetype_config_overrides = {
     (local.root_id) = {
       parameters = {
-        Deploy-ASC-Configuration = {
-          emailSecurityContact                = local.settings.security_center.config.email_security_contact
-          logAnalytics                        = local.log_analytics_workspace_resource_id
-          ascExportResourceGroupName          = "${local.root_id}-asc-export"
-          ascExportResourceGroupLocation      = local.location
-          pricingTierContainerRegistry        = local.deploy_defender_for_acr ? "Standard" : "Free"
-          pricingTierAppServices              = local.deploy_defender_for_app_services ? "Standard" : "Free"
-          pricingTierArm                      = local.deploy_defender_for_arm ? "Standard" : "Free"
-          pricingTierDns                      = local.deploy_defender_for_dns ? "Standard" : "Free"
-          pricingTierKeyVaults                = local.deploy_defender_for_key_vault ? "Standard" : "Free"
-          pricingTierKubernetesService        = local.deploy_defender_for_kubernetes ? "Standard" : "Free"
-          pricingTierVMs                      = local.deploy_defender_for_servers ? "Standard" : "Free"
-          pricingTierSqlServers               = local.deploy_defender_for_sql_servers ? "Standard" : "Free"
-          pricingTierSqlServerVirtualMachines = local.deploy_defender_for_sql_server_vms ? "Standard" : "Free"
-          pricingTierStorageAccounts          = local.deploy_defender_for_storage ? "Standard" : "Free"
+        Deploy-ASCDF-Config = {
+          emailSecurityContact           = local.settings.security_center.config.email_security_contact
+          logAnalytics                   = local.log_analytics_workspace_resource_id
+          ascExportResourceGroupName     = "${local.root_id}-asc-export"
+          ascExportResourceGroupLocation = local.location
+          enableAscForRegistries         = local.deploy_defender_for_acr ? "DeployIfNotExists" : "Disabled"
+          enableAscForAppServices        = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
+          enableAscForArm                = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
+          enableAscForDns                = local.deploy_defender_for_dns ? "DeployIfNotExists" : "Disabled"
+          enableAscForKeyVault           = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
+          enableAscForKubernetes         = local.deploy_defender_for_kubernetes ? "DeployIfNotExists" : "Disabled"
+          enableAscForOssDb              = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
+          enableAscForServers            = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
+          enableAscForSql                = local.deploy_defender_for_sql_servers ? "DeployIfNotExists" : "Disabled"
+          enableAscForSqlOnVm            = local.deploy_defender_for_sql_server_vms ? "DeployIfNotExists" : "Disabled"
+          enableAscForStorage            = local.deploy_defender_for_storage ? "DeployIfNotExists" : "Disabled"
         }
         Deploy-LX-Arc-Monitoring = {
           logAnalytics = local.log_analytics_workspace_resource_id
@@ -219,7 +221,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-ASC-Configuration = local.deploy_security_settings
+        Deploy-ASCDF-Config      = local.deploy_security_settings
         Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss

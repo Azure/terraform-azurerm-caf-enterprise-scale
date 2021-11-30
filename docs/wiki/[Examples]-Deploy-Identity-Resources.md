@@ -58,7 +58,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -128,7 +128,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "************************"
 
 [wiki_identity_resources]:               ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_deploy_identity_resources_custom]: ./%5BUser-Guide%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
+[wiki_deploy_identity_resources_custom]: ./%5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
 [wiki_examples]:                         ./Examples "Wiki - Examples"
 [wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 

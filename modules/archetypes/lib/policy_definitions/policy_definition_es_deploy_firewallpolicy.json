@@ -62,8 +62,8 @@
         "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/firewallPolicies",
-          "deploymentScope": "Subscription",
-          "existenceScope": "ResourceGroup",
+          "deploymentScope": "subscription",
+          "existenceScope": "resourceGroup",
           "resourceGroupName": "[parameters('rgName')]",
           "roleDefinitionIds": [
             "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"

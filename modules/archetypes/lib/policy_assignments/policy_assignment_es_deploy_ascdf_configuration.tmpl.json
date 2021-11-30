@@ -1,5 +1,5 @@
 {
-  "name": "Deploy-ASC-Configuration",
+  "name": "Deploy-ASCDF-Config",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
@@ -19,38 +19,41 @@
       "ascExportResourceGroupLocation": {
         "value": "${default_location}"
       },
-      "pricingTierContainerRegistry": {
-        "value": "Free"
+      "enableAscForKubernetes": {
+        "value": "Disabled"
       },
-      "pricingTierAppServices": {
-        "value": "Free"
+      "enableAscForSql": {
+        "value": "Disabled"
       },
-      "pricingTierArm": {
-        "value": "Free"
+      "enableAscForSqlOnVm": {
+        "value": "Disabled"
       },
-      "pricingTierDns": {
-        "value": "Free"
+      "enableAscForDns": {
+        "value": "Disabled"
       },
-      "pricingTierKeyVaults": {
-        "value": "Free"
+      "enableAscForArm": {
+        "value": "Disabled"
       },
-      "pricingTierKubernetesService": {
-        "value": "Free"
+      "enableAscForOssDb": {
+        "value": "Disabled"
       },
-      "pricingTierVMs": {
-        "value": "Free"
+      "enableAscForAppServices": {
+        "value": "Disabled"
       },
-      "pricingTierSqlServers": {
-        "value": "Free"
+      "enableAscForRegistries": {
+        "value": "Disabled"
       },
-      "pricingTierSqlServerVirtualMachines": {
-        "value": "Free"
+      "enableAscForKeyVault": {
+        "value": "Disabled"
       },
-      "pricingTierStorageAccounts": {
-        "value": "Free"
+      "enableAscForStorage": {
+        "value": "Disabled"
+      },
+      "enableAscForServers": {
+        "value": "Disabled"
       }
     },
-    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-ASC-Config",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-ASCDF-Config",
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },
