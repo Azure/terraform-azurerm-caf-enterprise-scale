@@ -1,4 +1,4 @@
-## Overview 
+## Overview
 
 [**configure_connectivity_resources**](#overview) [*see validation for type*](#Validation) (optional)
 
