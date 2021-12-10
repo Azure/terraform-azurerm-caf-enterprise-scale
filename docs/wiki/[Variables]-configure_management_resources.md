@@ -312,16 +312,40 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 Enables the the Standard pricing tier for `StorageAccounts`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
+### Location
+
+This allows the default location for all management resource to be set.
+Will override the `default_location` property set in the module.
+
+### Tags
+
+A mapping of tags which should be assigned to the resources.
+
+e.g.
+
+```terraform
+tags = {
+  MyTag  = "MyValue"
+  MyTag2 = "MyValue2"
+}
+
+```
+
+### Advanced
+
+See [Using the Advanced Block][wiki_using_advanced_block].
+
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
 [this_page]: # "Link for the current page."
 
-[agent_health_overview]: https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
-[change_tracking_overview]: https://docs.microsoft.com/azure/automation/change-tracking/overview
-[vm_insights_overview]: https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
-[service_map_overview]: https://docs.microsoft.com/azure/azure-monitor/vm/service-map
-[sql_assessment_overview]: https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
-[sentinel_overview]: https://docs.microsoft.com/azure/sentinel/overview
-[updates_overview]: https://docs.microsoft.com/azure/automation/update-management/overview
+[agent_health_overview]:     https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
+[change_tracking_overview]:  https://docs.microsoft.com/azure/automation/change-tracking/overview
+[vm_insights_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
+[service_map_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/service-map
+[sql_assessment_overview]:   https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
+[sentinel_overview]:         https://docs.microsoft.com/azure/sentinel/overview
+[updates_overview]:          https://docs.microsoft.com/azure/automation/update-management/overview
+[wiki_using_advanced_block]: ./%5BVariables%5D-using-the-advanced-block "Using the advanced block"
