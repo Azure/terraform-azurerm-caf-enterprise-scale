@@ -253,61 +253,65 @@ security_center = {
 
 Enables or disables the `EnforcementMode` of the `Deploy-ASCDF-Config` policy assignment at the organizational root management group.
 
-#### `settings.security_center.email_security_contact`
+#### `settings.security_center.config`
+
+The `config` (`object`) input allows you to set the following configuration items:
+
+##### `settings.security_center.email_security_contact`
 
 Specifies the email address to be used as the security contact in Microsoft Defender for Cloud.
 
-#### `settings.security_center.enable_defender_for_acr`
+##### `settings.security_center.enable_defender_for_acr`
 
 Enables the the Standard pricing tier for `ContainerRegistry`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_app_services`
+##### `settings.security_center.enable_defender_for_app_services`
 
 Enables the the Standard pricing tier for `AppServices`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_arm`
+##### `settings.security_center.enable_defender_for_arm`
 
 Enables the the Standard pricing tier for `Arm`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_dns`
+##### `settings.security_center.enable_defender_for_dns`
 
 Enables the the Standard pricing tier for `Dns`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_key_vault`
+##### `settings.security_center.enable_defender_for_key_vault`
 
 Enables the the Standard pricing tier for `KeyVaults`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_kubernetes`
+##### `settings.security_center.enable_defender_for_kubernetes`
 
 Enables Microsoft Defender for Cloud for all in-scope Azure Kubernetes Service clusters.
 This is deployed to all in-scope clusters using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_oss_databases`
+##### `settings.security_center.enable_defender_for_oss_databases`
 
 Enables the the Standard pricing tier for `OpenSourceRelationalDatabases`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_servers`
+##### `settings.security_center.enable_defender_for_servers`
 
 Enables the the Standard pricing tier for `VirtualMachines`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_sql_server_vms`
+##### `settings.security_center.enable_defender_for_sql_server_vms`
 
 Enables the the Standard pricing tier for `SqlServerVirtualMachines`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_sql_servers`
+##### `settings.security_center.enable_defender_for_sql_servers`
 
 Enables the the Standard pricing tier for `SqlServers` (Azure SQL instances).
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-#### `settings.security_center.enable_defender_for_storage`
+##### `settings.security_center.enable_defender_for_storage`
 
 Enables the the Standard pricing tier for `StorageAccounts`.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
