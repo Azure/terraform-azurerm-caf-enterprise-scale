@@ -168,7 +168,7 @@ Enabled the following Azure Policy Initiative assignment at your organizational 
 
 - Enable Azure Monitor for Virtual Machine Scale Sets
 
-- ##### `settings.log_analytics.enable_sentinel`
+##### `settings.log_analytics.enable_sentinel`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
@@ -189,37 +189,37 @@ Deploys the following `azurerm_log_analytics_solution`:
 
 - AntiMalware
 
-- ##### `settings.log_analytics.enable_solution_for_azure_activity`
+##### `settings.log_analytics.enable_solution_for_azure_activity`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
 - AzureActivity
 
-- ##### `settings.log_analytics.enable_solution_for_change_tracking`
+##### `settings.log_analytics.enable_solution_for_change_tracking`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
 - [ChangeTracking][change_tracking_overview]
 
-- ##### `settings.log_analytics.enable_solution_for_service_map`
+##### `settings.log_analytics.enable_solution_for_service_map`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
 - [ServiceMap][service_map_overview]
 
-- ##### `settings.log_analytics.enable_solution_for_sql_assessment`
+##### `settings.log_analytics.enable_solution_for_sql_assessment`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
 - [SQLAssessment][sql_assessment_overview]
 
-- ##### `settings.log_analytics.enable_solution_for_updates`
+##### `settings.log_analytics.enable_solution_for_updates`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
 - [Updates][updates_overview]
 
-- ##### `settings.log_analytics.enable_solution_for_vm_insights`
+##### `settings.log_analytics.enable_solution_for_vm_insights`
 
 Deploys the following `azurerm_log_analytics_solution`:
 
