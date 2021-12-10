@@ -347,9 +347,9 @@ See [Using the Advanced Block][wiki_using_advanced_block].
 
 [agent_health_overview]:     https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
 [change_tracking_overview]:  https://docs.microsoft.com/azure/automation/change-tracking/overview
-[vm_insights_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
+[sentinel_overview]:         https://docs.microsoft.com/azure/sentinel/overview
 [service_map_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/service-map
 [sql_assessment_overview]:   https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
-[sentinel_overview]:         https://docs.microsoft.com/azure/sentinel/overview
 [updates_overview]:          https://docs.microsoft.com/azure/automation/update-management/overview
+[vm_insights_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
 [wiki_using_advanced_block]: ./%5BVariables%5D-using-the-advanced-block "Using the advanced block"
