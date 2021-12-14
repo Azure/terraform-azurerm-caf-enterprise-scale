@@ -94,6 +94,38 @@ locals {
   }
 }
 
+# The following locals are used to extract the Azure Virtual WAN
+# configuration from the solution module outputs.
+locals {
+  es_connectivity_virtual_wan = module.connectivity_resources.configuration.azurerm_virtual_wan
+}
+
+# The following locals are used to build the map of Azure
+# Virtual WANs to deploy.
+locals {
+  azurerm_virtual_wan_connectivity = {
+    for resource in local.es_connectivity_virtual_wan :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
+# The following locals are used to extract the Azure Virtual Hub
+# configuration from the solution module outputs.
+locals {
+  es_connectivity_virtual_hub = module.connectivity_resources.configuration.azurerm_virtual_hub
+}
+
+# The following locals are used to build the map of Azure
+# Virtual Hubs to deploy.
+locals {
+  azurerm_virtual_hub_connectivity = {
+    for resource in local.es_connectivity_virtual_hub :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
 # The following locals are used to extract the DDoS Protection
 # Plan configuration from the solution module outputs.
 locals {

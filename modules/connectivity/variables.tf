@@ -85,7 +85,70 @@ variable "settings" {
         })
       })
     )
-    vwan_hub_networks = list(object({}))
+    vwan_hub_networks = list(
+      object({
+        enabled = bool
+        config = object({
+          address_prefix = string
+          location       = string
+          sku            = string
+          routes = list(
+            object({
+              address_prefixes    = list(string)
+              next_hop_ip_address = string
+            })
+          )
+          expressroute_gateway = object({
+            enabled = bool
+            config = object({
+              scale_unit = number
+            })
+          })
+          vpn_gateway = object({
+            enabled = bool
+            config = object({
+              bgp_settings = list(
+                object({
+                  asn         = number
+                  peer_weight = number
+                  instance_0_bgp_peering_address = list(
+                    object({
+                      ip_configuration_id = string
+                      default_ips         = list(string)
+                      tunnel_ips          = list(string)
+                    })
+                  )
+                  instance_1_bgp_peering_address = list(
+                    object({
+                      ip_configuration_id = string
+                      default_ips         = list(string)
+                      tunnel_ips          = list(string)
+                    })
+                  )
+                })
+              )
+              routing_preference = string
+              scale_unit         = number
+            })
+          })
+          azure_firewall = object({
+            enabled = bool
+            config = object({
+              address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+              enable_dns_proxy = bool
+              availability_zones = object({
+                zone_1 = bool
+                zone_2 = bool
+                zone_3 = bool
+              })
+              sku_tier = string
+            })
+          })
+          spoke_virtual_network_resource_ids      = list(string)
+          enable_outbound_virtual_network_peering = bool
+        })
+      })
+    )
     ddos_protection_plan = object({
       enabled = bool
       config = object({
