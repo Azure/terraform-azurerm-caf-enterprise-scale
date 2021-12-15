@@ -46,6 +46,7 @@ locals {
     coalesce(vwan_hub_network.config.location, local.location) => vwan_hub_network
   }
   vwan_hub_network_locations = keys(local.vwan_hub_networks_by_location)
+  vwan_location              = length(local.vwan_hub_network_locations) > 0 ? [local.location, ] : local.empty_list
   ddos_location              = coalesce(local.settings.ddos_protection_plan.config.location, local.location)
   dns_location               = coalesce(local.settings.dns.config.location, local.location)
   connectivity_locations = distinct(concat(
@@ -645,33 +646,42 @@ locals {
 # scope of the connectivity child module.
 locals {
   virtual_wan_name = {
-    (local.location) = try(local.custom_settings.azurerm_virtual_wan["connectivity"][local.location].name,
-    "${local.resource_prefix}-vwan-${local.location}${local.resource_suffix}")
+    for location in local.vwan_location :
+    location =>
+    try(local.custom_settings.azurerm_virtual_wan["connectivity"][location].name,
+    "${local.resource_prefix}-vwan-${location}${local.resource_suffix}")
   }
   virtual_wan_resource_group_id = {
-    (local.location) = local.resource_group_config_by_scope_and_location["connectivity"][local.location].resource_id
+    for location in local.vwan_location :
+    location =>
+    local.resource_group_config_by_scope_and_location["connectivity"][location].resource_id
   }
   virtual_wan_resource_id_prefix = {
-    (local.location) = "${local.virtual_wan_resource_group_id[local.location]}/providers/Microsoft.Network/virtualWans"
+    for location in local.vwan_location :
+    location =>
+    "${local.virtual_wan_resource_group_id[location]}/providers/Microsoft.Network/virtualWans"
   }
   virtual_wan_resource_id = {
-    (local.location) = "${local.virtual_wan_resource_id_prefix[local.location]}/${local.virtual_wan_name[local.location]}"
+    for location in local.vwan_location :
+    location =>
+    "${local.virtual_wan_resource_id_prefix[location]}/${local.virtual_wan_name[location]}"
   }
   azurerm_virtual_wan = [
+    for location in local.vwan_location :
     {
       # Resource logic attributes
-      resource_id       = local.virtual_wan_resource_id[local.location]
-      managed_by_module = local.deploy_vwan[local.location]
+      resource_id       = local.virtual_wan_resource_id[location]
+      managed_by_module = local.deploy_vwan[location]
       # Resource definition attributes
-      name                = local.virtual_wan_name[local.location]
-      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][local.location]
-      location            = local.location
+      name                = local.virtual_wan_name[location]
+      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
+      location            = location
       # Optional definition attributes
-      disable_vpn_encryption            = try(local.custom_settings.azurerm_virtual_wan["connectivity"][local.location].disable_vpn_encryption, false)
-      allow_branch_to_branch_traffic    = try(local.custom_settings.azurerm_virtual_wan["connectivity"][local.location].allow_branch_to_branch_traffic, true)
-      office365_local_breakout_category = try(local.custom_settings.azurerm_virtual_wan["connectivity"][local.location].office365_local_breakout_category, "None")
-      type                              = try(local.custom_settings.azurerm_virtual_wan["connectivity"][local.location].type, "Standard")
-      tags                              = try(local.custom_settings.azurerm_virtual_wan["connectivity"][local.location].tags, local.tags)
+      disable_vpn_encryption            = try(local.custom_settings.azurerm_virtual_wan["connectivity"][location].disable_vpn_encryption, false)
+      allow_branch_to_branch_traffic    = try(local.custom_settings.azurerm_virtual_wan["connectivity"][location].allow_branch_to_branch_traffic, true)
+      office365_local_breakout_category = try(local.custom_settings.azurerm_virtual_wan["connectivity"][location].office365_local_breakout_category, "None")
+      type                              = try(local.custom_settings.azurerm_virtual_wan["connectivity"][location].type, "Standard")
+      tags                              = try(local.custom_settings.azurerm_virtual_wan["connectivity"][location].tags, local.tags)
     }
   ]
 }
@@ -701,7 +711,7 @@ locals {
     "${local.virtual_hub_resource_id_prefix[location]}/${local.virtual_hub_name[location]}"
   }
   azurerm_virtual_hub = [
-    for location, vwan_hub_config in local.vwan_hub_networks_by_location :
+    for location, vwan_hub_network in local.vwan_hub_networks_by_location :
     {
       # Resource logic attributes
       resource_id       = local.virtual_hub_resource_id[location]
@@ -711,12 +721,12 @@ locals {
       resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
       location            = location
       # Optional definition attributes
-      sku            = coalesce(vwan_hub_config.sku, "Standard")
-      address_prefix = vwan_hub_config.address_prefix
-      virtual_wan_id = try(local.custom_settings.azurerm_virtual_hub["connectivity"][location].virtual_wan_id, local.virtual_wan_resource_id[local.location])
+      sku            = coalesce(vwan_hub_network.config.sku, "Standard")
+      address_prefix = vwan_hub_network.config.address_prefix
+      virtual_wan_id = try(local.custom_settings.azurerm_virtual_hub["connectivity"][location].virtual_wan_id, local.virtual_wan_resource_id[local.vwan_location[0]])
       tags           = try(local.custom_settings.azurerm_virtual_hub["connectivity"][location].tags, local.tags)
       route = [
-        for route in vwan_hub_config.routes :
+        for route in vwan_hub_network.config.routes :
         {
           address_prefixes    = route.address_prefixes
           next_hop_ip_address = route.next_hop_ip_address
@@ -1282,7 +1292,7 @@ locals {
     deploy_vwan_expressroute_gateway                       = local.deploy_vwan_expressroute_gateway
     deploy_vwan_vpn_gateway                                = local.deploy_vwan_vpn_gateway
     deploy_vwan_azure_firewall                             = local.deploy_vwan_azure_firewall
-    deploy_outbound_vwan_peering                           = local.deploy_outbound_vwan_peering
+    deploy_vwan_outbound_peering                           = local.deploy_vwan_outbound_peering
     resource_group_names_by_scope_and_location             = local.resource_group_names_by_scope_and_location
     resource_group_config_by_scope_and_location            = local.resource_group_config_by_scope_and_location
     azurerm_resource_group                                 = local.azurerm_resource_group
