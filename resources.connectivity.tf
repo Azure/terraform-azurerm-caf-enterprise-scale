@@ -296,6 +296,8 @@ resource "azurerm_firewall" "connectivity" {
   depends_on = [
     azurerm_resource_group.connectivity,
     azurerm_virtual_network.connectivity,
+    azurerm_virtual_wan.connectivity,
+    azurerm_virtual_hub.connectivity,
     azurerm_subnet.connectivity,
     azurerm_public_ip.connectivity,
     azurerm_network_ddos_protection_plan.connectivity,
@@ -323,7 +325,6 @@ resource "azurerm_virtual_wan" "connectivity" {
   # Set explicit dependencies
   depends_on = [
     azurerm_resource_group.connectivity,
-    azurerm_network_ddos_protection_plan.connectivity,
   ]
 
 }
@@ -358,7 +359,6 @@ resource "azurerm_virtual_hub" "connectivity" {
   depends_on = [
     azurerm_resource_group.connectivity,
     azurerm_virtual_wan.connectivity,
-    azurerm_network_ddos_protection_plan.connectivity,
   ]
 
 }
@@ -378,7 +378,13 @@ resource "azurerm_express_route_gateway" "connectivity" {
   # Optional resource attributes
   tags = each.value.template.tags
 
-  # Dynamic configuration blocks
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_wan.connectivity,
+    azurerm_virtual_hub.connectivity,
+  ]
+
 }
 
 resource "azurerm_vpn_gateway" "connectivity" {
@@ -419,6 +425,14 @@ resource "azurerm_vpn_gateway" "connectivity" {
       }
     }
   }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_virtual_wan.connectivity,
+    azurerm_virtual_hub.connectivity,
+  ]
+
 }
 
 resource "azurerm_private_dns_zone" "connectivity" {
