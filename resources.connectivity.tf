@@ -363,6 +363,64 @@ resource "azurerm_virtual_hub" "connectivity" {
 
 }
 
+resource "azurerm_express_route_gateway" "connectivity" {
+  for_each = local.azurerm_express_route_gateway_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+  location            = each.value.template.location
+  virtual_hub_id      = each.value.template.virtual_hub_id
+  scale_units         = each.value.template.scale_units
+
+  # Optional resource attributes
+  tags = each.value.template.tags
+
+  # Dynamic configuration blocks
+}
+
+resource "azurerm_vpn_gateway" "connectivity" {
+  for_each = local.azurerm_vpn_gateway_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+  location            = each.value.template.location
+  virtual_hub_id      = each.value.template.virtual_hub_id
+
+  # Optional resource attributes
+  routing_preference = each.value.template.routing_preference
+  scale_unit         = each.value.template.scale_unit
+  tags               = each.value.template.tags
+
+  # Dynamic configuration blocks
+  dynamic "bgp_settings" {
+    for_each = each.value.template.bgp_settings
+    content {
+      # Mandatory attributes
+      asn         = bgp_settings.value["asn"]
+      peer_weight = bgp_settings.value["peer_weight"]
+      # Dynamic configuration blocks
+      dynamic "instance_0_bgp_peering_address" {
+        for_each = bgp_settings.value["instance_0_bgp_peering_address"]
+        content {
+          custom_ips = instance_0_bgp_peering_address.value["custom_ips"]
+        }
+      }
+      dynamic "instance_1_bgp_peering_address" {
+        for_each = bgp_settings.value["instance_1_bgp_peering_address"]
+        content {
+          custom_ips = instance_1_bgp_peering_address.value["custom_ips"]
+        }
+      }
+    }
+  }
+}
+
 resource "azurerm_private_dns_zone" "connectivity" {
   for_each = local.azurerm_private_dns_zone_connectivity
 

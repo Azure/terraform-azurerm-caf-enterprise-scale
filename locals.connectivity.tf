@@ -126,6 +126,38 @@ locals {
   }
 }
 
+# The following locals are used to extract the Azure Expressroute Gateway
+# configuration from the solution module outputs.
+locals {
+  es_connectivity_express_route_gateway = module.connectivity_resources.configuration.azurerm_express_route_gateway
+}
+
+# The following locals are used to build the map of Azure
+# Expressroute Gateways to deploy.
+locals {
+  azurerm_express_route_gateway_connectivity = {
+    for resource in local.es_connectivity_express_route_gateway :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
+# The following locals are used to extract the Azure VPN Gateways
+# configuration from the solution module outputs.
+locals {
+  es_connectivity_vpn_gateway = module.connectivity_resources.configuration.azurerm_vpn_gateway
+}
+
+# The following locals are used to build the map of Azure
+# VPN Gateways to deploy.
+locals {
+  azurerm_vpn_gateway_connectivity = {
+    for resource in local.es_connectivity_vpn_gateway :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
 # The following locals are used to extract the DDoS Protection
 # Plan configuration from the solution module outputs.
 locals {

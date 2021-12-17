@@ -113,16 +113,12 @@ variable "settings" {
                   peer_weight = number
                   instance_0_bgp_peering_address = list(
                     object({
-                      ip_configuration_id = string
-                      default_ips         = list(string)
-                      tunnel_ips          = list(string)
+                      custom_ips = list(string)
                     })
                   )
                   instance_1_bgp_peering_address = list(
                     object({
-                      ip_configuration_id = string
-                      default_ips         = list(string)
-                      tunnel_ips          = list(string)
+                      custom_ips = list(string)
                     })
                   )
                 })
@@ -134,18 +130,14 @@ variable "settings" {
           azure_firewall = object({
             enabled = bool
             config = object({
-              address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
               enable_dns_proxy = bool
-              availability_zones = object({
-                zone_1 = bool
-                zone_2 = bool
-                zone_3 = bool
-              })
-              sku_tier = string
+              sku_tier         = string
             })
           })
           spoke_virtual_network_resource_ids      = list(string)
           enable_outbound_virtual_network_peering = bool
+          virtual_wan_id                          = string
+          resource_group_per_location             = bool
         })
       })
     )
