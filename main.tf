@@ -40,13 +40,13 @@ module "management_resources" {
   tags     = local.management_resources_tags
 
   # Optional input variables (advanced configuration)
-  resource_prefix                              = try(local.configure_management_resources.advanced.resource_prefix, local.empty_string)
-  resource_suffix                              = try(local.configure_management_resources.advanced.resource_suffix, local.empty_string)
-  existing_resource_group_name                 = try(local.configure_management_resources.advanced.existing_resource_group_name, local.empty_string)
-  existing_log_analytics_workspace_resource_id = try(local.configure_management_resources.advanced.existing_log_analytics_workspace_resource_id, local.empty_string)
-  existing_automation_account_resource_id      = try(local.configure_management_resources.advanced.existing_automation_account_resource_id, local.empty_string)
-  link_log_analytics_to_automation_account     = try(local.configure_management_resources.advanced.link_log_analytics_to_automation_account, true)
-  custom_settings_by_resource_type             = try(local.configure_management_resources.advanced.custom_settings_by_resource_type, local.empty_map)
+  resource_prefix                              = lookup(local.management_resources_advanced, "resource_prefix", local.empty_string)
+  resource_suffix                              = lookup(local.management_resources_advanced, "resource_suffix", local.empty_string)
+  existing_resource_group_name                 = lookup(local.management_resources_advanced, "existing_resource_group_name", local.empty_string)
+  existing_log_analytics_workspace_resource_id = lookup(local.management_resources_advanced, "existing_log_analytics_workspace_resource_id", local.empty_string)
+  existing_automation_account_resource_id      = lookup(local.management_resources_advanced, "existing_automation_account_resource_id", local.empty_string)
+  link_log_analytics_to_automation_account     = lookup(local.management_resources_advanced, "link_log_analytics_to_automation_account", true)
+  custom_settings_by_resource_type             = lookup(local.management_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
 }
 
 # The following module is used to generate the configuration
@@ -78,8 +78,8 @@ module "connectivity_resources" {
   tags     = local.connectivity_resources_tags
 
   # Optional input variables (advanced configuration)
-  resource_prefix                           = try(local.configure_connectivity_resources.advanced.resource_prefix, local.empty_string)
-  resource_suffix                           = try(local.configure_connectivity_resources.advanced.resource_suffix, local.empty_string)
-  existing_ddos_protection_plan_resource_id = try(local.configure_connectivity_resources.advanced.existing_resource_group_name, local.empty_string)
-  custom_settings_by_resource_type          = try(local.configure_connectivity_resources.advanced.custom_settings_by_resource_type, local.empty_map)
+  resource_prefix                           = lookup(local.connectivity_resources_advanced, "resource_prefix", local.empty_string)
+  resource_suffix                           = lookup(local.connectivity_resources_advanced, "resource_suffix", local.empty_string)
+  existing_ddos_protection_plan_resource_id = lookup(local.connectivity_resources_advanced, "existing_resource_group_name", local.empty_string)
+  custom_settings_by_resource_type          = lookup(local.connectivity_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
 }

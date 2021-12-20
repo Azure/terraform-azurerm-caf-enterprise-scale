@@ -40,6 +40,14 @@ locals {
   disable_base_module_tags = var.disable_base_module_tags
 }
 
+# The following locals are used to ensure non-null values
+# are assigned to each of the corresponding inputs for
+# correct processing in `lookup()` functions
+locals {
+  connectivity_resources_advanced = coalesce(local.configure_connectivity_resources.advanced, local.empty_map)
+  management_resources_advanced   = coalesce(local.configure_management_resources.advanced, local.empty_map)
+}
+
 # The following locals are used to define a set of module
 # tags applied to all resources unless disabled by the
 # input variable "disable_module_tags" and prepare the
