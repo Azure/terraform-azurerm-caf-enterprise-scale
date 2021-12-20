@@ -44,6 +44,9 @@ locals {
 # are assigned to each of the corresponding inputs for
 # correct processing in `lookup()` functions
 locals {
+  enforcement_mode_default = {
+    enforcement_mode = null
+  }
   connectivity_resources_advanced = coalesce(local.configure_connectivity_resources.advanced, local.empty_map)
   management_resources_advanced   = coalesce(local.configure_management_resources.advanced, local.empty_map)
 }
