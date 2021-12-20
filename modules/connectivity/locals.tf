@@ -659,6 +659,7 @@ locals {
         # Resource logic attributes
         resource_id       = local.azfw_resource_id[location]
         managed_by_module = local.deploy_azure_firewall[location]
+        scope             = "connectivity"
         # Resource definition attributes
         name                = local.azfw_name[location]
         resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
@@ -714,6 +715,7 @@ locals {
         # Resource logic attributes
         resource_id       = local.virtual_hub_azfw_resource_id[location]
         managed_by_module = local.deploy_virtual_hub_azure_firewall[location]
+        scope             = "virtual_wan"
         # Resource definition attributes
         name                = local.virtual_hub_azfw_name[location]
         resource_group_name = local.virtual_hub_resource_group_name[location]
@@ -1293,6 +1295,7 @@ locals {
           key != "managed_by_module" &&
           key != "scope"
         }
+        scope             = resource.scope
         managed_by_module = local.deploy_resource_groups[resource.scope][resource.location]
       }
     ]
@@ -1371,8 +1374,10 @@ locals {
           if resource.managed_by_module &&
           key != "resource_id" &&
           key != "managed_by_module" &&
-          key != "azurerm_public_ip"
+          key != "azurerm_public_ip" &&
+          key != "scope"
         }
+        scope             = resource.scope
         managed_by_module = resource.managed_by_module
       }
     ]
