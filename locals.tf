@@ -107,19 +107,19 @@ locals {
   default_create_duration_delay  = "30s"
   default_destroy_duration_delay = "0s"
   create_duration_delay = {
-    after_azurerm_management_group      = try(var.create_duration_delay["azurerm_management_group"], local.default_create_duration_delay)
-    after_azurerm_policy_assignment     = try(var.create_duration_delay["azurerm_policy_assignment"], local.default_create_duration_delay)
-    after_azurerm_policy_definition     = try(var.create_duration_delay["azurerm_policy_definition"], local.default_create_duration_delay)
-    after_azurerm_policy_set_definition = try(var.create_duration_delay["azurerm_policy_set_definition"], local.default_create_duration_delay)
-    after_azurerm_role_assignment       = try(var.create_duration_delay["azurerm_role_assignment"], local.default_create_duration_delay)
-    after_azurerm_role_definition       = try(var.create_duration_delay["azurerm_role_definition"], local.default_create_duration_delay)
+    after_azurerm_management_group      = lookup(var.create_duration_delay, "azurerm_management_group", local.default_create_duration_delay)
+    after_azurerm_policy_assignment     = lookup(var.create_duration_delay, "azurerm_policy_assignment", local.default_create_duration_delay)
+    after_azurerm_policy_definition     = lookup(var.create_duration_delay, "azurerm_policy_definition", local.default_create_duration_delay)
+    after_azurerm_policy_set_definition = lookup(var.create_duration_delay, "azurerm_policy_set_definition", local.default_create_duration_delay)
+    after_azurerm_role_assignment       = lookup(var.create_duration_delay, "azurerm_role_assignment", local.default_create_duration_delay)
+    after_azurerm_role_definition       = lookup(var.create_duration_delay, "azurerm_role_definition", local.default_create_duration_delay)
   }
   destroy_duration_delay = {
-    after_azurerm_management_group      = try(var.destroy_duration_delay["azurerm_management_group"], local.default_destroy_duration_delay)
-    after_azurerm_policy_assignment     = try(var.destroy_duration_delay["azurerm_policy_assignment"], local.default_destroy_duration_delay)
-    after_azurerm_policy_definition     = try(var.destroy_duration_delay["azurerm_policy_definition"], local.default_destroy_duration_delay)
-    after_azurerm_policy_set_definition = try(var.destroy_duration_delay["azurerm_policy_set_definition"], local.default_destroy_duration_delay)
-    after_azurerm_role_assignment       = try(var.destroy_duration_delay["azurerm_role_assignment"], local.default_destroy_duration_delay)
-    after_azurerm_role_definition       = try(var.destroy_duration_delay["azurerm_role_definition"], local.default_destroy_duration_delay)
+    after_azurerm_management_group      = lookup(var.destroy_duration_delay, "azurerm_management_group", local.default_destroy_duration_delay)
+    after_azurerm_policy_assignment     = lookup(var.destroy_duration_delay, "azurerm_policy_assignment", local.default_destroy_duration_delay)
+    after_azurerm_policy_definition     = lookup(var.destroy_duration_delay, "azurerm_policy_definition", local.default_destroy_duration_delay)
+    after_azurerm_policy_set_definition = lookup(var.destroy_duration_delay, "azurerm_policy_set_definition", local.default_destroy_duration_delay)
+    after_azurerm_role_assignment       = lookup(var.destroy_duration_delay, "azurerm_role_assignment", local.default_destroy_duration_delay)
+    after_azurerm_role_definition       = lookup(var.destroy_duration_delay, "azurerm_role_definition", local.default_destroy_duration_delay)
   }
 }
