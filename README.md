@@ -165,7 +165,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.0"
+  version = "1.1.1"
 
   providers = {
     azurerm              = azurerm
@@ -207,6 +207,14 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
 ## Release Notes
+
+Release `v1.1.1` introduces the following changes:
+
+- Update regex logic for `root_id` and `scope_id` input variables on `archetypes` child module (Fixes #241)
+- Add `requried_version` to Terraform configuration to ensure only supported version of Terraform is used
+- Add documentation to Wiki for the [configure_connectivity_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources) and [configure_management_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_management_resources) input variables
+
+No breaking changes identified.
 
 Release `v1.1.0` introduces the following changes:
 

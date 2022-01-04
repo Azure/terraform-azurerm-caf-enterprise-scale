@@ -102,7 +102,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.0"
+  version = "1.1.1"
 
   providers = {
     azurerm              = azurerm
