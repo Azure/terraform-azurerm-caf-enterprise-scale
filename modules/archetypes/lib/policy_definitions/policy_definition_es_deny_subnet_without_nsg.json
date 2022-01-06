@@ -41,18 +41,34 @@
     },
     "policyRule": {
       "if": {
-        "allOf": [
+        "anyOf": [
           {
-            "field": "type",
-            "equals": "Microsoft.Network/virtualNetworks/subnets"
+            "allOf": [
+              {
+                "equals": "Microsoft.Network/virtualNetworks",
+                "field": "type"
+              },
+              {
+                "exists": "false",
+                "field": "Microsoft.Network/virtualNetworks/subnets[*].networkSecurityGroup.id"
+              }
+            ]
           },
           {
-            "field": "name",
-            "notIn": "[parameters('excludedSubnets')]"
-          },
-          {
-            "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id",
-            "exists": "false"
+            "allOf": [
+              {
+                "equals": "Microsoft.Network/virtualNetworks/subnets",
+                "field": "type"
+              },
+              {
+                "field": "name",
+                "notIn": "[parameters('excludedSubnets')]"
+              },
+              {
+                "exists": "false",
+                "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id"
+              }
+            ]
           }
         ]
       },
