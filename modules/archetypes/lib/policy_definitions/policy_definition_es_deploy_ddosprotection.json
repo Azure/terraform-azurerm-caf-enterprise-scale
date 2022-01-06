@@ -61,8 +61,8 @@
         "effect": "[parameters('effect')]",
         "details": {
           "type": "Microsoft.Network/ddosProtectionPlans",
-          "deploymentScope": "Subscription",
-          "existenceScope": "ResourceGroup",
+          "deploymentScope": "subscription",
+          "existenceScope": "resourceGroup",
           "resourceGroupName": "[parameters('rgName')]",
           "name": "[parameters('ddosName')]",
           "roleDefinitionIds": [

@@ -3,66 +3,14 @@
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-> **MODULE UPGRADE NOTES**
->
-> The `v0.4.0` release represents a major milestone for the module, introducing capabilities for deploying `Identity` and `Connectivity` solutions from the Enterprise-scale architecture.
-> The following breaking changes should be noted when upgrading from `v0.3.x`:
-> - The minimum supported version of Terraform is now set to `0.15.0`
-> - The minimum supported version of the AzureRM Provider is now set to `2.66.0`
-> - Resources have been renamed to support multiple providers within the module
-> - The [`azurerm_policy_assignment`][azurerm_policy_assignment] resource type has been replaced by the new [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] resource type
->
-> These changes were necessary to support the latest features for Availability Zone configuration settings on the [`azurerm_public_ip`][azurerm_public_ip] resources, allow integration of multiple providers within the module to enable deploying resources to multiple Subscriptions, and to future proof against deprecation of the [`azurerm_policy_assignment`][azurerm_policy_assignment] resource.
-> We believe this provides the best end-user experience going forward, so to make the transition as easy as possible, we have also provided documentation explaining how to [upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0].
-> We strongly recommend to review this, along with the [release notes][release_notes_v0_4_0] and test your deployment before upgrading.
->
-> The `v0.3.0` release focuses mainly on updating the test framework, but also introduces a breaking change which removes the need (and support for) wrapping user-defined parameters in `jsonencode()`.
-> When upgrading to this release, please ensure to update your code to use native HCL values as documented in the [release notes][release_notes_v0_3_0].
->
-> The `v0.2.0` release added new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
-> Please refer to the [Deploy Management Resources][wiki_deploy_management_resources] page on our Wiki for more information about how to use this.
-
-## Documentation
-
-For detailed information about how to use, configure and extend this module, please refer to the documentation on our Wiki:
+Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
 - [Home][wiki_home]
 - [User Guide][wiki_user_guide]
-  - [Getting Started][wiki_getting_started]
-  - [Module Permissions][wiki_module_permissions]
-  - [Module Variables][wiki_module_variables]
-  - [Provider Configuration][wiki_provider_configuration]
-  - [Archetype Definitions][wiki_archetype_definitions]
-  - [Core Resources][wiki_core_resources]
-  - [Management Resources][wiki_management_resources]
-  - [Connectivity Resources][wiki_connectivity_resources]
-  - [Identity Resources][wiki_identity_resources]
-  - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
-  - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
-  - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 - [Examples][wiki_examples]
-  - [Level 100][wiki_examples_level_100]
-    - [Deploy Default Configuration][wiki_deploy_default_configuration]
-    - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
-  - [Level 200][wiki_examples_level_200]
-    - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
-    - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
-    - [Deploy Identity Resources][wiki_deploy_identity_resources]
-    - [Deploy Management Resources][wiki_deploy_management_resources]
-  - [Level 300][wiki_examples_level_300]
-    - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
-    - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
-    - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
-    - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
-    - [Override Module Role Assignments][wiki_override_module_role_assignments]
-    - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
 - [Contributing][wiki_contributing]
-  - [Raising an Issue][wiki_raising_an_issue]
-  - [Feature Requests][wiki_feature_requests]
-  - [Contributing to Code][wiki_contributing_to_code]
-  - [Contributing to Documentation][wiki_contributing_to_documentation]
 
 ## Overview
 
@@ -76,6 +24,8 @@ This is currently split logically into the following capabilities:
 - [Management Resources](#management-resources)
 - [Connectivity Resources](#connectivity-resources)
 - [Identity Resources](#identity-resources)
+
+These resources can be deployed to multiple Subscriptions by setting the [Provider Configuration][wiki_provider_configuration] on the module block.
 
 The following sections outline the different resource types deployed and managed by this module, depending on the configuration options specified.
 
@@ -163,7 +113,6 @@ This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.77.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
-
 ## Usage
 
 As a basic starting point, we recommend starting with the following configuration in your root module.
@@ -199,7 +148,7 @@ provider "azurerm" {
 
 data "azurerm_client_config" "core" {}
 
-# Use variables to customise the deployment
+# Use variables to customize the deployment
 
 variable "root_id" {
   type    = string
@@ -216,7 +165,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "0.4.0"
+  version = "1.1.1"
 
   providers = {
     azurerm              = azurerm
@@ -231,7 +180,7 @@ module "enterprise_scale" {
 }
 ```
 
-> For additional guidance on how to customise your deployment using the advanced configuration options for this module, please refer to our [User Guide][wiki_user_guide] and the additional [examples][wiki_examples] in our documentation.
+> For additional guidance on how to customize your deployment using the advanced configuration options for this module, please refer to our [User Guide][wiki_user_guide] and the additional [examples][wiki_examples] in our documentation.
 
 ## Permissions
 
@@ -239,15 +188,84 @@ Please refer to our [Module Permissions][wiki_module_permissions] guide on the W
 
 ## Examples
 
-Please refer to our [Examples][wiki_examples] guide on the Wiki.
+For the latest examples, please refer to our [Examples][wiki_examples] guide on the Wiki.
+
+- [Examples - Level 100][wiki_examples_level_100]
+  - [Deploy Default Configuration][wiki_deploy_default_configuration]
+  - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
+- [Examples - Level 200][wiki_examples_level_200]
+  - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
+  - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
+  - [Deploy Identity Resources][wiki_deploy_identity_resources]
+  - [Deploy Management Resources][wiki_deploy_management_resources]
+- [Examples - Level 300][wiki_examples_level_300]
+  - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
+  - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
+  - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
+  - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
+  - [Override Module Role Assignments][wiki_override_module_role_assignments]
+  - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
+
+## Release Notes
+
+Release `v1.1.1` introduces the following changes:
+
+- Update regex logic for `root_id` and `scope_id` input variables on `archetypes` child module (Fixes #241)
+- Add `requried_version` to Terraform configuration to ensure only supported version of Terraform is used
+- Add documentation to Wiki for the [configure_connectivity_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources) and [configure_management_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_management_resources) input variables
+
+No breaking changes identified.
+
+Release `v1.1.0` introduces the following changes:
+
+- **BREAKING CHANGE**: Replaced `Deploy-ASC-Configuration` Policy Assignment with `Deploy-ASCDF-Config`, utilizing built-in policies and also adds support for [Microsoft Defender for open-source relational databases](https://docs.microsoft.com/azure/defender-for-cloud/defender-for-databases-introduction).
+  - Fixing [Add Defender support for Open-source relational databases #131](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/131).
+  - **Note:** Will result in loss of policy compliance history.
+  - Consider making a copy of the removed policy templates to a custom `lib` folder and using the [archetype extension](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-extension-function) capability if you wish to retain the old Assignment to keep policy compliance history.
+  - Requires an update to the `configure_management_resources` input variable:
+
+```hcl
+{
+  settings = {
+    # (1 unchanged element hidden)
+    security_center = {
+      # (1 unchanged element hidden)
+      config = {
+        # (7 unchanged elements hidden)
+        enable_defender_for_oss_databases  = true
+        # (4 unchanged elements hidden)
+      }
+    }
+  }
+  # (3 unchanged elements hidden)
+}
+```
+
+- Updates to Wiki documentation
+- Multiple bug fixes covering:
+  - Fix "managed parameters" for `Enable-DDoS-VNET` Policy Assignment at `landing-zones` scope (no issue logged)
+  - [Changing root_parent_id results in Management Groups not being deployed #190](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/190)
+  - [Bug Report: Private DNS zone link in setting.connectivity.tf #204](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/204)
+  - [Incorrect enforcementMode setting on Enable-DDoS-VNET Policy Assignment #216](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/216)
+
+For upgrade guides from previous versions, please refer to the following links:
+
+- [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
+- [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
+- [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
+- [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
 
 ## License
 
-[MIT License][TFAES-LICENSE]
+- [MIT License][TFAES-LICENSE]
 
 ## Contributing
 
-[Contributing Guide][TFAES-CONTRIBUTING]
+- [Contributing][wiki_contributing]
+  - [Raising an Issue][wiki_raising_an_issue]
+  - [Feature Requests][wiki_feature_requests]
+  - [Contributing to Code][wiki_contributing_to_code]
+  - [Contributing to Documentation][wiki_contributing_to_documentation]
 
  [//]: # (*****************************)
  [//]: # (INSERT IMAGE REFERENCES BELOW)
@@ -264,31 +282,31 @@ Please refer to our [Examples][wiki_examples] guide on the Wiki.
 
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
 
-[ESLZ-Architecture]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
-[ESLZ-Management]:   https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
-[ESLZ-Connectivity]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
-[ESLZ-Identity]:     https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
+[ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
+[ESLZ-Management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
+[ESLZ-Connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
+[ESLZ-Identity]:     https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
 
-[arm_management_group]:               https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups
-[arm_management_group_subscriptions]: https://docs.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups/subscriptions
-[arm_policy_assignment]:              https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policyassignments
-[arm_policy_definition]:              https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policydefinitions
-[arm_policy_set_definition]:          https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/policysetdefinitions
-[arm_role_assignment]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roleassignments
-[arm_role_definition]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions
-[arm_resource_group]:                 https://docs.microsoft.com/en-us/azure/templates/microsoft.resources/resourcegroups
-[arm_log_analytics_workspace]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces
-[arm_log_analytics_solution]:         https://docs.microsoft.com/en-us/azure/templates/microsoft.operationsmanagement/solutions
-[arm_automation_account]:             https://docs.microsoft.com/en-us/azure/templates/microsoft.automation/automationaccounts
-[arm_log_analytics_linked_service]:   https://docs.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
-[arm_virtual_network]:                https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks
-[arm_subnet]:                         https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/subnets
-[arm_virtual_network_gateway]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworkgateways
-[arm_firewall]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/azurefirewalls
-[arm_public_ip]:                      https://docs.microsoft.com/en-us/azure/templates/microsoft.network/publicipaddresses
-[arm_ddos_protection_plan]:           https://docs.microsoft.com/en-us/azure/templates/microsoft.network/ddosprotectionplans
-[arm_dns_zone]:                       https://docs.microsoft.com/en-us/azure/templates/microsoft.network/dnszones
-[arm_virtual_network_peering]:        https://docs.microsoft.com/en-us/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[arm_management_group]:               https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups
+[arm_management_group_subscriptions]: https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups/subscriptions
+[arm_policy_assignment]:              https://docs.microsoft.com/azure/templates/microsoft.authorization/policyassignments
+[arm_policy_definition]:              https://docs.microsoft.com/azure/templates/microsoft.authorization/policydefinitions
+[arm_policy_set_definition]:          https://docs.microsoft.com/azure/templates/microsoft.authorization/policysetdefinitions
+[arm_role_assignment]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roleassignments
+[arm_role_definition]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roledefinitions
+[arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
+[arm_log_analytics_workspace]:        https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
+[arm_log_analytics_solution]:         https://docs.microsoft.com/azure/templates/microsoft.operationsmanagement/solutions
+[arm_automation_account]:             https://docs.microsoft.com/azure/templates/microsoft.automation/automationaccounts
+[arm_log_analytics_linked_service]:   https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
+[arm_virtual_network]:                https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks
+[arm_subnet]:                         https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/subnets
+[arm_virtual_network_gateway]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworkgateways
+[arm_firewall]:                       https://docs.microsoft.com/azure/templates/microsoft.network/azurefirewalls
+[arm_public_ip]:                      https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses
+[arm_ddos_protection_plan]:           https://docs.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
+[arm_dns_zone]:                       https://docs.microsoft.com/azure/templates/microsoft.network/dnszones
+[arm_virtual_network_peering]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
 
 [azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
 [azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
@@ -312,11 +330,7 @@ Please refer to our [Examples][wiki_examples] guide on the Wiki.
 [azurerm_virtual_network_peering]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering
 
 [TFAES-LICENSE]:      https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/LICENSE
-[TFAES-CONTRIBUTING]: https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/CONTRIBUTING
 [TFAES-Library]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/terraform-azurerm-caf-enterprise-scale-archetypes/lib
-
-[release_notes_v0_3_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v0.3.0 "Release notes for v0.3.0"
-[release_notes_v0_4_0]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v0.4.0 "Release notes for v0.4.0"
 
 <!--
 The following link references should be copied from `_sidebar.md` in the `./docs/wiki/` folder.
@@ -337,6 +351,7 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_upgrade_from_v0_0_8_to_v0_1_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_upgrade_from_v0_3_3_to_v0_4_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
+[wiki_upgrade_from_v0_4_0_to_v1_0_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
 [wiki_examples]:                              https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-200 "Wiki - Examples"
