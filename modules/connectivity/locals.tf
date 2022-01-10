@@ -1152,7 +1152,7 @@ locals {
       managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
     }
   ]
-  spoke_virtual_networks_for_dns = flatten(
+  spoke_virtual_networks_for_dns = flatten([
     [
       for location, hub_config in local.hub_networks_by_location :
       [
@@ -1163,8 +1163,19 @@ locals {
           managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
         }
       ]
+    ],
+    [
+      for location, virtual_hub_config in local.virtual_hubs_by_location :
+      [
+        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        {
+          resource_id       = spoke_resource_id
+          name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+        }
+      ]
     ]
-  )
+  ])
   virtual_networks_for_dns = concat(
     local.hub_virtual_networks_for_dns,
     local.spoke_virtual_networks_for_dns,
