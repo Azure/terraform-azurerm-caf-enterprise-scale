@@ -296,10 +296,8 @@ variable "configure_connectivity_resources" {
                 sku_tier         = string
               })
             })
-            spoke_virtual_network_resource_ids      = list(string)
-            enable_outbound_virtual_network_peering = bool
-            virtual_wan_id                          = string
-            resource_group_per_location             = bool
+            spoke_virtual_network_resource_ids = list(string)
+            enable_virtual_hub_connections     = bool
           })
         })
       )

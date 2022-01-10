@@ -19,8 +19,10 @@ locals {
   location                                  = var.location
   tags                                      = var.tags
   resource_prefix                           = coalesce(var.resource_prefix, local.root_id)
-  resource_suffix                           = length(var.resource_suffix) > 0 ? "-${var.resource_suffix}" : local.empty_string
+  resource_suffix                           = var.resource_suffix != null ? "-${var.resource_suffix}" : local.empty_string
   existing_ddos_protection_plan_resource_id = var.existing_ddos_protection_plan_resource_id
+  existing_virtual_wan_resource_id          = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
+  resource_group_per_virtual_hub_location   = var.resource_group_per_virtual_hub_location
   custom_settings                           = var.custom_settings_by_resource_type
 }
 
@@ -55,12 +57,12 @@ locals {
   virtual_hubs_by_location_for_resource_group_per_location = {
     for virtual_hub in local.virtual_hubs :
     coalesce(virtual_hub.config.location, local.location) => virtual_hub
-    if virtual_hub.config.resource_group_per_location
+    if local.resource_group_per_virtual_hub_location
   }
   virtual_hubs_by_location_for_shared_resource_group = {
     for virtual_hub in local.virtual_hubs :
     coalesce(virtual_hub.config.location, local.location) => virtual_hub
-    if !virtual_hub.config.resource_group_per_location
+    if !local.resource_group_per_virtual_hub_location
   }
   # The following objects are used to identify azurerm_virtual_hub
   # resources which need to be associated with a new or existing
@@ -68,12 +70,12 @@ locals {
   virtual_hubs_by_location_for_managed_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
     coalesce(virtual_hub.config.location, local.location) => virtual_hub
-    if virtual_hub.config.virtual_wan_id == ""
+    if local.existing_virtual_wan_resource_id == ""
   }
   virtual_hubs_by_location_for_existing_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
     coalesce(virtual_hub.config.location, local.location) => virtual_hub
-    if virtual_hub.config.virtual_wan_id != ""
+    if local.existing_virtual_wan_resource_id != ""
   }
   # Need to know the full list of virtual_hub_locations
   # for azurerm_virtual_hub resource deployments.
@@ -196,7 +198,11 @@ locals {
 # - VWAN hub networks
 locals {
   deploy_virtual_wan = {
-    (local.location) = local.enabled && anytrue(values(local.deploy_virtual_hub))
+    (local.location) = (
+      local.enabled &&
+      local.existing_virtual_wan_resource_id == "" &&
+      anytrue(values(local.deploy_virtual_hub))
+    )
   }
   deploy_virtual_hub = {
     for location, virtual_hub in local.virtual_hubs_by_location :
@@ -222,11 +228,11 @@ locals {
     local.deploy_virtual_hub[location] &&
     virtual_hub.config.azure_firewall.enabled
   }
-  deploy_virtual_hub_outbound_peering = {
+  deploy_virtual_hub_connections = {
     for location, virtual_hub in local.virtual_hubs_by_location :
     location =>
     local.deploy_virtual_hub[location] &&
-    virtual_hub.config.enable_outbound_virtual_network_peering
+    virtual_hub.config.enable_virtual_hub_connections
   }
 }
 
@@ -841,13 +847,10 @@ locals {
       # Optional definition attributes
       sku            = coalesce(virtual_hub.config.sku, "Standard")
       address_prefix = virtual_hub.config.address_prefix
-      virtual_wan_id = coalesce(
-        virtual_hub.config.virtual_wan_id,
-        (
-          length(local.virtual_wan_locations) > 0 ?
-          lookup(local.virtual_wan_resource_id, local.virtual_wan_locations[0], null) :
-          null
-        )
+      virtual_wan_id = length(local.existing_virtual_wan_resource_id) > 0 ? local.existing_virtual_wan_resource_id : (
+        length(local.virtual_wan_locations) > 0 ?
+        lookup(local.virtual_wan_resource_id, local.virtual_wan_locations[0], null) :
+        null
       )
       tags = try(local.custom_settings.azurerm_virtual_hub["virtual_wan"][location].tags, local.tags)
       route = [
@@ -1553,7 +1556,7 @@ locals {
     deploy_virtual_hub_express_route_gateway                 = local.deploy_virtual_hub_express_route_gateway
     deploy_virtual_hub_vpn_gateway                           = local.deploy_virtual_hub_vpn_gateway
     deploy_virtual_hub_azure_firewall                        = local.deploy_virtual_hub_azure_firewall
-    deploy_virtual_hub_outbound_peering                      = local.deploy_virtual_hub_outbound_peering
+    deploy_virtual_hub_connections                           = local.deploy_virtual_hub_connections
     resource_group_names_by_scope_and_location               = local.resource_group_names_by_scope_and_location
     resource_group_config_by_scope_and_location              = local.resource_group_config_by_scope_and_location
     azurerm_resource_group                                   = local.azurerm_resource_group
