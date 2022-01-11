@@ -206,27 +206,51 @@ resource "azurerm_firewall" "virtual_wan" {
 
 }
 
-# resource "azurerm_virtual_network_peering" "virtual_wan" {
-#   for_each = local.azurerm_virtual_network_peering_virtual_wan
+resource "azurerm_virtual_hub_connection" "virtual_wan" {
+  for_each = local.azurerm_virtual_hub_connection
 
-#   provider = azurerm.connectivity
+  provider = azurerm.connectivity
 
-#   # Mandatory resource attributes
-#   name                      = each.value.template.name
-#   resource_group_name       = each.value.template.resource_group_name
-#   virtual_network_name      = each.value.template.virtual_network_name
-#   remote_virtual_network_id = each.value.template.remote_virtual_network_id
+  # Mandatory resource attributes
+  name                      = each.value.template.name
+  virtual_hub_id            = each.value.template.virtual_hub_id
+  remote_virtual_network_id = each.value.template.remote_virtual_network_id
 
-#   # Optional resource attributes
-#   allow_virtual_network_access = each.value.template.allow_virtual_network_access
-#   allow_forwarded_traffic      = each.value.template.allow_forwarded_traffic
-#   allow_gateway_transit        = each.value.template.allow_gateway_transit
-#   use_remote_gateways          = each.value.template.use_remote_gateways
+  # Optional resource attributes
+  internet_security_enabled = each.value.template.internet_security_enabled
 
-#   # Set explicit dependencies
-#   depends_on = [
-#     azurerm_resource_group.connectivity,
-#     azurerm_virtual_network.connectivity,
-#   ]
+  # Dynamic configuration blocks
+  dynamic "routing" {
+    for_each = each.value.template.routing
+    content {
+      # Optional attributes
+      associated_route_table_id = lookup(routing.value, "associated_route_table_id", null)
+      dynamic "propagated_route_table" {
+        for_each = lookup(routing.value, "propagated_route_table", local.empty_list)
+        content {
+          # Optional attributes
+          labels          = lookup(propagated_route_table.value, "labels", null)
+          route_table_ids = lookup(propagated_route_table.value, "route_table_ids", null)
+        }
+      }
+      dynamic "static_vnet_route" {
+        for_each = lookup(routing.value, "static_vnet_route", local.empty_list)
+        content {
+          # Optional attributes
+          name                = lookup(static_vnet_route.value, "name", null)
+          address_prefixes    = lookup(static_vnet_route.value, "address_prefixes", null)
+          next_hop_ip_address = lookup(static_vnet_route.value, "next_hop_ip_address", null)
+        }
+      }
+    }
+  }
 
-# }
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_resource_group.virtual_wan,
+    azurerm_virtual_wan.virtual_wan,
+    azurerm_virtual_hub.virtual_wan,
+  ]
+
+}

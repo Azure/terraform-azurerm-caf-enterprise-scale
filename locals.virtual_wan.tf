@@ -62,10 +62,10 @@ locals {
 
 # The following locals are used to build the map of Virtual
 # Network Peerings to deploy.
-# locals {
-#   azurerm_virtual_network_peering_virtual_wan = {
-#     for resource in module.connectivity_resources.configuration.azurerm_virtual_network_peering :
-#     resource.resource_id => resource
-#     if resource.managed_by_module
-#   }
-# }
+locals {
+  azurerm_virtual_hub_connection = {
+    for resource in module.connectivity_resources.configuration.azurerm_virtual_hub_connection :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}

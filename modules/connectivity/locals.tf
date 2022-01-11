@@ -228,7 +228,7 @@ locals {
     local.deploy_virtual_hub[location] &&
     virtual_hub.config.azure_firewall.enabled
   }
-  deploy_virtual_hub_connections = {
+  deploy_virtual_hub_connection = {
     for location, virtual_hub in local.virtual_hubs_by_location :
     location =>
     local.deploy_virtual_hub[location] &&
@@ -1176,10 +1176,13 @@ locals {
       ]
     ]
   ])
-  virtual_networks_for_dns = concat(
+  # Distinct is used to allow for situations where
+  # the same spoke is associated with multiple hub
+  # networks for peering.
+  virtual_networks_for_dns = distinct(concat(
     local.hub_virtual_networks_for_dns,
     local.spoke_virtual_networks_for_dns,
-  )
+  ))
   azurerm_private_dns_zone_virtual_network_link = flatten(
     [
       for zone in local.azurerm_private_dns_zone :
@@ -1225,6 +1228,31 @@ locals {
           allow_forwarded_traffic      = true
           allow_gateway_transit        = true
           use_remote_gateways          = false
+        }
+      ]
+    ]
+  )
+}
+
+# Configuration settings for resource type:
+#  - azurerm_virtual_hub_connection
+locals {
+  azurerm_virtual_hub_connection = flatten(
+    [
+      for location, virtual_hub_config in local.virtual_hubs_by_location :
+      [
+        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        {
+          # Resource logic attributes
+          resource_id       = "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_virtual_hub_connection[location]
+          # Resource definition attributes
+          name                      = "peering-${uuidv5("url", spoke_resource_id)}"
+          virtual_hub_id            = local.virtual_hub_resource_id[location]
+          remote_virtual_network_id = spoke_resource_id
+          # Optional definition attributes
+          internet_security_enabled = false
+          routing                   = local.empty_list
         }
       ]
     ]
@@ -1524,7 +1552,23 @@ locals {
           for key, value in resource :
           key => value
           if resource.managed_by_module &&
-          key != "resource_id"
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_virtual_hub_connection = [
+      for resource in local.azurerm_virtual_hub_connection :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = resource.managed_by_module
       }
@@ -1567,7 +1611,7 @@ locals {
     deploy_virtual_hub_express_route_gateway                 = local.deploy_virtual_hub_express_route_gateway
     deploy_virtual_hub_vpn_gateway                           = local.deploy_virtual_hub_vpn_gateway
     deploy_virtual_hub_azure_firewall                        = local.deploy_virtual_hub_azure_firewall
-    deploy_virtual_hub_connections                           = local.deploy_virtual_hub_connections
+    deploy_virtual_hub_connection                            = local.deploy_virtual_hub_connection
     resource_group_names_by_scope_and_location               = local.resource_group_names_by_scope_and_location
     resource_group_config_by_scope_and_location              = local.resource_group_config_by_scope_and_location
     azurerm_resource_group                                   = local.azurerm_resource_group
