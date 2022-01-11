@@ -19,8 +19,10 @@ locals {
   location                                  = var.location
   tags                                      = var.tags
   resource_prefix                           = coalesce(var.resource_prefix, local.root_id)
-  resource_suffix                           = length(var.resource_suffix) > 0 ? "-${var.resource_suffix}" : local.empty_string
+  resource_suffix                           = var.resource_suffix != null ? "-${var.resource_suffix}" : local.empty_string
   existing_ddos_protection_plan_resource_id = var.existing_ddos_protection_plan_resource_id
+  existing_virtual_wan_resource_id          = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
+  resource_group_per_virtual_hub_location   = var.resource_group_per_virtual_hub_location
   custom_settings                           = var.custom_settings_by_resource_type
 }
 
@@ -36,22 +38,91 @@ locals {
     coalesce(hub_network.config.location, local.location) => hub_network
   }
   hub_network_locations = keys(local.hub_networks_by_location)
-  ddos_location         = coalesce(local.settings.ddos_protection_plan.config.location, local.location)
-  dns_location          = coalesce(local.settings.dns.config.location, local.location)
+  virtual_hubs          = local.settings.vwan_hub_networks
+  # We generate the virtual_hubs_by_location as a map
+  # to ensure the user has provided unique values for
+  # each hub location. If duplicates are found,
+  # terraform will throw an error at this point.
+  # By default we recommend creating all Virtual WAN
+  # resources in a single Resource Group as per:
+  # https://docs.microsoft.com/en-us/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-group-in-virtual-wan
+  # As this is only an issue for customers using the
+  # Portal to manage Virtual WAN resources, the following
+  # logic is used to allow a customer to use dedicated Resource
+  # Groups per location if preferred.
+  virtual_hubs_by_location = {
+    for virtual_hub in local.virtual_hubs :
+    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+  }
+  virtual_hubs_by_location_for_resource_group_per_location = {
+    for virtual_hub in local.virtual_hubs :
+    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    if local.resource_group_per_virtual_hub_location
+  }
+  virtual_hubs_by_location_for_shared_resource_group = {
+    for virtual_hub in local.virtual_hubs :
+    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    if !local.resource_group_per_virtual_hub_location
+  }
+  # The following objects are used to identify azurerm_virtual_hub
+  # resources which need to be associated with a new or existing
+  # azurerm_virtual_wan resource
+  virtual_hubs_by_location_for_managed_virtual_wan = {
+    for virtual_hub in local.virtual_hubs :
+    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    if local.existing_virtual_wan_resource_id == ""
+  }
+  virtual_hubs_by_location_for_existing_virtual_wan = {
+    for virtual_hub in local.virtual_hubs :
+    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    if local.existing_virtual_wan_resource_id != ""
+  }
+  # Need to know the full list of virtual_hub_locations
+  # for azurerm_virtual_hub resource deployments.
+  virtual_hub_locations = keys(local.virtual_hubs_by_location)
+  # The azurerm_virtual_wan resource will be created in the
+  # default location of the connectivity module if a new.
+  virtual_wan_locations = anytrue(
+    [
+      length(local.virtual_hubs_by_location_for_managed_virtual_wan) > 0,
+      length(local.virtual_hubs_by_location_for_shared_resource_group) > 0,
+    ]
+  ) ? [local.location, ] : local.empty_list
+  ddos_location = coalesce(local.settings.ddos_protection_plan.config.location, local.location)
+  dns_location  = coalesce(local.settings.dns.config.location, local.location)
+  connectivity_locations = distinct(concat(
+    local.hub_network_locations,
+    keys(local.virtual_hubs_by_location_for_resource_group_per_location),
+  ))
+  result_when_location_missing = {
+    enabled = false
+  }
 }
-
 
 # Logic to determine whether specific resources
 # should be created by this module
+# - Resource Groups
 locals {
-  deploy_ddos_protection_plan = local.enabled && local.settings.ddos_protection_plan.enabled
-  deploy_dns                  = local.enabled && local.settings.dns.enabled
   deploy_resource_groups = {
     connectivity = {
-      for location, hub_network in local.hub_networks_by_location :
+      for location in local.connectivity_locations :
       location =>
       local.enabled &&
-      hub_network.enabled
+      anytrue(
+        [
+          lookup(local.hub_networks_by_location, location, local.result_when_location_missing).enabled,
+          lookup(local.virtual_hubs_by_location_for_resource_group_per_location, location, local.result_when_location_missing).enabled,
+        ]
+      )
+    }
+    virtual_wan = {
+      for location in local.virtual_wan_locations :
+      location =>
+      local.enabled &&
+      anytrue(concat(
+        values(local.virtual_hubs_by_location_for_managed_virtual_wan).*.enabled,
+        values(local.virtual_hubs_by_location_for_shared_resource_group).*.enabled,
+      ))
     }
     ddos = {
       (local.ddos_location) = local.deploy_ddos_protection_plan
@@ -60,6 +131,28 @@ locals {
       (local.dns_location) = local.deploy_dns
     }
   }
+}
+
+# Logic to determine whether specific resources
+# should be created by this module
+# - DDoS Protection Plan
+locals {
+  deploy_ddos_protection_plan = local.enabled && local.settings.ddos_protection_plan.enabled
+}
+
+# Logic to determine whether specific resources
+# should be created by this module
+# - DNS
+locals {
+  deploy_dns                                             = local.enabled && local.settings.dns.enabled
+  deploy_private_dns_zone_virtual_network_link_on_hubs   = local.deploy_dns && local.settings.dns.config.enable_private_dns_zone_virtual_network_link_on_hubs
+  deploy_private_dns_zone_virtual_network_link_on_spokes = local.deploy_dns && local.settings.dns.config.enable_private_dns_zone_virtual_network_link_on_spokes
+}
+
+# Logic to determine whether specific resources
+# should be created by this module
+# - Hub networks
+locals {
   deploy_hub_network = {
     for location, hub_network in local.hub_networks_by_location :
     location =>
@@ -73,7 +166,7 @@ locals {
     hub_network.config.virtual_network_gateway.enabled &&
     hub_network.config.virtual_network_gateway.config.address_prefix != local.empty_string
   }
-  deploy_virtual_network_gateway_expressroute = {
+  deploy_virtual_network_gateway_express_route = {
     for location, hub_network in local.hub_networks_by_location :
     location =>
     local.deploy_virtual_network_gateway[location] &&
@@ -95,10 +188,52 @@ locals {
     for location, hub_network in local.hub_networks_by_location :
     location =>
     local.deploy_dns &&
+    local.deploy_hub_network[location] &&
     hub_network.config.enable_outbound_virtual_network_peering
   }
-  deploy_private_dns_zone_virtual_network_link_on_hubs   = local.deploy_dns && local.settings.dns.config.enable_private_dns_zone_virtual_network_link_on_hubs
-  deploy_private_dns_zone_virtual_network_link_on_spokes = local.deploy_dns && local.settings.dns.config.enable_private_dns_zone_virtual_network_link_on_spokes
+}
+
+# Logic to determine whether specific resources
+# should be created by this module
+# - VWAN hub networks
+locals {
+  deploy_virtual_wan = {
+    (local.location) = (
+      local.enabled &&
+      local.existing_virtual_wan_resource_id == "" &&
+      anytrue(values(local.deploy_virtual_hub))
+    )
+  }
+  deploy_virtual_hub = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.enabled &&
+    virtual_hub.enabled
+  }
+  deploy_virtual_hub_express_route_gateway = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.expressroute_gateway.enabled
+  }
+  deploy_virtual_hub_vpn_gateway = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.vpn_gateway.enabled
+  }
+  deploy_virtual_hub_azure_firewall = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.azure_firewall.enabled
+  }
+  deploy_virtual_hub_connection = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.enable_virtual_hub_connections
+  }
 }
 
 # Configuration settings for resource type:
@@ -107,10 +242,16 @@ locals {
   # Determine the name of each Resource Group per scope and location
   resource_group_names_by_scope_and_location = {
     connectivity = {
-      for location in local.hub_network_locations :
+      for location in local.connectivity_locations :
       location =>
       try(local.custom_settings.azurerm_resource_group["connectivity"][location].name,
       "${local.resource_prefix}-connectivity-${location}${local.resource_suffix}")
+    }
+    virtual_wan = {
+      for location in local.virtual_wan_locations :
+      location =>
+      try(local.custom_settings.azurerm_resource_group["virtual_wan"][location].name,
+      "${local.resource_prefix}-connectivity${local.resource_suffix}")
     }
     ddos = {
       (local.ddos_location) = try(local.custom_settings.azurerm_resource_group["ddos"][local.ddos_location].name,
@@ -315,7 +456,7 @@ locals {
     {
       # Resource logic attributes
       resource_id       = local.er_gateway_resource_id[location]
-      managed_by_module = local.deploy_virtual_network_gateway_expressroute[location]
+      managed_by_module = local.deploy_virtual_network_gateway_express_route[location]
       # Resource definition attributes
       name                = local.er_gateway_name[location]
       resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
@@ -348,7 +489,7 @@ locals {
       azurerm_public_ip = {
         # Resource logic attributes
         resource_id       = "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/publicIPAddresses/${local.er_gateway_name[location]}-pip"
-        managed_by_module = local.deploy_virtual_network_gateway_expressroute[location]
+        managed_by_module = local.deploy_virtual_network_gateway_express_route[location]
         # Resource definition attributes
         name                    = "${local.er_gateway_name[location]}-pip"
         resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
@@ -471,20 +612,35 @@ locals {
 
 # Configuration settings for resource type:
 #  - azurerm_firewall
+# For VWAN, VPN gateway is required for Security Partner Provider integration
 locals {
   azfw_name = {
     for location in local.hub_network_locations :
     location => "${local.resource_prefix}-fw-${location}${local.resource_suffix}"
+  }
+  virtual_hub_azfw_name = {
+    for location in local.virtual_hub_locations :
+    location => "${local.resource_prefix}-fw-hub-${location}${local.resource_suffix}"
   }
   azfw_resource_id_prefix = {
     for location in local.hub_network_locations :
     location =>
     "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/azureFirewalls"
   }
+  virtual_hub_azfw_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/azureFirewalls"
+  }
   azfw_resource_id = {
     for location in local.hub_network_locations :
     location =>
     "${local.azfw_resource_id_prefix[location]}/${local.azfw_name[location]}"
+  }
+  virtual_hub_azfw_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_azfw_resource_id_prefix[location]}/${local.virtual_hub_azfw_name[location]}"
   }
   azfw_zones = {
     for location, hub_network in local.hub_networks_by_location :
@@ -502,59 +658,302 @@ locals {
     location =>
     length(local.azfw_zones[location]) > 0
   }
-  azurerm_firewall = [
-    for location, hub_network in local.hub_networks_by_location :
-    {
-      # Resource logic attributes
-      resource_id       = local.azfw_resource_id[location]
-      managed_by_module = local.deploy_azure_firewall[location]
-      # Resource definition attributes
-      name                = local.azfw_name[location]
-      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
-      location            = location
-      ip_configuration = try(
-        local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration,
-        [
+  azurerm_firewall = concat(
+    [
+      for location, hub_network in local.hub_networks_by_location :
+      {
+        # Resource logic attributes
+        resource_id       = local.azfw_resource_id[location]
+        managed_by_module = local.deploy_azure_firewall[location]
+        scope             = "connectivity"
+        # Resource definition attributes
+        name                = local.azfw_name[location]
+        resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
+        location            = location
+        ip_configuration = try(
+          local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration,
+          [
+            {
+              name                 = "${local.azfw_name[location]}-pip"
+              public_ip_address_id = "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/publicIPAddresses/${local.azfw_name[location]}-pip"
+              subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet"
+            }
+          ]
+        )
+        sku_name                    = "AZFW_VNet"
+        sku_tier                    = try(local.custom_settings.azurerm_firewall["connectivity"][location].sku_tier, "Standard")
+        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, null)
+        dns_servers                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
+        private_ip_ranges           = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
+        management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_list)
+        threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, null)
+        virtual_hub                 = local.empty_list
+        zones                       = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
+        tags                        = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
+        # Child resource definition attributes
+        azurerm_public_ip = {
+          # Resource logic attributes
+          resource_id       = "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/publicIPAddresses/${local.azfw_name[location]}-pip"
+          managed_by_module = local.deploy_azure_firewall[location]
+          # Resource definition attributes
+          name                    = "${local.azfw_name[location]}-pip"
+          resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          location                = location
+          sku                     = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].sku, "Standard")
+          allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].allocation_method, "Static")
+          ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].ip_version, null)
+          idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].idle_timeout_in_minutes, null)
+          domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].domain_name_label, null)
+          reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].reverse_fqdn, null)
+          public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].public_ip_prefix_id, null)
+          ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].ip_tags, null)
+          tags                    = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].tags, local.tags)
+          availability_zone = try(
+            local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].availability_zone,
+            local.azfw_zones_enabled[location] ? "Zone-Redundant" : "No-Zone"
+          )
+        }
+      }
+    ],
+    [
+      for location, virtual_hub in local.virtual_hubs_by_location :
+      {
+        # Resource logic attributes
+        resource_id       = local.virtual_hub_azfw_resource_id[location]
+        managed_by_module = local.deploy_virtual_hub_azure_firewall[location]
+        scope             = "virtual_wan"
+        # Resource definition attributes
+        name                = local.virtual_hub_azfw_name[location]
+        resource_group_name = local.virtual_hub_resource_group_name[location]
+        location            = location
+        ip_configuration = try(
+          local.custom_settings.azurerm_firewall["virtual_wan"][location].ip_configuration,
+          local.empty_list
+        )
+        sku_name                    = "AZFW_Hub"
+        sku_tier                    = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].sku_tier, "Standard")
+        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, null)
+        dns_servers                 = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].dns_servers, null)
+        private_ip_ranges           = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].private_ip_ranges, null)
+        management_ip_configuration = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].management_ip_configuration, local.empty_list)
+        threat_intel_mode           = "" # If virtual_hub_settting is specified, the threat_intel_mode has to be explicitly set as "".
+        virtual_hub = [
           {
-            name                 = "${local.azfw_name[location]}-pip"
-            public_ip_address_id = "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/publicIPAddresses/${local.azfw_name[location]}-pip"
-            subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet"
+            virtual_hub_id  = local.virtual_hub_resource_id[location]
+            public_ip_count = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].virtual_hub[0].public_ip_count, 1)
           }
         ]
-      )
-      sku_name                    = try(local.custom_settings.azurerm_firewall["connectivity"][location].sku_name, "AZFW_VNet")
-      sku_tier                    = try(local.custom_settings.azurerm_firewall["connectivity"][location].sku_tier, "Standard")
-      firewall_policy_id          = try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, null)
-      dns_servers                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
-      private_ip_ranges           = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
-      management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_list)
-      threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, null)
-      virtual_hub                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].virtual_hub, local.empty_list)
-      zones                       = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
-      tags                        = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
-      # Child resource definition attributes
-      azurerm_public_ip = {
-        # Resource logic attributes
-        resource_id       = "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/publicIPAddresses/${local.azfw_name[location]}-pip"
-        managed_by_module = local.deploy_azure_firewall[location]
-        # Resource definition attributes
-        name                    = "${local.azfw_name[location]}-pip"
-        resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
-        location                = location
-        sku                     = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].sku, "Standard")
-        allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].allocation_method, "Static")
-        ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].ip_version, null)
-        idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].idle_timeout_in_minutes, null)
-        domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].domain_name_label, null)
-        reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].reverse_fqdn, null)
-        public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].public_ip_prefix_id, null)
-        ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].ip_tags, null)
-        tags                    = try(local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].tags, local.tags)
-        availability_zone = try(
-          local.custom_settings.azurerm_public_ip["connectivity"]["azfw"][location].availability_zone,
-          local.azfw_zones_enabled[location] ? "Zone-Redundant" : "No-Zone"
-        )
+        zones = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].zones, null)
+        tags  = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].tags, local.tags)
+        # Child resource definition attributes
+        azurerm_public_ip = {}
       }
+    ]
+  )
+}
+
+# Configuration settings for resource type:
+#  - azurerm_virtual_wan
+# We only support creation of a single azurerm_virtual_wan resource
+# per module deployment. This uses the default location set at the
+# scope of the connectivity child module.
+locals {
+  virtual_wan_name = {
+    for location in local.virtual_wan_locations :
+    location =>
+    try(local.custom_settings.azurerm_virtual_wan["virtual_wan"][location].name,
+    "${local.resource_prefix}-vwan-${location}${local.resource_suffix}")
+  }
+  virtual_wan_resource_group_id = {
+    for location in local.virtual_wan_locations :
+    location =>
+    local.resource_group_config_by_scope_and_location["virtual_wan"][location].resource_id
+  }
+  virtual_wan_resource_id_prefix = {
+    for location in local.virtual_wan_locations :
+    location =>
+    "${local.virtual_wan_resource_group_id[location]}/providers/Microsoft.Network/virtualWans"
+  }
+  virtual_wan_resource_id = {
+    for location in local.virtual_wan_locations :
+    location =>
+    "${local.virtual_wan_resource_id_prefix[location]}/${local.virtual_wan_name[location]}"
+  }
+  azurerm_virtual_wan = [
+    for location in local.virtual_wan_locations :
+    {
+      # Resource logic attributes
+      resource_id       = local.virtual_wan_resource_id[location]
+      managed_by_module = local.deploy_virtual_wan[location]
+      # Resource definition attributes
+      name                = local.virtual_wan_name[location]
+      resource_group_name = local.resource_group_names_by_scope_and_location["virtual_wan"][location]
+      location            = location
+      # Optional definition attributes
+      disable_vpn_encryption            = try(local.custom_settings.azurerm_virtual_wan["virtual_wan"][location].disable_vpn_encryption, false)
+      allow_branch_to_branch_traffic    = try(local.custom_settings.azurerm_virtual_wan["virtual_wan"][location].allow_branch_to_branch_traffic, true)
+      office365_local_breakout_category = try(local.custom_settings.azurerm_virtual_wan["virtual_wan"][location].office365_local_breakout_category, "None")
+      type                              = try(local.custom_settings.azurerm_virtual_wan["virtual_wan"][location].type, "Standard")
+      tags                              = try(local.custom_settings.azurerm_virtual_wan["virtual_wan"][location].tags, local.tags)
+    }
+  ]
+}
+
+# Configuration settings for resource type:
+#  - azurerm_virtual_hub
+locals {
+  virtual_hub_name = {
+    for location in local.virtual_hub_locations :
+    location =>
+    try(local.custom_settings.azurerm_virtual_hub["virtual_wan"][location].name,
+    "${local.resource_prefix}-hub-${location}${local.resource_suffix}")
+  }
+  virtual_hub_resource_group_name = {
+    for location in local.virtual_hub_locations :
+    location => (
+      contains(keys(local.virtual_hubs_by_location_for_resource_group_per_location), location) ?
+      local.resource_group_names_by_scope_and_location["connectivity"][location] :
+      local.resource_group_names_by_scope_and_location["virtual_wan"][local.virtual_wan_locations[0]]
+    )
+  }
+  virtual_hub_resource_group_id = {
+    for location in local.virtual_hub_locations :
+    location => (
+      contains(keys(local.virtual_hubs_by_location_for_resource_group_per_location), location) ?
+      local.resource_group_config_by_scope_and_location["connectivity"][location].resource_id :
+      local.resource_group_config_by_scope_and_location["virtual_wan"][local.virtual_wan_locations[0]].resource_id
+    )
+  }
+  virtual_hub_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/virtualHubs"
+  }
+  virtual_hub_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_id_prefix[location]}/${local.virtual_hub_name[location]}"
+  }
+  azurerm_virtual_hub = [
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    {
+      # Resource logic attributes
+      resource_id       = local.virtual_hub_resource_id[location]
+      managed_by_module = local.deploy_virtual_hub[location]
+      # Resource definition attributes
+      name                = local.virtual_hub_name[location]
+      resource_group_name = local.virtual_hub_resource_group_name[location]
+      location            = location
+      # Optional definition attributes
+      sku            = coalesce(virtual_hub.config.sku, "Standard")
+      address_prefix = virtual_hub.config.address_prefix
+      virtual_wan_id = length(local.existing_virtual_wan_resource_id) > 0 ? local.existing_virtual_wan_resource_id : (
+        length(local.virtual_wan_locations) > 0 ?
+        lookup(local.virtual_wan_resource_id, local.virtual_wan_locations[0], null) :
+        null
+      )
+      tags = try(local.custom_settings.azurerm_virtual_hub["virtual_wan"][location].tags, local.tags)
+      route = [
+        for route in virtual_hub.config.routes :
+        {
+          address_prefixes    = route.address_prefixes
+          next_hop_ip_address = route.next_hop_ip_address
+        }
+      ]
+    }
+  ]
+}
+
+# Configuration settings for resource type:
+#  - azurerm_express_route_gateway
+locals {
+  virtual_hub_express_route_gateway_name = {
+    for location in local.virtual_hub_locations :
+    location =>
+    try(local.custom_settings.azurerm_express_route_gateway["virtual_wan"][location].name,
+    "${local.resource_prefix}-ergw-${location}${local.resource_suffix}")
+  }
+  virtual_hub_express_route_gateway_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/expressRouteGateways"
+  }
+  virtual_hub_express_route_gateway_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_express_route_gateway_resource_id_prefix[location]}/${local.virtual_hub_express_route_gateway_name[location]}"
+  }
+  azurerm_express_route_gateway = [
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    {
+      # Resource logic attributes
+      resource_id       = local.virtual_hub_express_route_gateway_resource_id[location]
+      managed_by_module = local.deploy_virtual_hub_express_route_gateway[location]
+      # Resource definition attributes
+      name                = local.virtual_hub_express_route_gateway_name[location]
+      resource_group_name = local.virtual_hub_resource_group_name[location]
+      location            = location
+      virtual_hub_id      = local.virtual_hub_resource_id[location]
+      scale_units         = virtual_hub.config.expressroute_gateway.config.scale_unit
+      # Optional definition attributes
+      tags = try(local.custom_settings.azurerm_express_route_gateway["virtual_wan"][location].tags, local.tags)
+    }
+  ]
+}
+
+# Configuration settings for resource type:
+#  - azurerm_vpn_gateway
+locals {
+  virtual_hub_vpn_gateway_name = {
+    for location in local.virtual_hub_locations :
+    location =>
+    try(local.custom_settings.azurerm_vpn_gateway["virtual_wan"][location].name,
+    "${local.resource_prefix}-ergw-${location}${local.resource_suffix}")
+  }
+  virtual_hub_vpn_gateway_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/expressRouteGateways"
+  }
+  virtual_hub_vpn_gateway_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_vpn_gateway_resource_id_prefix[location]}/${local.virtual_hub_vpn_gateway_name[location]}"
+  }
+  azurerm_vpn_gateway = [
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    {
+      # Resource logic attributes
+      resource_id       = local.virtual_hub_vpn_gateway_resource_id[location]
+      managed_by_module = local.deploy_virtual_hub_vpn_gateway[location]
+      # Resource definition attributes
+      name                = local.virtual_hub_vpn_gateway_name[location]
+      resource_group_name = local.virtual_hub_resource_group_name[location]
+      location            = location
+      virtual_hub_id      = local.virtual_hub_resource_id[location]
+      # Optional definition attributes
+      routing_preference = coalesce(virtual_hub.config.vpn_gateway.config.routing_preference, "Microsoft Network")
+      scale_unit         = virtual_hub.config.vpn_gateway.config.scale_unit
+      tags               = try(local.custom_settings.azurerm_vpn_gateway["virtual_wan"][location].tags, local.tags)
+      bgp_settings = [
+        for bgp_setting in virtual_hub.config.vpn_gateway.config.bgp_settings :
+        {
+          asn         = bgp_setting.asn
+          peer_weight = bgp_setting.peer_weight
+          instance_0_bgp_peering_address = [
+            for instance_bgp_peering_address in bgp_setting.instance_0_bgp_peering_address :
+            {
+              custom_ips = instance_bgp_peering_address.custom_ips
+            }
+          ]
+          instance_1_bgp_peering_address = [
+            for instance_bgp_peering_address in bgp_setting.instance_1_bgp_peering_address :
+            {
+              custom_ips = instance_bgp_peering_address.custom_ips
+            }
+          ]
+        }
+      ]
     }
   ]
 }
@@ -562,10 +961,14 @@ locals {
 # Configuration settings for resource type:
 #  - azurerm_public_ip
 locals {
-  azurerm_public_ip = concat(
-    local.azurerm_virtual_network_gateway.*.azurerm_public_ip,
-    local.azurerm_firewall.*.azurerm_public_ip,
-  )
+  azurerm_public_ip = [
+    for azurerm_public_ip in concat(
+      local.azurerm_virtual_network_gateway.*.azurerm_public_ip,
+      local.azurerm_firewall.*.azurerm_public_ip,
+    ) :
+    azurerm_public_ip
+    if length(azurerm_public_ip) > 0
+  ]
 }
 
 # Configuration settings for resource type:
@@ -749,7 +1152,7 @@ locals {
       managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
     }
   ]
-  spoke_virtual_networks_for_dns = flatten(
+  spoke_virtual_networks_for_dns = flatten([
     [
       for location, hub_config in local.hub_networks_by_location :
       [
@@ -760,12 +1163,26 @@ locals {
           managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
         }
       ]
+    ],
+    [
+      for location, virtual_hub_config in local.virtual_hubs_by_location :
+      [
+        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        {
+          resource_id       = spoke_resource_id
+          name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+        }
+      ]
     ]
-  )
-  virtual_networks_for_dns = concat(
+  ])
+  # Distinct is used to allow for situations where
+  # the same spoke is associated with multiple hub
+  # networks for peering.
+  virtual_networks_for_dns = distinct(concat(
     local.hub_virtual_networks_for_dns,
     local.spoke_virtual_networks_for_dns,
-  )
+  ))
   azurerm_private_dns_zone_virtual_network_link = flatten(
     [
       for zone in local.azurerm_private_dns_zone :
@@ -811,6 +1228,31 @@ locals {
           allow_forwarded_traffic      = true
           allow_gateway_transit        = true
           use_remote_gateways          = false
+        }
+      ]
+    ]
+  )
+}
+
+# Configuration settings for resource type:
+#  - azurerm_virtual_hub_connection
+locals {
+  azurerm_virtual_hub_connection = flatten(
+    [
+      for location, virtual_hub_config in local.virtual_hubs_by_location :
+      [
+        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        {
+          # Resource logic attributes
+          resource_id       = "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
+          managed_by_module = local.deploy_virtual_hub_connection[location]
+          # Resource definition attributes
+          name                      = "peering-${uuidv5("url", spoke_resource_id)}"
+          virtual_hub_id            = local.virtual_hub_resource_id[location]
+          remote_virtual_network_id = spoke_resource_id
+          # Optional definition attributes
+          internet_security_enabled = false
+          routing                   = local.empty_list
         }
       ]
     ]
@@ -895,6 +1337,7 @@ locals {
           key != "managed_by_module" &&
           key != "scope"
         }
+        scope             = resource.scope
         managed_by_module = local.deploy_resource_groups[resource.scope][resource.location]
       }
     ]
@@ -973,7 +1416,69 @@ locals {
           if resource.managed_by_module &&
           key != "resource_id" &&
           key != "managed_by_module" &&
-          key != "azurerm_public_ip"
+          key != "azurerm_public_ip" &&
+          key != "scope"
+        }
+        scope             = resource.scope
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_virtual_wan = [
+      for resource in local.azurerm_virtual_wan :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_virtual_hub = [
+      for resource in local.azurerm_virtual_hub :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_express_route_gateway = [
+      for resource in local.azurerm_express_route_gateway :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_vpn_gateway = [
+      for resource in local.azurerm_vpn_gateway :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = resource.managed_by_module
       }
@@ -1047,7 +1552,23 @@ locals {
           for key, value in resource :
           key => value
           if resource.managed_by_module &&
-          key != "resource_id"
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_virtual_hub_connection = [
+      for resource in local.azurerm_virtual_hub_connection :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
         }
         managed_by_module = resource.managed_by_module
       }
@@ -1059,53 +1580,76 @@ locals {
 
 locals {
   debug_output = {
-    deploy_resource_groups                        = local.deploy_resource_groups
-    deploy_hub_network                            = local.deploy_hub_network
-    deploy_virtual_network_gateway                = local.deploy_virtual_network_gateway
-    deploy_virtual_network_gateway_expressroute   = local.deploy_virtual_network_gateway_expressroute
-    deploy_virtual_network_gateway_vpn            = local.deploy_virtual_network_gateway_vpn
-    deploy_azure_firewall                         = local.deploy_azure_firewall
-    resource_group_names_by_scope_and_location    = local.resource_group_names_by_scope_and_location
-    resource_group_config_by_scope_and_location   = local.resource_group_config_by_scope_and_location
-    azurerm_resource_group                        = local.azurerm_resource_group
-    ddos_resource_group_id                        = local.ddos_resource_group_id
-    ddos_protection_plan_name                     = local.ddos_protection_plan_name
-    ddos_protection_plan_resource_id              = local.ddos_protection_plan_resource_id
-    azurerm_network_ddos_protection_plan          = local.azurerm_network_ddos_protection_plan
-    hub_network_locations                         = local.hub_network_locations
-    ddos_location                                 = local.ddos_location
-    dns_location                                  = local.dns_location
-    virtual_network_resource_group_id             = local.virtual_network_resource_group_id
-    virtual_network_resource_id_prefix            = local.virtual_network_resource_id_prefix
-    virtual_network_resource_id                   = local.virtual_network_resource_id
-    azurerm_virtual_network                       = local.azurerm_virtual_network
-    subnets_by_virtual_network                    = local.subnets_by_virtual_network
-    azurerm_subnet                                = local.azurerm_subnet
-    er_gateway_name                               = local.er_gateway_name
-    er_gateway_resource_id_prefix                 = local.er_gateway_resource_id_prefix
-    er_gateway_resource_id                        = local.er_gateway_resource_id
-    er_gateway_config                             = local.er_gateway_config
-    vpn_gateway_name                              = local.vpn_gateway_name
-    vpn_gateway_resource_id_prefix                = local.vpn_gateway_resource_id_prefix
-    vpn_gateway_resource_id                       = local.vpn_gateway_resource_id
-    vpn_gateway_config                            = local.vpn_gateway_config
-    azurerm_virtual_network_gateway               = local.azurerm_virtual_network_gateway
-    azfw_name                                     = local.azfw_name
-    azfw_resource_id_prefix                       = local.azfw_resource_id_prefix
-    azfw_resource_id                              = local.azfw_resource_id
-    azurerm_firewall                              = local.azurerm_firewall
-    azurerm_public_ip                             = local.azurerm_public_ip
-    enable_private_link_by_service                = local.enable_private_link_by_service
-    private_link_locations                        = local.private_link_locations
-    lookup_private_link_dns_zone_by_service       = local.lookup_private_link_dns_zone_by_service
-    lookup_private_link_group_id_by_service       = local.lookup_private_link_group_id_by_service
-    services_by_private_link_dns_zone             = local.services_by_private_link_dns_zone
-    private_dns_zone_enabled                      = local.private_dns_zone_enabled
-    azurerm_private_dns_zone                      = local.azurerm_private_dns_zone
-    azurerm_dns_zone                              = local.azurerm_dns_zone
-    hub_virtual_networks_for_dns                  = local.hub_virtual_networks_for_dns
-    spoke_virtual_networks_for_dns                = local.spoke_virtual_networks_for_dns
-    virtual_networks_for_dns                      = local.virtual_networks_for_dns
-    azurerm_private_dns_zone_virtual_network_link = local.azurerm_private_dns_zone_virtual_network_link
+    hub_networks                                             = local.hub_networks
+    hub_networks_by_location                                 = local.hub_networks_by_location
+    hub_network_locations                                    = local.hub_network_locations
+    virtual_hubs                                             = local.virtual_hubs
+    virtual_hubs_by_location                                 = local.virtual_hubs_by_location
+    virtual_hub_locations                                    = local.virtual_hub_locations
+    virtual_hubs_by_location_for_resource_group_per_location = local.virtual_hubs_by_location_for_resource_group_per_location
+    virtual_hubs_by_location_for_shared_resource_group       = local.virtual_hubs_by_location_for_shared_resource_group
+    virtual_hubs_by_location_for_managed_virtual_wan         = local.virtual_hubs_by_location_for_managed_virtual_wan
+    virtual_hubs_by_location_for_existing_virtual_wan        = local.virtual_hubs_by_location_for_existing_virtual_wan
+    virtual_wan_locations                                    = local.virtual_wan_locations
+    ddos_location                                            = local.ddos_location
+    dns_location                                             = local.dns_location
+    connectivity_locations                                   = local.connectivity_locations
+    result_when_location_missing                             = local.result_when_location_missing
+    deploy_resource_groups                                   = local.deploy_resource_groups
+    deploy_ddos_protection_plan                              = local.deploy_ddos_protection_plan
+    deploy_dns                                               = local.deploy_dns
+    deploy_private_dns_zone_virtual_network_link_on_hubs     = local.deploy_private_dns_zone_virtual_network_link_on_hubs
+    deploy_private_dns_zone_virtual_network_link_on_spokes   = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+    deploy_hub_network                                       = local.deploy_hub_network
+    deploy_virtual_network_gateway                           = local.deploy_virtual_network_gateway
+    deploy_virtual_network_gateway_express_route             = local.deploy_virtual_network_gateway_express_route
+    deploy_virtual_network_gateway_vpn                       = local.deploy_virtual_network_gateway_vpn
+    deploy_azure_firewall                                    = local.deploy_azure_firewall
+    deploy_outbound_virtual_network_peering                  = local.deploy_outbound_virtual_network_peering
+    deploy_virtual_wan                                       = local.deploy_virtual_wan
+    deploy_virtual_hub                                       = local.deploy_virtual_hub
+    deploy_virtual_hub_express_route_gateway                 = local.deploy_virtual_hub_express_route_gateway
+    deploy_virtual_hub_vpn_gateway                           = local.deploy_virtual_hub_vpn_gateway
+    deploy_virtual_hub_azure_firewall                        = local.deploy_virtual_hub_azure_firewall
+    deploy_virtual_hub_connection                            = local.deploy_virtual_hub_connection
+    resource_group_names_by_scope_and_location               = local.resource_group_names_by_scope_and_location
+    resource_group_config_by_scope_and_location              = local.resource_group_config_by_scope_and_location
+    azurerm_resource_group                                   = local.azurerm_resource_group
+    ddos_resource_group_id                                   = local.ddos_resource_group_id
+    ddos_protection_plan_name                                = local.ddos_protection_plan_name
+    ddos_protection_plan_resource_id                         = local.ddos_protection_plan_resource_id
+    azurerm_network_ddos_protection_plan                     = local.azurerm_network_ddos_protection_plan
+    virtual_network_resource_group_id                        = local.virtual_network_resource_group_id
+    virtual_network_resource_id_prefix                       = local.virtual_network_resource_id_prefix
+    virtual_network_resource_id                              = local.virtual_network_resource_id
+    azurerm_virtual_network                                  = local.azurerm_virtual_network
+    subnets_by_virtual_network                               = local.subnets_by_virtual_network
+    azurerm_subnet                                           = local.azurerm_subnet
+    er_gateway_name                                          = local.er_gateway_name
+    er_gateway_resource_id_prefix                            = local.er_gateway_resource_id_prefix
+    er_gateway_resource_id                                   = local.er_gateway_resource_id
+    er_gateway_config                                        = local.er_gateway_config
+    vpn_gateway_name                                         = local.vpn_gateway_name
+    vpn_gateway_resource_id_prefix                           = local.vpn_gateway_resource_id_prefix
+    vpn_gateway_resource_id                                  = local.vpn_gateway_resource_id
+    vpn_gateway_config                                       = local.vpn_gateway_config
+    azurerm_virtual_network_gateway                          = local.azurerm_virtual_network_gateway
+    azfw_name                                                = local.azfw_name
+    azfw_resource_id_prefix                                  = local.azfw_resource_id_prefix
+    azfw_resource_id                                         = local.azfw_resource_id
+    azurerm_firewall                                         = local.azurerm_firewall
+    azurerm_public_ip                                        = local.azurerm_public_ip
+    enable_private_link_by_service                           = local.enable_private_link_by_service
+    private_link_locations                                   = local.private_link_locations
+    lookup_private_link_dns_zone_by_service                  = local.lookup_private_link_dns_zone_by_service
+    lookup_private_link_group_id_by_service                  = local.lookup_private_link_group_id_by_service
+    services_by_private_link_dns_zone                        = local.services_by_private_link_dns_zone
+    private_dns_zone_enabled                                 = local.private_dns_zone_enabled
+    azurerm_private_dns_zone                                 = local.azurerm_private_dns_zone
+    azurerm_dns_zone                                         = local.azurerm_dns_zone
+    hub_virtual_networks_for_dns                             = local.hub_virtual_networks_for_dns
+    spoke_virtual_networks_for_dns                           = local.spoke_virtual_networks_for_dns
+    virtual_networks_for_dns                                 = local.virtual_networks_for_dns
+    azurerm_private_dns_zone_virtual_network_link            = local.azurerm_private_dns_zone_virtual_network_link
   }
 }
