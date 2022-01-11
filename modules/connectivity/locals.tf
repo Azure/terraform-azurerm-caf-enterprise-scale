@@ -908,7 +908,7 @@ locals {
     for location in local.virtual_hub_locations :
     location =>
     try(local.custom_settings.azurerm_vpn_gateway["virtual_wan"][location].name,
-    "${local.resource_prefix}-ergw-${location}${local.resource_suffix}")
+    "${local.resource_prefix}-vpngw-${location}${local.resource_suffix}")
   }
   virtual_hub_vpn_gateway_resource_id_prefix = {
     for location in local.virtual_hub_locations :
