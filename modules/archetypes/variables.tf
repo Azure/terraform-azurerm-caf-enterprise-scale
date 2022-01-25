@@ -54,7 +54,7 @@ variable "library_path" {
 }
 
 variable "template_file_variables" {
-  type        = map(any)
+  type        = any
   description = "If specified, provides the ability to define custom template vars used when reading in template files from the library_path"
   default     = {}
 }
