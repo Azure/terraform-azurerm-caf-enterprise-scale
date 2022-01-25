@@ -9,10 +9,10 @@ locals {
 
 # If Policy Definitions are specified in the archetype definition, generate a list of all Policy Definition files from the built-in and custom library locations
 locals {
-  builtin_policy_definitions_from_json = local.archetype_policy_definitions_specified ? tolist(fileset(local.builtin_library_path, "**/policy_definition_*.json")) : null
-  builtin_policy_definitions_from_yaml = local.archetype_policy_definitions_specified ? tolist(fileset(local.builtin_library_path, "**/policy_definition_*.{yml,yaml}")) : null
-  custom_policy_definitions_from_json  = local.archetype_policy_definitions_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_definition_*.json")) : null
-  custom_policy_definitions_from_yaml  = local.archetype_policy_definitions_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_definition_*.{yml,yaml}")) : null
+  builtin_policy_definitions_from_json = local.archetype_policy_definitions_specified ? tolist(fileset(local.builtin_library_path, "**/policy_definition_*.{json,json.tftpl}")) : null
+  builtin_policy_definitions_from_yaml = local.archetype_policy_definitions_specified ? tolist(fileset(local.builtin_library_path, "**/policy_definition_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : null
+  custom_policy_definitions_from_json  = local.archetype_policy_definitions_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_definition_*.{json,json.tftpl}")) : null
+  custom_policy_definitions_from_yaml  = local.archetype_policy_definitions_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_definition_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : null
 }
 
 # If Policy Definition files exist, load content into dataset
