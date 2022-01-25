@@ -164,3 +164,18 @@ locals {
   }
 
 }
+
+# Configure custom input for testing the
+# template_file_variables input.
+locals {
+  custom_template_file_variables = {
+    testStringKey = "testStringValue"
+    listOfAllowedLocations = [
+      "eastus",
+      "eastus2",
+      "westus",
+      "northcentralus",
+      "southcentralus",
+    ]
+  }  
+}
