@@ -177,5 +177,5 @@ locals {
       "northcentralus",
       "southcentralus",
     ]
-  }  
+  }
 }
