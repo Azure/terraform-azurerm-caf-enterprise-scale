@@ -1,6 +1,6 @@
 ## Overview
 
-[**template_file_variables**](#overview) `map(any)` (optional)
+[**template_file_variables**](#overview) `any` (optional)
 
 If specified, provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path.
 
