@@ -200,7 +200,3 @@ output "azurerm_virtual_network_peering" {
   }
   description = "Returns the configuration data for all Virtual Network Peerings created by this module."
 }
-
-output "template_file_variables" {
-  value = local.template_file_variables
-}
