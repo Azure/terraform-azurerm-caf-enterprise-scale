@@ -22,9 +22,6 @@ module "test_root_id_1" {
   default_location = var.location
   default_tags     = local.default_tags
 
-  # For testing custom template file variables
-  template_file_variables = local.custom_template_file_variables
-
 }
 
 module "test_root_id_2" {
@@ -48,9 +45,6 @@ module "test_root_id_2" {
   deploy_online_landing_zones = true
   deploy_sap_landing_zones    = true
   deploy_demo_landing_zones   = true
-
-  # For testing custom template file variables
-  template_file_variables = local.custom_template_file_variables
 
 }
 
