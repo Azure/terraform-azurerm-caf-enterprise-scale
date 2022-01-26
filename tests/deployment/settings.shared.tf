@@ -1,6 +1,7 @@
 # Configure shared settings.
 locals {
   default_tags = {
-    deployedBy = "terraform/azure/caf-enterprise-scale"
+    deployedBy = "terraform/azure/caf-enterprise-scale/tests/deployment"
   }
 }
+
