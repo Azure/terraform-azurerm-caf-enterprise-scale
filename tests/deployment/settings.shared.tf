@@ -4,4 +4,3 @@ locals {
     deployedBy = "terraform/azure/caf-enterprise-scale/tests/deployment"
   }
 }
-

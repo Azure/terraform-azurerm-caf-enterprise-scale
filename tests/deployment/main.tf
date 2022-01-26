@@ -22,6 +22,10 @@ module "test_root_id_1" {
   default_location = var.location
   default_tags     = local.default_tags
 
+  # Tuning delay timers to improve pipeline completion success rate
+  create_duration_delay  = var.create_duration_delay
+  destroy_duration_delay = var.destroy_duration_delay
+
 }
 
 module "test_root_id_2" {
@@ -45,6 +49,10 @@ module "test_root_id_2" {
   deploy_online_landing_zones = true
   deploy_sap_landing_zones    = true
   deploy_demo_landing_zones   = true
+
+  # Tuning delay timers to improve pipeline completion success rate
+  create_duration_delay  = var.create_duration_delay
+  destroy_duration_delay = var.destroy_duration_delay
 
 }
 
@@ -81,13 +89,17 @@ module "test_root_id_3" {
   configure_management_resources = local.configure_management_resources
   subscription_id_management     = data.azurerm_client_config.management.subscription_id
 
-  # Configuration settings for connectivity resources.
+  # Configuration settings for connectivity resources
   deploy_connectivity_resources    = true
   configure_connectivity_resources = local.configure_connectivity_resources
   subscription_id_connectivity     = data.azurerm_client_config.connectivity.subscription_id
 
   # For testing custom template file variables
   template_file_variables = local.custom_template_file_variables
+
+  # Tuning delay timers to improve pipeline completion success rate
+  create_duration_delay  = var.create_duration_delay
+  destroy_duration_delay = var.destroy_duration_delay
 
 }
 
@@ -130,6 +142,11 @@ module "test_root_id_3_lz1" {
   # For testing custom template file variables
   template_file_variables = local.custom_template_file_variables
 
+  # Tuning delay timers to improve pipeline completion success rate
+  create_duration_delay  = var.create_duration_delay
+  destroy_duration_delay = var.destroy_duration_delay
+
+  # Set dependency to ensure correct operation
   depends_on = [
     module.test_root_id_3,
   ]
