@@ -22,3 +22,15 @@ variable "location" {
   type    = string
   default = "uksouth"
 }
+
+variable "create_duration_delay" {
+  type = map(string)
+  default = {
+    azurerm_management_group = "120s"
+  }
+}
+
+variable "destroy_duration_delay" {
+  type    = map(string)
+  default = {}
+}

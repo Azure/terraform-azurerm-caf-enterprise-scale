@@ -32,8 +32,10 @@ locals {
   custom_policy_roles              = var.custom_policy_roles
   library_path                     = var.library_path
   template_file_variables = merge(
-    module.connectivity_resources.configuration.template_file_variables,
     var.template_file_variables,
+    module.connectivity_resources.configuration.template_file_variables,
+    module.identity_resources.configuration.template_file_variables,
+    module.management_resources.configuration.template_file_variables,
   )
   default_location         = var.default_location
   default_tags             = var.default_tags
@@ -57,7 +59,7 @@ locals {
 # tag blocks for each sub-module
 locals {
   base_module_tags = {
-    deployedBy = "terraform/azure/caf-enterprise-scale/v1.1.1"
+    deployedBy = "terraform/azure/caf-enterprise-scale/v1.1.2"
   }
   connectivity_resources_tags = merge(
     local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
