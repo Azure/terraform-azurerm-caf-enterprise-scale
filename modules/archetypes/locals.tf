@@ -53,7 +53,7 @@ locals {
 
 # The following locals are used in template functions to provide values
 locals {
-  builtin_template_file_variables = {
+  core_template_file_variables = {
     root_scope_id             = basename(local.root_id)
     root_scope_resource_id    = local.root_id
     current_scope_id          = basename(local.scope_id)
@@ -67,7 +67,7 @@ locals {
   }
   template_file_vars = merge(
     local.template_file_variables,
-    local.builtin_template_file_variables,
+    local.core_template_file_variables,
   )
 }
 

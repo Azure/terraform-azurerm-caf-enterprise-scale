@@ -12202,7 +12202,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed.",
+            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed. Generated from custom Terraform template.",
             "display_name": "Limit allowed locations for Resource Groups",
             "enforce": true,
             "identity": [],
@@ -12286,7 +12286,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed.",
+            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed. Generated from custom Terraform template.",
             "display_name": "Limit allowed locations for Resource Groups",
             "enforce": true,
             "identity": [],
@@ -12338,7 +12338,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed.",
+            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed. Generated from custom Terraform template.",
             "display_name": "Limit allowed locations for Resource Groups",
             "enforce": true,
             "identity": [],
@@ -12390,7 +12390,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed.",
+            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed. Generated from custom Terraform template.",
             "display_name": "Limit allowed locations for Resource Groups",
             "enforce": true,
             "identity": [],
@@ -18101,7 +18101,7 @@
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
           "schema_version": 0,
           "values": {
-            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed.",
+            "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed. Generated from custom Terraform template.",
             "display_name": "Limit allowed locations for Resource Groups",
             "enforce": true,
             "identity": [],
@@ -18109,7 +18109,7 @@
             "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-3-scoped-lz1",
             "name": "Deny-RSG-Locations",
             "not_scopes": [],
-            "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"northcentralus\",\"southcentralus\"]}}",
+            "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\"]}}",
             "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
             "timeouts": null
           },
