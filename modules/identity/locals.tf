@@ -1,3 +1,9 @@
+# The following block of locals are used to avoid using
+# empty object types in the code.
+locals {
+  empty_map = {}
+}
+
 # Convert the input vars to locals, applying any required
 # logic needed before they are used in the module.
 # No vars should be referenced elsewhere in the module.
@@ -49,9 +55,15 @@ locals {
   }
 }
 
+# Template file variable outputs
+locals {
+  template_file_variables = local.empty_map
+}
+
 # Generate the configuration output object for the module
 locals {
   module_output = {
     archetype_config_overrides = local.archetype_config_overrides
+    template_file_variables    = local.template_file_variables
   }
 }

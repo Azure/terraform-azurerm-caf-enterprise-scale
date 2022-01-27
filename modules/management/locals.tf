@@ -250,6 +250,20 @@ locals {
   }
 }
 
+# Template file variable outputs
+locals {
+  template_file_variables = {
+    log_analytics_workspace_resource_id = local.log_analytics_workspace_resource_id
+    log_analytics_workspace_name        = local.azurerm_log_analytics_workspace.name
+    log_analytics_workspace_location    = local.azurerm_log_analytics_workspace.location
+    automation_account_resource_id      = local.automation_account_resource_id
+    automation_account_name             = local.azurerm_automation_account.name
+    automation_account_location         = local.azurerm_automation_account.location
+    management_location                 = local.location
+    management_resource_group_name      = local.azurerm_resource_group.name
+    data_retention                      = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+  }
+}
 
 # Generate the configuration output object for the management module
 locals {
@@ -312,5 +326,6 @@ locals {
       },
     ]
     archetype_config_overrides = local.archetype_config_overrides
+    template_file_variables    = local.template_file_variables
   }
 }

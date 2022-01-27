@@ -9,10 +9,10 @@ locals {
 
 # If Policy Assignments are specified in the archetype definition, generate a list of all Policy Assignment files from the built-in and custom library locations
 locals {
-  builtin_policy_assignments_from_json = local.archetype_policy_assignments_specified ? tolist(fileset(local.builtin_library_path, "**/policy_assignment_*.json")) : null
-  builtin_policy_assignments_from_yaml = local.archetype_policy_assignments_specified ? tolist(fileset(local.builtin_library_path, "**/policy_assignment_*.{yml,yaml}")) : null
-  custom_policy_assignments_from_json  = local.archetype_policy_assignments_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_assignment_*.json")) : null
-  custom_policy_assignments_from_yaml  = local.archetype_policy_assignments_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_assignment_*.{yml,yaml}")) : null
+  builtin_policy_assignments_from_json = local.archetype_policy_assignments_specified ? tolist(fileset(local.builtin_library_path, "**/policy_assignment_*.{json,json.tftpl}")) : null
+  builtin_policy_assignments_from_yaml = local.archetype_policy_assignments_specified ? tolist(fileset(local.builtin_library_path, "**/policy_assignment_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : null
+  custom_policy_assignments_from_json  = local.archetype_policy_assignments_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_assignment_*.{json,json.tftpl}")) : null
+  custom_policy_assignments_from_yaml  = local.archetype_policy_assignments_specified && local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/policy_assignment_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : null
 }
 
 # If Policy Assignment files exist, load content into dataset

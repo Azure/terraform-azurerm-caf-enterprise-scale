@@ -32,8 +32,10 @@ locals {
   custom_policy_roles              = var.custom_policy_roles
   library_path                     = var.library_path
   template_file_variables = merge(
-    module.connectivity_resources.configuration.template_file_variables,
     var.template_file_variables,
+    module.connectivity_resources.configuration.template_file_variables,
+    module.identity_resources.configuration.template_file_variables,
+    module.management_resources.configuration.template_file_variables,
   )
   default_location         = var.default_location
   default_tags             = var.default_tags
