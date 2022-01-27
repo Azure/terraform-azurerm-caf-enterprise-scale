@@ -48,7 +48,7 @@ locals {
 # tag blocks for each sub-module
 locals {
   base_module_tags = {
-    deployedBy = "terraform/azure/caf-enterprise-scale/v1.1.1"
+    deployedBy = "terraform/azure/caf-enterprise-scale/v1.1.2"
   }
   connectivity_resources_tags = merge(
     local.disable_base_module_tags ? local.empty_map : local.base_module_tags,

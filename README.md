@@ -165,7 +165,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.1"
+  version = "1.1.2"
 
   providers = {
     azurerm              = azurerm
@@ -207,6 +207,11 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
 ## Release Notes
+
+Release `v1.1.2` introduces the following changes:
+
+- Update module to provide full support for `templatefile()` functionality (Fixes #253)
+- Extend built-in template file variables for use with template files in module library (Fixes #255 and #207)
 
 Release `v1.1.1` introduces the following changes:
 
