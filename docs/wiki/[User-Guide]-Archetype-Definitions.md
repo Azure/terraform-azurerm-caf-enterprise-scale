@@ -13,20 +13,22 @@ This approach provides improved autonomy for application teams, whilst ensuring 
 
 ## Working with archetype definitions and the custom library
 
-The `archetype_definition` is a template file written in JSON or YAML. The default archetype definitions can be found in the [built-in module library][TFAES-Library], but custom archetype definitions can also be added to a custom library in the root module.
+The `archetype_definition` is a template file written in JSON or YAML, used to describe a landing zone archetype. The default archetype definitions can be found in the [built-in module library][TFAES-Library], but custom archetype definitions can also be added to a custom library in the root module.
 The archetype definition is associated to the scope (i.e. Management Group) by specifying the `archetype_id` within the ***Landing Zone*** configuration object.
 
-Both the built-in and custom libraries are also used to store ARM based templates for the Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) and Role Definitions. Role Assignments are an exception as these are defined as part of the `archetype_config` instead.
+Both the built-in and custom libraries are also used to store ARM based templates for the Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) and Role Definitions.
+Role Assignments are an exception as these are defined as part of the `archetype_config` instead.
 
-To use a custom library, simply create a folder in your root module (e.g. `/lib`) and tell the module about it using the `library_path` variable (e.g. `library_path = "${path.root}/lib"`). Save your custom templates in the custom library location and as long as they are valid templates for the resource type and match the following naming conventions, the module will automatically import and use them:
+To use a custom library, simply create a folder in your root module (e.g. `/lib`) and tell the module about it using the `library_path` variable (e.g. `library_path = "${path.root}/lib"`).
+Save your custom templates in the custom library location and as long as they are valid templates for the resource type and match the following naming conventions, the module will automatically import and use them:
 
 | Resource Type | File Name Pattern |
 | ------------- | ----------------- |
-| Archetype Definitions  | `**/archetype_definition_*.{json,yml,yaml}`  |
-| Policy Assignments     | `**/policy_assignment_*.{json,yml,yaml}`     |
-| Policy Definitions     | `**/policy_definition_*.{json,yml,yaml}`     |
-| Policy Set Definitions | `**/policy_set_definition_*.{json,yml,yaml}` |
-| Role Definitions       | `**/role_definition_*.{json,yml,yaml}`       |
+| Archetype Definitions  | `**/archetype_definition_*.{json,yml,yaml,json.tftpl,yml.tftpl,yaml.tftpl}`  |
+| Policy Assignments     | `**/policy_assignment_*.{json,yml,yaml,json.tftpl,yml.tftpl,yaml.tftpl}`     |
+| Policy Definitions     | `**/policy_definition_*.{json,yml,yaml,json.tftpl,yml.tftpl,yaml.tftpl}`     |
+| Policy Set Definitions | `**/policy_set_definition_*.{json,yml,yaml,json.tftpl,yml.tftpl,yaml.tftpl}` |
+| Role Definitions       | `**/role_definition_*.{json,yml,yaml,json.tftpl,yml.tftpl,yaml.tftpl}`       |
 
 > The decision to store Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) and Role Definitions as native ARM was based on a number of factors:
 >
@@ -37,6 +39,8 @@ To use a custom library, simply create a folder in your root module (e.g. `/lib`
 > **PRO TIP:** The module also supports YAML for these files as long as they match the ARM schema.
 
 This template driven approach is designed to simplify the process of defining an archetype and forms the foundations for how the module is able to provide feature-rich defaults, whilst also allowing a great degree of extensibility and customisation through the input variables instead of having to fork and modify the module.
+To increase flexibility when writing these files, we have provided full support for the Terraform [templatefile()][terraform_templatefile] function, allowing you to create re-usable templates which can be automatically populated with pre-defined template variables from the module, or user-provided template variables.
+For more information about which values are pre-defined by the module or how to add your own, please refer for the Wiki page for [template_file_variables][wiki_variables_template_file_variables].
 
 The `archetype_definition` template contains lists of the Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) and Role Definitions you want to create when assigning the archetype to a Management Group. It also includes the ability to set default values for parameters associated with Policy Assignments, and set default Role Assignments.
 
@@ -199,3 +203,6 @@ This allows you to override parameter values for as many or as few Policy Assign
 
 [wiki_variables_archetype_config_overrides]: ./%5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
 [wiki_variables_custom_landing_zones]:       ./%5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
+[wiki_variables_template_file_variables]:    ./%5BVariables%5D-template_file_variables "Wiki - Variables - template_file_variables"
+
+[terraform_templatefile]: https://www.terraform.io/language/functions/templatefile "Terraform documentation: templatefile Function"
