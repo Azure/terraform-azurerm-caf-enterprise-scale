@@ -7,7 +7,6 @@ set -e
 #
 
 TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
-TF_PLAN_OUT="$TF_WORKSPACE/terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
 TF_STATE="../tfstate/terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
 
 echo "==> Switching directories..."
