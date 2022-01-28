@@ -55,7 +55,7 @@ shred -uz "$SPN_NAME.pem"
 
 echo "==> Storing Client Certificate Details"
 echo "##vso[task.setvariable variable=ARM_CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CLIENT_ID"
-echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PATH;]$CREDENTIALS_WORKSPACE$SPN_NAME.pfx"
+echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PATH;]$CREDENTIALS_WORKSPACE/$SPN_NAME.pfx"
 echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PASSWORD;]$CERTIFICATE_PASSWORD"
 
 echo "==> Generating unique root ID..."
