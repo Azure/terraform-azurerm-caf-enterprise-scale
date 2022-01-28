@@ -105,7 +105,7 @@ module "test_management" {
   template_file_variables = module.settings.core.custom_template_file_variables
 
   # Configuration settings for core resources
-  deploy_core_landing_zones  = false
+  deploy_core_landing_zones = false
 
   # Configuration settings for management resources
   deploy_management_resources    = true
@@ -136,7 +136,7 @@ module "test_connectivity" {
   template_file_variables = module.settings.core.custom_template_file_variables
 
   # Configuration settings for core resources
-  deploy_core_landing_zones  = false
+  deploy_core_landing_zones = false
 
   # Configuration settings for connectivity resources
   deploy_connectivity_resources    = true
