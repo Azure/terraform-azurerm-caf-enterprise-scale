@@ -24,20 +24,82 @@ jobs:
   - template: templates/tests-common.yml
 
   - task: Bash@3
-    displayName: 'Terraform (plan)'
+    displayName: "Terraform (init) Test 001 Baseline"
     inputs:
-      targetType: 'inline'
-      script: 'make tf-plan'
+      targetType: "inline"
+      script: "make tf-init"
     env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
   - task: Bash@3
-    displayName: 'Terraform (apply)'
+    displayName: "Terraform (plan) Test 001 Baseline"
     inputs:
-      targetType: 'inline'
-      script: 'make tf-apply'
+      targetType: "inline"
+      script: "make tf-plan"
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
+
+  - task: Bash@3
+    displayName: "Terraform (apply) Test 001 Baseline"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
+
+  - task: Bash@3
+    displayName: "Terraform (init) Test 002 Add Custom Core"
+    inputs:
+      targetType: "inline"
+      script: "make tf-init"
+    env:
+      TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+  - task: Bash@3
+    displayName: "Terraform (plan) Test 002 Add Custom Core"
+    inputs:
+      targetType: "inline"
+      script: "make tf-plan"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+  - task: Bash@3
+    displayName: "Terraform (apply) Test 002 Add Custom Core"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+  - task: Bash@3
+    displayName: "Terraform (init) Test 003 Add Management and Connectivity"
+    inputs:
+      targetType: "inline"
+      script: "make tf-init"
+    env:
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
+
+  - task: Bash@3
+    displayName: "Terraform (plan) Test 003 Add Management and Connectivity"
+    inputs:
+      targetType: "inline"
+      script: "make tf-plan"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
+
+  - task: Bash@3
+    displayName: "Terraform (apply) Test 003 Add Management and Connectivity"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
 
   - task: Bash@3
     displayName: 'Terraform (destroy)'
@@ -46,4 +108,5 @@ jobs:
       script: 'make tf-destroy'
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
     condition: always()
