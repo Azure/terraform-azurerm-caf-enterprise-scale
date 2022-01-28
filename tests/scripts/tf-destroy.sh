@@ -20,7 +20,7 @@ terraform destroy \
     -var "primary_location=$PRIMARY_LOCATION" \
     -var "secondary_location=$SECONDARY_LOCATION" \
     -auto-approve \
-    -parallelism="$TF_PARALLELISM" \
+    -parallelism="$PARALLELISM" \
     -state="$TF_STATE"
 status=$?
 

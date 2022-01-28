@@ -16,6 +16,6 @@ cd "$TF_WORKSPACE"
 echo "==> Applying infrastructure..."
 terraform apply \
     -auto-approve \
-    -parallelism="$TF_PARALLELISM" \
+    -parallelism="$PARALLELISM" \
     -state="$TF_STATE" \
     "$TF_PLAN_OUT"
