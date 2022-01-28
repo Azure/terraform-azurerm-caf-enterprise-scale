@@ -44,11 +44,11 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (2.77.0)
+# - Base Version: (2.83.0)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "2.77.0"
+$azurermProviderVersionBase = "2.83.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################
