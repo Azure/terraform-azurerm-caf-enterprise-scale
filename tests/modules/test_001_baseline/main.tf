@@ -10,7 +10,7 @@ module "test_core" {
   # Base module configuration settings
   root_parent_id   = data.azurerm_client_config.management.tenant_id
   root_id          = var.root_id
-  root_name        = "${var.root_name} ${var.root_id}"
+  root_name        = var.root_name
   default_location = var.primary_location
   default_tags     = module.settings.shared.default_tags
 
