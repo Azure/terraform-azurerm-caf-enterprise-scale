@@ -19,9 +19,3 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'make tf-fmt'
-
-- task: Bash@3
-  displayName: 'Terraform (init)'
-  inputs:
-    targetType: 'inline'
-    script: 'make tf-init'
