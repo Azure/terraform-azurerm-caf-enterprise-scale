@@ -24,7 +24,13 @@ jobs:
       - template: templates/tests-common.yml
 
       - task: Bash@3
-        displayName: "Test 001 Baseline (init)"
+        displayName: "Opa Conftest (install)"
+        inputs:
+          targetType: "inline"
+          script: "make opa-install"
+
+      - task: Bash@3
+        displayName: "Terraform (init) Test 001 Baseline"
         inputs:
           targetType: "inline"
           script: "make tf-init"
@@ -32,7 +38,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
-        displayName: "Test 001 Baseline (plan)"
+        displayName: "Terraform (plan) Test 001 Baseline"
         inputs:
           targetType: "inline"
           script: "make tf-plan"
@@ -41,7 +47,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
-        displayName: "Test 002 Add Custom Core (init)"
+        displayName: "Terraform (init) Test 002 Add Custom Core"
         inputs:
           targetType: "inline"
           script: "make tf-init"
@@ -49,7 +55,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
-        displayName: "Test 002 Add Custom Core (plan)"
+        displayName: "Terraform (plan) Test 002 Add Custom Core"
         inputs:
           targetType: "inline"
           script: "make tf-plan"
@@ -58,7 +64,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
-        displayName: "Test 003 Add Management and Connectivity (init)"
+        displayName: "Terraform (init) Test 003 Add Management and Connectivity"
         inputs:
           targetType: "inline"
           script: "make tf-init"
@@ -66,19 +72,13 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
 
       - task: Bash@3
-        displayName: "Test 003 Add Management and Connectivity (plan)"
+        displayName: "Terraform (plan) Test 003 Add Management and Connectivity"
         inputs:
           targetType: "inline"
           script: "make tf-plan"
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
-
-      # - task: Bash@3
-      #   displayName: "Opa Conftest (install)"
-      #   inputs:
-      #     targetType: "inline"
-      #     script: "make opa-install"
 
       # - task: Bash@3
       #   displayName: "Conftest (run tests)"
