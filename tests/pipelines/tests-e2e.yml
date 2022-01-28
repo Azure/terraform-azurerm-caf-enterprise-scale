@@ -108,5 +108,6 @@ jobs:
       script: 'make tf-destroy'
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
+      # Task uses first test folder to run destroy to avoid terraform init failure following earlier errors
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
     condition: always()
