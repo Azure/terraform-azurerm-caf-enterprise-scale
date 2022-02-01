@@ -20,6 +20,8 @@ jobs:
   dependsOn: matrix_generator
   strategy:
     matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
+  timeoutInMinutes: 90
+  cancelTimeoutInMinutes: 30
   steps:
   - template: templates/tests-common.yml
 
