@@ -82,7 +82,7 @@ else {
 }
 
 foreach ($MODULE_PATH in $MODULE_PATHS) {
-    
+
     if (-not ($MODULE_PATH | Test-Path)) { Throw "The directory does not exist, check entries in MODULE_PATHS variable on .\opa-values-generator.ps1 :line 18" }
 
     $TF_PLAN_OUT="$MODULE_PATH/terraform_plan"
