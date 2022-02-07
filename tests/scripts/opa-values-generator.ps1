@@ -1,3 +1,5 @@
+#!/usr/bin/pwsh
+
 ###############################################
 # Run tests and generate testing values.
 ###############################################
@@ -22,71 +24,36 @@ $MODULE_PATHS = @(
 )
 ###############################################
 
-# Install Scoop
-if (Get-command -name scoop -ErrorAction SilentlyContinue) {
-    Write-Output "==> Scoop exists, skip install"
-    scoop --version
-    scoop update
+$PWSH_OS = $PSVersionTable.OS
+$PWSH_PLATFORM = $PSVersionTable.Platform
+
+Write-Output "################################################"
+Write-Output "==> Initiate installation of pre-requisites..."
+Write-Output "==> OS       : $PWSH_OS"
+Write-Output "==> Platform : $PWSH_PLATFORM"
+Write-Output "`n"
+
+if (($PWSH_OS -like "*Windows*") -and ($PWSH_PLATFORM -eq "Win32NT")) {
+    ./opa-install-windows.ps1
 }
-else {
-    Write-Output "`n"
-    Write-Output "==> To run Conftest tests on Windows, some utilities need to be installed with Scoop"
-    Write-Output "==> To install Scoop on Windows, run this command from a new terminal:"
-    Write-Output "`n"
-    Write-Output "Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https:\\get.scoop.sh')"
-    Write-Output "`n"
-    Write-Output "==> After installing Scoop, run: ./opa-values-generator.ps1"
-    Write-Output "`n"
-    exit
+elseif (($PWSH_OS -like "Darwin*") -and ($PWSH_PLATFORM -eq "Unix")) {
+    Write-Output "Support for MacOS still in development. Please ensure pre-requisites are manually installed and re-run this script if errors occur due to missing software."
+}
+elseif (($PWSH_OS -like "Linux*") -and ($PWSH_PLATFORM -eq "Unix")) {
+    source opa-install-linux.sh
 }
 
-# Install Terraform
-if (Get-command -name terraform -ErrorAction SilentlyContinue) {
-    Write-Output "==> Terraform exists, skip install"
-    terraform version
-}
-else {
-    Write-Output "==> Install Terraform on Windows..."
-    scoop install terraform
-}
-
-# Install jq
-if (Get-command -name jq -ErrorAction SilentlyContinue) {
-    Write-Output "==> jq exists, skip install"
-    jq --version
-}
-else {
-    Write-Output "==> Install jq on Windows..."
-    scoop install jq
-}
-
-# Install yq
-if (Get-command -name yq -ErrorAction SilentlyContinue) {
-    Write-Output "==> yq exists, skip install"
-    yq --version
-}
-else {
-    Write-Output "==> Install yq on Windows..."
-    scoop install yq
-}
-
-# Install Conftest
-if (Get-command -name conftest -ErrorAction SilentlyContinue) {
-    Write-Output "==> conftest exists, skip install"
-    conftest --version
-}
-else {
-    Write-Output "==> Install conftest on Windows..."
-    scoop bucket add instrumenta https://github.com/instrumenta/scoop-instrumenta
-    scoop install conftest
-}
+Write-Output "`n"
+Write-Output "==> Completed installation of pre-requisites."
+Write-Output "################################################"
+Write-Output "`n"
 
 foreach ($MODULE_PATH in $MODULE_PATHS) {
 
     if (-not ($MODULE_PATH | Test-Path)) { Throw "The directory does not exist, check entries in MODULE_PATHS variable on .\opa-values-generator.ps1 :line 18" }
 
-    $TF_PLAN_OUT="$MODULE_PATH/terraform_plan"
-    $PLANNED_VALUES="$MODULE_PATH/planned_values"
+    $TF_PLAN_OUT = "$MODULE_PATH/terraform_plan"
+    $PLANNED_VALUES = "$MODULE_PATH/planned_values"
     $MODULE_NAME = Split-Path $MODULE_PATH -Leaf
 
     Write-Output "==> ($MODULE_NAME) - Change to the module root directory..."
