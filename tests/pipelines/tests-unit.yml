@@ -24,13 +24,13 @@ jobs:
       - template: templates/tests-common.yml
 
       - task: Bash@3
-        displayName: "Opa Conftest (install)"
+        displayName: "Install OPA/Conftest Pre-requisites"
         inputs:
           targetType: "inline"
           script: "make opa-install"
 
       - task: Bash@3
-        displayName: "Terraform (init) Test 001 Baseline"
+        displayName: "Test 001 (terraform init) Baseline"
         inputs:
           targetType: "inline"
           script: "make tf-init"
@@ -38,7 +38,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
-        displayName: "Terraform (plan) Test 001 Baseline"
+        displayName: "Test 001 (terraform plan) Baseline"
         inputs:
           targetType: "inline"
           script: "make tf-plan"
@@ -47,7 +47,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
-        displayName: "Conftest (run tests) Test 001 Baseline"
+        displayName: "Test 001 (conftest) Baseline"
         inputs:
           targetType: "inline"
           script: "make opa-run-tests"
@@ -55,7 +55,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
-        displayName: "Terraform (init) Test 002 Add Custom Core"
+        displayName: "Test 002 (terraform init) Add Custom Core"
         inputs:
           targetType: "inline"
           script: "make tf-init"
@@ -63,7 +63,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
-        displayName: "Terraform (plan) Test 002 Add Custom Core"
+        displayName: "Test 002 (terraform plan) Add Custom Core"
         inputs:
           targetType: "inline"
           script: "make tf-plan"
@@ -72,7 +72,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
-        displayName: "Conftest (run tests) Test 002 Add Custom Core"
+        displayName: "Test 002 (conftest) Add Custom Core"
         inputs:
           targetType: "inline"
           script: "make opa-run-tests"
@@ -80,7 +80,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
-        displayName: "Terraform (init) Test 003 Add Management and Connectivity"
+        displayName: "Test 003 (terraform init) Add Management and Connectivity"
         inputs:
           targetType: "inline"
           script: "make tf-init"
@@ -88,7 +88,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
 
       - task: Bash@3
-        displayName: "Terraform (plan) Test 003 Add Management and Connectivity"
+        displayName: "Test 003 (terraform plan) Add Management and Connectivity"
         inputs:
           targetType: "inline"
           script: "make tf-plan"
@@ -97,7 +97,7 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
 
       - task: Bash@3
-        displayName: "Conftest (run tests) Test 003 Add Management and Connectivity"
+        displayName: "Test 003 (conftest) Add Management and Connectivity"
         inputs:
           targetType: "inline"
           script: "make opa-run-tests"
