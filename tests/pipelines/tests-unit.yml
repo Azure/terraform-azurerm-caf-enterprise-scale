@@ -47,6 +47,14 @@ jobs:
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
+        displayName: "Conftest (run tests) Test 001 Baseline"
+        inputs:
+          targetType: "inline"
+          script: "make opa-run-tests"
+        env:
+          TEST_MODULE_PATH: "tests/modules/test_001_baseline"
+
+      - task: Bash@3
         displayName: "Terraform (init) Test 002 Add Custom Core"
         inputs:
           targetType: "inline"
@@ -61,6 +69,14 @@ jobs:
           script: "make tf-plan"
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+          TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+      - task: Bash@3
+        displayName: "Conftest (run tests) Test 002 Add Custom Core"
+        inputs:
+          targetType: "inline"
+          script: "make opa-run-tests"
+        env:
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
@@ -80,8 +96,10 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
 
-      # - task: Bash@3
-      #   displayName: "Conftest (run tests)"
-      #   inputs:
-      #     targetType: "inline"
-      #     script: "make opa-run-tests"
+      - task: Bash@3
+        displayName: "Conftest (run tests) Test 003 Add Management and Connectivity"
+        inputs:
+          targetType: "inline"
+          script: "make opa-run-tests"
+        env:
+          TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
