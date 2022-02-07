@@ -48,6 +48,12 @@ resource "azurerm_role_assignment" "policy_assignment" {
     time_sleep.after_azurerm_role_definition,
   ]
 
+  lifecycle {
+    ignore_changes = [
+      principal_id  # Prevent existing role assignments to be destroyed and recreated when editing policy assignment parameters
+    ]
+  }
+
 }
 
 resource "time_sleep" "after_azurerm_role_assignment" {
