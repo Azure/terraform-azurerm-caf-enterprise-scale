@@ -34,7 +34,7 @@ output "azurerm_policy_set_definition" {
 # Assignment data is returned to the root module.
 output "azurerm_management_group_policy_assignment" {
   value = {
-    enterprise_scale = azurerm_management_group_policy_assignment.enterprise_scale
+    enterprise_scale  = azurerm_management_group_policy_assignment.enterprise_scale
   }
   description = "Returns the configuration data for all Management Group Policy Assignments created by this module."
 }
@@ -43,7 +43,7 @@ output "azurerm_management_group_policy_assignment" {
 # Definition data is returned to the root module.
 output "azurerm_role_definition" {
   value = {
-    enterprise_scale = azurerm_role_definition.enterprise_scale
+    enterprise_scale  = azurerm_role_definition.enterprise_scale
   }
   description = "Returns the configuration data for all Role Definitions created by this module."
 }
@@ -52,7 +52,8 @@ output "azurerm_role_definition" {
 # Assignment data is returned to the root module.
 output "azurerm_role_assignment" {
   value = {
-    enterprise_scale = azurerm_role_assignment.enterprise_scale
+    enterprise_scale  = azurerm_role_assignment.enterprise_scale
+    policy_assignment = azurerm_role_assignment.policy_assignment
   }
   description = "Returns the configuration data for all Role Assignments created by this module."
 }
