@@ -45,7 +45,7 @@ locals {
   }
   extend_archetype_definitions_dataset_from_yaml = {
     for filepath in local.extend_archetype_definitions_yaml :
-    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
+    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
   exclude_archetype_definitions_dataset_from_json = {
     for filepath in local.exclude_archetype_definitions_json :
@@ -53,7 +53,7 @@ locals {
   }
   exclude_archetype_definitions_dataset_from_yaml = {
     for filepath in local.exclude_archetype_definitions_yaml :
-    filepath => jsondecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
+    filepath => yamldecode(templatefile("${local.custom_library_path}/${filepath}", local.template_file_vars))
   }
 }
 
