@@ -60,7 +60,7 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
     Set-Location $MODULE_PATH
 
     Write-Output "==> ($MODULE_NAME) - Initializing infrastructure..."
-    terraform init
+    terraform init -upgrade
 
     Write-Output "==> ($MODULE_NAME) - Planning infrastructure..."
     terraform plan `
