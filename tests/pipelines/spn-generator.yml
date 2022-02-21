@@ -11,7 +11,7 @@ variables:
 
 jobs:
 - job: run_spn_generator
-  displayName: 'Run SPN generator'
+  displayName: 'Run SPN Generator'
   steps:
   - task: Bash@3
     displayName: 'Create or update SPN settings'

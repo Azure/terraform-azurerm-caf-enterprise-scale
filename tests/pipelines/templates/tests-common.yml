@@ -1,13 +1,13 @@
 ---
 steps:
 - task: Bash@3
-  displayName: 'Terraform (install)'
+  displayName: 'Install Terraform Pre-requisites'
   inputs:
     targetType: 'inline'
     script: 'make tf-install'
 
 - task: Bash@3
-  displayName: 'Terraform (prepare)'
+  displayName: 'Prepare Terraform Environment'
   inputs:
     targetType: 'inline'
     script: 'make tf-prepare'
@@ -15,13 +15,7 @@ steps:
     ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
 - task: Bash@3
-  displayName: 'Terraform (fmt)'
+  displayName: 'Terraform Linting (terraform fmt)'
   inputs:
     targetType: 'inline'
     script: 'make tf-fmt'
-
-- task: Bash@3
-  displayName: 'Terraform (init)'
-  inputs:
-    targetType: 'inline'
-    script: 'make tf-init'

@@ -23,7 +23,7 @@ locals {
       security_center = {
         enabled = true
         config = {
-          email_security_contact             = "test.user@replace_me"
+          email_security_contact             = var.email_security_contact
           enable_defender_for_acr            = true
           enable_defender_for_app_services   = true
           enable_defender_for_arm            = true
@@ -41,7 +41,7 @@ locals {
 
     location = null
     tags = {
-      deployedBy = "terraform/azure/caf-enterprise-scale"
+      deployedBy = "${local.default_tags.deployedBy}/management"
     }
     advanced = null
   }

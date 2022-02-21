@@ -46,7 +46,7 @@ tf-destroy:
 
 opa-install:
 	@echo "==> Running script..."
-	./tests/scripts/opa-install.sh
+	./tests/scripts/opa-install-linux.sh
 
 opa-run-tests:
 	@echo "==> Running script..."

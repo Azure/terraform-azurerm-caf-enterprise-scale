@@ -85,8 +85,8 @@ locals {
   azurerm_policy_set_definition_external_lookup = {
     for policy_set_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_set_definition)) :
     policy_set_definition_id => {
-      name                  = basename(policy_set_definition_id)
-      management_group_name = regex(local.regex_split_resource_id, policy_set_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_set_definition_id)[1] : null
+      name                = basename(policy_set_definition_id)
+      management_group_id = regex(local.regex_split_resource_id, policy_set_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_set_definition_id)[1] : null
     }
   }
 }
@@ -96,7 +96,7 @@ data "azurerm_policy_set_definition" "external_lookup" {
   for_each = local.azurerm_policy_set_definition_external_lookup
 
   name                  = each.value.name
-  management_group_name = each.value.management_group_name
+  management_group_name = each.value.management_group_id
 }
 
 # Create a list of Policy Definitions IDs used by all assigned Policy Set Definitions
@@ -134,16 +134,16 @@ locals {
   external_policy_definitions_from_azurerm_policy_set_definition_external_lookup = {
     for policy_definition_id in local.external_policy_definition_ids_from_policy_set_definitions :
     policy_definition_id => {
-      name                  = basename(policy_definition_id)
-      management_group_name = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
+      name                = basename(policy_definition_id)
+      management_group_id = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
     }
   }
   # From Policy Assignments using Policy Definitions
   external_policy_definitions_from_internal_policy_assignments = {
     for policy_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_definition)) :
     policy_definition_id => {
-      name                  = basename(policy_definition_id)
-      management_group_name = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
+      name                = basename(policy_definition_id)
+      management_group_id = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
     }
   }
   # Then create a single list containing all Policy Definitions to lookup from Azure
@@ -158,7 +158,7 @@ data "azurerm_policy_definition" "external_lookup" {
   for_each = local.azurerm_policy_definition_external_lookup
 
   name                  = each.value.name
-  management_group_name = each.value.management_group_name
+  management_group_name = each.value.management_group_id
 }
 
 # Extract the Role Definition IDs from the internal and external

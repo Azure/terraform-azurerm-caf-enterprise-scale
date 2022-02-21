@@ -20,30 +20,96 @@ jobs:
   dependsOn: matrix_generator
   strategy:
     matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
+  timeoutInMinutes: 90
+  cancelTimeoutInMinutes: 30
   steps:
   - template: templates/tests-common.yml
 
   - task: Bash@3
-    displayName: 'Terraform (plan)'
+    displayName: "Test 001 (terraform init) Baseline"
     inputs:
-      targetType: 'inline'
-      script: 'make tf-plan'
+      targetType: "inline"
+      script: "make tf-init"
     env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
   - task: Bash@3
-    displayName: 'Terraform (apply)'
+    displayName: "Test 001 (terraform plan) Baseline"
     inputs:
-      targetType: 'inline'
-      script: 'make tf-apply'
+      targetType: "inline"
+      script: "make tf-plan"
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
   - task: Bash@3
-    displayName: 'Terraform (destroy)'
+    displayName: "Test 001 (terraform apply) Baseline"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
+
+  - task: Bash@3
+    displayName: "Test 002 (terraform init) Add Custom Core"
+    inputs:
+      targetType: "inline"
+      script: "make tf-init"
+    env:
+      TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+  - task: Bash@3
+    displayName: "Test 002 (terraform plan) Add Custom Core"
+    inputs:
+      targetType: "inline"
+      script: "make tf-plan"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+  - task: Bash@3
+    displayName: "Test 002 (terraform apply) Add Custom Core"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
+
+  - task: Bash@3
+    displayName: "Test 003 (terraform init) Add Management and Connectivity"
+    inputs:
+      targetType: "inline"
+      script: "make tf-init"
+    env:
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
+
+  - task: Bash@3
+    displayName: "Test 003 (terraform plan) Add Management and Connectivity"
+    inputs:
+      targetType: "inline"
+      script: "make tf-plan"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
+
+  - task: Bash@3
+    displayName: "Test 003 (terraform apply) Add Management and Connectivity"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
+
+  - task: Bash@3
+    displayName: 'Clean-up Test Environment (terraform destroy)'
     inputs:
       targetType: 'inline'
       script: 'make tf-destroy'
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      # Task uses first test folder to run destroy to avoid terraform init failure following earlier errors
+      TEST_MODULE_PATH: "tests/modules/test_001_baseline"
     condition: always()

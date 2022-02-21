@@ -24,10 +24,10 @@ resource "azurerm_policy_set_definition" "enterprise_scale" {
   }
 
   # Optional resource attributes
-  description           = try(each.value.template.properties.description, "${each.value.template.properties.displayName} Policy Set Definition at scope ${each.value.scope_id}")
-  management_group_name = try(basename(each.value.scope_id), null)
-  metadata              = try(length(each.value.template.properties.metadata) > 0, false) ? jsonencode(each.value.template.properties.metadata) : null
-  parameters            = try(length(each.value.template.properties.parameters) > 0, false) ? jsonencode(each.value.template.properties.parameters) : null
+  description         = try(each.value.template.properties.description, "${each.value.template.properties.displayName} Policy Set Definition at scope ${each.value.scope_id}")
+  management_group_id = try(basename(each.value.scope_id), null)
+  metadata            = try(length(each.value.template.properties.metadata) > 0, false) ? jsonencode(each.value.template.properties.metadata) : null
+  parameters          = try(length(each.value.template.properties.parameters) > 0, false) ? jsonencode(each.value.template.properties.parameters) : null
 
   # Set explicit dependency on Management Group and Policy Definition deployments
   depends_on = [
