@@ -219,7 +219,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-MDFC-Config      = local.deploy_security_settings
+        Deploy-MDFC-Config       = local.deploy_security_settings
         Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
