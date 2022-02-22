@@ -8,6 +8,7 @@ on:
   push:
     branches-ignore:
     - main
+    - patch-library
     - release/**
   pull_request:
     branches:
