@@ -90,7 +90,7 @@ You have also assigned the current Subscription from your provider configuration
 Check the following Policy Assignments to see how these have been configured with default settings for parameters and enforcement mode:
 
 - Scope = `root`
-  - `Deploy-ASCDF-Config`
+  - `Deploy-MDFC-Config`
   - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
