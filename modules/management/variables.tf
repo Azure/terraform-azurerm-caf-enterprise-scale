@@ -65,12 +65,11 @@ variable "settings" {
       enabled = bool
       config = object({
         email_security_contact             = string
-        enable_defender_for_acr            = bool
         enable_defender_for_app_services   = bool
         enable_defender_for_arm            = bool
+        enable_defender_for_containers     = bool
         enable_defender_for_dns            = bool
         enable_defender_for_key_vault      = bool
-        enable_defender_for_kubernetes     = bool
         enable_defender_for_oss_databases  = bool
         enable_defender_for_servers        = bool
         enable_defender_for_sql_servers    = bool

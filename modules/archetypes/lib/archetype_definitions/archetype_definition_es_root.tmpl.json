@@ -2,7 +2,7 @@
   "es_root": {
     "policy_assignments": [
       "Deploy-ASC-Monitoring",
-      "Deploy-ASCDF-Config",
+      "Deploy-MDFC-Config",
       "Deploy-AzActivity-Log",
       "Deploy-LX-Arc-Monitoring",
       "Deploy-Resource-Diag",
@@ -117,8 +117,8 @@
     ],
     "policy_set_definitions": [
       "Deny-PublicPaaSEndpoints",
-      "Deploy-ASCDF-Config",
       "Deploy-Diagnostics-LogAnalytics",
+      "Deploy-MDFC-Config",
       "Deploy-Private-DNS-Zones",
       "Deploy-Sql-Security",
       "Enforce-Encryption-CMK",

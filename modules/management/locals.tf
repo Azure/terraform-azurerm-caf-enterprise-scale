@@ -60,12 +60,11 @@ locals {
     VMInsights            = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
   }
   deploy_security_settings           = local.settings.security_center.enabled
-  deploy_defender_for_acr            = local.settings.security_center.config.enable_defender_for_acr
   deploy_defender_for_app_services   = local.settings.security_center.config.enable_defender_for_app_services
   deploy_defender_for_arm            = local.settings.security_center.config.enable_defender_for_arm
+  deploy_defender_for_containers     = local.settings.security_center.config.enable_defender_for_containers
   deploy_defender_for_dns            = local.settings.security_center.config.enable_defender_for_dns
   deploy_defender_for_key_vault      = local.settings.security_center.config.enable_defender_for_key_vault
-  deploy_defender_for_kubernetes     = local.settings.security_center.config.enable_defender_for_kubernetes
   deploy_defender_for_oss_databases  = local.settings.security_center.config.enable_defender_for_oss_databases
   deploy_defender_for_servers        = local.settings.security_center.config.enable_defender_for_servers
   deploy_defender_for_sql_servers    = local.settings.security_center.config.enable_defender_for_sql_servers
@@ -182,17 +181,16 @@ locals {
   archetype_config_overrides = {
     (local.root_id) = {
       parameters = {
-        Deploy-ASCDF-Config = {
+        Deploy-MDFC-Config = {
           emailSecurityContact           = local.settings.security_center.config.email_security_contact
           logAnalytics                   = local.log_analytics_workspace_resource_id
           ascExportResourceGroupName     = "${local.root_id}-asc-export"
           ascExportResourceGroupLocation = local.location
-          enableAscForRegistries         = local.deploy_defender_for_acr ? "DeployIfNotExists" : "Disabled"
           enableAscForAppServices        = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
           enableAscForArm                = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
+          enableAscForContainers         = local.deploy_defender_for_containers ? "DeployIfNotExists" : "Disabled"
           enableAscForDns                = local.deploy_defender_for_dns ? "DeployIfNotExists" : "Disabled"
           enableAscForKeyVault           = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
-          enableAscForKubernetes         = local.deploy_defender_for_kubernetes ? "DeployIfNotExists" : "Disabled"
           enableAscForOssDb              = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
           enableAscForServers            = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
           enableAscForSql                = local.deploy_defender_for_sql_servers ? "DeployIfNotExists" : "Disabled"
@@ -221,7 +219,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-ASCDF-Config      = local.deploy_security_settings
+        Deploy-MDFC-Config       = local.deploy_security_settings
         Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss

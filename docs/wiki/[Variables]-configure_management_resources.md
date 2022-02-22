@@ -252,7 +252,7 @@ security_center = {
 
 #### `settings.security_center.enabled`
 
-Enables or disables the `EnforcementMode` of the `Deploy-ASCDF-Config` policy assignment at the organizational root management group.
+Enables or disables the `EnforcementMode` of the `Deploy-MDFC-Config` policy assignment at the organizational root management group.
 
 #### `settings.security_center.config`
 
