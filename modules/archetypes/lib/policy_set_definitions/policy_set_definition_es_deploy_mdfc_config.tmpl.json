@@ -1,5 +1,5 @@
 {
-  "name": "Deploy-ASCDF-Config",
+  "name": "Deploy-MDFC-Config",
   "type": "Microsoft.Authorization/policySetDefinitions",
   "apiVersion": "2021-06-01",
   "scope": null,
@@ -8,7 +8,7 @@
     "displayName": "Deploy Microsoft Defender for Cloud configuration",
     "description": "Deploy Microsoft Defender for Cloud configuration",
     "metadata": {
-      "version": "2.1.0",
+      "version": "3.0.0",
       "category": "Security Center"
     },
     "parameters": {

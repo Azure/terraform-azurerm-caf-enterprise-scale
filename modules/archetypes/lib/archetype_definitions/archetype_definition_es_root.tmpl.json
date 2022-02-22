@@ -117,8 +117,8 @@
     ],
     "policy_set_definitions": [
       "Deny-PublicPaaSEndpoints",
-      "Deploy-ASCDF-Config",
       "Deploy-Diagnostics-LogAnalytics",
+      "Deploy-MDFC-Config",
       "Deploy-Private-DNS-Zones",
       "Deploy-Sql-Security",
       "Enforce-Encryption-CMK",
