@@ -165,7 +165,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.2"
+  version = "1.1.3"
 
   providers = {
     azurerm              = azurerm
@@ -207,6 +207,8 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
 ## Release Notes
+
+Release `v1.1.3` is a hotfix relating to support for using YAML with archetype extensions and exclusions.
 
 Release `v1.1.2` introduces the following changes:
 
