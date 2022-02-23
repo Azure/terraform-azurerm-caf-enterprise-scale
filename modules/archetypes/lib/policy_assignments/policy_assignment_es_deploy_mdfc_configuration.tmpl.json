@@ -19,7 +19,7 @@
       "ascExportResourceGroupLocation": {
         "value": "${default_location}"
       },
-      "enableAscForKubernetes": {
+      "enableAscForContainers": {
         "value": "Disabled"
       },
       "enableAscForSql": {
@@ -38,9 +38,6 @@
         "value": "Disabled"
       },
       "enableAscForAppServices": {
-        "value": "Disabled"
-      },
-      "enableAscForRegistries": {
         "value": "Disabled"
       },
       "enableAscForKeyVault": {
