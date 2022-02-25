@@ -385,6 +385,8 @@ If specified, will set a custom Name (ID) value for the Enterprise-scale "root" 
 
 Default: `"es"`
 
+>Note: For creation of custom archetypes, the root_id setting must be lower case in order to pass archetype naming convention validation.
+
 <br>
 
 [**root_name**][root_name] `string`
