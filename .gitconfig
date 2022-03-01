@@ -1,0 +1,3 @@
+[core]
+autocrlf = input
+longpaths = true
