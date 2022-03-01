@@ -760,6 +760,43 @@ function Invoke-UpdateCacheInModule {
     [ProviderApiVersions]::SaveCacheToDirectory($Directory)
 }
 
+function Edit-LineEndings {
+    [CmdletBinding()]
+    [OutputType([String[]])]
+    param (
+        [Parameter(ValueFromPipeline = $true)]
+        [String[]]$InputText,
+        [ValidateSet("mac", "unix", "win")]
+        [string]$LineEnding = "unix"
+    )
+
+    Begin {
+
+        Switch ($LineEnding) {
+            "mac" { $eol = "`r" }
+            "unix" { $eol = "`n" }
+            "win" { $eol = "`r`n" }
+        }
+    
+    }
+
+    Process {
+
+        [String[]]$outputText = $InputText |
+        ForEach-Object { $_ -replace "`r`n", "`n" } |
+        ForEach-Object { $_ -replace "`r", "`n" } |
+        ForEach-Object { $_ -replace "`n", "$eol" }
+
+    }
+
+    End {
+
+        return $outputText
+
+    }
+
+}
+
 function ConvertTo-LibraryArtifact {
     [CmdletBinding()]
     param (
@@ -800,6 +837,8 @@ function Export-LibraryArtifact {
         [String]$OutputPath = "./",
         [String]$FileNamePrefix = "",
         [String]$FileNameSuffix = ".json",
+        [ValidateSet("mac", "unix", "win")]
+        [string]$LineEnding = "unix",
         [Switch]$AsTemplate,
         [Switch]$Recurse
     )
@@ -830,6 +869,7 @@ function Export-LibraryArtifact {
             if ($PSCmdlet.ShouldProcess($libraryArtifact.OutputFilePath)) {
                 $libraryArtifactFile = $libraryArtifact.OutputTemplate |
                 ConvertTo-Json -Depth $jsonDepth |
+                Edit-LineEndings -LineEnding $LineEnding |
                 New-Item -Path $libraryArtifact.OutputFilePath -ItemType File -Force
                 $libraryArtifactMessage += "`n [COMPLETE]"
                 Write-Verbose $libraryArtifactMessage
@@ -852,6 +892,7 @@ $functionsToExport = @(
     "Export-LibraryArtifact"
     "Invoke-UseCacheFromModule"
     "Invoke-UpdateCacheInModule"
+    "Edit-LineEndings"
 )
 
 # Export module members
