@@ -777,7 +777,7 @@ function Edit-LineEndings {
             "unix" { $eol = "`n" }
             "win" { $eol = "`r`n" }
         }
-    
+
     }
 
     Process {
