@@ -59,7 +59,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.2"
+  version = "1.1.3"
 
   providers = {
     azurerm              = azurerm
@@ -90,7 +90,7 @@ You have also assigned the current Subscription from your provider configuration
 Check the following Policy Assignments to see how these have been configured with default settings for parameters and enforcement mode:
 
 - Scope = `root`
-  - `Deploy-ASCDF-Config`
+  - `Deploy-MDFC-Config`
   - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`

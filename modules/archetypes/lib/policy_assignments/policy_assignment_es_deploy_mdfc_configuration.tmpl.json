@@ -1,10 +1,10 @@
 {
-  "name": "Deploy-ASCDF-Config",
+  "name": "Deploy-MDFC-Config",
   "type": "Microsoft.Authorization/policyAssignments",
   "apiVersion": "2019-09-01",
   "properties": {
-    "description": "Deploy ASC configuration for Azure Defender and Security Contacts.",
-    "displayName": "Deploy Azure Security Center configuration",
+    "description": "Deploy Microsoft Defender for Cloud and Security Contacts",
+    "displayName": "Deploy Microsoft Defender for Cloud configuration",
     "notScopes": [],
     "parameters": {
       "emailSecurityContact": {
@@ -19,7 +19,7 @@
       "ascExportResourceGroupLocation": {
         "value": "${default_location}"
       },
-      "enableAscForKubernetes": {
+      "enableAscForContainers": {
         "value": "Disabled"
       },
       "enableAscForSql": {
@@ -40,9 +40,6 @@
       "enableAscForAppServices": {
         "value": "Disabled"
       },
-      "enableAscForRegistries": {
-        "value": "Disabled"
-      },
       "enableAscForKeyVault": {
         "value": "Disabled"
       },
@@ -53,7 +50,7 @@
         "value": "Disabled"
       }
     },
-    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-ASCDF-Config",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },
