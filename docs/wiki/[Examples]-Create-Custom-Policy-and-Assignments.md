@@ -30,14 +30,14 @@ You will update the built-in configuration by following these steps:
 
 In order to create and assign custom policies, we need to create both a definition file and an assignment file for each custom policy or custom policy set definition. In this example we will do this by using the below files:
 
-- [lib/policy_definitions/policy_definition_es_enforce_rg_tags.json](#libpolicy_definitions_policy_definition_es_enforce_rg_tagsjson)
-- [lib/policy_definitions/policy_definition_es_enforce_resource_tags.json](#libpolicy_definitions_policy_definition_es_enforce_resource_tagsjson)
-- [lib/policy_definitions/policy_definition_es_deny_nic_nsg.json](#libpolicy_definitions_policy_definition_es_deny_nic_nsgjson)
-- [lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tagging.tmpl.json](#libpolicy_set_definitions_policy_set_definition_enforce_mandatory_taggingtmpljson)
+- [lib/policy_definitions/policy_definition_es_enforce_rg_tags.json](#libpolicy_definitionspolicy_definition_es_enforce_rg_tagsjson)
+- [lib/policy_definitions/policy_definition_es_enforce_resource_tags.json](#libpolicy_definitionspolicy_definition_es_enforce_resource_tagsjson)
+- [lib/policy_definitions/policy_definition_es_deny_nic_nsg.json](#libpolicy_definitionspolicy_definition_es_deny_nic_nsgjson)
+- [lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tagging.tmpl.json](#libpolicy_set_definitionspolicy_set_definition_enforce_mandatory_taggingtmpljson)
 - [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_resource_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_resource_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
-- [lib/policy_assignments/policy_assignment_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
+- [lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
 In your `/lib` directory create a `policy_definitions` subdirectory if you don't already have one.
 
@@ -163,7 +163,7 @@ Now create a `policy_definition_es_policy_enforce_resource_tags.json` file. This
 
 Next create a `policy_definition_es_policy_deny_nsg_nic.json` file. This file will contain the policy definition for our last custom policy - `Deny-NSG-NIC`. Copy the below code in to the file and save it.
 
-### `lib/policy_definitions/policy_definition_es_deny_nsg_nic.json`
+### `lib/policy_definitions/policy_definition_es_deny_nic_nsg.json`
 
 ```json
 {
@@ -220,7 +220,7 @@ In your `/lib` directory create a `policy_set_definitions` subdirectory.
 
 In the `policy_set_definitions` subdirectory, create a `policy_set_definition_enforce_mandatory_tags.json` file. This file will contain the Policy Set Definition for `Enforce-Mandatory-Tags`. The policy set will contain the `Enforce-RG-Tags` and `Enforce-Resource-Tags` custom policies that you previously created. Copy the below code in to the file and save it.
 
-### `lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tags.tmpl.json`
+### `lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tagging.tmpl.json`
 
 ```json
 {
@@ -305,8 +305,8 @@ In order to assign your custom policies or policy sets, you need to create polic
 
 - [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_resource_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_resource_tagsjson)
-- [lib/policy_assignments/policy_assignment_es_deny_nsg_nic.json](#libpolicy_assignmentspolicy_assignment_es_deny_nsg_nic_tagsjson)
-- [lib/policy_assignments/policy_assignment_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_enforce_mandatory_taggingjson)
+- [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
+- [lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
 You will then need to create a file named `policy_assignment_es_enforce_rg_tags.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
@@ -401,9 +401,9 @@ Next create a file named `policy_assignment_es_deny_nic_nsg.json` within the `po
   }
 ```
 
-Finally, create a file named `policy_assignment_enforce_mandatory_tagging.json`. Copy the below code in to the file and save it.
+Finally, create a file named `policy_assignment_es_enforce_mandatory_tagging.json`. Copy the below code in to the file and save it.
 
-### `lib/policy_assignments/policy_assignment_enforce_mandatory_tagging.json`
+### `lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json`
 
 ```json
 {
