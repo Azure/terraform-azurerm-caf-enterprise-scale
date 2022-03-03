@@ -217,7 +217,7 @@ In your `/lib` directory create a `policy_set_definitions` subdirectory.
 
 In the `policy_set_definitions` subdirectory, create a `policy_set_definition_enforce_mandatory_tags.json` file. This file will contain the Policy Set Definition for `Enforce-Mandatory-Tags`. The policy set will contain the `Enforce-RG-Tags` and `Enforce-Resource-Tags` custom policies that you previously created. Copy the below code in to the file and save it.
 
-### `lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tagging.tmpl.json`
+### `lib/policy_set_definitions/policy_set_definition_enforce_mandatory_tagging.json`
 
 ```json
 {
