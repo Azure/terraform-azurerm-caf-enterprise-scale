@@ -15,7 +15,7 @@ echo "==> Force logout from az cli..."
 az logout
 
 echo "==> Creating terraform_override.tf with required_provider and local backend configuration..."
-cat >terraform_override.tf <<TFCONFIG
+tee terraform_override.tf <<TFCONFIG
 terraform {
   required_providers {
     azurerm = {
@@ -32,9 +32,6 @@ terraform {
     storage_account_name = "$STORAGE_ACCOUNT_NAME"
     container_name       = "$STORAGE_CONTAINER_NAME"
     key                  = "terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
-    client_id            = "$ARM_CLIENT_ID"
-    client_secret        = "$ARM_CLIENT_SECRET"
-    tenant_id            = "$ARM_TENANT_ID"
   }
 }
 TFCONFIG
