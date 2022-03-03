@@ -11,6 +11,9 @@ TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
 echo "==> Switching directories..."
 cd "$TF_WORKSPACE"
 
+echo "==> Force logout from az cli..."
+az logout
+
 echo "==> Creating terraform_override.tf with required_provider and local backend configuration..."
 cat >terraform_override.tf <<TFCONFIG
 terraform {
