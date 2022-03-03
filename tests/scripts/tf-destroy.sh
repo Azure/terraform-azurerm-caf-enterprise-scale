@@ -7,7 +7,6 @@ set -e
 #
 
 TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
-TF_STATE="../tfstate/terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
 
 echo "==> Switching directories..."
 cd "$TF_WORKSPACE"
@@ -20,8 +19,7 @@ terraform destroy \
     -var "primary_location=$PRIMARY_LOCATION" \
     -var "secondary_location=$SECONDARY_LOCATION" \
     -auto-approve \
-    -parallelism="$PARALLELISM" \
-    -state="$TF_STATE"
+    -parallelism="$PARALLELISM"
 status=$?
 
 if [ $status -ne 0 ]; then

@@ -15,9 +15,14 @@ jobs:
     steps:
       - template: templates/tests-strategy.yml
 
+  - job: backend_generator
+    displayName: "Backend Storage Generator"
+    steps:
+      - template: templates/tests-backend.yml
+
   - job: run_unit_tests
     displayName: "Unit Tests"
-    dependsOn: matrix_generator
+    dependsOn: and(matrix_generator, backend_generator)
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
     steps:
