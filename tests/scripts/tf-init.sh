@@ -11,8 +11,17 @@ TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
 echo "==> Switching directories..."
 cd "$TF_WORKSPACE"
 
-echo "==> Force logout from az cli..."
-az logout
+echo "==> Authenticating cli..."
+az login \
+    --service-principal \
+    --tenant "$ARM_TENANT_ID" \
+    --username "$ARM_CLIENT_ID" \
+    --password "$ARM_CLIENT_SECRET" \
+    --query [?isDefault]
+
+echo "==> Setting active Subscription..."
+az account set \
+    --subscription "$ARM_SUBSCRIPTION_ID"
 
 echo "==> Creating terraform_override.tf with required_provider and local backend configuration..."
 tee terraform_override.tf <<TFCONFIG
