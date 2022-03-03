@@ -33,7 +33,7 @@ steps:
       script: "make opa-run-tests"
     env:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
-    condition: eq(${{ parameters.run_type }}, 'unit')
+    condition: eq("${{ parameters.run_type }}", "unit")
 
   - task: Bash@3
     displayName: "[terraform apply] ${{ parameters.module_name }}"
@@ -43,4 +43,4 @@ steps:
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
-    condition: eq(${{ parameters.run_type }}, 'e2e')
+    condition: eq("${{ parameters.run_type }}", "e2e")
