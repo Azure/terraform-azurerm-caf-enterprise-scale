@@ -21,7 +21,7 @@ jobs:
       - template: templates/tests-backend.yml
 
   - job: run_e2e_tests_001
-    displayName: "E2E"
+    displayName: "E2E Tests 001"
     dependsOn:
       - matrix_generator
       - backend_generator
@@ -42,7 +42,7 @@ jobs:
           run_type: e2e
 
   - job: run_e2e_tests_002
-    displayName: "E2E"
+    displayName: "E2E Tests 002"
     dependsOn: run_e2e_tests_001
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
@@ -61,7 +61,7 @@ jobs:
           run_type: e2e
 
   - job: run_e2e_tests_003
-    displayName: "E2E"
+    displayName: "E2E Tests 003"
     dependsOn: run_e2e_tests_002
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
@@ -80,7 +80,7 @@ jobs:
           run_type: e2e
 
   - job: run_e2e_clean_up
-    displayName: "E2E Clean-up"
+    displayName: "E2E Tests Clean-up"
     dependsOn: run_e2e_tests_003
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]

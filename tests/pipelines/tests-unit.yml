@@ -21,7 +21,7 @@ jobs:
       - template: templates/tests-backend.yml
 
   - job: run_unit_tests
-    displayName: "Unit"
+    displayName: "Unit Tests"
     dependsOn:
       - matrix_generator
       - backend_generator
