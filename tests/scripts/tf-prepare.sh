@@ -58,9 +58,7 @@ echo "##vso[task.setvariable variable=ARM_CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CL
 echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PATH;]$CREDENTIALS_WORKSPACE/$SPN_NAME.pfx"
 echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PASSWORD;]$CERTIFICATE_PASSWORD"
 
-echo "==> Terraform Variable (Root ID) - $TF_ROOT_ID"
-echo "##vso[task.setvariable variable=TF_ROOT_ID;]$TF_ROOT_ID"
-
-echo "==> Terraform Version - $TF_VERSION"
-echo "==> Terraform Provider Version - $TF_AZ_VERSION"
+echo "==> Terraform Variable (Root ID)   - $TF_ROOT_ID"
+echo "==> Terraform Version              - $TF_VERSION"
+echo "==> Terraform Provider Version     - $TF_AZ_VERSION"
 echo "==> Terraform Variable (Root Name) - ES-$TF_VERSION-$TF_AZ_VERSION"
