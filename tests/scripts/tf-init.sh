@@ -28,9 +28,6 @@ terraform {
     storage_account_name = "$STORAGE_ACCOUNT_NAME"
     container_name       = "$STORAGE_CONTAINER_NAME"
     key                  = "terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
-    use_azuread_auth     = true
-    subscription_id      = "$ARM_SUBSCRIPTION_ID"
-    tenant_id            = "$ARM_TENANT_ID"
   }
 }
 TFCONFIG
