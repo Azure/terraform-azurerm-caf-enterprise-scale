@@ -22,7 +22,9 @@ jobs:
 
   - job: run_e2e_tests
     displayName: "E2E Tests"
-    dependsOn: and(matrix_generator, backend_generator)
+    dependsOn:
+      - matrix_generator
+      - backend_generator
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
     timeoutInMinutes: 90
