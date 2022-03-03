@@ -88,7 +88,7 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 90
+    timeoutInMinutes: 30
     cancelTimeoutInMinutes: 30
     steps:
       - template: templates/tests-common.yml
