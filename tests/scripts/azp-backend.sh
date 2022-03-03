@@ -49,7 +49,7 @@ SA_ID=$(
 )
 
 # Set STORAGE_ACCOUNT_NAME to an output variable for downstream consumption.
-Write-Output "##vso[task.setVariable variable=STORAGE_ACCOUNT_NAME;isOutput=true]$SA_NAME"
+echo "##vso[task.setVariable variable=STORAGE_ACCOUNT_NAME;isOutput=true]$SA_NAME"
 
 echo "==> Create or update Storage Account permissions..."
 az role assignment create \
@@ -67,4 +67,4 @@ az storage container create \
     --out tsv
 
 # Set STORAGE_CONTAINER_NAME to an output variable for downstream consumption.
-Write-Output "##vso[task.setVariable variable=STORAGE_CONTAINER_NAME;isOutput=true]$SC_NAME"
+echo "##vso[task.setVariable variable=STORAGE_CONTAINER_NAME;isOutput=true]$SC_NAME"
