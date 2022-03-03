@@ -23,7 +23,7 @@ $jsonDepth = 4
 $terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
 $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
 
-function New-RandomId {
+function Get-RandomId {
     [CmdletBinding()]
     [OutputType([String])]
     param (
@@ -158,7 +158,7 @@ for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
     $matrixObject | Add-Member `
         -NotePropertyName $jobName1 `
         -NotePropertyValue @{
-        TF_ROOT_ID                      = New-RandomId
+        TF_ROOT_ID                      = Get-RandomId
         TF_VERSION                      = $terraformVersion
         TF_AZ_VERSION                   = $azurermProviderVersionBase
         TF_JOB_ID                       = $jobId1
@@ -169,7 +169,7 @@ for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
     $matrixObject | Add-Member `
         -NotePropertyName $jobName2 `
         -NotePropertyValue @{
-        TF_ROOT_ID                      = New-RandomId
+        TF_ROOT_ID                      = Get-RandomId
         TF_VERSION                      = $terraformVersion
         TF_AZ_VERSION                   = $azurermProviderVersionLatest
         TF_JOB_ID                       = $jobId2
