@@ -28,6 +28,9 @@ az group create \
     --query 'properties.provisioningState' \
     --out tsv
 
+# Set STORAGE_ACCOUNT_NAME to an output variable for downstream consumption.
+echo "##vso[task.setVariable variable=STORAGE_ACCOUNT_RSG_NAME;isOutput=true]$RSG_NAME"
+
 echo "==> Create or update Storage Account..."
 # Storage account name must be lowercase alphanumeric
 SA_NAME=$(
