@@ -29,6 +29,10 @@ terraform {
     storage_account_name = "$STORAGE_ACCOUNT_NAME"
     container_name       = "$STORAGE_CONTAINER_NAME"
     key                  = "terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
+    client_id            = "$ARM_CLIENT_ID"
+    client_secret        = "$ARM_CLIENT_SECRET"
+    tenant_id            = "$ARM_TENANT_ID"
+    use_microsoft_graph  = true
   }
 }
 TFCONFIG
