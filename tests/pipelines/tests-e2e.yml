@@ -38,6 +38,7 @@ jobs:
           targetType: "inline"
           script: "make tf-init"
         env:
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
 
       - task: Bash@3
@@ -64,6 +65,7 @@ jobs:
           targetType: "inline"
           script: "make tf-init"
         env:
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
 
       - task: Bash@3
@@ -90,6 +92,7 @@ jobs:
           targetType: "inline"
           script: "make tf-init"
         env:
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
 
       - task: Bash@3
