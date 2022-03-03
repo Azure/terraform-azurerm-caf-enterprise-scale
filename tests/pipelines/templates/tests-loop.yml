@@ -1,0 +1,46 @@
+---
+parameters:
+  - name: module_name
+    type: string
+  - name: module_path
+    type: string
+  - name: run_type
+    type: string
+
+steps:
+  - task: Bash@3
+    displayName: "[terraform init] ${{ parameters.module_name }}"
+    inputs:
+      targetType: "inline"
+      script: "make tf-init"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "${{ parameters.module_path }}"
+
+  - task: Bash@3
+    displayName: "[terraform plan] ${{ parameters.module_name }}"
+    inputs:
+      targetType: "inline"
+      script: "make tf-plan"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "${{ parameters.module_path }}"
+
+  - task: Bash@3
+    displayName: "[conftest] ${{ parameters.module_name }}"
+    inputs:
+      targetType: "inline"
+      script: "make opa-run-tests"
+    env:
+      TEST_MODULE_PATH: "${{ parameters.module_path }}"
+    condition: eq(${{ parameters.run_type }}, 'unit')
+
+  - task: Bash@3
+    displayName: "[terraform apply] ${{ parameters.module_name }}"
+    inputs:
+      targetType: "inline"
+      script: "make tf-apply"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TEST_MODULE_PATH: "${{ parameters.module_path }}"
+    condition: eq(${{ parameters.run_type }}, 'e2e')

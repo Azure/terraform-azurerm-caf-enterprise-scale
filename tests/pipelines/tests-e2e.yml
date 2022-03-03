@@ -20,11 +20,68 @@ jobs:
     steps:
       - template: templates/tests-backend.yml
 
-  - job: run_e2e_tests
-    displayName: "E2E Tests"
+  - job: run_e2e_tests_001
+    displayName: "E2E"
     dependsOn:
       - matrix_generator
       - backend_generator
+    strategy:
+      matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
+    variables:
+      STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
+      STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
+      STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
+    timeoutInMinutes: 30
+    steps:
+      - template: templates/tests-common.yml
+
+      - template: templates/tests-loop.yml
+        parameters:
+          module_name: "Test 001 Baseline"
+          module_path: "tests/modules/test_001_baseline"
+          run_type: e2e
+
+  - job: run_e2e_tests_002
+    displayName: "E2E"
+    dependsOn: run_e2e_tests_001
+    strategy:
+      matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
+    variables:
+      STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
+      STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
+      STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
+    timeoutInMinutes: 30
+    steps:
+      - template: templates/tests-common.yml
+
+      - template: templates/tests-loop.yml
+        parameters:
+          module_name: "Test 002 Add Custom Core"
+          module_path: "tests/modules/test_002_add_custom_core"
+          run_type: e2e
+
+  - job: run_e2e_tests_003
+    displayName: "E2E"
+    dependsOn: run_e2e_tests_002
+    strategy:
+      matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
+    variables:
+      STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
+      STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
+      STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
+    timeoutInMinutes: 30
+    steps:
+      - template: templates/tests-common.yml
+
+      - template: templates/tests-loop.yml
+        parameters:
+          module_name: "Test 003 Add Management and Connectivity"
+          module_path: "tests/modules/test_003_add_mgmt_conn"
+          run_type: e2e
+
+  - job: run_e2e_clean_up
+    displayName: "E2E Clean-up"
+    dependsOn: run_e2e_tests_003
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
     variables:
@@ -37,87 +94,6 @@ jobs:
       - template: templates/tests-common.yml
 
       - task: Bash@3
-        displayName: "Test 001 (terraform init) Baseline"
-        inputs:
-          targetType: "inline"
-          script: "make tf-init"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_001_baseline"
-
-      - task: Bash@3
-        displayName: "Test 001 (terraform plan) Baseline"
-        inputs:
-          targetType: "inline"
-          script: "make tf-plan"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_001_baseline"
-
-      - task: Bash@3
-        displayName: "Test 001 (terraform apply) Baseline"
-        inputs:
-          targetType: "inline"
-          script: "make tf-apply"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_001_baseline"
-
-      - task: Bash@3
-        displayName: "Test 002 (terraform init) Add Custom Core"
-        inputs:
-          targetType: "inline"
-          script: "make tf-init"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
-
-      - task: Bash@3
-        displayName: "Test 002 (terraform plan) Add Custom Core"
-        inputs:
-          targetType: "inline"
-          script: "make tf-plan"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
-
-      - task: Bash@3
-        displayName: "Test 002 (terraform apply) Add Custom Core"
-        inputs:
-          targetType: "inline"
-          script: "make tf-apply"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_002_add_custom_core"
-
-      - task: Bash@3
-        displayName: "Test 003 (terraform init) Add Management and Connectivity"
-        inputs:
-          targetType: "inline"
-          script: "make tf-init"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
-
-      - task: Bash@3
-        displayName: "Test 003 (terraform plan) Add Management and Connectivity"
-        inputs:
-          targetType: "inline"
-          script: "make tf-plan"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
-
-      - task: Bash@3
-        displayName: "Test 003 (terraform apply) Add Management and Connectivity"
-        inputs:
-          targetType: "inline"
-          script: "make tf-apply"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          TEST_MODULE_PATH: "tests/modules/test_003_add_mgmt_conn"
-
-      - task: Bash@3
         displayName: "Clean-up Test Environment (terraform destroy)"
         inputs:
           targetType: "inline"
@@ -126,4 +102,4 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           # Task uses first test folder to run destroy to avoid terraform init failure following earlier errors
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
-        condition: ne(variables.ALWAYS_DESTROY, 'false')
+    condition: ne(variables.ALWAYS_DESTROY, 'false')
