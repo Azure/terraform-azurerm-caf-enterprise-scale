@@ -43,7 +43,9 @@ jobs:
 
   - job: run_e2e_tests_002
     displayName: "E2E Tests 002"
-    dependsOn: run_e2e_tests_001
+    dependsOn:
+      - matrix_generator
+      - run_e2e_tests_001
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
     variables:
@@ -62,7 +64,9 @@ jobs:
 
   - job: run_e2e_tests_003
     displayName: "E2E Tests 003"
-    dependsOn: run_e2e_tests_002
+    dependsOn:
+      - matrix_generator
+      - run_e2e_tests_002
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
     variables:
@@ -81,7 +85,9 @@ jobs:
 
   - job: run_e2e_clean_up
     displayName: "E2E Tests Clean-up"
-    dependsOn: run_e2e_tests_003
+    dependsOn:
+      - matrix_generator
+      - run_e2e_tests_003
     strategy:
       matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
     variables:
