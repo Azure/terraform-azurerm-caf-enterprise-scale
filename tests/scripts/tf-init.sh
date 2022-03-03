@@ -32,7 +32,6 @@ terraform {
     client_id            = "$ARM_CLIENT_ID"
     client_secret        = "$ARM_CLIENT_SECRET"
     tenant_id            = "$ARM_TENANT_ID"
-    use_microsoft_graph  = true
   }
 }
 TFCONFIG
