@@ -7,7 +7,6 @@ In this example you will use three custom policies and a custom policy set defin
 You will update the built-in configuration by following these steps:
 
 - Create the custom policy definition file for `Enforce-RG-Tags`
-
 - Create the custom policy definition file for `Enforce-Resource-Tags`
 
 - Create the custom policy definition file for `Deny-NIC-NSG`
