@@ -83,7 +83,7 @@ jobs:
           run_type: e2e
 
   - job: run_e2e_clean_up
-    displayName: "E2E Tests Clean-up"
+    displayName: "E2E Clean-up"
     dependsOn:
       - matrix_generator
       - backend_generator
