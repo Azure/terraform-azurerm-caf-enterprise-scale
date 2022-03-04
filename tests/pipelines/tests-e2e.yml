@@ -99,7 +99,11 @@ jobs:
     condition: |
       or
       (
-        and(or(failed(), cancelled()), ne(variables.ALWAYS_DESTROY, 'false')),
+        and
+        (
+          or(failed(), canceled()),
+          ne(variables.ALWAYS_DESTROY, 'false')
+        ),
         succeeded()
       )
     steps:
