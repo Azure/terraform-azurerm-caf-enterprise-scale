@@ -75,7 +75,7 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 30
+    timeoutInMinutes: 60
     steps:
       - template: templates/tests-common.yml
 
@@ -97,8 +97,8 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 30
-    cancelTimeoutInMinutes: 30
+    timeoutInMinutes: 60
+    cancelTimeoutInMinutes: 60
     steps:
       - template: templates/tests-common.yml
 
@@ -111,4 +111,4 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           # Task uses first test folder to run destroy to avoid terraform init failure following earlier errors
           TEST_MODULE_PATH: "tests/modules/test_001_baseline"
-    condition: ne(variables.ALWAYS_DESTROY, 'false')
+    condition: or(succeeded(), ne(variables.ALWAYS_DESTROY, 'false'))
