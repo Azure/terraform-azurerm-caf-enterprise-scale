@@ -13,7 +13,6 @@ You will update the built-in configuration by following these steps:
 - Make the custom policy definitions available for use in Azure by extending the built-in archetype for `es_root`
 - Create the policy assignment files for `Enforce-RG-Tags`, `Enforce-Resource-Tags`, `Deny-NIC-NSG` and `Enforce-Mandatory-Tags`
 - Assign the custom policy set definition for `Enforce-Mandatory-Tags` at the `es_root` Management Group by extending the built-in archetype for `es_root`
-
 - Assign the custom policy definition for `Deny-NIC-NSG` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
