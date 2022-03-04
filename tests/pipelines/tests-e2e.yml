@@ -32,6 +32,7 @@ jobs:
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
     timeoutInMinutes: 30
+    cancelTimeoutInMinutes: 30
     steps:
       - template: templates/tests-common.yml
 
@@ -53,6 +54,7 @@ jobs:
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
     timeoutInMinutes: 30
+    cancelTimeoutInMinutes: 30
     steps:
       - template: templates/tests-common.yml
 
@@ -73,7 +75,8 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 60
+    timeoutInMinutes: 120
+    cancelTimeoutInMinutes: 60
     steps:
       - template: templates/tests-common.yml
 
@@ -81,31 +84,4 @@ jobs:
         parameters:
           module_path: "tests/modules/test_003_add_mgmt_conn"
           run_type: e2e
-
-  - job: run_e2e_clean_up
-    displayName: "E2E Tests Clean-up"
-    dependsOn:
-      - matrix_generator
-      - backend_generator
-      - run_e2e_tests_003
-    strategy:
-      matrix: $[ dependencies.matrix_generator.outputs['build_strategy.matrix_json'] ]
-    variables:
-      STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
-      STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
-      STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 60
-    cancelTimeoutInMinutes: 60
-    steps:
-      - template: templates/tests-common.yml
-
-      - task: Bash@3
-        displayName: "Clean-up Test Environment (terraform destroy)"
-        inputs:
-          targetType: "inline"
-          script: "make tf-destroy"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-          # Task uses first test folder to run destroy to avoid terraform init failure following earlier errors
-          TEST_MODULE_PATH: "tests/modules/test_001_baseline"
-    condition: or(succeeded(), ne(variables.ALWAYS_DESTROY, 'false'))
+          destroy: true
