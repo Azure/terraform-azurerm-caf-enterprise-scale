@@ -1,7 +1,5 @@
 ---
 parameters:
-  - name: module_name
-    type: string
   - name: module_path
     type: string
   - name: run_type
@@ -9,7 +7,7 @@ parameters:
 
 steps:
   - task: Bash@3
-    displayName: "[terraform init] ${{ parameters.module_name }}"
+    displayName: "[terraform init]"
     inputs:
       targetType: "inline"
       script: "make tf-init"
@@ -18,7 +16,7 @@ steps:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
 
   - task: Bash@3
-    displayName: "[terraform plan] ${{ parameters.module_name }}"
+    displayName: "[terraform plan]"
     inputs:
       targetType: "inline"
       script: "make tf-plan"
@@ -27,7 +25,7 @@ steps:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
 
   - task: Bash@3
-    displayName: "[conftest] ${{ parameters.module_name }}"
+    displayName: "[conftest run]"
     inputs:
       targetType: "inline"
       script: "make opa-run-tests"
@@ -36,7 +34,7 @@ steps:
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
 
   - task: Bash@3
-    displayName: "[terraform apply] ${{ parameters.module_name }}"
+    displayName: "[terraform apply]"
     inputs:
       targetType: "inline"
       script: "make tf-apply"

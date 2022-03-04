@@ -37,7 +37,6 @@ jobs:
 
       - template: templates/tests-loop.yml
         parameters:
-          module_name: "Test 001 Baseline"
           module_path: "tests/modules/test_001_baseline"
           run_type: e2e
 
@@ -59,7 +58,6 @@ jobs:
 
       - template: templates/tests-loop.yml
         parameters:
-          module_name: "Test 002 Add Custom Core"
           module_path: "tests/modules/test_002_add_custom_core"
           run_type: e2e
 
@@ -81,7 +79,6 @@ jobs:
 
       - template: templates/tests-loop.yml
         parameters:
-          module_name: "Test 003 Add Management and Connectivity"
           module_path: "tests/modules/test_003_add_mgmt_conn"
           run_type: e2e
 

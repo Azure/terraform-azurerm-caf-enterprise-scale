@@ -35,31 +35,28 @@ jobs:
       - template: templates/tests-common.yml
 
       - task: Bash@3
-        displayName: "[terraform fmt] Terraform Linting"
+        displayName: "[terraform fmt]"
         inputs:
           targetType: "inline"
           script: "make tf-fmt"
 
       - task: Bash@3
-        displayName: "[conftest] Install Pre-requisites"
+        displayName: "[conftest install]"
         inputs:
           targetType: "inline"
           script: "make opa-install"
 
       - template: templates/tests-loop.yml
         parameters:
-          module_name: "Test 001 Baseline"
           module_path: "tests/modules/test_001_baseline"
           run_type: unit
 
       - template: templates/tests-loop.yml
         parameters:
-          module_name: "Test 002 Add Custom Core"
           module_path: "tests/modules/test_002_add_custom_core"
           run_type: unit
 
       - template: templates/tests-loop.yml
         parameters:
-          module_name: "Test 003 Add Management and Connectivity"
           module_path: "tests/modules/test_003_add_mgmt_conn"
           run_type: unit
