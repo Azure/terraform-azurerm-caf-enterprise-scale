@@ -4,9 +4,6 @@ parameters:
     type: string
   - name: run_type
     type: string
-  - name: destroy
-    type: boolean
-    default: false
 
 steps:
   - task: Bash@3
@@ -17,6 +14,7 @@ steps:
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
+    condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit', 'e2e', 'destroy'))
 
   - task: Bash@3
     displayName: "[terraform plan]"
@@ -26,6 +24,7 @@ steps:
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
+    condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit', 'e2e'))
 
   - task: Bash@3
     displayName: "[conftest run]"
@@ -54,19 +53,4 @@ steps:
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
-    condition: |
-      or
-      (
-        and
-        (
-          or(failed(), cancelled()),
-          eq('${{ parameters.run_type }}', 'e2e'),
-          ne(variables.ALWAYS_DESTROY, 'false')
-        ),
-        and
-        (
-          or(succeeded(), ne(variables.ALWAYS_DESTROY, 'false')),
-          eq('${{ parameters.run_type }}', 'e2e'),
-          ${{ parameters.destroy }}
-        )
-      )
+    condition: and(succeeded(), eq('${{ parameters.run_type }}', 'destroy'))
