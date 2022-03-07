@@ -490,6 +490,7 @@ As you have already saved the `Deny-NIC-NSG` Custom Policy Set at `es_root`, thi
   "extend_es_landing_zones": {
     "policy_assignments": ["Deny-NIC-NSG"],
     "policy_definitions": [],
+    "policy_set_definitions": [],
     "role_definitions": [],
     "archetype_config": {
       "access_control": {
