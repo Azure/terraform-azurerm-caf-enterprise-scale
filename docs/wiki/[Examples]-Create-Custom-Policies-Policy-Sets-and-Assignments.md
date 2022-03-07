@@ -500,10 +500,6 @@ As you have already saved the `Deny-NIC-NSG` Custom Policy Set at `es_root`, thi
 }
 ```
 
-You should now kick-off your Terraform workflow again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `Deny-NIC-NSG` Policy Definition will be assigned at the `Landing Zones` Management Group.
-
-```hcl
-terraform apply
-```
+You should now kick-off your Terraform workflow (init, plan, apply) again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `Deny-NIC-NSG` Policy Definition will be assigned at the `Landing Zones` Management Group.
 
 You have now successfully created and assigned both a Custom Policy Definition and a Custom Policy Set Definition within your Azure environment. You can re-use the steps in this article for any Custom Policies of your own that you may wish to use.
