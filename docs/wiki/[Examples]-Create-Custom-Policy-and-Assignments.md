@@ -434,7 +434,7 @@ Finally, create a file named `policy_assignment_es_enforce_mandatory_tagging.jso
 
 ## Make the Custom Policy Definitions and Policy Set Definition available for use
 
-You now need to save your custom policy and policy set definitions at the `es_root` Management Group to ensure they can be used at that scope or any scope beneath. To do that, we need to extend the built-in archetype for `es_root`. 
+You now need to save your custom policy and policy set definitions at the `es_root` Management Group to ensure they can be used at that scope or any scope beneath. To do that, we need to extend the built-in archetype for `es_root`.
 >NOTE: Extending built-in archetypes is explained further in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions).
 
 If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. This code saves the custom policy definition and policy set definitions but we still haven't assigned them anywhere yet.
