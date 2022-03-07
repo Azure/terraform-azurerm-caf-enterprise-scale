@@ -28,6 +28,8 @@ In order to create and assign custom policies, we need to create both a definiti
 - [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
+>NOTE: This module provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path. For more info [click here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/[Variables]-template_file_variables).
+
 ## Create Custom Policy Definition
 
 In your `/lib` directory create a `policy_definitions` subdirectory if you don't already have one. You can learn more about archetypes and custom libraries in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions).
@@ -488,7 +490,6 @@ As you have already saved the `Deny-NIC-NSG` Custom Policy Set at `es_root`, thi
   "extend_es_landing_zones": {
     "policy_assignments": ["Deny-NIC-NSG"],
     "policy_definitions": [],
-    "policy_set_definitions": [],
     "role_definitions": [],
     "archetype_config": {
       "access_control": {
