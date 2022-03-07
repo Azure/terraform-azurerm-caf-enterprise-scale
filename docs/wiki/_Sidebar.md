@@ -26,7 +26,8 @@
     - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
     - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
     - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
-    - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
+    - [Expand Built-in Archetype Definitions][wiki_create_custom_policies_and_policy_sets]
+    - [Create Custom Policies and Policy Sets][wiki_expand_built_in_archetype_definitions]
     - [Override Module Role Assignments][wiki_override_module_role_assignments]
     - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
@@ -84,3 +85,4 @@
 [wiki_contributing_to_documentation]:         ./Contributing-to-Documentation "Wiki - Contributing to Documentation"
 [wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+[wiki_create_custom_policies_and_policy_sets]:      ./%5BExamples%5D-Create-Custom-Policies-and-Policy-Sets "Wiki - Create Custom Policies and Policy Sets"
