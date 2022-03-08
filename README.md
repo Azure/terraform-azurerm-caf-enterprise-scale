@@ -203,6 +203,7 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
   - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
   - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
+  - [Create Custom Policies, Policy Sets and Assignments][wiki_create_custom_policies_policy_sets_and_assignments]
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
@@ -382,3 +383,4 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_contributing_to_documentation]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Documentation "Wiki - Contributing to Documentation"
 [wiki_expand_built_in_archetype_definitions]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+[wiki_create_custom_policies_policy_sets_and_assignments]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
