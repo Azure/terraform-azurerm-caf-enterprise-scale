@@ -1,6 +1,6 @@
 ## Overview
 
-This page describes how to assign built-in Azure Policies to your Enterprise Scale deployment.
+This page describes how to assign built-in Azure Policies to your environment using the `caf-enterprise-scale` module.
 
 In this example you will use two built-in policies and one built-in policy set definition. You will use policies that are not already availble for assignment via the default  Enterprise Scale deployment.
 The policies you will use are `Not allowed resource types`  and `Deploy default Microsoft IaaSAntimalware extension for Windows Server`. The policy set definition (Initiative) you will use is  `NIST SP 800-53 Rev. 5`.
