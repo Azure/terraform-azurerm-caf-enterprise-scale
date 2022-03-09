@@ -1,16 +1,6 @@
-variable "root_id_1" {
+variable "root_id" {
   type    = string
-  default = "root-1"
-}
-
-variable "root_id_2" {
-  type    = string
-  default = "root-2"
-}
-
-variable "root_id_3" {
-  type    = string
-  default = "root-3"
+  default = "12345"
 }
 
 variable "root_name" {
@@ -18,9 +8,14 @@ variable "root_name" {
   default = "Test Framework"
 }
 
-variable "location" {
+variable "primary_location" {
   type    = string
-  default = "uksouth"
+  default = "northeurope"
+}
+
+variable "secondary_location" {
+  type    = string
+  default = "westeurope"
 }
 
 variable "create_duration_delay" {

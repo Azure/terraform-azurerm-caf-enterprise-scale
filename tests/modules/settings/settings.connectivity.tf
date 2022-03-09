@@ -6,8 +6,8 @@ locals {
         {
           enabled = true
           config = {
-            address_space                = ["10.100.0.0/16", ]
-            location                     = var.location
+            address_space                = ["10.100.0.0/22", ]
+            location                     = var.primary_location
             link_to_ddos_protection_plan = false
             dns_servers                  = []
             bgp_community                = ""
@@ -16,8 +16,8 @@ locals {
               enabled = true
               config = {
                 address_prefix           = "10.100.1.0/24"
-                gateway_sku_expressroute = "ErGw2AZ"
-                gateway_sku_vpn          = "VpnGw2AZ"
+                gateway_sku_expressroute = "ErGw1AZ"
+                gateway_sku_vpn          = "VpnGw1AZ"
               }
             }
             azure_firewall = {
@@ -36,8 +36,106 @@ locals {
             enable_outbound_virtual_network_peering = false
           }
         },
+        {
+          enabled = true
+          config = {
+            address_space                = ["10.101.0.0/22", ]
+            location                     = var.secondary_location
+            link_to_ddos_protection_plan = false
+            dns_servers                  = []
+            bgp_community                = ""
+            subnets                      = []
+            virtual_network_gateway = {
+              enabled = false
+              config = {
+                address_prefix           = "10.101.1.0/24"
+                gateway_sku_expressroute = "ErGw1AZ"
+                gateway_sku_vpn          = "VpnGw1AZ"
+              }
+            }
+            azure_firewall = {
+              enabled = false
+              config = {
+                address_prefix   = "10.101.0.0/24"
+                enable_dns_proxy = true
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = true
+                }
+              }
+            }
+            spoke_virtual_network_resource_ids      = []
+            enable_outbound_virtual_network_peering = false
+          }
+        },
       ]
-      vwan_hub_networks = []
+      vwan_hub_networks = [
+        {
+          enabled = true
+          config = {
+            address_prefix = "10.200.0.0/22"
+            location       = var.primary_location
+            sku            = ""
+            routes         = []
+            expressroute_gateway = {
+              enabled = true
+              config = {
+                scale_unit = 1
+              }
+            }
+            vpn_gateway = {
+              enabled = true
+              config = {
+                bgp_settings       = []
+                routing_preference = ""
+                scale_unit         = 1
+              }
+            }
+            azure_firewall = {
+              enabled = true
+              config = {
+                enable_dns_proxy = false
+                sku_tier         = "Standard"
+              }
+            }
+            spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections     = true
+          }
+        },
+        {
+          enabled = true
+          config = {
+            address_prefix = "10.201.0.0/22"
+            location       = var.secondary_location
+            sku            = ""
+            routes         = []
+            expressroute_gateway = {
+              enabled = false
+              config = {
+                scale_unit = 1
+              }
+            }
+            vpn_gateway = {
+              enabled = false
+              config = {
+                bgp_settings       = []
+                routing_preference = ""
+                scale_unit         = 1
+              }
+            }
+            azure_firewall = {
+              enabled = false
+              config = {
+                enable_dns_proxy = false
+                sku_tier         = "Standard"
+              }
+            }
+            spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections     = true
+          }
+        },
+      ]
       ddos_protection_plan = {
         enabled = false
         config = {

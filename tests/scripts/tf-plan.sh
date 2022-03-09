@@ -5,23 +5,25 @@ set -e
 # Shell Script
 # - Terraform Plan
 #
-TF_PLAN_JSON="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
+
+TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
+TF_PLAN_OUT="$TF_WORKSPACE/terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
+TF_STATE="../tfstate/terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
 
 echo "==> Switching directories..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment"
+cd "$TF_WORKSPACE"
 
 echo "==> Planning infrastructure..."
 terraform plan \
-    -var "location=$DEFAULT_LOCATION" \
-    -var "root_id_1=$TF_ROOT_ID_1" \
-    -var "root_id_2=$TF_ROOT_ID_2" \
-    -var "root_id_3=$TF_ROOT_ID_3" \
+    -var "root_id=$TF_ROOT_ID" \
     -var "root_name=ES-$TF_VERSION-$TF_AZ_VERSION" \
-    -state="./terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate" \
-    -out="terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
+    -var "primary_location=$PRIMARY_LOCATION" \
+    -var "secondary_location=$SECONDARY_LOCATION" \
+    -state="$TF_STATE" \
+    -out="$TF_PLAN_OUT"
 
 echo "==> Convert plan to JSON..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment" && terraform show -json "$TF_PLAN_JSON" >"$TF_PLAN_JSON".json
+terraform show -json "$TF_PLAN_OUT" >"$TF_PLAN_OUT".json
 
 echo "==> List all plan to JSON..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment" && find . -name "*.json"
+find . -name "*.json"

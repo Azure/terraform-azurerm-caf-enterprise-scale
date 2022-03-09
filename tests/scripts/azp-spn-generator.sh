@@ -24,7 +24,7 @@ echo "==> Create or update Resource Group..."
 RSG_NAME="$DEFAULT_PREFIX"
 az group create \
     --name "$RSG_NAME" \
-    --location "$DEFAULT_LOCATION" \
+    --location "$PRIMARY_LOCATION" \
     --query 'properties.provisioningState' \
     --out tsv
 
@@ -44,7 +44,7 @@ if [ -z "$KV_EXISTS" ]; then
     az keyvault create \
         --resource-group "$RSG_NAME" \
         --name "$KEY_VAULT_NAME" \
-        --location "$DEFAULT_LOCATION" \
+        --location "$PRIMARY_LOCATION" \
         --query 'properties.provisioningState' \
         --out tsv
 else
