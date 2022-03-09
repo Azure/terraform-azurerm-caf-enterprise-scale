@@ -1,0 +1,22 @@
+{
+  "name": "Deny-DataB-Vnet",
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2019-09-01",
+  "properties": {
+    "description": "Enforces the use of vnet injection for Databricks workspaces.",
+    "displayName": "Enforces the use of vnet injection for Databricks",
+    "notScopes": [],
+    "parameters": {
+      "effect": {
+        "value": "Deny"
+      }
+    },
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-VirtualNetwork",
+    "scope": "${current_scope_resource_id}",
+    "enforcementMode": "Default"
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "None"
+  }
+}
