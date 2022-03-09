@@ -8,6 +8,10 @@ azp-strategy:
 	@echo "==> Running script..."
 	./tests/scripts/azp-strategy.ps1
 
+azp-backend:
+	@echo "==> Running script..."
+	./tests/scripts/azp-backend.sh
+
 azp-spn-generator:
 	@echo "==> Running script..."
 	./tests/scripts/azp-spn-generator.sh
@@ -46,7 +50,7 @@ tf-destroy:
 
 opa-install:
 	@echo "==> Running script..."
-	./tests/scripts/opa-install.sh
+	./tests/scripts/opa-install-linux.sh
 
 opa-run-tests:
 	@echo "==> Running script..."

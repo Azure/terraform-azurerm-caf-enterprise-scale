@@ -168,7 +168,6 @@ locals {
     workspace_id    = try(local.custom_settings_la_linked_service.workspace_id, local.log_analytics_workspace_resource_id)
     read_access_id  = try(local.custom_settings_la_linked_service.read_access_id, local.automation_account_resource_id) # This should be used for linking to an Automation Account resource.
     write_access_id = null                                                                                              # DO NOT USE. This should be used for linking to a Log Analytics Cluster resource
-    tags            = try(local.custom_settings_la_linked_service.tags, local.tags)
     resource_group_name = coalesce(
       try(local.custom_settings_la_linked_service.resource_group_name, null),
       local.resource_group_name,

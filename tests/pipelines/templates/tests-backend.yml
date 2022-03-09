@@ -1,0 +1,10 @@
+---
+steps:
+  - task: Bash@3
+    name: prepare_backend
+    displayName: "Prepare Backend Storage"
+    inputs:
+      targetType: "inline"
+      script: "make azp-backend"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
