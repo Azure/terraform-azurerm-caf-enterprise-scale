@@ -2,7 +2,10 @@
     "es_corp": {
         "policy_assignments": [
             "Deny-Public-Endpoints",
-            "Deploy-Private-DNS-Zones"
+            "Deploy-Private-DNS-Zones",
+            "Deny-DataB-Pip",
+            "Deny-DataB-Sku",
+            "Deny-DataB-Vnet"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],
