@@ -4,7 +4,9 @@ This page describes how to assign built-in Azure Policies to your environment us
 
 In this example you will use two built-in policies and one built-in policy set definition. You will use policies that are not already available for assignment via the default Enterprise Scale deployment.
 
-The policies you will use are `Not allowed resource types`  and `Deploy default Microsoft IaaSAntimalware extension for Windows Server`. The policy set definition (Initiative) you will use is  `NIST SP 800-53 Rev. 5`.
+The policies you will use are `Not allowed resource types` and `Deploy default Microsoft IaaSAntimalware extension for Windows Server`. 
+
+The policy set definition (Initiative) you will use is `NIST SP 800-53 Rev. 5`.
 
 >**NOTE**: You can view which policies are recommended to be assigned as part of an Enterprise Scale deployment [here](https://github.com/Azure/Enterprise-Scale/blob/main/docs/ESLZ-Policies.md).
 
