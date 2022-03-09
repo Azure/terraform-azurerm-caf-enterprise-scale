@@ -2,52 +2,88 @@
 
 This page describes how to assign built-in Azure Policies to your Enterprise Scale deployment.
 
-In this example you will use two built-in policies and one built-in policy set definition. The policies you will use are `XXXXX` and `XXXXX`. The policy set definition (Initiative) you will use is  `XXXXX`.
+In this example you will use two built-in policies and one built-in policy set definition. You will use policies that are not already availble for assignment via the default  Enterprise Scale deployment. The policies you will use are `Not allowed resource types`  and `Deploy default Microsoft IaaSAntimalware extension for Windows Server`. The policy set definition (Initiative) you will use is  `NIST SP 800-53 Rev. 5`.
+
+>**NOTE**: You can view which policies are recommended to be assigned as part of an Enterprise Scale deployment [here](https://github.com/Azure/Enterprise-Scale/blob/main/docs/ESLZ-Policies.md).
 
 You will update the built-in configuration by following these steps:
 
-- Create the policy assignment files for `XXXXX`, `XXXXX` and `XXXXX`
-- Assign the policy definition for `XXXXX` at the `es_root` Management Group by extending the built-in archetype for `es_root`
-- Assign the policy set definition for `XXXXX` at the `es_root` Management Group by extending the built-in archetype for `es_root`
-- Assign the policy definition for `XXXXX` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`
+- Create the policy assignment files for `Not allowed resource types`, `Deploy default Microsoft IaaSAntimalware extension for Windows Server` and `NIST SP 800-53 Rev. 5`. You will also configure the `listOfResourceTypesNotAllowed` parameter within the `Not allowed resource types` assignment file to prevent the creation of Azure Firewalls
+- Assign the policy definition for `Deploy default Microsoft IaaSAntimalware extension for Windows Server` at the `es_root` Management Group by extending the built-in archetype for `es_root`
+- Assign the policy set definition for `NIST SP 800-53 Rev. 5` at the `es_root` Management Group by extending the built-in archetype for `es_root`
+- Assign the policy definition for `Not allowed resource types` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`. 
 
 >IMPORTANT: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
-In order to assign built-in policies, we need to create an assignment file for each policy or policy set definition that we want to use. In this example we will do this by using the below files:
+In order to assign built-in policies, there needs to be an assignment file for each policy or policy set definition that we want to use. This module already includes assignment files for some built-in policies so it's important to check whether or not one exists before creating your own. You can do this by navigating to  `\modules\archetypes\lib\policy_assignments` and looking for an assignment file that matches the policy you want to assign. An example of a built-in policy that already has an assignment file included within the module is the `Kubernetes clusters should be accessible only over HTTPS` policy. The assignment file for this policy is called `policy_assignment_es_deny_http_ingress_aks.tmpl.json`.
 
-- [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
-- [lib/policy_assignments/policy_assignment_es_enforce_resource_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_resource_tagsjson)
-- [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
+As the policies you will use in this example do not already have an assignment file within the module, you will need to create the below files so that you can assign them:
+
+- [lib/policy_assignments/policy_assignment_not_allowed_resource_types.json](#libpolicy_assignmentspolicy_assignment_not_allowed_resource_typesjson)
+- [lib/policy_assignments/policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json](#libpolicy_assignmentspolicy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_serverjson)
+- [lib/policy_assignments/policy_assignment_nist_sp_800_53_rev_5.json](#libpolicy_assignmentspolicy_assignment_nist_sp_800_53_rev_5json)
 
 ## Create Custom Policy Assignment Files
 
 In order to assign built-in policies or policy sets, you need to create policy assignment files. The first step is to create a `policy_assignments` subdirectory within `/lib`.
 
->NOTE: Creating a `policy_assignments` subdirectory within `\lib` is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
+>**NOTE**: Creating a `policy_assignments` subdirectory within `\lib` is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
 
-You will then need to create a file named `policy_assignment_es_XXXXX.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
+You will then need to create a file named `policy_assignment_not_allowed_resource_types.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
-### `lib/policy_assignments/policy_assignment_es_XXXXX.json`
+>**NOTE**: The `name` parameter in the assignment file has an upper limit of 24 characters. Values longer than this will result in a validation error. As an example, `"Not allowed resources` fits but `"Not allowed resource types"` would result in an error.
+
+To find the appropriate value for `policyDefinitionID` you will need to locate the policy you want to use in the portal and copy the `Definition ID` value.
+
+![Policy DefinitionID](./media/examples-assign-a-built-in-policy-definitionID.png)
+
+### `lib/policy_assignments/policy_assignment_not_allowed_resource_types.json`
 
 ```json
 {
-    "name": "Enforce-RG-Tags",
+    "name": "Not-Allowed-Resources",
     "type": "Microsoft.Authorization/policyAssignments",
     "apiVersion": "2019-09-01",
     "properties": {
-        "description": "Enforce Mandatory Tags on Resource Groups",
-        "displayName": "Resource groups must have mandatory tagging applied",
+        "description": "Restrict which resource types can be deployed in your environment. Limiting resource types can reduce the complexity and attack surface of your environment while also helping to manage costs. Compliance results are only shown for non-compliant resources.",
+        "displayName": "Not allowed resources",
         "notScopes": [],
         "parameters": {
-        } ,
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-RG-Tags",
+            "listOfResourceTypesNotAllowed":{
+                "value": ["Microsoft.Network/azureFirewalls"]
+            }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
         "scope": "${current_scope_resource_id}",
-        "enforcementMode": null,
-        "nonComplianceMessages": [
-        {
-            "message": "Mandatory tags must be provided."
-        }
-        ]
+        "enforcementMode": null
+    },
+    "location": "${default_location}",
+    "identity": {
+        "type": "None"
+    }
+}
+```
+
+Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
+
+>**NOTE**: As this policy has an effect type of `DeployIfNotExists`, you also need to tell the module to create a System Assigned Managed Identity for the policy to use. This is done within the assignment file and would also be needed for any policy with a `Modify` effect type.
+
+### `lib/policy_assignments/policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json`
+
+```json
+{
+    "name": "Deploy-Antimalware-Ext",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+        "description": "This policy deploys a Microsoft IaaSAntimalware extension with a default configuration when a VM is not configured with the antimalware extension.",
+        "displayName": "Deploy default Microsoft IaaSAntimalware extension for Windows Server",
+        "notScopes": [],
+        "parameters": {
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2835b622-407b-4114-9198-6f7064cbe0dc",
+        "scope": "${current_scope_resource_id}",
+        "enforcementMode": null
     },
     "location": "${default_location}",
     "identity": {
@@ -56,29 +92,24 @@ You will then need to create a file named `policy_assignment_es_XXXXX.json` with
 }
 ```
 
-Now create a file named `policy_assignment_es_XXXXX.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
+Finally, create an assignment file for the policy set named `policy_assignment_nist_sp_800_53_rev_5.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
-### `lib/policy_assignments/policy_assignment_es_XXXXX.json`
+### `lib/policy_assignments/policy_assignment_nist_sp_800_53_rev_5.json`
 
 ```json
 {
-    "name": "Enforce-Resource-Tags",
+    "name": "NIST-SP-800-53-Rev5",
     "type": "Microsoft.Authorization/policyAssignments",
     "apiVersion": "2019-09-01",
     "properties": {
-        "description": "Enforce Mandatory Tags on Resources",
-        "displayName": "Resources must have mandatory tagging applied",
+        "description": "This initiative includes policies that address a subset of NIST SP 800-53 Rev. 5 controls. Additional policies will be added in upcoming releases. For more information, visit https://aka.ms/nist800-53r5-initiative.",
+        "displayName": "NIST SP 800-53 Rev. 5",
         "notScopes": [],
         "parameters": {
-        } ,
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-Resource-Tags",
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/179d1daa-458f-4e47-8086-2a68d0d6c38f",
         "scope": "${current_scope_resource_id}",
-        "enforcementMode": null,
-        "nonComplianceMessages": [
-        {
-            "message": "Mandatory tags must be provided."
-        }
-        ]
+        "enforcementMode": null
     },
     "location": "${default_location}",
     "identity": {
@@ -87,45 +118,14 @@ Now create a file named `policy_assignment_es_XXXXX.json` within the `policy_ass
 }
 ```
 
-Finally, create a file named `policy_assignment_XXXXX.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
+## Assign the `Deploy default Microsoft IaaSAntimalware extension for Windows Server` Policy at the `es_root` Management Group
 
-### `lib/policy_assignments/policy_assignment_es_XXXXX.json`
-
-```json
-{
-    "name": "Deny-NIC-NSG",
-    "type": "Microsoft.Authorization/policyAssignments",
-    "apiVersion": "2019-09-01",
-    "properties": {
-      "description": "This policy will prevent NSGs from being applied to network interface cards.",
-      "displayName": "Prevent Network Security Groups from being applied to Network Interface Cards",
-      "notScopes": [],
-      "parameters": {} ,
-      "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-NIC-NSG",
-      "scope": "${current_scope_resource_id}",
-      "enforcementMode": null,
-      "nonComplianceMessages": [
-        {
-            "message": "NSGs must not be applied to Network Interface cards."
-        }
-    ]
-
-    },
-    "location": "${default_location}",
-    "identity": {
-      "type": "SystemAssigned"
-    }
-  }
-```
-
-## Assign the `XXXXX` Policy at the `es_root` Management Group
-
-You now need to assign the `XXXXX` policy and in this example, we will assign it at `es_root`. To do this, update your existing `archetype_extension_es_root.tmpl.json` file with the below code and save it.
+You now need to assign the `Deploy default Microsoft IaaSAntimalware extension for Windows Server` policy and in this example, we will assign it at `es_root`. If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. 
 
 ```json
 {
   "extend_es_root": {
-    "policy_assignments": ["XXXXX"],
+    "policy_assignments": ["Deploy-Antimalware-Ext"],
     "policy_definitions": [],
     "policy_set_definitions": [],
     "role_definitions": [],
@@ -137,16 +137,37 @@ You now need to assign the `XXXXX` policy and in this example, we will assign it
 }
 ```
 
-You should now kick-off your Terraform workflow (init, plan, apply) to apply the new configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `XXXXX` policy will be assigned at `es_root`.
+You should now kick-off your Terraform workflow (init, plan, apply) to apply the new configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `Deploy default Microsoft IaaSAntimalware extension for Windows Server` policy will be assigned at `es_root`.
 
-## Assign the `XXXXX` Policy Set at the es_root Management Group
+## Assign the `NIST SP 800-53 Rev. 5` Policy Set at the `es_root` Management Group
+
+You now need to assign the `NIST SP 800-53 Rev. 5` policy set and in this example, we will assign it at `es_root`. Copy the below code in to your `archetype_extension_es_root.tmpl.json` file and save it. 
+
+```json
+{
+  "extend_es_root": {
+    "policy_assignments": ["Deploy-Antimalware-Ext", "NIST-SP-800-53-Rev5"],
+    "policy_definitions": [],
+    "policy_set_definitions": [],
+    "role_definitions": [],
+    "archetype_config": {
+      "access_control": {
+      }
+    }
+  }
+}
+```
+
+You should now kick-off your Terraform workflow (init, plan, apply) to apply the new configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `NIST SP 800-53 Rev. 5` policy set will be assigned at `es_root`.
+
+## Assign the `Not allowed resource types` Policy at the `Landing Zones` Management Group
 
 In this example, we will assign it at the `Landing Zones` Management Group. To do this, either update your existing `archetype_extension_es_landing_zones.tmpl.json` file or create one and copy the below code in to it and save.
 
 ```json
 {
   "extend_es_landing_zones": {
-    "policy_assignments": ["xxxxx"],
+    "policy_assignments": ["Not allowed resource types"],
     "policy_definitions": [],
     "policy_set_definitions": [],
     "role_definitions": [],
@@ -158,10 +179,10 @@ In this example, we will assign it at the `Landing Zones` Management Group. To d
 }
 ```
 
-You should now kick-off your Terraform workflow again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `XXXXX` Policy Definition will be assigned at the `Landing Zones` Management Group.
+You should now kick-off your Terraform workflow once again to apply the updated configuration. This can be done either locally or through a pipeline. When your workflow has finished, the `Not allowed resource types` policy will be assigned at the `Landing Zones` Management Group.
 
 ```hcl
 terraform apply
 ```
 
-You have now successfully assigned a built-in Policy Definition and a built-in Policy Set Definition within your Azure environment. You can re-use the steps in this article for any other built-in policies that you may wish to use within your environment.
+You have now successfully assigned a built-in Policy Definition and a built-in Policy Set Definition within your Azure environment. You can re-use the guidance in this article for any other built-in policies that you may wish to use within your environment.
