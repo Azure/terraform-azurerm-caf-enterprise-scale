@@ -23,6 +23,15 @@ $jsonDepth = 4
 $terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
 $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
 
+function Get-RandomId {
+    [CmdletBinding()]
+    [OutputType([String])]
+    param (
+        [Int]$Length = 8
+    )
+    return -join ((48..57) + (97..122) | Get-Random -Count $Length | ForEach-Object { [char]$_ })
+}
+
 ########################################
 # Terraform Versions
 # - Base Version: "0.15.0"
@@ -44,11 +53,11 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (2.77.0)
+# - Base Version: (2.96.0)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "2.77.0"
+$azurermProviderVersionBase = "2.96.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################
@@ -149,6 +158,7 @@ for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
     $matrixObject | Add-Member `
         -NotePropertyName $jobName1 `
         -NotePropertyValue @{
+        TF_ROOT_ID                      = Get-RandomId
         TF_VERSION                      = $terraformVersion
         TF_AZ_VERSION                   = $azurermProviderVersionBase
         TF_JOB_ID                       = $jobId1
@@ -159,6 +169,7 @@ for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
     $matrixObject | Add-Member `
         -NotePropertyName $jobName2 `
         -NotePropertyValue @{
+        TF_ROOT_ID                      = Get-RandomId
         TF_VERSION                      = $terraformVersion
         TF_AZ_VERSION                   = $azurermProviderVersionLatest
         TF_JOB_ID                       = $jobId2
