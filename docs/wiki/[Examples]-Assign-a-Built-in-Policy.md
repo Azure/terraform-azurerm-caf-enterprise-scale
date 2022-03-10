@@ -179,7 +179,7 @@ In this example, we will assign it at the `Landing Zones` Management Group. To d
 ```json
 {
   "extend_es_landing_zones": {
-    "policy_assignments": ["Not allowed resource types"],
+    "policy_assignments": ["Not-Allowed-Resources"],
     "policy_definitions": [],
     "policy_set_definitions": [],
     "role_definitions": [],
