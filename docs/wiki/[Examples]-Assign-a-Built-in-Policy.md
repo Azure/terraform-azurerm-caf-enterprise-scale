@@ -42,8 +42,6 @@ You will then need to create a file named `policy_assignment_not_allowed_resourc
 
 >**NOTE**: The full file name is not important but it does need to meet the naming conventions detailed [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions#working-with-archetype-definitions-and-the-custom-library)
 
->**IMPORTANT**: The `name` parameter in the assignment file has an upper limit of 24 characters. Values longer than this will result in a validation error. As an example, `"Not allowed resources` fits but `"Not allowed resource types"` would result in an error.
-
 To assign the correct policy, we need to provide the appropriate value for `policyDefinitionID` within our assignment file. You can retrieve the PolicyDefinitionID for your policy either through the Azure Portal, [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azpolicydefinition?view=azps-7.3.0) or the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/policy/definition?view=azure-cli-latest)
 
 ![Policy DefinitionID](./media/examples-assign-a-built-in-policy-definitionID.png)
@@ -74,6 +72,8 @@ To assign the correct policy, we need to provide the appropriate value for `poli
     }
 }
 ```
+
+**IMPORTANT**: The `name` parameter in the assignment file has an upper limit of 24 characters. Values longer than this will result in a validation error. As an example, `"Not allowed resources` fits but `"Not allowed resource types"` would result in an error.
 
 Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
