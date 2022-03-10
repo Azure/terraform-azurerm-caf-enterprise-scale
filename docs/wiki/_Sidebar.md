@@ -22,6 +22,7 @@
     - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
     - [Deploy Identity Resources][wiki_deploy_identity_resources]
     - [Deploy Management Resources][wiki_deploy_management_resources]
+    - [Assign a Built-in Policy][wiki_assign_a_built_in_policy]
   - [Level 300][wiki_examples_level_300]
     - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
     - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
@@ -86,3 +87,4 @@
 [wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
 [wiki_create_custom_policies_policy_sets_and_assignments]:      ./%5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
+[wiki_assign_a_built_in_policy]:      ./%5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a Built-in Policy"
