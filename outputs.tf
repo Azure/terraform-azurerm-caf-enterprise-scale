@@ -64,6 +64,7 @@ output "azurerm_resource_group" {
   value = {
     management   = azurerm_resource_group.management
     connectivity = azurerm_resource_group.connectivity
+    virtual_wan  = azurerm_resource_group.virtual_wan
   }
   description = "Returns the configuration data for all Resource Groups created by this module."
 }
@@ -162,6 +163,7 @@ output "azurerm_virtual_network_gateway" {
 output "azurerm_firewall" {
   value = {
     connectivity = azurerm_firewall.connectivity
+    virtual_wan  = azurerm_firewall.virtual_wan
   }
   description = "Returns the configuration data for all Azure Firewalls created by this module."
 }
@@ -200,4 +202,49 @@ output "azurerm_virtual_network_peering" {
     connectivity = azurerm_virtual_network_peering.connectivity
   }
   description = "Returns the configuration data for all Virtual Network Peerings created by this module."
+}
+
+# The following output is used to ensure all Virtual WAN
+# data is returned to the root module.
+output "azurerm_virtual_wan" {
+  value = {
+    virtual_wan = azurerm_virtual_wan.virtual_wan
+  }
+  description = "Returns the configuration data for all Virtual WANs created by this module."
+}
+
+# The following output is used to ensure all Virtual Hub
+# data is returned to the root module.
+output "azurerm_virtual_hub" {
+  value = {
+    virtual_wan = azurerm_virtual_hub.virtual_wan
+  }
+  description = "Returns the configuration data for all Virtual Hubs created by this module."
+}
+
+# The following output is used to ensure all ExpressRoute
+# Gateway data is returned to the root module.
+output "azurerm_express_route_gateway" {
+  value = {
+    virtual_wan = azurerm_express_route_gateway.virtual_wan
+  }
+  description = "Returns the configuration data for all (Virtual WAN) ExpressRoute Gateways created by this module."
+}
+
+# The following output is used to ensure all VPN
+# Gateway data is returned to the root module.
+output "azurerm_vpn_gateway" {
+  value = {
+    virtual_wan = azurerm_vpn_gateway.virtual_wan
+  }
+  description = "Returns the configuration data for all (Virtual WAN) VPN Gateways created by this module."
+}
+
+# The following output is used to ensure all ExpressRoute
+# Gateway data is returned to the root module.
+output "azurerm_virtual_hub_connection" {
+  value = {
+    virtual_wan = azurerm_virtual_hub_connection.virtual_wan
+  }
+  description = "Returns the configuration data for all Virtual Hub Connections created by this module."
 }
