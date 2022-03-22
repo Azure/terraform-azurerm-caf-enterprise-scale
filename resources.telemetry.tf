@@ -14,7 +14,7 @@ resource "azurerm_management_group_template_deployment" "telemetry_root_id" {
   template_content      = local.telem_arm_management_group_template_content
 
   depends_on = [
-    azurerm_management_group.level_1["${local.provider_path.management_groups}${local.root_id}"]
+    azurerm_management_group.level_1["/providers/Microsoft.Management/managementGroups/${var.root_id}"]
   ]
 }
 
