@@ -597,3 +597,9 @@ variable "custom_policy_roles" {
   description = "If specified, the custom_policy_roles variable overrides which Role Definition ID(s) (value) to assign for Policy Assignments with a Managed Identity, if the assigned \"policyDefinitionId\" (key) is included in this variable."
   default     = {}
 }
+
+variable "disable_telemetry" {
+  type = bool
+  description = "If set to true, will disable telemetry for the module. See https://aka.ms/alz-terraform-module-telemetry."
+  default = false
+}
