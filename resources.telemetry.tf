@@ -22,8 +22,8 @@ resource "azurerm_management_group_template_deployment" "telemetry_root_id" {
 # the root_id management group and if telemetry is enabled.
 # It is deployed to the default subscription
 resource "azurerm_subscription_template_deployment" "telemetry_fallback" {
-  count                 = local.telem_fallback_deployment_enabled ? 1 : 0
-  name                  = local.telem_arm_deployment_name
-  location              = local.default_location
-  template_content      = local.telem_arm_subscription_template_content
+  count            = local.telem_fallback_deployment_enabled ? 1 : 0
+  name             = local.telem_arm_deployment_name
+  location         = local.default_location
+  template_content = local.telem_arm_subscription_template_content
 }
