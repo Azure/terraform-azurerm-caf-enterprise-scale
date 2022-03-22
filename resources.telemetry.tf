@@ -25,5 +25,5 @@ TEMPLATE
 
   depends_on = [
       azurerm_management_group.level_1[local.root_id]
-    ]
+  ]
 }
