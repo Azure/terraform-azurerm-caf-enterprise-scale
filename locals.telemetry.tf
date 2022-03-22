@@ -45,7 +45,42 @@ locals {
 # If neither of those exist, we give up :)
 locals {
   telem_root_id_management_group_created = lookup(azurerm_management_group.level_1, local.root_id, null)
-  telem_first_level_1_management_group   = count(keys(azurerm_management_group.level_1)) > 0 ? sort(keys(azurerm_management_group.level_1))[0] : null
-  telem_deployment_enabled = (telem_root_id_management_group_created != null || telem_first_level_1_management_group != null) && !var.disable_telemetry
-  telem_deployment_scope = coalesce(telem_root_id_management_group_created, telem_first_level_1_management_group)
+  telem_root_id_deployment_enabled       = telem_root_id_management_group_created != null && !var.disable_telemetry
+  telem_fallback_deployment_enabled      = !telem_root_id_deployment_enabled && !var.disable_telemetry
+}
+
+# Here we create the ARM templates for the telemetry deployment
+# One for MG and one for subscription (fallback
+locals {
+  telem_arm_management_group_template_content = <<TEMPLATE
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#"
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [],
+  "outputs": {
+    "telemetry": {
+      "type": "string",
+      "value": "For more information, see https://aka.ms/alz-terraform-module-telemetry"
+    },
+  }
+}
+TEMPLATE
+
+  telem_arm_subscription_template_content = <<TEMPLATE
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [],
+  "outputs": {
+    "telemetry": {
+      "type": "string",
+      "value": "For more information, see https://aka.ms/alz-terraform-module-telemetry"
+    },
+  }
+}
+TEMPLATE
 }
