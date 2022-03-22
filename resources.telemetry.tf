@@ -4,6 +4,8 @@ resource "random_id" "telemetry_id" {
   byte_length = 6
 }
 
+# This is the ARM deployment we use for telemetry, it is only created if we can find a suitable management group
+# and if telemetry is enabled.
 resource "azurerm_management_group_template_deployment" "telemetry" {
   count                 = local.telem_deployment_enabled ? 1 : 0
   name                  = local.telem_arm_deployment_name
