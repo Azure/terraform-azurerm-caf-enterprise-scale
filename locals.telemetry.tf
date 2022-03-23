@@ -1,7 +1,7 @@
 # Telemetry is collected by creating an empty ARM deployment with a specific name
 # If you want to disable telemetry, you can set the disable_telemetry variable to true
 
-# The following locals identify the module and the module version
+# The following locals identify the module
 locals {
   # PUID identifies the module
   telem_puid = "36dcde81-8c33-4da0-8dc3-265381502ccb"
@@ -63,7 +63,7 @@ locals {
 }
 
 # Here we create the ARM templates for the telemetry deployment
-# One for MG and one for subscription (fallback
+# One for MG and one for subscription, used as a fallback if we can't find the root_id MG
 locals {
   telem_arm_management_group_template_content = <<TEMPLATE
 {
