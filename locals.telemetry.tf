@@ -58,8 +58,8 @@ locals {
 # If neither of those exist, we give up :)
 locals {
   telem_root_id_management_group_created = lookup(azurerm_management_group.level_1, local.root_id, null)
-  telem_root_id_deployment_enabled       = telem_root_id_management_group_created != null && !var.disable_telemetry
-  telem_fallback_deployment_enabled      = !telem_root_id_deployment_enabled && !var.disable_telemetry
+  telem_root_id_deployment_enabled       = local.telem_root_id_management_group_created != null && !var.disable_telemetry
+  telem_fallback_deployment_enabled      = !local.telem_root_id_deployment_enabled && !var.disable_telemetry
 }
 
 # Here we create the ARM templates for the telemetry deployment
