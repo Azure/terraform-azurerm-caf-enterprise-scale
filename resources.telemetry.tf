@@ -1,7 +1,7 @@
 # The following random id is created once per module instantiation and is appended to the teleletry deployment name
 resource "random_id" "telemetry_id" {
   count       = var.disable_telemetry ? 0 : 1
-  byte_length = 6
+  byte_length = 4
 }
 
 # This is the ARM deployment we use for telemetry, it is only created if we can find the
@@ -14,7 +14,7 @@ resource "azurerm_management_group_template_deployment" "telemetry_root_id" {
   template_content      = local.telem_arm_management_group_template_content
 
   depends_on = [
-    azurerm_management_group.level_1["/providers/Microsoft.Management/managementGroups/${var.root_id}"]
+    azurerm_management_group.level_1
   ]
 }
 

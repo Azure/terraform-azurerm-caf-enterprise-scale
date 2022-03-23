@@ -5,9 +5,6 @@
 locals {
   # PUID identifies the module
   telem_puid = "36dcde81-8c33-4da0-8dc3-265381502ccb"
-
-  # Version of the module
-  telem_module_version = "1.2.0"
 }
 
 # The following locals are used to create the bitfield data, dependent on the module configuration
@@ -30,14 +27,30 @@ locals {
 
 # The following locals calculate the telemetry bitfield by summiung thhe above locals and then representing as hexadecimal
 locals {
-  telem_bitfield_denery = local.telem_configure_management_resources + local.telem_configure_connectivity_resources + local.telem_configure_identity_resources + local.telem_deploy_core_landing_zones + local.telem_deploy_demo_landing_zones
-  telem_bitfield_hex    = format("%x", local.telem_bitfield_denery)
+  telem_bitfield_denery = (
+    local.telem_configure_management_resources +
+    local.telem_configure_connectivity_resources +
+    local.telem_configure_identity_resources +
+    local.telem_deploy_core_landing_zones +
+    local.telem_deploy_demo_landing_zones
+  )
+  telem_bitfield_hex = format("%x", local.telem_bitfield_denery)
 }
 
 # This construicts the ARM deployment name that is used for the telemetry.
 # We shouldn't ever hit the 64 character limit but use substr just in case
 locals {
-  telem_arm_deployment_name = substr("puid-${local.telem_puid}-${local.telem_module_version}-${local.telem_bitfield_hex}-${random_id.telemetry_id.hex}", 0, 64)
+  telem_arm_deployment_name = substr(
+    format(
+      "puid-%s-%s-%s-%s",
+      local.telem_puid,
+      local.module_version,
+      local.telem_bitfield_hex,
+      random_id.telemetry_id.hex
+    ),
+    0,
+    64
+  )
 }
 
 # This determines the management group to which we target the deployment
