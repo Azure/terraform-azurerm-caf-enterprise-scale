@@ -19,8 +19,8 @@ locals {
     for assignment in local.es_role_assignments :
     assignment.resource_id => assignment
   }
-  azurerm_role_assignment_policy_assignment = {
-    for assignment in local.es_role_assignments_by_policy_assignment :
-    assignment.resource_id => assignment
-  }
+  # azurerm_role_assignment_policy_assignment = {
+  #   for assignment in local.es_role_assignments_by_policy_assignment :
+  #   assignment.resource_id => assignment
+  # }
 }
