@@ -21,15 +21,43 @@ resource "azurerm_role_assignment" "enterprise_scale" {
 
 }
 
+# The following module is used to generate the Role
+# Assignments for Policy Assignments as needed.
+# This was implemented to fix issue:
+# https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/266
+module "role_assignments_for_policy" {
+  for_each = local.es_role_assignments_by_policy_assignment
+  source   = "./modules/role_assignments_for_policy"
+
+  # Mandatory resource attributes
+  policy_assignment_id   = each.key
+  policy_assignment_data = azurerm_management_group_policy_assignment.enterprise_scale[each.key]
+  role_definition_ids    = each.value
+
+  # Optional resource attributes
+  additional_scope_ids = local.empty_list
+
+  # Set explicit dependency on Management Group, Policy Definition, Policy Set Definition, and Policy Assignment deployments
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+  ]
+
+}
+
 resource "time_sleep" "after_azurerm_role_assignment" {
   depends_on = [
     time_sleep.after_azurerm_management_group,
     time_sleep.after_azurerm_role_definition,
     azurerm_role_assignment.enterprise_scale,
+    module.role_assignments_for_policy,
   ]
 
   triggers = {
     "azurerm_role_assignment_enterprise_scale" = jsonencode(keys(azurerm_role_assignment.enterprise_scale))
+    "module_role_assignments_for_policy"       = jsonencode(keys(module.role_assignments_for_policy))
   }
 
   create_duration  = local.create_duration_delay["after_azurerm_role_assignment"]
