@@ -8,34 +8,18 @@ locals {
 # The following locals are used to convert provided input
 # variables to locals before use elsewhere in the module
 locals {
-  policy_assignment_id   = var.policy_assignment_id
-  policy_assignment_data = var.policy_assignment_data
-  role_definition_ids    = distinct(var.role_definition_ids)
-  additional_scope_ids   = var.additional_scope_ids
-}
-
-# Extract principal_id from policy_assignment_data
-locals {
-  # null_principal_id = {
-  #   identity = [
-  #     {
-  #       principal_id = null
-  #     }
-  #   ]
-  # }
-  principal_id = local.policy_assignment_data.identity[0].principal_id
+  policy_assignment_id = var.policy_assignment_id
+  scope_id             = var.scope_id
+  principal_id         = var.principal_id
+  role_definition_ids  = distinct(var.role_definition_ids)
+  additional_scope_ids = var.additional_scope_ids
 }
 
 # Determine the list of Role Definitions to create per scope
 locals {
   role_assignment_path = "/providers/Microsoft.Authorization/roleAssignments/"
   role_assignment_scopes = distinct(concat(
-    [
-      lookup(local.policy_assignment_data, "management_group_id", null),
-      lookup(local.policy_assignment_data, "subscription_id", null),
-      lookup(local.policy_assignment_data, "resource_group_id", null),
-      lookup(local.policy_assignment_data, "resource_id", null),
-    ],
+    [local.scope_id],
     local.additional_scope_ids,
   ))
   role_definition_ids_by_scope = {

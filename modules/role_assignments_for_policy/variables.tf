@@ -6,9 +6,14 @@ variable "policy_assignment_id" {
   description = "Policy Assignment ID."
 }
 
-variable "policy_assignment_data" {
-  type        = any
-  description = "Policy Assignment resource attributes."
+variable "scope_id" {
+  type        = string
+  description = "Scope ID from the Policy Assignment. Depending on the Policy Assignment type, this could be the `management_group_id`, `subscription_id`, `resource_group_id` or `resource_id`."
+}
+
+variable "principal_id" {
+  type        = string
+  description = "Principal ID of the Managed Identity created for the Policy Assignment."
 }
 
 variable "role_definition_ids" {

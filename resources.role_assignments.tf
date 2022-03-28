@@ -30,9 +30,10 @@ module "role_assignments_for_policy" {
   source   = "./modules/role_assignments_for_policy"
 
   # Mandatory resource attributes
-  policy_assignment_id   = each.key
-  policy_assignment_data = azurerm_management_group_policy_assignment.enterprise_scale[each.key]
-  role_definition_ids    = each.value
+  policy_assignment_id = each.key
+  scope_id             = azurerm_management_group_policy_assignment.enterprise_scale[each.key].management_group_id
+  principal_id         = azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].principal_id
+  role_definition_ids  = each.value
 
   # Optional resource attributes
   additional_scope_ids = local.empty_list
