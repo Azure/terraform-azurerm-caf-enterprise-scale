@@ -7455,6 +7455,121 @@
           {
             "resources": [
               {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/4ccc8330-f622-59c1-8f88-161a33aaf4a6\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/4ccc8330-f622-59c1-8f88-161a33aaf4a6",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "4ccc8330-f622-59c1-8f88-161a33aaf4a6",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/e69c3b84-6498-5330-ba23-d89f390b67bf\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/e69c3b84-6498-5330-ba23-d89f390b67bf",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "e69c3b84-6498-5330-ba23-d89f390b67bf",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/a82e8238-8bda-508f-84b5-f732aae9ee5e\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/a82e8238-8bda-508f-84b5-f732aae9ee5e",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "a82e8238-8bda-508f-84b5-f732aae9ee5e",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/c7bf76e5-9636-5f92-ad46-22d49ea5c086\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/c7bf76e5-9636-5f92-ad46-22d49ea5c086",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "c7bf76e5-9636-5f92-ad46-22d49ea5c086",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "533932d3-0f16-59eb-84b8-893805c84e9c",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\"]"
+          },
+          {
+            "resources": [
+              {
                 "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/roleAssignments/10acbd2f-bfdd-5c38-bf46-3a67cafdeaf3\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
@@ -7500,11 +7615,11 @@
           {
             "resources": [
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b\"]",
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/roleAssignments/8f7e20b7-7a5d-551d-b4fd-047861c4bc93\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
                 "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/roleAssignments/8f7e20b7-7a5d-551d-b4fd-047861c4bc93",
                 "provider_name": "registry.terraform.io/hashicorp/azurerm",
                 "schema_version": 0,
                 "values": {
@@ -7512,15 +7627,15 @@
                   "condition_version": null,
                   "delegated_managed_identity_resource_id": null,
                   "description": null,
-                  "name": "8319f760-6d83-59bf-a986-d057d5d91f7b",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+                  "name": "8f7e20b7-7a5d-551d-b4fd-047861c4bc93",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-management",
                   "timeouts": null
                 },
                 "sensitive_values": {}
               }
             ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\"]"
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"]"
           },
           {
             "resources": [
@@ -7570,11 +7685,11 @@
           {
             "resources": [
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/cb5f0a98-31a9-5269-9403-a186cfc43943\"]",
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
                 "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/cb5f0a98-31a9-5269-9403-a186cfc43943",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145",
                 "provider_name": "registry.terraform.io/hashicorp/azurerm",
                 "schema_version": 0,
                 "values": {
@@ -7582,194 +7697,19 @@
                   "condition_version": null,
                   "delegated_managed_identity_resource_id": null,
                   "description": null,
-                  "name": "cb5f0a98-31a9-5269-9403-a186cfc43943",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/ff44dd66-55e9-54b4-be99-411f2ea2888d\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/ff44dd66-55e9-54b4-be99-411f2ea2888d",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "ff44dd66-55e9-54b4-be99-411f2ea2888d",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/roleAssignments/8f7e20b7-7a5d-551d-b4fd-047861c4bc93\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/roleAssignments/8f7e20b7-7a5d-551d-b4fd-047861c4bc93",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "8f7e20b7-7a5d-551d-b4fd-047861c4bc93",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-management",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5127798b-130e-5d28-b539-2f33fa0fb750\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5127798b-130e-5d28-b539-2f33fa0fb750",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "5127798b-130e-5d28-b539-2f33fa0fb750",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5d2b9623-6e43-594f-a2e7-d200188772f5\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5d2b9623-6e43-594f-a2e7-d200188772f5",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "5d2b9623-6e43-594f-a2e7-d200188772f5",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/8701c536-d722-531e-9bde-ae1e0427a9ae\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/8701c536-d722-531e-9bde-ae1e0427a9ae",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "8701c536-d722-531e-9bde-ae1e0427a9ae",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/9a2ebc9c-52d3-5cba-ae34-4d3507b2968e\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/9a2ebc9c-52d3-5cba-ae34-4d3507b2968e",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "9a2ebc9c-52d3-5cba-ae34-4d3507b2968e",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/b2bbf080-fbfd-53ff-91d5-37dc8ecfb6bb\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/b2bbf080-fbfd-53ff-91d5-37dc8ecfb6bb",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "b2bbf080-fbfd-53ff-91d5-37dc8ecfb6bb",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8a906dc2-5af6-5c64-a065-e5782483b6b7\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8a906dc2-5af6-5c64-a065-e5782483b6b7",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "8a906dc2-5af6-5c64-a065-e5782483b6b7",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+                  "name": "e3bad489-c3ed-57c4-9802-e4c4a84ed145",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/ed7f3fbd-7b88-4dd4-9017-9adb7ce333f8",
                   "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
                   "timeouts": null
                 },
                 "sensitive_values": {}
               },
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879\"]",
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
                 "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35",
                 "provider_name": "registry.terraform.io/hashicorp/azurerm",
                 "schema_version": 0,
                 "values": {
@@ -7777,15 +7717,15 @@
                   "condition_version": null,
                   "delegated_managed_identity_resource_id": null,
                   "description": null,
-                  "name": "ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/5e467623-bb1f-42f4-a55d-6e525e11384b",
+                  "name": "ef4aaac1-624f-57fb-8444-3d2fdd091a35",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/18ed5180-3e48-46fd-8541-4ea054d57064",
                   "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
                   "timeouts": null
                 },
                 "sensitive_values": {}
               }
             ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"]"
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\"]"
           },
           {
             "resources": [
@@ -7895,11 +7835,11 @@
           {
             "resources": [
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/a82e8238-8bda-508f-84b5-f732aae9ee5e\"]",
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/cb5f0a98-31a9-5269-9403-a186cfc43943\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
                 "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/a82e8238-8bda-508f-84b5-f732aae9ee5e",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/cb5f0a98-31a9-5269-9403-a186cfc43943",
                 "provider_name": "registry.terraform.io/hashicorp/azurerm",
                 "schema_version": 0,
                 "values": {
@@ -7907,19 +7847,19 @@
                   "condition_version": null,
                   "delegated_managed_identity_resource_id": null,
                   "description": null,
-                  "name": "a82e8238-8bda-508f-84b5-f732aae9ee5e",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+                  "name": "cb5f0a98-31a9-5269-9403-a186cfc43943",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
                   "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
                   "timeouts": null
                 },
                 "sensitive_values": {}
               },
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/c7bf76e5-9636-5f92-ad46-22d49ea5c086\"]",
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/ff44dd66-55e9-54b4-be99-411f2ea2888d\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
                 "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/c7bf76e5-9636-5f92-ad46-22d49ea5c086",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/ff44dd66-55e9-54b4-be99-411f2ea2888d",
                 "provider_name": "registry.terraform.io/hashicorp/azurerm",
                 "schema_version": 0,
                 "values": {
@@ -7927,7 +7867,32 @@
                   "condition_version": null,
                   "delegated_managed_identity_resource_id": null,
                   "description": null,
-                  "name": "c7bf76e5-9636-5f92-ad46-22d49ea5c086",
+                  "name": "ff44dd66-55e9-54b4-be99-411f2ea2888d",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-LX-Arc-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/298db657-382f-5464-9f93-7b039ec782ce\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/298db657-382f-5464-9f93-7b039ec782ce",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "298db657-382f-5464-9f93-7b039ec782ce",
                   "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293",
                   "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
                   "timeouts": null
@@ -7935,97 +7900,7 @@
                 "sensitive_values": {}
               }
             ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "e3bad489-c3ed-57c4-9802-e4c4a84ed145",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/ed7f3fbd-7b88-4dd4-9017-9adb7ce333f8",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "ef4aaac1-624f-57fb-8444-3d2fdd091a35",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/18ed5180-3e48-46fd-8541-4ea054d57064",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/4ccc8330-f622-59c1-8f88-161a33aaf4a6\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/4ccc8330-f622-59c1-8f88-161a33aaf4a6",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "4ccc8330-f622-59c1-8f88-161a33aaf4a6",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/e69c3b84-6498-5330-ba23-d89f390b67bf\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/e69c3b84-6498-5330-ba23-d89f390b67bf",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "e69c3b84-6498-5330-ba23-d89f390b67bf",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\"]"
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-LX-Arc-Monitoring\"]"
           },
           {
             "resources": [
@@ -8055,56 +7930,6 @@
           {
             "resources": [
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/roleAssignments/bfe36639-f89e-5737-81df-f575c532b31a\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/roleAssignments/bfe36639-f89e-5737-81df-f575c532b31a",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "bfe36639-f89e-5737-81df-f575c532b31a",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-WS-Arc-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d0a8cd73-da87-5299-b674-34e05e4f7238\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d0a8cd73-da87-5299-b674-34e05e4f7238",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "d0a8cd73-da87-5299-b674-34e05e4f7238",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-WS-Arc-Monitoring\"]"
-          },
-          {
-            "resources": [
-              {
                 "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/1c659f37-1ad5-5577-bc68-922ba20d7523\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
@@ -8126,76 +7951,6 @@
               }
             ],
             "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/11a25eeb-1f4e-513b-a393-4fac399cc28b\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/11a25eeb-1f4e-513b-a393-4fac399cc28b",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "11a25eeb-1f4e-513b-a393-4fac399cc28b",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d5b3a73f-9905-52fc-ba6b-908193f1c36f\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d5b3a73f-9905-52fc-ba6b-908193f1c36f",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "d5b3a73f-9905-52fc-ba6b-908193f1c36f",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "533932d3-0f16-59eb-84b8-893805c84e9c",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\"]"
           },
           {
             "resources": [
@@ -8265,11 +8020,11 @@
           {
             "resources": [
               {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-LX-Arc-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/298db657-382f-5464-9f93-7b039ec782ce\"]",
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5127798b-130e-5d28-b539-2f33fa0fb750\"]",
                 "mode": "managed",
                 "type": "azurerm_role_assignment",
                 "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/298db657-382f-5464-9f93-7b039ec782ce",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5127798b-130e-5d28-b539-2f33fa0fb750",
                 "provider_name": "registry.terraform.io/hashicorp/azurerm",
                 "schema_version": 0,
                 "values": {
@@ -8277,7 +8032,252 @@
                   "condition_version": null,
                   "delegated_managed_identity_resource_id": null,
                   "description": null,
-                  "name": "298db657-382f-5464-9f93-7b039ec782ce",
+                  "name": "5127798b-130e-5d28-b539-2f33fa0fb750",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5d2b9623-6e43-594f-a2e7-d200188772f5\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/5d2b9623-6e43-594f-a2e7-d200188772f5",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "5d2b9623-6e43-594f-a2e7-d200188772f5",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/8701c536-d722-531e-9bde-ae1e0427a9ae\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/8701c536-d722-531e-9bde-ae1e0427a9ae",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "8701c536-d722-531e-9bde-ae1e0427a9ae",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/9a2ebc9c-52d3-5cba-ae34-4d3507b2968e\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/9a2ebc9c-52d3-5cba-ae34-4d3507b2968e",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "9a2ebc9c-52d3-5cba-ae34-4d3507b2968e",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/b2bbf080-fbfd-53ff-91d5-37dc8ecfb6bb\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/b2bbf080-fbfd-53ff-91d5-37dc8ecfb6bb",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "b2bbf080-fbfd-53ff-91d5-37dc8ecfb6bb",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/roleAssignments/bfe36639-f89e-5737-81df-f575c532b31a\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/roleAssignments/bfe36639-f89e-5737-81df-f575c532b31a",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "bfe36639-f89e-5737-81df-f575c532b31a",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8a906dc2-5af6-5c64-a065-e5782483b6b7\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8a906dc2-5af6-5c64-a065-e5782483b6b7",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "8a906dc2-5af6-5c64-a065-e5782483b6b7",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/5e467623-bb1f-42f4-a55d-6e525e11384b",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "8319f760-6d83-59bf-a986-d057d5d91f7b",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/11a25eeb-1f4e-513b-a393-4fac399cc28b\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/11a25eeb-1f4e-513b-a393-4fac399cc28b",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "11a25eeb-1f4e-513b-a393-4fac399cc28b",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d5b3a73f-9905-52fc-ba6b-908193f1c36f\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d5b3a73f-9905-52fc-ba6b-908193f1c36f",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "d5b3a73f-9905-52fc-ba6b-908193f1c36f",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-WS-Arc-Monitoring\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d0a8cd73-da87-5299-b674-34e05e4f7238\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/d0a8cd73-da87-5299-b674-34e05e4f7238",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "d0a8cd73-da87-5299-b674-34e05e4f7238",
                   "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293",
                   "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
                   "timeouts": null
@@ -8285,7 +8285,7 @@
                 "sensitive_values": {}
               }
             ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-LX-Arc-Monitoring\"]"
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-WS-Arc-Monitoring\"]"
           }
         ]
       },
