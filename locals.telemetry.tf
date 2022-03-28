@@ -11,7 +11,6 @@ locals {
 }
 
 # Here we create the ARM templates for the telemetry deployment
-# One for MG and one for subscription, used as a fallback if we can't find the root_id MG
 locals {
   telem_arm_subscription_template_content = <<TEMPLATE
 {
