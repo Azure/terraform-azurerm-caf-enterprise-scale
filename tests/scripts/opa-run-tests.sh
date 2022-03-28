@@ -18,8 +18,8 @@ echo "==> Update planned values..."
 cd "$TF_WORKSPACE"
 jq '(.. | strings) |= gsub("root-id-1"; "'"$TF_ROOT_ID"'")' planned_values.json >"$TEMP_FILE_01"
 jq '(.. | strings) |= gsub("root-name"; "ES-'"$TF_VERSION"'-'"$TF_AZ_VERSION"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
-jq '(.. | strings) |= gsub("northeurope"; "northeurope")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
-jq '(.. | strings) |= gsub("westeurope"; "westeurope")' "$TEMP_FILE_01" >"$TF_PLAN_OUT"_planned_values.json
+jq '(.. | strings) |= gsub("northeurope"; '"$PRIMARY_LOCATION"')' "$TEMP_FILE_02" >"$TEMP_FILE_01"
+jq '(.. | strings) |= gsub("westeurope"; '"$SECONDARY_LOCATION"')' "$TEMP_FILE_01" >"$TF_PLAN_OUT"_planned_values.json
 
 echo "==> Module Locations - $PRIMARY_LOCATION ($SECONDARY_LOCATION)"
 echo "==> Azure {TF_ROOT_ID} - ${TF_ROOT_ID}"
