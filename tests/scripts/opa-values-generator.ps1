@@ -9,7 +9,9 @@
 # After completing the tests, follow the script prompt for the next steps.
 
 # # Parameters
-$CONFIRM = "y"
+param (
+    [bool]$CONFIRM = $true
+)
 
 # # #? Run a local test against a different module configuration:
 # # #* Update the path to run the tests on a different folder (example: ../deployment_2)
@@ -68,7 +70,8 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
         -var="root_name=root-name" `
         -var="primary_location=northeurope" `
         -var="secondary_location=westeurope" `
-        -out="$TF_PLAN_OUT"
+        -out="$TF_PLAN_OUT" `
+    | Out-Null
 
     Write-Output "==> ($MODULE_NAME) - Converting plan to *.json..."
     terraform show -json "$TF_PLAN_OUT" | Out-File -FilePath "$TF_PLAN_OUT.json"
@@ -76,50 +79,44 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
     Write-Output "==> ($MODULE_NAME) - Removing the original plan..."
     Remove-Item -Path "$TF_PLAN_OUT"
 
-    Write-Output "==> ($MODULE_NAME) - Saving planned values to a temporary planned_values.json..."
-    Get-Content -Path "$TF_PLAN_OUT.json" | jq '.planned_values.root_module' | Out-File -FilePath "$PLANNED_VALUES.json"
-
-    Write-Output "==> ($MODULE_NAME) - Converting to yaml..."
-    Get-Content -Path "$PLANNED_VALUES.json" | yq e -P - | Tee-Object "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Saving planned values to planned_values.json..."
+    Get-Content -Path "$TF_PLAN_OUT.json" | jq '.planned_values' | Out-File -FilePath "$PLANNED_VALUES.json"
 
     # # #  Run OPA Tests
     Set-Location $MODULE_PATH
     Write-Output "==> ($MODULE_NAME) - Running conftest..."
 
-    Write-Output "==> ($MODULE_NAME) - Testing management_groups..."
-    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/management_groups.rego -d "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Testing azurerm_management_group resources..."
+    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/management_groups.rego -d "$PLANNED_VALUES.json"
 
-    Write-Output "==> ($MODULE_NAME) - Testing role_definitions..."
-    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/role_definitions.rego -d "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Testing azurerm_policy_definition resources..."
+    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/policy_definitions.rego -d "$PLANNED_VALUES.json"
 
-    Write-Output "==> ($MODULE_NAME) - Testing role_assignments..."
-    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/role_assignments.rego -d "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Testing azurerm_policy_set_definition resources..."
+    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/policy_set_definitions.rego -d "$PLANNED_VALUES.json"
 
-    Write-Output "==> ($MODULE_NAME) - Testing policy_set_definitions..."
-    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/policy_set_definitions.rego -d "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Testing azurerm_policy_assignment resources..."
+    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/policy_assignments.rego -d "$PLANNED_VALUES.json"
 
-    Write-Output "==> ($MODULE_NAME) - Testing policy_definitions..."
-    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/policy_definitions.rego -d "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Testing azurerm_role_definition resources..."
+    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/role_definitions.rego -d "$PLANNED_VALUES.json"
 
-    Write-Output "==> ($MODULE_NAME) - Testing policy_assignments..."
-    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/policy_assignments.rego -d "$PLANNED_VALUES.yml"
+    Write-Output "==> ($MODULE_NAME) - Testing azurerm_role_assignment resources..."
+    conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/role_assignments.rego -d "$PLANNED_VALUES.json"
 
     # # # Remove comments and $CONFIRM parameter for CMD prompt.
     # # # $CONFIRM = Read-Host "Do you want to prepare files for repository (y/n)?"
-    if ($CONFIRM -eq 'y') {
+    if ($CONFIRM) {
         Write-Output "`n"
         Remove-Item -Path "$TF_PLAN_OUT.json"
         Write-Output "==> ($MODULE_NAME) - $TF_PLAN_OUT.json has been removed"
         Write-Output "`n"
-        Remove-Item -Path "$PLANNED_VALUES.yml"
-        Write-Output "==> ($MODULE_NAME) - $PLANNED_VALUES.yml has been removed"
-        Write-Output "`n"
     }
     else {
         Write-Warning -Message "($MODULE_NAME) - $TF_PLAN_OUT.json  can contain sensitive data"
-        Write-Warning -Message  "($MODULE_NAME) - Exposing $TF_PLAN_OUT.json in a repository can cause security breach"
+        Write-Warning -Message "($MODULE_NAME) - Exposing $TF_PLAN_OUT.json in a repository can cause security breach"
         Write-Output "`n"
-        Write-Output "($MODULE_NAME) - From within your terraform root module: conftest test $TF_PLAN_OUT.json -p ../../opa/policy/  -d $PLANNED_VALUES.yml"
+        Write-Output "($MODULE_NAME) - From within your terraform root module: conftest test $TF_PLAN_OUT.json -p ../../opa/policy/  -d $PLANNED_VALUES.json"
         Write-Output "`n"
     }
 
