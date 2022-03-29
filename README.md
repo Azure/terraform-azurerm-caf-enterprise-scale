@@ -210,6 +210,9 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
 
 ## Release Notes
 
+Release `v1.1.4` is a hotfix release to add a `azurerm` provider verison constraint of `< 3.0.0`.
+This is a workaround for the resource schema changes as reported in issue [#309](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/309).
+
 Release `v1.1.3` is a hotfix relating to support for using YAML with archetype extensions and exclusions.
 
 Release `v1.1.2` introduces the following changes:
