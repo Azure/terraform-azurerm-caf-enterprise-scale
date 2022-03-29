@@ -8,6 +8,7 @@ resource "random_id" "telem" {
 # It is deployed to the default subscription
 resource "azurerm_subscription_template_deployment" "telemetry_core" {
   count            = local.telem_core_deployment_enabled ? 1 : 0
+  provider         = azurerm
   name             = local.telem_core_arm_deployment_name
   location         = local.default_location
   template_content = local.telem_arm_subscription_template_content

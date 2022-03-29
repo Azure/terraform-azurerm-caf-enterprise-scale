@@ -19,14 +19,15 @@ locals {
 }
 
 # The following locals calculate the telemetry bitfield by summiung thhe above locals and then representing as hexadecimal
+# Hex number is represented as two digits wide and is zero padded
 locals {
   telem_connectivity_bitfield_denery = (
     local.telem_connectivity_configure_hub_networks +
     local.telem_connectivity_configure_vwan_hub_networks +
-    local.telam_connectivity_configure_ddos_protection_plan +
-    local_connectivity_configure_dns
+    local.telem_connectivity_configure_ddos_protection_plan +
+    local.telem_connectivity_configure_dns
   )
-  telem_connectivity_bitfield_hex = format("%x", local.telem_connectivity_bitfield_denery)
+  telem_connectivity_bitfield_hex = format("%02x", local.telem_connectivity_bitfield_denery)
 }
 
 # This construicts the ARM deployment name that is used for the telemetry.
@@ -34,7 +35,7 @@ locals {
 locals {
   telem_connectivity_arm_deployment_name = substr(
     format(
-      "puid-%s-%s-%s-%s",
+      "pid-%s_%s_%s_%s",
       local.telem_connectivity_puid,
       local.module_version,
       local.telem_connectivity_bitfield_hex,

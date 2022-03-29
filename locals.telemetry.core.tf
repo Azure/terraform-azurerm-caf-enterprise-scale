@@ -22,6 +22,7 @@ locals {
 }
 
 # The following locals calculate the telemetry bitfield by summiung thhe above locals and then representing as hexadecimal
+# Hex number is represented as two digits wide and is zero padded
 locals {
   telem_core_bitfield_denery = (
     local.telem_core_deploy_core_landing_zones +
@@ -30,7 +31,7 @@ locals {
     local.telem_core_deploy_sap_landing_zones +
     local.telem_core_custom_lzs_configured
   )
-  telem_core_bitfield_hex = format("%x", local.telem_core_bitfield_denery)
+  telem_core_bitfield_hex = format("%02x", local.telem_core_bitfield_denery)
 }
 
 # This construicts the ARM deployment name that is used for the telemetry.
@@ -38,7 +39,7 @@ locals {
 locals {
   telem_core_arm_deployment_name = substr(
     format(
-      "puid-%s-%s-%s-%s",
+      "pid-%s_%s_%s_%s",
       local.telem_core_puid,
       local.module_version,
       local.telem_core_bitfield_hex,

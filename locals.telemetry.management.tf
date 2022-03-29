@@ -13,12 +13,13 @@ locals {
 }
 
 # The following locals calculate the telemetry bitfield by summiung thhe above locals and then representing as hexadecimal
+# Hex number is represented as two digits wide and is zero padded
 locals {
   telem_management_bitfield_denery = (
     local.telem_management_configure_log_analytics +
     local.telem_management_configure_security_center
   )
-  telem_management_bitfield_hex = format("%x", local.telem_management_bitfield_denery)
+  telem_management_bitfield_hex = format("%02x", local.telem_management_bitfield_denery)
 }
 
 # This construicts the ARM deployment name that is used for the telemetry.
@@ -26,7 +27,7 @@ locals {
 locals {
   telem_management_arm_deployment_name = substr(
     format(
-      "puid-%s-%s-%s-%s",
+      "pid-%s_%s_%s_%s",
       local.telem_management_puid,
       local.module_version,
       local.telem_management_bitfield_hex,
