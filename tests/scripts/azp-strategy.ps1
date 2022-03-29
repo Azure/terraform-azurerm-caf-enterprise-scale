@@ -21,7 +21,7 @@ Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -Informati
 
 $jsonDepth = 4
 $terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
-$azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
+# $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
 
 function Get-RandomId {
     [CmdletBinding()]
