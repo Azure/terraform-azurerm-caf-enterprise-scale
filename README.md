@@ -109,9 +109,11 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.96.0` as a baseline, and various versions to up the most recent at the time of release.
+This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.96.0` as a baseline, and various versions to up `v2.99.0`.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
+
+> Note that currently azurerm provider version `v3.0.0` and above are not supported by this module.
 
 ## Usage
 
