@@ -49,7 +49,7 @@ $terraformVersionsCount = $terraformVersions.Count
 #######################################
 
 $azurermProviderVersionBase = "2.77.0"
-$azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
+$azurermProviderVersionLatest = "2.99.0"
 
 #######################################
 # Generate Subscription Aliases
