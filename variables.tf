@@ -97,12 +97,11 @@ variable "configure_management_resources" {
         enabled = bool
         config = object({
           email_security_contact             = string
-          enable_defender_for_acr            = bool
           enable_defender_for_app_services   = bool
           enable_defender_for_arm            = bool
+          enable_defender_for_containers     = bool
           enable_defender_for_dns            = bool
           enable_defender_for_key_vault      = bool
-          enable_defender_for_kubernetes     = bool
           enable_defender_for_oss_databases  = bool
           enable_defender_for_servers        = bool
           enable_defender_for_sql_servers    = bool
@@ -140,12 +139,11 @@ variable "configure_management_resources" {
         enabled = true
         config = {
           email_security_contact             = "security_contact@replace_me"
-          enable_defender_for_acr            = true
           enable_defender_for_app_services   = true
           enable_defender_for_arm            = true
+          enable_defender_for_containers     = true
           enable_defender_for_dns            = true
           enable_defender_for_key_vault      = true
-          enable_defender_for_kubernetes     = true
           enable_defender_for_oss_databases  = true
           enable_defender_for_servers        = true
           enable_defender_for_sql_servers    = true
@@ -247,7 +245,60 @@ variable "configure_connectivity_resources" {
           })
         })
       )
-      vwan_hub_networks = list(object({}))
+      vwan_hub_networks = list(
+        object({
+          enabled = bool
+          config = object({
+            address_prefix = string
+            location       = string
+            sku            = string
+            routes = list(
+              object({
+                address_prefixes    = list(string)
+                next_hop_ip_address = string
+              })
+            )
+            expressroute_gateway = object({
+              enabled = bool
+              config = object({
+                scale_unit = number
+              })
+            })
+            vpn_gateway = object({
+              enabled = bool
+              config = object({
+                bgp_settings = list(
+                  object({
+                    asn         = number
+                    peer_weight = number
+                    instance_0_bgp_peering_address = list(
+                      object({
+                        custom_ips = list(string)
+                      })
+                    )
+                    instance_1_bgp_peering_address = list(
+                      object({
+                        custom_ips = list(string)
+                      })
+                    )
+                  })
+                )
+                routing_preference = string
+                scale_unit         = number
+              })
+            })
+            azure_firewall = object({
+              enabled = bool
+              config = object({
+                enable_dns_proxy = bool
+                sku_tier         = string
+              })
+            })
+            spoke_virtual_network_resource_ids = list(string)
+            enable_virtual_hub_connections     = bool
+          })
+        })
+      )
       ddos_protection_plan = object({
         enabled = bool
         config = object({

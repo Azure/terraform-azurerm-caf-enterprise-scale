@@ -6,8 +6,10 @@ set -e
 # - Terraform Prepare
 #
 
+CREDENTIALS_WORKSPACE="$PIPELINE_WORKSPACE/s/tests"
+
 echo "==> Switching directories..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment"
+cd "$CREDENTIALS_WORKSPACE"
 
 echo "==> Authenticating cli..."
 az login \
@@ -51,59 +53,12 @@ openssl pkcs12 \
 echo "==> Deleting SPN certificate in PEM format..."
 shred -uz "$SPN_NAME.pem"
 
-echo "==> Creating provider.tf with required_provider version and credentials..."
-cat >provider.tf <<TFCONFIG
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "$TF_AZ_VERSION"
-      configuration_aliases = [
-        azurerm.connectivity,
-        azurerm.management,
-      ]
-    }
-  }
-}
+echo "==> Storing Client Certificate Details"
+echo "##vso[task.setvariable variable=ARM_CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CLIENT_ID"
+echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PATH;]$CREDENTIALS_WORKSPACE/$SPN_NAME.pfx"
+echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PASSWORD;]$CERTIFICATE_PASSWORD"
 
-provider "azurerm" {
-  features {}
-
-  alias                       = "connectivity"
-  subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
-  client_id                   = "$CERTIFICATE_CLIENT_ID"
-  client_certificate_path     = "$SPN_NAME.pfx"
-  client_certificate_password = "$CERTIFICATE_PASSWORD"
-  tenant_id                   = "$ARM_TENANT_ID"
-}
-
-provider "azurerm" {
-  features {}
-
-  alias                       = "management"
-  subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
-  client_id                   = "$CERTIFICATE_CLIENT_ID"
-  client_certificate_path     = "$SPN_NAME.pfx"
-  client_certificate_password = "$CERTIFICATE_PASSWORD"
-  tenant_id                   = "$ARM_TENANT_ID"
-}
-TFCONFIG
-
-echo "==> Generating root id's..."
-ROOT_ID_1="${RANDOM}-es"
-ROOT_ID_2="${RANDOM}-es"
-ROOT_ID_3="${RANDOM}-es"
-
-echo "==> Azure Root ID 1 - $ROOT_ID_1"
-echo "##vso[task.setvariable variable=TF_ROOT_ID_1;]$ROOT_ID_1"
-
-echo "==> Azure Root ID 2 - $ROOT_ID_2"
-echo "##vso[task.setvariable variable=TF_ROOT_ID_2;]$ROOT_ID_2"
-
-echo "==> Azure Root ID 3 - $ROOT_ID_3"
-echo "##vso[task.setvariable variable=TF_ROOT_ID_3;]$ROOT_ID_3"
-
-echo "==> Displaying environment variables..."
-echo "==> Terraform Version - $TF_VERSION"
-echo "==> Terraform Provider Version - $TF_AZ_VERSION"
+echo "==> Terraform Variable (Root ID)   - $TF_ROOT_ID"
+echo "==> Terraform Version              - $TF_VERSION"
+echo "==> Terraform Provider Version     - $TF_AZ_VERSION"
 echo "==> Terraform Variable (Root Name) - ES-$TF_VERSION-$TF_AZ_VERSION"

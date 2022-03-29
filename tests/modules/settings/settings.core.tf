@@ -2,9 +2,9 @@
 # addition the core resource hierarchy.
 locals {
   custom_landing_zones = {
-    "${var.root_id_3}-secure" = {
+    "${var.root_id}-secure" = {
       display_name               = "Secure Workloads (HITRUST/HIPAA)"
-      parent_management_group_id = "${var.root_id_3}-landing-zones"
+      parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_secure"
@@ -23,8 +23,8 @@ locals {
           }
           Deploy-HITRUST-HIPAA = {
             CertificateThumbprints                                        = ""
-            DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"
-            DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id_3
+            DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id}-rg"
+            DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id
             installedApplicationsOnWindowsVM                              = ""
             listOfLocations = [
               "eastus",
@@ -34,9 +34,9 @@ locals {
         access_control = {}
       }
     }
-    "${var.root_id_3}-web-global" = {
+    "${var.root_id}-web-global" = {
       display_name               = "Global Web Applications"
-      parent_management_group_id = "${var.root_id_3}-online"
+      parent_management_group_id = "${var.root_id}-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id   = "default_empty"
@@ -44,9 +44,9 @@ locals {
         access_control = {}
       }
     }
-    "${var.root_id_3}-web-us" = {
+    "${var.root_id}-web-us" = {
       display_name               = "US Web Applications"
-      parent_management_group_id = "${var.root_id_3}-online"
+      parent_management_group_id = "${var.root_id}-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_online"
@@ -67,9 +67,9 @@ locals {
         access_control = {}
       }
     }
-    "${var.root_id_3}-web-emea" = {
+    "${var.root_id}-web-emea" = {
       display_name               = "EMEA Web Applications"
-      parent_management_group_id = "${var.root_id_3}-online"
+      parent_management_group_id = "${var.root_id}-online"
       subscription_ids           = []
       archetype_config = {
         archetype_id = "customer_online"
@@ -129,8 +129,8 @@ locals {
         }
         Deploy-HITRUST-HIPAA = {
           CertificateThumbprints                                        = ""
-          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id_3}-rg"
-          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id_3
+          DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id}-rg"
+          DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id
           installedApplicationsOnWindowsVM                              = ""
           listOfLocations = [
             "eastus",

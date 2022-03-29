@@ -6,10 +6,10 @@ import data.child_modules
 # Rules
 ########################
 
-# # # Compare the policy_set_definition_management_group_name and fail if they are not equal.
-violation[policy_set_definition_management_group_name] {
-	plc_set_def_plan_management_group_name != plc_set_def_change_management_group_name
-	policy_set_definition_management_group_name := sprintf("The policy_set_definition_management_group_name planned values:\n \n %v \n \n are not equal to the policy_set_definition_management_group_name changed values:\n \n %v", [plc_set_def_plan_management_group_name, plc_set_def_change_management_group_name])
+# # # Compare the policy_set_definition_management_group_id and fail if they are not equal.
+violation[policy_set_definition_management_group_id] {
+	plc_set_def_plan_management_group_id != plc_set_def_change_management_group_id
+	policy_set_definition_management_group_id := sprintf("The policy_set_definition_management_group_id planned values:\n \n %v \n \n are not equal to the policy_set_definition_management_group_id changed values:\n \n %v", [plc_set_def_plan_management_group_id, plc_set_def_change_management_group_id])
 }
 
 # # # Compare the policy_set_definition_metadata and fail if they are not equal.
@@ -40,24 +40,24 @@ violation[policy_set_definition_reference] {
 # Library
 ########################
 
-# # # Get the management_group_name from all policy set definitions in planned_values.yml
-plc_set_def_plan_management_group_name[module_name] = plcs {
+# # # Get the management_group_id from all policy set definitions in planned_values.yml
+plc_set_def_plan_management_group_id[module_name] = plcs {
 	module := child_modules[_]
 	module_name := module.address
 	plcs := [plc |
 		module.resources[i].type == "azurerm_policy_set_definition"
-		plc := module.resources[i].values.management_group_name
+		plc := module.resources[i].values.management_group_id
 	]
 }
 
-# # # Get the management_group_name from all policy set definitions in the opa.json
-plc_set_def_change_management_group_name[module_name] = plcs {
+# # # Get the management_group_id from all policy set definitions in the opa.json
+plc_set_def_change_management_group_id[module_name] = plcs {
 	module := input.resource_changes[_]
 	module_name := module.module_address
 	plcs := [plc |
 		input.resource_changes[r].type == "azurerm_policy_set_definition"
 		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.management_group_name
+		plc := input.resource_changes[r].change.after.management_group_id
 	]
 }
 

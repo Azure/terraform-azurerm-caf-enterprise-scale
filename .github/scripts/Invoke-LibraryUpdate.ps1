@@ -23,6 +23,7 @@
 param (
     [Parameter()][String]$TargetModulePath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourceModulePath = "$PWD/enterprise-scale",
+    [Parameter()][String]$LineEnding = "unix",
     [Parameter()][Switch]$Reset,
     [Parameter()][Switch]$UseCacheFromModule
 )
@@ -108,6 +109,7 @@ foreach ($config in $esltConfig) {
         -FileNameSuffix ($config.fileNameSuffix ?? $defaultConfig.fileNameSuffix) `
         -AsTemplate:($config.asTemplate ?? $defaultConfig.asTemplate) `
         -Recurse:($config.recurse ?? $defaultConfig.recurse) `
+        -LineEnding $LineEnding `
         -WhatIf:$WhatIfPreference
 }
 
@@ -134,4 +136,4 @@ $esRootConfig.es_root.policy_definitions = $policyDefinitionNames
 Write-Information "Updating Policy Set Definitions in `"es_root`" archetype definition." -InformationAction Continue
 $esRootConfig.es_root.policy_set_definitions = $policySetDefinitionNames
 Write-Information "Saving `"es_root`" archetype definition." -InformationAction Continue
-$esRootConfig | ConvertTo-Json -Depth 10 | Out-File -FilePath $esRootFilePath -Force
+$esRootConfig | ConvertTo-Json -Depth 10 | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath $esRootFilePath -Force

@@ -6,20 +6,20 @@ set -e
 # - Terraform Destroy
 #
 
+TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
+
 echo "==> Switching directories..."
-cd "$PIPELINE_WORKSPACE/s/tests/deployment"
+cd "$TF_WORKSPACE"
 
 echo "==> Destroying infrastructure..."
 # shellcheck disable=SC2153 # Environment variables set by pipeline
 terraform destroy \
-    -var "location=$DEFAULT_LOCATION" \
-    -var "root_id_1=$TF_ROOT_ID_1" \
-    -var "root_id_2=$TF_ROOT_ID_2" \
-    -var "root_id_3=$TF_ROOT_ID_3" \
+    -var "root_id=$TF_ROOT_ID" \
     -var "root_name=ES-$TF_VERSION-$TF_AZ_VERSION" \
+    -var "primary_location=$PRIMARY_LOCATION" \
+    -var "secondary_location=$SECONDARY_LOCATION" \
     -auto-approve \
-    -parallelism=256 \
-    -state="./terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
+    -parallelism="$PARALLELISM"
 status=$?
 
 if [ $status -ne 0 ]; then
@@ -34,7 +34,7 @@ if [ $status -ne 0 ]; then
 
     IFS=$'\n'
 
-    TF_ROOT_ID=("$TF_ROOT_ID_1" "$TF_ROOT_ID_2" "$TF_ROOT_ID_3")
+    TF_ROOT_ID=("$TF_ROOT_ID")
     for x in "${TF_ROOT_ID[@]}"; do
         echo "==> Retrieving management group structure..."
         TMP_FILE="./data.json"
