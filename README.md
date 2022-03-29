@@ -109,7 +109,7 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.77.0` as a baseline, and various versions to up the most recent at the time of release.
+This module has been tested using Terraform `0.15.0` and AzureRM Provider `2.96.0` as a baseline, and various versions to up the most recent at the time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -132,7 +132,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.77.0"
+      version = ">= 2.96.0"
     }
   }
 }
@@ -198,15 +198,20 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
   - [Deploy Identity Resources][wiki_deploy_identity_resources]
   - [Deploy Management Resources][wiki_deploy_management_resources]
+  - [Assign a Built-in Policy][wiki_assign_a_built_in_policy]
 - [Examples - Level 300][wiki_examples_level_300]
   - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
   - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
   - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
   - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
+  - [Create Custom Policies, Policy Sets and Assignments][wiki_create_custom_policies_policy_sets_and_assignments]
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
 ## Release Notes
+
+Release `v1.1.4` is a hotfix release to add a `azurerm` provider verison constraint of `< 3.0.0`.
+This is a workaround for the resource schema changes as reported in issue [#309](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/309).
 
 Release `v1.1.3` is a hotfix relating to support for using YAML with archetype extensions and exclusions.
 
@@ -382,3 +387,5 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_contributing_to_documentation]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Documentation "Wiki - Contributing to Documentation"
 [wiki_expand_built_in_archetype_definitions]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
 [wiki_override_module_role_assignments]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+[wiki_create_custom_policies_policy_sets_and_assignments]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
+[wiki_assign_a_built_in_policy]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a Built-in Policy"
