@@ -8,27 +8,29 @@ import data.root_module as baseline
 ########################
 
 # Compare the role_definition_name and fail if they are not equal.
-violation[role_definition_name] {
-	plan_role_definition_name != baseline_role_definition_name
-	role_definition_name := sprintf("The role_definition_name planned values:\n \n %v \n \n are not equal to the role_definition_name changed values:\n \n %v", [plan_role_definition_name, baseline_role_definition_name])
-}
+# Will not work due to the way names are generated.
+# violation[role_definition_name] {
+# 	plan_role_definition_name != baseline_role_definition_name
+# 	role_definition_name := sprintf("The role_definition_name planned values:\n \n %v \n \n are not equal to the role_definition_name _baseline values:\n \n %v", [plan_role_definition_name, baseline_role_definition_name])
+# }
 
 # Compare the role_definition_permissions and fail if they are not equal.
 violation[role_definition_permissions] {
 	plan_role_definition_permissions != baseline_role_definition_permissions
-	role_definition_permissions := sprintf("The role_definition_permissions planned values:\n \n %v \n \n are not equal to the role_definition_permissions changed values:\n \n %v", [plan_role_definition_permissions, baseline_role_definition_permissions])
+	role_definition_permissions := sprintf("The role_definition_permissions planned values:\n \n %v \n \n are not equal to the role_definition_permissions _baseline values:\n \n %v", [plan_role_definition_permissions, baseline_role_definition_permissions])
 }
 
 # Compare the role_definition_id and fail if they are not equal.
-violation[role_definition_id] {
-	plan_role_definition_role_definition_id != baseline_role_definition_role_definition_id
-	role_definition_id := sprintf("The role_definition_id planned values:\n \n %v \n \n are not equal to the role_definition_id changed values:\n \n %v", [plan_role_definition_role_definition_id, baseline_role_definition_role_definition_id])
-}
+# Will not work due to the way ids are generated.
+# violation[role_definition_id] {
+# 	plan_role_definition_role_definition_id != baseline_role_definition_role_definition_id
+# 	role_definition_id := sprintf("The role_definition_id planned values:\n \n %v \n \n are not equal to the role_definition_id _baseline values:\n \n %v", [plan_role_definition_role_definition_id, baseline_role_definition_role_definition_id])
+# }
 
 # Compare the role_definition_scope and fail if they are not equal.
 violation[role_definition_scope] {
 	plan_role_definition_scope != baseline_role_definition_scope
-	role_definition_scope := sprintf("The role_definition_scope planned values:\n \n %v \n \n are not equal to the role_definition_scope changed values:\n \n %v", [plan_role_definition_scope, baseline_role_definition_scope])
+	role_definition_scope := sprintf("The role_definition_scope planned values:\n \n %v \n \n are not equal to the role_definition_scope _baseline values:\n \n %v", [plan_role_definition_scope, baseline_role_definition_scope])
 }
 
 ########################
