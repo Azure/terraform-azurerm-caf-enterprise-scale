@@ -24,7 +24,7 @@ jq '(.. | strings) |= gsub("westeurope"; "'"$SECONDARY_LOCATION"'")' "$TEMP_FILE
 
 # Update terraform-plan.json to sort ordering (see opa-values-generator.ps1 for more information)
 echo "==> Sort resource ordering in Terraform plan..."
-jq '(.root_module.child_modules[]?.child_modules // []) |= sort_by(.address)' "$TF_PLAN_OUT".json >"$TF_PLAN_OUT"_planned_values.json
+jq '(.planned_values.root_module.child_modules[]?.child_modules // []) |= sort_by(.address)' "$TF_PLAN_OUT".json >"$TF_PLAN_OUT"_planned_values.json
 
 echo "==> Module Locations - $PRIMARY_LOCATION ($SECONDARY_LOCATION)"
 echo "==> Azure {TF_ROOT_ID} - ${TF_ROOT_ID}"
