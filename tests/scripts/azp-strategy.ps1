@@ -21,7 +21,7 @@ Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -Informati
 
 $jsonDepth = 4
 $terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
-$azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
+# $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
 
 function Get-RandomId {
     [CmdletBinding()]
@@ -58,7 +58,8 @@ $terraformVersionsCount = $terraformVersions.Count
 #######################################
 
 $azurermProviderVersionBase = "2.96.0"
-$azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
+# $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
+$azurermProviderVersionLatest = "2.99.0"
 
 #######################################
 # Generate Subscription Aliases
