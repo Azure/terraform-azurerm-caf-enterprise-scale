@@ -1,0 +1,23 @@
+{
+    "name": "54875d31-4d56-572b-95c7-b74a682b30e0",
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "apiVersion": "2018-01-01-preview",
+    "properties": {
+        "roleName": "Azure-Platform-Owner",
+        "description": "Management group and subscription lifecycle management",
+        "type": "customRole",
+        "permissions": [
+            {
+                "actions": [
+                    "*"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ],
+        "assignableScopes": [
+            "${current_scope_resource_id}"
+        ]
+    }
+}
