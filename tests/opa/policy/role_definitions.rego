@@ -20,7 +20,7 @@ violation[role_definition_permissions] {
 }
 
 # Compare the role_definition_id and fail if they are not equal.
-# Will not work due to the way ids are generated.
+# Will not work due to the way ids are generated using uuidv5() function.
 # violation[role_definition_id] {
 # 	plan_role_definition_role_definition_id != baseline_role_definition_role_definition_id
 # 	role_definition_id := sprintf("The role_definition_id planned values:\n \n %v \n \n are not equal to the role_definition_id _baseline values:\n \n %v", [plan_role_definition_role_definition_id, baseline_role_definition_role_definition_id])
