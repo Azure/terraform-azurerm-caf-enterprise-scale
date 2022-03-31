@@ -1,255 +1,247 @@
 package main
 
-import data.child_modules
+import input.planned_values.root_module as plan
+import data.root_module as baseline
 
 ########################
 # Rules
 ########################
 
-# # # Some rules are commented out to prevent Azure Pipelines runner running out of memory (error code 137)
+# Compare the policy_assignment_display_name and fail if they are not equal.
+violation[policy_assignment_display_name] {
+	plan_policy_assignment_display_name != baseline_policy_assignment_display_name
+	policy_assignment_display_name := sprintf("The policy_assignment_display_name planned values:\n \n %v \n \n are not equal to the policy_assignment_display_name baseline values:\n \n %v", [plan_policy_assignment_display_name, baseline_policy_assignment_display_name])
+}
 
-# # # # Compare the policy_assignment_display_name and fail if they are not equal.
-# violation[policy_assignment_display_name] {
-# 	plc_assign_plan_display_name != plc_assign_change_display_name
-# 	policy_assignment_display_name := sprintf("The policy_assignment_display_name planned values:\n \n %v \n \n are not equal to the policy_assignment_display_name changed values:\n \n %v", [plc_assign_plan_display_name, plc_assign_change_display_name])
-# }
+# Compare the policy_assignment_name and fail if they are not equal.
+violation[policy_assignment_name] {
+	plan_policy_assignment_name != baseline_policy_assignment_name
+	policy_assignment_name := sprintf("The policy_assignment_name planned values:\n \n %v \n \n are not equal to the policy_assignment_name baseline values:\n \n %v", [plan_policy_assignment_name, baseline_policy_assignment_name])
+}
 
-# # # Compare the policy_assignment_enforcement_mode and fail if they are not equal.
+# Compare the policy_assignment_enforcement_mode and fail if they are not equal.
 violation[policy_assignment_enforcement_mode] {
-	plc_assign_plan_enforcement_mode != plc_assign_change_enforcement_mode
-	policy_assignment_enforcement_mode := sprintf("The policy_assignment_enforcement_mode planned values:\n \n %v \n \n are not equal to the policy_assignment_enforcement_mode changed values:\n \n %v", [plc_assign_plan_enforcement_mode, plc_assign_change_enforcement_mode])
+	plan_policy_assignment_enforcement_mode != baseline_policy_assignment_enforcement_mode
+	policy_assignment_enforcement_mode := sprintf("The policy_assignment_enforcement_mode planned values:\n \n %v \n \n are not equal to the policy_assignment_enforcement_mode baseline values:\n \n %v", [plan_policy_assignment_enforcement_mode, baseline_policy_assignment_enforcement_mode])
 }
 
-# # # Compare the policy_assignment_identity and fail if they are not equal.
+# Compare the policy_assignment_identity and fail if they are not equal.
 violation[policy_assignment_identity] {
-	plc_assign_plan_identity != plc_assign_change_identity
-	policy_assignment_identity := sprintf("The policy_assignment_identity planned values:\n \n %v \n \n are not equal to the policy_assignment_identity changed values:\n \n %v", [plc_assign_plan_identity, plc_assign_change_identity])
+	plan_policy_assignment_identity != baseline_policy_assignment_identity
+	policy_assignment_identity := sprintf("The policy_assignment_identity planned values:\n \n %v \n \n are not equal to the policy_assignment_identity baseline values:\n \n %v", [plan_policy_assignment_identity, baseline_policy_assignment_identity])
 }
 
-# # # # Compare the policy_assignment_location and fail if they are not equal.
-# violation[policy_assignment_location] {
-# 	plc_assign_plan_location != plc_assign_change_location
-# 	policy_assignment_location := sprintf("The policy_assignment_location planned values:\n \n %v \n \n are not equal to the policy_assignment_location changed values:\n \n %v", [plc_assign_plan_location, plc_assign_change_location])
-# }
+# Compare the policy_assignment_location and fail if they are not equal.
+violation[policy_assignment_location] {
+	plan_policy_assignment_location != baseline_policy_assignment_location
+	policy_assignment_location := sprintf("The policy_assignment_location planned values:\n \n %v \n \n are not equal to the policy_assignment_location baseline values:\n \n %v", [plan_policy_assignment_location, baseline_policy_assignment_location])
+}
 
-# # # # Compare the policy_assignment_name and fail if they are not equal.
-# violation[policy_assignment_name] {
-# 	plc_assign_plan_name != plc_assign_change_name
-# 	policy_assignment_name := sprintf("The policy_assignment_name planned values:\n \n %v \n \n are not equal to the policy_assignment_name changed values:\n \n %v", [plc_assign_plan_name, plc_assign_change_name])
-# }
-
-# # # Compare the policy_assignment_not_scopes and fail if they are not equal.
+# Compare the policy_assignment_not_scopes and fail if they are not equal.
 violation[policy_assignment_not_scopes] {
-	plc_assign_plan_not_scopes != plc_assign_change_not_scopes
-	policy_assignment_not_scopes := sprintf("The policy_assignment_not_scopes planned values:\n \n %v \n \n are not equal to the policy_assignment_not_scopes changed values:\n \n %v", [plc_assign_plan_not_scopes, plc_assign_change_not_scopes])
+	plan_policy_assignment_not_scopes != baseline_policy_assignment_not_scopes
+	policy_assignment_not_scopes := sprintf("The policy_assignment_not_scopes planned values:\n \n %v \n \n are not equal to the policy_assignment_not_scopes baseline values:\n \n %v", [plan_policy_assignment_not_scopes, baseline_policy_assignment_not_scopes])
 }
 
-# # # # Compare the policy_assignment_parameters and fail if they are not equal.
+# Compare the policy_assignment_parameters and fail if they are not equal.
+# Needs a way to allow for changes to Subscription IDs within parameter values.
 # violation[policy_assignment_parameters] {
-# 	plc_assign_plan_parameters != plc_assign_change_parameters
-# 	policy_assignment_parameters := sprintf("The policy_assignment_parameters planned values:\n \n %v \n \n are not equal to the policy_assignment_parameters changed values:\n \n %v", [plc_assign_plan_parameters, plc_assign_change_parameters])
+# 	plan_policy_assignment_parameters != baseline_policy_assignment_parameters
+# 	policy_assignment_parameters := sprintf("The policy_assignment_parameters planned values:\n \n %v \n \n are not equal to the policy_assignment_parameters baseline values:\n \n %v", [plan_policy_assignment_parameters, baseline_policy_assignment_parameters])
 # }
 
-# # # Compare the policy_assignment_policy_definition_id and fail if they are not equal.
+# Compare the policy_assignment_policy_definition_id and fail if they are not equal.
 violation[policy_assignment_policy_definition_id] {
-	plc_assign_plan_policy_definition_id != plc_assign_change_policy_definition_id
-	policy_assignment_policy_definition_id := sprintf("The policy_assignment_policy_definition_id planned values:\n \n %v \n \n are not equal to the policy_assignment_policy_definition_id changed values:\n \n %v", [plc_assign_plan_policy_definition_id, plc_assign_change_policy_definition_id])
+	plan_policy_assignment_policy_definition_id != baseline_policy_assignment_policy_definition_id
+	policy_assignment_policy_definition_id := sprintf("The policy_assignment_policy_definition_id planned values:\n \n %v \n \n are not equal to the policy_assignment_policy_definition_id baseline values:\n \n %v", [plan_policy_assignment_policy_definition_id, baseline_policy_assignment_policy_definition_id])
 }
 
-# # # # Compare the policy_assignment_scope and fail if they are not equal.
-# violation[policy_assignment_scope] {
-# 	plc_assign_plan_scope != plc_assign_change_scope
-# 	policy_assignment_scope := sprintf("The policy_assignment_scope planned values:\n \n %v \n \n are not equal to the policy_assignment_scope changed values:\n \n %v", [plc_assign_plan_scope, plc_assign_change_scope])
-# }
+# Compare the policy_assignment_scope and fail if they are not equal.
+violation[policy_assignment_scope] {
+	plan_policy_assignment_scope != baseline_policy_assignment_scope
+	policy_assignment_scope := sprintf("The policy_assignment_scope planned values:\n \n %v \n \n are not equal to the policy_assignment_scope baseline values:\n \n %v", [plan_policy_assignment_scope, baseline_policy_assignment_scope])
+}
 
 ########################
 # Library
 ########################
-# # # Get the display name from all policy assignments in planned_values.yml
-plc_assign_plan_display_name[module_name] = plcs {
-	module := child_modules[_]
+
+# Get the display name from all policy assignments in planned_values.json
+baseline_policy_assignment_display_name[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.display_name
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.display_name
 	]
 }
 
-# # # Get the display name from all policy assignments in the opa.json
-plc_assign_change_display_name[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.display_name
-	]
-}
-
-# # # Get the enforcement mode from all policy assignments in planned_values.yml
-plc_assign_plan_enforcement_mode[module_name] = plcs {
-	module := child_modules[_]
+# Get the display name from all policy assignments in the terraform_plan.json
+plan_policy_assignment_display_name[module_name] = policy_assignments {
+	module := plan.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.enforcement_mode
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.display_name
 	]
 }
 
-# # # Get the enforcement mode from all policy assignments in the opa.json
-plc_assign_change_enforcement_mode[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.enforcement_mode
-	]
-}
-
-# # # Get the identity from all policy assignments in planned_values.yml
-plc_assign_plan_identity[module_name] = plcs {
-	module := child_modules[_]
+# Get the name from all policy assignments in planned_values.json
+baseline_policy_assignment_name[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.identity
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.name
 	]
 }
 
-# # # Get the identity from all policy assignments in the opa.json
-plc_assign_change_identity[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.identity
-	]
-}
-
-# # # Get the location from all policy assignments in planned_values.yml
-plc_assign_plan_location[module_name] = plcs {
-	module := child_modules[_]
+# Get the name from all policy assignments in the terraform_plan.json
+plan_policy_assignment_name[module_name] = policy_assignments {
+	module := plan.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.location
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.name
 	]
 }
 
-# # # Get the location from all policy assignments in the opa.json
-plc_assign_change_location[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.location
-	]
-}
-
-# # # Get the name from all policy assignments in planned_values.yml
-plc_assign_plan_name[module_name] = plcs {
-	module := child_modules[_]
+# Get the enforcement mode from all policy assignments in planned_values.json
+baseline_policy_assignment_enforcement_mode[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.name
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.enforce
 	]
 }
 
-# # # Get the name from all policy assignments in the opa.json
-plc_assign_change_name[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.name
-	]
-}
-
-# # # Get the not_scopes from all policy assignments in planned_values.yml
-plc_assign_plan_not_scopes[module_name] = plcs {
-	module := child_modules[_]
+# Get the enforcement mode from all policy assignments in the terraform_plan.json
+plan_policy_assignment_enforcement_mode[module_name] = policy_assignments {
+	module := plan.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.not_scopes
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.enforce
 	]
 }
 
-# # # Get the not_scopes from all policy assignments in the opa.json
-plc_assign_change_not_scopes[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.not_scopes
-	]
-}
-
-# # # Get the parameters from all policy assignments in planned_values.yml
-plc_assign_plan_parameters[module_name] = plcs {
-	module := child_modules[_]
+# Get the identity from all policy assignments in planned_values.json
+baseline_policy_assignment_identity[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.parameters
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.identity
 	]
 }
 
-# # # Get the parameters from all policy assignments in the opa.json
-plc_assign_change_parameters[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.parameters
-	]
-}
-
-# # # Get the policy_definition_id from all policy assignments in planned_values.yml
-plc_assign_plan_policy_definition_id[module_name] = plcs {
-	module := child_modules[_]
+# Get the identity from all policy assignments in the terraform_plan.json
+plan_policy_assignment_identity[module_name] = policy_assignments {
+	module := plan.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.policy_definition_id
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.identity
 	]
 }
 
-# # # Get the policy_definition_id from all policy assignments in the opa.json
-plc_assign_change_policy_definition_id[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.policy_definition_id
-	]
-}
-
-# # # Get the scope from all policy assignments in planned_values.yml
-plc_assign_plan_scope[module_name] = plcs {
-	module := child_modules[_]
+# Get the location from all policy assignments in planned_values.json
+baseline_policy_assignment_location[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
 	module_name := module.address
-	plcs := [plc |
-		module.resources[i].type == "azurerm_policy_assignment"
-		plc := module.resources[i].values.scope
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.location
 	]
 }
 
-# # # Get the scope from all policy assignments in the opa.json
-plc_assign_change_scope[module_name] = plcs {
-	module := input.resource_changes[_]
-	module_name := module.module_address
-	plcs := [plc |
-		input.resource_changes[r].type == "azurerm_policy_assignment"
-		input.resource_changes[r].module_address == module.module_address
-		plc := input.resource_changes[r].change.after.scope
+# Get the location from all policy assignments in the terraform_plan.json
+plan_policy_assignment_location[module_name] = policy_assignments {
+	module := plan.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.location
+	]
+}
+
+# Get the not_scopes from all policy assignments in planned_values.json
+baseline_policy_assignment_not_scopes[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.not_scopes
+	]
+}
+
+# Get the not_scopes from all policy assignments in the terraform_plan.json
+plan_policy_assignment_not_scopes[module_name] = policy_assignments {
+	module := plan.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.not_scopes
+	]
+}
+
+# Get the parameters from all policy assignments in planned_values.json
+baseline_policy_assignment_parameters[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.parameters
+	]
+}
+
+# Get the parameters from all policy assignments in the terraform_plan.json
+plan_policy_assignment_parameters[module_name] = policy_assignments {
+	module := plan.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.parameters
+	]
+}
+
+# Get the policy_definition_id from all policy assignments in planned_values.json
+baseline_policy_assignment_policy_definition_id[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.policy_definition_id
+	]
+}
+
+# Get the policy_definition_id from all policy assignments in the terraform_plan.json
+plan_policy_assignment_policy_definition_id[module_name] = policy_assignments {
+	module := plan.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.policy_definition_id
+	]
+}
+
+# Get the scope from all policy assignments in planned_values.json
+baseline_policy_assignment_scope[module_name] = policy_assignments {
+	module := baseline.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[i].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[i].values.management_group_id
+	]
+}
+
+# Get the scope from all policy assignments in the terraform_plan.json
+plan_policy_assignment_scope[module_name] = policy_assignments {
+	module := plan.child_modules[_]
+	module_name := module.address
+	policy_assignments := [policy_assignment |
+		module.resources[r].type == "azurerm_management_group_policy_assignment"
+		policy_assignment := module.resources[r].values.management_group_id
 	]
 }

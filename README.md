@@ -269,6 +269,18 @@ For upgrade guides from previous versions, please refer to the following links:
 - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
 - [Upgrade from v0.0.8 to v0.1.0][wiki_upgrade_from_v0_0_8_to_v0_1_0]
 
+## Telemetry
+
+> The following statement is applicable from release v1.2.0 onwards
+
+When you deploy one or more modules in Azure Landing Zones Terraform repo, Microsoft can identify the installation of said module/s with the deployed Azure resources.
+Microsoft can correlate these resources used to support the software.
+Microsoft collects this information to provide the best experiences with their products and to operate their business.
+The telemetry is collected through customer usage attribution.
+The data is collected and governed by [Microsoft's privacy policies][msft-privacy-policy].
+
+If you don't wish to send usage data to Microsoft, details on how to turn it off can be found here.
+
 ## License
 
 - [MIT License][TFAES-LICENSE]
@@ -293,6 +305,8 @@ For upgrade guides from previous versions, please refer to the following links:
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
+
+[msft-privacy-policy]: https://www.microsoft.com/trustcenter  "Microsoft's privacy policy"
 
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
 
