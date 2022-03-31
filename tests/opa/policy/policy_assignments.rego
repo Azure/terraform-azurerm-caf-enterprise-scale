@@ -44,10 +44,11 @@ violation[policy_assignment_not_scopes] {
 }
 
 # Compare the policy_assignment_parameters and fail if they are not equal.
-violation[policy_assignment_parameters] {
-	plan_policy_assignment_parameters != baseline_policy_assignment_parameters
-	policy_assignment_parameters := sprintf("The policy_assignment_parameters planned values:\n \n %v \n \n are not equal to the policy_assignment_parameters baseline values:\n \n %v", [plan_policy_assignment_parameters, baseline_policy_assignment_parameters])
-}
+# Needs a way to allow for changes to Subscription IDs within parameter values.
+# violation[policy_assignment_parameters] {
+# 	plan_policy_assignment_parameters != baseline_policy_assignment_parameters
+# 	policy_assignment_parameters := sprintf("The policy_assignment_parameters planned values:\n \n %v \n \n are not equal to the policy_assignment_parameters baseline values:\n \n %v", [plan_policy_assignment_parameters, baseline_policy_assignment_parameters])
+# }
 
 # Compare the policy_assignment_policy_definition_id and fail if they are not equal.
 violation[policy_assignment_policy_definition_id] {
