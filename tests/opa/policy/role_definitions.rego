@@ -8,11 +8,10 @@ import data.root_module as baseline
 ########################
 
 # Compare the role_definition_name and fail if they are not equal.
-# Will not work due to the way names are generated.
-# violation[role_definition_name] {
-# 	plan_role_definition_name != baseline_role_definition_name
-# 	role_definition_name := sprintf("The role_definition_name planned values:\n \n %v \n \n are not equal to the role_definition_name _baseline values:\n \n %v", [plan_role_definition_name, baseline_role_definition_name])
-# }
+violation[role_definition_name] {
+	plan_role_definition_name != baseline_role_definition_name
+	role_definition_name := sprintf("The role_definition_name planned values:\n \n %v \n \n are not equal to the role_definition_name _baseline values:\n \n %v", [plan_role_definition_name, baseline_role_definition_name])
+}
 
 # Compare the role_definition_permissions and fail if they are not equal.
 violation[role_definition_permissions] {
