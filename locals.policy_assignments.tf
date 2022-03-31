@@ -32,6 +32,9 @@ locals {
 # within each Policy Assignment. This requires the following logic
 # to determine which Role Assignments to create.
 
+# This information is then passed to the `policy_assignments`
+# sub-module which is used to create the resources.
+
 # Generate a list of internal Policy Definitions and Policy
 # Set Definitions.
 locals {
@@ -215,36 +218,12 @@ locals {
   )
 }
 
-# Generate a list of principal_id values by Policy Assignment
-locals {
-  merge_policy_assignments_by_type = merge(
-    azurerm_management_group_policy_assignment.enterprise_scale,
-  )
-  principal_id_by_policy_assignment = {
-    for pak, pav in local.merge_policy_assignments_by_type :
-    pak => try(pav.identity[0].principal_id, null)
-  }
-}
-
-# Construct the array used to determine the list of
+# Construct the map used to determine the list of
 # Role Assignments to create for the Managed Identities
 # used by Policy Assignments.
-# The "identity" object is an array containing a single
-# identity item.
-# The try() logic below is to prevent errors when running
-# 'terraform destroy'.
 locals {
-  es_role_assignments_by_policy_assignment = flatten([
-    for policy_assignment_id, policy_id in local.policy_assignments_with_managed_identity : [
-      for role_definition_id in try(local.policy_roles[policy_id], local.empty_list) : [
-        {
-          resource_id          = "${local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id}${local.provider_path.role_assignment}${uuidv5(uuidv5("url", role_definition_id), policy_assignment_id)}"
-          scope_id             = local.azurerm_policy_assignment_enterprise_scale[policy_assignment_id].scope_id
-          principal_id         = try(local.principal_id_by_policy_assignment[policy_assignment_id], null)
-          role_definition_name = null
-          role_definition_id   = role_definition_id
-        }
-      ]
-    ]
-  ])
+  es_role_assignments_by_policy_assignment = {
+    for policy_assignment_id, policy_id in local.policy_assignments_with_managed_identity :
+    policy_assignment_id => lookup(local.policy_roles, policy_id, local.empty_list)
+  }
 }
