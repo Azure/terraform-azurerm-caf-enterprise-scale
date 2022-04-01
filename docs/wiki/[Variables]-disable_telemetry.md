@@ -10,6 +10,8 @@ Microsoft collects this information to provide the best experiences with their p
 The telemetry is collected through customer usage attribution.
 The data is collected and governed by Microsoft's privacy policies, located at the trust center.
 
+For more information see the [customer usage attribution documentation](https://docs.microsoft.com/azure/marketplace/azure-partner-customer-usage-attribution)
+
 To disable this tracking, we have included a variable called `disable_telemetry` with a simple boolean flag. The default value is `false` which does not disable the telemetry.
 If you would like to disable this tracking, then simply set this value to `true` and this module will not create the telemetry tracking resources and therefore telemetry tracking will be disabled.
 
@@ -38,10 +40,11 @@ None
 disable_telemetry = true
 ```
 
-## Telemetry Details
+## Telemetry details
 
 Telemetry is comprised of up to four empty ARM deployments that are targetted to the Azure subscriptions defined by the providers.
 Each deployment contains a unique id (known as the PID) that is used to identity the particular module that is in use.
+A [bit field](https://en.wikipedia.org/wiki/Bit_field) is also used to identity module features that are in use.
 
 | Module Name | PID | Provider alias |
 | - | - | - |
@@ -52,7 +55,7 @@ Each deployment contains a unique id (known as the PID) that is used to identity
 
 > Note: Identity is currently disabled until we deploy identity resources
 
-### ARM Deployment Naming
+### ARM deployment naming
 
 The ARM deployment name is constricted as follows:
 
@@ -62,12 +65,13 @@ The ARM deployment name is constricted as follows:
 | - | - |
 | `UUID` | A unique id to identify the Terraform (sub)module in use |
 | `module_version` | The version of the module in use |
-| `bitfield` | An bitfield of 8 bits (two hexadecimal digits) that exposes module features in use. See next section for details |
+| `bitfield` | An bit field of 8 bits (two hexadecimal digits) that exposes module features in use. See next section for details |
 | `random_id` | A random id specific to the module instance to enable correlation between the sub modules |
 
-### Bitfield Composition
+### Bit field composition
 
 The four deployments expose high level feature configuration as described in the below tables:
+
 #### Core module
 
 | Bit | Value (hex) | Description |
@@ -101,5 +105,16 @@ The four deployments expose high level feature configuration as described in the
 #### Identity module
 
 > Currently disabled as we do not deploy any resources to the identity subscription
+
+### Example of bitfield representation
+
+Taking the following example:
+
+`pid-36dcde81-8c33-4da0-8dc3-265381502ccb-v1.2.0-0b-83a3fc`
+
+The bit field value is `0b`, which is hexadecimal.
+In binary `0b` hexadecimal is represented as `00001011`.
+This means that bits 1, 2 and 4 are set (we read from right to left).
+Looking in the table for the core module, bits 1, 2 and 4 are the `deploy_core_landing_zones`, `deploy_corp_landing_zones` and `deploy_sap_landing_zones` features.
 
 [this_page]: # "Link for the current page."
