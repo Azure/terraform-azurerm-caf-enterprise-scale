@@ -57,7 +57,7 @@ A [bit field](https://en.wikipedia.org/wiki/Bit_field) is also used to identity 
 
 ### ARM deployment naming
 
-The ARM deployment name is constricted as follows:
+The ARM deployment name is constructed as follows:
 
 `pid-<UUID>_<module_version>_<bitfield>_<random_id>`
 
