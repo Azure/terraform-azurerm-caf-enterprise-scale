@@ -127,7 +127,6 @@
     "role_definitions": [
       "Network-Subnet-Contributor",
       "Application-Owners",
-      "Azure-Platform-Owner",
       "Network-Management",
       "Security-Operations",
       "Subscription-Owner"
