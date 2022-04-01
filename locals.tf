@@ -40,6 +40,7 @@ locals {
   default_location         = var.default_location
   default_tags             = var.default_tags
   disable_base_module_tags = var.disable_base_module_tags
+  disable_telemetry        = var.disable_telemetry
 }
 
 # The following locals are used to ensure non-null values

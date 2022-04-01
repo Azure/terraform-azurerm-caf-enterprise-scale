@@ -6,19 +6,19 @@
 # The following locals are used to create the bitfield data, dependent on the module configuration
 locals {
   # Bitfield bit 1 (LSB): Is deploy core LZs enabled?
-  telem_core_deploy_core_landing_zones = var.deploy_core_landing_zones ? 1 : 0
+  telem_core_deploy_core_landing_zones = local.deploy_core_landing_zones ? 1 : 0
 
   # Bitfield bit 2: Is deploy corp LZ set?
-  telem_core_deploy_corp_landing_zones = var.deploy_corp_landing_zones ? 2 : 0
+  telem_core_deploy_corp_landing_zones = local.deploy_corp_landing_zones ? 2 : 0
 
   # Bitfield bit 3: Is deploy online LZ set?
-  telem_core_deploy_online_landing_zones = var.deploy_online_landing_zones ? 4 : 0
+  telem_core_deploy_online_landing_zones = local.deploy_online_landing_zones ? 4 : 0
 
   # Bitfield bit 4: Is deploy SAP LZ set?
-  telem_core_deploy_sap_landing_zones = var.deploy_online_landing_zones ? 8 : 0
+  telem_core_deploy_sap_landing_zones = local.deploy_online_landing_zones ? 8 : 0
 
   # Bitfield bit 5: Are there any custom LZs configured?
-  telem_core_custom_lzs_configured = length(var.custom_landing_zones) > 0 ? 16 : 0
+  telem_core_custom_lzs_configured = length(local.custom_landing_zones) > 0 ? 16 : 0
 }
 
 # The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
@@ -43,7 +43,7 @@ locals {
       local.telem_core_puid,
       local.module_version,
       local.telem_core_bitfield_hex,
-      random_id.telem[0].hex
+      local.telem_random_hex,
     ),
     0,
     64
@@ -52,5 +52,5 @@ locals {
 
 # Condition to determine whether we create the core telemetry deployment
 locals {
-  telem_core_deployment_enabled = !var.disable_telemetry
+  telem_core_deployment_enabled = !local.disable_telemetry
 }

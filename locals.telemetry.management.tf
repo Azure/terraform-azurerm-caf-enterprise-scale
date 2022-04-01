@@ -6,10 +6,10 @@
 # The following locals are used to create the bit field data, dependent on the module configuration
 locals {
   # Bitfield bit 1 (LSB): Is log analytics enabled?
-  telem_management_configure_log_analytics = var.configure_management_resources.settings.log_analytics.enabled ? 1 : 0
+  telem_management_configure_log_analytics = local.configure_management_resources.settings.log_analytics.enabled ? 1 : 0
 
   # Bitfield bit 2: Is defender for cloud enabled (prev. Azure security center) enabled?
-  telem_management_configure_security_center = var.configure_management_resources.settings.security_center.enabled ? 2 : 0
+  telem_management_configure_security_center = local.configure_management_resources.settings.security_center.enabled ? 2 : 0
 }
 
 # The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
@@ -31,7 +31,7 @@ locals {
       local.telem_management_puid,
       local.module_version,
       local.telem_management_bitfield_hex,
-      random_id.telem[0].hex
+      local.telem_random_hex,
     ),
     0,
     64
@@ -40,5 +40,5 @@ locals {
 
 # Condition to determine whether we create the management telemetry deployment
 locals {
-  telem_management_deployment_enabled = !var.disable_telemetry && var.deploy_management_resources
+  telem_management_deployment_enabled = !local.disable_telemetry && local.deploy_management_resources
 }
