@@ -112,7 +112,7 @@ Taking the following example from the `core` module:
 
 `pid-36dcde81-8c33-4da0-8dc3-265381502ccb-v1.2.0-000b-83a3fc`
 
-The bit field value is `0b`, which is hexadecimal.
+The bit field value is `000b`, which is hexadecimal.
 In binary `000b` hexadecimal is represented as `0000000000001011`.
 This means that bits 1, 2 and 4 are set (we read from right to left).
 Looking in the table for the core module: bits 1, 2 and 4 are the `deploy_core_landing_zones`, `deploy_corp_landing_zones` and `deploy_sap_landing_zones` features.
