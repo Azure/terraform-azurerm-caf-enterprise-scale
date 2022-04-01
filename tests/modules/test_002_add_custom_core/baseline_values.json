@@ -290,7 +290,11 @@
           },
           "azurerm_role_definition": {
             "enterprise_scale": [
-              "/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d"
+              "/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2",
+              "/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922",
+              "/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa",
+              "/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d",
+              "/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158"
             ]
           },
           "azurerm_subnet": {
@@ -5889,6 +5893,172 @@
             }
           },
           {
+            "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2\"]",
+            "mode": "managed",
+            "type": "azurerm_role_definition",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "assignable_scopes": [
+                "/providers/Microsoft.Management/managementGroups/root-id-1"
+              ],
+              "description": "Delegated role for subscription owner generated from subscription Owner role",
+              "name": "[ROOT-ID-1] Subscription-Owner",
+              "permissions": [
+                {
+                  "actions": [
+                    "*"
+                  ],
+                  "data_actions": null,
+                  "not_actions": [
+                    "Microsoft.Authorization/*/write",
+                    "Microsoft.Network/vpnGateways/*",
+                    "Microsoft.Network/expressRouteCircuits/*",
+                    "Microsoft.Network/routeTables/write",
+                    "Microsoft.Network/vpnSites/*"
+                  ],
+                  "not_data_actions": null
+                }
+              ],
+              "role_definition_id": "07824e45-af54-586f-a5f0-4bb8676cb3a2",
+              "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "assignable_scopes": [
+                false
+              ],
+              "permissions": [
+                {
+                  "actions": [
+                    false
+                  ],
+                  "not_actions": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922\"]",
+            "mode": "managed",
+            "type": "azurerm_role_definition",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "assignable_scopes": [
+                "/providers/Microsoft.Management/managementGroups/root-id-1"
+              ],
+              "description": "Security Administrator role with a horizontal view across the entire Azure estate and the Azure Key Vault purge policy.",
+              "name": "[ROOT-ID-1] Security-Operations",
+              "permissions": [
+                {
+                  "actions": [
+                    "*/read",
+                    "*/register/action",
+                    "Microsoft.KeyVault/locations/deletedVaults/purge/action",
+                    "Microsoft.PolicyInsights/*",
+                    "Microsoft.Authorization/policyAssignments/*",
+                    "Microsoft.Authorization/policyDefinitions/*",
+                    "Microsoft.Authorization/policyExemptions/*",
+                    "Microsoft.Authorization/policySetDefinitions/*",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Security/*",
+                    "Microsoft.Support/*"
+                  ],
+                  "data_actions": null,
+                  "not_actions": [],
+                  "not_data_actions": null
+                }
+              ],
+              "role_definition_id": "3b569e18-4af0-5c97-932c-0447cae64922",
+              "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "assignable_scopes": [
+                false
+              ],
+              "permissions": [
+                {
+                  "actions": [
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false
+                  ],
+                  "not_actions": []
+                }
+              ]
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa\"]",
+            "mode": "managed",
+            "type": "azurerm_role_definition",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "assignable_scopes": [
+                "/providers/Microsoft.Management/managementGroups/root-id-1"
+              ],
+              "description": "Platform-wide global connectivity management: virtual networks, UDRs, NSGs, NVAs, VPN, Azure ExpressRoute, and others",
+              "name": "[ROOT-ID-1] Network-Management",
+              "permissions": [
+                {
+                  "actions": [
+                    "*/read",
+                    "Microsoft.Network/*",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Support/*"
+                  ],
+                  "data_actions": null,
+                  "not_actions": [],
+                  "not_data_actions": null
+                }
+              ],
+              "role_definition_id": "61e44ab2-d16b-5ea5-8692-f9b97be416fa",
+              "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "assignable_scopes": [
+                false
+              ],
+              "permissions": [
+                {
+                  "actions": [
+                    false,
+                    false,
+                    false,
+                    false
+                  ],
+                  "not_actions": []
+                }
+              ]
+            }
+          },
+          {
             "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d\"]",
             "mode": "managed",
             "type": "azurerm_role_definition",
@@ -5943,6 +6113,91 @@
                 }
               ]
             }
+          },
+          {
+            "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158\"]",
+            "mode": "managed",
+            "type": "azurerm_role_definition",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "assignable_scopes": [
+                "/providers/Microsoft.Management/managementGroups/root-id-1"
+              ],
+              "description": "Contributor role granted for application/operations team at resource group level",
+              "name": "[ROOT-ID-1] Application-Owners",
+              "permissions": [
+                {
+                  "actions": [
+                    "*"
+                  ],
+                  "data_actions": null,
+                  "not_actions": [
+                    "Microsoft.Authorization/*/write",
+                    "Microsoft.Network/publicIPAddresses/write",
+                    "Microsoft.Network/virtualNetworks/write",
+                    "Microsoft.KeyVault/locations/deletedVaults/purge/action"
+                  ],
+                  "not_data_actions": null
+                }
+              ],
+              "role_definition_id": "8fed4ea0-34b3-55af-93e0-fbaa8f3ed158",
+              "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "assignable_scopes": [
+                false
+              ],
+              "permissions": [
+                {
+                  "actions": [
+                    false
+                  ],
+                  "not_actions": [
+                    false,
+                    false,
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_subscription_template_deployment.telemetry_core[0]",
+            "mode": "managed",
+            "type": "azurerm_subscription_template_deployment",
+            "name": "telemetry_core",
+            "index": 0,
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "debug_level": null,
+              "location": "northeurope",
+              "tags": null,
+              "template_content": "{\"$schema\":\"https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{\"telemetry\":{\"type\":\"String\",\"value\":\"For more information, see https://aka.ms/alz/tf/telemetry\"}},\"parameters\":{},\"resources\":[],\"variables\":{}}",
+              "template_spec_version_id": null,
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_core.random_id.telem[0]",
+            "mode": "managed",
+            "type": "random_id",
+            "name": "telem",
+            "index": 0,
+            "provider_name": "registry.terraform.io/hashicorp/random",
+            "schema_version": 0,
+            "values": {
+              "byte_length": 4,
+              "keepers": null,
+              "prefix": null
+            },
+            "sensitive_values": {}
           },
           {
             "address": "module.test_core.time_sleep.after_azurerm_management_group",
@@ -6051,7 +6306,7 @@
               "create_duration": "30s",
               "destroy_duration": "0s",
               "triggers": {
-                "azurerm_role_definition_enterprise_scale": "[\"/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d\"]"
+                "azurerm_role_definition_enterprise_scale": "[\"/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2\",\"/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922\",\"/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa\",\"/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d\",\"/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158\"]"
               }
             },
             "sensitive_values": {
