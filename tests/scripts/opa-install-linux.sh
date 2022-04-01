@@ -19,25 +19,6 @@ else
     sudo apt-get install jq
 fi
 
-if [ "$(command -v yamllint)" ]; then
-    echo "==> yamllint exists, skip install"
-    yamllint -v
-    echo
-else
-    echo "==> Install yamllint on Linux..."
-    sudo apt-get install yamllint -y
-fi
-
-if [ "$(command -v yq)" ]; then
-    echo "==> yq exists, skip install"
-    yq --version
-    echo
-else
-    echo "==> Install yq on Linux..."
-    sudo wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY} -O /usr/bin/yq &&
-        sudo chmod +x /usr/bin/yq
-fi
-
 if [ "$(command -v conftest)" ]; then
     echo "--> Conftest exists, skip install"
     conftest --version
