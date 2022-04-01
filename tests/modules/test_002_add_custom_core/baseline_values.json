@@ -292,7 +292,6 @@
             "enterprise_scale": [
               "/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2",
               "/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922",
-              "/providers/Microsoft.Authorization/roleDefinitions/5a5015ca-195c-57ff-88d1-ad357c5a2d23",
               "/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa",
               "/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d",
               "/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158"
@@ -6012,48 +6011,6 @@
             }
           },
           {
-            "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/5a5015ca-195c-57ff-88d1-ad357c5a2d23\"]",
-            "mode": "managed",
-            "type": "azurerm_role_definition",
-            "name": "enterprise_scale",
-            "index": "/providers/Microsoft.Authorization/roleDefinitions/5a5015ca-195c-57ff-88d1-ad357c5a2d23",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 1,
-            "values": {
-              "assignable_scopes": [
-                "/providers/Microsoft.Management/managementGroups/root-id-1"
-              ],
-              "description": "Management group and subscription lifecycle management",
-              "name": "[ROOT-ID-1] Azure-Platform-Owner",
-              "permissions": [
-                {
-                  "actions": [
-                    "*"
-                  ],
-                  "data_actions": null,
-                  "not_actions": [],
-                  "not_data_actions": null
-                }
-              ],
-              "role_definition_id": "5a5015ca-195c-57ff-88d1-ad357c5a2d23",
-              "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
-              "timeouts": null
-            },
-            "sensitive_values": {
-              "assignable_scopes": [
-                false
-              ],
-              "permissions": [
-                {
-                  "actions": [
-                    false
-                  ],
-                  "not_actions": []
-                }
-              ]
-            }
-          },
-          {
             "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa\"]",
             "mode": "managed",
             "type": "azurerm_role_definition",
@@ -6349,7 +6306,7 @@
               "create_duration": "30s",
               "destroy_duration": "0s",
               "triggers": {
-                "azurerm_role_definition_enterprise_scale": "[\"/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2\",\"/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922\",\"/providers/Microsoft.Authorization/roleDefinitions/5a5015ca-195c-57ff-88d1-ad357c5a2d23\",\"/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa\",\"/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d\",\"/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158\"]"
+                "azurerm_role_definition_enterprise_scale": "[\"/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2\",\"/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922\",\"/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa\",\"/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d\",\"/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158\"]"
               }
             },
             "sensitive_values": {
