@@ -5,10 +5,9 @@ set -e
 # Shell Script
 # - Conftest Install
 #
-# # Parameters
+
+# Parameters
 CONFTEST_VERSION=0.24.0
-YQ_VERSION=v4.9.3
-YQ_BINARY=yq_linux_amd64
 
 if [ "$(command -v jq)" ]; then
     echo "==> jq exists, skip install"
