@@ -3,7 +3,7 @@
 
 # This file contains telemetry for the management module
 
-# The following locals are used to create the bitfield data, dependent on the module configuration
+# The following locals are used to create the bit field data, dependent on the module configuration
 locals {
   # Bitfield bit 1 (LSB): Is log analytics enabled?
   telem_management_configure_log_analytics = var.configure_management_resources.settings.log_analytics.enabled ? 1 : 0
@@ -12,14 +12,14 @@ locals {
   telem_management_configure_security_center = var.configure_management_resources.settings.security_center.enabled ? 2 : 0
 }
 
-# The following locals calculate the telemetry bitfield by summiung thhe above locals and then representing as hexadecimal
-# Hex number is represented as two digits wide and is zero padded
+# The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
+# Hex number is represented as four digits wide and is zero padded
 locals {
   telem_management_bitfield_denery = (
     local.telem_management_configure_log_analytics +
     local.telem_management_configure_security_center
   )
-  telem_management_bitfield_hex = format("%02x", local.telem_management_bitfield_denery)
+  telem_management_bitfield_hex = format("%04x", local.telem_management_bitfield_denery)
 }
 
 # This construicts the ARM deployment name that is used for the telemetry.
