@@ -38,17 +38,68 @@ None
 disable_telemetry = true
 ```
 
-## Module PID Value Mapping
+## Telemetry Details
 
-| Module Name | PID |
+Telemetry is comprised of up to four empty ARM deployments that are targetted to the Azure subscriptions defined by the providers.
+Each deployment contains a unique id (known as the PID) that is used to identity the particular module that is in use.
+
+| Module Name | PID | Provider alias |
+| - | - | - |
+| Core | `36dcde81-8c33-4da0-8dc3-265381502ccb` | `default` |
+| Connectivity | `97603aac-98f8-4a55-92fc-4c78378c9ba5` | `connectivity` |
+| Identity | `67becfb7-b296-43a9-ba38-0b5c19cb065a` | `identity` |
+| Management | `6fffb9f9-2691-412a-837e-3f72dcfe70cb` | `management` |
+
+> Note: Identity is currently disabled until we deploy identity resources
+
+### ARM Deployment Naming
+
+The ARM deployment name is constricted as follows:
+
+`pid-<UUID>_<module_version>_<bitfield>_<random_id>`
+
+| Field | Description |
 | - | - |
-| Core | `36dcde81-8c33-4da0-8dc3-265381502ccb` |
-| Connectivity | `97603aac-98f8-4a55-92fc-4c78378c9ba5` |
-| Identity | `67becfb7-b296-43a9-ba38-0b5c19cb065a` |
-| Management | `6fffb9f9-2691-412a-837e-3f72dcfe70cb` |
+| `UUID` | A unique id to identify the Terraform (sub)module in use |
+| `module_version` | The version of the module in use |
+| `bitfield` | An bitfield of 8 bits (two hexadecimal digits) that exposes module features in use. See next section for details |
+| `random_id` | A random id specific to the module instance to enable correlation between the sub modules |
+
+### Bitfield Composition
+
+The four deployments expose high level feature configuration as described in the below tables:
+#### Core module
+
+| Bit | Value (hex) | Description |
+| - | - | - |
+| 1 (LSB) | 01 | `deploy_core_landing_zones` is enabled |
+| 2 | 02 | `deploy_corp_landing_zones` is enabled |
+| 3 | 04 | `deploy_online_landing_zones` is enabled |
+| 4 | 08 | `deploy_sap_landing_zones` is enabled |
+| 5 | 10 | Number of `custom_landing_zones` > 0  |
+
+#### Connectivity module
+
+| Bit | Value (hex) | Description |
+| - | - | - |
+| 1 (LSB) | 01 | Number of hub networks is > 0 |
+| 2 | 02 | Number of VWAN hub networks is > 0 |
+| 3 | 04 | DDOS Standard is enabled |
+| 4 | 08 | DNS zone deployment is enabled |
+
+#### Management module
+
+| Bit | Value (hex) | Description |
+| - | - | - |
+| 1 (LSB) | 01 | Log Analytics deployment is enabled |
+| 2 | 02 | Defender for cloud (Azure Security Center) deployment is enabled |
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
+
+#### Identity module
+
+> Currently disabled as we do not deploy any resources to the identity subscription
 
 [this_page]: # "Link for the current page."
