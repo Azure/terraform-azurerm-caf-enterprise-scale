@@ -479,7 +479,7 @@ Now you understand how to customize your deployment using the input variables, c
 [deploy_sap_landing_zones]:         ./%5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
 [destroy_duration_delay]:           ./%5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
 [disable_base_module_tags]:         ./%5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
-[disable_tememetry]:                ./%5BVariables%5D-disable_telemetry.md "Instructions for how to use the disable_telemetry variable."
+[disable_tememetry]:                ./%5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
 [library_path]:                     ./%5BVariables%5D-library_path "Instructions for how to use the library_path variable."
 [root_id]:                          ./%5BVariables%5D-root_id "Instructions for how to use the root_id variable."
 [root_name]:                        ./%5BVariables%5D-root_name "Instructions for how to use the root_name variable."
