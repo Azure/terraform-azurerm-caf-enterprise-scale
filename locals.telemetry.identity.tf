@@ -6,7 +6,7 @@
 # The following locals are used to create the bitfield data, dependent on the module configuration
 locals {
   # Bitfield bit 1 (LSB): Is log analytics enabled?
-  telem_identity_configure_identity_policies = var.configure_identity_resources.settings.identity.enabled ? 1 : 0
+  telem_identity_configure_identity_policies = local.configure_identity_resources.settings.identity.enabled ? 1 : 0
 }
 
 # The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
@@ -27,7 +27,7 @@ locals {
       local.telem_identity_puid,
       local.module_version,
       local.telem_identity_bitfield_hex,
-      random_id.telem[0].hex
+      local.telem_random_hex,
     ),
     0,
     64
@@ -36,5 +36,5 @@ locals {
 
 # Condition to determine whether we create the management telemetry deployment
 locals {
-  telem_identity_deployment_enabled = !var.disable_telemetry && var.deploy_identity_resources
+  telem_identity_deployment_enabled = !local.disable_telemetry && local.deploy_identity_resources
 }

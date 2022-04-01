@@ -6,16 +6,16 @@
 # The following locals are used to create the bitfield data, dependent on the module configuration
 locals {
   # Bitfield bit 1 (LSB): Are hub networks configured?
-  telem_connectivity_configure_hub_networks = length(var.configure_connectivity_resources.settings.hub_networks) > 0 ? 1 : 0
+  telem_connectivity_configure_hub_networks = length(local.configure_connectivity_resources.settings.hub_networks) > 0 ? 1 : 0
 
   # Bitfield bit 2: VWAN configured?
-  telem_connectivity_configure_vwan_hub_networks = length(var.configure_connectivity_resources.settings.vwan_hub_networks) > 0 ? 2 : 0
+  telem_connectivity_configure_vwan_hub_networks = length(local.configure_connectivity_resources.settings.vwan_hub_networks) > 0 ? 2 : 0
 
   # Bitfield bit 3: Is DDOS protection configured?
-  telem_connectivity_configure_ddos_protection_plan = var.configure_connectivity_resources.settings.ddos_protection_plan.enabled ? 4 : 0
+  telem_connectivity_configure_ddos_protection_plan = local.configure_connectivity_resources.settings.ddos_protection_plan.enabled ? 4 : 0
 
   # Bitfield bit 4: DNS configured?
-  telem_connectivity_configure_dns = var.configure_connectivity_resources.settings.dns.enabled ? 8 : 0
+  telem_connectivity_configure_dns = local.configure_connectivity_resources.settings.dns.enabled ? 8 : 0
 }
 
 # The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
@@ -39,7 +39,7 @@ locals {
       local.telem_connectivity_puid,
       local.module_version,
       local.telem_connectivity_bitfield_hex,
-      random_id.telem[0].hex
+      local.telem_random_hex,
     ),
     0,
     64
@@ -48,5 +48,5 @@ locals {
 
 # Condition to determine whether we create the connectivity telemetry deployment
 locals {
-  telem_connectivity_deployment_enabled = !var.disable_telemetry && var.deploy_connectivity_resources
+  telem_connectivity_deployment_enabled = !local.disable_telemetry && local.deploy_connectivity_resources
 }
