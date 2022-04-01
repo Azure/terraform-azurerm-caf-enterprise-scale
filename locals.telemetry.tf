@@ -10,6 +10,11 @@ locals {
   telem_management_puid   = "6fffb9f9-2691-412a-837e-3f72dcfe70cb"
 }
 
+# The following `can()` is used for when disable_telemetry = true
+locals {
+  telem_random_hex = can(random_id.telem[0].hex) ? random_id.telem[0].hex : local.empty_string
+}
+
 # Here we create the ARM templates for the telemetry deployment
 locals {
   telem_arm_subscription_template_content = <<TEMPLATE

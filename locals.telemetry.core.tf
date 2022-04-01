@@ -43,7 +43,7 @@ locals {
       local.telem_core_puid,
       local.module_version,
       local.telem_core_bitfield_hex,
-      random_id.telem[0].hex
+      local.telem_random_hex,
     ),
     0,
     64

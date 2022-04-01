@@ -31,7 +31,7 @@ locals {
       local.telem_management_puid,
       local.module_version,
       local.telem_management_bitfield_hex,
-      random_id.telem[0].hex
+      local.telem_random_hex,
     ),
     0,
     64
