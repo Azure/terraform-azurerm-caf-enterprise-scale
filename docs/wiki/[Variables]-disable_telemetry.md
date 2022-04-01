@@ -72,27 +72,27 @@ The four deployments expose high level feature configuration as described in the
 
 | Bit | Value (hex) | Description |
 | - | - | - |
-| 1 (LSB) | 01 | `deploy_core_landing_zones` is enabled |
-| 2 | 02 | `deploy_corp_landing_zones` is enabled |
-| 3 | 04 | `deploy_online_landing_zones` is enabled |
-| 4 | 08 | `deploy_sap_landing_zones` is enabled |
+| 1 (LSB) | 01 | `deploy_core_landing_zones` is `true` |
+| 2 | 02 | `deploy_corp_landing_zones` is `true` |
+| 3 | 04 | `deploy_online_landing_zones` is `true` |
+| 4 | 08 | `deploy_sap_landing_zones` is `true` |
 | 5 | 10 | Number of `custom_landing_zones` > 0  |
 
 #### Connectivity module
 
 | Bit | Value (hex) | Description |
 | - | - | - |
-| 1 (LSB) | 01 | Number of hub networks is > 0 |
-| 2 | 02 | Number of VWAN hub networks is > 0 |
-| 3 | 04 | DDOS Standard is enabled |
-| 4 | 08 | DNS zone deployment is enabled |
+| 1 (LSB) | 01 | Number of `configure_connectivity_resources.settings.hub_networks`  > 0 |
+| 2 | 02 | Number of `configure_connectivity_resources.settings.vwan_hub_networks`  > 0 |
+| 3 | 04 | `configure_connectivity_resources.settings.ddos_protection_plan.enabled` is `true`  |
+| 4 | 08 | `configure_connectivity_resources.settings.dns` is `true` |
 
 #### Management module
 
 | Bit | Value (hex) | Description |
 | - | - | - |
-| 1 (LSB) | 01 | Log Analytics deployment is enabled |
-| 2 | 02 | Defender for cloud (Azure Security Center) deployment is enabled |
+| 1 (LSB) | 01 | `configure_management_resources.settings.log_analytics.enabled` is `true` |
+| 2 | 02 | `configure_management_resources.settings.security_center.enabled` is `true` |
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
