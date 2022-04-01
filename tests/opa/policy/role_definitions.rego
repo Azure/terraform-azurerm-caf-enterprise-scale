@@ -40,40 +40,40 @@ violation[role_definition_scope] {
 baseline_role_definition_name[module_name] = role_definitions {
 	module := baseline.child_modules[_]
 	module_name := module.address
-	role_definitions := [role_definition |
+	role_definitions := sort([role_definition |
 		module.resources[i].type == "azurerm_role_definition"
 		role_definition := module.resources[i].values.name
-	]
+	])
 }
 
 # Get the role_definition_name from all role_assignments in the terraform_plan.json
 plan_role_definition_name[module_name] = role_definitions {
 	module := plan.child_modules[_]
 	module_name := module.address
-	role_definitions := [role_definition |
+	role_definitions := sort([role_definition |
 		module.resources[r].type == "azurerm_role_definition"
 		role_definition := module.resources[r].values.name
-	]
+	])
 }
 
 # Get the role_definition_permissions from all role_assignments in planned_values.json
 baseline_role_definition_permissions[module_name] = role_definitions {
 	module := baseline.child_modules[_]
 	module_name := module.address
-	role_definitions := [role_definition |
+	role_definitions := sort([role_definition |
 		module.resources[i].type == "azurerm_role_definition"
 		role_definition := module.resources[i].values.permissions
-	]
+	])
 }
 
 # Get the role_definition_permissions from all role_assignments in the terraform_plan.json
 plan_role_definition_permissions[module_name] = role_definitions {
 	module := plan.child_modules[_]
 	module_name := module.address
-	role_definitions := [role_definition |
+	role_definitions := sort([role_definition |
 		module.resources[r].type == "azurerm_role_definition"
 		role_definition := module.resources[r].values.permissions
-	]
+	])
 }
 
 # Get the role_definition_id from all role_assignments in planned_values.json
