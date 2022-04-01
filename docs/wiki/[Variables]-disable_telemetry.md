@@ -65,7 +65,7 @@ The ARM deployment name is constricted as follows:
 | - | - |
 | `UUID` | A unique id to identify the Terraform (sub)module in use |
 | `module_version` | The version of the module in use |
-| `bitfield` | A bit field of 8 bits (two hexadecimal digits) that exposes module features in use. See [next section](#bitfield-composition) for details |
+| `bitfield` | A bit field of 8 bits (two hexadecimal digits) that exposes module features in use. See [next section](#bit-field-composition) for details |
 | `random_id` | A random id specific to the module instance to enable correlation between the sub modules |
 
 ### Bit field composition
