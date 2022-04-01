@@ -106,15 +106,15 @@ The four deployments expose high level feature configuration as described in the
 
 > Currently disabled as we do not deploy any resources to the identity subscription
 
-### Example of bitfield representation
+### Example of bit field representation
 
-Taking the following example:
+Taking the following example from the `core` module:
 
 `pid-36dcde81-8c33-4da0-8dc3-265381502ccb-v1.2.0-0b-83a3fc`
 
 The bit field value is `0b`, which is hexadecimal.
 In binary `0b` hexadecimal is represented as `00001011`.
 This means that bits 1, 2 and 4 are set (we read from right to left).
-Looking in the table for the core module, bits 1, 2 and 4 are the `deploy_core_landing_zones`, `deploy_corp_landing_zones` and `deploy_sap_landing_zones` features.
+Looking in the table for the core module: bits 1, 2 and 4 are the `deploy_core_landing_zones`, `deploy_corp_landing_zones` and `deploy_sap_landing_zones` features.
 
 [this_page]: # "Link for the current page."
