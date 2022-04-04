@@ -18,4 +18,7 @@ module "test_core" {
   create_duration_delay  = var.create_duration_delay
   destroy_duration_delay = var.destroy_duration_delay
 
+  # Test disable_telemetry
+  disable_telemetry = true
+
 }

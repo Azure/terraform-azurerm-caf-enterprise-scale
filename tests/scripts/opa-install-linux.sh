@@ -5,10 +5,9 @@ set -e
 # Shell Script
 # - Conftest Install
 #
-# # Parameters
+
+# Parameters
 CONFTEST_VERSION=0.24.0
-YQ_VERSION=v4.9.3
-YQ_BINARY=yq_linux_amd64
 
 if [ "$(command -v jq)" ]; then
     echo "==> jq exists, skip install"
@@ -17,25 +16,6 @@ if [ "$(command -v jq)" ]; then
 else
     echo "==> Install jq on Linux..."
     sudo apt-get install jq
-fi
-
-if [ "$(command -v yamllint)" ]; then
-    echo "==> yamllint exists, skip install"
-    yamllint -v
-    echo
-else
-    echo "==> Install yamllint on Linux..."
-    sudo apt-get install yamllint -y
-fi
-
-if [ "$(command -v yq)" ]; then
-    echo "==> yq exists, skip install"
-    yq --version
-    echo
-else
-    echo "==> Install yq on Linux..."
-    sudo wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY} -O /usr/bin/yq &&
-        sudo chmod +x /usr/bin/yq
 fi
 
 if [ "$(command -v conftest)" ]; then

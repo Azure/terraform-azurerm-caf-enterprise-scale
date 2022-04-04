@@ -43,16 +43,6 @@ else {
     scoop install jq
 }
 
-# Install yq
-if (Get-command -name yq -ErrorAction SilentlyContinue) {
-    Write-Output "==> yq exists, skip install"
-    yq --version
-}
-else {
-    Write-Output "==> Install yq on Windows..."
-    scoop install yq
-}
-
 # Install Conftest
 if (Get-command -name conftest -ErrorAction SilentlyContinue) {
     Write-Output "==> conftest exists, skip install"

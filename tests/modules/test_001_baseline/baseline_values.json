@@ -5309,39 +5309,6 @@
             }
           },
           {
-            "address": "module.test_core.azurerm_subscription_template_deployment.telemetry_core[0]",
-            "mode": "managed",
-            "type": "azurerm_subscription_template_deployment",
-            "name": "telemetry_core",
-            "index": 0,
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "debug_level": null,
-              "location": "northeurope",
-              "tags": null,
-              "template_content": "{\"$schema\":\"https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{\"telemetry\":{\"type\":\"String\",\"value\":\"For more information, see https://aka.ms/alz/tf/telemetry\"}},\"parameters\":{},\"resources\":[],\"variables\":{}}",
-              "template_spec_version_id": null,
-              "timeouts": null
-            },
-            "sensitive_values": {}
-          },
-          {
-            "address": "module.test_core.random_id.telem[0]",
-            "mode": "managed",
-            "type": "random_id",
-            "name": "telem",
-            "index": 0,
-            "provider_name": "registry.terraform.io/hashicorp/random",
-            "schema_version": 0,
-            "values": {
-              "byte_length": 4,
-              "keepers": null,
-              "prefix": null
-            },
-            "sensitive_values": {}
-          },
-          {
             "address": "module.test_core.time_sleep.after_azurerm_management_group",
             "mode": "managed",
             "type": "time_sleep",
