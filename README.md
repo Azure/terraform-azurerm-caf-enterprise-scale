@@ -29,6 +29,10 @@ These resources can be deployed to multiple Subscriptions by setting the [Provid
 
 The following sections outline the different resource types deployed and managed by this module, depending on the configuration options specified.
 
+## Release notes
+
+Please see the [releases][repo_releases] page.
+
 ### Core resources
 
 The core capability of this module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
@@ -210,57 +214,7 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
-## Release Notes
-
-Release `v1.1.4` is a hotfix release to add a `azurerm` provider verison constraint of `< 3.0.0`.
-This is a workaround for the resource schema changes as reported in issue [#309](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/309).
-
-Release `v1.1.3` is a hotfix relating to support for using YAML with archetype extensions and exclusions.
-
-Release `v1.1.2` introduces the following changes:
-
-- Update module to provide full support for `templatefile()` functionality (Fixes #253)
-- Extend built-in template file variables for use with template files in module library (Fixes #255 and #207)
-
-Release `v1.1.1` introduces the following changes:
-
-- Update regex logic for `root_id` and `scope_id` input variables on `archetypes` child module (Fixes #241)
-- Add `requried_version` to Terraform configuration to ensure only supported version of Terraform is used
-- Add documentation to Wiki for the [configure_connectivity_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources) and [configure_management_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_management_resources) input variables
-
-No breaking changes identified.
-
-Release `v1.1.0` introduces the following changes:
-
-- **BREAKING CHANGE**: Replaced `Deploy-ASC-Configuration` Policy Assignment with `Deploy-ASCDF-Config`, utilizing built-in policies and also adds support for [Microsoft Defender for open-source relational databases](https://docs.microsoft.com/azure/defender-for-cloud/defender-for-databases-introduction).
-  - Fixing [Add Defender support for Open-source relational databases #131](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/131).
-  - **Note:** Will result in loss of policy compliance history.
-  - Consider making a copy of the removed policy templates to a custom `lib` folder and using the [archetype extension](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-extension-function) capability if you wish to retain the old Assignment to keep policy compliance history.
-  - Requires an update to the `configure_management_resources` input variable:
-
-```hcl
-{
-  settings = {
-    # (1 unchanged element hidden)
-    security_center = {
-      # (1 unchanged element hidden)
-      config = {
-        # (7 unchanged elements hidden)
-        enable_defender_for_oss_databases  = true
-        # (4 unchanged elements hidden)
-      }
-    }
-  }
-  # (3 unchanged elements hidden)
-}
-```
-
-- Updates to Wiki documentation
-- Multiple bug fixes covering:
-  - Fix "managed parameters" for `Enable-DDoS-VNET` Policy Assignment at `landing-zones` scope (no issue logged)
-  - [Changing root_parent_id results in Management Groups not being deployed #190](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/190)
-  - [Bug Report: Private DNS zone link in setting.connectivity.tf #204](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/204)
-  - [Incorrect enforcementMode setting on Enable-DDoS-VNET Policy Assignment #216](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/216)
+## Upgrade guides
 
 For upgrade guides from previous versions, please refer to the following links:
 
@@ -359,6 +313,8 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 
 [TFAES-LICENSE]:      https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/LICENSE
 [TFAES-Library]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/terraform-azurerm-caf-enterprise-scale-archetypes/lib
+
+[repo_releases]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases "Release notes"
 
 <!--
 The following link references should be copied from `_sidebar.md` in the `./docs/wiki/` folder.
