@@ -743,12 +743,19 @@ locals {
           resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
           location            = location
           # Optional definition attributes
-          base_policy_id                = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].base_policy_id, null)
-          private_ip_ranges             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].private_ip_ranges, null)
-          sku                           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sku, null)
-          tags                          = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
-          threat_intelligence_mode      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_mode, null)
-          dns                           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns, local.empty_list)
+          base_policy_id           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].base_policy_id, null)
+          private_ip_ranges        = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].private_ip_ranges, null)
+          sku                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sku, null)
+          tags                     = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
+          threat_intelligence_mode = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_mode, null)
+          dns = try(
+            local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns,
+            [
+              {
+                proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
+              }
+            ]
+          )
           identity                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
           insights                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
           intrusion_detection           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
@@ -820,12 +827,19 @@ locals {
           resource_group_name = local.virtual_hub_resource_group_name[location]
           location            = location
           # Optional definition attributes
-          base_policy_id                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].base_policy_id, null)
-          private_ip_ranges             = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].private_ip_ranges, null)
-          sku                           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].sku, null)
-          tags                          = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
-          threat_intelligence_mode      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_mode, null)
-          dns                           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].dns, local.empty_list)
+          base_policy_id           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].base_policy_id, null)
+          private_ip_ranges        = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].private_ip_ranges, null)
+          sku                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].sku, null)
+          tags                     = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
+          threat_intelligence_mode = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_mode, null)
+          dns = try(
+            local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].dns,
+            [
+              {
+                proxy_enabled = virtual_hub.config.azure_firewall.config.enable_dns_proxy
+              }
+            ]
+          )
           identity                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
           insights                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
           intrusion_detection           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].intrusion_detection, local.empty_list)
