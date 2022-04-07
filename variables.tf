@@ -291,6 +291,7 @@ variable "configure_connectivity_resources" {
               enabled = bool
               config = object({
                 enable_dns_proxy = bool
+                dns_servers      = list(string)
                 sku_tier         = string
               })
             })

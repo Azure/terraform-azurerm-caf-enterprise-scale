@@ -745,7 +745,7 @@ locals {
           # Optional definition attributes
           base_policy_id           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].base_policy_id, null)
           private_ip_ranges        = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].private_ip_ranges, null)
-          sku                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sku, null)
+          sku                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sku, try(local.custom_settings.azurerm_firewall["connectivity"][location].sku_tier, "Standard"))
           tags                     = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
           threat_intelligence_mode = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_mode, null)
           dns = try(
@@ -802,7 +802,7 @@ locals {
           local.empty_list
         )
         sku_name                    = "AZFW_Hub"
-        sku_tier                    = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].sku_tier, "Standard")
+        sku_tier                    = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].sku_tier, coalesce(virtual_hub.config.azure_firewall.config.sku_tier, "Standard"))
         firewall_policy_id          = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, local.virtual_hub_azfw_policy_resource_id[location])
         dns_servers                 = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].dns_servers, null)
         private_ip_ranges           = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].private_ip_ranges, null)
@@ -829,7 +829,7 @@ locals {
           # Optional definition attributes
           base_policy_id           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].base_policy_id, null)
           private_ip_ranges        = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].private_ip_ranges, null)
-          sku                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].sku, null)
+          sku                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].sku, coalesce(virtual_hub.config.azure_firewall.config.sku_tier, "Standard"))
           tags                     = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
           threat_intelligence_mode = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_mode, null)
           dns = try(
@@ -837,6 +837,7 @@ locals {
             [
               {
                 proxy_enabled = virtual_hub.config.azure_firewall.config.enable_dns_proxy
+                servers       = length(virtual_hub.config.azure_firewall.config.dns_servers) > 0 ? virtual_hub.config.azure_firewall.config.dns_servers : null
               }
             ]
           )

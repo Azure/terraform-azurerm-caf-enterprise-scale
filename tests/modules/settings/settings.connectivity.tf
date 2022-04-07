@@ -96,6 +96,7 @@ locals {
               enabled = true
               config = {
                 enable_dns_proxy = false
+                dns_servers      = []
                 sku_tier         = "Standard"
               }
             }
@@ -128,6 +129,7 @@ locals {
               enabled = false
               config = {
                 enable_dns_proxy = false
+                dns_servers      = []
                 sku_tier         = "Standard"
               }
             }
