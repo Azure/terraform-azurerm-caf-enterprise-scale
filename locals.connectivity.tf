@@ -50,6 +50,17 @@ locals {
 }
 
 # The following locals are used to build the map of Azure
+# Firewall Policies to deploy.
+locals {
+  azurerm_firewall_policy_connectivity = {
+    for resource in module.connectivity_resources.configuration.azurerm_firewall_policy :
+    resource.resource_id => resource
+    if resource.managed_by_module &&
+    resource.scope == "connectivity"
+  }
+}
+
+# The following locals are used to build the map of Azure
 # Firewalls to deploy.
 locals {
   azurerm_firewall_connectivity = {

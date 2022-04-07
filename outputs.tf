@@ -159,6 +159,16 @@ output "azurerm_virtual_network_gateway" {
 }
 
 # The following output is used to ensure all Azure Firewall
+# Policy data is returned to the root module.
+output "azurerm_firewall_policy" {
+  value = {
+    connectivity = azurerm_firewall_policy.connectivity
+    virtual_wan  = azurerm_firewall_policy.virtual_wan
+  }
+  description = "Returns the configuration data for all Azure Firewall Policies created by this module."
+}
+
+# The following output is used to ensure all Azure Firewall
 # data is returned to the root module.
 output "azurerm_firewall" {
   value = {

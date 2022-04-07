@@ -178,6 +178,13 @@ locals {
     local.deploy_virtual_network_gateway[location] &&
     hub_network.config.virtual_network_gateway.config.gateway_sku_vpn != local.empty_string
   }
+  deploy_azure_firewall_policy = {
+    for location, hub_network in local.hub_networks_by_location :
+    location =>
+    local.deploy_hub_network[location] &&
+    hub_network.config.azure_firewall.enabled &&
+    length(try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, "")) == 0
+  }
   deploy_azure_firewall = {
     for location, hub_network in local.hub_networks_by_location :
     location =>
@@ -221,6 +228,13 @@ locals {
     location =>
     local.deploy_virtual_hub[location] &&
     virtual_hub.config.vpn_gateway.enabled
+  }
+  deploy_virtual_hub_azure_firewall_policy = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.azure_firewall.enabled &&
+    length(try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, "")) == 0
   }
   deploy_virtual_hub_azure_firewall = {
     for location, virtual_hub in local.virtual_hubs_by_location :
@@ -618,29 +632,15 @@ locals {
     for location in local.hub_network_locations :
     location => "${local.resource_prefix}-fw-${location}${local.resource_suffix}"
   }
-  virtual_hub_azfw_name = {
-    for location in local.virtual_hub_locations :
-    location => "${local.resource_prefix}-fw-hub-${location}${local.resource_suffix}"
-  }
   azfw_resource_id_prefix = {
     for location in local.hub_network_locations :
     location =>
     "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/azureFirewalls"
   }
-  virtual_hub_azfw_resource_id_prefix = {
-    for location in local.virtual_hub_locations :
-    location =>
-    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/azureFirewalls"
-  }
   azfw_resource_id = {
     for location in local.hub_network_locations :
     location =>
     "${local.azfw_resource_id_prefix[location]}/${local.azfw_name[location]}"
-  }
-  virtual_hub_azfw_resource_id = {
-    for location in local.virtual_hub_locations :
-    location =>
-    "${local.virtual_hub_azfw_resource_id_prefix[location]}/${local.virtual_hub_azfw_name[location]}"
   }
   azfw_zones = {
     for location, hub_network in local.hub_networks_by_location :
@@ -657,6 +657,48 @@ locals {
     for location, hub_network in local.hub_networks_by_location :
     location =>
     length(local.azfw_zones[location]) > 0
+  }
+  azfw_policy_name = {
+    for location in local.hub_network_locations :
+    location => "${local.resource_prefix}-fw-policy-${location}${local.resource_suffix}"
+  }
+  azfw_policy_resource_id_prefix = {
+    for location in local.hub_network_locations :
+    location =>
+    "${local.virtual_network_resource_group_id[location]}/providers/Microsoft.Network/firewallPolicies"
+  }
+  azfw_policy_resource_id = {
+    for location in local.hub_network_locations :
+    location =>
+    "${local.azfw_policy_resource_id_prefix[location]}/${local.azfw_policy_name[location]}"
+  }
+  virtual_hub_azfw_name = {
+    for location in local.virtual_hub_locations :
+    location => "${local.resource_prefix}-fw-hub-${location}${local.resource_suffix}"
+  }
+  virtual_hub_azfw_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/azureFirewalls"
+  }
+  virtual_hub_azfw_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_azfw_resource_id_prefix[location]}/${local.virtual_hub_azfw_name[location]}"
+  }
+  virtual_hub_azfw_policy_name = {
+    for location in local.virtual_hub_locations :
+    location => "${local.resource_prefix}-fw-hub-policy-${location}${local.resource_suffix}"
+  }
+  virtual_hub_azfw_policy_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/firewallPolicies"
+  }
+  virtual_hub_azfw_policy_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_azfw_policy_resource_id_prefix[location]}/${local.virtual_hub_azfw_policy_name[location]}"
   }
   azurerm_firewall = concat(
     [
@@ -682,7 +724,7 @@ locals {
         )
         sku_name                    = "AZFW_VNet"
         sku_tier                    = try(local.custom_settings.azurerm_firewall["connectivity"][location].sku_tier, "Standard")
-        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, null)
+        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, local.azfw_policy_resource_id[location])
         dns_servers                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
         private_ip_ranges           = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_list)
@@ -690,6 +732,28 @@ locals {
         virtual_hub                 = local.empty_list
         zones                       = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
         tags                        = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
+        # Associated resource definition attributes
+        azurerm_firewall_policy = {
+          # Resource logic attributes
+          resource_id       = local.azfw_policy_resource_id[location]
+          managed_by_module = local.deploy_azure_firewall_policy[location]
+          scope             = "connectivity"
+          # Resource definition attributes
+          name                = local.azfw_policy_name[location]
+          resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          location            = location
+          # Optional definition attributes
+          base_policy_id                = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].base_policy_id, null)
+          private_ip_ranges             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].private_ip_ranges, null)
+          sku                           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sku, null)
+          tags                          = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
+          threat_intelligence_mode      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_mode, null)
+          dns                           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns, local.empty_list)
+          identity                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
+          insights                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
+          intrusion_detection           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
+          threat_intelligence_allowlist = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_allowlist, local.empty_list)
+        }
         # Child resource definition attributes
         azurerm_public_ip = {
           # Resource logic attributes
@@ -732,7 +796,7 @@ locals {
         )
         sku_name                    = "AZFW_Hub"
         sku_tier                    = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].sku_tier, "Standard")
-        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, null)
+        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, local.virtual_hub_azfw_policy_resource_id[location])
         dns_servers                 = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].dns_servers, null)
         private_ip_ranges           = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].management_ip_configuration, local.empty_list)
@@ -745,6 +809,28 @@ locals {
         ]
         zones = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].zones, null)
         tags  = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].tags, local.tags)
+        # Associated resource definition attributes
+        azurerm_firewall_policy = {
+          # Resource logic attributes
+          resource_id       = local.virtual_hub_azfw_policy_resource_id[location]
+          managed_by_module = local.deploy_virtual_hub_azure_firewall_policy[location]
+          scope             = "virtual_wan"
+          # Resource definition attributes
+          name                = local.virtual_hub_azfw_policy_name[location]
+          resource_group_name = local.virtual_hub_resource_group_name[location]
+          location            = location
+          # Optional definition attributes
+          base_policy_id                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].base_policy_id, null)
+          private_ip_ranges             = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].private_ip_ranges, null)
+          sku                           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].sku, null)
+          tags                          = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
+          threat_intelligence_mode      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_mode, null)
+          dns                           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].dns, local.empty_list)
+          identity                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
+          insights                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
+          intrusion_detection           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].intrusion_detection, local.empty_list)
+          threat_intelligence_allowlist = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_allowlist, local.empty_list)
+        }
         # Child resource definition attributes
         azurerm_public_ip = {}
       }
@@ -969,6 +1055,12 @@ locals {
     azurerm_public_ip
     if length(azurerm_public_ip) > 0
   ]
+}
+
+# Configuration settings for resource type:
+#  - azurerm_firewall_policy
+locals {
+  azurerm_firewall_policy = local.azurerm_firewall.*.azurerm_firewall_policy
 }
 
 # Configuration settings for resource type:
@@ -1421,7 +1513,25 @@ locals {
           if resource.managed_by_module &&
           key != "resource_id" &&
           key != "managed_by_module" &&
+          key != "azurerm_firewall_policy" &&
           key != "azurerm_public_ip" &&
+          key != "scope"
+        }
+        scope             = resource.scope
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_firewall_policy = [
+      for resource in local.azurerm_firewall_policy :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module" &&
           key != "scope"
         }
         scope             = resource.scope

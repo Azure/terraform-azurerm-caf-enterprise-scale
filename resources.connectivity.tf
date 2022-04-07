@@ -239,6 +239,114 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
 
 }
 
+resource "azurerm_firewall_policy" "connectivity" {
+  for_each = local.azurerm_firewall_policy_connectivity
+
+  provider = azurerm.connectivity
+
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+  location            = each.value.template.location
+
+  # Optional resource attributes
+  base_policy_id           = each.value.template.base_policy_id
+  private_ip_ranges        = each.value.template.private_ip_ranges
+  sku                      = each.value.template.sku
+  tags                     = each.value.template.tags
+  threat_intelligence_mode = each.value.template.threat_intelligence_mode # "Alert", "Deny" or "Off". Defaults to "Alert"
+
+  # Dynamic configuration blocks
+  dynamic "dns" {
+    for_each = each.value.template.dns
+    content {
+      # Optional attributes
+      proxy_enabled = lookup(dns.value, "proxy_enabled", null)
+      servers       = lookup(dns.value, "servers", null)
+    }
+  }
+
+  # `identity_ids` replaces `user_assigned_identity_ids` in `v3.0.0` of
+  # the provider, so leaving this block commented out until the module
+  # is updated to support this.
+  # dynamic "identity" {
+  #   for_each = each.value.template.identity
+  #   content {
+  #     # Mandatory attributes
+  #     type         = identity.value.type
+  #     identity_ids = identity.value.identity_ids
+  #   }
+  # }
+
+  dynamic "insights" {
+    for_each = each.value.template.insights
+    content {
+      # Mandatory attributes
+      enabled                            = insights.value.enabled
+      default_log_analytics_workspace_id = insights.value.default_log_analytics_workspace_id
+      # Optional attributes
+      retention_in_days = lookup(insights.value, "retention_in_days", null)
+      # Dynamic configuration blocks
+      dynamic "log_analytics_workspace" {
+        for_each = lookup(insights.value, "log_analytics_workspace", local.empty_list)
+        content {
+          # Mandatory attributes
+          id                = log_analytics_workspace.value["id"]
+          firewall_location = log_analytics_workspace.value["firewall_location"]
+        }
+      }
+    }
+  }
+
+  dynamic "intrusion_detection" {
+    for_each = each.value.template.intrusion_detection
+    content {
+      # Optional attributes
+      mode = lookup(intrusion_detection.value, "mode", null) # "Off", "Alert" or "Deny"
+      # Dynamic configuration blocks
+      dynamic "signature_overrides" {
+        for_each = lookup(intrusion_detection.value, "signature_overrides", local.empty_list)
+        content {
+          # Optional attributes
+          id    = lookup(signature_overrides.value, "id", null)
+          state = lookup(signature_overrides.value, "state", null)
+        }
+      }
+      dynamic "traffic_bypass" {
+        for_each = lookup(intrusion_detection.value, "traffic_bypass", local.empty_list)
+        content {
+          # Mandatory attributes
+          name     = traffic_bypass.value["name"]
+          protocol = traffic_bypass.value["protocol"]
+          # Optional attributes
+          description           = lookup(traffic_bypass.value, "description", null)
+          destination_addresses = lookup(traffic_bypass.value, "destination_addresses", null)
+          destination_ip_groups = lookup(traffic_bypass.value, "destination_ip_groups", null)
+          destination_ports     = lookup(traffic_bypass.value, "destination_ports", null)
+          source_addresses      = lookup(traffic_bypass.value, "source_addresses", null)
+          source_ip_groups      = lookup(traffic_bypass.value, "source_ip_groups", null)
+        }
+      }
+    }
+  }
+
+  dynamic "threat_intelligence_allowlist" {
+    for_each = each.value.template.threat_intelligence_allowlist
+    content {
+      # Optional attributes
+      fqdns        = lookup(threat_intelligence_allowlist.value, "fqdns", null)
+      ip_addresses = lookup(threat_intelligence_allowlist.value, "ip_addresses", null)
+    }
+  }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_resource_group.virtual_wan,
+  ]
+
+}
+
 resource "azurerm_firewall" "connectivity" {
   for_each = local.azurerm_firewall_connectivity
 
