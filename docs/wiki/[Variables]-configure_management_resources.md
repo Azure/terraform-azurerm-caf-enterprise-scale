@@ -355,4 +355,4 @@ See [Using the Advanced Block with Management Resources][wiki_management_advance
 [sql_assessment_overview]:   https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
 [updates_overview]:          https://docs.microsoft.com/azure/automation/update-management/overview
 [vm_insights_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
-[wiki_management_advanced_block]: ./%5BVariables%5D-[Variables]-configure_management_resources_advanced "Using the advanced block with management resources"
+[wiki_management_advanced_block]: ./%5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
