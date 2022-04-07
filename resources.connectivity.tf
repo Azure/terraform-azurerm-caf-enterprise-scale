@@ -407,6 +407,7 @@ resource "azurerm_firewall" "connectivity" {
     azurerm_subnet.connectivity,
     azurerm_public_ip.connectivity,
     azurerm_network_ddos_protection_plan.connectivity,
+    azurerm_firewall_policy.connectivity,
   ]
 
 }
