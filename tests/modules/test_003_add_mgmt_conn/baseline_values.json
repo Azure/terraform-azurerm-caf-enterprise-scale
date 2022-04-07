@@ -23,6 +23,14 @@
               "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-hub-northeurope"
             ]
           },
+          "azurerm_firewall_policy": {
+            "connectivity": [
+              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope"
+            ],
+            "virtual_wan": [
+              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope"
+            ]
+          },
           "azurerm_log_analytics_linked_service": {
             "management": []
           },
@@ -160,6 +168,10 @@
             "virtual_wan": []
           },
           "azurerm_firewall": {
+            "connectivity": [],
+            "virtual_wan": []
+          },
+          "azurerm_firewall_policy": {
             "connectivity": [],
             "virtual_wan": []
           },
@@ -471,6 +483,10 @@
             "connectivity": [],
             "virtual_wan": []
           },
+          "azurerm_firewall_policy": {
+            "connectivity": [],
+            "virtual_wan": []
+          },
           "azurerm_log_analytics_linked_service": {
             "management": []
           },
@@ -564,6 +580,10 @@
             "virtual_wan": []
           },
           "azurerm_firewall": {
+            "connectivity": [],
+            "virtual_wan": []
+          },
+          "azurerm_firewall_policy": {
             "connectivity": [],
             "virtual_wan": []
           },
@@ -695,7 +715,7 @@
             "schema_version": 0,
             "values": {
               "dns_servers": null,
-              "firewall_policy_id": null,
+              "firewall_policy_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope",
               "ip_configuration": [
                 {
                   "name": "root-id-1-fw-northeurope-pip",
@@ -746,7 +766,7 @@
             "schema_version": 0,
             "values": {
               "dns_servers": null,
-              "firewall_policy_id": null,
+              "firewall_policy_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope",
               "ip_configuration": [],
               "location": "northeurope",
               "management_ip_configuration": [],
@@ -777,6 +797,94 @@
                   "public_ip_addresses": []
                 }
               ]
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_firewall_policy.connectivity[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope\"]",
+            "mode": "managed",
+            "type": "azurerm_firewall_policy",
+            "name": "connectivity",
+            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "base_policy_id": null,
+              "dns": [
+                {
+                  "proxy_enabled": true,
+                  "servers": null
+                }
+              ],
+              "identity": [],
+              "insights": [],
+              "intrusion_detection": [],
+              "location": "northeurope",
+              "name": "root-id-1-fw-policy-northeurope",
+              "private_ip_ranges": null,
+              "resource_group_name": "root-id-1-connectivity-northeurope",
+              "sku": "Standard",
+              "tags": null,
+              "threat_intelligence_allowlist": [],
+              "threat_intelligence_mode": "Alert",
+              "timeouts": null,
+              "tls_certificate": []
+            },
+            "sensitive_values": {
+              "child_policies": [],
+              "dns": [
+                {}
+              ],
+              "firewalls": [],
+              "identity": [],
+              "insights": [],
+              "intrusion_detection": [],
+              "rule_collection_groups": [],
+              "threat_intelligence_allowlist": [],
+              "tls_certificate": []
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_firewall_policy.virtual_wan[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope\"]",
+            "mode": "managed",
+            "type": "azurerm_firewall_policy",
+            "name": "virtual_wan",
+            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "base_policy_id": null,
+              "dns": [
+                {
+                  "proxy_enabled": false,
+                  "servers": null
+                }
+              ],
+              "identity": [],
+              "insights": [],
+              "intrusion_detection": [],
+              "location": "northeurope",
+              "name": "root-id-1-fw-hub-policy-northeurope",
+              "private_ip_ranges": null,
+              "resource_group_name": "root-id-1-connectivity",
+              "sku": "Standard",
+              "tags": null,
+              "threat_intelligence_allowlist": [],
+              "threat_intelligence_mode": "Alert",
+              "timeouts": null,
+              "tls_certificate": []
+            },
+            "sensitive_values": {
+              "child_policies": [],
+              "dns": [
+                {}
+              ],
+              "firewalls": [],
+              "identity": [],
+              "insights": [],
+              "intrusion_detection": [],
+              "rule_collection_groups": [],
+              "threat_intelligence_allowlist": [],
+              "tls_certificate": []
             }
           },
           {
