@@ -32,6 +32,8 @@ If specified, will customize the "Connectivity" landing zone settings and resour
             config = {
               address_prefix   = "10.100.0.0/24"
               enable_dns_proxy = true
+              dns_servers      = []
+              sku_tier         = ""
               availability_zones = {
                 zone_1 = true
                 zone_2 = true
@@ -149,6 +151,8 @@ object({
             config = object({
               address_prefix   = string
               enable_dns_proxy = bool
+              dns_servers      = []
+              sku_tier         = ""
               availability_zones = object({
                 zone_1 = bool
                 zone_2 = bool
@@ -266,6 +270,8 @@ hub_networks = [
         config = {
           address_prefix   = "10.100.0.0/24"
           enable_dns_proxy = true
+          dns_servers      = []
+          sku_tier         = ""
           availability_zones = {
             zone_1 = true
             zone_2 = true
@@ -439,6 +445,8 @@ object({
   config = object({
     address_prefix   = string
     enable_dns_proxy = bool
+    dns_servers      = []
+    sku_tier         = ""
     availability_zones = object({
       zone_1 = bool
       zone_2 = bool
@@ -459,7 +467,20 @@ Specifies the IP address prefix to assign to the `AzureFirewallSubnet` subnet.
 
 ###### `settings.hub_networks[].config.subnets[].azure_firewall.config.enable_dns_proxy`
 
-_Not implemented yet._
+When enabled, the firewall listens on port 53 and forwards DNS requests to the configured DNS servers.
+Typically used to allow name resolution for Azure Private DNS zones created by the module for Private Endpoints.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.dns_servers`
+
+When set, allows you to specify custom DNS servers for name resolution.
+Leave blank to use the Default (Azure provided) DNS service.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.sku_tier`
+
+The SKU Tier of the Firewall and Firewall Policy.
+Possible values are `Standard`, `Premium`.
+Defaults to `Standard`.
+Changing this forces a new Firewall Policy to be created.
 
 ###### `settings.hub_networks[].config.subnets[].azure_firewall.config.availability_zones`
 

@@ -233,6 +233,8 @@ variable "configure_connectivity_resources" {
               config = object({
                 address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
                 enable_dns_proxy = bool
+                dns_servers      = list(string)
+                sku_tier         = string
                 availability_zones = object({
                   zone_1 = bool
                   zone_2 = bool
@@ -391,6 +393,8 @@ variable "configure_connectivity_resources" {
               config = {
                 address_prefix   = "10.100.0.0/24"
                 enable_dns_proxy = true
+                dns_servers      = []
+                sku_tier         = ""
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true

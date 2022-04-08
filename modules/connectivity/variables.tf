@@ -73,6 +73,8 @@ variable "settings" {
             config = object({
               address_prefix   = string
               enable_dns_proxy = bool
+              dns_servers      = list(string)
+              sku_tier         = string
               availability_zones = object({
                 zone_1 = bool
                 zone_2 = bool

@@ -194,6 +194,8 @@ locals {
               config = {
                 address_prefix   = "10.100.0.0/24"
                 enable_dns_proxy = true
+                dns_servers      = []
+                sku_tier         = ""
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -227,6 +229,8 @@ locals {
               config = {
                 address_prefix   = ""
                 enable_dns_proxy = true
+                dns_servers      = []
+                sku_tier         = ""
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
