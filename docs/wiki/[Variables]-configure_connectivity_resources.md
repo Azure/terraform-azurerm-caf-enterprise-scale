@@ -32,6 +32,7 @@ If specified, will customize the "Connectivity" landing zone settings and resour
             config = {
               address_prefix   = "10.100.0.0/24"
               enable_dns_proxy = true
+              dns_servers = []
               availability_zones = {
                 zone_1 = true
                 zone_2 = true
@@ -147,8 +148,9 @@ object({
           azure_firewall = object({
             enabled = bool
             config = object({
-              address_prefix   = string
-              enable_dns_proxy = bool
+              address_prefix     = string
+              enable_dns_proxy   = bool
+              dns_servers        = list(string)
               availability_zones = object({
                 zone_1 = bool
                 zone_2 = bool
@@ -207,6 +209,7 @@ object({
             enabled = bool
             config = object({
               enable_dns_proxy = bool
+              dns_servers      = list(string)
               sku_tier         = string
             })
           })
@@ -545,9 +548,9 @@ vwan_hub_networks = [
       routes = [
         {
           address_prefixes = [
-            ""
+            "192.168.0.0/16"
           ]
-          next_hop_ip_address = ""
+          next_hop_ip_address = "10.0.1.4"
         }
       ]
       expressroute_gateway {
@@ -587,6 +590,7 @@ vwan_hub_networks = [
         enabled = true
         config = {
           enable_dns_proxy = true
+          dns_servers      = []
           sku_tier         = "Standard"
         }
       }
@@ -603,9 +607,45 @@ vwan_hub_networks = [
 
 The `enable` (`bool`) input allows you to toggle whether to create this VWAN hub network instance, including all associated resources. Set to `false` if you want to toggle individual hub network instances without removing the full configuration.
 
-#### `settings.vwan_hub_networks[].config.address_prefix`
+#### `settings.vwan_hub_networks[].config`
 
+The `config` (`object`) input allows you to set the following configuration items for each VWAN hub network:
 
+##### `settings.vwan_hub_networks[].config.address_prefix`
+
+The Address Prefix which should be used for this Virtual Hub.
+The address prefix subnet cannot be smaller than a /24.
+We recommend using a /23.
+
+E.g. `10.0.0.0/23`
+
+##### `settings.vwan_hub_networks[].config.location`
+
+Set the location/region where the hub network and associated resources are created.
+Changing this forces new resources to be created.
+By default, a `vwan_hub_network` with an empty value in the `location` field will be deployed to the location inherited from either `configure_connectivity_resources.location`, or the top-level variable `default_location`, in order of precedence.
+
+##### `settings.vwan_hub_networks[].config.sku`
+
+Set the [SKU](https://docs.microsoft.com/azure/virtual-wan/virtual-wan-about#basicstandard) of the VWAN hub.
+Allowed values are  `Basic` and `Standard`.
+
+##### `settings.vwan_hub_networks[].config.routes[]`
+
+A list of route objects used to define static routes for this virtual hub.
+An empty list will result in no static routes being created.
+
+###### `settings.vwan_hub_networks[].config.routes[].address_prefixes[]`
+
+A list of address prefixes to be used for the route.
+
+E.g. `192.168.0.0/16`
+
+###### `settings.vwan_hub_networks[].config.routes[].next_hop_ip_address`
+
+The IP address of the next hop for the route.
+
+e.g. `10.0.1.4`
 
 ### Configure DDoS Protection Plan
 
