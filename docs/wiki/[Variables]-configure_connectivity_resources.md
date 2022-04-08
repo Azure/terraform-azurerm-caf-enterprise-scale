@@ -161,7 +161,60 @@ object({
         })
       })
     )
-    vwan_hub_networks = list(object({}))
+    vwan_hub_networks = list(
+      object({
+        enabled = bool
+        config = object({
+          address_prefix = string
+          location       = string
+          sku            = string
+          routes = list(
+            object({
+              address_prefixes    = list(string)
+              next_hop_ip_address = string
+            })
+          )
+          expressroute_gateway = object({
+            enabled = bool
+            config = object({
+              scale_unit = number
+            })
+          })
+          vpn_gateway = object({
+            enabled = bool
+            config = object({
+              bgp_settings = list(
+                object({
+                  asn         = number
+                  peer_weight = number
+                  instance_0_bgp_peering_address = list(
+                    object({
+                      custom_ips = list(string)
+                    })
+                  )
+                  instance_1_bgp_peering_address = list(
+                    object({
+                      custom_ips = list(string)
+                    })
+                  )
+                })
+              )
+              routing_preference = string
+              scale_unit         = number
+            })
+          })
+          azure_firewall = object({
+            enabled = bool
+            config = object({
+              enable_dns_proxy = bool
+              sku_tier         = string
+            })
+          })
+          spoke_virtual_network_resource_ids = list(string)
+          enable_virtual_hub_connections     = bool
+        })
+      })
+    )
     ddos_protection_plan = object({
       enabled = bool
       config = object({
@@ -240,7 +293,7 @@ Configure resources for the `connectivity` Landing Zone, including:
 
 ### Configure hub networks (Hub and Spoke)
 
-Define zero or more hub networks as a list of objects, each containing configuration values covering an Address Space, DDOS Protection Plan, DNS Servers, BGP community, Subnets, Virtual Network Gateway, Azure Firewall, Spoke Virtual Network resources and Outbound VIrtual Network Peering.
+Define zero or more hub networks as a list of objects, each containing configuration values covering an address space, DDOS protection plan, DNS servers, BGP community, subnets, virtual network gateway, Azure firewall, spoke virtual network resources and outbound virtual network peering.
 
 ```hcl
 hub_networks = [
@@ -342,7 +395,7 @@ Changing this forces a new resource to be created.
 - Should not be one of the following which are created automatically be the module as required:
   - `GatewaySubnet`
   - `AzureFirewallSubnet`
-  
+
 ###### `settings.hub_networks[].config.subnets[].address_prefixes`
 
 The address prefixes to use for the subnet.
@@ -479,7 +532,80 @@ List of [Azure] resource IDs used to identify spoke Virtual Networks associated 
 
 ### Configure hub networks (Virtual WAN)
 
-_Not implemented yet, coming soon._
+Define zero or more VWAN hub networks as a list of objects, each containing configuration values covering an address space, DDOS protection plan, expressroute gateway, vpn gateway and Azure firewall.
+
+```terraform
+vwan_hub_networks = [
+  {
+    enabled = true
+    config = {
+      address_prefix = "10.0.0.0/23"
+      location       = "westeurope"
+      sku            = "Standard"
+      routes = [
+        {
+          address_prefixes = [
+            ""
+          ]
+          next_hop_ip_address = ""
+        }
+      ]
+      expressroute_gateway {
+        enabled = true
+        config = {
+          scale_unit = 1
+        }
+      }
+      vpn_gateway = {
+        enabled = true
+        config = {
+          bgp_settings = [
+            {
+              asn         = 12345
+              peer_weight = 10
+              instance_0_bgp_peering_address = [
+                {
+                  custom_ips = [
+                    ""
+                  ]
+                }
+              ]
+              instance_1_bgp_peering_address = [
+                {
+                  custom_ips = [
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+          routing_preference = "Microsoft Network"
+          scale_unit         = 1
+        }
+      }
+      azure_firewall = {
+        enabled = true
+        config = {
+          enable_dns_proxy = true
+          sku_tier         = "Standard"
+        }
+      }
+      spoke_virtual_network_resource_ids = [
+        ""
+      ]
+      enable_virtual_hub_connections     = true
+    }
+  }
+]
+```
+
+#### `settings.vwan_hub_networks[].enable`
+
+The `enable` (`bool`) input allows you to toggle whether to create this VWAN hub network instance, including all associated resources. Set to `false` if you want to toggle individual hub network instances without removing the full configuration.
+
+#### `settings.vwan_hub_networks[].config.address_prefix`
+
+
 
 ### Configure DDoS Protection Plan
 
