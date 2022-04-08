@@ -472,8 +472,8 @@ Typically used to allow name resolution for Azure Private DNS zones created by t
 
 ###### `settings.hub_networks[].config.subnets[].azure_firewall.config.dns_servers`
 
-When set, allows you to specify custom DNS servers for name resolution.
-Leave blank to use the Default (Azure provided) DNS service.
+Allows you to specify custom DNS servers for name resolution.
+Leave value as an empty list `[]` to use the Default (Azure provided) DNS service.
 
 ###### `settings.hub_networks[].config.subnets[].azure_firewall.config.sku_tier`
 
