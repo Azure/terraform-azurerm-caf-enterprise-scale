@@ -1,4 +1,4 @@
-# Terraform Module for Cloud Adoption Framework Enterprise-scale
+# Azure landing zones Terraoform module for Cloud Adoption Framework
 
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
@@ -14,7 +14,7 @@ Detailed information about how to use, configure and extend this module can be f
 
 ## Overview
 
-The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture] using Terraform.
+The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of the [Azure landing zones conceptual architecture][ESLZ-Architecture] using Terraform.
 
 Depending on selected options, this module can deploy different groups of resources as needed.
 
@@ -35,9 +35,9 @@ Please see the [releases][repo_releases] page.
 
 ### Core resources
 
-The core capability of this module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
+The core capability of this module deploys the foundations of the [Azure landing zones conceptual architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
 
-![Enterprise-scale Core Landing Zones Architecture][TFAES-Overview]
+![Azure landing zones conceptual architecture][TFAES-Overview]
 
 The following resource types are deployed and managed by this module when using the core capabilities:
 
@@ -60,7 +60,7 @@ The exact number of resources created depends on the module configuration, but y
 From release `v0.2.0` onwards, the module includes new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
 This brings the benefit of being able to manage the full lifecycle of these resources using Terraform, with native integration into the corresponding Policy Assignments to ensure full policy compliance.
 
-![Enterprise-scale Management Landing Zone Architecture][TFAES-Management]
+![Azure landing zones management architecture][TFAES-Management]
 
 The following resource types are deployed and managed by this module when the Management resources capabilities are enabled:
 
@@ -79,7 +79,7 @@ Please refer to the [Deploy Management Resources][wiki_deploy_management_resourc
 From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the current Subscription context.
 This is currently limited to the Hub & Spoke network topology, but the addition of Virtual WAN capabilities is on our roadmap (date TBC).
 
-![Enterprise-scale Connectivity Landing Zone Architecture][TFAES-Connectivity]
+![Azure landing zones connectivity architecture][TFAES-Connectivity]
 
 > **NOTE:** The module currently only configures the networking hub, and dependent resources for the `Connectivity` Subscription.
 > To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering.
@@ -105,7 +105,7 @@ Please refer to the [Deploy Connectivity Resources][wiki_deploy_connectivity_res
 
 From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Identity and access management][ESLZ-Identity] resources into the current Subscription context.
 
-![Enterprise-scale Identity Landing Zone Architecture][TFAES-Identity]
+![Azure landing zones identity architecture][TFAES-Identity]
 
 No additional resources are deployed by this capability, however policy settings relating to the `Identity` Management Group can now be easily updated via the `configure_identity_resources` input variable.
 
@@ -227,7 +227,7 @@ For upgrade guides from previous versions, please refer to the following links:
 
 > The following statement is applicable from release v1.2.0 onwards
 
-When you deploy one or more modules in Azure Landing Zones Terraform repo, Microsoft can identify the installation of said module/s with the deployed Azure resources.
+When you deploy one or more modules using the Azure landing zones Terraform module, Microsoft can identify the installation of said module/s with the deployed Azure resources.
 Microsoft can correlate these resources used to support the software.
 Microsoft collects this information to provide the best experiences with their products and to operate their business.
 The telemetry is collected through customer usage attribution.
