@@ -117,6 +117,7 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Udr",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-VNET-Peer-Cross-Sub",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-VNet-Peering",
+              "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-VNET-Peering-To-Non-Approved-VNETs",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deploy-ASC-SecurityContacts",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deploy-Budget",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deploy-Custom-Route-Table",
@@ -2062,6 +2063,28 @@
               "name": "Deny-VNet-Peering",
               "parameters": "{\"effect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"}}",
               "policy_rule": "{\"if\":{\"equals\":\"Microsoft.Network/virtualNetworks/virtualNetworkPeerings\",\"field\":\"type\"},\"then\":{\"effect\":\"[parameters('effect')]\"}}",
+              "policy_type": "Custom",
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_core.azurerm_policy_definition.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-VNET-Peering-To-Non-Approved-VNETs\"]",
+            "mode": "managed",
+            "type": "azurerm_policy_definition",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-VNET-Peering-To-Non-Approved-VNETs",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "description": "This policy denies the creation of vNet Peerings to non-approved vNets under the assigned scope.",
+              "display_name": "Deny vNet peering to non-approved vNets",
+              "management_group_id": "root-id-1",
+              "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
+              "mode": "All",
+              "name": "Deny-VNET-Peering-To-Non-Approved-VNETs",
+              "parameters": "{\"effect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",allowedVnets\":{\"defaultValue\":\"[]\",\"metadata\":{\"description\":\"Array of allowed vNets that can be peered with. Must be entered using their resource ID. Example: /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}\",\"displayName\":\"Allowed vNets to peer with\"},\"type\":\"Array\"}}",
+              "policy_rule": "{\"if\":{\"anyOf\":[{\"allOf\":[{\"field\":\"type\",\"equals\":\"Microsoft.Network/virtualNetworks/virtualNetworkPeerings\"},{\"not\":{\"field\":\"Microsoft.Network/virtualNetworks/virtualNetworkPeerings/remoteVirtualNetwork.id\",\"in\":\"[parameters('allowedVnets')]\"}}]},{\"allOf\":[{\"field\":\"type\",\"equals\":\"Microsoft.Network/virtualNetworks\"},{\"not\":{\"field\":\"Microsoft.Network/virtualNetworks/virtualNetworkPeerings[*].remoteVirtualNetwork.id\",\"in\":\"[parameters('allowedVnets')]\"}},{\"not\":{\"field\":\"Microsoft.Network/virtualNetworks/virtualNetworkPeerings[*].remoteVirtualNetwork.id\",\"exists\":false}}]}]},\"then\":{\"effect\":\"[parameters('effect')]\"}}",
               "policy_type": "Custom",
               "timeouts": null
             },
