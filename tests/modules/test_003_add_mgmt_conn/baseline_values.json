@@ -25,10 +25,10 @@
           },
           "azurerm_firewall_policy": {
             "connectivity": [
-              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope"
+              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-northeurope-policy"
             ],
             "virtual_wan": [
-              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope"
+              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-northeurope-policy"
             ]
           },
           "azurerm_log_analytics_linked_service": {
@@ -716,7 +716,7 @@
             "schema_version": 0,
             "values": {
               "dns_servers": null,
-              "firewall_policy_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope",
+              "firewall_policy_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-northeurope-policy",
               "ip_configuration": [
                 {
                   "name": "root-id-1-fw-northeurope-pip",
@@ -767,7 +767,7 @@
             "schema_version": 0,
             "values": {
               "dns_servers": null,
-              "firewall_policy_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope",
+              "firewall_policy_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-northeurope-policy",
               "ip_configuration": [],
               "location": "northeurope",
               "management_ip_configuration": [],
@@ -787,7 +787,10 @@
                   "virtual_hub_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope"
                 }
               ],
-              "zones": null
+              "zones": [
+                "1",
+                "2"
+              ]
             },
             "sensitive_values": {
               "ip_configuration": [],
@@ -797,15 +800,19 @@
                 {
                   "public_ip_addresses": []
                 }
+              ],
+              "zones": [
+                false,
+                false
               ]
             }
           },
           {
-            "address": "module.test_connectivity.azurerm_firewall_policy.connectivity[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope\"]",
+            "address": "module.test_connectivity.azurerm_firewall_policy.connectivity[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-northeurope-policy\"]",
             "mode": "managed",
             "type": "azurerm_firewall_policy",
             "name": "connectivity",
-            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-policy-northeurope",
+            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-northeurope-policy",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
@@ -820,7 +827,7 @@
               "insights": [],
               "intrusion_detection": [],
               "location": "northeurope",
-              "name": "root-id-1-fw-policy-northeurope",
+              "name": "root-id-1-fw-northeurope-policy",
               "private_ip_ranges": null,
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "sku": "Standard",
@@ -845,11 +852,11 @@
             }
           },
           {
-            "address": "module.test_connectivity.azurerm_firewall_policy.virtual_wan[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope\"]",
+            "address": "module.test_connectivity.azurerm_firewall_policy.virtual_wan[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-northeurope-policy\"]",
             "mode": "managed",
             "type": "azurerm_firewall_policy",
             "name": "virtual_wan",
-            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-policy-northeurope",
+            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-northeurope-policy",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
@@ -864,7 +871,7 @@
               "insights": [],
               "intrusion_detection": [],
               "location": "northeurope",
-              "name": "root-id-1-fw-hub-policy-northeurope",
+              "name": "root-id-1-fw-hub-northeurope-policy",
               "private_ip_ranges": null,
               "resource_group_name": "root-id-1-connectivity",
               "sku": "Standard",
