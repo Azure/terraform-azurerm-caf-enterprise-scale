@@ -660,7 +660,7 @@ locals {
   }
   azfw_policy_name = {
     for location in local.hub_network_locations :
-    location => "${local.resource_prefix}-fw-policy-${location}${local.resource_suffix}"
+    location => "${local.azfw_name[location]}-policy"
   }
   azfw_policy_resource_id_prefix = {
     for location in local.hub_network_locations :
@@ -688,7 +688,7 @@ locals {
   }
   virtual_hub_azfw_policy_name = {
     for location in local.virtual_hub_locations :
-    location => "${local.resource_prefix}-fw-hub-policy-${location}${local.resource_suffix}"
+    location => "${local.virtual_hub_azfw_name[location]}-policy"
   }
   virtual_hub_azfw_policy_resource_id_prefix = {
     for location in local.virtual_hub_locations :
