@@ -135,6 +135,11 @@ variable "settings" {
               enable_dns_proxy = bool
               dns_servers      = list(string)
               sku_tier         = string
+              availability_zones = object({
+                zone_1 = bool
+                zone_2 = bool
+                zone_3 = bool
+              })
             })
           })
           spoke_virtual_network_resource_ids = list(string)

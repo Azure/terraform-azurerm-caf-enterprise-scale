@@ -102,6 +102,11 @@ locals {
                 enable_dns_proxy = false
                 dns_servers      = []
                 sku_tier         = "Standard"
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = false
+                }
               }
             }
             spoke_virtual_network_resource_ids = []
@@ -135,6 +140,11 @@ locals {
                 enable_dns_proxy = false
                 dns_servers      = []
                 sku_tier         = "Standard"
+                availability_zones = {
+                  zone_1 = false
+                  zone_2 = false
+                  zone_3 = false
+                }
               }
             }
             spoke_virtual_network_resource_ids = []

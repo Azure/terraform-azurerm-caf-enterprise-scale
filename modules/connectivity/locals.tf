@@ -700,6 +700,17 @@ locals {
     location =>
     "${local.virtual_hub_azfw_policy_resource_id_prefix[location]}/${local.virtual_hub_azfw_policy_name[location]}"
   }
+  virtual_hub_azfw_zones = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    flatten(
+      [
+        virtual_hub.config.azure_firewall.config.availability_zones.zone_1 ? ["1"] : [],
+        virtual_hub.config.azure_firewall.config.availability_zones.zone_2 ? ["2"] : [],
+        virtual_hub.config.azure_firewall.config.availability_zones.zone_3 ? ["3"] : [],
+      ]
+    )
+  }
   azurerm_firewall = concat(
     [
       for location, hub_network in local.hub_networks_by_location :
@@ -824,7 +835,7 @@ locals {
             public_ip_count = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].virtual_hub[0].public_ip_count, 1)
           }
         ]
-        zones = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].zones, null)
+        zones = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].zones, local.virtual_hub_azfw_zones[location])
         tags  = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].tags, local.tags)
         # Associated resource definition attributes
         azurerm_firewall_policy = {
@@ -1791,6 +1802,7 @@ locals {
     virtual_hub_azfw_policy_name                             = local.virtual_hub_azfw_policy_name
     virtual_hub_azfw_policy_resource_id_prefix               = local.virtual_hub_azfw_policy_resource_id_prefix
     virtual_hub_azfw_policy_resource_id                      = local.virtual_hub_azfw_policy_resource_id
+    virtual_hub_azfw_zones                                   = local.virtual_hub_azfw_zones
     azurerm_firewall                                         = local.azurerm_firewall
     azurerm_firewall_policy                                  = local.azurerm_firewall_policy
     virtual_wan_name                                         = local.virtual_wan_name
