@@ -216,7 +216,7 @@ variable "resource_prefix" {
   default     = ""
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.resource_prefix)) || var.resource_prefix == null
+    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.resource_prefix)) || var.resource_prefix == ""
     error_message = "Value must be between 2 to 10 characters long, consisting of alphanumeric characters and hyphens."
   }
 }
@@ -227,7 +227,7 @@ variable "resource_suffix" {
   default     = ""
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,36}$", var.resource_suffix)) || var.resource_suffix == null
+    condition     = can(regex("^[a-zA-Z0-9-]{2,36}$", var.resource_suffix)) || var.resource_suffix == ""
     error_message = "Value must be between 2 to 36 characters long, consisting of alphanumeric characters and hyphens."
   }
 
@@ -259,6 +259,7 @@ variable "custom_settings_by_resource_type" {
   validation {
     condition = (
       can([for k in keys(var.custom_settings_by_resource_type) : contains(["azurerm_resource_group", "azurerm_virtual_network", "azurerm_subnet", "azurerm_virtual_network_gateway", "azurerm_public_ip", "azurerm_firewall", "azurerm_network_ddos_protection_plan", "azurerm_dns_zone", "azurerm_virtual_network_peering"], k)]) ||
+      var.custom_settings_by_resource_type == {} ||
       var.custom_settings_by_resource_type == null
     )
     error_message = "Invalid key specified. Please check the list of allowed resource types supported by the connectivity module for caf-enterprise-scale."
