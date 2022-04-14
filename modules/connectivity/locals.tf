@@ -1838,10 +1838,16 @@ locals {
     er_gateway_name                                          = local.er_gateway_name
     er_gateway_resource_id_prefix                            = local.er_gateway_resource_id_prefix
     er_gateway_resource_id                                   = local.er_gateway_resource_id
+    er_gateway_pip_name = local.er_gateway_pip_name
+    er_gateway_pip_resource_id_prefix = local.er_gateway_pip_resource_id_prefix
+    er_gateway_pip_resource_id = local.er_gateway_pip_resource_id
     azurerm_virtual_network_gateway_express_route            = local.azurerm_virtual_network_gateway_express_route
     vpn_gateway_name                                         = local.vpn_gateway_name
     vpn_gateway_resource_id_prefix                           = local.vpn_gateway_resource_id_prefix
     vpn_gateway_resource_id                                  = local.vpn_gateway_resource_id
+    vpn_gateway_pip_name = local.vpn_gateway_pip_name
+    vpn_gateway_pip_resource_id_prefix = local.vpn_gateway_pip_resource_id_prefix
+    vpn_gateway_pip_resource_id = local.vpn_gateway_pip_resource_id
     azurerm_virtual_network_gateway_vpn                      = local.azurerm_virtual_network_gateway_vpn
     azurerm_virtual_network_gateway                          = local.azurerm_virtual_network_gateway
     azfw_name                                                = local.azfw_name
@@ -1852,6 +1858,9 @@ locals {
     azfw_policy_name                                         = local.azfw_policy_name
     azfw_policy_resource_id_prefix                           = local.azfw_policy_resource_id_prefix
     azfw_policy_resource_id                                  = local.azfw_policy_resource_id
+    azfw_pip_name = local.azfw_pip_name
+    azfw_pip_resource_id_prefix = local.azfw_pip_resource_id_prefix
+    azfw_pip_resource_id = local.azfw_pip_resource_id
     virtual_hub_azfw_name                                    = local.virtual_hub_azfw_name
     virtual_hub_azfw_resource_id_prefix                      = local.virtual_hub_azfw_resource_id_prefix
     virtual_hub_azfw_resource_id                             = local.virtual_hub_azfw_resource_id
