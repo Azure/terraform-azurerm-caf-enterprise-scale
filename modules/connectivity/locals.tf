@@ -816,11 +816,11 @@ locals {
           resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
           location            = location
           # Optional definition attributes
-          base_policy_id           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].base_policy_id, null)
-          private_ip_ranges        = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].private_ip_ranges, null)
-          sku                      = coalesce(hub_network.config.azure_firewall.config.sku_tier, "Standard")
-          tags                     = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
-          threat_intelligence_mode = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_mode, null)
+          base_policy_id                = length(hub_network.config.azure_firewall.config.base_policy_id) > 0 ? hub_network.config.azure_firewall.config.base_policy_id : null
+          private_ip_ranges             = length(hub_network.config.azure_firewall.config.private_ip_ranges) > 0 ? hub_network.config.azure_firewall.config.private_ip_ranges : null
+          sku                           = coalesce(hub_network.config.azure_firewall.config.sku_tier, "Standard")
+          threat_intelligence_mode      = coalesce(hub_network.config.azure_firewall.config.threat_intelligence_mode, "Alert")
+          threat_intelligence_allowlist = hub_network.config.azure_firewall.config.threat_intelligence_allowlist
           dns = try(
             local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns,
             [
@@ -830,10 +830,10 @@ locals {
               }
             ]
           )
-          identity                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
-          insights                      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
-          intrusion_detection           = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
-          threat_intelligence_allowlist = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].threat_intelligence_allowlist, local.empty_list)
+          identity            = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
+          insights            = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
+          intrusion_detection = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
+          tags                = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
         }
         # Child resource definition attributes
         azurerm_public_ip = {
@@ -904,11 +904,11 @@ locals {
           resource_group_name = local.virtual_hub_resource_group_name[location]
           location            = location
           # Optional definition attributes
-          base_policy_id           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].base_policy_id, null)
-          private_ip_ranges        = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].private_ip_ranges, null)
-          sku                      = coalesce(virtual_hub.config.azure_firewall.config.sku_tier, "Standard")
-          tags                     = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
-          threat_intelligence_mode = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_mode, null)
+          base_policy_id                = length(virtual_hub.config.azure_firewall.config.base_policy_id) > 0 ? virtual_hub.config.azure_firewall.config.base_policy_id : null
+          private_ip_ranges             = length(virtual_hub.config.azure_firewall.config.private_ip_ranges) > 0 ? virtual_hub.config.azure_firewall.config.private_ip_ranges : null
+          sku                           = coalesce(virtual_hub.config.azure_firewall.config.sku_tier, "Standard")
+          threat_intelligence_mode      = coalesce(virtual_hub.config.azure_firewall.config.threat_intelligence_mode, "Alert")
+          threat_intelligence_allowlist = virtual_hub.config.azure_firewall.config.threat_intelligence_allowlist
           dns = try(
             local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].dns,
             [
@@ -918,10 +918,10 @@ locals {
               }
             ]
           )
-          identity                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
-          insights                      = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
-          intrusion_detection           = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].intrusion_detection, local.empty_list)
-          threat_intelligence_allowlist = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].threat_intelligence_allowlist, local.empty_list)
+          identity            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
+          insights            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
+          intrusion_detection = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].intrusion_detection, local.empty_list)
+          tags                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
         }
         # Child resource definition attributes
         azurerm_public_ip = {}
@@ -1838,16 +1838,16 @@ locals {
     er_gateway_name                                          = local.er_gateway_name
     er_gateway_resource_id_prefix                            = local.er_gateway_resource_id_prefix
     er_gateway_resource_id                                   = local.er_gateway_resource_id
-    er_gateway_pip_name = local.er_gateway_pip_name
-    er_gateway_pip_resource_id_prefix = local.er_gateway_pip_resource_id_prefix
-    er_gateway_pip_resource_id = local.er_gateway_pip_resource_id
+    er_gateway_pip_name                                      = local.er_gateway_pip_name
+    er_gateway_pip_resource_id_prefix                        = local.er_gateway_pip_resource_id_prefix
+    er_gateway_pip_resource_id                               = local.er_gateway_pip_resource_id
     azurerm_virtual_network_gateway_express_route            = local.azurerm_virtual_network_gateway_express_route
     vpn_gateway_name                                         = local.vpn_gateway_name
     vpn_gateway_resource_id_prefix                           = local.vpn_gateway_resource_id_prefix
     vpn_gateway_resource_id                                  = local.vpn_gateway_resource_id
-    vpn_gateway_pip_name = local.vpn_gateway_pip_name
-    vpn_gateway_pip_resource_id_prefix = local.vpn_gateway_pip_resource_id_prefix
-    vpn_gateway_pip_resource_id = local.vpn_gateway_pip_resource_id
+    vpn_gateway_pip_name                                     = local.vpn_gateway_pip_name
+    vpn_gateway_pip_resource_id_prefix                       = local.vpn_gateway_pip_resource_id_prefix
+    vpn_gateway_pip_resource_id                              = local.vpn_gateway_pip_resource_id
     azurerm_virtual_network_gateway_vpn                      = local.azurerm_virtual_network_gateway_vpn
     azurerm_virtual_network_gateway                          = local.azurerm_virtual_network_gateway
     azfw_name                                                = local.azfw_name
@@ -1858,9 +1858,9 @@ locals {
     azfw_policy_name                                         = local.azfw_policy_name
     azfw_policy_resource_id_prefix                           = local.azfw_policy_resource_id_prefix
     azfw_policy_resource_id                                  = local.azfw_policy_resource_id
-    azfw_pip_name = local.azfw_pip_name
-    azfw_pip_resource_id_prefix = local.azfw_pip_resource_id_prefix
-    azfw_pip_resource_id = local.azfw_pip_resource_id
+    azfw_pip_name                                            = local.azfw_pip_name
+    azfw_pip_resource_id_prefix                              = local.azfw_pip_resource_id_prefix
+    azfw_pip_resource_id                                     = local.azfw_pip_resource_id
     virtual_hub_azfw_name                                    = local.virtual_hub_azfw_name
     virtual_hub_azfw_resource_id_prefix                      = local.virtual_hub_azfw_resource_id_prefix
     virtual_hub_azfw_resource_id                             = local.virtual_hub_azfw_resource_id
