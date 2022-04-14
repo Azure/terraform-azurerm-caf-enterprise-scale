@@ -32,6 +32,8 @@ If specified, will customize the "Connectivity" landing zone settings and resour
             config = {
               address_prefix   = "10.100.0.0/24"
               enable_dns_proxy = true
+              dns_servers      = []
+              sku_tier         = ""
               availability_zones = {
                 zone_1 = true
                 zone_2 = true
@@ -149,6 +151,8 @@ object({
             config = object({
               address_prefix   = string
               enable_dns_proxy = bool
+              dns_servers      = []
+              sku_tier         = ""
               availability_zones = object({
                 zone_1 = bool
                 zone_2 = bool
@@ -266,6 +270,8 @@ hub_networks = [
         config = {
           address_prefix   = "10.100.0.0/24"
           enable_dns_proxy = true
+          dns_servers      = []
+          sku_tier         = ""
           availability_zones = {
             zone_1 = true
             zone_2 = true
@@ -437,8 +443,14 @@ Must contain the following configuration `object()`:
 object({
   enabled = bool
   config = object({
-    address_prefix   = string
-    enable_dns_proxy = bool
+    address_prefix                = string
+    enable_dns_proxy              = bool
+    dns_servers                   = []
+    sku_tier                      = string
+    base_policy_id                = string
+    private_ip_ranges             = list(string)
+    threat_intelligence_mode      = string
+    threat_intelligence_allowlist = list(string)
     availability_zones = object({
       zone_1 = bool
       zone_2 = bool
@@ -459,7 +471,51 @@ Specifies the IP address prefix to assign to the `AzureFirewallSubnet` subnet.
 
 ###### `settings.hub_networks[].config.subnets[].azure_firewall.config.enable_dns_proxy`
 
-_Not implemented yet._
+When enabled, the firewall listens on port 53 and forwards DNS requests to the configured DNS servers.
+Typically used to allow name resolution for Azure Private DNS zones created by the module for Private Endpoints.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.dns_servers`
+
+Allows you to specify custom DNS servers for name resolution.
+Leave value as an empty list `[]` to use the Default (Azure provided) DNS service.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.sku_tier`
+
+The SKU Tier of the Firewall and Firewall Policy.
+Possible values are `Standard`, `Premium`.
+Defaults to `Standard`.
+Changing this forces a new Firewall Policy to be created.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.base_policy_id`
+
+The ID of the base Firewall Policy.
+Used to enable configuration of a [rule hierarchy][azfw_policy_rule_hierarchy].
+
+> **NOTE:** Azure Firewall Policies must be located in the same region to use this setting.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.private_ip_ranges`
+
+A list of private IP ranges to which traffic will not be SNAT.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.threat_intelligence_mode`
+
+The operation mode for Threat Intelligence.
+Possible values are `Alert`, `Deny` and `Off`.
+Defaults to `Alert`.
+
+###### `settings.hub_networks[].config.subnets[].azure_firewall.config.threat_intelligence_allowlist`
+
+A list of `fqdns` and `ip_addresses` that will be skipped for threat detection.
+Must be constructed in the following format:
+
+```hcl
+  threat_intelligence_allowlist = [
+    {
+      fqdns        = [] # Add list of FQDNs that will be skipped for threat detection.
+      ip_addresses = [] # Add list of IP Addresses that will be skipped for threat detection.
+    }
+  ]
+```
 
 ###### `settings.hub_networks[].config.subnets[].azure_firewall.config.availability_zones`
 
@@ -567,3 +623,4 @@ Optionally enable DNS resources for Private Link Services, Private DNS zones and
 [this_page]: # "Link for the current page."
 
 [virtual_network_gateway_sku]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
+[azfw_policy_rule_hierarchy]: https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."

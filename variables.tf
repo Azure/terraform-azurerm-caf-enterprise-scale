@@ -231,8 +231,14 @@ variable "configure_connectivity_resources" {
             azure_firewall = object({
               enabled = bool
               config = object({
-                address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
-                enable_dns_proxy = bool
+                address_prefix                = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+                enable_dns_proxy              = bool
+                dns_servers                   = list(string)
+                sku_tier                      = string
+                base_policy_id                = string
+                private_ip_ranges             = list(string)
+                threat_intelligence_mode      = string
+                threat_intelligence_allowlist = list(string)
                 availability_zones = object({
                   zone_1 = bool
                   zone_2 = bool
@@ -290,8 +296,18 @@ variable "configure_connectivity_resources" {
             azure_firewall = object({
               enabled = bool
               config = object({
-                enable_dns_proxy = bool
-                sku_tier         = string
+                enable_dns_proxy              = bool
+                dns_servers                   = list(string)
+                sku_tier                      = string
+                base_policy_id                = string
+                private_ip_ranges             = list(string)
+                threat_intelligence_mode      = string
+                threat_intelligence_allowlist = list(string)
+                availability_zones = object({
+                  zone_1 = bool
+                  zone_2 = bool
+                  zone_3 = bool
+                })
               })
             })
             spoke_virtual_network_resource_ids = list(string)
@@ -388,8 +404,14 @@ variable "configure_connectivity_resources" {
             azure_firewall = {
               enabled = false
               config = {
-                address_prefix   = "10.100.0.0/24"
-                enable_dns_proxy = true
+                address_prefix                = "10.100.0.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true

@@ -23,8 +23,14 @@ locals {
             azure_firewall = {
               enabled = true
               config = {
-                address_prefix   = "10.100.0.0/24"
-                enable_dns_proxy = true
+                address_prefix                = "10.100.0.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -56,8 +62,14 @@ locals {
             azure_firewall = {
               enabled = false
               config = {
-                address_prefix   = "10.101.0.0/24"
-                enable_dns_proxy = true
+                address_prefix                = "10.101.0.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -95,8 +107,18 @@ locals {
             azure_firewall = {
               enabled = true
               config = {
-                enable_dns_proxy = false
-                sku_tier         = "Standard"
+                enable_dns_proxy              = false
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = false
+                }
               }
             }
             spoke_virtual_network_resource_ids = []
@@ -127,8 +149,18 @@ locals {
             azure_firewall = {
               enabled = false
               config = {
-                enable_dns_proxy = false
-                sku_tier         = "Standard"
+                enable_dns_proxy              = false
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = false
+                  zone_2 = false
+                  zone_3 = false
+                }
               }
             }
             spoke_virtual_network_resource_ids = []

@@ -17,6 +17,10 @@
             "connectivity": [],
             "virtual_wan": []
           },
+          "azurerm_firewall_policy": {
+            "connectivity": [],
+            "virtual_wan": []
+          },
           "azurerm_log_analytics_linked_service": {
             "management": []
           },

@@ -71,8 +71,14 @@ variable "settings" {
           azure_firewall = object({
             enabled = bool
             config = object({
-              address_prefix   = string
-              enable_dns_proxy = bool
+              address_prefix                = string
+              enable_dns_proxy              = bool
+              dns_servers                   = list(string)
+              sku_tier                      = string
+              base_policy_id                = string
+              private_ip_ranges             = list(string)
+              threat_intelligence_mode      = string
+              threat_intelligence_allowlist = list(string)
               availability_zones = object({
                 zone_1 = bool
                 zone_2 = bool
@@ -130,8 +136,18 @@ variable "settings" {
           azure_firewall = object({
             enabled = bool
             config = object({
-              enable_dns_proxy = bool
-              sku_tier         = string
+              enable_dns_proxy              = bool
+              dns_servers                   = list(string)
+              sku_tier                      = string
+              base_policy_id                = string
+              private_ip_ranges             = list(string)
+              threat_intelligence_mode      = string
+              threat_intelligence_allowlist = list(string)
+              availability_zones = object({
+                zone_1 = bool
+                zone_2 = bool
+                zone_3 = bool
+              })
             })
           })
           spoke_virtual_network_resource_ids = list(string)
@@ -208,7 +224,7 @@ variable "resource_prefix" {
   default     = ""
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.resource_prefix)) || var.resource_prefix == null
+    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.resource_prefix)) || var.resource_prefix == ""
     error_message = "Value must be between 2 to 10 characters long, consisting of alphanumeric characters and hyphens."
   }
 }
@@ -219,7 +235,7 @@ variable "resource_suffix" {
   default     = ""
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,36}$", var.resource_suffix)) || var.resource_suffix == null
+    condition     = can(regex("^[a-zA-Z0-9-]{2,36}$", var.resource_suffix)) || var.resource_suffix == ""
     error_message = "Value must be between 2 to 36 characters long, consisting of alphanumeric characters and hyphens."
   }
 
@@ -251,6 +267,7 @@ variable "custom_settings_by_resource_type" {
   validation {
     condition = (
       can([for k in keys(var.custom_settings_by_resource_type) : contains(["azurerm_resource_group", "azurerm_virtual_network", "azurerm_subnet", "azurerm_virtual_network_gateway", "azurerm_public_ip", "azurerm_firewall", "azurerm_network_ddos_protection_plan", "azurerm_dns_zone", "azurerm_virtual_network_peering"], k)]) ||
+      var.custom_settings_by_resource_type == {} ||
       var.custom_settings_by_resource_type == null
     )
     error_message = "Invalid key specified. Please check the list of allowed resource types supported by the connectivity module for caf-enterprise-scale."
