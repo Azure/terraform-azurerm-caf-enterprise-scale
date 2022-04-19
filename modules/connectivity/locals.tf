@@ -97,6 +97,11 @@ locals {
   result_when_location_missing = {
     enabled = false
   }
+  vpn_gen1_only_skus = [
+    "Basic",
+    "VpnGw1",
+    "VpnGw1AZ",
+  ]
 }
 
 # Logic to determine whether specific resources
@@ -609,11 +614,14 @@ locals {
       active_active                    = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].active_active, false)
       private_ip_address_enabled       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].private_ip_address_enabled, null)
       default_local_network_gateway_id = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].default_local_network_gateway_id, null)
-      generation                       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].generation, null)
-      vpn_client_configuration         = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_client_configuration, local.empty_list)
-      bgp_settings                     = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].bgp_settings, local.empty_list)
-      custom_route                     = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].custom_route, local.empty_list)
-      tags                             = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].tags, local.tags)
+      generation = try(
+        local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].generation,
+        contains(local.vpn_gen1_only_skus, hub_network.config.virtual_network_gateway.config.gateway_sku_vpn) ? "Generation1" : "Generation2"
+      )
+      vpn_client_configuration = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_client_configuration, local.empty_list)
+      bgp_settings             = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].bgp_settings, local.empty_list)
+      custom_route             = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].custom_route, local.empty_list)
+      tags                     = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].tags, local.tags)
       # Child resource definition attributes
       azurerm_public_ip = {
         # Resource logic attributes

@@ -17,7 +17,7 @@ locals {
               config = {
                 address_prefix           = "10.100.1.0/24"
                 gateway_sku_expressroute = "ErGw1AZ"
-                gateway_sku_vpn          = "VpnGw1AZ"
+                gateway_sku_vpn          = "VpnGw2AZ"
               }
             }
             azure_firewall = {
@@ -52,10 +52,10 @@ locals {
             bgp_community                = ""
             subnets                      = []
             virtual_network_gateway = {
-              enabled = false
+              enabled = true
               config = {
                 address_prefix           = "10.101.1.0/24"
-                gateway_sku_expressroute = "ErGw1AZ"
+                gateway_sku_expressroute = ""
                 gateway_sku_vpn          = "VpnGw1AZ"
               }
             }
