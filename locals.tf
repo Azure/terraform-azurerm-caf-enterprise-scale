@@ -2,7 +2,7 @@
 # empty object types in the code
 locals {
   empty_list   = []
-  empty_map    = {}
+  empty_map    = tomap({})
   empty_string = ""
 }
 
