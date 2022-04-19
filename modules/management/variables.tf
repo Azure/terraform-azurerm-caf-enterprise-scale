@@ -138,3 +138,9 @@ variable "custom_settings_by_resource_type" {
     error_message = "Invalid key specified. Please check the list of allowed resource types supported by the management module for caf-enterprise-scale."
   }
 }
+
+variable "asc_export_resource_group_name" {
+  type        = string
+  description = "If specified, will customise the `ascExportResourceGroupName` parameter for the `Deploy-MDFC-Config` Policy Assignment when managed by the module."
+  default     = ""
+}

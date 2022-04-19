@@ -47,6 +47,7 @@ module "management_resources" {
   existing_automation_account_resource_id      = lookup(local.management_resources_advanced, "existing_automation_account_resource_id", local.empty_string)
   link_log_analytics_to_automation_account     = lookup(local.management_resources_advanced, "link_log_analytics_to_automation_account", true)
   custom_settings_by_resource_type             = lookup(local.management_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
+  asc_export_resource_group_name               = lookup(local.management_resources_advanced, "asc_export_resource_group_name", local.empty_string)
 }
 
 # The following module is used to generate the configuration
