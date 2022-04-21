@@ -102,6 +102,10 @@ locals {
     "VpnGw1",
     "VpnGw1AZ",
   ]
+  private_ip_address_allocation_values = [
+    "Dynamic",
+    "Static",
+  ]
 }
 
 # Logic to determine whether specific resources
@@ -504,24 +508,24 @@ locals {
         [
           {
             name                          = local.er_gateway_pip_name[location]
-            private_ip_address_allocation = null
+            private_ip_address_allocation = null # Not applicable to ExpressRoute SKUs
             subnet_id                     = "${local.virtual_network_resource_id[location]}/subnets/GatewaySubnet"
             public_ip_address_id          = local.er_gateway_pip_resource_id[location]
           }
         ]
       )
-      vpn_type                         = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].vpn_type, "RouteBased")
-      enable_bgp                       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].enable_bgp, true)
-      active_active                    = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].active_active, false)
-      private_ip_address_enabled       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].private_ip_address_enabled, null)
-      default_local_network_gateway_id = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].default_local_network_gateway_id, null)
-      generation                       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].generation, null)
-      vpn_client_configuration         = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].vpn_client_configuration, local.empty_list)
-      bgp_settings                     = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].bgp_settings, local.empty_list)
-      custom_route                     = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].custom_route, local.empty_list)
+      vpn_type                         = "RouteBased"
+      enable_bgp                       = null             # Not applicable to ExpressRoute SKUs
+      active_active                    = null             # Not applicable to ExpressRoute SKUs
+      private_ip_address_enabled       = null             # Not applicable to ExpressRoute SKUs
+      default_local_network_gateway_id = null             # Not applicable to ExpressRoute SKUs
+      generation                       = null             # Not applicable to ExpressRoute SKUs
+      vpn_client_configuration         = local.empty_list # Not applicable to ExpressRoute SKUs
+      bgp_settings                     = local.empty_list # Not applicable to ExpressRoute SKUs
+      custom_route                     = local.empty_list # Not applicable to ExpressRoute SKUs
       tags                             = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].tags, local.tags)
       # Child resource definition attributes
-      azurerm_public_ip = {
+      azurerm_public_ip = [{
         # Resource logic attributes
         resource_id       = local.er_gateway_pip_resource_id[location]
         managed_by_module = local.deploy_virtual_network_gateway_express_route[location]
@@ -545,7 +549,7 @@ locals {
           local.custom_settings.azurerm_public_ip["connectivity_expressroute"][location].availability_zone,
           length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute)) > 0 ? "Zone-Redundant" : "No-Zone"
         )
-      }
+      }]
     }
   ]
 }
@@ -575,6 +579,12 @@ locals {
     try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].name,
     "${local.vpn_gateway_name[location]}-pip")
   }
+  vpn_gateway_pip_2_name = {
+    for location in local.hub_network_locations :
+    location =>
+    try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].name,
+    "${local.vpn_gateway_name[location]}-pip2")
+  }
   vpn_gateway_pip_resource_id_prefix = {
     for location in local.hub_network_locations :
     location =>
@@ -584,6 +594,11 @@ locals {
     for location in local.hub_network_locations :
     location =>
     "${local.vpn_gateway_pip_resource_id_prefix[location]}/${local.vpn_gateway_pip_name[location]}"
+  }
+  vpn_gateway_pip_2_resource_id = {
+    for location in local.hub_network_locations :
+    location =>
+    "${local.vpn_gateway_pip_resource_id_prefix[location]}/${local.vpn_gateway_pip_2_name[location]}"
   }
   azurerm_virtual_network_gateway_vpn = [
     for location, hub_network in local.hub_networks_by_location :
@@ -598,59 +613,134 @@ locals {
       type                = "Vpn"
       sku                 = hub_network.config.virtual_network_gateway.config.gateway_sku_vpn
       ip_configuration = try(
-        # To support `active_active = true` must currently specify a custom ip_configuration
         local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].ip_configuration,
-        [
-          {
-            name                          = local.vpn_gateway_pip_name[location]
-            private_ip_address_allocation = null
-            subnet_id                     = "${local.virtual_network_resource_id[location]}/subnets/GatewaySubnet"
-            public_ip_address_id          = local.vpn_gateway_pip_resource_id[location]
-          }
-        ]
+        concat(
+          [
+            {
+              name = local.vpn_gateway_pip_name[location]
+              private_ip_address_allocation = (
+                contains(
+                  local.private_ip_address_allocation_values,
+                  hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation
+                )
+                ? hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation
+                : null
+              )
+              subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/GatewaySubnet"
+              public_ip_address_id = local.vpn_gateway_pip_resource_id[location]
+            }
+          ],
+          (
+            coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.active_active, false)
+            ? [
+              {
+                name = local.vpn_gateway_pip_2_name[location]
+                private_ip_address_allocation = (
+                  contains(
+                    local.private_ip_address_allocation_values,
+                    hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation
+                  )
+                  ? hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation
+                  : null
+                )
+                subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/GatewaySubnet"
+                public_ip_address_id = local.vpn_gateway_pip_2_resource_id[location]
+              }
+            ]
+            : []
+          )
+        )
       )
-      vpn_type                         = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_type, "RouteBased")
-      enable_bgp                       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].enable_bgp, false)
-      active_active                    = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].active_active, false)
-      private_ip_address_enabled       = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].private_ip_address_enabled, null)
-      default_local_network_gateway_id = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].default_local_network_gateway_id, null)
+      vpn_type      = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_type, "RouteBased")
+      enable_bgp    = coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.enable_bgp, false)
+      active_active = coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.active_active, false)
+      private_ip_address_enabled = (
+        contains(
+          local.private_ip_address_allocation_values,
+          hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation
+        )
+        ? true
+        : null
+      )
+      default_local_network_gateway_id = (
+        hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.default_local_network_gateway_id != ""
+        ? hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.default_local_network_gateway_id
+        : null
+      )
       generation = try(
         local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].generation,
         contains(local.vpn_gen1_only_skus, hub_network.config.virtual_network_gateway.config.gateway_sku_vpn) ? "Generation1" : "Generation2"
       )
-      vpn_client_configuration = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_client_configuration, local.empty_list)
-      bgp_settings             = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].bgp_settings, local.empty_list)
-      custom_route             = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].custom_route, local.empty_list)
+      vpn_client_configuration = hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.vpn_client_configuration
+      bgp_settings             = hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.bgp_settings
+      custom_route             = hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.custom_route
       tags                     = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].tags, local.tags)
       # Child resource definition attributes
-      azurerm_public_ip = {
-        # Resource logic attributes
-        resource_id       = local.vpn_gateway_pip_resource_id[location]
-        managed_by_module = local.deploy_virtual_network_gateway_vpn[location]
-        # Resource definition attributes
-        name                    = local.vpn_gateway_pip_name[location]
-        resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
-        location                = location
-        ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].ip_version, null)
-        idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].idle_timeout_in_minutes, null)
-        domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].domain_name_label, null)
-        reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].reverse_fqdn, null)
-        public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].public_ip_prefix_id, null)
-        ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].ip_tags, null)
-        tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].tags, local.tags)
-        sku = try(
-          local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].sku,
-          length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Standard" : "Basic"
+      azurerm_public_ip = concat(
+        [
+          {
+            # Resource logic attributes
+            resource_id       = local.vpn_gateway_pip_resource_id[location]
+            managed_by_module = local.deploy_virtual_network_gateway_vpn[location]
+            # Resource definition attributes
+            name                    = local.vpn_gateway_pip_name[location]
+            resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
+            location                = location
+            ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].ip_version, null)
+            idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].idle_timeout_in_minutes, null)
+            domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].domain_name_label, null)
+            reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].reverse_fqdn, null)
+            public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].public_ip_prefix_id, null)
+            ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].ip_tags, null)
+            tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].tags, local.tags)
+            sku = try(
+              local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].sku,
+              length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Standard" : "Basic"
+            )
+            allocation_method = try(
+              local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].allocation_method,
+              length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Static" : "Dynamic"
+            )
+            availability_zone = try(
+              local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].availability_zone,
+              length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Zone-Redundant" : "No-Zone"
+            )
+          }
+        ],
+        (
+          coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.active_active, false)
+          ? [
+            {
+              # Resource logic attributes
+              resource_id       = local.vpn_gateway_pip_2_resource_id[location]
+              managed_by_module = local.deploy_virtual_network_gateway_vpn[location]
+              # Resource definition attributes
+              name                    = local.vpn_gateway_pip_2_name[location]
+              resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
+              location                = location
+              ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].ip_version, null)
+              idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].idle_timeout_in_minutes, null)
+              domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].domain_name_label, null)
+              reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].reverse_fqdn, null)
+              public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].public_ip_prefix_id, null)
+              ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].ip_tags, null)
+              tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].tags, local.tags)
+              sku = try(
+                local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].sku,
+                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Standard" : "Basic"
+              )
+              allocation_method = try(
+                local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].allocation_method,
+                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Static" : "Dynamic"
+              )
+              availability_zone = try(
+                local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].availability_zone,
+                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Zone-Redundant" : "No-Zone"
+              )
+          }]
+          : []
         )
-        allocation_method = try(
-          local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].allocation_method,
-          length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Static" : "Dynamic"
-        )
-        availability_zone = try(
-          local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].availability_zone,
-          length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Zone-Redundant" : "No-Zone"
-        )
-      }
+      )
     }
   ]
 }
@@ -844,7 +934,7 @@ locals {
           tags                = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
         }
         # Child resource definition attributes
-        azurerm_public_ip = {
+        azurerm_public_ip = [{
           # Resource logic attributes
           resource_id       = local.azfw_pip_resource_id[location]
           managed_by_module = local.deploy_azure_firewall[location]
@@ -865,7 +955,7 @@ locals {
             local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].availability_zone,
             local.azfw_zones_enabled[location] ? "Zone-Redundant" : "No-Zone"
           )
-        }
+        }]
       }
     ],
     [
@@ -932,7 +1022,7 @@ locals {
           tags                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
         }
         # Child resource definition attributes
-        azurerm_public_ip = {}
+        azurerm_public_ip = []
       }
     ]
   )
@@ -1153,14 +1243,14 @@ locals {
 # Configuration settings for resource type:
 #  - azurerm_public_ip
 locals {
-  azurerm_public_ip = [
+  azurerm_public_ip = flatten([
     for azurerm_public_ip in concat(
       local.azurerm_virtual_network_gateway.*.azurerm_public_ip,
       local.azurerm_firewall.*.azurerm_public_ip,
     ) :
     azurerm_public_ip
     if length(azurerm_public_ip) > 0
-  ]
+  ])
 }
 
 # Configuration settings for resource type:
@@ -1854,8 +1944,10 @@ locals {
     vpn_gateway_resource_id_prefix                           = local.vpn_gateway_resource_id_prefix
     vpn_gateway_resource_id                                  = local.vpn_gateway_resource_id
     vpn_gateway_pip_name                                     = local.vpn_gateway_pip_name
+    vpn_gateway_pip_2_name                                   = local.vpn_gateway_pip_2_name
     vpn_gateway_pip_resource_id_prefix                       = local.vpn_gateway_pip_resource_id_prefix
     vpn_gateway_pip_resource_id                              = local.vpn_gateway_pip_resource_id
+    vpn_gateway_pip_2_resource_id                            = local.vpn_gateway_pip_2_resource_id
     azurerm_virtual_network_gateway_vpn                      = local.azurerm_virtual_network_gateway_vpn
     azurerm_virtual_network_gateway                          = local.azurerm_virtual_network_gateway
     azfw_name                                                = local.azfw_name

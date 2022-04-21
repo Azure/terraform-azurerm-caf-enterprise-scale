@@ -181,6 +181,7 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
       radius_server_address = try(vpn_client_configuration.value["radius_server_address"], null)
       radius_server_secret  = try(vpn_client_configuration.value["radius_server_secret"], null)
       vpn_client_protocols  = try(vpn_client_configuration.value["vpn_client_protocols"], null)
+      vpn_auth_types        = try(vpn_client_configuration.value["vpn_auth_types"], null)
 
       dynamic "root_certificate" {
         for_each = try(vpn_client_configuration.value["root_certificate"], local.empty_list)

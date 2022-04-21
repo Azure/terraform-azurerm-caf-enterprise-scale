@@ -66,6 +66,53 @@ variable "settings" {
               address_prefix           = string
               gateway_sku_expressroute = string
               gateway_sku_vpn          = string
+              advanced_vpn_settings = object({
+                enable_bgp                       = bool
+                active_active                    = bool
+                private_ip_address_allocation    = string
+                default_local_network_gateway_id = string
+                vpn_client_configuration = list(
+                  object({
+                    address_space = list(string)
+                    aad_tenant    = string
+                    aad_audience  = string
+                    aad_issuer    = string
+                    root_certificate = list(
+                      object({
+                        name             = string
+                        public_cert_data = string
+                      })
+                    )
+                    revoked_certificate = list(
+                      object({
+                        name             = string
+                        public_cert_data = string
+                      })
+                    )
+                    radius_server_address = string
+                    radius_server_secret  = string
+                    vpn_client_protocols  = list(string)
+                    vpn_auth_types        = list(string)
+                  })
+                )
+                bgp_settings = list(
+                  object({
+                    asn         = number
+                    peer_weight = number
+                    peering_addresses = list(
+                      object({
+                        ip_configuration_name = string
+                        apipa_addresses       = list(string)
+                      })
+                    )
+                  })
+                )
+                custom_route = list(
+                  object({
+                    address_prefixes = list(string)
+                  })
+                )
+              })
             })
           })
           azure_firewall = object({

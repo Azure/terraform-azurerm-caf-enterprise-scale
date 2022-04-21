@@ -94,6 +94,7 @@
               "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-ergw-northeurope-pip",
               "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-northeurope-pip",
               "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip",
+              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip2",
               "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-westeurope-pip"
             ]
           },
@@ -1463,6 +1464,38 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_public_ip.connectivity[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip2\"]",
+            "mode": "managed",
+            "type": "azurerm_public_ip",
+            "name": "connectivity",
+            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip2",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allocation_method": "Static",
+              "availability_zone": "Zone-Redundant",
+              "domain_name_label": null,
+              "idle_timeout_in_minutes": 4,
+              "ip_tags": null,
+              "ip_version": "IPv4",
+              "location": "northeurope",
+              "name": "root-id-1-vpngw-northeurope-pip2",
+              "public_ip_prefix_id": null,
+              "resource_group_name": "root-id-1-connectivity-northeurope",
+              "reverse_fqdn": null,
+              "sku": "Standard",
+              "sku_tier": "Regional",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "tags": {},
+              "zones": []
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_public_ip.connectivity[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-westeurope-pip\"]",
             "mode": "managed",
             "type": "azurerm_public_ip",
@@ -1857,10 +1890,8 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "active_active": false,
               "custom_route": [],
               "default_local_network_gateway_id": null,
-              "enable_bgp": true,
               "ip_configuration": [
                 {
                   "name": "root-id-1-ergw-northeurope-pip",
@@ -1901,10 +1932,10 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "active_active": false,
+              "active_active": true,
               "custom_route": [],
               "default_local_network_gateway_id": null,
-              "enable_bgp": false,
+              "enable_bgp": true,
               "generation": "Generation2",
               "ip_configuration": [
                 {
@@ -1912,11 +1943,17 @@
                   "private_ip_address_allocation": "Dynamic",
                   "public_ip_address_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip",
                   "subnet_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/subnets/GatewaySubnet"
+                },
+                {
+                  "name": "root-id-1-vpngw-northeurope-pip2",
+                  "private_ip_address_allocation": "Dynamic",
+                  "public_ip_address_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip2",
+                  "subnet_id": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/subnets/GatewaySubnet"
                 }
               ],
               "location": "northeurope",
               "name": "root-id-1-vpngw-northeurope",
-              "private_ip_address_enabled": null,
+              "private_ip_address_enabled": true,
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "sku": "VpnGw2AZ",
               "tags": {
@@ -1931,6 +1968,7 @@
               "bgp_settings": [],
               "custom_route": [],
               "ip_configuration": [
+                {},
                 {}
               ],
               "tags": {},
