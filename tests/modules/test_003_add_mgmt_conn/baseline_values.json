@@ -156,7 +156,7 @@
           },
           "azurerm_vpn_gateway": {
             "virtual_wan": [
-              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/expressRouteGateways/root-id-1-vpngw-northeurope"
+              "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/vpnGateways/root-id-1-vpngw-northeurope"
             ]
           }
         },
@@ -782,7 +782,6 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "threat_intel_mode": "",
               "timeouts": null,
               "virtual_hub": [
                 {
@@ -1377,8 +1376,8 @@
             "schema_version": 0,
             "values": {
               "allocation_method": "Static",
-              "availability_zone": "Zone-Redundant",
               "domain_name_label": null,
+              "edge_zone": null,
               "idle_timeout_in_minutes": 4,
               "ip_tags": null,
               "ip_version": "IPv4",
@@ -1392,11 +1391,20 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": null,
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
             },
             "sensitive_values": {
               "tags": {},
-              "zones": []
+              "zones": [
+                false,
+                false,
+                false
+              ]
             }
           },
           {
@@ -1409,8 +1417,8 @@
             "schema_version": 0,
             "values": {
               "allocation_method": "Static",
-              "availability_zone": "Zone-Redundant",
               "domain_name_label": null,
+              "edge_zone": null,
               "idle_timeout_in_minutes": 4,
               "ip_tags": null,
               "ip_version": "IPv4",
@@ -1424,11 +1432,20 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": null,
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
             },
             "sensitive_values": {
               "tags": {},
-              "zones": []
+              "zones": [
+                false,
+                false,
+                false
+              ]
             }
           },
           {
@@ -1441,8 +1458,8 @@
             "schema_version": 0,
             "values": {
               "allocation_method": "Static",
-              "availability_zone": "Zone-Redundant",
               "domain_name_label": null,
+              "edge_zone": null,
               "idle_timeout_in_minutes": 4,
               "ip_tags": null,
               "ip_version": "IPv4",
@@ -1456,11 +1473,20 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": null,
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
             },
             "sensitive_values": {
               "tags": {},
-              "zones": []
+              "zones": [
+                false,
+                false,
+                false
+              ]
             }
           },
           {
@@ -1473,8 +1499,8 @@
             "schema_version": 0,
             "values": {
               "allocation_method": "Static",
-              "availability_zone": "Zone-Redundant",
               "domain_name_label": null,
+              "edge_zone": null,
               "idle_timeout_in_minutes": 4,
               "ip_tags": null,
               "ip_version": "IPv4",
@@ -1488,11 +1514,20 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": null,
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
             },
             "sensitive_values": {
               "tags": {},
-              "zones": []
+              "zones": [
+                false,
+                false,
+                false
+              ]
             }
           },
           {
@@ -1504,9 +1539,9 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "allocation_method": "Static",
-              "availability_zone": "Zone-Redundant",
+              "allocation_method": "Dynamic",
               "domain_name_label": null,
+              "edge_zone": null,
               "idle_timeout_in_minutes": 4,
               "ip_tags": null,
               "ip_version": "IPv4",
@@ -1515,16 +1550,16 @@
               "public_ip_prefix_id": null,
               "resource_group_name": "root-id-1-connectivity-westeurope",
               "reverse_fqdn": null,
-              "sku": "Standard",
+              "sku": "Basic",
               "sku_tier": "Regional",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": null,
+              "zones": null
             },
             "sensitive_values": {
-              "tags": {},
-              "zones": []
+              "tags": {}
             }
           },
           {
@@ -1782,7 +1817,8 @@
             },
             "sensitive_values": {
               "route": [],
-              "tags": {}
+              "tags": {},
+              "virtual_router_ips": []
             }
           },
           {
@@ -1808,7 +1844,8 @@
             },
             "sensitive_values": {
               "route": [],
-              "tags": {}
+              "tags": {},
+              "virtual_router_ips": []
             }
           },
           {
@@ -1826,6 +1863,7 @@
               "bgp_community": null,
               "ddos_protection_plan": [],
               "dns_servers": [],
+              "edge_zone": null,
               "flow_timeout_in_minutes": null,
               "location": "northeurope",
               "name": "root-id-1-hub-northeurope",
@@ -1833,8 +1871,7 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
-              "vm_protection_enabled": false
+              "timeouts": null
             },
             "sensitive_values": {
               "address_space": [
@@ -1861,6 +1898,7 @@
               "bgp_community": null,
               "ddos_protection_plan": [],
               "dns_servers": [],
+              "edge_zone": null,
               "flow_timeout_in_minutes": null,
               "location": "westeurope",
               "name": "root-id-1-hub-westeurope",
@@ -1868,8 +1906,7 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
-              "vm_protection_enabled": false
+              "timeouts": null
             },
             "sensitive_values": {
               "address_space": [
@@ -1892,6 +1929,7 @@
             "values": {
               "custom_route": [],
               "default_local_network_gateway_id": null,
+              "edge_zone": null,
               "ip_configuration": [
                 {
                   "name": "root-id-1-ergw-northeurope-pip",
@@ -1935,6 +1973,7 @@
               "active_active": true,
               "custom_route": [],
               "default_local_network_gateway_id": null,
+              "edge_zone": null,
               "enable_bgp": true,
               "generation": "Generation2",
               "ip_configuration": [
@@ -1987,6 +2026,7 @@
               "active_active": false,
               "custom_route": [],
               "default_local_network_gateway_id": null,
+              "edge_zone": null,
               "enable_bgp": false,
               "generation": "Generation1",
               "ip_configuration": [
@@ -2001,7 +2041,7 @@
               "name": "root-id-1-vpngw-westeurope",
               "private_ip_address_enabled": null,
               "resource_group_name": "root-id-1-connectivity-westeurope",
-              "sku": "VpnGw1AZ",
+              "sku": "VpnGw1",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
@@ -2030,7 +2070,6 @@
             "schema_version": 0,
             "values": {
               "allow_branch_to_branch_traffic": true,
-              "allow_vnet_to_vnet_traffic": false,
               "disable_vpn_encryption": false,
               "location": "northeurope",
               "name": "root-id-1-vwan-northeurope",
@@ -2047,11 +2086,11 @@
             }
           },
           {
-            "address": "module.test_connectivity.azurerm_vpn_gateway.virtual_wan[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/expressRouteGateways/root-id-1-vpngw-northeurope\"]",
+            "address": "module.test_connectivity.azurerm_vpn_gateway.virtual_wan[\"/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/vpnGateways/root-id-1-vpngw-northeurope\"]",
             "mode": "managed",
             "type": "azurerm_vpn_gateway",
             "name": "virtual_wan",
-            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/expressRouteGateways/root-id-1-vpngw-northeurope",
+            "index": "/subscriptions/b2ce43c7-d4ec-4878-8df7-b513d90bedbe/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/vpnGateways/root-id-1-vpngw-northeurope",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
@@ -2499,6 +2538,7 @@
               "enforce": false,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -2645,6 +2685,7 @@
               "enforce": false,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -2763,6 +2804,7 @@
               "enforce": false,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -2965,6 +3007,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -2999,6 +3042,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3033,6 +3077,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3067,6 +3112,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3101,6 +3147,7 @@
               "enforce": false,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3163,6 +3210,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3197,6 +3245,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3287,6 +3336,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3517,6 +3567,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3551,6 +3602,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3585,6 +3637,7 @@
               "enforce": false,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3619,6 +3672,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3653,6 +3707,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3687,6 +3742,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3721,6 +3777,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3755,6 +3812,7 @@
               "enforce": true,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3789,6 +3847,7 @@
               "enforce": false,
               "identity": [
                 {
+                  "identity_ids": null,
                   "type": "SystemAssigned"
                 }
               ],
@@ -3820,7 +3879,7 @@
             "values": {
               "description": "Appends the AppService sites object to ensure that  HTTPS only is enabled for  server/service authentication and protects data in transit from network layer eavesdropping attacks. Please note Append does not enforce compliance use then deny.",
               "display_name": "AppService append enable https only setting to enforce https setting.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"App Service\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Append-AppService-httpsonly",
@@ -3842,7 +3901,7 @@
             "values": {
               "description": "Append the AppService sites object to ensure that min Tls version is set to required minimum TLS version. Please note Append does not enforce compliance use then deny.",
               "display_name": "AppService append sites with minimum TLS version to enforce.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"App Service\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Append-AppService-latestTLS",
@@ -3864,7 +3923,7 @@
             "values": {
               "description": "This policy enables you to ensure when a Key Vault is created with out soft delete enabled it will be added.",
               "display_name": "KeyVault SoftDelete should be enabled",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Key Vault\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Append-KV-SoftDelete",
@@ -3886,7 +3945,7 @@
             "values": {
               "description": "Azure Cache for Redis Append and the enforcement that enableNonSslPort is disabled. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "Azure Cache for Redis Append and the enforcement that enableNonSslPort is disabled.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Cache\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Append-Redis-disableNonSslPort",
@@ -3908,7 +3967,7 @@
             "values": {
               "description": "Append a specific min TLS version requirement and enforce SSL on Azure Cache for Redis. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "Azure Cache for Redis Append a specific min TLS version requirement and enforce TLS.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Cache\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Append-Redis-sslEnforcement",
@@ -3930,7 +3989,7 @@
             "values": {
               "description": "Audit private endpoints that are created in other subscriptions and/or tenants for Azure Machine Learning.",
               "display_name": "Control private endpoint connections to Azure Machine Learning",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Audit-MachineLearning-PrivateEndpointId",
@@ -3952,7 +4011,7 @@
             "values": {
               "description": "This policy denies the creation of child resources on the Automation Account",
               "display_name": "No child resources in Automation Account",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Automation\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-AA-child-resources",
@@ -3974,7 +4033,7 @@
             "values": {
               "description": "This policy enables you to restrict that Application Gateways is always deployed with WAF enabled",
               "display_name": "Application Gateway should be deployed with WAF enabled",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-AppGW-Without-WAF",
@@ -3996,7 +4055,7 @@
             "values": {
               "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.",
               "display_name": "API App should only be accessible over HTTPS",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"App Service\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-AppServiceApiApp-http",
@@ -4018,7 +4077,7 @@
             "values": {
               "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.",
               "display_name": "Function App should only be accessible over HTTPS",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"App Service\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-AppServiceFunctionApp-http",
@@ -4040,7 +4099,7 @@
             "values": {
               "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.",
               "display_name": "Web Application should only be accessible over HTTPS",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"App Service\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-AppServiceWebApp-http",
@@ -4062,7 +4121,7 @@
             "values": {
               "description": "Denies the deployment of workspaces that do not use the noPublicIp feature to host Databricks clusters without public IPs.",
               "display_name": "Deny public IPs for Databricks cluster",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Databricks\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Databricks-NoPublicIp",
@@ -4084,7 +4143,7 @@
             "values": {
               "description": "Enforces the use of Premium Databricks workspaces to make sure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for AAD.",
               "display_name": "Deny non-premium Databricks sku",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Databricks\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Databricks-Sku",
@@ -4106,7 +4165,7 @@
             "values": {
               "description": "Enforces the use of vnet injection for Databricks workspaces.",
               "display_name": "Deny Databricks workspaces without Vnet injection",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Databricks\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Databricks-VirtualNetwork",
@@ -4128,7 +4187,7 @@
             "values": {
               "description": "Deny AKS cluster creation in Azure Machine Learning and enforce connecting to existing clusters.",
               "display_name": "Deny AKS cluster creation in Azure Machine Learning",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-Aks",
@@ -4150,7 +4209,7 @@
             "values": {
               "description": "Enforce subnet connectivity for Azure Machine Learning compute clusters and compute instances.",
               "display_name": "Enforce subnet connectivity for Azure Machine Learning compute clusters and compute instances",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-Compute-SubnetId",
@@ -4172,7 +4231,7 @@
             "values": {
               "description": "Limit allowed vm sizes for Azure Machine Learning compute clusters and compute instances.",
               "display_name": "Limit allowed vm sizes for Azure Machine Learning compute clusters and compute instances",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Budget\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-Compute-VmSize",
@@ -4194,7 +4253,7 @@
             "values": {
               "description": "Deny public access of Azure Machine Learning clusters via SSH.",
               "display_name": "Deny public access of Azure Machine Learning clusters via SSH",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-ComputeCluster-RemoteLoginPortPublicAccess",
@@ -4216,7 +4275,7 @@
             "values": {
               "description": "Enforce scale settings for Azure Machine Learning compute clusters.",
               "display_name": "Enforce scale settings for Azure Machine Learning compute clusters",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Budget\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-ComputeCluster-Scale",
@@ -4238,7 +4297,7 @@
             "values": {
               "description": "Enforces high business impact Azure Machine Learning workspaces.",
               "display_name": "Enforces high business impact Azure Machine Learning Workspaces",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-HbiWorkspace",
@@ -4260,7 +4319,7 @@
             "values": {
               "description": "Deny public access behind vnet to Azure Machine Learning workspaces.",
               "display_name": "Deny public acces behind vnet to Azure Machine Learning workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-PublicAccessWhenBehindVnet",
@@ -4282,7 +4341,7 @@
             "values": {
               "description": "Denies public network access for Azure Machine Learning workspaces.",
               "display_name": "Azure Machine Learning should have disabled public network access",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Machine Learning\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MachineLearning-PublicNetworkAccess",
@@ -4304,7 +4363,7 @@
             "values": {
               "description": "Azure Database for MySQL supports connecting your Azure Database for MySQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "MySQL database servers enforce SSL connections.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-MySql-http",
@@ -4326,7 +4385,7 @@
             "values": {
               "description": "Azure Database for PostgreSQL supports connecting your Azure Database for PostgreSQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "PostgreSQL database servers enforce SSL connection.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.1\"}",
               "mode": "Indexed",
               "name": "Deny-PostgreSql-http",
@@ -4348,7 +4407,7 @@
             "values": {
               "description": "This policy denies the creation of a private DNS in the current scope, used in combination with policies that create centralized private DNS in connectivity subscription",
               "display_name": "Deny the creation of private DNS",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Private-DNS-Zones",
@@ -4370,7 +4429,7 @@
             "values": {
               "description": "This policy denies the creation of Maria DB accounts with exposed public endpoints",
               "display_name": "Public network access should be disabled for MariaDB",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-PublicEndpoint-MariaDB",
@@ -4392,7 +4451,7 @@
             "values": {
               "description": "This policy denies creation of Public IPs under the assigned scope.",
               "display_name": "Deny the creation of public IP",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-PublicIP",
@@ -4414,7 +4473,7 @@
             "values": {
               "description": "This policy denies any network security rule that allows RDP access from Internet",
               "display_name": "RDP access from the Internet should be blocked",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Deny-RDP-From-Internet",
@@ -4436,7 +4495,7 @@
             "values": {
               "description": "Audit enabling of only connections via SSL to Azure Cache for Redis. Validate both minimum TLS version and enableNonSslPort is disabled. Use of secure connections ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking",
               "display_name": "Azure Cache for Redis only secure connections should be enabled",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Cache\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Redis-http",
@@ -4458,7 +4517,7 @@
             "values": {
               "description": "Setting minimal TLS version to 1.2 improves security by ensuring your Azure SQL Database can only be accessed from clients using TLS 1.2. Using versions of TLS less than 1.2 is not reccomended since they have well documented security vunerabilities.",
               "display_name": "Azure SQL Database should have the minimal TLS version set to the highest version",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Sql-minTLS",
@@ -4480,7 +4539,7 @@
             "values": {
               "description": "Setting minimal TLS version to 1.2 improves security by ensuring your SQL Managed Instance can only be accessed from clients using TLS 1.2. Using versions of TLS less than 1.2 is not reccomended since they have well documented security vunerabilities.",
               "display_name": "SQL Managed Instance should have the minimal TLS version set to the highest version",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-SqlMi-minTLS",
@@ -4502,7 +4561,7 @@
             "values": {
               "description": "Audit requirement of Secure transfer in your storage account. Secure transfer is an option that forces your storage account to accept requests only from secure connections (HTTPS). Use of HTTPS ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking",
               "display_name": "Storage Account set to minumum TLS and Secure transfer should be enabled",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Storage\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deny-Storage-minTLS",
@@ -4524,7 +4583,7 @@
             "values": {
               "description": "This policy denies the creation of a subnet without a Network Security Group. NSG help to protect traffic across subnet-level.",
               "display_name": "Subnets should have a Network Security Group",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"2.0.0\"}",
               "mode": "All",
               "name": "Deny-Subnet-Without-Nsg",
@@ -4546,7 +4605,7 @@
             "values": {
               "description": "This policy denies the creation of a subnet without a User Defined Route (UDR).",
               "display_name": "Subnets should have a User Defined Route",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"2.0.0\"}",
               "mode": "All",
               "name": "Deny-Subnet-Without-Udr",
@@ -4568,7 +4627,7 @@
             "values": {
               "description": "This policy denies the creation of vNet Peerings outside of the same subscriptions under the assigned scope.",
               "display_name": "Deny vNet peering cross subscription.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.1\"}",
               "mode": "All",
               "name": "Deny-VNET-Peer-Cross-Sub",
@@ -4590,7 +4649,7 @@
             "values": {
               "description": "This policy denies the creation of vNet Peerings to non-approved vNets under the assigned scope.",
               "display_name": "Deny vNet peering to non-approved vNets",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Deny-VNET-Peering-To-Non-Approved-VNETs",
@@ -4612,7 +4671,7 @@
             "values": {
               "description": "This policy denies the creation of vNet Peerings under the assigned scope.",
               "display_name": "Deny vNet peering ",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.1\"}",
               "mode": "All",
               "name": "Deny-VNet-Peering",
@@ -4634,7 +4693,7 @@
             "values": {
               "description": "Deploy Azure Security Center Security Contacts",
               "display_name": "Deploy Azure Security Center Security Contacts",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Security Center\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Deploy-ASC-SecurityContacts",
@@ -4656,7 +4715,7 @@
             "values": {
               "description": "Deploy a default budget on all subscriptions under the assigned scope",
               "display_name": "Deploy a default budget on all subscriptions under the assigned scope",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Budget\",\"version\":\"1.1.0\"}",
               "mode": "All",
               "name": "Deploy-Budget",
@@ -4678,7 +4737,7 @@
             "values": {
               "description": "Deploys a route table with specific user defined routes when one does not exist. The route table deployed by the policy must be manually associated to subnet(s)",
               "display_name": "Deploy a route table with specific user defined routes",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Custom-Route-Table",
@@ -4700,7 +4759,7 @@
             "values": {
               "description": "Deploys an Azure DDoS Protection Standard plan",
               "display_name": "Deploy an Azure DDoS Protection Standard plan",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Deploy-DDoSProtection",
@@ -4722,7 +4781,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Automation to stream to a Log Analytics workspace when any Automation which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Automation to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-AA",
@@ -4744,7 +4803,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Container Instances to stream to a Log Analytics workspace when any ACR which is missing this diagnostic settings is created or updated. The Policy willset the diagnostic with all metrics enabled.",
               "display_name": "Deploy Diagnostic Settings for Container Instances to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-ACI",
@@ -4766,7 +4825,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Container Registry to stream to a Log Analytics workspace when any ACR which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics  enabled.",
               "display_name": "Deploy Diagnostic Settings for Container Registry to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-ACR",
@@ -4788,7 +4847,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for API Management to stream to a Log Analytics workspace when any API Management which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for API Management to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-APIMgmt",
@@ -4810,7 +4869,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Analysis Services to stream to a Log Analytics workspace when any Analysis Services which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Analysis Services to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-AnalysisService",
@@ -4832,7 +4891,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Azure API for FHIR to stream to a Log Analytics workspace when any Azure API for FHIR which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Azure API for FHIR to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-ApiForFHIR",
@@ -4854,7 +4913,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Application Gateway to stream to a Log Analytics workspace when any Application Gateway which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Application Gateway to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-ApplicationGateway",
@@ -4876,7 +4935,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for CDN Endpoint to stream to a Log Analytics workspace when any CDN Endpoint which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for CDN Endpoint to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-CDNEndpoints",
@@ -4898,7 +4957,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Cognitive Services to stream to a Log Analytics workspace when any Cognitive Services which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Cognitive Services to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-CognitiveServices",
@@ -4920,7 +4979,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Cosmos DB to stream to a Log Analytics workspace when any Cosmos DB which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Cosmos DB to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-CosmosDB",
@@ -4942,7 +5001,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Data Lake Analytics to stream to a Log Analytics workspace when any Data Lake Analytics which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Data Lake Analytics to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-DLAnalytics",
@@ -4964,7 +5023,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Azure Data Explorer Cluster to stream to a Log Analytics workspace when any Azure Data Explorer Cluster which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Azure Data Explorer Cluster to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-DataExplorerCluster",
@@ -4986,7 +5045,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Data Factory to stream to a Log Analytics workspace when any Data Factory which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Data Factory to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-DataFactory",
@@ -5008,7 +5067,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Databricks to stream to a Log Analytics workspace when any Databricks which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Databricks to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-Databricks",
@@ -5030,7 +5089,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Event Grid subscriptions to stream to a Log Analytics workspace when any Event Grid subscriptions which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Event Grid subscriptions to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-EventGridSub",
@@ -5052,7 +5111,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Event Grid System Topic to stream to a Log Analytics workspace when any Event Grid System Topic which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Event Grid System Topic to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-EventGridSystemTopic",
@@ -5074,7 +5133,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Event Grid Topic to stream to a Log Analytics workspace when any Event Grid Topic which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Event Grid Topic to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-EventGridTopic",
@@ -5096,7 +5155,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for ExpressRoute to stream to a Log Analytics workspace when any ExpressRoute which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for ExpressRoute to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-ExpressRoute",
@@ -5118,7 +5177,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Firewall to stream to a Log Analytics workspace when any Firewall which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Firewall to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-Firewall",
@@ -5140,7 +5199,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Front Door to stream to a Log Analytics workspace when any Front Door which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Front Door to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-FrontDoor",
@@ -5162,7 +5221,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Azure Function App to stream to a Log Analytics workspace when any function app which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Azure Function App to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-Function",
@@ -5184,7 +5243,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for HDInsight to stream to a Log Analytics workspace when any HDInsight which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for HDInsight to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-HDInsight",
@@ -5206,7 +5265,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Load Balancer to stream to a Log Analytics workspace when any Load Balancer which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Load Balancer to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-LoadBalancer",
@@ -5228,7 +5287,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Logic Apps integration service environment to stream to a Log Analytics workspace when any Logic Apps integration service environment which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Logic Apps integration service environment to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-LogicAppsISE",
@@ -5250,7 +5309,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for MariaDB to stream to a Log Analytics workspace when any MariaDB  which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for MariaDB to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-MariaDB",
@@ -5272,7 +5331,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Azure Media Service to stream to a Log Analytics workspace when any Azure Media Service which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Azure Media Service to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-MediaService",
@@ -5294,7 +5353,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Machine Learning workspace to stream to a Log Analytics workspace when any Machine Learning workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Machine Learning workspace to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-MlWorkspace",
@@ -5316,7 +5375,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Database for MySQL to stream to a Log Analytics workspace when any Database for MySQL which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Database for MySQL to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-MySQL",
@@ -5338,7 +5397,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Network Interfaces to stream to a Log Analytics workspace when any Network Interfaces which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Network Interfaces to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-NIC",
@@ -5360,7 +5419,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Network Security Groups to stream to a Log Analytics workspace when any Network Security Groups which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Network Security Groups to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-NetworkSecurityGroups",
@@ -5382,7 +5441,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Database for PostgreSQL to stream to a Log Analytics workspace when any Database for PostgreSQL which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Database for PostgreSQL to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-PostgreSQL",
@@ -5404,7 +5463,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Power BI Embedded to stream to a Log Analytics workspace when any Power BI Embedded which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Power BI Embedded to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-PowerBIEmbedded",
@@ -5426,7 +5485,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Redis Cache to stream to a Log Analytics workspace when any Redis Cache which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Redis Cache to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-RedisCache",
@@ -5448,7 +5507,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Relay to stream to a Log Analytics workspace when any Relay which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Relay to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-Relay",
@@ -5470,7 +5529,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for SQL Elastic Pools to stream to a Log Analytics workspace when any SQL Elastic Pools which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for SQL Elastic Pools to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-SQLElasticPools",
@@ -5492,7 +5551,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for SQL Managed Instances to stream to a Log Analytics workspace when any SQL Managed Instances which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for SQL Managed Instances to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-SQLMI",
@@ -5514,7 +5573,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for SignalR to stream to a Log Analytics workspace when any SignalR which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for SignalR to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-SignalR",
@@ -5536,7 +5595,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Time Series Insights to stream to a Log Analytics workspace when any Time Series Insights which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Time Series Insights to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-TimeSeriesInsights",
@@ -5558,7 +5617,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Traffic Manager to stream to a Log Analytics workspace when any Traffic Manager which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Traffic Manager to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-TrafficManager",
@@ -5580,7 +5639,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Virtual Machines to stream to a Log Analytics workspace when any Virtual Machines which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Virtual Machines to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-VM",
@@ -5602,7 +5661,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Virtual Machine Scale Sets  to stream to a Log Analytics workspace when any Virtual Machine Scale Sets  which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Virtual Machine Scale Sets to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-VMSS",
@@ -5624,7 +5683,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for VPN Gateway to stream to a Log Analytics workspace when any VPN Gateway which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled.",
               "display_name": "Deploy Diagnostic Settings for VPN Gateway to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-VNetGW",
@@ -5646,7 +5705,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Virtual Network to stream to a Log Analytics workspace when any Virtual Network which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for Virtual Network to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-VirtualNetwork",
@@ -5668,7 +5727,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for WVD Application group to stream to a Log Analytics workspace when any application group which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all and categorys enabled.",
               "display_name": "Deploy Diagnostic Settings for WVD Application group to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-WVDAppGroup",
@@ -5690,7 +5749,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for WVD Host Pools to stream to a Log Analytics workspace when any Host Pools which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all and categorys enabled.",
               "display_name": "Deploy Diagnostic Settings for WVD Host Pools to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-WVDHostPools",
@@ -5712,7 +5771,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for WVD Workspace to stream to a Log Analytics workspace when any Workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all and categorys enabled.",
               "display_name": "Deploy Diagnostic Settings for WVD Workspace to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-WVDWorkspace",
@@ -5734,7 +5793,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for App Service Plan to stream to a Log Analytics workspace when any App Service Plan which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for App Service Plan to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-WebServerFarm",
@@ -5756,7 +5815,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for Web App to stream to a Log Analytics workspace when any Web App which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for App Service to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-Website",
@@ -5778,7 +5837,7 @@
             "values": {
               "description": "Deploys the diagnostic settings for IoT Hub to stream to a Log Analytics workspace when any IoT Hub which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for IoT Hub to Log Analytics workspace",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-iotHub",
@@ -5800,7 +5859,7 @@
             "values": {
               "description": "Deploys Azure Firewall Manager policy in subscription where the policy is assigned.",
               "display_name": "Deploy Azure Firewall Manager policy in the subscription",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "mode": "All",
               "name": "Deploy-FirewallPolicy",
@@ -5822,7 +5881,7 @@
             "values": {
               "description": "Deploy a specific min TLS version requirement and enforce SSL on Azure Database for MySQL server. Enforce the Server to client applications using minimum version of Tls to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "Azure Database for MySQL server deploy a specific min TLS version and enforce SSL.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-MySQL-sslEnforcement",
@@ -5844,7 +5903,7 @@
             "values": {
               "description": "Deploys NSG flow logs and traffic analytics to a storageaccountid with a specfied retention period.",
               "display_name": "Deploys NSG flow logs and traffic analytics",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Nsg-FlowLogs",
@@ -5866,7 +5925,7 @@
             "values": {
               "description": "Deploys NSG flow logs and traffic analytics to Log Analytics with a specfied retention period.",
               "display_name": "Deploys NSG flow logs and traffic analytics to Log Analytics",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.1.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Nsg-FlowLogs-to-LA",
@@ -5888,7 +5947,7 @@
             "values": {
               "description": "Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "Azure Database for PostgreSQL server deploy a specific min TLS version requirement and enforce SSL ",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-PostgreSQL-sslEnforcement",
@@ -5910,7 +5969,7 @@
             "values": {
               "description": "Deploys a specific min TLS version requirement and enforce SSL on SQL servers. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "SQL servers deploys a specific min TLS version requirement.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-SQL-minTLS",
@@ -5932,7 +5991,7 @@
             "values": {
               "description": "Deploy auditing settings to SQL Database when it not exist in the deployment",
               "display_name": "Deploy SQL database auditing settings",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Sql-AuditingSettings",
@@ -5954,7 +6013,7 @@
             "values": {
               "description": "Deploy the security Alert Policies configuration with email admin accounts when it not exist in current configuration",
               "display_name": "Deploy SQL Database security Alert Policies configuration with email admin accounts",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Sql-SecurityAlertPolicies",
@@ -5976,7 +6035,7 @@
             "values": {
               "description": "Deploy the Transparent Data Encryption when it is not enabled in the deployment",
               "display_name": "Deploy SQL Database Transparent Data Encryption ",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Sql-Tde",
@@ -5998,7 +6057,7 @@
             "values": {
               "description": "Deploy SQL Database vulnerability Assessments when it not exist in the deployment. To the specific  storage account in the parameters",
               "display_name": "Deploy SQL Database vulnerability Assessments",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Sql-vulnerabilityAssessments",
@@ -6020,7 +6079,7 @@
             "values": {
               "description": "Deploy a specific min TLS version requirement and enforce SSL on SQL managed instances. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "SQL managed instances deploy a specific min TLS version requirement.",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-SqlMi-minTLS",
@@ -6042,7 +6101,7 @@
             "values": {
               "description": "Deploy a specific min TLS version requirement and enforce SSL on Azure STorage. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
               "display_name": "Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS ",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Storage\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Storage-sslEnforcement",
@@ -6064,7 +6123,7 @@
             "values": {
               "description": "This policy deploys virtual network and peer to the hub",
               "display_name": "Deploy Virtual Network with peering to the hub",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.1.0\"}",
               "mode": "All",
               "name": "Deploy-VNET-HubSpoke",
@@ -6086,7 +6145,7 @@
             "values": {
               "description": "Deploy Windows Domain Join Extension with keyvault configuration when the extension does not exist on a given windows Virtual Machine",
               "display_name": "Deploy Windows Domain Join Extension with keyvault configuration",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Guest Configuration\",\"version\":\"1.0.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Windows-DomainJoin",
@@ -6108,7 +6167,7 @@
             "values": {
               "description": "This policy initiative is a group of policies that prevents creation of Azure PaaS services with exposed public endpoints",
               "display_name": "Public network access should be disabled for PaaS services",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deny-PublicPaaSEndpoints",
               "parameters": "{\"ACRPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies the creation of Azure Container Registires with exposed public endpoints \",\"displayName\":\"Public network access on Azure Container Registry disabled\"},\"type\":\"String\"},\"AFSPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies the creation of Azure File Sync instances with exposed public endpoints \",\"displayName\":\"Public network access on Azure File Sync disabled\"},\"type\":\"String\"},\"AKSPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies  the creation of  Azure Kubernetes Service non-private clusters\",\"displayName\":\"Public network access on AKS API should be disabled\"},\"type\":\"String\"},\"BatchPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies creation of Azure Batch Instances with exposed public endpoints\",\"displayName\":\"Public network access should be disabled for Azure Batch Instances\"},\"type\":\"String\"},\"CosmosPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies that  Cosmos database accounts  are created with out public network access is disabled.\",\"displayName\":\"Public network access should be disabled for CosmosDB\"},\"type\":\"String\"},\"KeyVaultPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies creation of Key Vaults with IP Firewall exposed to all public endpoints\",\"displayName\":\"Public network access should be disabled for KeyVault\"},\"type\":\"String\"},\"MySQLFlexPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies creation of MySql Flexible Server DB accounts with exposed public endpoints\",\"displayName\":\"Public network access should be disabled for MySQL Flexible Server\"},\"type\":\"String\"},\"PostgreSQLFlexPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies creation of Postgre SQL Flexible DB accounts with exposed public endpoints\",\"displayName\":\"Public network access should be disabled for PostgreSql Flexible Server\"},\"type\":\"String\"},\"SqlServerPublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies creation of Sql servers with exposed public endpoints\",\"displayName\":\"Public network access on Azure SQL Database should be disabled\"},\"type\":\"String\"},\"StoragePublicIpDenyEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"This policy denies creation of storage accounts with IP Firewall exposed to all public endpoints\",\"displayName\":\"Public network access onStorage accounts should be disabled\"},\"type\":\"String\"}}",
               "policy_definition_group": [],
@@ -6180,36 +6239,16 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -6224,7 +6263,7 @@
             "values": {
               "description": "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included ",
               "display_name": "Deploy Diagnostic Settings to Azure Services",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Monitoring\",\"version\":\"1.0.0\"}",
               "name": "Deploy-Diagnostics-LogAnalytics",
               "parameters": "{\"ACILogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Container Instances to stream to a Log Analytics workspace when any ACR which is missing this diagnostic settings is created or updated. The Policy willset the diagnostic with all metrics enabled.\",\"displayName\":\"Deploy Diagnostic Settings for Container Instances to Log Analytics workspace\"},\"type\":\"String\"},\"ACRLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Container Registry to stream to a Log Analytics workspace when any ACR which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics  enabled.\",\"displayName\":\"Deploy Diagnostic Settings for Container Registry to Log Analytics workspace\"},\"type\":\"String\"},\"AKSLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Kubernetes Service to stream to a Log Analytics workspace when any Kubernetes Service which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled.\",\"displayName\":\"Deploy Diagnostic Settings for Kubernetes Service to Log Analytics workspace\"},\"type\":\"String\"},\"APIMgmtLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for API Management to stream to a Log Analytics workspace when any API Management which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for API Management to Log Analytics workspace\"},\"type\":\"String\"},\"APIforFHIRLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Azure API for FHIR to stream to a Log Analytics workspace when any Azure API for FHIR which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Azure API for FHIR to Log Analytics workspace\"},\"type\":\"String\"},\"AnalysisServiceLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Analysis Services to stream to a Log Analytics workspace when any Analysis Services which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Analysis Services to Log Analytics workspace\"},\"type\":\"String\"},\"AppServiceLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for App Service Plan to stream to a Log Analytics workspace when any App Service Plan which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for App Service Plan to Log Analytics workspace\"},\"type\":\"String\"},\"AppServiceWebappLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Web App to stream to a Log Analytics workspace when any Web App which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for App Service to Log Analytics workspace\"},\"type\":\"String\"},\"ApplicationGatewayLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Application Gateway to stream to a Log Analytics workspace when any Application Gateway which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Application Gateway to Log Analytics workspace\"},\"type\":\"String\"},\"AutomationLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Automation to stream to a Log Analytics workspace when any Automation which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Automation to Log Analytics workspace\"},\"type\":\"String\"},\"BatchLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Batch to stream to a Log Analytics workspace when any Batch which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Batch to Log Analytics workspace\"},\"type\":\"String\"},\"CDNEndpointsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for CDN Endpoint to stream to a Log Analytics workspace when any CDN Endpoint which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for CDN Endpoint to Log Analytics workspace\"},\"type\":\"String\"},\"CognitiveServicesLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Cognitive Services to stream to a Log Analytics workspace when any Cognitive Services which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Cognitive Services to Log Analytics workspace\"},\"type\":\"String\"},\"CosmosLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Cosmos DB to stream to a Log Analytics workspace when any Cosmos DB which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Cosmos DB to Log Analytics workspace\"},\"type\":\"String\"},\"DataExplorerClusterLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Azure Data Explorer Cluster to stream to a Log Analytics workspace when any Azure Data Explorer Cluster which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Azure Data Explorer Cluster to Log Analytics workspace\"},\"type\":\"String\"},\"DataFactoryLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Data Factory to stream to a Log Analytics workspace when any Data Factory which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Data Factory to Log Analytics workspace\"},\"type\":\"String\"},\"DataLakeAnalyticsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Data Lake Analytics to stream to a Log Analytics workspace when any Data Lake Analytics which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Data Lake Analytics to Log Analytics workspace\"},\"type\":\"String\"},\"DataLakeStoreLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Azure Data Lake Store to stream to a Log Analytics workspace when anyAzure Data Lake Store which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Azure Data Lake Store to Log Analytics workspace\"},\"type\":\"String\"},\"DatabricksLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Databricks to stream to a Log Analytics workspace when any Databricks which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Databricks to Log Analytics workspace\"},\"type\":\"String\"},\"EventGridSubLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Event Grid subscriptions to stream to a Log Analytics workspace when any Event Grid subscriptions which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Event Grid subscriptions to Log Analytics workspace\"},\"type\":\"String\"},\"EventGridTopicLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Event Grid Topic to stream to a Log Analytics workspace when any Event Grid Topic which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Event Grid Topic to Log Analytics workspace\"},\"type\":\"String\"},\"EventHubLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Event Hubs to stream to a Log Analytics workspace when any Event Hubs which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Event Hubs to Log Analytics workspace\"},\"type\":\"String\"},\"EventSystemTopicLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Event Grid System Topic to stream to a Log Analytics workspace when any Event Grid System Topic which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Event Grid System Topic to Log Analytics workspace\"},\"type\":\"String\"},\"ExpressRouteLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for ExpressRoute to stream to a Log Analytics workspace when any ExpressRoute which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for ExpressRoute to Log Analytics workspace\"},\"type\":\"String\"},\"FirewallLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Firewall to stream to a Log Analytics workspace when any Firewall which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Firewall to Log Analytics workspace\"},\"type\":\"String\"},\"FrontDoorLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Front Door to stream to a Log Analytics workspace when any Front Door which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Front Door to Log Analytics workspace\"},\"type\":\"String\"},\"FunctionAppLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Azure Function App to stream to a Log Analytics workspace when any function app which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Azure Function App to Log Analytics workspace\"},\"type\":\"String\"},\"HDInsightLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for HDInsight to stream to a Log Analytics workspace when any HDInsight which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for HDInsight to Log Analytics workspace\"},\"type\":\"String\"},\"IotHubLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for IoT Hub to stream to a Log Analytics workspace when any IoT Hub which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for IoT Hub to Log Analytics workspace\"},\"type\":\"String\"},\"KeyVaultLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Key Vault to stream to a Log Analytics workspace when any Key Vault which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Key Vault to Log Analytics workspace\"},\"type\":\"String\"},\"LoadBalancerLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Load Balancer to stream to a Log Analytics workspace when any Load Balancer which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Load Balancer to Log Analytics workspace\"},\"type\":\"String\"},\"LogicAppsISELogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Logic Apps integration service environment to stream to a Log Analytics workspace when any Logic Apps integration service environment which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Logic Apps integration service environment to Log Analytics workspace\"},\"type\":\"String\"},\"LogicAppsWFLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Logic Apps Workflows to stream to a Log Analytics workspace when any Logic Apps Workflows which are missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Logic Apps Workflows to Log Analytics workspace\"},\"type\":\"String\"},\"MariaDBLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for MariaDB to stream to a Log Analytics workspace when any MariaDB  which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for MariaDB to Log Analytics workspace\"},\"type\":\"String\"},\"MediaServiceLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Azure Media Service to stream to a Log Analytics workspace when any Azure Media Service which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Azure Media Service to Log Analytics workspace\"},\"type\":\"String\"},\"MlWorkspaceLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Machine Learning workspace to stream to a Log Analytics workspace when any Machine Learning workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Machine Learning workspace to Log Analytics workspace\"},\"type\":\"String\"},\"MySQLLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Database for MySQL to stream to a Log Analytics workspace when any Database for MySQL which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Database for MySQL to Log Analytics workspace\"},\"type\":\"String\"},\"NetworkNICLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Network Interfaces to stream to a Log Analytics workspace when any Network Interfaces which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Network Interfaces to Log Analytics workspace\"},\"type\":\"String\"},\"NetworkPublicIPNicLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Public IP addresses to stream to a Log Analytics workspace when any Public IP addresses which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Public IP addresses to Log Analytics workspace\"},\"type\":\"String\"},\"NetworkSecurityGroupsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Network Security Groups to stream to a Log Analytics workspace when any Network Security Groups which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Network Security Groups to Log Analytics workspace\"},\"type\":\"String\"},\"PostgreSQLLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Database for PostgreSQL to stream to a Log Analytics workspace when any Database for PostgreSQL which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Database for PostgreSQL to Log Analytics workspace\"},\"type\":\"String\"},\"PowerBIEmbeddedLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Power BI Embedded to stream to a Log Analytics workspace when any Power BI Embedded which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Power BI Embedded to Log Analytics workspace\"},\"type\":\"String\"},\"RedisCacheLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Redis Cache to stream to a Log Analytics workspace when any Redis Cache which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Redis Cache to Log Analytics workspace\"},\"type\":\"String\"},\"RelayLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Relay to stream to a Log Analytics workspace when any Relay which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Relay to Log Analytics workspace\"},\"type\":\"String\"},\"SQLDBsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for SQL Databases to stream to a Log Analytics workspace when any SQL Databases  which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for SQL Databases  to Log Analytics workspace\"},\"type\":\"String\"},\"SQLElasticPoolsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for SQL Elastic Pools to stream to a Log Analytics workspace when any SQL Elastic Pools which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for SQL Elastic Pools to Log Analytics workspace\"},\"type\":\"String\"},\"SQLMLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for SQL Managed Instances to stream to a Log Analytics workspace when any SQL Managed Instances which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for SQL Managed Instances to Log Analytics workspace\"},\"type\":\"String\"},\"SearchServicesLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Search Services to stream to a Log Analytics workspace when any Search Services which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Search Services to Log Analytics workspace\"},\"type\":\"String\"},\"ServiceBusLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for ServiceBus to stream to a Log Analytics workspace when any ServiceBus which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Service Bus namespaces  to Log Analytics workspace\"},\"type\":\"String\"},\"SignalRLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for SignalR to stream to a Log Analytics workspace when any SignalR which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for SignalR to Log Analytics workspace\"},\"type\":\"String\"},\"StorageAccountsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Storage Accounts to stream to a Log Analytics workspace when any storage account which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Storage Accounts to Log Analytics workspace\"},\"type\":\"String\"},\"StreamAnalyticsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Stream Analytics to stream to a Log Analytics workspace when any Stream Analytics which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Stream Analytics to Log Analytics workspace\"},\"type\":\"String\"},\"TimeSeriesInsightsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Time Series Insights to stream to a Log Analytics workspace when any Time Series Insights which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Time Series Insights to Log Analytics workspace\"},\"type\":\"String\"},\"TrafficManagerLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Traffic Manager to stream to a Log Analytics workspace when any Traffic Manager which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Traffic Manager to Log Analytics workspace\"},\"type\":\"String\"},\"VMSSLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Virtual Machine Scale Sets  to stream to a Log Analytics workspace when any Virtual Machine Scale Sets  which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Virtual Machine Scale Sets to Log Analytics workspace\"},\"type\":\"String\"},\"VNetGWLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for VPN Gateway to stream to a Log Analytics workspace when any VPN Gateway which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled.\",\"displayName\":\"Deploy Diagnostic Settings for VPN Gateway to Log Analytics workspace\"},\"type\":\"String\"},\"VirtualMachinesLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Virtual Machines to stream to a Log Analytics workspace when any Virtual Machines which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Virtual Machines to Log Analytics workspace\"},\"type\":\"String\"},\"VirtualNetworkLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for Virtual Network to stream to a Log Analytics workspace when any Virtual Network which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for Virtual Network to Log Analytics workspace\"},\"type\":\"String\"},\"WVDAppGroupsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for WVD Application groups to stream to a Log Analytics workspace when any application groups which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for WVD Application Groups to Log Analytics workspace\"},\"type\":\"String\"},\"WVDHostPoolsLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for WVD Host pools to stream to a Log Analytics workspace when any host pool which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for WVD Host pools to Log Analytics workspace\"},\"type\":\"String\"},\"WVDWorkspaceLogAnalyticsEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploys the diagnostic settings for WVD Workspace to stream to a Log Analytics workspace when any Workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled\",\"displayName\":\"Deploy Diagnostic Settings for WVD Workspace to Log Analytics workspace\"},\"type\":\"String\"},\"logAnalytics\":{\"metadata\":{\"description\":\"Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.\",\"displayName\":\"Log Analytics workspace\",\"strongType\":\"omsWorkspace\"},\"type\":\"String\"},\"profileName\":{\"defaultValue\":\"setbypolicy\",\"metadata\":{\"description\":\"The diagnostic settings profile name\",\"displayName\":\"Profile name\"},\"type\":\"String\"}}",
@@ -6609,192 +6648,68 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -6809,7 +6724,7 @@
             "values": {
               "description": "Deploy Microsoft Defender for Cloud configuration",
               "display_name": "Deploy Microsoft Defender for Cloud configuration",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Security Center\",\"version\":\"3.0.0\"}",
               "name": "Deploy-MDFC-Config",
               "parameters": "{\"ascExportResourceGroupLocation\":{\"metadata\":{\"description\":\"The location where the resource group and the export to Log Analytics workspace configuration are created.\",\"displayName\":\"Resource Group location for the export to Log Analytics workspace configuration\"},\"type\":\"String\"},\"ascExportResourceGroupName\":{\"metadata\":{\"description\":\"The resource group name where the export to Log Analytics workspace configuration is created. If you enter a name for a resource group that doesn't exist, it'll be created in the subscription. Note that each resource group can only have one export to Log Analytics workspace configured.\",\"displayName\":\"Resource Group name for the export to Log Analytics workspace configuration\"},\"type\":\"String\"},\"emailSecurityContact\":{\"metadata\":{\"description\":\"Provide email address for Microsoft Defender for Cloud contact details\",\"displayName\":\"Security contacts email address\"},\"type\":\"string\"},\"enableAscForAppServices\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForArm\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForContainers\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForDns\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForKeyVault\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForOssDb\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForServers\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForSql\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForSqlOnVm\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"enableAscForStorage\":{\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"logAnalytics\":{\"metadata\":{\"description\":\"Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.\",\"displayName\":\"Primary Log Analytics workspace\",\"strongType\":\"omsWorkspace\"},\"type\":\"String\"}}",
@@ -6894,42 +6809,18 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -6944,7 +6835,7 @@
             "values": {
               "description": "This policy initiative is a group of policies that ensures private endpoints to Azure PaaS services are integrated with Azure Private DNS zones",
               "display_name": "Configure Azure PaaS services to use private DNS zones",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Network\",\"version\":\"1.0.0\"}",
               "name": "Deploy-Private-DNS-Zones",
               "parameters": "{\"azureAcrPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAcrPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAppPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAppPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAppServicesPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAppServicesPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAsrPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAsrPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureBatchPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureBatchPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCognitiveSearchPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCognitiveSearchPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCognitiveServicesPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCognitiveServicesPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureDiskAccessPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureDiskAccessPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureEventGridDomainsPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureEventGridDomainsPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureEventGridTopicsPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureEventGridTopicsPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureEventHubNamespacePrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureEventHubNamespacePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureFilePrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureFilePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureIotHubsPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureIotHubsPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureIotPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureIotPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureKeyVaultPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureKeyVaultPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMachineLearningWorkspacePrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMachineLearningWorkspacePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureRedisCachePrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureRedisCachePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureServiceBusNamespacePrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureServiceBusNamespacePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureSignalRPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureSignalRPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureWebPrivateDnsZoneId\":{\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureWebPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"string\"},\"effect1\":{\"allowedValues\":[\"deployIfNotExists\",\"Disabled\"],\"defaultValue\":\"deployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"string\"}}",
@@ -7077,66 +6968,26 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -7151,7 +7002,7 @@
             "values": {
               "description": "Deploy auditing, Alert, TDE and SQL vulnerability to SQL Databases when it not exist in the deployment",
               "display_name": "Deploy SQL Database built-in SQL security configuration",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"SQL\",\"version\":\"1.0.0\"}",
               "name": "Deploy-Sql-Security",
               "parameters": "{\"SqlDbAuditingSettingsDeploySqlSecurityEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy auditing settings to SQL Database when it not exist in the deployment\",\"displayName\":\"Deploy SQL database auditing settings\"},\"type\":\"String\"},\"SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy the security Alert Policies configuration with email admin accounts when it not exist in current configuration\",\"displayName\":\"Deploy SQL Database security Alert Policies configuration with email admin accounts\"},\"type\":\"String\"},\"SqlDbTdeDeploySqlSecurityEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy the Transparent Data Encryption when it is not enabled in the deployment\",\"displayName\":\"Deploy SQL Database Transparent Data Encryption \"},\"type\":\"String\"},\"SqlDbVulnerabilityAssessmentsDeploySqlSecurityEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy SQL Database vulnerability Assessments when it not exist in the deployment. To the specific  storage account in the parameters\",\"displayName\":\"Deploy SQL Database vulnerability Assessments\"},\"type\":\"String\"},\"vulnerabilityAssessmentsEmail\":{\"metadata\":{\"description\":\"The email address to send alerts\",\"displayName\":\"The email address to send alerts\"},\"type\":\"String\"},\"vulnerabilityAssessmentsStorageID\":{\"metadata\":{\"description\":\"The storage account ID to store assessments\",\"displayName\":\"The storage account ID to store assessments\"},\"type\":\"String\"}}",
@@ -7188,18 +7039,10 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -7214,7 +7057,7 @@
             "values": {
               "description": "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing exsistense condition require then the combination of Audit. ",
               "display_name": "Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Encryption\",\"version\":\"1.0.0\"}",
               "name": "Enforce-EncryptTransit",
               "parameters": "{\"AKSIngressHttpsOnlyEffect\":{\"allowedValues\":[\"audit\",\"deny\",\"disabled\"],\"defaultValue\":\"deny\",\"metadata\":{\"description\":\"This policy enforces HTTPS ingress in a Kubernetes cluster. This policy is generally available for Kubernetes Service (AKS), and preview for AKS Engine and Azure Arc enabled Kubernetes. For instructions on using this policy, visit https://aka.ms/kubepolicydoc.\",\"displayName\":\"AKS Service. Enforce HTTPS ingress in Kubernetes cluster\"},\"type\":\"String\"},\"APIAppServiceHttpsEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Choose Deny or Audit in combination with Append policy. Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.\",\"displayName\":\"App Service API App. API App should only be accessible over HTTPS. Choose Deny or Audit in combination with Append policy.\"},\"type\":\"String\"},\"APIAppServiceLatestTlsEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"App Service API App. Only Audit, deny not possible as it is a related resource.  Upgrade to the latest TLS version.\",\"displayName\":\"App Service API App. Latest TLS version should be used in your API App\"},\"type\":\"String\"},\"AppServiceHttpEffect\":{\"allowedValues\":[\"Append\",\"Disabled\"],\"defaultValue\":\"Append\",\"metadata\":{\"description\":\"Append the AppService sites object to ensure that min Tls version is set to required TLS version. Please note Append does not enforce compliance use then deny.\",\"displayName\":\"App Service. Appends the AppService sites config WebApp, APIApp, Function App with TLS version selected below\"},\"type\":\"String\"},\"AppServiceTlsVersionEffect\":{\"allowedValues\":[\"Append\",\"Disabled\"],\"defaultValue\":\"Append\",\"metadata\":{\"description\":\"App Service. Appends the AppService sites object to ensure that  HTTPS only is enabled for  server/service authentication and protects data in transit from network layer eavesdropping attacks. Please note Append does not enforce compliance use then deny.\",\"displayName\":\"App Service. Appends the AppService WebApp, APIApp, Function App to enable https only\"},\"type\":\"String\"},\"AppServiceminTlsVersion\":{\"allowedValues\":[\"1.2\",\"1.0\",\"1.1\"],\"defaultValue\":\"1.2\",\"metadata\":{\"description\":\"App Service. Select version  minimum TLS version for a  Web App config to enforce\",\"displayName\":\"App Service. Select version minimum TLS Web App config\"},\"type\":\"String\"},\"FunctionLatestTlsEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"Only Audit, deny not possible as it is a related resource. Upgrade to the latest TLS version.\",\"displayName\":\"App Service Function App. Latest TLS version should be used in your Function App\"},\"type\":\"String\"},\"FunctionServiceHttpsEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"App Service Function App. Choose Deny or Audit in combination with Append policy. Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.\",\"displayName\":\"App Service Function App. Function App should only be accessible over HTTPS. Choose Deny or Audit in combination with Append policy.\"},\"type\":\"String\"},\"MySQLEnableSSLDeployEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy a specific min TLS version requirement and enforce SSL on Azure Database for MySQL server. Enforce the Server to client applications using minimum version of Tls to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"MySQL database servers. Deploy if not exist set minimum TLS version Azure Database for MySQL server\"},\"type\":\"String\"},\"MySQLEnableSSLEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Azure Database for MySQL supports connecting your Azure Database for MySQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"MySQL database servers. Enforce SSL connection should be enabled for MySQL database servers\"},\"type\":\"String\"},\"MySQLminimalTlsVersion\":{\"allowedValues\":[\"TLS1_2\",\"TLS1_0\",\"TLS1_1\",\"TLSEnforcementDisabled\"],\"defaultValue\":\"TLS1_2\",\"metadata\":{\"description\":\"Select version  minimum TLS version Azure Database for MySQL server to enforce\",\"displayName\":\"MySQL database servers. Select version minimum TLS for MySQL server\"},\"type\":\"String\"},\"PostgreSQLEnableSSLDeployEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy a specific min TLS version requirement and enforce SSL on Azure Database for PostgreSQL server. Enforce the Server to client applications using minimum version of Tls to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"PostgreSQL database servers. Deploy if not exist set minimum TLS version Azure Database for PostgreSQL server\"},\"type\":\"String\"},\"PostgreSQLEnableSSLEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Azure Database for PostgreSQL supports connecting your Azure Database for PostgreSQL server to client applications using Secure Sockets Layer (SSL). Enforcing SSL connections between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"PostgreSQL database servers. Enforce SSL connection should be enabled for PostgreSQL database servers\"},\"type\":\"String\"},\"PostgreSQLminimalTlsVersion\":{\"allowedValues\":[\"TLS1_2\",\"TLS1_0\",\"TLS1_1\",\"TLSEnforcementDisabled\"],\"defaultValue\":\"TLS1_2\",\"metadata\":{\"description\":\"PostgreSQL database servers. Select version  minimum TLS version Azure Database for MySQL server to enforce\",\"displayName\":\"PostgreSQL database servers. Select version minimum TLS for MySQL server\"},\"type\":\"String\"},\"RedisMinTlsVersion\":{\"allowedValues\":[\"1.2\",\"1.0\",\"1.1\"],\"defaultValue\":\"1.2\",\"metadata\":{\"description\":\"Select version  minimum TLS version for a Azure Cache for Redis to enforce\",\"displayName\":\"Azure Cache for Redis.Select version minimum TLS for Azure Cache for Redis\"},\"type\":\"String\"},\"RedisTLSDeployEffect\":{\"allowedValues\":[\"Append\",\"Disabled\"],\"defaultValue\":\"Append\",\"metadata\":{\"description\":\"Deploy a specific min TLS version requirement and enforce SSL on Azure Cache for Redis. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"Azure Cache for Redis. Deploy a specific min TLS version requirement and enforce SSL Azure Cache for Redis\"},\"type\":\"String\"},\"RedisTLSEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Azure Cache for Redis. Audit enabling of only connections via SSL to Azure Cache for Redis. Use of secure connections ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking.\",\"displayName\":\"Azure Cache for Redis. Only secure connections to your Azure Cache for Redis should be enabled\"},\"type\":\"String\"},\"SQLManagedInstanceMinTlsVersion\":{\"allowedValues\":[\"1.2\",\"1.0\",\"1.1\"],\"defaultValue\":\"1.2\",\"metadata\":{\"description\":\"Select version  minimum TLS version for Azure Managed Instanceto to  enforce\",\"displayName\":\"Azure Managed Instance.Select version minimum TLS for Azure Managed Instance\"},\"type\":\"String\"},\"SQLManagedInstanceTLSDeployEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy a specific min TLS version requirement and enforce SSL on SQL servers. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"Azure Managed Instance. Deploy a specific min TLS version requirement and enforce SSL on SQL servers\"},\"type\":\"String\"},\"SQLManagedInstanceTLSEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Setting minimal TLS version to 1.2 improves security by ensuring your SQL Managed Instance can only be accessed from clients using TLS 1.2. Using versions of TLS less than 1.2 is not recommended since they have well documented security vulnerabilities.\",\"displayName\":\"SQL Managed Instance should have the minimal TLS version of 1.2\"},\"type\":\"String\"},\"SQLServerTLSDeployEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Deploy a specific min TLS version requirement and enforce SSL on SQL servers. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.\",\"displayName\":\"Azure SQL Database. Deploy a specific min TLS version requirement and enforce SSL on SQL servers\"},\"type\":\"String\"},\"SQLServerTLSEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Setting minimal TLS version to 1.2 improves security by ensuring your Azure SQL Database can only be accessed from clients using TLS 1.2. Using versions of TLS less than 1.2 is not recommended since they have well documented security vulnerabilities.\",\"displayName\":\"Azure SQL Database should have the minimal TLS version of 1.2\"},\"type\":\"String\"},\"SQLServerminTlsVersion\":{\"allowedValues\":[\"1.2\",\"1.0\",\"1.1\"],\"defaultValue\":\"1.2\",\"metadata\":{\"description\":\"Select version  minimum TLS version for Azure SQL Database to enforce\",\"displayName\":\"Azure SQL Database.Select version minimum TLS for Azure SQL Database\"},\"type\":\"String\"},\"StorageDeployHttpsEnabledEffect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Audit requirement of Secure transfer in your storage account. Secure transfer is an option that forces your storage account to accept requests only from secure connections (HTTPS). Use of HTTPS ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking\",\"displayName\":\"Azure Storage Account. Deploy Secure transfer to storage accounts should be enabled\"},\"type\":\"String\"},\"StorageHttpsEnabledEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Audit requirement of Secure transfer in your storage account. Secure transfer is an option that forces your storage account to accept requests only from secure connections (HTTPS). Use of HTTPS ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking\",\"displayName\":\"Azure Storage Account. Secure transfer to storage accounts should be enabled\"},\"type\":\"String\"},\"StorageminimumTlsVersion\":{\"allowedValues\":[\"TLS1_2\",\"TLS1_1\",\"TLS1_0\"],\"defaultValue\":\"TLS1_2\",\"metadata\":{\"description\":\"Select version  minimum TLS version on Azure Storage Account to enforce\",\"displayName\":\"Storage Account select minimum TLS version\"},\"type\":\"String\"},\"WebAppServiceHttpsEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\",\"Deny\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Choose Deny or Audit in combination with Append policy. Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.\",\"displayName\":\"App Service Web App. Web Application should only be accessible over HTTPS. Choose Deny or Audit in combination with Append policy.\"},\"type\":\"String\"},\"WebAppServiceLatestTlsEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"Only Audit, deny not possible as it is a related resource. Upgrade to the latest TLS version.\",\"displayName\":\"App Service Web App. Latest TLS version should be used in your Web App\"},\"type\":\"String\"}}",
@@ -7359,72 +7202,28 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -7439,7 +7238,7 @@
             "values": {
               "description": "Deny or Audit resources without Encryption with a customer-managed key (CMK)",
               "display_name": "Deny or Audit resources without Encryption with a customer-managed key (CMK)",
-              "management_group_id": "root-id-1",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"category\":\"Encryption\",\"version\":\"1.0.0\"}",
               "name": "Enforce-Encryption-CMK",
               "parameters": "{\"ACRCmkEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Use customer-managed keys to manage the encryption at rest of the contents of your registries. By default, the data is encrypted at rest with service-managed keys, but customer-managed keys (CMK) are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more about CMK encryption at https://aka.ms/acr/CMK.\",\"displayName\":\"Container registries should be encrypted with a customer-managed key (CMK)\"},\"type\":\"String\"},\"AksCmkEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Encrypting OS and data disks using customer-managed keys provides more control and greater flexibility in key management. This is a common requirement in many regulatory and industry compliance standards.\",\"displayName\":\"Azure Kubernetes Service clusters both operating systems and data disks should be encrypted by customer-managed keys\"},\"type\":\"String\"},\"AzureBatchCMKEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Use customer-managed keys (CMKs) to manage the encryption at rest of your Batch account's data. By default, customer data is encrypted with service-managed keys, but CMKs are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more about CMK encryption at https://aka.ms/Batch-CMK.\",\"displayName\":\"Azure Batch account should use customer-managed keys to encrypt data\"},\"type\":\"String\"},\"CognitiveServicesCMKEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Customer-managed keys (CMK) are commonly required to meet regulatory compliance standards. CMKs enable the data stored in Cognitive Services to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more about CMK encryption at https://aka.ms/cosmosdb-cmk.\",\"displayName\":\"Cognitive Services accounts should enable data encryption with a customer-managed key (CMK)\"},\"type\":\"String\"},\"CosmosCMKEffect\":{\"allowedValues\":[\"audit\",\"deny\",\"disabled\"],\"defaultValue\":\"audit\",\"metadata\":{\"description\":\"Use customer-managed keys to manage the encryption at rest of your Azure Cosmos DB. By default, the data is encrypted at rest with service-managed keys, but customer-managed keys (CMK) are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more about CMK encryption at https://aka.ms/cosmosdb-cmk.\",\"displayName\":\"Azure Cosmos DB accounts should use customer-managed keys to encrypt data at rest\"},\"type\":\"String\"},\"DataBoxCMKEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Use a customer-managed key to control the encryption of the device unlock password for Azure Data Box. Customer-managed keys also help manage access to the device unlock password by the Data Box service in order to prepare the device and copy data in an automated manner. The data on the device itself is already encrypted at rest with Advanced Encryption Standard 256-bit encryption, and the device unlock password is encrypted by default with a Microsoft managed key.\",\"displayName\":\"Azure Data Box jobs should use a customer-managed key to encrypt the device unlock password\"},\"type\":\"String\"},\"EncryptedVMDisksEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"Virtual machines without an enabled disk encryption will be monitored by Azure Security Center as recommendations.\",\"displayName\":\"Disk encryption should be applied on virtual machines\"},\"type\":\"String\"},\"HealthcareAPIsCMKEffect\":{\"allowedValues\":[\"audit\",\"disabled\"],\"defaultValue\":\"audit\",\"metadata\":{\"description\":\"Use a customer-managed key to control the encryption at rest of the data stored in Azure API for FHIR when this is a regulatory or compliance requirement. Customer-managed keys also deliver double encryption by adding a second layer of encryption on top of the default one done with service-managed keys.\",\"displayName\":\"Azure API for FHIR should use a customer-managed key (CMK) to encrypt data at rest\"},\"type\":\"String\"},\"MySQLCMKEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"Use customer-managed keys to manage the encryption at rest of your MySQL servers. By default, the data is encrypted at rest with service-managed keys, but customer-managed keys (CMK) are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management.\",\"displayName\":\"Azure MySQL servers bring your own key data protection should be enabled\"},\"type\":\"String\"},\"PostgreSQLCMKEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"Use customer-managed keys to manage the encryption at rest of your PostgreSQL servers. By default, the data is encrypted at rest with service-managed keys, but customer-managed keys (CMK) are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management.\",\"displayName\":\"Azure PostgreSQL servers bring your own key data protection should be enabled\"},\"type\":\"String\"},\"SqlServerTDECMKEffect\":{\"allowedValues\":[\"AuditIfNotExists\",\"Disabled\"],\"defaultValue\":\"AuditIfNotExists\",\"metadata\":{\"description\":\"Implementing Transparent Data Encryption (TDE) with your own key provides increased transparency and control over the TDE Protector, increased security with an HSM-backed external service, and promotion of separation of duties. This recommendation applies to organizations with a related compliance requirement.\",\"displayName\":\"SQL servers should use customer-managed keys to encrypt data at rest\"},\"type\":\"String\"},\"StorageCMKEffect\":{\"allowedValues\":[\"Audit\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Secure your storage account with greater flexibility using customer-managed keys (CMKs). When you specify a CMK, that key is used to protect and control access to the key that encrypts your data. Using CMKs provides additional capabilities to control rotation of the key encryption key or cryptographically erase data.\",\"displayName\":\"Storage accounts should use customer-managed key (CMK) for encryption, no deny as this would result in not able to create storage account because the first need of MSI for encryption\"},\"type\":\"String\"},\"StreamAnalyticsCMKEffect\":{\"allowedValues\":[\"audit\",\"deny\",\"disabled\"],\"defaultValue\":\"audit\",\"metadata\":{\"description\":\"Use customer-managed keys when you want to securely store any metadata and private data assets of your Stream Analytics jobs in your storage account. This gives you total control over how your Stream Analytics data is encrypted.\",\"displayName\":\"Azure Stream Analytics jobs should use customer-managed keys to encrypt data\"},\"type\":\"String\"},\"SynapseWorkspaceCMKEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Use customer-managed keys to control the encryption at rest of the data stored in Azure Synapse workspaces. Customer-managed keys deliver double encryption by adding a second layer of encryption on top of the default encryption with service-managed keys.\",\"displayName\":\"Azure Synapse workspaces should use customer-managed keys to encrypt data at rest\"},\"type\":\"String\"},\"WorkspaceCMKEffect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Audit\",\"metadata\":{\"description\":\"Manage encryption at rest of your Azure Machine Learning workspace data with customer-managed keys (CMK). By default, customer data is encrypted with service-managed keys, but CMKs are commonly required to meet regulatory compliance standards. CMKs enable the data to be encrypted with an Azure Key Vault key created and owned by you. You have full control and responsibility for the key lifecycle, including rotation and management. Learn more about CMK encryption at https://aka.ms/azureml-workspaces-cmk.\",\"displayName\":\"Azure Machine Learning workspaces should be encrypted with a customer-managed key (CMK)\"},\"type\":\"String\"}}",
@@ -7542,51 +7341,21 @@
             "sensitive_values": {
               "policy_definition_group": [],
               "policy_definition_reference": [
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                },
-                {
-                  "parameters": {}
-                }
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
               ]
             }
           },
@@ -9091,6 +8860,7 @@
               "identity": [],
               "location": "northeurope",
               "name": "root-id-1-automation",
+              "public_network_access_enabled": true,
               "resource_group_name": "root-id-1-mgmt",
               "sku_name": "Basic",
               "tags": {
@@ -9114,7 +8884,6 @@
             "values": {
               "read_access_id": "/subscriptions/4d59de28-6dfe-4706-a4df-50ebe695a300/resourceGroups/root-id-1-mgmt/providers/Microsoft.Automation/automationAccounts/root-id-1-automation",
               "resource_group_name": "root-id-1-mgmt",
-              "tags": null,
               "timeouts": null,
               "workspace_id": "/subscriptions/4d59de28-6dfe-4706-a4df-50ebe695a300/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la",
               "write_access_id": null
