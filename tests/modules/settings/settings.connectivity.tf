@@ -65,7 +65,7 @@ locals {
               config = {
                 address_prefix           = "10.101.1.0/24"
                 gateway_sku_expressroute = ""
-                gateway_sku_vpn          = "VpnGw1AZ"
+                gateway_sku_vpn          = "VpnGw1"
                 advanced_vpn_settings = {
                   enable_bgp                       = null
                   active_active                    = null
