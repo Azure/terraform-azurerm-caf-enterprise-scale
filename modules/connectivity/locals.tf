@@ -549,9 +549,9 @@ locals {
             local.custom_settings.azurerm_public_ip["connectivity_expressroute"][location].allocation_method,
             try(local.custom_settings.azurerm_public_ip["connectivity_expressroute"][location].sku, "Standard") == "Standard" ? "Static" : "Dynamic"
           )
-          availability_zone = try(
-            local.custom_settings.azurerm_public_ip["connectivity_expressroute"][location].availability_zone,
-            length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute)) > 0 ? "Zone-Redundant" : "No-Zone"
+          zones = try(
+            local.custom_settings.azurerm_public_ip["connectivity_expressroute"][location].zones,
+            length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute)) > 0 ? ["1","2","3"] : local.empty_list
           )
         }]
       )
@@ -652,7 +652,7 @@ locals {
                 public_ip_address_id = local.vpn_gateway_pip_2_resource_id[location]
               }
             ]
-            : []
+            : local.empty_list
           )
         )
       )
@@ -710,9 +710,9 @@ locals {
                 local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].allocation_method,
                 length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Static" : "Dynamic"
               )
-              availability_zone = try(
-                local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].availability_zone,
-                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Zone-Redundant" : "No-Zone"
+              zones = try(
+                local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].zones,
+                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? ["1","2","3"] : local.empty_list
               )
             }
           ],
@@ -742,12 +742,12 @@ locals {
                   local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].allocation_method,
                   length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Static" : "Dynamic"
                 )
-                availability_zone = try(
-                  local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].availability_zone,
-                  length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Zone-Redundant" : "No-Zone"
+                zones = try(
+                  local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].zones,
+                  length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? ["1","2","3"] : local.empty_list
                 )
             }]
-            : []
+            : local.empty_list
           )
         )
       )
@@ -789,9 +789,9 @@ locals {
     location =>
     flatten(
       [
-        hub_network.config.azure_firewall.config.availability_zones.zone_1 ? ["1"] : [],
-        hub_network.config.azure_firewall.config.availability_zones.zone_2 ? ["2"] : [],
-        hub_network.config.azure_firewall.config.availability_zones.zone_3 ? ["3"] : [],
+        hub_network.config.azure_firewall.config.availability_zones.zone_1 ? ["1"] : local.empty_list,
+        hub_network.config.azure_firewall.config.availability_zones.zone_2 ? ["2"] : local.empty_list,
+        hub_network.config.azure_firewall.config.availability_zones.zone_3 ? ["3"] : local.empty_list,
       ]
     )
   }
@@ -869,9 +869,9 @@ locals {
     location =>
     flatten(
       [
-        virtual_hub.config.azure_firewall.config.availability_zones.zone_1 ? ["1"] : [],
-        virtual_hub.config.azure_firewall.config.availability_zones.zone_2 ? ["2"] : [],
-        virtual_hub.config.azure_firewall.config.availability_zones.zone_3 ? ["3"] : [],
+        virtual_hub.config.azure_firewall.config.availability_zones.zone_1 ? ["1"] : local.empty_list,
+        virtual_hub.config.azure_firewall.config.availability_zones.zone_2 ? ["2"] : local.empty_list,
+        virtual_hub.config.azure_firewall.config.availability_zones.zone_3 ? ["3"] : local.empty_list,
       ]
     )
   }
@@ -909,7 +909,7 @@ locals {
         dns_servers                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
         private_ip_ranges           = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_list)
-        threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, null)
+        threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, "Alert")
         virtual_hub                 = local.empty_list
         zones                       = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
         tags                        = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
@@ -965,9 +965,9 @@ locals {
             public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].public_ip_prefix_id, null)
             ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_tags, null)
             tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].tags, local.tags)
-            availability_zone = try(
-              local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].availability_zone,
-              local.azfw_zones_enabled[location] ? "Zone-Redundant" : "No-Zone"
+            zones = try(
+              local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].zones,
+              local.azfw_zones[location]
             )
           }]
         )
@@ -994,7 +994,7 @@ locals {
         dns_servers                 = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].dns_servers, null)
         private_ip_ranges           = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["virtual_wan"][location].management_ip_configuration, local.empty_list)
-        threat_intel_mode           = "" # If virtual_hub_setting is specified, the threat_intel_mode has to be explicitly set as "".
+        threat_intel_mode           = null # Not applicable to AZFW_Hub SKU
         virtual_hub = [
           {
             virtual_hub_id  = local.virtual_hub_resource_id[location]
@@ -1034,7 +1034,7 @@ locals {
           tags                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
         }
         # Child resource definition attributes
-        azurerm_public_ip = []
+        azurerm_public_ip = local.empty_list
       }
     ]
   )

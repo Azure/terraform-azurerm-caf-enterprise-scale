@@ -53,13 +53,12 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (2.96.0)
+# - Base Version: (3.0.2)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "2.96.0"
-# $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
-$azurermProviderVersionLatest = "2.99.0"
+$azurermProviderVersionBase = "3.0.2"
+$azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################
 # Generate Subscription Aliases
