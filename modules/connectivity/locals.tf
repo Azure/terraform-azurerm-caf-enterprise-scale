@@ -551,7 +551,7 @@ locals {
           )
           zones = try(
             local.custom_settings.azurerm_public_ip["connectivity_expressroute"][location].zones,
-            length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute)) > 0 ? ["1","2","3"] : local.empty_list
+            length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute)) > 0 ? ["1", "2", "3"] : local.empty_list
           )
         }]
       )
@@ -712,7 +712,7 @@ locals {
               )
               zones = try(
                 local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].zones,
-                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? ["1","2","3"] : local.empty_list
+                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? ["1", "2", "3"] : local.empty_list
               )
             }
           ],
@@ -744,7 +744,7 @@ locals {
                 )
                 zones = try(
                   local.custom_settings.azurerm_public_ip["connectivity_vpn_2"][location].zones,
-                  length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? ["1","2","3"] : local.empty_list
+                  length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? ["1", "2", "3"] : local.empty_list
                 )
             }]
             : local.empty_list
@@ -1207,7 +1207,7 @@ locals {
   virtual_hub_vpn_gateway_resource_id_prefix = {
     for location in local.virtual_hub_locations :
     location =>
-    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/expressRouteGateways"
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/vpnGateways"
   }
   virtual_hub_vpn_gateway_resource_id = {
     for location in local.virtual_hub_locations :
@@ -1912,6 +1912,8 @@ locals {
     dns_location                                             = local.dns_location
     connectivity_locations                                   = local.connectivity_locations
     result_when_location_missing                             = local.result_when_location_missing
+    vpn_gen1_only_skus                                       = local.vpn_gen1_only_skus
+    private_ip_address_allocation_values                     = local.private_ip_address_allocation_values
     deploy_resource_groups                                   = local.deploy_resource_groups
     deploy_ddos_protection_plan                              = local.deploy_ddos_protection_plan
     deploy_dns                                               = local.deploy_dns
