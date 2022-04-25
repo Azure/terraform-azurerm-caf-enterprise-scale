@@ -225,7 +225,7 @@ For upgrade guides from previous versions, please refer to the following links:
 
 ## Telemetry
 
-> The following statement is applicable from release v1.2.0 onwards
+> The following statement is applicable from release v2.0.0 onwards
 
 When you deploy one or more modules using the Azure landing zones Terraform module, Microsoft can identify the installation of said module/s with the deployed Azure resources.
 Microsoft can correlate these resources used to support the software.

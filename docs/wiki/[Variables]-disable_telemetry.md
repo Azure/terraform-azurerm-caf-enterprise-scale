@@ -2,7 +2,7 @@
 
 [**disable_telemetry**](#overview) `bool` (optional)
 
-> Telemetry tracking was added to release `1.2.0` of the module
+> Telemetry was added to release `2.0.0` of the module
 
 Microsoft can identify the deployments of this module with the deployed Azure resources.
 Microsoft can correlate these resources used to support the deployments.
@@ -20,7 +20,7 @@ For example, to disable telemetry tracking, you can add this variable to the mod
 ```terraform
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.2.0"
+  version = "2.0.0"
 
   disable_telemetry = true
 }
@@ -110,7 +110,7 @@ The four deployments expose high level feature configuration as described in the
 
 Taking the following example from the `core` module:
 
-`pid-36dcde81-8c33-4da0-8dc3-265381502ccb-v1.2.0-000b-83a3fc`
+`pid-36dcde81-8c33-4da0-8dc3-265381502ccb-v2.0.0-000b-83a3fc`
 
 The bit field value is `000b`, which is hexadecimal.
 In binary `000b` hexadecimal is represented as `0000000000001011`.
