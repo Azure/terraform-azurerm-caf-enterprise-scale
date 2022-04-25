@@ -34,7 +34,7 @@ function Get-RandomId {
 
 ########################################
 # Terraform Versions
-# - Base Version: "0.15.0"
+# - Base Version: "0.15.1"
 # - Latest Versions:
 #     0.15.* (latest 1)
 #     1.0.*  (latest 1)
