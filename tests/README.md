@@ -43,7 +43,7 @@ The Unit Tests consist of the following tasks:
 | **Install Terraform Pre-requisites** | Ensures the required version of Terraform is installed on the agent. |
 | **Prepare Terraform Environment** | Retrieves credentials for the target test environment and sets a unique value for the `root_id` input variable.<sup>1</sup> |
 | **Terraform Linting (terraform fmt)** | Runs `terraform fmt` against the entire repository in `-check` mode to ensure Terraform code is correctly formatted. |
-| **Install OPA/Conftest Pre-requisites** | Ensure the required version of `Conftest`, `jq`, `yq` and `yamllint` are installed on the agent. |
+| **Install OPA/Conftest Pre-requisites** | Ensure the required version of `Conftest` and `jq` are installed on the agent. |
 | **Test 001 (terraform init) Baseline** | Initialize the root module for this test instance. |
 | **Test 001 (terraform plan) Baseline** | Generate a Terraform plan for this test instance. |
 | **Test 001 (conftest) Baseline** | Run Conftest to ensure the Terraform plan matches the expected configuration for this test instance. |
