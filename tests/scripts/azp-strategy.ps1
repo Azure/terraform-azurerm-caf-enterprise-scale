@@ -43,7 +43,7 @@ function Get-RandomId {
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
-$terraformVersions = @("0.15.0")
+$terraformVersions = @("0.15.1")
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15.\d{1,2}(?!-)" } | Select-Object -First 1
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.0.\d{1,2}(?!-)" } | Select-Object -First 1
 
