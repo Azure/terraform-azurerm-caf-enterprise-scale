@@ -226,6 +226,53 @@ variable "configure_connectivity_resources" {
                 address_prefix           = string # Only support adding a single address prefix for GatewaySubnet subnet
                 gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
                 gateway_sku_vpn          = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+                advanced_vpn_settings = object({
+                  enable_bgp                       = bool
+                  active_active                    = bool
+                  private_ip_address_allocation    = string # Valid options are "", "Static" or "Dynamic". Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+                  default_local_network_gateway_id = string
+                  vpn_client_configuration = list(
+                    object({
+                      address_space = list(string)
+                      aad_tenant    = string
+                      aad_audience  = string
+                      aad_issuer    = string
+                      root_certificate = list(
+                        object({
+                          name             = string
+                          public_cert_data = string
+                        })
+                      )
+                      revoked_certificate = list(
+                        object({
+                          name             = string
+                          public_cert_data = string
+                        })
+                      )
+                      radius_server_address = string
+                      radius_server_secret  = string
+                      vpn_client_protocols  = list(string)
+                      vpn_auth_types        = list(string)
+                    })
+                  )
+                  bgp_settings = list(
+                    object({
+                      asn         = number
+                      peer_weight = number
+                      peering_addresses = list(
+                        object({
+                          ip_configuration_name = string
+                          apipa_addresses       = list(string)
+                        })
+                      )
+                    })
+                  )
+                  custom_route = list(
+                    object({
+                      address_prefixes = list(string)
+                    })
+                  )
+                })
               })
             })
             azure_firewall = object({
@@ -399,6 +446,15 @@ variable "configure_connectivity_resources" {
                 address_prefix           = "10.100.1.0/24"
                 gateway_sku_expressroute = "ErGw2AZ"
                 gateway_sku_vpn          = "VpnGw3"
+                advanced_vpn_settings = {
+                  enable_bgp                       = null
+                  active_active                    = null
+                  private_ip_address_allocation    = ""
+                  default_local_network_gateway_id = ""
+                  vpn_client_configuration         = []
+                  bgp_settings                     = []
+                  custom_route                     = []
+                }
               }
             }
             azure_firewall = {

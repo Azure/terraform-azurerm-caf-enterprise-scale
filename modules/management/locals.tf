@@ -23,6 +23,7 @@ locals {
   existing_automation_account_resource_id      = var.existing_automation_account_resource_id
   link_log_analytics_to_automation_account     = var.link_log_analytics_to_automation_account
   custom_settings                              = var.custom_settings_by_resource_type
+  asc_export_resource_group_name               = coalesce(var.asc_export_resource_group_name, "${local.root_id}-asc-export")
 }
 
 # Extract individual custom settings blocks from
@@ -183,7 +184,7 @@ locals {
         Deploy-MDFC-Config = {
           emailSecurityContact           = local.settings.security_center.config.email_security_contact
           logAnalytics                   = local.log_analytics_workspace_resource_id
-          ascExportResourceGroupName     = "${local.root_id}-asc-export"
+          ascExportResourceGroupName     = local.asc_export_resource_group_name
           ascExportResourceGroupLocation = local.location
           enableAscForAppServices        = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
           enableAscForArm                = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"

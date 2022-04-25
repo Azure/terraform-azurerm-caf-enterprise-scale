@@ -21,7 +21,7 @@ Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -Informati
 
 $jsonDepth = 4
 $terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
-# $azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
+$azurermProviderUrl = "https://registry.terraform.io/v1/providers/hashicorp/azurerm"
 
 function Get-RandomId {
     [CmdletBinding()]
@@ -34,18 +34,18 @@ function Get-RandomId {
 
 ########################################
 # Terraform Versions
-# - Base Version: "0.15.0"
+# - Base Version: "0.15.1"
 # - Latest Versions:
-#     0.15.* (latest 1)
 #     1.0.*  (latest 1)
+#     1.1.*  (latest 1)
 ########################################
 
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
-$terraformVersions = @("0.15.0")
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^0.15.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions = @("0.15.1")
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.0.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.1.\d{1,2}(?!-)" } | Select-Object -First 1
 
 $terraformVersions = $terraformVersions | Sort-Object
 
@@ -53,13 +53,12 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (2.96.0)
+# - Base Version: (3.0.2)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "2.96.0"
-# $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
-$azurermProviderVersionLatest = "2.99.0"
+$azurermProviderVersionBase = "3.0.2"
+$azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################
 # Generate Subscription Aliases

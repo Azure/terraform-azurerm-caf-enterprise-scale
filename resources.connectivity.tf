@@ -119,7 +119,7 @@ resource "azurerm_public_ip" "connectivity" {
 
   # Optional resource attributes
   sku                     = each.value.template.sku
-  availability_zone       = each.value.template.availability_zone
+  zones                   = each.value.template.zones
   ip_version              = each.value.template.ip_version
   idle_timeout_in_minutes = each.value.template.idle_timeout_in_minutes
   domain_name_label       = each.value.template.domain_name_label
@@ -181,6 +181,7 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
       radius_server_address = try(vpn_client_configuration.value["radius_server_address"], null)
       radius_server_secret  = try(vpn_client_configuration.value["radius_server_secret"], null)
       vpn_client_protocols  = try(vpn_client_configuration.value["vpn_client_protocols"], null)
+      vpn_auth_types        = try(vpn_client_configuration.value["vpn_auth_types"], null)
 
       dynamic "root_certificate" {
         for_each = try(vpn_client_configuration.value["root_certificate"], local.empty_list)
@@ -204,9 +205,8 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
     for_each = each.value.template.bgp_settings
     content {
       # Optional attributes
-      asn             = try(bgp_settings.value["asn"], null)
-      peering_address = try(bgp_settings.value["peering_address"], null)
-      peer_weight     = try(bgp_settings.value["private_ip_address_allocation"], null)
+      asn         = try(bgp_settings.value["asn"], null)
+      peer_weight = try(bgp_settings.value["private_ip_address_allocation"], null)
 
       dynamic "peering_addresses" {
         for_each = try(bgp_settings.value["peering_addresses"], null)
