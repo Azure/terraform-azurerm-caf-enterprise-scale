@@ -236,7 +236,7 @@ threat_intelligence_mode      = ""
 threat_intelligence_allowlist = []
 ```
 
-> **IMPORTANT:** If you have updated any connectivity resource settings using the `advanced` configuration object, you will need to update your code to move your settings into this input and ensure you are using the updated naming schema ([see example of changes]()).
+> **IMPORTANT:** If you have updated any connectivity resource settings using the `advanced` configuration object, you will need to update your code to move your settings into this input and ensure you are using the updated naming schema.
 
 To provide better support across the range of available SKUs (by generation) for VPN gateways in a `Hub and Spoke` network, the module now automatically sets the `generation` attribute based on specified SKU.
 To keep in line with recommendations from the product teams, the module will default to `Generation2` where supported by the SKU.
