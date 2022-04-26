@@ -32,7 +32,7 @@ CompanyName = 'krowlandson'
 Copyright = 'Copyright (c) 2020 Kevin Rowlandson. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This module provides a set of custom classes and functions used for managing the template library in the Terraform Module for Cloud Adoption Framework Enterprise-scale.'
+Description = 'This module provides a set of custom classes and functions used for managing the template library in the Azure landing zones Terraform module.'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '7.0'

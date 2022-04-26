@@ -160,8 +160,8 @@ variable "root_name" {
   default = "Enterprise-Scale"
 }
 
-# Declare the Terraform Module for Cloud Adoption Framework
-# Enterprise-scale and provide a base configuration.
+# Declare the Azure landing zones Terraform module
+# and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
@@ -261,7 +261,7 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 
 [msft-privacy-policy]: https://www.microsoft.com/trustcenter  "Microsoft's privacy policy"
 
-[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
+[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 
 [ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
 [ESLZ-Management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring

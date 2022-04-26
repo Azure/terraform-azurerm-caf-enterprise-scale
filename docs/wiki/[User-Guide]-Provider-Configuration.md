@@ -1,6 +1,6 @@
 ## Overview
 
-As of release `v0.4.0`, the [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] now uses multiple provider aliases to allow resources to be deployed directly to the intended Subscription, without the need to specify multiple instances of the module.
+The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] uses multiple provider aliases to allow resources to be deployed directly to the intended Subscription, without the need to specify multiple instances of the module.
 
 This change is intended to simplify deployments using a single pipeline to create all resources, as it is no longer necessary to share the configuration inputs across multiple instances of the module to achieve consistency between the resources created, and associated policies.
 
@@ -245,7 +245,7 @@ Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to cu
 
 [ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Cloud Adoption Framework enterprise-scale landing zone architecture"
 
-[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
+[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 [authenticating_to_azure]:                 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure "Terraform Registry: Azure Provider (Authenticating to Azure)"
 
 [wiki_core_resources]:                        ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"

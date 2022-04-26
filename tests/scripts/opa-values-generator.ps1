@@ -17,7 +17,7 @@ param (
 # #* Update the path to run the tests on a different folder (example: ../deployment_2)
 # #* Copy paste the variables.tf file from deployment folder and adjust your main.tf
 ###############################################
-# #* Path of the tested _es terraform module
+# #* Path of the tested Terraform module
 $BASE_PATH = $(Get-Location).Path
 $MODULE_PATHS = @(
     "$($BASE_PATH)/../modules/test_001_baseline"
