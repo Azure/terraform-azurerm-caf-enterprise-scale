@@ -79,12 +79,12 @@ The module enables deployment of [Network topology and connectivity][ESLZ-Connec
 
 The module supports creating multiple hubs (one per specified location) in both a `Hub and Spoke` or `Virtual WAN` configuration.
 There are also additional supporting resources deployed for DDoS Protection and DNS zones.
-You can also create a combination of both topologies.
+You can also create a combination of both networks.
 
 Each hub can be individually configured as needed.
 
 > **NOTE:** The module currently only configures the networking hub, and dependent resources for the `Connectivity` Subscription.
-> To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering (for `Hub and Spoke` topologies).
+> To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering (for `Hub and Spoke` networks).
 > Improving this story is our next priority on the product roadmap.
 
 The following resource types are deployed and managed by this module when the Connectivity capabilities are enabled:
@@ -109,9 +109,9 @@ The following resource types are deployed and managed by this module when the Co
 | DDoS Protection Plans | [`Microsoft.Network/ddosProtectionPlans`][arm_ddos_protection_plan] | [`azurerm_network_ddos_protection_plan`][azurerm_network_ddos_protection_plan] |
 | DNS Zones | [`Microsoft.Network/dnsZones`][arm_dns_zone] | [`azurerm_dns_zone`][azurerm_dns_zone] |
 
-Further guidance on how to deploy and configure `Hub and Spoke` topologies can be found on the [Deploy Connectivity Resources][wiki_deploy_connectivity_resources] Wiki page.
+Further guidance on how to deploy and configure `Hub and Spoke` networks can be found on the [Deploy Connectivity Resources][wiki_deploy_connectivity_resources] Wiki page.
 
-Further guidance on how to deploy and configure `Virtual WAN` topologies will be added to the Wiki in the future.
+Further guidance on how to deploy and configure `Virtual WAN` networks will be added to the Wiki in the future.
 
 ### Identity resources
 
