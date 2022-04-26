@@ -1,8 +1,8 @@
 ## Overview
 
-The `v2.0.0` release marks another significant milestone in development of the [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale], which is now being referred to as the [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale].
+The `v2.0.0` release marks another significant milestone in development of the [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] (formerly [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale]).
 This release provides the ability to deploy and configure `Virtual WAN` resources as part of the `connectivity` capability of the module.
-We have also included a number of fixes for other issues, and extended the existing `connectivity` capabilities for customers creating a `hub and spoke` network topology.
+We have also included a number of fixes for other issues, and extended the existing `connectivity` capabilities for customers creating `Hub and Spoke` networks.
 
 ### New features
 
