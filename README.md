@@ -59,7 +59,7 @@ This brings the benefit of being able to manage the full lifecycle of these reso
 
 ![Azure landing zones management architecture][TFAES-Management]
 
-The following resource types are deployed and managed by this module when the Management resources capabilities are enabled:
+The following resource types are deployed and managed by this module when the Management capabilities are enabled:
 
 |     | Azure Resource | Terraform Resource |
 | --- | -------------- | ------------------ |
@@ -77,11 +77,17 @@ The module enables deployment of [Network topology and connectivity][ESLZ-Connec
 
 ![Azure landing zones connectivity architecture][TFAES-Connectivity]
 
+The module supports creating multiple hubs (one per specified location) in both a `Hub and Spoke` or `Virtual WAN` configuration.
+There are also additional supporting resources deployed for DDoS Protection and DNS zones.
+You can also create a combination of both topologies.
+
+Each hub can be individually configured as needed.
+
 > **NOTE:** The module currently only configures the networking hub, and dependent resources for the `Connectivity` Subscription.
-> To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering.
+> To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering (for `Hub and Spoke` topologies).
 > Improving this story is our next priority on the product roadmap.
 
-The following resource types are deployed and managed by this module when the Connectivity resources capabilities are enabled:
+The following resource types are deployed and managed by this module when the Connectivity capabilities are enabled:
 
 |     | Azure Resource | Terraform Resource |
 | --- | -------------- | ------------------ |
@@ -90,12 +96,22 @@ The following resource types are deployed and managed by this module when the Co
 | Subnets | [`Microsoft.Network/virtualNetworks/subnets`][arm_subnet] | [`azurerm_subnet`][azurerm_subnet] |
 | Virtual Network Gateways | [`Microsoft.Network/virtualNetworkGateways`][arm_virtual_network_gateway] | [`azurerm_virtual_network_gateway`][azurerm_virtual_network_gateway] |
 | Azure Firewalls | [`Microsoft.Network/azureFirewalls`][arm_firewall] | [`azurerm_firewall`][azurerm_firewall] |
+| Azure Firewall Policies | [`Microsoft.Network/firewallPolicies`][arm_firewall_policy] | [`azurerm_firewall_policy`][azurerm_firewall_policy] |
 | Public IP Addresses | [`Microsoft.Network/publicIPAddresses`][arm_public_ip] | [`azurerm_public_ip`][azurerm_public_ip] |
+| Virtual Network Peerings | [`Microsoft.Network/virtualNetworks/virtualNetworkPeerings`][arm_virtual_network_peering] | [`azurerm_virtual_network_peering`][azurerm_virtual_network_peering] |
+| Virtual WANs | [`Microsoft.Network/virtualWans`][arm_virtual_wan] | [`azurerm_virtual_wan`][azurerm_virtual_wan] |
+| Virtual Hubs | [`Microsoft.Network/virtualHubs`][arm_virtual_hub] | [`azurerm_virtual_hub`][azurerm_virtual_hub] |
+| Express Route Gateways | [`Microsoft.Network/expressRouteGateways`][arm_express_route_gateway] | [`azurerm_express_route_gateway`][azurerm_express_route_gateway] |
+| VPN Gateways | [`Microsoft.Network/vpnGateways`][arm_vpn_gateway] | [`azurerm_vpn_gateway`][azurerm_vpn_gateway] |
+| Azure Firewalls | [`Microsoft.Network/azureFirewalls`][arm_firewall] | [`azurerm_firewall`][azurerm_firewall] |
+| Azure Firewall Policies | [`Microsoft.Network/firewallPolicies`][arm_firewall_policy] | [`azurerm_firewall_policy`][azurerm_firewall_policy] |
+| Virtual Hub Connections | [`Microsoft.Network/virtualHubs/hubVirtualNetworkConnections`][arm_virtual_hub_connection] | [`azurerm_virtual_hub_connection`][azurerm_virtual_hub_connection] |
 | DDoS Protection Plans | [`Microsoft.Network/ddosProtectionPlans`][arm_ddos_protection_plan] | [`azurerm_network_ddos_protection_plan`][azurerm_network_ddos_protection_plan] |
-| DNS Zones (pending) | [`Microsoft.Network/dnsZones`][arm_dns_zone] | [`azurerm_dns_zone`][azurerm_dns_zone] |
-| Virtual Network Peerings (pending) | [`Microsoft.Network/virtualNetworks/virtualNetworkPeerings`][arm_virtual_network_peering] | [`azurerm_virtual_network_peering`][azurerm_virtual_network_peering] |
+| DNS Zones | [`Microsoft.Network/dnsZones`][arm_dns_zone] | [`azurerm_dns_zone`][azurerm_dns_zone] |
 
-Please refer to the [Deploy Connectivity Resources][wiki_deploy_connectivity_resources] page on our Wiki for more information about how to use this capability.
+Further guidance on how to deploy and configure `Hub and Spoke` topologies can be found on the [Deploy Connectivity Resources][wiki_deploy_connectivity_resources] Wiki page.
+
+Further guidance on how to deploy and configure `Virtual WAN` topologies will be added to the Wiki in the future.
 
 ### Identity resources
 
@@ -288,6 +304,12 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 [arm_ddos_protection_plan]:           https://docs.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
 [arm_dns_zone]:                       https://docs.microsoft.com/azure/templates/microsoft.network/dnszones
 [arm_virtual_network_peering]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[arm_virtual_wan]:                    https://docs.microsoft.com/azure/templates/microsoft.network/virtualWans
+[arm_virtual_hub]:                    https://docs.microsoft.com/azure/templates/microsoft.network/virtualHubs
+[arm_express_route_gateway]:          https://docs.microsoft.com/azure/templates/microsoft.network/expressRouteGateways
+[arm_vpn_gateway]:                    https://docs.microsoft.com/azure/templates/microsoft.network/vpnGateways
+[arm_firewall_policy]:                https://docs.microsoft.com/azure/templates/microsoft.network/firewallPolicies
+[arm_virtual_hub_connection]:         https://docs.microsoft.com/azure/templates/microsoft.network/virtualHubs/hubVirtualNetworkConnections
 
 [azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
 [azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
@@ -309,6 +331,12 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 [azurerm_network_ddos_protection_plan]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan
 [azurerm_dns_zone]:                           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone
 [azurerm_virtual_network_peering]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering
+[azurerm_virtual_wan]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_wan
+[azurerm_virtual_hub]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub
+[azurerm_express_route_gateway]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/express_route_gateway
+[azurerm_vpn_gateway]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/vpn_gateway
+[azurerm_firewall_policy]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy
+[azurerm_virtual_hub_connection]:             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection
 
 [TFAES-LICENSE]:      https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/LICENSE
 [TFAES-Library]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/terraform-azurerm-caf-enterprise-scale-archetypes/lib

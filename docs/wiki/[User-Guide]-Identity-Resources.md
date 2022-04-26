@@ -1,6 +1,6 @@
 ## Overview
 
-From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Identity and access management][ESLZ-Identity] resources into the current Subscription context.
+The module enables deployment and configuration of Azure Policy to control governance over the [Identity and access management][ESLZ-Identity] Subscription.
 
 ![Enterprise-scale Identity Landing Zone Architecture][TFAES-Identity]
 
