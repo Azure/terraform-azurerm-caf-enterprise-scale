@@ -53,7 +53,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.96.0"
+      version = ">= 3.0.2"
     }
   }
 }
@@ -111,7 +111,7 @@ terraform {
   required_providers {
     azurerm = {
       source                = "hashicorp/azurerm"
-      version               = ">= 2.96.0"
+      version               = ">= 3.0.2"
       configuration_aliases = [
         azurerm.connectivity,
         azurerm.management,

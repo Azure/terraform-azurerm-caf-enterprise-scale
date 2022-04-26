@@ -42,6 +42,8 @@ locals {
     tags = {
       deployedBy = "${local.default_tags.deployedBy}/management"
     }
-    advanced = null
+    advanced = {
+      asc_export_resource_group_name = "${var.root_id}-security-logs-export"
+    }
   }
 }

@@ -46,6 +46,7 @@
       "Deny-Subnet-Without-Nsg",
       "Deny-Subnet-Without-Udr",
       "Deny-VNET-Peer-Cross-Sub",
+      "Deny-VNET-Peering-To-Non-Approved-VNETs",
       "Deny-VNet-Peering",
       "Deploy-ASC-SecurityContacts",
       "Deploy-Budget",

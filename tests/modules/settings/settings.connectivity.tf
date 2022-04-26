@@ -17,14 +17,29 @@ locals {
               config = {
                 address_prefix           = "10.100.1.0/24"
                 gateway_sku_expressroute = "ErGw1AZ"
-                gateway_sku_vpn          = "VpnGw1AZ"
+                gateway_sku_vpn          = "VpnGw2AZ"
+                advanced_vpn_settings = {
+                  enable_bgp                       = true
+                  active_active                    = true
+                  private_ip_address_allocation    = "Dynamic"
+                  default_local_network_gateway_id = ""
+                  vpn_client_configuration         = []
+                  bgp_settings                     = []
+                  custom_route                     = []
+                }
               }
             }
             azure_firewall = {
               enabled = true
               config = {
-                address_prefix   = "10.100.0.0/24"
-                enable_dns_proxy = true
+                address_prefix                = "10.100.0.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -46,18 +61,33 @@ locals {
             bgp_community                = ""
             subnets                      = []
             virtual_network_gateway = {
-              enabled = false
+              enabled = true
               config = {
                 address_prefix           = "10.101.1.0/24"
-                gateway_sku_expressroute = "ErGw1AZ"
-                gateway_sku_vpn          = "VpnGw1AZ"
+                gateway_sku_expressroute = ""
+                gateway_sku_vpn          = "VpnGw1"
+                advanced_vpn_settings = {
+                  enable_bgp                       = null
+                  active_active                    = null
+                  private_ip_address_allocation    = ""
+                  default_local_network_gateway_id = ""
+                  vpn_client_configuration         = []
+                  bgp_settings                     = []
+                  custom_route                     = []
+                }
               }
             }
             azure_firewall = {
               enabled = false
               config = {
-                address_prefix   = "10.101.0.0/24"
-                enable_dns_proxy = true
+                address_prefix                = "10.101.0.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -95,8 +125,18 @@ locals {
             azure_firewall = {
               enabled = true
               config = {
-                enable_dns_proxy = false
-                sku_tier         = "Standard"
+                enable_dns_proxy              = false
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = false
+                }
               }
             }
             spoke_virtual_network_resource_ids = []
@@ -127,8 +167,18 @@ locals {
             azure_firewall = {
               enabled = false
               config = {
-                enable_dns_proxy = false
-                sku_tier         = "Standard"
+                enable_dns_proxy              = false
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = false
+                  zone_2 = false
+                  zone_3 = false
+                }
               }
             }
             spoke_virtual_network_resource_ids = []

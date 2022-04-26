@@ -113,7 +113,7 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.15.1` and AzureRM Provider `3.0.2` as a baseline, and various versions to up `v3.x`.
+This module has been tested using Terraform `0.15.1` and AzureRM Provider `3.0.2` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -136,7 +136,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.96.0"
+      version = ">= 3.0.2"
     }
   }
 }

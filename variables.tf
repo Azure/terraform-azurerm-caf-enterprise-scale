@@ -226,13 +226,66 @@ variable "configure_connectivity_resources" {
                 address_prefix           = string # Only support adding a single address prefix for GatewaySubnet subnet
                 gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
                 gateway_sku_vpn          = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+                advanced_vpn_settings = object({
+                  enable_bgp                       = bool
+                  active_active                    = bool
+                  private_ip_address_allocation    = string # Valid options are "", "Static" or "Dynamic". Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+                  default_local_network_gateway_id = string
+                  vpn_client_configuration = list(
+                    object({
+                      address_space = list(string)
+                      aad_tenant    = string
+                      aad_audience  = string
+                      aad_issuer    = string
+                      root_certificate = list(
+                        object({
+                          name             = string
+                          public_cert_data = string
+                        })
+                      )
+                      revoked_certificate = list(
+                        object({
+                          name             = string
+                          public_cert_data = string
+                        })
+                      )
+                      radius_server_address = string
+                      radius_server_secret  = string
+                      vpn_client_protocols  = list(string)
+                      vpn_auth_types        = list(string)
+                    })
+                  )
+                  bgp_settings = list(
+                    object({
+                      asn         = number
+                      peer_weight = number
+                      peering_addresses = list(
+                        object({
+                          ip_configuration_name = string
+                          apipa_addresses       = list(string)
+                        })
+                      )
+                    })
+                  )
+                  custom_route = list(
+                    object({
+                      address_prefixes = list(string)
+                    })
+                  )
+                })
               })
             })
             azure_firewall = object({
               enabled = bool
               config = object({
-                address_prefix   = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
-                enable_dns_proxy = bool
+                address_prefix                = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+                enable_dns_proxy              = bool
+                dns_servers                   = list(string)
+                sku_tier                      = string
+                base_policy_id                = string
+                private_ip_ranges             = list(string)
+                threat_intelligence_mode      = string
+                threat_intelligence_allowlist = list(string)
                 availability_zones = object({
                   zone_1 = bool
                   zone_2 = bool
@@ -290,8 +343,18 @@ variable "configure_connectivity_resources" {
             azure_firewall = object({
               enabled = bool
               config = object({
-                enable_dns_proxy = bool
-                sku_tier         = string
+                enable_dns_proxy              = bool
+                dns_servers                   = list(string)
+                sku_tier                      = string
+                base_policy_id                = string
+                private_ip_ranges             = list(string)
+                threat_intelligence_mode      = string
+                threat_intelligence_allowlist = list(string)
+                availability_zones = object({
+                  zone_1 = bool
+                  zone_2 = bool
+                  zone_3 = bool
+                })
               })
             })
             spoke_virtual_network_resource_ids = list(string)
@@ -383,13 +446,28 @@ variable "configure_connectivity_resources" {
                 address_prefix           = "10.100.1.0/24"
                 gateway_sku_expressroute = "ErGw2AZ"
                 gateway_sku_vpn          = "VpnGw3"
+                advanced_vpn_settings = {
+                  enable_bgp                       = null
+                  active_active                    = null
+                  private_ip_address_allocation    = ""
+                  default_local_network_gateway_id = ""
+                  vpn_client_configuration         = []
+                  bgp_settings                     = []
+                  custom_route                     = []
+                }
               }
             }
             azure_firewall = {
               enabled = false
               config = {
-                address_prefix   = "10.100.0.0/24"
-                enable_dns_proxy = true
+                address_prefix                = "10.100.0.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = ""
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true

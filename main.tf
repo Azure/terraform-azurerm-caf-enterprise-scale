@@ -47,6 +47,7 @@ module "management_resources" {
   existing_automation_account_resource_id      = lookup(local.management_resources_advanced, "existing_automation_account_resource_id", local.empty_string)
   link_log_analytics_to_automation_account     = lookup(local.management_resources_advanced, "link_log_analytics_to_automation_account", true)
   custom_settings_by_resource_type             = lookup(local.management_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
+  asc_export_resource_group_name               = lookup(local.management_resources_advanced, "asc_export_resource_group_name", local.empty_string)
 }
 
 # The following module is used to generate the configuration
@@ -78,10 +79,10 @@ module "connectivity_resources" {
   tags     = local.connectivity_resources_tags
 
   # Optional input variables (advanced configuration)
-  resource_prefix                           = lookup(local.connectivity_resources_advanced, "resource_prefix", null)
-  resource_suffix                           = lookup(local.connectivity_resources_advanced, "resource_suffix", null)
-  existing_ddos_protection_plan_resource_id = lookup(local.connectivity_resources_advanced, "existing_ddos_protection_plan_resource_id", null)
-  existing_virtual_wan_resource_id          = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_id", null)
+  resource_prefix                           = lookup(local.connectivity_resources_advanced, "resource_prefix", local.empty_string)
+  resource_suffix                           = lookup(local.connectivity_resources_advanced, "resource_suffix", local.empty_string)
+  existing_ddos_protection_plan_resource_id = lookup(local.connectivity_resources_advanced, "existing_ddos_protection_plan_resource_id", local.empty_string)
+  existing_virtual_wan_resource_id          = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_id", local.empty_string)
   resource_group_per_virtual_hub_location   = lookup(local.connectivity_resources_advanced, "resource_group_per_virtual_hub_location", false)
-  custom_settings_by_resource_type          = lookup(local.connectivity_resources_advanced, "custom_settings_by_resource_type", null)
+  custom_settings_by_resource_type          = lookup(local.connectivity_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
 }
