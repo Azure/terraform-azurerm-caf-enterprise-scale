@@ -1,4 +1,4 @@
-# Azure landing zones Terraform module for Cloud Adoption Framework
+# Azure landing zones Terraform module
 
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
@@ -14,9 +14,10 @@ Detailed information about how to use, configure and extend this module can be f
 
 ## Overview
 
-The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of the [Azure landing zones conceptual architecture][ESLZ-Architecture] using Terraform.
+The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] is designed to accelerate deployment of the [Azure landing zones conceptual architecture][ESLZ-Architecture] using Terraform.
 
-Depending on selected options, this module can deploy different groups of resources as needed.
+Using a very simple initial configuration, the module will deploy the recommended core Management Group hierarchy, including the recommended governance baseline using Azure Policy.
+The default configuration can be easily extended to meet differing requirements, and includes the ability to deploy platform resources.
 
 This is currently split logically into the following capabilities:
 
@@ -29,13 +30,9 @@ These resources can be deployed to multiple Subscriptions by setting the [Provid
 
 The following sections outline the different resource types deployed and managed by this module, depending on the configuration options specified.
 
-## Release notes
-
-Please see the [releases][repo_releases] page.
-
 ### Core resources
 
-The core capability of this module deploys the foundations of the [Azure landing zones conceptual architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
+The core capability of this module deploys the foundations of the [Azure landing zones conceptual architecture][ESLZ-Architecture], with a focus on resource hierarchy and governance:
 
 ![Azure landing zones conceptual architecture][TFAES-Overview]
 
@@ -57,7 +54,7 @@ The exact number of resources created depends on the module configuration, but y
 
 ### Management resources
 
-From release `v0.2.0` onwards, the module includes new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
+The module includes functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the Subscription context set by the `azurerm.management` provider alias.
 This brings the benefit of being able to manage the full lifecycle of these resources using Terraform, with native integration into the corresponding Policy Assignments to ensure full policy compliance.
 
 ![Azure landing zones management architecture][TFAES-Management]
@@ -76,8 +73,7 @@ Please refer to the [Deploy Management Resources][wiki_deploy_management_resourc
 
 ### Connectivity resources
 
-From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the current Subscription context.
-This is currently limited to the Hub & Spoke network topology, but the addition of Virtual WAN capabilities is on our roadmap (date TBC).
+The module enables deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the Subscription context set by the `azurerm.connectivity` provider alias.
 
 ![Azure landing zones connectivity architecture][TFAES-Connectivity]
 
@@ -103,11 +99,11 @@ Please refer to the [Deploy Connectivity Resources][wiki_deploy_connectivity_res
 
 ### Identity resources
 
-From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Identity and access management][ESLZ-Identity] resources into the current Subscription context.
+The module enables deployment and configuration of Azure Policy to control governance over the [Identity and access management][ESLZ-Identity] Subscription.
 
 ![Azure landing zones identity architecture][TFAES-Identity]
 
-No additional resources are deployed by this capability, however policy settings relating to the `Identity` Management Group can now be easily updated via the `configure_identity_resources` input variable.
+No additional resources are currently deployed by this capability, however policy settings relating to the `Identity` Management Group can be easily updated via the `configure_identity_resources` input variable.
 
 Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] page on our Wiki for more information about how to use this capability.
 
@@ -119,7 +115,7 @@ If this happens, we advise upgrading to the latest version and checking our [tro
 
 ## Usage
 
-As a basic starting point, we recommend starting with the following configuration in your root module.
+We recommend starting with the following configuration in your root module to learn what resources are created by the module and how it works.
 
 This will deploy the core components only.
 
@@ -169,7 +165,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.3"
+  version = "2.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -212,10 +208,15 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
+## Release notes
+
+Please see the [releases][repo_releases] page for the latest module updates.
+
 ## Upgrade guides
 
 For upgrade guides from previous versions, please refer to the following links:
 
+- [Upgrade from v1.1.4 to v2.0.0][wiki_upgrade_from_v1_1_4_to_v2_0_0]
 - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
 - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
@@ -334,6 +335,7 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_upgrade_from_v0_3_3_to_v0_4_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
 [wiki_upgrade_from_v0_4_0_to_v1_0_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
+[wiki_upgrade_from_v1_1_4_to_v2_0_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
 [wiki_examples]:                              https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-200 "Wiki - Examples"
