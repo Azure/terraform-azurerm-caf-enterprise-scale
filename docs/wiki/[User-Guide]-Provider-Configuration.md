@@ -96,7 +96,7 @@ You must be authenticated to the Subscription where you want each set of resourc
 - When setting `deploy_management_resources = true`, you must also ensure you map the `azurerm.management` provider to authenticate against the same Subscription as specified in `subscription_id_management`.
 
 Although this may bring additional complexity to the module, this also enables the module to deploy resources across multiple Subscriptions.
-This is an important part of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture].
+This is an important part of the [Azure landing zones architecture][ESLZ-Architecture].
 
 Details of how to [configure authentication settings][authenticating_to_azure] can be found in the AzureRM Provider documentation.
 
@@ -243,7 +243,7 @@ Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to cu
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Cloud Adoption Framework enterprise-scale landing zone architecture"
+[ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Azure landing zones architecture"
 
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 [authenticating_to_azure]:                 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure "Terraform Registry: Azure Provider (Authenticating to Azure)"

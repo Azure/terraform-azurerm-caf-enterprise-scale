@@ -1,6 +1,6 @@
 ## Overview
 
-The core capability of this module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
+The core capability of this module deploys the foundations of the [Azure landing zones architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
 
 ![Enterprise-scale Core Landing Zones Architecture][TFAES-Overview]
 
@@ -30,7 +30,7 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Overview]: ./media/terraform-caf-enterprise-scale-overview.png "Diagram showing the core Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Overview]: ./media/terraform-caf-enterprise-scale-overview.png "Diagram showing the core Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
