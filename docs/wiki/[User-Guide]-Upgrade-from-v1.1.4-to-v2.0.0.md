@@ -53,15 +53,15 @@ We have also included a number of fixes for other issues, and extended the exist
 
 ### Breaking changes
 
-- Updated the minimum supported Terraform version to `0.15.1`
-- Updated the minimum supported `azurerm` provider version to `3.0.2`
-- Updated the required attributes for the `configure_management_resources` input variable to reflect recent policy updates for Microsoft Defender for Cloud
-- Extended the required attributes for the `configure_connectivity_resources` input variable to enable new functionality
+- :warning: Updated the minimum supported Terraform version to `0.15.1`
+- :warning: Updated the minimum supported `azurerm` provider version to `3.0.2`
+- :warning: Updated the required attributes for the `configure_management_resources` input variable to reflect recent policy updates for Microsoft Defender for Cloud
+- :warning: Extended the required attributes for the `configure_connectivity_resources` input variable to enable new functionality
 
   > This will result in an error at `plan` until users update the input for `configure_connectivity_resources`.
   > Longer term objective is to reduce the number of mandatory attributes within the schema using the `optional()` type wrapper once released as GA.
 
-- Updated preference to `Generation2` for supported VPN gateway SKUs, so some customers may have their VPN gateway redeployed to the new version. Instructions for how to override this added below.
+- :warning: Updated preference to `Generation2` for supported VPN gateway SKUs, so some customers may have their VPN gateway redeployed to the new version. Instructions for how to override this added below.
 
 > **IMPORTANT:** If you are using the `advanced` input for `configure_connectivity_resources` please take extra care to note the changes listed in [PR: Fix multiple issues #345](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/345) such as the [changes for `azurerm_public_ip` resources associated with an ExpressRoute Gateway](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/345/files#diff-1db17ddb4fd5ac32cf26aaedeca0f71eeca2a3fc543e73bb3cb71626296b2cabL519-R557)
 
@@ -270,6 +270,61 @@ configure_connectivity_resources = {
 
 This release includes additional resources relating to telemetry.
 For more information, please refer to the [Telemetry](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/README.md#telemetry) guidance for more information.
+
+### :rocket: Advanced configuration
+
+Although not documented, we are aware that a number of customers have already worked out how to use the `advanced` configuration blocks within `configure_connectivity_resources` and `configure_management_resources`
+
+:warning: This release brings a number of breaking changes to this functionality which must be carefully reviewed when upgrading from the previous release.
+
+The following table outlines the changes which must be considered.
+These are all within the scope of `configure_connectivity_resources.advanced.custom_settings_by_resource_type` (_which will be excluded from the attribute path for brevity_).
+
+> These changes only effect `hub_networks` resources.
+
+#### ExpressRoute Gateway resources
+
+| `v1.1.4` advanced object path | `v2.0.0` advanced object path |
+| :--- | :--- |
+| `azurerm_virtual_network_gateway["expressroute"][location].name` | `azurerm_virtual_network_gateway["connectivity_expressroute"][location].name` |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].ip_configuration` | `azurerm_virtual_network_gateway["connectivity_expressroute"][location].ip_configuration` |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].vpn_type` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].enable_bgp` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].active_active` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].private_ip_address_enabled` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].default_local_network_gateway_id` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].generation` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].vpn_client_configuration` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].bgp_settings` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].custom_route` | _removed as not applicable to ExpressRoute SKUs_ |
+| `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].tags` | `azurerm_virtual_network_gateway["connectivity_expressroute"][location].tags` |
+| `azurerm_public_ip["connectivity"]["ergw"][location].*` | `azurerm_public_ip["connectivity_expressroute"][location].*` |
+
+#### VPN Gateway resources
+
+| `v1.1.4` advanced object path | `v2.0.0` advanced object path |
+| :--- | :--- |
+| `azurerm_virtual_network_gateway["vpn"][location].name` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].name` |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].ip_configuration` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].ip_configuration` |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].vpn_type` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_type` |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].enable_bgp` | _moved to new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].active_active` | _moved to new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].private_ip_address_enabled` | _determined by_ `private_ip_address_allocation` _setting in new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].default_local_network_gateway_id` | _moved to new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].generation` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].generation` |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].vpn_client_configuration` | _moved to new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].bgp_settings` | _moved to new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].custom_route` | _moved to new_ `advanced_vpn_settings` _object_ |
+| `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].tags` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].tags` |
+| `azurerm_public_ip["connectivity"]["vpngw"][location].*` | `azurerm_public_ip["connectivity_vpn"][location].*` |
+
+#### Azure Firewall resources
+
+| `v1.1.4` advanced object path | `v2.0.0` advanced object path |
+| :--- | :--- |
+| `azurerm_public_ip["connectivity"]["azfw"][location].*` | `azurerm_public_ip["connectivity_firewall"][location].*` |
+
+> **NOTE:** In addition to the above, some new settings were added to advanced to enable resource names to be updated which could not be changed previously, but these are not documented here as would not result in a breaking change.
 
 ## Next steps
 
