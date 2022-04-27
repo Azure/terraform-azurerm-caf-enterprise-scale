@@ -63,7 +63,8 @@ We have also included a number of fixes for other issues, and extended the exist
 
 - :warning: Updated preference to `Generation2` for supported VPN gateway SKUs, so some customers may have their VPN gateway redeployed to the new version. Instructions for how to override this added below.
 
-> **IMPORTANT:** If you are using the `advanced` input for `configure_connectivity_resources` please take extra care to note the changes listed in [PR: Fix multiple issues #345](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/345) such as the [changes for `azurerm_public_ip` resources associated with an ExpressRoute Gateway](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/345/files#diff-1db17ddb4fd5ac32cf26aaedeca0f71eeca2a3fc543e73bb3cb71626296b2cabL519-R557)
+> **IMPORTANT:** If you are using the `advanced` input for `configure_connectivity_resources` please take extra care to note the changes listed in [PR: Fix multiple issues #345](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/345).
+> A summary of these can be found below in the [Advanced configuration](#rocket-advanced-configuration) section.
 
 ## Required actions
 
