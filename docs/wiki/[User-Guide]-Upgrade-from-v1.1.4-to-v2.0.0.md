@@ -284,8 +284,8 @@ These are all within the scope of `configure_connectivity_resources.advanced.cus
 
 #### ExpressRoute Gateway resources
 
-| `v1.1.4` advanced object path | `v2.0.0.` advanced object path |
-| --- | --- |
+| `v1.1.4` advanced object path | `v2.0.0` advanced object path |
+| :--- | :--- |
 | `azurerm_virtual_network_gateway["expressroute"][location].name` | `azurerm_virtual_network_gateway["connectivity_expressroute"][location].name` |
 | `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].ip_configuration` | `azurerm_virtual_network_gateway["connectivity_expressroute"][location].ip_configuration` |
 | `azurerm_virtual_network_gateway["connectivity"]["ergw"][location].vpn_type` | _removed as not applicable to ExpressRoute SKUs_ |
@@ -302,8 +302,8 @@ These are all within the scope of `configure_connectivity_resources.advanced.cus
 
 #### VPN Gateway resources
 
-| `v1.1.4` advanced object path | `v2.0.0.` advanced object path |
-| --- | --- |
+| `v1.1.4` advanced object path | `v2.0.0` advanced object path |
+| :--- | :--- |
 | `azurerm_virtual_network_gateway["vpn"][location].name` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].name` |
 | `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].ip_configuration` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].ip_configuration` |
 | `azurerm_virtual_network_gateway["connectivity"]["vpngw"][location].vpn_type` | `azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_type` |
@@ -320,8 +320,8 @@ These are all within the scope of `configure_connectivity_resources.advanced.cus
 
 #### Azure Firewall resources
 
-| `v1.1.4` advanced object path | `v2.0.0.` advanced object path |
-| --- | --- |
+| `v1.1.4` advanced object path | `v2.0.0` advanced object path |
+| :--- | :--- |
 | `azurerm_public_ip["connectivity"]["azfw"][location].*` | `azurerm_public_ip["connectivity_firewall"][location].*` |
 
 > **NOTE:** In addition to the above, some new settings were added to advanced to enable resource names to be updated which could not be changed previously, but these are not documented here as would not result in a breaking change.
