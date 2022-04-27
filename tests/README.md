@@ -1,4 +1,4 @@
-# Test Framework for the Terraform Module for Cloud Adoption Framework Enterprise-scale
+# Test Framework for the Azure landing zones Terraform module
 
 This folder contains code relating to the test framework for this module.
 Testing is currently performed in the following stages:

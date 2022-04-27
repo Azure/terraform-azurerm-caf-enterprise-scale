@@ -1,6 +1,6 @@
 ![caf-enterprise-scale](media/azure.svg)
 
-## Terraform Module for Cloud Adoption Framework Enterprise-scale
+## Azure landing zones Terraform module
 
 - [Home][wiki_home]
 - [User Guide][wiki_user_guide]
@@ -39,6 +39,7 @@
   - [Contributing to Code][wiki_contributing_to_code]
   - [Contributing to Documentation][wiki_contributing_to_documentation]
 - [Upgrade Guides][wiki_upgrade_from_v0_4_0_to_v1_0_0]
+  - [Upgrade from v1.1.4 to v2.0.0][wiki_upgrade_from_v1_1_4_to_v2_0_0]
   - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
   - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
   - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
@@ -63,6 +64,7 @@
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_upgrade_from_v0_3_3_to_v0_4_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
 [wiki_upgrade_from_v0_4_0_to_v1_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
+[wiki_upgrade_from_v1_1_4_to_v2_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
 [wiki_examples]:                              ./Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    ./Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    ./Examples#advanced-level-200 "Wiki - Examples"

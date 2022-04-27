@@ -498,8 +498,7 @@ class ArmTemplateResource : ESLTBase {
         $this.apiVersion = [ProviderApiVersions]::GetLatestStableByType($ResourceType)
     }
 
-    # Update resource values as per requirements for Terraform Module
-    # for Cloud Adoption Framework Enterprise Scale
+    # Update resource values as per requirements for Azure landing zones Terraform module
     [Object] ToTemplateFile() {
         if ($this.type -eq "Microsoft.Authorization/policyAssignments") {
             $this.properties.scope = "`${current_scope_resource_id}"

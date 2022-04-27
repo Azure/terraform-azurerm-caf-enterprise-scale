@@ -1,4 +1,4 @@
-# Terraform Module for Cloud Adoption Framework Enterprise-scale
+# Azure landing zones Terraform module
 
 [![Build Status](https://dev.azure.com/mscet/CAE-ESTF/_apis/build/status/Tests/E2E?branchName=main)](https://dev.azure.com/mscet/CAE-ESTF/_build/latest?definitionId=26&branchName=main)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
@@ -14,9 +14,10 @@ Detailed information about how to use, configure and extend this module can be f
 
 ## Overview
 
-The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture] using Terraform.
+The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] is designed to accelerate deployment of the [Azure landing zones conceptual architecture][ESLZ-Architecture] using Terraform.
 
-Depending on selected options, this module can deploy different groups of resources as needed.
+Using a very simple initial configuration, the module will deploy the recommended core Management Group hierarchy, including the recommended governance baseline using Azure Policy.
+The default configuration can be easily extended to meet differing requirements, and includes the ability to deploy platform resources.
 
 This is currently split logically into the following capabilities:
 
@@ -31,9 +32,9 @@ The following sections outline the different resource types deployed and managed
 
 ### Core resources
 
-The core capability of this module deploys the foundations of the [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture], with a focus on the central resource hierarchy and governance:
+The core capability of this module deploys the foundations of the [Azure landing zones conceptual architecture][ESLZ-Architecture], with a focus on resource hierarchy and governance:
 
-![Enterprise-scale Core Landing Zones Architecture][TFAES-Overview]
+![Azure landing zones conceptual architecture][TFAES-Overview]
 
 The following resource types are deployed and managed by this module when using the core capabilities:
 
@@ -53,12 +54,12 @@ The exact number of resources created depends on the module configuration, but y
 
 ### Management resources
 
-From release `v0.2.0` onwards, the module includes new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
+The module includes functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the Subscription context set by the `azurerm.management` provider alias.
 This brings the benefit of being able to manage the full lifecycle of these resources using Terraform, with native integration into the corresponding Policy Assignments to ensure full policy compliance.
 
-![Enterprise-scale Management Landing Zone Architecture][TFAES-Management]
+![Azure landing zones management architecture][TFAES-Management]
 
-The following resource types are deployed and managed by this module when the Management resources capabilities are enabled:
+The following resource types are deployed and managed by this module when the Management capabilities are enabled:
 
 |     | Azure Resource | Terraform Resource |
 | --- | -------------- | ------------------ |
@@ -72,16 +73,21 @@ Please refer to the [Deploy Management Resources][wiki_deploy_management_resourc
 
 ### Connectivity resources
 
-From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the current Subscription context.
-This is currently limited to the Hub & Spoke network topology, but the addition of Virtual WAN capabilities is on our roadmap (date TBC).
+The module enables deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the Subscription context set by the `azurerm.connectivity` provider alias.
 
-![Enterprise-scale Connectivity Landing Zone Architecture][TFAES-Connectivity]
+![Azure landing zones connectivity architecture][TFAES-Connectivity]
+
+The module supports creating multiple hubs (one per specified location) in both a `Hub and Spoke` or `Virtual WAN` configuration.
+There are also additional supporting resources deployed for DDoS Protection and DNS zones.
+You can also create a combination of both networks.
+
+Each hub can be individually configured as needed.
 
 > **NOTE:** The module currently only configures the networking hub, and dependent resources for the `Connectivity` Subscription.
-> To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering.
+> To ensure we achieve the right balance of managing resources via Terraform vs. Azure Policy, we are still working on how best to handle the creation of spoke Virtual Networks and Virtual Network Peering (for `Hub and Spoke` networks).
 > Improving this story is our next priority on the product roadmap.
 
-The following resource types are deployed and managed by this module when the Connectivity resources capabilities are enabled:
+The following resource types are deployed and managed by this module when the Connectivity capabilities are enabled:
 
 |     | Azure Resource | Terraform Resource |
 | --- | -------------- | ------------------ |
@@ -90,32 +96,42 @@ The following resource types are deployed and managed by this module when the Co
 | Subnets | [`Microsoft.Network/virtualNetworks/subnets`][arm_subnet] | [`azurerm_subnet`][azurerm_subnet] |
 | Virtual Network Gateways | [`Microsoft.Network/virtualNetworkGateways`][arm_virtual_network_gateway] | [`azurerm_virtual_network_gateway`][azurerm_virtual_network_gateway] |
 | Azure Firewalls | [`Microsoft.Network/azureFirewalls`][arm_firewall] | [`azurerm_firewall`][azurerm_firewall] |
+| Azure Firewall Policies | [`Microsoft.Network/firewallPolicies`][arm_firewall_policy] | [`azurerm_firewall_policy`][azurerm_firewall_policy] |
 | Public IP Addresses | [`Microsoft.Network/publicIPAddresses`][arm_public_ip] | [`azurerm_public_ip`][azurerm_public_ip] |
+| Virtual Network Peerings | [`Microsoft.Network/virtualNetworks/virtualNetworkPeerings`][arm_virtual_network_peering] | [`azurerm_virtual_network_peering`][azurerm_virtual_network_peering] |
+| Virtual WANs | [`Microsoft.Network/virtualWans`][arm_virtual_wan] | [`azurerm_virtual_wan`][azurerm_virtual_wan] |
+| Virtual Hubs | [`Microsoft.Network/virtualHubs`][arm_virtual_hub] | [`azurerm_virtual_hub`][azurerm_virtual_hub] |
+| Express Route Gateways | [`Microsoft.Network/expressRouteGateways`][arm_express_route_gateway] | [`azurerm_express_route_gateway`][azurerm_express_route_gateway] |
+| VPN Gateways | [`Microsoft.Network/vpnGateways`][arm_vpn_gateway] | [`azurerm_vpn_gateway`][azurerm_vpn_gateway] |
+| Azure Firewalls | [`Microsoft.Network/azureFirewalls`][arm_firewall] | [`azurerm_firewall`][azurerm_firewall] |
+| Azure Firewall Policies | [`Microsoft.Network/firewallPolicies`][arm_firewall_policy] | [`azurerm_firewall_policy`][azurerm_firewall_policy] |
+| Virtual Hub Connections | [`Microsoft.Network/virtualHubs/hubVirtualNetworkConnections`][arm_virtual_hub_connection] | [`azurerm_virtual_hub_connection`][azurerm_virtual_hub_connection] |
 | DDoS Protection Plans | [`Microsoft.Network/ddosProtectionPlans`][arm_ddos_protection_plan] | [`azurerm_network_ddos_protection_plan`][azurerm_network_ddos_protection_plan] |
-| DNS Zones (pending) | [`Microsoft.Network/dnsZones`][arm_dns_zone] | [`azurerm_dns_zone`][azurerm_dns_zone] |
-| Virtual Network Peerings (pending) | [`Microsoft.Network/virtualNetworks/virtualNetworkPeerings`][arm_virtual_network_peering] | [`azurerm_virtual_network_peering`][azurerm_virtual_network_peering] |
+| DNS Zones | [`Microsoft.Network/dnsZones`][arm_dns_zone] | [`azurerm_dns_zone`][azurerm_dns_zone] |
 
-Please refer to the [Deploy Connectivity Resources][wiki_deploy_connectivity_resources] page on our Wiki for more information about how to use this capability.
+Further guidance on how to deploy and configure `Hub and Spoke` networks can be found on the [Deploy Connectivity Resources][wiki_deploy_connectivity_resources] Wiki page.
+
+Further guidance on how to deploy and configure `Virtual WAN` networks will be added to the Wiki in the future.
 
 ### Identity resources
 
-From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Identity and access management][ESLZ-Identity] resources into the current Subscription context.
+The module enables deployment and configuration of Azure Policy to control governance over the [Identity and access management][ESLZ-Identity] Subscription.
 
-![Enterprise-scale Identity Landing Zone Architecture][TFAES-Identity]
+![Azure landing zones identity architecture][TFAES-Identity]
 
-No additional resources are deployed by this capability, however policy settings relating to the `Identity` Management Group can now be easily updated via the `configure_identity_resources` input variable.
+No additional resources are currently deployed by this capability, however policy settings relating to the `Identity` Management Group can be easily updated via the `configure_identity_resources` input variable.
 
 Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] page on our Wiki for more information about how to use this capability.
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.15.0` and AzureRM Provider `3.0.2` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `0.15.1` and AzureRM Provider `3.0.2` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
 ## Usage
 
-As a basic starting point, we recommend starting with the following configuration in your root module.
+We recommend starting with the following configuration in your root module to learn what resources are created by the module and how it works.
 
 This will deploy the core components only.
 
@@ -160,12 +176,12 @@ variable "root_name" {
   default = "Enterprise-Scale"
 }
 
-# Declare the Terraform Module for Cloud Adoption Framework
-# Enterprise-scale and provide a base configuration.
+# Declare the Azure landing zones Terraform module
+# and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.3"
+  version = "2.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -208,60 +224,15 @@ For the latest examples, please refer to our [Examples][wiki_examples] guide on 
   - [Override Module Role Assignments][wiki_override_module_role_assignments]
   - [Deploy Using Module Nesting][wiki_deploy_using_module_nesting]
 
-## Release Notes
+## Release notes
 
-Release `v1.1.4` is a hotfix release to add a `azurerm` provider verison constraint of `< 3.0.0`.
-This is a workaround for the resource schema changes as reported in issue [#309](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/309).
+Please see the [releases][repo_releases] page for the latest module updates.
 
-Release `v1.1.3` is a hotfix relating to support for using YAML with archetype extensions and exclusions.
-
-Release `v1.1.2` introduces the following changes:
-
-- Update module to provide full support for `templatefile()` functionality (Fixes #253)
-- Extend built-in template file variables for use with template files in module library (Fixes #255 and #207)
-
-Release `v1.1.1` introduces the following changes:
-
-- Update regex logic for `root_id` and `scope_id` input variables on `archetypes` child module (Fixes #241)
-- Add `requried_version` to Terraform configuration to ensure only supported version of Terraform is used
-- Add documentation to Wiki for the [configure_connectivity_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources) and [configure_management_resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_management_resources) input variables
-
-No breaking changes identified.
-
-Release `v1.1.0` introduces the following changes:
-
-- **BREAKING CHANGE**: Replaced `Deploy-ASC-Configuration` Policy Assignment with `Deploy-ASCDF-Config`, utilizing built-in policies and also adds support for [Microsoft Defender for open-source relational databases](https://docs.microsoft.com/azure/defender-for-cloud/defender-for-databases-introduction).
-  - Fixing [Add Defender support for Open-source relational databases #131](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/131).
-  - **Note:** Will result in loss of policy compliance history.
-  - Consider making a copy of the removed policy templates to a custom `lib` folder and using the [archetype extension](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-extension-function) capability if you wish to retain the old Assignment to keep policy compliance history.
-  - Requires an update to the `configure_management_resources` input variable:
-
-```hcl
-{
-  settings = {
-    # (1 unchanged element hidden)
-    security_center = {
-      # (1 unchanged element hidden)
-      config = {
-        # (7 unchanged elements hidden)
-        enable_defender_for_oss_databases  = true
-        # (4 unchanged elements hidden)
-      }
-    }
-  }
-  # (3 unchanged elements hidden)
-}
-```
-
-- Updates to Wiki documentation
-- Multiple bug fixes covering:
-  - Fix "managed parameters" for `Enable-DDoS-VNET` Policy Assignment at `landing-zones` scope (no issue logged)
-  - [Changing root_parent_id results in Management Groups not being deployed #190](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/190)
-  - [Bug Report: Private DNS zone link in setting.connectivity.tf #204](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/204)
-  - [Incorrect enforcementMode setting on Enable-DDoS-VNET Policy Assignment #216](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/216)
+## Upgrade guides
 
 For upgrade guides from previous versions, please refer to the following links:
 
+- [Upgrade from v1.1.4 to v2.0.0][wiki_upgrade_from_v1_1_4_to_v2_0_0]
 - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
 - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
 - [Upgrade from v0.1.2 to v0.2.0][wiki_upgrade_from_v0_1_2_to_v0_2_0]
@@ -269,9 +240,9 @@ For upgrade guides from previous versions, please refer to the following links:
 
 ## Telemetry
 
-> The following statement is applicable from release v1.2.0 onwards
+> The following statement is applicable from release v2.0.0 onwards
 
-When you deploy one or more modules in Azure Landing Zones Terraform repo, Microsoft can identify the installation of said module/s with the deployed Azure resources.
+When you deploy one or more modules using the Azure landing zones Terraform module, Microsoft can identify the installation of said module/s with the deployed Azure resources.
 Microsoft can correlate these resources used to support the software.
 Microsoft collects this information to provide the best experiences with their products and to operate their business.
 The telemetry is collected through customer usage attribution.
@@ -295,10 +266,10 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Overview]:     https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-overview.png "Diagram showing the core Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
-[TFAES-Management]:   https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
-[TFAES-Connectivity]: https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-connectivity.png "Diagram showing the Connectivity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
-[TFAES-Identity]:     https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Overview]:     https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-overview.png "Diagram showing the core Azure landing zones architecture deployed by this module."
+[TFAES-Management]:   https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Azure landing zones architecture deployed by this module."
+[TFAES-Connectivity]: https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-connectivity.png "Diagram showing the Connectivity resources for Azure landing zones architecture deployed by this module."
+[TFAES-Identity]:     https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
@@ -306,7 +277,7 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 
 [msft-privacy-policy]: https://www.microsoft.com/trustcenter  "Microsoft's privacy policy"
 
-[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
+[terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 
 [ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
 [ESLZ-Management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
@@ -333,6 +304,12 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 [arm_ddos_protection_plan]:           https://docs.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
 [arm_dns_zone]:                       https://docs.microsoft.com/azure/templates/microsoft.network/dnszones
 [arm_virtual_network_peering]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[arm_virtual_wan]:                    https://docs.microsoft.com/azure/templates/microsoft.network/virtualWans
+[arm_virtual_hub]:                    https://docs.microsoft.com/azure/templates/microsoft.network/virtualHubs
+[arm_express_route_gateway]:          https://docs.microsoft.com/azure/templates/microsoft.network/expressRouteGateways
+[arm_vpn_gateway]:                    https://docs.microsoft.com/azure/templates/microsoft.network/vpnGateways
+[arm_firewall_policy]:                https://docs.microsoft.com/azure/templates/microsoft.network/firewallPolicies
+[arm_virtual_hub_connection]:         https://docs.microsoft.com/azure/templates/microsoft.network/virtualHubs/hubVirtualNetworkConnections
 
 [azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
 [azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
@@ -354,9 +331,17 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 [azurerm_network_ddos_protection_plan]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan
 [azurerm_dns_zone]:                           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone
 [azurerm_virtual_network_peering]:            https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering
+[azurerm_virtual_wan]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_wan
+[azurerm_virtual_hub]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub
+[azurerm_express_route_gateway]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/express_route_gateway
+[azurerm_vpn_gateway]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/vpn_gateway
+[azurerm_firewall_policy]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy
+[azurerm_virtual_hub_connection]:             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection
 
 [TFAES-LICENSE]:      https://github.com/Azure/terraform-azurerm-enterprise-scale/blob/main/LICENSE
 [TFAES-Library]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/terraform-azurerm-caf-enterprise-scale-archetypes/lib
+
+[repo_releases]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases "Release notes"
 
 <!--
 The following link references should be copied from `_sidebar.md` in the `./docs/wiki/` folder.
@@ -378,6 +363,7 @@ Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-sca
 [wiki_upgrade_from_v0_1_2_to_v0_2_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
 [wiki_upgrade_from_v0_3_3_to_v0_4_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
 [wiki_upgrade_from_v0_4_0_to_v1_0_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
+[wiki_upgrade_from_v1_1_4_to_v2_0_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
 [wiki_examples]:                              https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-200 "Wiki - Examples"

@@ -3,7 +3,7 @@
 This page describes how to deploy Enterprise-scale with the [Connectivity resources][wiki_connectivity_resources] created in the current Subscription context, using the default configuration settings.
 
 As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimising cost.
-Please refer to the Cloud Adoption Framework [Network topology and connectivity][ESLZ-Connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
+Please refer to the [Network topology and connectivity][ESLZ-Connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
@@ -65,7 +65,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.4"
+  version = "2.0.0"
 
   providers = {
     azurerm              = azurerm

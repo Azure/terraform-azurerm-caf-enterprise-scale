@@ -460,7 +460,7 @@ Now you understand how to customize your deployment using the input variables, c
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[estf-inputs]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest?tab=inputs "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale - Inputs"
+[estf-inputs]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest?tab=inputs "Terraform Registry: Azure landing zones Terraform module - Inputs"
 
 [local_values]:    https://www.terraform.io/docs/language/values/locals.html "Local Values"
 [input_variables]: https://www.terraform.io/docs/language/values/variables.html "Input Variables"

@@ -1,6 +1,6 @@
 ## Overview
 
-From release `v0.4.0` onwards, the module includes new functionality to enable deployment of [Identity and access management][ESLZ-Identity] resources into the current Subscription context.
+The module enables deployment and configuration of Azure Policy to control governance over the [Identity and access management][ESLZ-Identity] Subscription.
 
 ![Enterprise-scale Identity Landing Zone Architecture][TFAES-Identity]
 
@@ -12,7 +12,7 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Identity]: ./media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Identity]: ./media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)

@@ -25,15 +25,28 @@ If specified, will customize the "Connectivity" landing zone settings and resour
               address_prefix           = "10.100.1.0/24"
               gateway_sku_expressroute = "ErGw2AZ"
               gateway_sku_vpn          = "VpnGw3"
+              advanced_vpn_settings = {
+                enable_bgp                       = null
+                active_active                    = null
+                private_ip_address_allocation    = ""
+                default_local_network_gateway_id = ""
+                vpn_client_configuration         = []
+                bgp_settings                     = []
+                custom_route                     = []
+              }
             }
           }
           azure_firewall = {
             enabled = false
             config = {
-              address_prefix   = "10.100.0.0/24"
-              enable_dns_proxy = true
-              dns_servers      = []
-              sku_tier         = ""
+              address_prefix                = "10.100.0.0/24"
+              enable_dns_proxy              = true
+              dns_servers                   = []
+              sku_tier                      = ""
+              base_policy_id                = ""
+              private_ip_ranges             = []
+              threat_intelligence_mode      = ""
+              threat_intelligence_allowlist = []
               availability_zones = {
                 zone_1 = true
                 zone_2 = true
@@ -141,18 +154,69 @@ object({
           virtual_network_gateway = object({
             enabled = bool
             config = object({
-              address_prefix           = string
-              gateway_sku_expressroute = string
-              gateway_sku_vpn          = string
+              address_prefix           = string # Only support adding a single address prefix for GatewaySubnet subnet
+              gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
+              gateway_sku_vpn          = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+              advanced_vpn_settings = object({
+                enable_bgp                       = bool
+                active_active                    = bool
+                private_ip_address_allocation    = string # Valid options are "", "Static" or "Dynamic". Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+                default_local_network_gateway_id = string
+                vpn_client_configuration = list(
+                  object({
+                    address_space = list(string)
+                    aad_tenant    = string
+                    aad_audience  = string
+                    aad_issuer    = string
+                    root_certificate = list(
+                      object({
+                        name             = string
+                        public_cert_data = string
+                      })
+                    )
+                    revoked_certificate = list(
+                      object({
+                        name             = string
+                        public_cert_data = string
+                      })
+                    )
+                    radius_server_address = string
+                    radius_server_secret  = string
+                    vpn_client_protocols  = list(string)
+                    vpn_auth_types        = list(string)
+                  })
+                )
+                bgp_settings = list(
+                  object({
+                    asn         = number
+                    peer_weight = number
+                    peering_addresses = list(
+                      object({
+                        ip_configuration_name = string
+                        apipa_addresses       = list(string)
+                      })
+                    )
+                  })
+                )
+                custom_route = list(
+                  object({
+                    address_prefixes = list(string)
+                  })
+                )
+              })
             })
           })
           azure_firewall = object({
             enabled = bool
             config = object({
-              address_prefix   = string
-              enable_dns_proxy = bool
-              dns_servers      = []
-              sku_tier         = ""
+              address_prefix                = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+              enable_dns_proxy              = bool
+              dns_servers                   = list(string)
+              sku_tier                      = string
+              base_policy_id                = string
+              private_ip_ranges             = list(string)
+              threat_intelligence_mode      = string
+              threat_intelligence_allowlist = list(string)
               availability_zones = object({
                 zone_1 = bool
                 zone_2 = bool
@@ -165,7 +229,70 @@ object({
         })
       })
     )
-    vwan_hub_networks = list(object({}))
+    vwan_hub_networks = list(
+      object({
+        enabled = bool
+        config = object({
+          address_prefix = string
+          location       = string
+          sku            = string
+          routes = list(
+            object({
+              address_prefixes    = list(string)
+              next_hop_ip_address = string
+            })
+          )
+          expressroute_gateway = object({
+            enabled = bool
+            config = object({
+              scale_unit = number
+            })
+          })
+          vpn_gateway = object({
+            enabled = bool
+            config = object({
+              bgp_settings = list(
+                object({
+                  asn         = number
+                  peer_weight = number
+                  instance_0_bgp_peering_address = list(
+                    object({
+                      custom_ips = list(string)
+                    })
+                  )
+                  instance_1_bgp_peering_address = list(
+                    object({
+                      custom_ips = list(string)
+                    })
+                  )
+                })
+              )
+              routing_preference = string
+              scale_unit         = number
+            })
+          })
+          azure_firewall = object({
+            enabled = bool
+            config = object({
+              enable_dns_proxy              = bool
+              dns_servers                   = list(string)
+              sku_tier                      = string
+              base_policy_id                = string
+              private_ip_ranges             = list(string)
+              threat_intelligence_mode      = string
+              threat_intelligence_allowlist = list(string)
+              availability_zones = object({
+                zone_1 = bool
+                zone_2 = bool
+                zone_3 = bool
+              })
+            })
+          })
+          spoke_virtual_network_resource_ids = list(string)
+          enable_virtual_hub_connections     = bool
+        })
+      })
+    )
     ddos_protection_plan = object({
       enabled = bool
       config = object({
@@ -238,13 +365,13 @@ object({
 Configure resources for the `connectivity` Landing Zone, including:
 
 - Hub network(s) for a traditional hub and spoke network topology.
-- Hub network(s) for an Azure Virtual WAN network topology (_coming soon_).
+- Hub network(s) for an Azure Virtual WAN network topology.
 - DDoS Protection Plan.
 - Public and private Azure DNS zones, including DNS for Private Endpoints.
 
 ### Configure hub networks (Hub and Spoke)
 
-Define zero or more hub networks as a list of objects, each containing configuration values covering an Address Space, DDOS Protection Plan, DNS Servers, BGP community, Subnets, Virtual Network Gateway, Azure Firewall, Spoke Virtual Network resources and Outbound VIrtual Network Peering.
+Define zero or more hub networks as a list of objects, each containing configuration values covering an address space, DDOS protection plan, DNS servers, BGP community, subnets, virtual network gateway, Azure firewall, spoke virtual network resources and outbound virtual network peering.
 
 ```hcl
 hub_networks = [
@@ -263,15 +390,28 @@ hub_networks = [
           address_prefix           = "10.100.1.0/24"
           gateway_sku_expressroute = "ErGw2AZ"
           gateway_sku_vpn          = "VpnGw3"
+          advanced_vpn_settings = {
+            enable_bgp                       = null
+            active_active                    = null
+            private_ip_address_allocation    = ""
+            default_local_network_gateway_id = ""
+            vpn_client_configuration         = []
+            bgp_settings                     = []
+            custom_route                     = []
+          }
         }
       }
       azure_firewall = {
         enabled = false
         config = {
-          address_prefix   = "10.100.0.0/24"
-          enable_dns_proxy = true
-          dns_servers      = []
-          sku_tier         = ""
+          address_prefix                = "10.100.0.0/24"
+          enable_dns_proxy              = true
+          dns_servers                   = []
+          sku_tier                      = ""
+          base_policy_id                = ""
+          private_ip_ranges             = []
+          threat_intelligence_mode      = ""
+          threat_intelligence_allowlist = []
           availability_zones = {
             zone_1 = true
             zone_2 = true
@@ -282,7 +422,7 @@ hub_networks = [
       spoke_virtual_network_resource_ids      = []
       enable_outbound_virtual_network_peering = false
     }
-  }
+  },
 ]
 ```
 
@@ -348,7 +488,7 @@ Changing this forces a new resource to be created.
 - Should not be one of the following which are created automatically be the module as required:
   - `GatewaySubnet`
   - `AzureFirewallSubnet`
-  
+
 ###### `settings.hub_networks[].config.subnets[].address_prefixes`
 
 The address prefixes to use for the subnet.
@@ -398,13 +538,60 @@ object({
     address_prefix           = string
     gateway_sku_expressroute = string
     gateway_sku_vpn          = string
+    advanced_vpn_settings = object({
+      enable_bgp                       = bool
+      active_active                    = bool
+      private_ip_address_allocation    = string
+      default_local_network_gateway_id = string
+      vpn_client_configuration = list(
+        object({
+          address_space = list(string)
+          aad_tenant    = string
+          aad_audience  = string
+          aad_issuer    = string
+          root_certificate = list(
+            object({
+              name             = string
+              public_cert_data = string
+            })
+          )
+          revoked_certificate = list(
+            object({
+              name             = string
+              public_cert_data = string
+            })
+          )
+          radius_server_address = string
+          radius_server_secret  = string
+          vpn_client_protocols  = list(string)
+          vpn_auth_types        = list(string)
+        })
+      )
+      bgp_settings = list(
+        object({
+          asn         = number
+          peer_weight = number
+          peering_addresses = list(
+            object({
+              ip_configuration_name = string
+              apipa_addresses       = list(string)
+            })
+          )
+        })
+      )
+      custom_route = list(
+        object({
+          address_prefixes = list(string)
+        })
+      )
+    })
   })
 })
 ```
 
 ###### `settings.hub_networks[].config.subnets[].virtual_network_gateway.enabled`
 
-The `enable` (`bool`) input allows you to toggle whether to create the `virtual_network_gateway` resources based on the values specified in the `config` (`object()`), as documented below.
+The `enabled` (`bool`) input allows you to toggle whether to create the `virtual_network_gateway` resources based on the values specified in the `config` (`object()`), as documented below.
 
 ###### `settings.hub_networks[].config.subnets[].virtual_network_gateway.config.address_prefix`
 
@@ -432,6 +619,19 @@ The SKU value will automatically determine whether the VPN Gateway and dependant
 
 > **NOTE**: Take care to ensure you specify a SKU supported by the location specified in the hub network configuration.
 > For example, locations without support for Availability Zones do not support SKUs for zonal gateways.
+
+###### settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings`
+
+Allows you to specify the VPN configuration for the virtual network gateway.
+The settings map to the [`azurerm_virtual_network_gateway`][azurerm_virtual_network_gateway] resource in the Azure provider.
+
+**`settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings.enable_bgp`**
+
+If `true`, BGP (Border Gateway Protocol) will be enabled for this virtual network gateway.
+
+**`settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings.active_active`**
+
+If `true`, an active-active virtual network gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` sku. If false, an active-standby gateway will be created.
 
 ##### `settings.hub_networks[].config.azure_firewall`
 
@@ -535,7 +735,117 @@ List of [Azure] resource IDs used to identify spoke Virtual Networks associated 
 
 ### Configure hub networks (Virtual WAN)
 
-_Not implemented yet, coming soon._
+Define zero or more VWAN hub networks as a list of objects, each containing configuration values covering an address space, expressroute gateway, vpn gateway and Azure firewall.
+
+```terraform
+vwan_hub_networks = [
+  {
+    enabled = true
+    config = {
+      address_prefix = "10.0.0.0/23"
+      location       = "westeurope"
+      sku            = "Standard"
+      routes = [
+        {
+          address_prefixes = [
+            "192.168.0.0/16"
+          ]
+          next_hop_ip_address = "10.0.1.4"
+        }
+      ]
+      expressroute_gateway {
+        enabled = true
+        config = {
+          scale_unit = 1
+        }
+      }
+      vpn_gateway = {
+        enabled = true
+        config = {
+          bgp_settings = [
+            {
+              asn         = 12345
+              peer_weight = 10
+              instance_0_bgp_peering_address = [
+                {
+                  custom_ips = [
+                    ""
+                  ]
+                }
+              ]
+              instance_1_bgp_peering_address = [
+                {
+                  custom_ips = [
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+          routing_preference = "Microsoft Network"
+          scale_unit         = 1
+        }
+      }
+      azure_firewall = {
+        enabled = true
+        config = {
+          enable_dns_proxy = true
+          dns_servers      = []
+          sku_tier         = "Standard"
+        }
+      }
+      spoke_virtual_network_resource_ids = [
+        ""
+      ]
+      enable_virtual_hub_connections     = true
+    }
+  }
+]
+```
+
+#### `settings.vwan_hub_networks[].enable`
+
+The `enable` (`bool`) input allows you to toggle whether to create this VWAN hub network instance, including all associated resources. Set to `false` if you want to toggle individual hub network instances without removing the full configuration.
+
+#### `settings.vwan_hub_networks[].config`
+
+The `config` (`object`) input allows you to set the following configuration items for each VWAN hub network:
+
+##### `settings.vwan_hub_networks[].config.address_prefix`
+
+The Address Prefix which should be used for this Virtual Hub.
+The address prefix subnet cannot be smaller than a /24.
+We recommend using a /23.
+
+E.g. `10.0.0.0/23`
+
+##### `settings.vwan_hub_networks[].config.location`
+
+Set the location/region where the hub network and associated resources are created.
+Changing this forces new resources to be created.
+By default, a `vwan_hub_network` with an empty value in the `location` field will be deployed to the location inherited from either `configure_connectivity_resources.location`, or the top-level variable `default_location`, in order of precedence.
+
+##### `settings.vwan_hub_networks[].config.sku`
+
+Set the [SKU](https://docs.microsoft.com/azure/virtual-wan/virtual-wan-about#basicstandard) of the VWAN hub.
+Allowed values are  `Basic` and `Standard`.
+
+##### `settings.vwan_hub_networks[].config.routes[]`
+
+A list of route objects used to define static routes for this virtual hub.
+An empty list will result in no static routes being created.
+
+###### `settings.vwan_hub_networks[].config.routes[].address_prefixes[]`
+
+A list of address prefixes to be used for the route.
+
+E.g. `192.168.0.0/16`
+
+###### `settings.vwan_hub_networks[].config.routes[].next_hop_ip_address`
+
+The IP address of the next hop for the route.
+
+e.g. `10.0.1.4`
 
 ### Configure DDoS Protection Plan
 
@@ -624,3 +934,4 @@ Optionally enable DNS resources for Private Link Services, Private DNS zones and
 
 [virtual_network_gateway_sku]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
 [azfw_policy_rule_hierarchy]: https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
+[azurerm_virtual_network_gateway]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway

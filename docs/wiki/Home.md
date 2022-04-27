@@ -1,6 +1,6 @@
-# Terraform Module for Cloud Adoption Framework Enterprise-scale
+# Azure landing zones Terraform module
 
-The [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of [Cloud Adoption Framework enterprise-scale landing zone architecture][ESLZ-Architecture] using Terraform, with a focus on the central resource hierarchy:
+The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] provides an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture][ESLZ-Architecture] using Terraform, with a focus on the central resource hierarchy:
 
 ![Enterprise-scale Landing Zone Architecture][TFAES-Overview]
 
@@ -43,14 +43,14 @@ Check out the [User Guide](./User-Guide), or go straight to our [Examples](./Exa
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Overview]: ./media/terraform-caf-enterprise-scale-overview.png "Diagram showing the Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Overview]: ./media/terraform-caf-enterprise-scale-overview.png "Diagram showing the Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
 [ESLZ-Architecture]:                              https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Enterprise-scale Reference Architecture"
-[terraform-registry-caf-enterprise-scale]:        https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
+[terraform-registry-caf-enterprise-scale]:        https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 [management-group-and-subscription-organization]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-subscription-organization "Cloud Adoption Framework: Management group and subscription organization"
 [identity-and-access-management]:                 https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management "Cloud Adoption Framework: Identity and access management"
 [management-and-monitoring]:                      https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring "Cloud Adoption Framework: Management and monitoring"

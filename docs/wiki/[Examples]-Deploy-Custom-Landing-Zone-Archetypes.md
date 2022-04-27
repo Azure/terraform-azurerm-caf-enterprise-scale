@@ -89,12 +89,12 @@ To allow the declaration of custom templates, you must create a custom library f
 
 data "azurerm_client_config" "core" {}
 
-# Declare the Terraform Module for Cloud Adoption Framework
-# Enterprise-scale and provide a base configuration.
+# Declare the Azure landing zones Terraform module
+# and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.4"
+  version = "2.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -144,7 +144,7 @@ module "enterprise_scale" {
 
 > IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
 
-The `lib/archetype_definition_customer_online.json` file contains a custom "archetype definition". This is a custom JSON format used specifically by the Terraform Module for Cloud Adoption Framework Enterprise-scale.
+The `lib/archetype_definition_customer_online.json` file contains a custom "archetype definition". This is a custom JSON format used specifically by the Azure landing zones Terraform module.
 
 In this example, we are using this archetype definition to create an archetype called `customer_online`. This archetype definition includes the creation of Policy Assignments for `Deny-Resource-Locations` and `Deny-RSG-Locations`, with default values pre-defined in the archetype definition template.
 

@@ -2,7 +2,7 @@ Having trouble using the module and unable to find a solution in the Wiki?
 
 If it isn't listed below, let us know about it in our [Issues][Issues] log. We'll do our best to help and you may find your issue documented here in the future!
 
-[Issues]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues "Terraform Module for Cloud Adoption Framework Enterprise-scale: Report an Issue"
+[Issues]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues "Azure landing zones Terraform module: Report an Issue"
 
 #### Errors creating Role Definitions and Role Assignments
 

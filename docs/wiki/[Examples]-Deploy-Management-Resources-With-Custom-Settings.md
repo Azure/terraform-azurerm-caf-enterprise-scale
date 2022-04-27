@@ -125,12 +125,12 @@ It also contains the module declaration for this module, containing a number of 
 
 data "azurerm_client_config" "core" {}
 
-# Declare the Terraform Module for Cloud Adoption Framework
-# Enterprise-scale and provide a base configuration.
+# Declare the Azure landing zones Terraform module
+# and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "1.1.4"
+  version = "2.0.0"
 
   providers = {
     azurerm              = azurerm

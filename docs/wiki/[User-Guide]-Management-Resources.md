@@ -1,6 +1,6 @@
 ## Overview
 
-From release `v0.2.0` onwards, the module includes new functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the current Subscription context.
+The module includes functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the Subscription context set by the `azurerm.management` provider alias.
 This brings the benefit of being able to manage the full lifecycle of these resources using Terraform, with native integration into the corresponding Policy Assignments to ensure full policy compliance.
 
 ![Enterprise-scale Management Landing Zone Architecture][TFAES-Management]
@@ -25,7 +25,7 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Management]:./media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Cloud Adoption Framework Enterprise-scale Landing Zone architecture deployed by this module."
+[TFAES-Management]:./media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
@@ -44,6 +44,5 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
 [azurerm_log_analytics_solution]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_solution
 [azurerm_automation_account]:           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
 [azurerm_log_analytics_linked_service]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
-
 
 [wiki_deploy_management_resources]:           https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
