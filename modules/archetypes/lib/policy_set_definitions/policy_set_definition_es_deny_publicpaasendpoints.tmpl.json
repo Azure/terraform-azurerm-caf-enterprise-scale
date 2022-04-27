@@ -138,6 +138,266 @@
           "Disabled"
         ],
         "defaultValue": "Deny"
+      },
+      "CognitiveServicesPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Cognitive Services accounts should disable public network access",
+          "description": "This policy denies creation of Cognitive Services with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "KeyVaultHSMPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Key Vault Managed HSM should disable public network access",
+          "description": "This policy denies creation of KeyVault Managed HSM with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "EventGridTopicsPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Event Grid topics should disable public network access",
+          "description": "This policy denies creation of EventGrid Topics with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "AzureSQLPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Public network access on Azure SQL Database should be disabled",
+          "description": "This policy denies creation of Azure SQL Databases with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "DataFactoryPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Public network access on Azure Data Factory should be disabled",
+          "description": "This policy denies creation of Data Factories with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "SignalRPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure SignalR Service should disable public network access",
+          "description": "This policy denies creation of SignalR Services with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "IoTHubPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Public network access on Azure IoT Hub should be disabled",
+          "description": "This policy denies creation of IoT-Hubs with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "SynapseWorkspacePublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Synapse workspaces should disable public network access",
+          "description": "This policy denies creation of Synapse Workspaces with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "AppConfigurationPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "App Configuration should disable public network access",
+          "description": "This policy denies creation of App Configurations with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "MachineLearningWorkspacesPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Machine Learning workspaces should disable public network access",
+          "description": "This policy denies creation of Machine Learning Workspaces with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "RedisCachePublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Cache for Redis should disable public network access",
+          "description": "This policy denies creation of Azure Cache for Redis with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "ContainerRegistryPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Container registries should have exports disabled",
+          "description": "This policy denies creation of Container Registries with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "KeyVaultPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Key Vault should disable public network access",
+          "description": "This policy denies creation of Key Vaults with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "CosmosDBPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Cosmos DB should disable public network access",
+          "description": "This policy denies creation of Cosmos DBs with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "MediaServicesPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Media Services accounts should disable public network access",
+          "description": "This policy denies creation of Media Services with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "AutomationAccountPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Automation accounts should disable public network access",
+          "description": "This policy denies creation of Automation Accounts with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "WebPubSubPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Web PubSub Service should disable public network access",
+          "description": "This policy denies creation of Web PubSub Services with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "IoTHubDPSPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "IoT Hub device provisioning service instances should disable public network access",
+          "description": "This policy denies creation of IoT-Hub Device Provisioning Services with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "CognitiveSearchServicesPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Cognitive Search services should disable public network access",
+          "description": "This policy denies creation of Cognitive Search Services with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
+      },
+      "EventGridDomainsPublicIpDenyEffect" : {
+        "type": "String",
+        "metadata": {
+          "displayName": "Azure Event Grid domains should disable public network access",
+          "description": "This policy denies creation of Event Grid Domains with exposed public endpoints"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny"
       }
     },
     "policyDefinitions": [
@@ -240,7 +500,208 @@
           }
         },
         "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "CognitiveServicesDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0725b4dd-7e76-479c-a735-68e7ee23d5ca",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('CognitiveServicesPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "KeyVaultHSMDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/19ea9d63-adee-4431-a95e-1913c6c1c75f",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('KeyVaultHSMPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "EventGridTopicsDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1adadefe-5f21-44f7-b931-a59b54ccdb45",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('EventGridTopicsPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "AzureSQLDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1b8ca024-1d5c-4dec-8995-b1a932b41780",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('AzureSQLPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DataFactoryDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1cf164be-6819-4a50-b8fa-4bcaa4f98fb6",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('DataFactoryPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "SignalRDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/21a9766a-82a5-4747-abb5-650b6dbba6d0",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('SignalRPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "IoTHubDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2d6830fb-07eb-48e7-8c4d-2a442b35f0fb",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('IoTHubPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "SynapseWorkspaceDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/38d8df46-cf4e-4073-8e03-48c24b29de0d",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('SynapseWorkspacePublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "AppConfigurationDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/3d9f5e4c-9947-4579-9539-2a7695fbc187",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('AppConfigurationPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "MachineLearningWorkspacesDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/438c38d2-3772-465a-a9cc-7a6666a275ce",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('MachineLearningWorkspacesPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "RedisCacheDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/470baccb-7e51-4549-8b1a-3e5be069f663",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('RedisCachePublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "ContainerRegistryDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/524b0254-c285-4903-bee6-bb8126cde579",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('ContainerRegistryPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "KeyVaultDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/55615ac9-af46-4a59-874e-391cc3dfb490",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('KeyVaultPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "CosmosDBDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/797b37f7-06b8-444c-b1ad-fc62867f335a",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('CosmosDBPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "MediaServicesDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8bfe3603-0888-404a-87ff-5c1b6b4cc5e3",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('MediaServicesPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "AutomationAccountDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/955a914f-bf86-4f0e-acd5-e0766b0efcb6",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('AutomationAccountPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "WebPubSubDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/bf45113f-264e-4a87-88f9-29ac8a0aca6a",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('WebPubSubPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "IoTHubDPSDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/d82101f3-f3ce-4fc5-8708-4c09f4009546",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('IoTHubDPSPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "CognitiveSearchServicesDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ee980b6d-0eca-4501-8d54-f6290fd512c3",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('CognitiveSearchServicesPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "EventGridDomainsDenyPublicIP",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f8f774be-6aee-492a-9e29-486ef81f3a68",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('EventGridDomainsPublicIpDenyEffect')]"
+          }
+        },
+        "groupNames": []
       }
+
     ],
     "policyDefinitionGroups": null
   }
