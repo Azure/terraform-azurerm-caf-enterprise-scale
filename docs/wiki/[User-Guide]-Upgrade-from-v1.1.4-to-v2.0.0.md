@@ -1,12 +1,14 @@
 ## Overview
 
 The `v2.0.0` release marks another significant milestone in development of the [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] (_formerly [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale]_).
+The re-branding of this module reflects adoption of `Enterprise-scale` as the recommended architecture for `Azure landing zones`.
+
 This release provides the ability to deploy and configure `Virtual WAN` resources as part of the `connectivity` capability of the module.
 We have also included a number of fixes for other issues, and extended the existing `connectivity` capabilities for customers creating `Hub and Spoke` networks.
 
 ### New features
 
-- Added support to create a network topology using Azure `Virtual WAN` in the connectivity Subscription
+- Added support to create hub networks using Azure `Virtual WAN` in the connectivity Subscription
 - Updated the policies included within the module based on those in the upstream Enterprise-scale repository
 - Improved Wiki documentation, providing more examples and clearer guidance
 - Added module telemetry to help us better understand where to focus development efforts and improve customer experience
@@ -28,26 +30,26 @@ We have also included a number of fixes for other issues, and extended the exist
 
 ### Fixed issues
 
-- Fix #226 (Add capability for "Virtual WAN Networking" resources - Connectivity Subscription)
-- Fix #232 (can't create active-active vpngw)
-- Fix #334 (BGP configuration on VPN gateways)
-- Fix #254 (Create Wiki docs page for custom policy definition, set definition (initiative) and assignment)
-- Fix #264 (Update Policies For `v1.2.0` Release From Upstream)
-- Fix #266 (Adding a new policy assignment forces the existing policy role assignments to be recreated)
-- Fix #271 (Error: deleting Azure Firewall)
-- Fix #272 (Argument `management_group_name` deprecated in favour of `management_group_id`)
-- Fix #273 (`azurerm_role_assignment.policy_assignment` resources outputs missing)
-- Fix #274 (Add Firewall Policy resources for the Azure Firewall resources deployed by the module)
-- Fix #293 (Move FabricBot to Config-as-Code)
-- Fix #295 (Missing data policies)
-- Fix #305 (Add vwan settings to outputs)
-- Fix #309 (Bug Report - AzureRM provider 3.0.0 availability zones error)
-- Fix #319 (`azurerm_public_ip` prevents support of azurerm provider >= 3.0.0)
-- Fix #333 (VPN Gateway Generations)
-- Fix #336 (Feature Request - Add AZ Support for Azure Firewall in Secure vHub Model)
-- Fix #340 (Call to function "coalesce" failed: all arguments must have the same type.)
-- Fix #342 (Ability to rename ASC export resource group name)
-- Work towards #227 (Replace `try()` with `lookup()` where possible)
+- Fix [#226](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/226) (Add capability for "Virtual WAN Networking" resources - Connectivity Subscription)
+- Fix [#232](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/232) (can't create active-active vpngw)
+- Fix [#254](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/254) (Create Wiki docs page for custom policy definition, set definition (initiative) and assignment)
+- Fix [#264](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/264) (Update Policies For `v1.2.0` Release From Upstream)
+- Fix [#266](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/266) (Adding a new policy assignment forces the existing policy role assignments to be recreated)
+- Fix [#271](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/271) (Error: deleting Azure Firewall)
+- Fix [#272](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/272) (Argument `management_group_name` deprecated in favour of `management_group_id`)
+- Fix [#273](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/273) (`azurerm_role_assignment.policy_assignment` resources outputs missing)
+- Fix [#274](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/274) (Add Firewall Policy resources for the Azure Firewall resources deployed by the module)
+- Fix [#293](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/293) (Move FabricBot to Config-as-Code)
+- Fix [#295](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/295) (Missing data policies)
+- Fix [#305](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/305) (Add vwan settings to outputs)
+- Fix [#309](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/309) (Bug Report - AzureRM provider 3.0.0 availability zones error)
+- Fix [#319](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/319) (`azurerm_public_ip` prevents support of azurerm provider >= 3.0.0)
+- Fix [#333](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/333) (VPN Gateway Generations)
+- Fix [#334](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/334) (BGP configuration on VPN gateways)
+- Fix [#336](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/336) (Feature Request - Add AZ Support for Azure Firewall in Secure vHub Model)
+- Fix [#340](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/340) (Call to function "coalesce" failed: all arguments must have the same type.)
+- Fix [#342](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/342) (Ability to rename ASC export resource group name)
+- Work towards [#227](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/227) (Replace `try()` with `lookup()` where possible)
 
 ### Breaking changes
 
@@ -77,6 +79,10 @@ Please carefully review [Resource changes](#resource-changes) provided below and
     1. Policy Definitions
     1. Policy Set Definitions
     1. Policy Assignments
+
+1. Before making changes to your configuration, we recommend to update the module version and run `terraform init -upgrade` followed by `terraform plan` to see what changes are needed in the code.
+Fix any errors before reviewing the plan output to see whether any unexpected resource changes are going to happen.
+Review the additional guidance below to better understand what is likely to need changing, and please don't hesitate to log a [GitHub Issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues) if you're unclear on any of the required steps.
 
 > **IMPORTANT:** As with any Terraform upgrade, please carefully review the output of `terraform plan` to ensure there are no issues with any custom configuration within your root module or unexpected changes to your environment before applying.
 
@@ -191,6 +197,7 @@ The big change is we've now enabled deployment of `Virtual WAN` hub networks.
 This will have no impact on existing deployments, but to use this feature you will need to configure the existing `configure_connectivity_resources. settings.vwan_hub_networks` input which is now activated.
 
 > More details on how to deploy and configure `Virtual WAN` hub networks will be added to the Wiki soon!
+> Note that we still only support creation of the hub network and not spokes due to provider limitations, however bi-directional peering can be created for `Virtual WAN` networks.
 
 The `configure_connectivity_resources` input variable has been updated to improve ease of use when configuring VPN gateway and Azure Firewall settings in a `Hub and Spoke` network.
 
@@ -262,7 +269,7 @@ configure_connectivity_resources = {
 ### Telemetry resources
 
 This release includes additional resources relating to telemetry.
-For more information, please refer to the [Telemetry](../blob/main/README.md#telemetry) guidance for more information.
+For more information, please refer to the [Telemetry](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/README.md#telemetry) guidance for more information.
 
 ## Next steps
 
@@ -270,7 +277,7 @@ Take a look at the latest [User Guide](./User-Guide) documentation and our [Exam
 
 ## Need help?
 
-If you're running into problems with the upgrade, please let us know via the GitHub Issues.
+If you're running into problems with the upgrade, please let us know via the [GitHub Issues](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 We will do our best to point you in the right direction.
 
 [//]: # "************************"
