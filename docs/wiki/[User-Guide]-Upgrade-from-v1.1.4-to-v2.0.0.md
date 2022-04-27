@@ -271,11 +271,9 @@ configure_connectivity_resources = {
 This release includes additional resources relating to telemetry.
 For more information, please refer to the [Telemetry](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/README.md#telemetry) guidance for more information.
 
-### Advanced configuration
+### :rocket: Advanced configuration
 
 Although not documented, we are aware that a number of customers have already worked out how to use the `advanced` configuration blocks within `configure_connectivity_resources` and `configure_management_resources`
-
-:rocket: :rocket: :rocket:
 
 :warning: This release brings a number of breaking changes to this functionality which must be carefully reviewed when upgrading from the previous release.
 
