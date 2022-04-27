@@ -390,15 +390,28 @@ hub_networks = [
           address_prefix           = "10.100.1.0/24"
           gateway_sku_expressroute = "ErGw2AZ"
           gateway_sku_vpn          = "VpnGw3"
+          advanced_vpn_settings = {
+            enable_bgp                       = null
+            active_active                    = null
+            private_ip_address_allocation    = ""
+            default_local_network_gateway_id = ""
+            vpn_client_configuration         = []
+            bgp_settings                     = []
+            custom_route                     = []
+          }
         }
       }
       azure_firewall = {
         enabled = false
         config = {
-          address_prefix   = "10.100.0.0/24"
-          enable_dns_proxy = true
-          dns_servers      = []
-          sku_tier         = ""
+          address_prefix                = "10.100.0.0/24"
+          enable_dns_proxy              = true
+          dns_servers                   = []
+          sku_tier                      = ""
+          base_policy_id                = ""
+          private_ip_ranges             = []
+          threat_intelligence_mode      = ""
+          threat_intelligence_allowlist = []
           availability_zones = {
             zone_1 = true
             zone_2 = true
@@ -409,7 +422,7 @@ hub_networks = [
       spoke_virtual_network_resource_ids      = []
       enable_outbound_virtual_network_peering = false
     }
-  }
+  },
 ]
 ```
 
@@ -525,13 +538,60 @@ object({
     address_prefix           = string
     gateway_sku_expressroute = string
     gateway_sku_vpn          = string
+    advanced_vpn_settings = object({
+      enable_bgp                       = bool
+      active_active                    = bool
+      private_ip_address_allocation    = string
+      default_local_network_gateway_id = string
+      vpn_client_configuration = list(
+        object({
+          address_space = list(string)
+          aad_tenant    = string
+          aad_audience  = string
+          aad_issuer    = string
+          root_certificate = list(
+            object({
+              name             = string
+              public_cert_data = string
+            })
+          )
+          revoked_certificate = list(
+            object({
+              name             = string
+              public_cert_data = string
+            })
+          )
+          radius_server_address = string
+          radius_server_secret  = string
+          vpn_client_protocols  = list(string)
+          vpn_auth_types        = list(string)
+        })
+      )
+      bgp_settings = list(
+        object({
+          asn         = number
+          peer_weight = number
+          peering_addresses = list(
+            object({
+              ip_configuration_name = string
+              apipa_addresses       = list(string)
+            })
+          )
+        })
+      )
+      custom_route = list(
+        object({
+          address_prefixes = list(string)
+        })
+      )
+    })
   })
 })
 ```
 
 ###### `settings.hub_networks[].config.subnets[].virtual_network_gateway.enabled`
 
-The `enable` (`bool`) input allows you to toggle whether to create the `virtual_network_gateway` resources based on the values specified in the `config` (`object()`), as documented below.
+The `enabled` (`bool`) input allows you to toggle whether to create the `virtual_network_gateway` resources based on the values specified in the `config` (`object()`), as documented below.
 
 ###### `settings.hub_networks[].config.subnets[].virtual_network_gateway.config.address_prefix`
 
@@ -559,6 +619,19 @@ The SKU value will automatically determine whether the VPN Gateway and dependant
 
 > **NOTE**: Take care to ensure you specify a SKU supported by the location specified in the hub network configuration.
 > For example, locations without support for Availability Zones do not support SKUs for zonal gateways.
+
+###### settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings`
+
+Allows you to specify the VPN configuration for the virtual network gateway.
+The settings map to the [`azurerm_virtual_network_gateway`][azurerm_virtual_network_gateway] resource in the Azure provider.
+
+**`settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings.enable_bgp`**
+
+If `true`, BGP (Border Gateway Protocol) will be enabled for this virtual network gateway.
+
+**`settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings.active_active`**
+
+If `true`, an active-active virtual network gateway will be created. An active-active gateway requires a `HighPerformance` or an `UltraPerformance` sku. If false, an active-standby gateway will be created.
 
 ##### `settings.hub_networks[].config.azure_firewall`
 
@@ -662,7 +735,7 @@ List of [Azure] resource IDs used to identify spoke Virtual Networks associated 
 
 ### Configure hub networks (Virtual WAN)
 
-Define zero or more VWAN hub networks as a list of objects, each containing configuration values covering an address space, DDOS protection plan, expressroute gateway, vpn gateway and Azure firewall.
+Define zero or more VWAN hub networks as a list of objects, each containing configuration values covering an address space, expressroute gateway, vpn gateway and Azure firewall.
 
 ```terraform
 vwan_hub_networks = [
@@ -861,3 +934,4 @@ Optionally enable DNS resources for Private Link Services, Private DNS zones and
 
 [virtual_network_gateway_sku]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
 [azfw_policy_rule_hierarchy]: https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
+[azurerm_virtual_network_gateway]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway
