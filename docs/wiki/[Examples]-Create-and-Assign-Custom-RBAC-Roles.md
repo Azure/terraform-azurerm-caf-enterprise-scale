@@ -8,7 +8,7 @@ We will then assign the new RBAC Role at the `es_landingzones` scope.
 
 We will update the built-in configuration with the new custom RBAC role by following these steps:
 
-- Create the role definition file 
+- Create the role definition file
 
 - Save the new role at the `es_root` scope
 
@@ -28,7 +28,7 @@ In your `/lib` directory create a `role_definitions` subdirectory if you don't a
 
 >NOTE: Creating a `role_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom roles will still work.
 
-In the `role_definitions` subdirectory, create a `role_definition_es_reader_support_tickets.tmpl.json` file. This file will contain the role definition for our `Reader Support Tickets` role. 
+In the `role_definitions` subdirectory, create a `role_definition_es_reader_support_tickets.tmpl.json` file. This file will contain the role definition for our `Reader Support Tickets` role.
 
 To attempt to ensure that every custom role we create has a unique value for "name", we use the uuidv5 function that is built-in to Terraform. You can learn more about uuidv5 [here](https://www.terraform.io/language/functions/uuidv5).
 
@@ -75,10 +75,10 @@ Now that we have a unique "name" for our new role definition, copy the below cod
 
 ## Assign Role
 
-To assign a custom role, we need to expand upon the built-in configuration by using `archetype extensions`. 
+To assign a custom role, we need to expand upon the built-in configuration by using `archetype extensions`.
 You can learn more about archetype extensions in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions).
 
-If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. 
+If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file.
 This code will save your new `Reader-Support-Tickets` role at this scope and allow it to be used either at the `es_root` scope or below.
 
 ### `lib/archetype_extension_es_root.tmpl.json`
@@ -98,7 +98,7 @@ This code will save your new `Reader-Support-Tickets` role at this scope and all
 }
 ```
 
-If you don't already have an `archetype_extension_es_landing_zones.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. 
+If you don't already have an `archetype_extension_es_landing_zones.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file.
 This code will assign your new `Reader-Support-Tickets` role to a group named `Contoso Reader and Support Tickets`.
 In order to assign the `Reader-Support-Tickets` role to the group, you need to use the groups objectID which can be located in Azure Active Directory.
 
@@ -124,5 +124,5 @@ If we had saved our role at the `es_landingzones` scope then we would use a pref
 }
 ```
 
-You should now kick-off your Terraform workflow (init, plan, apply) again to apply the updated configuration. This can be done either locally or through a pipeline. 
+You should now kick-off your Terraform workflow (init, plan, apply) again to apply the updated configuration. This can be done either locally or through a pipeline.
 When your workflow has finished, the `Reader-Support-Tickets` role will be assigned to the `Contoso Reader and Support Tickets` group at the Landing Zones Management Group.
