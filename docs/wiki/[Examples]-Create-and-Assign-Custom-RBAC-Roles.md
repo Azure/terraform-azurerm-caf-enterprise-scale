@@ -14,6 +14,12 @@ We will update the built-in configuration with the new custom RBAC role by follo
 
 - Assign the role at the `es_landingzones` scope
 
+The files we will use are:
+
+- [lib/role_definitions/role_definition_es_reader_support_tickets.tmpl.json](#librole_definitionsrole_definition_es_reader_support_ticketstmpljson)
+- [lib/archetype_extension_es_root.tmpl.json](#libarchetype_extension_es_roottmpljson)
+- [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zones_tmpljson)
+
 >IMPORTANT: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
 ## Create Role Definition File
@@ -75,6 +81,8 @@ You can learn more about archetype extensions in [this article](https://github.c
 If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. 
 This code will save your new `Reader-Support-Tickets` role at this scope and allow it to be used either at the `es_root` scope or below.
 
+### `lib/archetype_extension_es_root.tmpl.json`
+
 ```json
 {
   "extend_es_root": {
@@ -96,6 +104,8 @@ In order to assign the `Reader-Support-Tickets` role to the group, you need to u
 
 >IMPORTANT: Due to how the module works, you must prefix your group name with the location at which it has been saved. In our example this would be `"[CONTOSO]"`.
 If we had saved our role at the `es_landingzones` scope then we would use a prefix of `"[CONTOSO-LANDING-ZONES]"`
+
+### `lib/archetype_extension_es_landing_zones.tmpl.json`
 
 ```json
 {
