@@ -192,6 +192,7 @@ locals {
           enable_defender_for_sql_servers    = true
           enable_defender_for_sql_server_vms = true
           enable_defender_for_storage        = true
+          enable_defender_for_containers     = true
         }
       }
     }
