@@ -313,7 +313,20 @@ variable "custom_settings_by_resource_type" {
 
   validation {
     condition = (
-      can([for k in keys(var.custom_settings_by_resource_type) : contains(["azurerm_resource_group", "azurerm_virtual_network", "azurerm_subnet", "azurerm_virtual_network_gateway", "azurerm_public_ip", "azurerm_firewall", "azurerm_network_ddos_protection_plan", "azurerm_dns_zone", "azurerm_virtual_network_peering"], k)]) ||
+      can([for k in keys(var.custom_settings_by_resource_type) : contains([
+        "azurerm_dns_zone",
+        "azurerm_firewall",
+        "azurerm_firewall_policy",
+        "azurerm_network_ddos_protection_plan",
+        "azurerm_private_dns_zone",
+        "azurerm_private_dns_zone_virtual_network_link",
+        "azurerm_public_ip",
+        "azurerm_resource_group",
+        "azurerm_subnet",
+        "azurerm_virtual_network_gateway",
+        "azurerm_virtual_network_peering",
+        "azurerm_virtual_network",
+      ], k)]) ||
       var.custom_settings_by_resource_type == {} ||
       var.custom_settings_by_resource_type == null
     )
