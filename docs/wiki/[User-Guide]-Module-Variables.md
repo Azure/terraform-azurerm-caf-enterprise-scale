@@ -213,12 +213,11 @@ Default:
       enabled = true
       config = {
         email_security_contact             = "security_contact@replace_me"
-        enable_defender_for_acr            = true
         enable_defender_for_app_services   = true
         enable_defender_for_arm            = true
+        enable_defender_for_containers     = true
         enable_defender_for_dns            = true
         enable_defender_for_key_vault      = true
-        enable_defender_for_kubernetes     = true
         enable_defender_for_oss_databases  = true
         enable_defender_for_servers        = true
         enable_defender_for_sql_servers    = true
