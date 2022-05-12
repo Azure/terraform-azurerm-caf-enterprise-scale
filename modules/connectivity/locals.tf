@@ -657,7 +657,7 @@ locals {
         )
       )
       vpn_type      = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].vpn_type, "RouteBased")
-      enable_bgp    = coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.enable_bgp, false)
+      enable_bgp    = lower(hub_network.config.virtual_network_gateway.config.gateway_sku_vpn) == "basic" ? null : coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.enable_bgp, false)
       active_active = coalesce(hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.active_active, false)
       private_ip_address_enabled = (
         contains(
