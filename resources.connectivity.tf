@@ -206,7 +206,7 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
     content {
       # Optional attributes
       asn         = try(bgp_settings.value["asn"], null)
-      peer_weight = try(bgp_settings.value["private_ip_address_allocation"], null)
+      peer_weight = try(bgp_settings.value["peer_weight"], null)
 
       dynamic "peering_addresses" {
         for_each = try(bgp_settings.value["peering_addresses"], null)
