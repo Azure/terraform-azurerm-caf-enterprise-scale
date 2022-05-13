@@ -34,7 +34,7 @@ We need to ensure that every custom role we create has a unique value for "name"
 
 - The `New-Guid` PowerShell cmdlet
 - The *nix tool `uuidgen`
-- The `uuidv5` function that is built-in to Terraform. 
+- The `uuidv5` function that is built-in to Terraform.
 
 >NOTE: This isn't an exhaustive list. As long as the generated value is unique, the tool used isn't important.
 
