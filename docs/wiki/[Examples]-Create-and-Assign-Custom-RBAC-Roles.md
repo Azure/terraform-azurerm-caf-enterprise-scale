@@ -20,13 +20,13 @@ The files we will use are:
 - [lib/archetype_extension_es_root.tmpl.json](#libarchetype_extension_es_roottmpljson)
 - [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zones_tmpljson)
 
->IMPORTANT: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `lib`.
+>**IMPORTANT**: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `lib`.
 
 ## Create Role Definition File
 
 In your `lib` directory create a `role_definitions` subdirectory if you don't already have one. You can learn more about archetypes and custom libraries in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions).
 
->NOTE: Creating a `role_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom roles will still work.
+>**NOTE**: Creating a `role_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom roles will still work.
 
 In the `role_definitions` subdirectory, create a `role_definition_es_reader_support_tickets.tmpl.json` file. This file will contain the role definition for our `Reader Support Tickets` role.
 
@@ -36,7 +36,7 @@ We need to ensure that every custom role we create has a unique value for "name"
 - The *nix tool `uuidgen`
 - The `uuidv5` function that is built-in to Terraform.
 
->NOTE: This isn't an exhaustive list. As long as the generated value is unique, the tool used isn't important.
+>**NOTE**: This isn't an exhaustive list. As long as the generated value is unique, the tool used isn't important.
 
 In this example, we will use `New-Guid` to generate the name value for our `Reader-Support-Tickets` role definition. Using `New-Guid` is as simple as opening a PowerShell window and running the `New-Guid` cmdlet. It will then generate a unique value for you to use.
 
@@ -102,7 +102,7 @@ If you don't already have an `archetype_extension_es_landing_zones.tmpl.json` fi
 This code will assign your new `Reader-Support-Tickets` role to a group named `Contoso Reader and Support Tickets`.
 In order to assign the `Reader-Support-Tickets` role to the group, you need to use the groups objectID which can be located in Azure Active Directory.
 
->IMPORTANT: Due to how the module works, you must prefix your group name with the location at which it has been saved. In our example this would be `"[CONTOSO]"`.
+>**IMPORTANT**: Due to how the module works, you must prefix your group name with the location at which it has been saved. In our example this would be `"[CONTOSO]"`.
 If we had saved our role at the `es_landing_zones` scope then we would use a prefix of `"[CONTOSO-LANDING-ZONES]"`
 
 ### `lib/archetype_extension_es_landing_zones.tmpl.json`
@@ -123,6 +123,8 @@ If we had saved our role at the `es_landing_zones` scope then we would use a pre
   }
 }
 ```
+
+>**IMPORTANT**: Remember to replace the GUID in the code above with the objectID of the group you're assigning the role to in your own tenant.
 
 You should now kick-off your Terraform workflow (init, plan, apply) again to apply the updated configuration. This can be done either locally or through a pipeline.
 When your workflow has finished, the `Reader-Support-Tickets` role will be assigned to the `Contoso Reader and Support Tickets` group at the Landing Zones Management Group.
