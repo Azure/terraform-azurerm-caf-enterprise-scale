@@ -26,6 +26,7 @@ jobs:
         inputs:
           targetType: "inline"
           script: "make opa-values-generator"
+        working-directory: $(Build.Repository.LocalPath)/tests/scripts
 
       - task: Bash@3
         displayName: "[git merge changes]"
