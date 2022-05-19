@@ -42,7 +42,7 @@ elseif (($PWSH_OS -like "Darwin*") -and ($PWSH_PLATFORM -eq "Unix")) {
     Write-Output "Support for MacOS still in development. Please ensure pre-requisites are manually installed and re-run this script if errors occur due to missing software."
 }
 elseif (($PWSH_OS -like "Linux*") -and ($PWSH_PLATFORM -eq "Unix")) {
-    source opa-install-linux.sh
+    ./opa-install-linux.sh
 }
 
 Write-Output "`n"
