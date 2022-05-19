@@ -28,3 +28,6 @@ if [ ${#COMMIT_LOG} -gt 0 ]; then
 else
     echo "No changes found to commit."
 fi
+
+echo "==> Push changes..."
+git push origin
