@@ -6,10 +6,14 @@ set -e
 # - Run git commands to merge changes to branch
 #
 
-echo "==> Checking git status..."
+echo "==> Set git config..."
+git config user.name azure-devops
+git config user.email azuredevops@microsoft.com
+
+echo "==> Check git status..."
 git status --short --branch
 
-echo "==> Add changes to baseline_values.json files..."
+echo "==> Stage changes..."
 STATUS_LOG=$(git status --short | grep baseline_values.json)
 if [ ${#STATUS_LOG} -gt 0 ]; then
     git add --all ./tests/modules/*/baseline_values.json
