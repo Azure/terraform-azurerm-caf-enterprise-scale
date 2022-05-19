@@ -30,4 +30,4 @@ else
 fi
 
 echo "==> Push changes..."
-git push origin
+git push origin HEAD:$BUILD_SOURCEBRANCH
