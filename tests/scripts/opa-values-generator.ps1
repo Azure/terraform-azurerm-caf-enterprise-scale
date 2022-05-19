@@ -10,7 +10,8 @@
 
 # Parameters
 param (
-    [bool]$CONFIRM = $true
+    [string]$MODULE_BASE_PATH = $(Get-Location).Path,
+    [bool]$CLEANUP = $true
 )
 
 # #? Run a local test against a different module configuration:
@@ -18,11 +19,11 @@ param (
 # #* Copy paste the variables.tf file from deployment folder and adjust your main.tf
 ###############################################
 # #* Path of the tested Terraform module
-$BASE_PATH = $(Get-Location).Path
+
 $MODULE_PATHS = @(
-    "$($BASE_PATH)/../modules/test_001_baseline"
-    "$($BASE_PATH)/../modules/test_002_add_custom_core"
-    "$($BASE_PATH)/../modules/test_003_add_mgmt_conn"
+    "$($MODULE_BASE_PATH)/tests/modules/test_001_baseline"
+    "$($MODULE_BASE_PATH)/tests/modules/test_002_add_custom_core"
+    "$($MODULE_BASE_PATH)/tests/modules/test_003_add_mgmt_conn"
 )
 ###############################################
 
@@ -36,13 +37,13 @@ Write-Output "==> Platform : $PWSH_PLATFORM"
 Write-Output "`n"
 
 if (($PWSH_OS -like "*Windows*") -and ($PWSH_PLATFORM -eq "Win32NT")) {
-    ./opa-install-windows.ps1
+    . "$($MODULE_BASE_PATH)/tests/scripts/opa-install-windows.ps1"
 }
 elseif (($PWSH_OS -like "Darwin*") -and ($PWSH_PLATFORM -eq "Unix")) {
     Write-Output "Support for MacOS still in development. Please ensure pre-requisites are manually installed and re-run this script if errors occur due to missing software."
 }
 elseif (($PWSH_OS -like "Linux*") -and ($PWSH_PLATFORM -eq "Unix")) {
-    ./opa-install-linux.sh
+    . "$($MODULE_BASE_PATH)/tests/scripts/opa-install-linux.sh"
 }
 
 Write-Output "`n"
@@ -113,9 +114,9 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
     Write-Output "==> ($MODULE_NAME) - Testing azurerm_role_assignment resources..."
     conftest test "$TF_PLAN_OUT.json" -p ../../opa/policy/role_assignments.rego -d "$BASELINE_VALUES.json"
 
-    # Remove comments and $CONFIRM parameter for CMD prompt.
-    # $CONFIRM = Read-Host "Do you want to prepare files for repository (y/n)?"
-    if ($CONFIRM) {
+    # Remove comments and $CLEANUP parameter for CMD prompt.
+    # $CLEANUP = Read-Host "Do you want to prepare files for repository (y/n)?"
+    if ($CLEANUP) {
         Write-Output "`n"
         Remove-Item -Path "$TF_PLAN_OUT.json"
         Write-Output "==> ($MODULE_NAME) - $TF_PLAN_OUT.json has been removed"
@@ -130,6 +131,6 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
     }
 
     Write-Output "==> ($MODULE_NAME) - Return to scripts directory..."
-    Set-Location $BASE_PATH
+    Set-Location $MODULE_BASE_PATH
 
 }
