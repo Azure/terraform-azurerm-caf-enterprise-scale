@@ -64,9 +64,9 @@ opa-run-tests:
 
 opa-values-generator:
 	@echo "==> Running script..."
-	cd $BUILD_REPOSITORY_LOCALPATH/tests/scripts
+	cd "$(BUILD_REPOSITORY_LOCALPATH)/tests/scripts"
 	./opa-values-generator.ps1
-	cd $BUILD_REPOSITORY_LOCALPATH
+	cd "$(BUILD_REPOSITORY_LOCALPATH)"
 
 # Git Commands
 
