@@ -64,7 +64,7 @@ opa-run-tests:
 
 opa-values-generator:
 	@echo "==> Running script..."
-	./opa-values-generator.ps1
+	./tests/scripts/opa-values-generator.ps1
 
 # Git Commands
 
