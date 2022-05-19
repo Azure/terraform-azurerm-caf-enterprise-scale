@@ -18,6 +18,16 @@ variable "secondary_location" {
   default = "westeurope"
 }
 
+variable "subscription_id_connectivity" {
+  type    = string
+  default = ""
+}
+
+variable "subscription_id_management" {
+  type    = string
+  default = ""
+}
+
 variable "create_duration_delay" {
   type = map(string)
   default = {

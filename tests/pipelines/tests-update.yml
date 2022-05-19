@@ -14,21 +14,21 @@ jobs:
     displayName: "Update OPA baseline"
     steps:
       - task: Bash@3
-        displayName: "[az login]"
+        displayName: "Prepare OPA test environment"
         inputs:
           targetType: "inline"
-          script: "make az-login"
+          script: "make opa-update-prepare"
+
+      - task: PowerShell@2
+        displayName: "Update OPA baseline values"
+        inputs:
+          targetType: "inline"
+          script: "make opa-update-values"
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
-      - task: PowerShell@2
-        displayName: "[opa values generator]"
-        inputs:
-          targetType: "inline"
-          script: "make opa-values-generator"
-
       - task: Bash@3
-        displayName: "[git merge changes]"
+        displayName: "Merge changes to repository"
         inputs:
           targetType: "inline"
-          script: "make git-merge-changes"
+          script: "make opa-update-git"

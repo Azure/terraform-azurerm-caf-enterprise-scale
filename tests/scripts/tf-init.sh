@@ -37,6 +37,10 @@ echo "==> Creating providers_override.tf with subscription configuration and cre
 cat >providers_override.tf <<TFCONFIG
 provider "azurerm" {
   features {}
+}
+
+provider "azurerm" {
+  features {}
 
   alias                       = "connectivity"
   subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"

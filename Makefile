@@ -16,12 +16,6 @@ azp-spn-generator:
 	@echo "==> Running script..."
 	./tests/scripts/azp-spn-generator.sh
 
-# AZ CLI
-
-az-login:
-	@echo "==> Running script..."
-	./tests/scripts/az-login.sh
-
 # Terraform
 
 tf-install:
@@ -62,12 +56,14 @@ opa-run-tests:
 	@echo "==> Running script..."
 	./tests/scripts/opa-run-tests.sh
 
-opa-values-generator:
+opa-update-prepare:
 	@echo "==> Running script..."
-	./tests/scripts/opa-values-generator.ps1
+	./tests/scripts/opa-update-prepare.sh
 
-# Git Commands
-
-git-merge-changes:
+opa-update-values:
 	@echo "==> Running script..."
-	./tests/scripts/git-merge-changes.sh
+	./tests/scripts/opa-update-values.ps1
+
+opa-update-git:
+	@echo "==> Running script..."
+	./tests/scripts/opa-update-git.sh
