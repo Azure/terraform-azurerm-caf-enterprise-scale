@@ -21,6 +21,9 @@ else
     echo "No changes found to add."
 fi
 
+echo "==> Print git diff..."
+git diff --cached
+
 echo "==> Commit changes..."
 COMMIT_LOG=$(git diff --cached)
 if [ ${#COMMIT_LOG} -gt 0 ]; then
