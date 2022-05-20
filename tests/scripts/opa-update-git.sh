@@ -36,4 +36,4 @@ else
 fi
 
 echo "==> Push changes..."
-git push "$REPOSITORY_URI" "$SOURCE_BRANCH"
+git push "$REPOSITORY_URI" "$BUILD_SOURCEBRANCH":"$SOURCE_BRANCH"
