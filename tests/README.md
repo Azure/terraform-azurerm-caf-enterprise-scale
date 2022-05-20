@@ -6,6 +6,7 @@ Testing is currently performed in the following stages:
 1. Code Review (GitHub Actions)
 1. Unit Tests (Azure Pipelines)
 1. E2E Tests (Azure Pipelines)
+1. Update Test Baseline (Azure Pipelines)
 
 The decision to break testing up in this manner was to ensure developers get quick feedback when working on bug fixes and new features, whilst providing greater assurance that the latest updates work as expected and do not break existing functionality.
 
@@ -26,7 +27,8 @@ GitHub Super-Linter is configured to run checks against the full codebase using 
 | **Terraform** | [tflint](https://github.com/terraform-linters/tflint) / [terrascan](https://github.com/accurics/terrascan) |
 | **YAML** | [YamlLint](https://github.com/adrienverge/yamllint) |
 
-This is also a mandatory check on all PR's being raised against the `main` branch.
+The `Code Review` GitHub Action runs automatically upon each commit to branches in the repository (including forks) other than `main`, `patch-library` and `release/**`.
+This is also a mandatory check on all PR's being raised against the `main` branch, enforced using branch protection rules.
 
 ## Unit Tests (Azure Pipelines)
 
@@ -57,7 +59,20 @@ The Unit Tests consist of the following tasks:
 <sup>1</sup> *Each job uses a dedicated SPN (with certificate based authentication) to connect to Azure.*
 *This is to minimize the risk of API rate limiting when running highly parallel resource deployments in the pipeline.*
 
+The `Unit Tests` Azure Pipeline is a mandatory check on all PR's being raised against the `main` branch, enforced using branch protection rules.
+To maintain security of the test environment, the `Unit Tests` Azure Pipeline must be manually initiated by a repository Admin or Maintainer once the submitted code changes have been reviewed.
+This is a security step as outlined below in the [Why Azure Pipelines](#why-azure-pipelines) section of this page.
+
+To run the `Unit Tests` Azure Pipeline, a repository Admin or Maintainer can add the comment `/azp run unit` to the PR.
+
 ## E2E Tests (Azure Pipelines)
+
+In addition to the Unit Tests, we have a set of full end-to-end tests.
+These are based on the same test modules as the Unit Tests, but run a full cycle of resource deployments using `terraform apply`, followed by a clean-up using `terraform destroy`.
+
+The E2E Test workflow is designed to run the test modules in sequence, simulating an update scenario typical to how we might expect a customer to use this module.
+This approach gives assurance that the module works for both new deployments, and updates to existing deployments.
+It also allows us to verify that the module is able to successful destroy resources.
 
 The E2E Tests consist of the following tasks:
 
@@ -81,6 +96,35 @@ The E2E Tests consist of the following tasks:
 > *This is to minimize the risk of API rate limiting when running highly parallel resource deployments in the pipeline.*
 >
 > <sup>2</sup> *The* `terraform destroy` *task uses the* `always()` *condition to ensure the environment is cleaned-up if any of the previous tasks fail after a partial deployment.*
+
+The `E2E Tests` Azure Pipeline is an optional check for PR's being raised against the `main` branch.
+Although not enforced through branch protection rules, this test should always be run before merging any code changes to the repository which could impact the functionality of the module.
+This test can be skipped for PRs containing documentation changes only.
+To maintain security of the test environment, the `E2E Tests` Azure Pipeline must be manually initiated by a repository Admin or Maintainer once the submitted code changes have been reviewed.
+This is a security step as outlined below in the [Why Azure Pipelines](#why-azure-pipelines) section of this page.
+
+To run the `E2E Tests` Azure Pipeline, a repository Admin or Maintainer can add the comment `/azp run e2e` to the PR.
+
+## Update Test Baseline (Azure Pipelines)
+
+To provide a test baseline for the OPA checks within the `Unit Tests` Azure Pipeline, each test module contains a `baseline_values.json` file which is the JSON output of `terraform plan` containing a known good configuration.
+
+These files must be updated when changes are made to the module to ensure it reflects the new plan.
+
+The `Update Tests Baseline` Azure Pipeline ensures this is done in a consistent manner against the test environment.
+
+The E2E Tests consist of the following tasks:
+
+| *Task Name* | *Description* |
+| --- | --- |
+| **Checkout** | Set with `persistCredentials: true` to ensure the OAuth credentials used for accessing the GitHub repository are available for other tasks. |
+| **Update OPA baseline values** | Sequentially run through each test module, generating a Terraform plan to update the corresponding `baseline_values.json` files. |
+| **Merge changes to repository** | Runs `git` commands to ensure the updated `baseline_values.json` files are added to the PR when changes are detected. |
+
+To run the `Update Tests Baseline` Azure Pipeline, a repository Admin or Maintainer can add the comment `/azp run update` to the PR.
+This should be run before the `Unit Tests` Azure Pipeline, and the generated `git diff` must be reviewed to understand the impact of the changes on the plan.
+
+> **IMPORTANT:** If unexpected changes are observed in the `git diff` for any `baseline_values.json` files, the code should be reviewed and updated to ensure the module is functioning as expected.
 
 ## Why Azure Pipelines?
 
