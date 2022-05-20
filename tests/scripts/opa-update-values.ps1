@@ -58,6 +58,7 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
 
     $TF_PLAN_OUT = "$MODULE_PATH/terraform_plan"
     $BASELINE_VALUES = "$MODULE_PATH/baseline_values"
+    $AUTO_TFVARS_OUT = "$MODULE_PATH/opa.auto.tfvars.json"
     $MODULE_NAME = Split-Path $MODULE_PATH -Leaf
 
     Write-Output "==> ($MODULE_NAME) - Change to the module root directory..."
@@ -65,7 +66,7 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
 
     # Optionally auto-generate a set of TFVARS for the environment
     if ($GENERATE_AUTO_TFVARS) {
-        Write-Output "==> ($MODULE_NAME) - Generating opa.ignore.auto.tfvars.json..."
+        Write-Output "==> ($MODULE_NAME) - Generating auto.tfvars.json file..."
         $autoTfvars = [ordered]@{}
         if ($DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY) {
             $autoTfvars.add('subscription_id_connectivity', $DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY)
@@ -73,8 +74,8 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
         if ($DEFAULT_SUBSCRIPTION_ID_MANAGEMENT) {
             $autoTfvars.add('subscription_id_management', $DEFAULT_SUBSCRIPTION_ID_MANAGEMENT)
         }
-        # TFVARS save as JSON, must have `.auto.` to auto load, and `.ignore.` for git to ignore
-        $autoTfvars | ConvertTo-Json -Depth 10 | Out-File "$MODULE_PATH/opa.ignore.auto.tfvars.json"
+        $autoTfvars | ConvertTo-Json -Depth 10 | Out-File $AUTO_TFVARS_OUT
+        Write-Output "==> ($MODULE_NAME) - Saved file: $AUTO_TFVARS_OUT"
     }
 
     Write-Output "==> ($MODULE_NAME) - Initializing infrastructure..."
@@ -134,14 +135,21 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
     if ($CLEANUP) {
         Write-Output "`n"
         Remove-Item -Path "$TF_PLAN_OUT.json"
-        Write-Output "==> ($MODULE_NAME) - $TF_PLAN_OUT.json has been removed"
-        Write-Output "`n"
+        Write-Output "==> ($MODULE_NAME) - Removed file: $TF_PLAN_OUT.json"
     }
     else {
         Write-Warning -Message "($MODULE_NAME) - $TF_PLAN_OUT.json  can contain sensitive data"
         Write-Warning -Message "($MODULE_NAME) - Exposing $TF_PLAN_OUT.json in a repository can cause security breach"
         Write-Output "`n"
         Write-Output "($MODULE_NAME) - From within your terraform root module: conftest test $TF_PLAN_OUT.json -p ../../opa/policy/  -d $BASELINE_VALUES.json"
+        Write-Output "`n"
+    }
+    if ($CLEANUP -and $GENERATE_AUTO_TFVARS) {
+        Remove-Item -Path $AUTO_TFVARS_OUT
+        Write-Output "==> ($MODULE_NAME) - Removed file: $AUTO_TFVARS_OUT"
+    }
+    elseif ($GENERATE_AUTO_TFVARS) {
+        Write-Output "($MODULE_NAME) - Consider deleting $AUTO_TFVARS_OUT to avoid unexpected planned values."
         Write-Output "`n"
     }
 
