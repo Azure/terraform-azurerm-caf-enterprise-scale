@@ -11,7 +11,7 @@
 # Parameters
 param (
     [string]$MODULE_BASE_PATH = $(Get-Location).Path,
-    [bool]$GENERATE_AUTO_TFVARS = $false,
+    [switch]$GENERATE_AUTO_TFVARS,
     [bool]$CLEANUP = $true
 )
 
