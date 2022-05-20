@@ -68,11 +68,11 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
     if ($GENERATE_AUTO_TFVARS) {
         Write-Output "==> ($MODULE_NAME) - Generating auto.tfvars.json file..."
         $autoTfvars = [ordered]@{}
-        if ($DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY) {
-            $autoTfvars.add('subscription_id_connectivity', $DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY)
+        if ($DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY -or $env:DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY) {
+            $autoTfvars.add('subscription_id_connectivity', $DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY ?? $env:DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY)
         }
-        if ($DEFAULT_SUBSCRIPTION_ID_MANAGEMENT) {
-            $autoTfvars.add('subscription_id_management', $DEFAULT_SUBSCRIPTION_ID_MANAGEMENT)
+        if ($DEFAULT_SUBSCRIPTION_ID_MANAGEMENT -or $env:DEFAULT_SUBSCRIPTION_ID_MANAGEMENT) {
+            $autoTfvars.add('subscription_id_management', $DEFAULT_SUBSCRIPTION_ID_MANAGEMENT ?? $env:DEFAULT_SUBSCRIPTION_ID_MANAGEMENT)
         }
         $autoTfvars | ConvertTo-Json -Depth 10 | Out-File $AUTO_TFVARS_OUT
         Write-Output "==> ($MODULE_NAME) - Saved file: $AUTO_TFVARS_OUT"
