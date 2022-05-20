@@ -76,6 +76,9 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
         }
         $autoTfvars | ConvertTo-Json -Depth 10 | Out-File $AUTO_TFVARS_OUT
         Write-Output "==> ($MODULE_NAME) - Saved file: $AUTO_TFVARS_OUT"
+        Write-Output "`n"
+        Get-Content -Path $AUTO_TFVARS_OUT
+        Write-Output "`n"
     }
 
     Write-Output "==> ($MODULE_NAME) - Initializing infrastructure..."
