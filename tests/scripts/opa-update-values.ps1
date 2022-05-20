@@ -65,6 +65,7 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
 
     # Optionally auto-generate a set of TFVARS for the environment
     if ($GENERATE_AUTO_TFVARS) {
+        Write-Output "==> ($MODULE_NAME) - Generating opa.ignore.auto.tfvars.json..."
         $autoTfvars = [ordered]@{}
         if ($DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY) {
             $autoTfvars.add('subscription_id_connectivity', $DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY)

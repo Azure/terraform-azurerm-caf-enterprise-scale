@@ -58,7 +58,7 @@ opa-run-tests:
 
 opa-update-values:
 	@echo "==> Running script..."
-	./tests/scripts/opa-update-values.ps1
+	./tests/scripts/opa-update-values.ps1 -GENERATE_AUTO_TFVARS 1
 
 opa-update-git:
 	@echo "==> Running script..."
