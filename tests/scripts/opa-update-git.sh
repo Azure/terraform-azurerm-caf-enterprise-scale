@@ -19,7 +19,7 @@ git fetch upstream
 
 echo "==> Checkout source branch"
 SOURCE_BRANCH="${SYSTEM_PULLREQUEST_SOURCEBRANCH:-$BUILD_SOURCEBRANCH}"
-git checkout -B "$SOURCE_BRANCH" -t upstream/"$SOURCE_BRANCH"
+git checkout -B "$SOURCE_BRANCH" -t "upstream/$SOURCE_BRANCH"
 
 echo "==> Check git status..."
 git status --short --branch
