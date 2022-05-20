@@ -56,10 +56,6 @@ opa-run-tests:
 	@echo "==> Running script..."
 	./tests/scripts/opa-run-tests.sh
 
-opa-update-prepare:
-	@echo "==> Running script..."
-	./tests/scripts/opa-update-prepare.sh
-
 opa-update-values:
 	@echo "==> Running script..."
 	./tests/scripts/opa-update-values.ps1

@@ -22,12 +22,6 @@ jobs:
           targetType: "inline"
           script: "env | sort"
 
-      - task: Bash@3
-        displayName: "Prepare OPA test environment"
-        inputs:
-          targetType: "inline"
-          script: "make opa-update-prepare"
-
       - task: PowerShell@2
         displayName: "Update OPA baseline values"
         inputs:

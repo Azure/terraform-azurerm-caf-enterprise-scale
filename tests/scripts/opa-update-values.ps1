@@ -11,6 +11,7 @@
 # Parameters
 param (
     [string]$MODULE_BASE_PATH = $(Get-Location).Path,
+    [bool]$GENERATE_AUTO_TFVARS = $false,
     [bool]$CLEANUP = $true
 )
 
@@ -61,6 +62,19 @@ foreach ($MODULE_PATH in $MODULE_PATHS) {
 
     Write-Output "==> ($MODULE_NAME) - Change to the module root directory..."
     Set-Location $MODULE_PATH
+
+    # Optionally auto-generate a set of TFVARS for the environment
+    if ($GENERATE_AUTO_TFVARS) {
+        $autoTfvars = [ordered]@{}
+        if ($DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY) {
+            $autoTfvars.add('subscription_id_connectivity', $DEFAULT_SUBSCRIPTION_ID_CONNECTIVITY)
+        }
+        if ($DEFAULT_SUBSCRIPTION_ID_MANAGEMENT) {
+            $autoTfvars.add('subscription_id_management', $DEFAULT_SUBSCRIPTION_ID_MANAGEMENT)
+        }
+        # TFVARS save as JSON, must have `.auto.` to auto load, and `.ignore.` for git to ignore
+        $autoTfvars | ConvertTo-Json -Depth 10 | Out-File "$MODULE_PATH/opa.ignore.auto.tfvars.json"
+    }
 
     Write-Output "==> ($MODULE_NAME) - Initializing infrastructure..."
     terraform init -upgrade
