@@ -13,6 +13,9 @@ echo "==> Set git config..."
 git config user.name azure-devops
 git config user.email azuredevops@microsoft.com
 
+echo "==> Switch to branch..."
+git switch -c patch-opa
+
 echo "==> Check git status..."
 git status --short --branch
 
@@ -36,4 +39,4 @@ else
 fi
 
 echo "==> Push changes..."
-git push "$REPOSITORY_URI" "$BUILD_SOURCEBRANCH":"$SOURCE_BRANCH"
+git push "$REPOSITORY_URI" patch-opa:"$SOURCE_BRANCH"
