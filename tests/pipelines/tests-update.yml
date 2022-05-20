@@ -15,6 +15,13 @@ jobs:
     steps:
       - checkout: self
         persistCredentials: true
+
+      - task: Bash@3
+        displayName: "Show environment variables"
+        inputs:
+          targetType: "inline"
+          script: "env | sort"
+
       - task: Bash@3
         displayName: "Prepare OPA test environment"
         inputs:
