@@ -128,9 +128,10 @@ This should be run before the `Unit Tests` Azure Pipeline, and the generated `gi
 
 ## Why Azure Pipelines?
 
-The Unit Tests and E2E Tests need valid Azure credentials to authenticate with the Azure platform for Terraform to work.
+The Unit Tests, E2E Tests, and Update Test Baseline workflows need valid Azure credentials to authenticate with the Azure platform for Terraform to work.
 These tests are run on Azure Pipelines as a security measure, allowing contributed code from forked repositories to be reviewed before tests are manually triggered by a repository contributor using [comment triggers](https://docs.microsoft.com/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#comment-triggers).
-Although GitHub Actions could technically run these jobs, GitHub prevents access to secrets for jobs triggered from forks.
+Although GitHub Actions could technically run these jobs, GitHub prevents access to secrets for jobs triggered from forks as s security measure.
+Using this approach ensures a repository Admin or Maintainer is always in control of code changes being run against our test environment.
 
 ## Multi-job configuration (`matrix` strategy)
 
