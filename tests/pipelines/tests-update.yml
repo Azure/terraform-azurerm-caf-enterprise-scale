@@ -16,6 +16,12 @@ jobs:
       - checkout: self
         persistCredentials: true
 
+      - task: Bash@3
+        displayName: "Show environment variables"
+        inputs:
+          targetType: "inline"
+          script: "env | sort"
+
       - task: PowerShell@2
         displayName: "Update OPA baseline values"
         inputs:
