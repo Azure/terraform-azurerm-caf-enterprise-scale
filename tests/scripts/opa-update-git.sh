@@ -9,6 +9,9 @@ set -e
 REPOSITORY_URI="${SYSTEM_PULLREQUEST_SOURCEREPOSITORYURI:-$BUILD_REPOSITORY_URI}"
 SOURCE_BRANCH="${SYSTEM_PULLREQUEST_SOURCEBRANCH:-$BUILD_SOURCEBRANCH}"
 
+echo "==> Test GH CLI auth status"
+gh auth status
+
 echo "==> Set git config..."
 git config user.name azure-devops
 git config user.email azuredevops@microsoft.com
