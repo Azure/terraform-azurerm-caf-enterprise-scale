@@ -10,7 +10,7 @@ REPOSITORY_URI="${SYSTEM_PULLREQUEST_SOURCEREPOSITORYURI:-$BUILD_REPOSITORY_URI}
 SOURCE_BRANCH="${SYSTEM_PULLREQUEST_SOURCEBRANCH:-$BUILD_SOURCEBRANCH}"
 
 echo "==> Test GH CLI auth status"
-gh auth status
+gh auth login
 
 echo "==> Set git config..."
 git config user.name azure-devops
