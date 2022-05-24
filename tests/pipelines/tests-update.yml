@@ -34,6 +34,13 @@ jobs:
           targetType: "inline"
           script: "make opa-update-check-pr"
 
+      - task: Bash@3
+        displayName: "Checkout PR"
+        inputs:
+          targetType: "inline"
+          script: "gh pr checkout $(System.PullRequest.PullRequestNumber)"
+        timeoutInMinutes: 10
+
       - task: PowerShell@2
         displayName: "Update OPA baseline values"
         inputs:
@@ -43,7 +50,13 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
       - task: Bash@3
-        displayName: "Merge changes to repository"
+        displayName: "Merge changes locally"
         inputs:
           targetType: "inline"
           script: "make opa-update-git"
+
+      - task: Bash@3
+        displayName: "Push changes to PR"
+        inputs:
+          targetType: "inline"
+          script: echo "nothing to do yet!"
