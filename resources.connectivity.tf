@@ -213,8 +213,6 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
         content {
           ip_configuration_name = try(peering_addresses.value["ip_configuration_name"], null)
           apipa_addresses       = try(peering_addresses.value["apipa_addresses"], null)
-          default_addresses     = try(peering_addresses.value["default_addresses"], null)
-          tunnel_ip_addresses   = try(peering_addresses.value["tunnel_ip_addresses"], null)
         }
       }
     }
