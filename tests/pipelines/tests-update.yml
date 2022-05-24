@@ -53,4 +53,4 @@ jobs:
         displayName: "Push changes to PR"
         inputs:
           targetType: "inline"
-          script: echo "nothing to do yet!"
+          script: "git push"
