@@ -209,12 +209,10 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
       peer_weight = try(bgp_settings.value["peer_weight"], null)
 
       dynamic "peering_addresses" {
-        for_each = try(bgp_settings.value["peering_addresses"], null)
+        for_each = try(bgp_settings.value["peering_addresses"], local.empty_list)
         content {
           ip_configuration_name = try(peering_addresses.value["ip_configuration_name"], null)
           apipa_addresses       = try(peering_addresses.value["apipa_addresses"], null)
-          default_addresses     = try(peering_addresses.value["default_addresses"], null)
-          tunnel_ip_addresses   = try(peering_addresses.value["tunnel_ip_addresses"], null)
         }
       }
     }
@@ -266,17 +264,14 @@ resource "azurerm_firewall_policy" "connectivity" {
     }
   }
 
-  # `identity_ids` replaces `user_assigned_identity_ids` in `v3.0.0` of
-  # the provider, so leaving this block commented out until the module
-  # is updated to support this.
-  # dynamic "identity" {
-  #   for_each = each.value.template.identity
-  #   content {
-  #     # Mandatory attributes
-  #     type         = identity.value.type
-  #     identity_ids = identity.value.identity_ids
-  #   }
-  # }
+  dynamic "identity" {
+    for_each = each.value.template.identity
+    content {
+      # Mandatory attributes
+      type         = identity.value.type
+      identity_ids = identity.value.identity_ids
+    }
+  }
 
   dynamic "insights" {
     for_each = each.value.template.insights
