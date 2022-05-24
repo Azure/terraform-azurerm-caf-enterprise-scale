@@ -27,7 +27,7 @@ jobs:
       REPOSITORY_URI: $[ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] ]
       SOURCE_BRANCH: $[ dependencies.get_pr_details.outputs['getPR.SOURCE_BRANCH'] ]
     steps:
-      - checkout: $[ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] ]
+      - checkout: ${{ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] }}
         persistCredentials: true
 
       - task: Bash@3
