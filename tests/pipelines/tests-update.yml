@@ -29,12 +29,6 @@ jobs:
         timeoutInMinutes: 10
 
       - task: Bash@3
-        displayName: "Get details from PR"
-        inputs:
-          targetType: "inline"
-          script: "make opa-update-check-pr"
-
-      - task: Bash@3
         displayName: "Checkout PR"
         inputs:
           targetType: "inline"
