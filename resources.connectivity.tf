@@ -209,7 +209,7 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
       peer_weight = try(bgp_settings.value["peer_weight"], null)
 
       dynamic "peering_addresses" {
-        for_each = try(bgp_settings.value["peering_addresses"], null)
+        for_each = try(bgp_settings.value["peering_addresses"], local.empty_list)
         content {
           ip_configuration_name = try(peering_addresses.value["ip_configuration_name"], null)
           apipa_addresses       = try(peering_addresses.value["apipa_addresses"], null)
