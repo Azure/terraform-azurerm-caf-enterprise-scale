@@ -53,4 +53,4 @@ jobs:
         displayName: "Push changes to PR"
         inputs:
           targetType: "inline"
-          script: "git push"
+          script: "gh repo sync"
