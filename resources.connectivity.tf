@@ -264,17 +264,14 @@ resource "azurerm_firewall_policy" "connectivity" {
     }
   }
 
-  # `identity_ids` replaces `user_assigned_identity_ids` in `v3.0.0` of
-  # the provider, so leaving this block commented out until the module
-  # is updated to support this.
-  # dynamic "identity" {
-  #   for_each = each.value.template.identity
-  #   content {
-  #     # Mandatory attributes
-  #     type         = identity.value.type
-  #     identity_ids = identity.value.identity_ids
-  #   }
-  # }
+  dynamic "identity" {
+    for_each = each.value.template.identity
+    content {
+      # Mandatory attributes
+      type         = identity.value.type
+      identity_ids = identity.value.identity_ids
+    }
+  }
 
   dynamic "insights" {
     for_each = each.value.template.insights
