@@ -10,42 +10,31 @@ variables:
   - group: csu-tf-environment
 
 jobs:
-  - job: get_pr_details
-    displayName: "Get PR details from GitHub"
-    steps:
-      - task: Bash@3
-        name: getPR
-        displayName: "Query GitHub API"
-        inputs:
-          targetType: "inline"
-          script: "make opa-update-check-pr"
-
   - job: update_opa_baseline
-    dependsOn: get_pr_details
     displayName: "Update OPA baseline"
-    variables:
-      REPOSITORY_URI: $[ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] ]
-      SOURCE_BRANCH: $[ dependencies.get_pr_details.outputs['getPR.SOURCE_BRANCH'] ]
     steps:
-      - checkout: ${{ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] }}
-        persistCredentials: true
-
       - task: Bash@3
-        name: showEnv
         displayName: "Show environment variables"
         inputs:
           targetType: "inline"
           script: "env | sort"
 
       - task: Bash@3
-        name: getPR
+        displayName: "Authenticate GitHub CLI"
+        inputs:
+          targetType: "inline"
+          script: |
+            echo "==> Please note that you have 10 minutes to complete authentication..."
+            gh auth login
+        timeoutInMinutes: 10
+
+      - task: Bash@3
         displayName: "Get details from PR"
         inputs:
           targetType: "inline"
           script: "make opa-update-check-pr"
 
       - task: PowerShell@2
-        name: updateBaseline
         displayName: "Update OPA baseline values"
         inputs:
           targetType: "inline"
@@ -54,7 +43,6 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
       - task: Bash@3
-        name: mergeChanges
         displayName: "Merge changes to repository"
         inputs:
           targetType: "inline"
