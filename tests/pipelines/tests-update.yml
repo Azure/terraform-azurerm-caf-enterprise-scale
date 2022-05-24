@@ -17,12 +17,26 @@ jobs:
         persistCredentials: true
 
       - task: Bash@3
+        name: showEnv
         displayName: "Show environment variables"
         inputs:
           targetType: "inline"
           script: "env | sort"
 
+      - task: Bash@3
+        name: getPR
+        displayName: "Get details from PR"
+        inputs:
+          targetType: "inline"
+          script: "make opa-update-check-pr"
+
+      - checkout: $(getPR.REPOSITORY_URI)
+        name: checkoutSource
+        displayName: "Checkout PR source repository"
+        persistCredentials: true
+
       - task: PowerShell@2
+        name: updateBaseline
         displayName: "Update OPA baseline values"
         inputs:
           targetType: "inline"
@@ -31,6 +45,7 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
       - task: Bash@3
+        name: mergeChanges
         displayName: "Merge changes to repository"
         inputs:
           targetType: "inline"
