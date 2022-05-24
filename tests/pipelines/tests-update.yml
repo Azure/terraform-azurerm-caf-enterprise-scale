@@ -30,7 +30,7 @@ jobs:
           targetType: "inline"
           script: "make opa-update-check-pr"
 
-      - checkout: $(getPR.REPOSITORY_URI)
+      - checkout: $[ getPR.REPOSITORY_URI ]
         name: checkoutSource
         displayName: "Checkout PR source repository"
         persistCredentials: true
