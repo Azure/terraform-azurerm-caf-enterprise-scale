@@ -10,10 +10,24 @@ variables:
   - group: csu-tf-environment
 
 jobs:
-  - job: update_opa_baseline
-    displayName: "Update OPA baseline"
+  - job: get_pr_details
+    displayName: "Get PR details from GitHub"
     steps:
-      - checkout: self
+      - task: Bash@3
+        name: getPR
+        displayName: "Query GitHub API"
+        inputs:
+          targetType: "inline"
+          script: "make opa-update-check-pr"
+
+  - job: update_opa_baseline
+    dependsOn: get_pr_details
+    displayName: "Update OPA baseline"
+    variables:
+      REPOSITORY_URI: $[ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] ]
+      SOURCE_BRANCH: $[ dependencies.get_pr_details.outputs['getPR.SOURCE_BRANCH'] ]
+    steps:
+      - checkout: $[ dependencies.get_pr_details.outputs['getPR.REPOSITORY_URI'] ]
         persistCredentials: true
 
       - task: Bash@3
@@ -29,11 +43,6 @@ jobs:
         inputs:
           targetType: "inline"
           script: "make opa-update-check-pr"
-
-      - checkout: $[ getPR.REPOSITORY_URI ]
-        name: checkoutSource
-        displayName: "Checkout PR source repository"
-        persistCredentials: true
 
       - task: PowerShell@2
         name: updateBaseline
