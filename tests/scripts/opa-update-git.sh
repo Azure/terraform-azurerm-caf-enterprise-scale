@@ -7,11 +7,14 @@ set -e
 #
 
 echo "==> Set git config..."
-git config user.name azure-devops
-git config user.email azuredevops@microsoft.com
+git config user.name github-actions
+git config user.email action@github.com
 
 echo "==> Check git status..."
 git status --short --branch
+
+echo "==> Check git remotes..."
+git remote --verbose
 
 echo "==> Stage changes..."
 STATUS_LOG=$(git status --short | grep baseline_values.json)
