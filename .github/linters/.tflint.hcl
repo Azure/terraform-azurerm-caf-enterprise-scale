@@ -1,5 +1,5 @@
 config {
-  module = true
+  module     = true
   plugin_dir = "/root/.tflint.d/plugins"
 }
 
