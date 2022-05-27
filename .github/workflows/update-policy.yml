@@ -74,8 +74,8 @@ jobs:
       - name: Check for changes
         id: git_status
         run: |
-          CHECK_GIT_STATUS=($(git status -s))
-          git status -s
+          mapfile -t CHECK_GIT_STATUS < <(git status -s)
+          printf "%s\n" "${CHECK_GIT_STATUS[@]}"
           echo "::set-output name=changes::${#CHECK_GIT_STATUS[@]}"
         working-directory: ${{ github.repository }}
 
