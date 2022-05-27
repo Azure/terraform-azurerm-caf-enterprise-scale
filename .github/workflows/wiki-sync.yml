@@ -1,5 +1,7 @@
+---
 name: Docs/Wiki Sync
 
+# yamllint disable-line rule:truthy
 on:
   release:
     types: [published]
