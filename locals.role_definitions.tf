@@ -5,7 +5,7 @@ locals {
     for archetype in values(module.management_group_archetypes) :
     archetype.configuration.azurerm_role_definition
   ])
-  es_role_definitions_by_subscription = []
+  es_role_definitions_by_subscription = local.empty_list
   es_role_definitions = concat(
     local.es_role_definitions_by_management_group,
     local.es_role_definitions_by_subscription,

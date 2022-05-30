@@ -27,7 +27,7 @@ locals {
 locals {
   builtin_library_path          = "${path.module}/lib"
   custom_library_path_specified = try(length(local.library_path) > 0, false)
-  custom_library_path           = local.custom_library_path_specified ? replace(local.library_path, "//$/", "") : null
+  custom_library_path           = local.custom_library_path_specified ? replace(local.library_path, "//$/", local.empty_string) : null
 }
 
 # The following locals are used to define base Azure

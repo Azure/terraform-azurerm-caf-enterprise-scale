@@ -5,21 +5,24 @@ name: Update Library Templates
 #   schedule:
 #     - cron: '0 12 1 * *'
 
-on: workflow_dispatch
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch: {}
 
 env:
   remote_repository: "Azure/Enterprise-Scale"
   branch_name: "patch-library"
   az_accounts_minimum_version: "2.2.3"
   pr_title: "Update Library Templates (automated)"
-  pr_body: "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\nPlease review the 'files changed' tab to review changes."
+  pr_body:
+    "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\n
+    Please review the 'files changed' tab to review changes."
 
 jobs:
   update-templates:
     name: Update Library Templates
     runs-on: ubuntu-latest
     steps:
-
       - name: Local repository checkout
         uses: actions/checkout@v2
         with:
@@ -71,8 +74,8 @@ jobs:
       - name: Check for changes
         id: git_status
         run: |
-          CHECK_GIT_STATUS=($(git status -s))
-          git status -s
+          mapfile -t CHECK_GIT_STATUS < <(git status -s)
+          printf "%s\n" "${CHECK_GIT_STATUS[@]}"
           echo "::set-output name=changes::${#CHECK_GIT_STATUS[@]}"
         working-directory: ${{ github.repository }}
 

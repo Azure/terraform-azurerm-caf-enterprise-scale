@@ -335,17 +335,3 @@ locals {
     if contains(keys(azurerm_management_group.level_5), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
   }
 }
-
-# The following local is used to merge the Management Group
-# configuration from each level back into a single data
-# object to return in the module outputs.
-locals {
-  es_management_group_output = merge(
-    azurerm_management_group.level_1,
-    azurerm_management_group.level_2,
-    azurerm_management_group.level_3,
-    azurerm_management_group.level_4,
-    azurerm_management_group.level_5,
-    azurerm_management_group.level_6,
-  )
-}

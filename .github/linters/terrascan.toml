@@ -1,0 +1,16 @@
+# terrascan configuration file https://github.com/accurics/terrascan/blob/master/config/terrascan.toml
+
+# scan and skip rules configuration
+[rules]
+    # scan rules (list of rules to scan, adding rules here will override rules in the policy path)
+    # scan-rules = [
+    #     "AWS.S3Bucket.DS.High.1043",
+    #     "AWS.S3Bucket.IAM.High.0370"
+    # ]
+
+    # skip rules (list of rules to skip)
+    skip-rules = [
+        # The following rules are being tracked to determine the right outcome
+        "AC_AZURE_0389", # Ensure that Azure Resource Group has resource lock enabled (GitHub Issue #388)
+        "AC_AZURE_0356" # Ensure that Azure Virtual Network subnet is configured with a Network Security Group (GitHub Issue #389)
+    ]

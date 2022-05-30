@@ -1,5 +1,7 @@
+---
 name: Docs/Wiki Sync
 
+# yamllint disable-line rule:truthy
 on:
   release:
     types: [published]
@@ -33,8 +35,8 @@ jobs:
 
       - name: Configure Local Git
         run: |
-          git config --global user.name $github_user_name
-          git config --global user.email $github_email
+          git config --global user.name "$github_user_name"
+          git config --global user.email "$github_email"
         working-directory: ${{ env.GITHUB_WORKSPACE }}
 
       - name: Sync docs/wiki Into Wiki Repo
@@ -46,5 +48,5 @@ jobs:
         run: |
           git add .
           git commit -m "$github_commit_message [$GITHUB_ACTOR/${GITHUB_SHA::8}]"
-          git push --set-upstream https://$GITHUB_TOKEN@github.com/$wiki_target_repo.git master
+          git push --set-upstream "https://$GITHUB_TOKEN@github.com/$wiki_target_repo.git" master
         working-directory: ${{ env.wiki_target_repo }}
