@@ -5,7 +5,7 @@ locals {
     for archetype in values(module.management_group_archetypes) :
     archetype.configuration.azurerm_policy_assignment
   ])
-  es_policy_assignments_by_subscription = []
+  es_policy_assignments_by_subscription = local.empty_list
   es_policy_assignments = concat(
     local.es_policy_assignments_by_management_group,
     local.es_policy_assignments_by_subscription,

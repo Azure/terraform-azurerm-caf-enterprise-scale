@@ -36,11 +36,10 @@ resource "azurerm_subscription_template_deployment" "telemetry_connectivity" {
 
 # This is the identity module telemetry deployment that is only created if telemetry is enabled.
 # It is deployed to the identity subscription
-# Disabled until identity resources are added to the module
-/* resource "azurerm_subscription_template_deployment" "telemetry_identity" {
+resource "azurerm_subscription_template_deployment" "telemetry_identity" {
   count            = local.telem_identity_deployment_enabled ? 1 : 0
-  provider         = azurerm.identity
+  provider         = azurerm # azurerm.identity # Must update once enabled
   name             = local.telem_identity_arm_deployment_name
   location         = local.default_location
   template_content = local.telem_arm_subscription_template_content
-} */
+}

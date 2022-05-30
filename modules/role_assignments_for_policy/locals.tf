@@ -1,10 +1,3 @@
-# The following block of locals are used to avoid using
-# empty object types in the code
-locals {
-  empty_list = []
-  empty_map  = {}
-}
-
 # The following locals are used to convert provided input
 # variables to locals before use elsewhere in the module
 locals {

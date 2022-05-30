@@ -1,7 +1,9 @@
 # The following block of locals are used to avoid using
 # empty object types in the code.
 locals {
-  empty_map = {}
+  empty_list   = []
+  empty_map    = {}
+  empty_string = ""
 }
 
 # Convert the input vars to locals, applying any required
@@ -41,8 +43,8 @@ locals {
         }
         Deploy-VM-Backup = {
           effect            = "deployIfNotExists"
-          exclusionTagName  = ""
-          exclusionTagValue = []
+          exclusionTagName  = local.empty_string
+          exclusionTagValue = local.empty_list
         }
       }
       enforcement_mode = {

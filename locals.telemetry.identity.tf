@@ -35,6 +35,7 @@ locals {
 }
 
 # Condition to determine whether we create the management telemetry deployment
+# Disabled until identity resources are added to the module
 locals {
-  telem_identity_deployment_enabled = !local.disable_telemetry && local.deploy_identity_resources
+  telem_identity_deployment_enabled = false # !local.disable_telemetry && local.deploy_identity_resources
 }
