@@ -6,19 +6,19 @@ locals {
 
 # Load the custom archetype definitions from the custom library path if specified
 locals {
-  custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.{json,json.tftpl}")) : []
-  custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : []
+  custom_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.{json,json.tftpl}")) : local.empty_list
+  custom_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_definition_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : local.empty_list
 }
 # Load the archetype definition extensions
 locals {
-  extend_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.{json,json.tftpl}")) : []
-  extend_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : []
+  extend_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.{json,json.tftpl}")) : local.empty_list
+  extend_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_extension_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : local.empty_list
 }
 
 # Load the archetype definition exclusions
 locals {
-  exclude_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.{json,json.tftpl}")) : []
-  exclude_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : []
+  exclude_archetype_definitions_json = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.{json,json.tftpl}")) : local.empty_list
+  exclude_archetype_definitions_yaml = local.custom_library_path_specified ? tolist(fileset(local.custom_library_path, "**/archetype_exclusion_*.{yml,yml.tftpl,yaml,yaml.tftpl}")) : local.empty_list
 }
 
 # Create datasets containing all built-in and custom archetype definitions from each source and file type

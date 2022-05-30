@@ -70,12 +70,12 @@ locals {
   virtual_hubs_by_location_for_managed_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
     coalesce(virtual_hub.config.location, local.location) => virtual_hub
-    if local.existing_virtual_wan_resource_id == ""
+    if local.existing_virtual_wan_resource_id == local.empty_string
   }
   virtual_hubs_by_location_for_existing_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
     coalesce(virtual_hub.config.location, local.location) => virtual_hub
-    if local.existing_virtual_wan_resource_id != ""
+    if local.existing_virtual_wan_resource_id != local.empty_string
   }
   # Need to know the full list of virtual_hub_locations
   # for azurerm_virtual_hub resource deployments.
@@ -192,7 +192,7 @@ locals {
     location =>
     local.deploy_hub_network[location] &&
     hub_network.config.azure_firewall.enabled &&
-    length(try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, "")) == 0
+    length(try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, local.empty_string)) == 0
   }
   deploy_azure_firewall = {
     for location, hub_network in local.hub_networks_by_location :
@@ -216,7 +216,7 @@ locals {
   deploy_virtual_wan = {
     (local.location) = (
       local.enabled &&
-      local.existing_virtual_wan_resource_id == "" &&
+      local.existing_virtual_wan_resource_id == local.empty_string &&
       anytrue(values(local.deploy_virtual_hub))
     )
   }
@@ -243,7 +243,7 @@ locals {
     location =>
     local.deploy_virtual_hub[location] &&
     virtual_hub.config.azure_firewall.enabled &&
-    length(try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, "")) == 0
+    length(try(local.custom_settings.azurerm_firewall["virtual_wan"][location].firewall_policy_id, local.empty_string)) == 0
   }
   deploy_virtual_hub_azure_firewall = {
     for location, virtual_hub in local.virtual_hubs_by_location :
@@ -668,7 +668,7 @@ locals {
         : null
       )
       default_local_network_gateway_id = (
-        hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.default_local_network_gateway_id != ""
+        hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.default_local_network_gateway_id != local.empty_string
         ? hub_network.config.virtual_network_gateway.config.advanced_vpn_settings.default_local_network_gateway_id
         : null
       )
@@ -1324,47 +1324,47 @@ locals {
     azure_cache_for_redis            = ["privatelink.redis.cache.windows.net"]
   }
   lookup_private_link_group_id_by_service = {
-    azure_automation_webhook             = ""
-    azure_automation_dscandhybridworker  = ""
+    azure_automation_webhook             = local.empty_string
+    azure_automation_dscandhybridworker  = local.empty_string
     azure_sql_database_sqlserver         = "sqlServer"
-    azure_synapse_analytics_sqlserver    = ""
-    azure_synapse_analytics_sql          = ""
+    azure_synapse_analytics_sqlserver    = local.empty_string
+    azure_synapse_analytics_sql          = local.empty_string
     storage_account_blob                 = "blob"
     storage_account_table                = "table"
     storage_account_queue                = "queue"
     storage_account_file                 = "file"
     storage_account_web                  = "web"
     azure_data_lake_file_system_gen2     = "dfs"
-    azure_cosmos_db_sql                  = ""
-    azure_cosmos_db_mongodb              = ""
-    azure_cosmos_db_cassandra            = ""
-    azure_cosmos_db_gremlin              = ""
-    azure_cosmos_db_table                = ""
-    azure_database_for_postgresql_server = ""
-    azure_database_for_mysql_server      = ""
-    azure_database_for_mariadb_server    = ""
+    azure_cosmos_db_sql                  = local.empty_string
+    azure_cosmos_db_mongodb              = local.empty_string
+    azure_cosmos_db_cassandra            = local.empty_string
+    azure_cosmos_db_gremlin              = local.empty_string
+    azure_cosmos_db_table                = local.empty_string
+    azure_database_for_postgresql_server = local.empty_string
+    azure_database_for_mysql_server      = local.empty_string
+    azure_database_for_mariadb_server    = local.empty_string
     azure_key_vault                      = "vault"
-    azure_kubernetes_service_management  = ""
-    azure_search_service                 = ""
-    azure_container_registry             = ""
-    azure_app_configuration_stores       = ""
-    azure_backup                         = ""
-    azure_site_recovery                  = ""
-    azure_event_hubs_namespace           = ""
-    azure_service_bus_namespace          = ""
-    azure_iot_hub                        = ""
-    azure_relay_namespace                = ""
-    azure_event_grid_topic               = ""
-    azure_event_grid_domain              = ""
-    azure_web_apps_sites                 = ""
-    azure_machine_learning_workspace     = ""
-    signalr                              = ""
-    azure_monitor                        = ""
-    cognitive_services_account           = ""
-    azure_file_sync                      = ""
-    azure_data_factory                   = ""
-    azure_data_factory_portal            = ""
-    azure_cache_for_redis                = ""
+    azure_kubernetes_service_management  = local.empty_string
+    azure_search_service                 = local.empty_string
+    azure_container_registry             = local.empty_string
+    azure_app_configuration_stores       = local.empty_string
+    azure_backup                         = local.empty_string
+    azure_site_recovery                  = local.empty_string
+    azure_event_hubs_namespace           = local.empty_string
+    azure_service_bus_namespace          = local.empty_string
+    azure_iot_hub                        = local.empty_string
+    azure_relay_namespace                = local.empty_string
+    azure_event_grid_topic               = local.empty_string
+    azure_event_grid_domain              = local.empty_string
+    azure_web_apps_sites                 = local.empty_string
+    azure_machine_learning_workspace     = local.empty_string
+    signalr                              = local.empty_string
+    azure_monitor                        = local.empty_string
+    cognitive_services_account           = local.empty_string
+    azure_file_sync                      = local.empty_string
+    azure_data_factory                   = local.empty_string
+    azure_data_factory_portal            = local.empty_string
+    azure_cache_for_redis                = local.empty_string
   }
   services_by_private_link_dns_zone = transpose(local.lookup_private_link_dns_zone_by_service)
   private_dns_zone_enabled = {

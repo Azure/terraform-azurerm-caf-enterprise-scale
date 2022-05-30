@@ -4,6 +4,7 @@
 # Terraform state.
 
 output "resource_ids" {
+  description = "Map containing resource IDs for all resources created by this module."
   value = {
     for module_name, module_output in {
       test_core = module.test_core

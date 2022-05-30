@@ -1,5 +1,15 @@
 #!/usr/bin/pwsh
 
+###############################################
+# Configure PSScriptAnalyzer rule suppression #
+###############################################
+
+# The following SuppressMessageAttribute entries are used to surpress
+# PSScriptAnalyzer tests against known exceptions as per:
+# https://github.com/powershell/psscriptanalyzer#suppressing-rules
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '', Justification = 'Function targets multiple line endings', Scope='Function', Target='Edit-LineEndings')]
+param ()
+
 #########################################
 # Module dependencies and configuration #
 #########################################
