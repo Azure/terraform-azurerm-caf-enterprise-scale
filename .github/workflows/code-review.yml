@@ -32,7 +32,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run github/super-linter
-        uses: docker://github/super-linter:v4.9.3
+        uses: docker://github/super-linter:v4.9.4
         env:
           # Lint all code
           VALIDATE_ALL_CODEBASE: true
