@@ -257,7 +257,7 @@ The following PowerShell script can be used to assist with this process, using a
 
 Unfortunately it is not possible to take this approach with the [`azurerm_policy_assignment` (deprecated)][azurerm_policy_assignment] resources, as these are being changed to a different resource type. As such, these resources will be redeployed as part of the upgrade process.
 
-To provide consistency across `Connectivity`, `Identity`, and `Management` resource configuration, the \[*currently undocumented*\] `configure_management_resources.advanced.custom_settings_by_resource_type` configuration object has also been updated to follow a consistent schema.
+To provide consistency across `Connectivity`, `Identity`, and `Management` resource configuration, the \[_currently undocumented_\] `configure_management_resources.advanced.custom_settings_by_resource_type` configuration object has also been updated to follow a consistent schema.
 
 ### Outputs
 
