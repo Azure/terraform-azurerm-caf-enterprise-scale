@@ -23,24 +23,12 @@ jobs:
           script: "env | sort"
 
       - task: Bash@3
-        displayName: "Authenticate GitHub CLI"
-        inputs:
-          targetType: "inline"
-          script: |
-            echo "==> Authenticating GitHub CLI..."
-            echo "GitHub CLI should authenticate using the GITHUB_TOKEN environment variable."
-            echo "If GITHUB_TOKEN is not found, please note that you will have 10 minutes"
-            echo "to complete authentication using the web-based browser flow..."
-            gh auth login
-        timeoutInMinutes: 10
-        env:
-          GITHUB_TOKEN: $(GITHUB_TOKEN)
-
-      - task: Bash@3
         displayName: "Checkout PR"
         inputs:
           targetType: "inline"
           script: "gh pr checkout $(System.PullRequest.PullRequestNumber)"
+        env:
+          GITHUB_TOKEN: $(GITHUB_TOKEN)
 
       - task: PowerShell@2
         displayName: "Update OPA baseline values"
