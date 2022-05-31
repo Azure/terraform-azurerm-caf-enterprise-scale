@@ -3,7 +3,7 @@ set -e
 
 #
 # Shell Script
-# - Run git commands to merge changes to branch
+# - Run git commands to merge changes to branch and push to PR
 #
 
 echo "==> Set git config..."
@@ -33,4 +33,14 @@ if [ ${#COMMIT_LOG} -gt 0 ]; then
     git commit --message "Add updates to baseline_values.json"
 else
     echo "No changes to commit."
+fi
+
+echo "==> Push changes..."
+PR_USER=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepositoryOwner --jq ".headRepositoryOwner.login")
+PR_REPO=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepository --jq ".headRepository.name")
+if [ ${#COMMIT_LOG} -gt 0 ]; then
+    echo "Pushing changes to: $PR_USER/$PR_REPO"
+    git push "git@github.com:$PR_USER/$PR_REPO.git"
+else
+    echo "No changes to push."
 fi

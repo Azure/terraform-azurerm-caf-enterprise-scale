@@ -46,13 +46,7 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
       - task: Bash@3
-        displayName: "Merge changes locally"
+        displayName: "Merge and push changes"
         inputs:
           targetType: "inline"
           script: "make opa-update-git"
-
-      - task: Bash@3
-        displayName: "Push changes to PR"
-        inputs:
-          targetType: "inline"
-          script: "git push"
