@@ -3,28 +3,25 @@ set -e
 
 #
 # Shell Script
-# - Run git commands to merge changes to branch
+# - Run git commands to merge changes to branch and push to PR
 #
 
-REPOSITORY_URI="${SYSTEM_PULLREQUEST_SOURCEREPOSITORYURI:-$BUILD_REPOSITORY_URI}"
-SOURCE_BRANCH="${SYSTEM_PULLREQUEST_SOURCEBRANCH:-$BUILD_SOURCEBRANCH}"
-
 echo "==> Set git config..."
-git config user.name azure-devops
-git config user.email azuredevops@microsoft.com
-
-echo "==> Switch to branch..."
-git switch -c patch-opa
+git config user.name github-actions
+git config user.email action@github.com
 
 echo "==> Check git status..."
 git status --short --branch
+
+echo "==> Check git remotes..."
+git remote --verbose
 
 echo "==> Stage changes..."
 STATUS_LOG=$(git status --short | grep baseline_values.json)
 if [ ${#STATUS_LOG} -gt 0 ]; then
     git add --all ./tests/modules/*/baseline_values.json
 else
-    echo "No changes found to add."
+    echo "No changes to add."
 fi
 
 echo "==> Print git diff..."
@@ -35,8 +32,15 @@ COMMIT_LOG=$(git diff --cached)
 if [ ${#COMMIT_LOG} -gt 0 ]; then
     git commit --message "Add updates to baseline_values.json"
 else
-    echo "No changes found to commit."
+    echo "No changes to commit."
 fi
 
 echo "==> Push changes..."
-git push "$REPOSITORY_URI" patch-opa:"$SOURCE_BRANCH"
+PR_USER=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepositoryOwner --jq ".headRepositoryOwner.login")
+PR_REPO=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepository --jq ".headRepository.name")
+if [ ${#COMMIT_LOG} -gt 0 ]; then
+    echo "Pushing changes to: $PR_USER/$PR_REPO"
+    git push "https://$GITHUB_TOKEN@github.com/$PR_USER/$PR_REPO.git"
+else
+    echo "No changes to push."
+fi
