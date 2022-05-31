@@ -27,9 +27,14 @@ jobs:
         inputs:
           targetType: "inline"
           script: |
-            echo "==> Please note that you have 10 minutes to complete authentication..."
+            echo "==> Authenticating GitHub CLI..."
+            echo "GitHub CLI should authenticate using the GITHUB_TOKEN environment variable."
+            echo "If GITHUB_TOKEN is not found, please note that you will have 10 minutes"
+            echo "to complete authentication using the web-based browser flow..."
             gh auth login
         timeoutInMinutes: 10
+        env:
+          GITHUB_TOKEN: $(GITHUB_TOKEN)
 
       - task: Bash@3
         displayName: "Checkout PR"
@@ -50,3 +55,5 @@ jobs:
         inputs:
           targetType: "inline"
           script: "make opa-update-git"
+        env:
+          GITHUB_TOKEN: $(GITHUB_TOKEN)
