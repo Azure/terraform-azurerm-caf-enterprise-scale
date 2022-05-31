@@ -40,7 +40,7 @@ PR_USER=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headReposito
 PR_REPO=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepository --jq ".headRepository.name")
 if [ ${#COMMIT_LOG} -gt 0 ]; then
     echo "Pushing changes to: $PR_USER/$PR_REPO"
-    git push "git@github.com:$PR_USER/$PR_REPO.git"
+    git push "https://$GITHUB_TOKEN@github.com/$PR_USER/$PR_REPO.git"
 else
     echo "No changes to push."
 fi
