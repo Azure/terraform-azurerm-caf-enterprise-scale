@@ -13,6 +13,9 @@ jobs:
   - job: update_opa_baseline
     displayName: "Update OPA baseline"
     steps:
+      - checkout: self
+        persistCredentials: true
+
       - task: Bash@3
         displayName: "Checkout Pull Request"
         inputs:
