@@ -17,13 +17,7 @@ jobs:
         persistCredentials: true
 
       - task: Bash@3
-        displayName: "Show environment variables"
-        inputs:
-          targetType: "inline"
-          script: "env | sort"
-
-      - task: Bash@3
-        displayName: "Checkout PR"
+        displayName: "Checkout Pull Request"
         inputs:
           targetType: "inline"
           script: "gh pr checkout $(System.PullRequest.PullRequestNumber)"
@@ -39,7 +33,7 @@ jobs:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
       - task: Bash@3
-        displayName: "Merge and push changes"
+        displayName: "Update Pull Request"
         inputs:
           targetType: "inline"
           script: "make opa-update-git"
