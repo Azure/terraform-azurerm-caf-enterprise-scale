@@ -30,7 +30,7 @@ else
     echo "No changes to add."
 fi
 
-echo "==> Print git diff..."
+echo "==> Check git diff..."
 mapfile -t GIT_DIFF < <(git diff --cached)
 printf "%s\n" "${GIT_DIFF[@]}"
 
