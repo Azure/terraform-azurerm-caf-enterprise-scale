@@ -1,0 +1,41 @@
+---
+name: "Test baseline (Update)"
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-20.04
+
+variables:
+  - group: csu-tf-environment
+
+jobs:
+  - job: update_opa_baseline
+    displayName: "Update OPA baseline"
+    steps:
+      - checkout: self
+        persistCredentials: true
+
+      - task: Bash@3
+        displayName: "Checkout Pull Request"
+        inputs:
+          targetType: "inline"
+          script: "gh pr checkout $(System.PullRequest.PullRequestNumber)"
+        env:
+          GITHUB_TOKEN: $(GITHUB_TOKEN)
+
+      - task: PowerShell@2
+        displayName: "Update OPA baseline values"
+        inputs:
+          targetType: "inline"
+          script: "make opa-update-values"
+        env:
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+
+      - task: Bash@3
+        displayName: "Update Pull Request"
+        inputs:
+          targetType: "inline"
+          script: "make opa-update-git"
+        env:
+          GITHUB_TOKEN: $(GITHUB_TOKEN)

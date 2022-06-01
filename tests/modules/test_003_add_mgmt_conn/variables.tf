@@ -22,6 +22,18 @@ variable "secondary_location" {
   default     = "westeurope"
 }
 
+variable "subscription_id_connectivity" {
+  type        = string
+  description = "Sets the subscription ID to use for deploying \"connectivity\" resources."
+  default     = ""
+}
+
+variable "subscription_id_management" {
+  type        = string
+  description = "Sets the subscription ID to use for deploying \"management\" resources."
+  default     = ""
+}
+
 variable "create_duration_delay" {
   type        = map(string)
   description = "Sets a custom delay period after creation of the specified resource type."

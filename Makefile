@@ -55,3 +55,11 @@ opa-install:
 opa-run-tests:
 	@echo "==> Running script..."
 	./tests/scripts/opa-run-tests.sh
+
+opa-update-values:
+	@echo "==> Running script..."
+	./tests/scripts/opa-update-values.ps1 -GENERATE_AUTO_TFVARS
+
+opa-update-git:
+	@echo "==> Running script..."
+	./tests/scripts/opa-update-git.sh
