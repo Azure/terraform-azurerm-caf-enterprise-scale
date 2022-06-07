@@ -1,5 +1,8 @@
 ## Overview
 
+> **IMPORTANT:** The [management resources](#management-resources) section of this upgrade guide has been updated to reflect changes made in release `v2.1.0`.
+> Please carefully check the version you are upgrading to when updating these settings.
+
 The `v2.0.0` release marks another significant milestone in development of the [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] (_formerly [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale]_).
 The re-branding of this module reflects adoption of `Enterprise-scale` as the recommended architecture for `Azure landing zones`.
 
@@ -174,6 +177,11 @@ To reflect the latest changes to policy for Microsoft Defender for Cloud (former
 If you have set custom values for `configure_management_resources`, please update your code to reflect these changes.
 
 The `settings.security_center.config.enable_defender_for_acr` and `settings.security_center.config.enable_defender_for_kubernetes` attributes have been removed, and are instead controlled by a single input for `settings.security_center.config.enable_defender_for_containers`.
+
+If upgrading directly to `v2.1.0` onwards, please update your code with the following additional inputs:
+
+- [settings.log_analytics.config.enable_solution_for_sql_vulnerability_assessment](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_management_resources#settingslog_analyticsenable_solution_for_sql_vulnerability_assessment)
+- [settings.log_analytics.config.enable_solution_for_sql_advanced_threat_detection](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_management_resources#settingslog_analyticsenable_solution_for_sql_advanced_threat_detection)
 
 All management resources which support tags will have the default tags updated unless these have been overridden within a custom configuration.
 This will result in multiple resources detecting an `~ update in-place` action similar to the following:
