@@ -181,7 +181,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.0"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm
