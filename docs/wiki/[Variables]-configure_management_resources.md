@@ -12,19 +12,21 @@ If specified, will customize the "Management" landing zone settings and resource
     log_analytics = {
       enabled = true
       config = {
-        retention_in_days                           = 30
-        enable_monitoring_for_arc                   = true
-        enable_monitoring_for_vm                    = true
-        enable_monitoring_for_vmss                  = true
-        enable_solution_for_agent_health_assessment = true
-        enable_solution_for_anti_malware            = true
-        enable_solution_for_azure_activity          = true
-        enable_solution_for_change_tracking         = true
-        enable_solution_for_service_map             = true
-        enable_solution_for_sql_assessment          = true
-        enable_solution_for_updates                 = true
-        enable_solution_for_vm_insights             = true
-        enable_sentinel                             = true
+        retention_in_days                                 = 30
+        enable_monitoring_for_arc                         = true
+        enable_monitoring_for_vm                          = true
+        enable_monitoring_for_vmss                        = true
+        enable_solution_for_agent_health_assessment       = true
+        enable_solution_for_anti_malware                  = true
+        enable_solution_for_azure_activity                = true
+        enable_solution_for_change_tracking               = true
+        enable_solution_for_service_map                   = true
+        enable_solution_for_sql_assessment                = true
+        enable_solution_for_sql_vulnerability_assessment  = true
+        enable_solution_for_sql_advanced_threat_detection = true
+        enable_solution_for_updates                       = true
+        enable_solution_for_vm_insights                   = true
+        enable_sentinel                                   = true
       }
     }
     security_center = {
@@ -60,19 +62,21 @@ object({
     log_analytics = object({
       enabled = bool
       config = object({
-        retention_in_days                           = number
-        enable_monitoring_for_arc                   = bool
-        enable_monitoring_for_vm                    = bool
-        enable_monitoring_for_vmss                  = bool
-        enable_solution_for_agent_health_assessment = bool
-        enable_solution_for_anti_malware            = bool
-        enable_solution_for_azure_activity          = bool
-        enable_solution_for_change_tracking         = bool
-        enable_solution_for_service_map             = bool
-        enable_solution_for_sql_assessment          = bool
-        enable_solution_for_updates                 = bool
-        enable_solution_for_vm_insights             = bool
-        enable_sentinel                             = bool
+        retention_in_days                                 = number
+        enable_monitoring_for_arc                         = bool
+        enable_monitoring_for_vm                          = bool
+        enable_monitoring_for_vmss                        = bool
+        enable_solution_for_agent_health_assessment       = bool
+        enable_solution_for_anti_malware                  = bool
+        enable_solution_for_azure_activity                = bool
+        enable_solution_for_change_tracking               = bool
+        enable_solution_for_service_map                   = bool
+        enable_solution_for_sql_assessment                = bool
+        enable_solution_for_sql_vulnerability_assessment  = bool
+        enable_solution_for_sql_advanced_threat_detection = bool
+        enable_solution_for_updates                       = bool
+        enable_solution_for_vm_insights                   = bool
+        enable_sentinel                                   = bool
       })
     })
     security_center = object({
@@ -114,19 +118,21 @@ Define the creation of a central Log Analytics workspace and the associated moni
 log_analytics = {
   enabled = true
   config = {
-    retention_in_days                           = 30
-    enable_monitoring_for_arc                   = true
-    enable_monitoring_for_vm                    = true
-    enable_monitoring_for_vmss                  = true
-    enable_sentinel                             = true
-    enable_solution_for_agent_health_assessment = true
-    enable_solution_for_anti_malware            = true
-    enable_solution_for_azure_activity          = true
-    enable_solution_for_change_tracking         = true
-    enable_solution_for_service_map             = true
-    enable_solution_for_sql_assessment          = true
-    enable_solution_for_updates                 = true
-    enable_solution_for_vm_insights             = true
+    retention_in_days                                 = 30
+    enable_monitoring_for_arc                         = true
+    enable_monitoring_for_vm                          = true
+    enable_monitoring_for_vmss                        = true
+    enable_sentinel                                   = true
+    enable_solution_for_agent_health_assessment       = true
+    enable_solution_for_anti_malware                  = true
+    enable_solution_for_azure_activity                = true
+    enable_solution_for_change_tracking               = true
+    enable_solution_for_service_map                   = true
+    enable_solution_for_sql_assessment                = true
+    enable_solution_for_sql_vulnerability_assessment  = true
+    enable_solution_for_sql_advanced_threat_detection = true
+    enable_solution_for_updates                       = true
+    enable_solution_for_vm_insights                   = true
   }
 }
 ```
@@ -212,6 +218,24 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 
 - [SQLAssessment][sql_assessment_overview]
 
+##### `settings.log_analytics.enable_solution_for_sql_vulnerability_assessment`
+
+Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
+
+- [SQLVulnerabilityAssessment][sql_vulnerability_assessment_overview]
+
+> **NOTE:** To work as expected, the `SQLVulnerabilityAssessment` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+
+##### `settings.log_analytics.enable_solution_for_sql_advanced_threat_detection`
+
+Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
+
+- [SQLAdvancedThreatProtection][sql_advanced_threat_detection_overview]
+
+> **NOTE:** To work as expected, the `SQLAdvancedThreatProtection` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+
 ##### `settings.log_analytics.enable_solution_for_updates`
 
 Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`, as well as an associated `azurerm_automation_account`:
@@ -226,7 +250,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 
 ### Configure Microsoft Defender for Cloud
 
-Deploy Microsoft Defender for Cloud pricing tiers (previously Azure Defender and Azure Security Center) through Azure Policy assignment.
+Deploy [Microsoft Defender for Cloud][microsoft_defender_for_cloud] pricing tiers (previously Azure Defender and Azure Security Center) through Azure Policy assignment.
 
 ```hcl
 security_center = {
@@ -339,12 +363,16 @@ See [Using the Advanced Block with Management Resources][wiki_management_advance
 
 [this_page]: # "Link for the current page."
 
-[agent_health_overview]:     https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
-[change_tracking_overview]:  https://docs.microsoft.com/azure/automation/change-tracking/overview
-[la_retention_period]:       https://docs.microsoft.com/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period
-[sentinel_overview]:         https://docs.microsoft.com/azure/sentinel/overview
-[service_map_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/service-map
-[sql_assessment_overview]:   https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
-[updates_overview]:          https://docs.microsoft.com/azure/automation/update-management/overview
-[vm_insights_overview]:      https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
-[wiki_management_advanced_block]: ./%5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
+[agent_health_overview]:                  https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
+[change_tracking_overview]:               https://docs.microsoft.com/azure/automation/change-tracking/overview
+[la_retention_period]:                    https://docs.microsoft.com/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period
+[sentinel_overview]:                      https://docs.microsoft.com/azure/sentinel/overview
+[service_map_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/service-map
+[sql_assessment_overview]:                https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
+[sql_vulnerability_assessment_overview]:  https://docs.microsoft.com/azure/azure-sql/database/sql-vulnerability-assessment#configure-vulnerability-assessment
+[sql_advanced_threat_detection_overview]: https://docs.microsoft.com/azure/azure-sql/database/threat-detection-configure
+[updates_overview]:                       https://docs.microsoft.com/azure/automation/update-management/overview
+[vm_insights_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
+[microsoft_defender_for_cloud]:           https://docs.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction
+[microsoft_defender_for_sql]:             https://docs.microsoft.com/azure/azure-sql/database/azure-defender-for-sql
+[wiki_management_advanced_block]:         ./%5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
