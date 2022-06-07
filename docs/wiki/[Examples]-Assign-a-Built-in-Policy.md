@@ -8,7 +8,7 @@ The policies you will use are `Not allowed resource types` and `Deploy default M
 
 The policy set definition (Initiative) you will use is `NIST SP 800-53 Rev. 5`.
 
->**NOTE**: You can view which policies are recommended to be assigned as part of an Enterprise Scale deployment [here](https://github.com/Azure/Enterprise-Scale/blob/main/docs/ESLZ-Policies.md).
+> **NOTE:** You can view which policies are recommended to be assigned as part of an Enterprise Scale deployment [here](https://github.com/Azure/Enterprise-Scale/blob/main/docs/ESLZ-Policies.md).
 
 You will update the built-in configuration by following these steps:
 
@@ -25,7 +25,7 @@ You can do this by navigating to  [`\modules\archetypes\lib\policy_assignments`]
 
 An example of a built-in policy that already has an assignment file included within the module is the `Kubernetes clusters should be accessible only over HTTPS` policy. The assignment file for this policy is called `policy_assignment_es_deny_http_ingress_aks.tmpl.json`.
 
->**NOTE**: You can view the module lib directly [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib)
+> **NOTE:** You can view the module lib directly [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib)
 
 As the policies you will use in this example do not already have an assignment file within the module, you will need to create the below files so that you can assign them:
 
@@ -37,11 +37,11 @@ As the policies you will use in this example do not already have an assignment f
 
 In order to assign built-in policies or policy sets, you need to create policy assignment files. The first step is to create a `policy_assignments` subdirectory within `/lib`.
 
->**NOTE**: Creating a `policy_assignments` subdirectory within `\lib` is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
+> **NOTE:** Creating a `policy_assignments` subdirectory within `\lib` is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
 
 You will then need to create a file named `policy_assignment_not_allowed_resource_types.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
->**NOTE**: The full file name is not important but it does need to meet the naming conventions detailed [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions#working-with-archetype-definitions-and-the-custom-library)
+> **NOTE:** The full file name is not important but it does need to meet the naming conventions detailed [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions#working-with-archetype-definitions-and-the-custom-library)
 
 To assign the correct policy, we need to provide the appropriate value for `policyDefinitionID` within our assignment file. You can retrieve the PolicyDefinitionID for your policy either through the Azure Portal, [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azpolicydefinition?view=azps-7.3.0) or the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/policy/definition?view=azure-cli-latest)
 
@@ -78,7 +78,7 @@ To assign the correct policy, we need to provide the appropriate value for `poli
 
 Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json` within the `policy_assignments` directory. Copy the below code in to the file and save it.
 
->**NOTE**: As this policy has an effect type of `DeployIfNotExists`, you also need to tell the module to create a System Assigned Managed Identity for the policy to use. This is done within the assignment file and would also be needed for any policy with a `Modify` effect type.
+> **NOTE:** As this policy has an effect type of `DeployIfNotExists`, you also need to tell the module to create a System Assigned Managed Identity for the policy to use. This is done within the assignment file and would also be needed for any policy with a `Modify` effect type.
 
 ### `lib/policy_assignments/policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json`
 

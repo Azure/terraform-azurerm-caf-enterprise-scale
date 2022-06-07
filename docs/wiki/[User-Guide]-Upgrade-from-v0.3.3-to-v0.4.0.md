@@ -98,7 +98,7 @@ The following changes have been made within the module which may cause issues wh
   - `Enable-DDoS-VNET` added
   - `Enforce-TLS-SSL` added
 
-> NOTE: All references to resource names are **_Case Sensitive_**. Failure to use the correct case will result in an `Invalid index` error when running `terraform plan`, such as the following example:
+> **NOTE:** All references to resource names are **_Case Sensitive_**. Failure to use the correct case will result in an `Invalid index` error when running `terraform plan`, such as the following example:
 
 ```shell
 Error: Invalid index

@@ -35,7 +35,7 @@ The following changes have been made within the module which may cause issues wh
 - The following Policy Assignments templates have been added to the module but are not associated with any archetype definition and therefore not assigned by default:
   - `Deny-Private-DNS-Zones`
 
-> NOTE: All references to resource names are **_Case Sensitive_**. Failure to use the correct case will result in an `Invalid index` error when running `terraform plan`, such as the following example:
+> **NOTE:** All references to resource names are **_Case Sensitive_**. Failure to use the correct case will result in an `Invalid index` error when running `terraform plan`, such as the following example:
 
 ```shell
 Error: Invalid index

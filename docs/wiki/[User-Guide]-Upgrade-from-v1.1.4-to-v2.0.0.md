@@ -198,7 +198,7 @@ The big change is we've now enabled deployment of `Virtual WAN` hub networks.
 This will have no impact on existing deployments, but to use this feature you will need to configure the existing `configure_connectivity_resources. settings.vwan_hub_networks` input which is now activated.
 
 > More details on how to deploy and configure `Virtual WAN` hub networks will be added to the Wiki soon!
-> Note that we still only support creation of the hub network and not spokes due to provider limitations, however bi-directional peering can be created for `Virtual WAN` networks.
+> **NOTE:** that we still only support creation of the hub network and not spokes due to provider limitations, however bi-directional peering can be created for `Virtual WAN` networks.
 
 The `configure_connectivity_resources` input variable has been updated to improve ease of use when configuring VPN gateway and Azure Firewall settings in a `Hub and Spoke` network.
 

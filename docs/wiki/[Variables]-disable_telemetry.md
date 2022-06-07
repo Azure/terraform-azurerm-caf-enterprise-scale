@@ -53,7 +53,7 @@ A [bit field](https://en.wikipedia.org/wiki/Bit_field) is also used to identity 
 | Identity | `67becfb7-b296-43a9-ba38-0b5c19cb065a` | `identity` |
 | Management | `6fffb9f9-2691-412a-837e-3f72dcfe70cb` | `management` |
 
-> Note: Identity is currently disabled until we deploy identity resources
+> **NOTE:** Identity is currently disabled until we deploy identity resources
 
 ### ARM deployment naming
 

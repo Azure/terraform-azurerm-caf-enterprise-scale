@@ -28,13 +28,13 @@ In order to create and assign custom policies, we need to create both a definiti
 - [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
->NOTE: This module provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path. For more info [click here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/[Variables]-template_file_variables).
+> **NOTE:** This module provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path. For more info [click here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/[Variables]-template_file_variables).
 
 ## Create Custom Policy Definition
 
 In your `/lib` directory create a `policy_definitions` subdirectory if you don't already have one. You can learn more about archetypes and custom libraries in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions).
 
->NOTE: Creating a `policy_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
+> **NOTE:** Creating a `policy_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
 
 In the `policy_definitions` subdirectory, create a `policy_definition_es_policy_enforce_rg_tags.json` file. This file will contain the policy definition for `Enforce-RG-Tags`. Copy the below code in to the file and save it.
 
@@ -213,7 +213,7 @@ Next create a `policy_definition_es_policy_deny_nsg_nic.json` file. This file wi
 
 In your `/lib` directory create a `policy_set_definitions` subdirectory.
 
->NOTE: Creating a `policy_set_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
+> **NOTE:** Creating a `policy_set_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
 
 In the `policy_set_definitions` subdirectory, create a `policy_set_definition_enforce_mandatory_tags.json` file. This file will contain the Policy Set Definition for `Enforce-Mandatory-Tags`. The policy set will contain the `Enforce-RG-Tags` and `Enforce-Resource-Tags` custom policies that you previously created. Copy the below code in to the file and save it.
 
@@ -300,7 +300,7 @@ In the `policy_set_definitions` subdirectory, create a `policy_set_definition_en
 
 In order to assign your custom policies or policy sets, you need to create policy assignment files. The first step is to create a `policy_assignments` subdirectory within `/lib`.
 
->NOTE: Creating a `policy_assignments` subdirectory within `\lib` is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
+> **NOTE:** Creating a `policy_assignments` subdirectory within `\lib` is a recommendation only. If you prefer not to create one or to call it something else, the custom policies will still work.
 
 - [lib/policy_assignments/policy_assignment_es_enforce_rg_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_rg_tagsjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_resource_tags.json](#libpolicy_assignmentspolicy_assignment_es_enforce_resource_tagsjson)
@@ -441,7 +441,7 @@ Finally, create a file named `policy_assignment_es_enforce_mandatory_tagging.jso
 ## Make the Custom Policy Definitions and Policy Set Definition available for use
 
 You now need to save your custom policy and policy set definitions at the `es_root` Management Group to ensure they can be used at that scope or any scope beneath. To do that, we need to extend the built-in archetype for `es_root`.
->NOTE: Extending built-in archetypes is explained further in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions).
+> **NOTE:** Extending built-in archetypes is explained further in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions).
 
 If you don't already have an `archetype_extension_es_root.tmpl.json` file within your custom `/lib` directory, create one and copy the below code in to the file. This code saves the custom policy definition and policy set definitions but we still haven't assigned them anywhere yet.
 
