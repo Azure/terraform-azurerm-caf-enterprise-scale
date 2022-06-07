@@ -3,7 +3,7 @@
 This page describes how to deploy Enterprise-scale with a basic configuration based mainly on module defaults.
 We then show how to dynamically modify the built-in archetype definitions using the `archetype extensions` and `archetype exclusions`.
 
-> NOTE: This feature is available from version `0.2.0` and also works on your own custom archetype definitions.
+> **NOTE:** This feature is available from version `0.2.0` and also works on your own custom archetype definitions.
 
 We will use the `es_landing_zones` configuration as an example.
 
@@ -67,7 +67,7 @@ This example code will deploy the minimum recommended management group and subsc
 To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 In our example, the directory is `/lib`.
 
-> NOTE: For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # We strongly recommend using the required_providers block to set the
@@ -96,7 +96,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.2"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm

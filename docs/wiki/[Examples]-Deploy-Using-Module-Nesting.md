@@ -12,7 +12,7 @@ The extra code needed to extend your configuration, is the following:
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.2"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -62,7 +62,7 @@ Check the [`main.tf`](#maintf) example below for the full module declaration.
 
 ## Example root module
 
-> NOTE: Although only `root_parent_id` is required, we recommend setting `root_id` and `root_name` to something more meaningful. Changing `root_id` will result in the entire deployment to be re-provisioned.
+> **NOTE:** Although only `root_parent_id` is required, we recommend setting `root_id` and `root_name` to something more meaningful. Changing `root_id` will result in the entire deployment to be re-provisioned.
 
 To make the code easier to maintain when extending your configuration, we recommend splitting the root module into multiple files. For the purpose of this example, we use the following:
 
@@ -119,7 +119,7 @@ It also contains the module declaration for this module, containing a number of 
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 
-> NOTE: For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -134,7 +134,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.2"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -183,7 +183,7 @@ module "enterprise_scale" {
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.2"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm

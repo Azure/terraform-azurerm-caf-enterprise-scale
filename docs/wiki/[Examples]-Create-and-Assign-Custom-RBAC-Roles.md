@@ -26,7 +26,7 @@ The files we will use are:
 
 In your `lib` directory create a `role_definitions` subdirectory if you don't already have one. You can learn more about archetypes and custom libraries in [this article](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions).
 
->**NOTE**: Creating a `role_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom roles will still work.
+> **NOTE:** Creating a `role_definitions` subdirectory is a recommendation only. If you prefer not to create one or to call it something else, the custom roles will still work.
 
 In the `role_definitions` subdirectory, create a `role_definition_es_reader_support_tickets.tmpl.json` file. This file will contain the role definition for our `Reader Support Tickets` role.
 
@@ -36,7 +36,7 @@ We need to ensure that every custom role we create has a unique value for "name"
 - The *nix tool `uuidgen`
 - The `uuidv5` function that is built-in to Terraform.
 
->**NOTE**: This isn't an exhaustive list. As long as the generated value is unique, the tool used isn't important.
+> **NOTE:** This isn't an exhaustive list. As long as the generated value is unique, the tool used isn't important.
 
 In this example, we will use `New-Guid` to generate the name value for our `Reader-Support-Tickets` role definition. Using `New-Guid` is as simple as opening a PowerShell window and running the `New-Guid` cmdlet. It will then generate a unique value for you to use.
 

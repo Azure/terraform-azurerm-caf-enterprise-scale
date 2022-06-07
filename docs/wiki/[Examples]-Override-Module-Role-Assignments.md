@@ -2,7 +2,7 @@
 
 This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to override the dynamically generated Role Assignments for a specific Policy Assignment with Managed Identity.
 
-> NOTE: This feature is available from version 0.2.2.
+> **NOTE:** This feature is available from version 0.2.2.
 
 We will use the `Deploy-HITRUST-HIPAA` and `Deploy-SQL-Auditing` policy assignments as an example.
 
@@ -87,7 +87,7 @@ It also contains the module declaration for this module, containing a number of 
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
-> NOTE: For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -102,7 +102,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.2"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm

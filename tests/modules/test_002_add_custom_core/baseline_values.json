@@ -2,6 +2,527 @@
   "outputs": {
     "resource_ids": {
       "sensitive": false,
+      "type": [
+        "object",
+        {
+          "test_core": [
+            "object",
+            {
+              "azurerm_automation_account": [
+                "object",
+                {
+                  "management": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_dns_zone": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_express_route_gateway": [
+                "object",
+                {
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_firewall": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ],
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_firewall_policy": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ],
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_log_analytics_linked_service": [
+                "object",
+                {
+                  "management": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_log_analytics_solution": [
+                "object",
+                {
+                  "management": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_log_analytics_workspace": [
+                "object",
+                {
+                  "management": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_management_group": [
+                "object",
+                {
+                  "level_1": [
+                    "tuple",
+                    [
+                      "string"
+                    ]
+                  ],
+                  "level_2": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ],
+                  "level_3": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ],
+                  "level_4": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ],
+                  "level_5": [
+                    "tuple",
+                    []
+                  ],
+                  "level_6": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_management_group_policy_assignment": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ]
+                }
+              ],
+              "azurerm_network_ddos_protection_plan": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_policy_definition": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ]
+                }
+              ],
+              "azurerm_policy_set_definition": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ]
+                }
+              ],
+              "azurerm_private_dns_zone": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_private_dns_zone_virtual_network_link": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_public_ip": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_resource_group": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ],
+                  "management": [
+                    "tuple",
+                    []
+                  ],
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_role_assignment": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    []
+                  ],
+                  "policy_assignment": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ]
+                }
+              ],
+              "azurerm_role_definition": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string"
+                    ]
+                  ]
+                }
+              ],
+              "azurerm_subnet": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_virtual_hub": [
+                "object",
+                {
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_virtual_hub_connection": [
+                "object",
+                {
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_virtual_network": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_virtual_network_gateway": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_virtual_network_peering": [
+                "object",
+                {
+                  "connectivity": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_virtual_wan": [
+                "object",
+                {
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
+              "azurerm_vpn_gateway": [
+                "object",
+                {
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "value": {
         "test_core": {
           "azurerm_automation_account": {

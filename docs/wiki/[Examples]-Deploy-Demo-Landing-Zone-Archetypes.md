@@ -18,7 +18,7 @@ These demo Landing Zone archetypes provides a good way to learn about archetypes
 
 ## Example root module
 
-> NOTE: Although only `root_parent_id` is required, we recommend setting `root_id` and `root_name` to something more meaningful. Changing `root_id` will result in the entire deployment to be re-provisioned.
+> **NOTE:** Although only `root_parent_id` is required, we recommend setting `root_id` and `root_name` to something more meaningful. Changing `root_id` will result in the entire deployment to be re-provisioned.
 
 To keep things simple, the root module for this example is based on a single file:
 
@@ -51,7 +51,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.0.2"
+  version = "2.1.0"
 
   providers = {
     azurerm              = azurerm

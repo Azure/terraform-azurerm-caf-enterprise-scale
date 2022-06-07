@@ -30,7 +30,7 @@ A full list of default Management Groups:
   }
 ```
 
-> NOTE: You do not need to replace `root` with the actual root ID, or prefix the other Management Group IDs. The module will do this for you.
+> **NOTE:** You do not need to replace `root` with the actual root ID, or prefix the other Management Group IDs. The module will do this for you.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

@@ -606,7 +606,7 @@ Leaving this value as an empty string `""` will result in no ExpressRoute Gatewa
 
 The SKU value will automatically determine whether the ExpressRoute Gateway and dependant resources (e.g. Public IP) will be deployed across zones or not.
 
-> **NOTE**: Take care to ensure you specify a SKU supported by the location specified in the hub network configuration.
+> **NOTE:** Take care to ensure you specify a SKU supported by the location specified in the hub network configuration.
 > For example, locations without support for Availability Zones do not support SKUs for zonal gateways.
 
 ###### `settings.hub_networks[].config.subnets[].virtual_network_gateway.config.gateway_sku_vpn`
@@ -617,7 +617,7 @@ Leaving this value as an empty string `""` will result in no VPN Gateway being c
 
 The SKU value will automatically determine whether the VPN Gateway and dependant resources (e.g. Public IP) will be deployed across zones or not.
 
-> **NOTE**: Take care to ensure you specify a SKU supported by the location specified in the hub network configuration.
+> **NOTE:** Take care to ensure you specify a SKU supported by the location specified in the hub network configuration.
 > For example, locations without support for Availability Zones do not support SKUs for zonal gateways.
 
 ###### settings.hub_networks[].config.subnets[].virtual_network_gateway.advanced_vpn_settings`
@@ -722,7 +722,7 @@ Must be constructed in the following format:
 Used to control which zones to use when deploying Azure Firewall.
 Setting all values to `false` will result in a non-zonal firewall being deployed.
 
-> **NOTE**: Some locations/regions in Azure do not support Availability Zones.
+> **NOTE:** Some locations/regions in Azure do not support Availability Zones.
 > For these locations, you must set all values to `false`.
 
 ##### `settings.hub_networks[].config.spoke_virtual_network_resource_ids`

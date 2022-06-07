@@ -151,7 +151,7 @@ This is equivalent to creating a standard Management Group without creating any 
 
 Role Assignments can be created using the `custom_landing_zones.${management_group_id}.archetype_config.access_control` object scope.
 
-> Note that you still need to provide a full and valid Landing Zone object as per the example above.
+> **NOTE:** that you still need to provide a full and valid Landing Zone object as per the example above.
 
 ### Working with the `archetype_config` object
 
@@ -176,7 +176,7 @@ This must reference a valid `archetype_definition` from the built-in or custom l
 To target a specific Policy Assignment, create a new `map()` entry using the Policy Assignment `name` field as the `key`.
 The `value` should be an `object({})` containing `key/value` pairs for each `parameter` needed by the Policy Assignment.
 
-  > Note that parameters are specified as simple `key/value` pairs, and do not require the same structure used in native ARM templates.
+  > **NOTE:** that parameters are specified as simple `key/value` pairs, and do not require the same structure used in native ARM templates.
 
 - `access_control` provides the option to add user-specified Role Assignments which will be added to the specified Management Group.
 To avoid a direct dependency on the [Azure Active Directory Provider][azuread_provider], this module requires the input to be a list of Object IDs for each Azure AD object you want to assign the specified permission.
