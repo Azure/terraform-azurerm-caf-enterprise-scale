@@ -32,6 +32,9 @@ Major versions are typically used when one or more of the following is true:
 Minor versions are typically used when one or more of the following is true:
 
 - New resources will be automatically added to the customer environment without impacting existing resources managed by the module (such as addition of the new Log Analytics solutions in release [v2.1.0][release_v2_1_0])
+- New resources will be added to the customer environment, but only if a new (optional) setting is explicitly enabled
+- A new feature is being enabled which is configured through new input variables
+- Addition of new input variables with a `default` value
 - Existing resources will be recreated without direct customer impact (such as redeployment of Azure Policy resources, or Roles)
 - Minor updates will be needed for customer code before being able to successfully run `terraform plan`, such as simple edits to one or more input variables
 - Updates to policies which impact Policy Assignments (resulting in potential loss of compliance history)
@@ -41,8 +44,6 @@ Minor versions are typically used when one or more of the following is true:
 Patch versions are typically used when one or more of the following is true:
 
 - A bugfix is being released to fix incorrect behavior in the module without the need for updates to customer code
-- New resources will be added to the customer environment, but only if a new (optional) setting is explicitly enabled
-- A new feature is being enabled which is only accessible through the `advanced` attributes within existing input variables
 - Updates to policies which do not impact Policy Assignments (no loss of compliance history)
 
 ## Staying up to date (Evergreen)
