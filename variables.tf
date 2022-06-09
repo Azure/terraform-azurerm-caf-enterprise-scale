@@ -204,6 +204,23 @@ variable "deploy_connectivity_resources" {
   default     = false
 }
 
+# Notes for the `configure_connectivity_resources` variable:
+#
+# `settings.hub_network_virtual_network_gateway.config.address_prefix`
+#   - Only support adding a single address prefix for GatewaySubnet subnet
+#
+# `settings.hub_network_virtual_network_gateway.config.gateway_sku_expressroute`
+#   - If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
+#
+# `settings.hub_network_virtual_network_gateway.config.gateway_sku_vpn`
+#   - If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+#
+# `settings.hub_network_virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation`
+#   - Valid options are "", "Static" or "Dynamic". Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+#
+# `settings.azure_firewall.config.address_prefix`
+# - Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+
 variable "configure_connectivity_resources" {
   type = object({
     settings = object({
@@ -227,13 +244,13 @@ variable "configure_connectivity_resources" {
             virtual_network_gateway = object({
               enabled = bool
               config = object({
-                address_prefix           = string # Only support adding a single address prefix for GatewaySubnet subnet
-                gateway_sku_expressroute = string # If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
-                gateway_sku_vpn          = string # If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+                address_prefix           = string
+                gateway_sku_expressroute = string
+                gateway_sku_vpn          = string
                 advanced_vpn_settings = object({
                   enable_bgp                       = bool
                   active_active                    = bool
-                  private_ip_address_allocation    = string # Valid options are "", "Static" or "Dynamic". Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+                  private_ip_address_allocation    = string
                   default_local_network_gateway_id = string
                   vpn_client_configuration = list(
                     object({
@@ -282,7 +299,7 @@ variable "configure_connectivity_resources" {
             azure_firewall = object({
               enabled = bool
               config = object({
-                address_prefix                = string # Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
+                address_prefix                = string
                 enable_dns_proxy              = bool
                 dns_servers                   = list(string)
                 sku_tier                      = string

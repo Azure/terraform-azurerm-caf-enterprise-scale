@@ -7,6 +7,7 @@
   - [Getting Started][wiki_getting_started]
   - [Module Permissions][wiki_module_permissions]
   - [Module Variables][wiki_module_variables]
+  - [Module Releases][wiki_module_releases]
   - [Provider Configuration][wiki_provider_configuration]
   - [Archetype Definitions][wiki_archetype_definitions]
   - [Core Resources][wiki_core_resources]
@@ -39,7 +40,7 @@
   - [Feature Requests][wiki_feature_requests]
   - [Contributing to Code][wiki_contributing_to_code]
   - [Contributing to Documentation][wiki_contributing_to_documentation]
-- [Upgrade Guides][wiki_upgrade_from_v0_4_0_to_v1_0_0]
+- [Upgrade Guides][wiki_upgrade_from_v1_1_4_to_v2_0_0]
   - [Upgrade from v1.1.4 to v2.0.0][wiki_upgrade_from_v1_1_4_to_v2_0_0]
   - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]
   - [Upgrade from v0.3.3 to v0.4.0][wiki_upgrade_from_v0_3_3_to_v0_4_0]
@@ -55,17 +56,18 @@
 [wiki_getting_started]:                       ./%5BUser-Guide%5D-Getting-Started "Wiki - Getting Started"
 [wiki_module_permissions]:                    ./%5BUser-Guide%5D-Module-Permissions "Wiki - Module Permissions"
 [wiki_module_variables]:                      ./%5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
+[wiki_module_releases]:                       ./%5BUser-Guide%5D-Module-Releases "Wiki - Module Releases"
 [wiki_provider_configuration]:                ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
 [wiki_archetype_definitions]:                 ./%5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
 [wiki_core_resources]:                        ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
 [wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:                ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_identity_resources]:                    ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_upgrade_from_v0_0_8_to_v0_1_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
-[wiki_upgrade_from_v0_1_2_to_v0_2_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
-[wiki_upgrade_from_v0_3_3_to_v0_4_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
-[wiki_upgrade_from_v0_4_0_to_v1_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
 [wiki_upgrade_from_v1_1_4_to_v2_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
+[wiki_upgrade_from_v0_4_0_to_v1_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
+[wiki_upgrade_from_v0_3_3_to_v0_4_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
+[wiki_upgrade_from_v0_1_2_to_v0_2_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
+[wiki_upgrade_from_v0_0_8_to_v0_1_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
 [wiki_examples]:                              ./Examples "Wiki - Examples"
 [wiki_examples_level_100]:                    ./Examples#advanced-level-100 "Wiki - Examples"
 [wiki_examples_level_200]:                    ./Examples#advanced-level-200 "Wiki - Examples"
