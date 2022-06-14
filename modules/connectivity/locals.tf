@@ -203,7 +203,6 @@ locals {
   deploy_outbound_virtual_network_peering = {
     for location, hub_network in local.hub_networks_by_location :
     location =>
-    local.deploy_dns &&
     local.deploy_hub_network[location] &&
     hub_network.config.enable_outbound_virtual_network_peering
   }
@@ -1513,10 +1512,11 @@ locals {
           resource_id       = "${local.virtual_network_resource_id[location]}/virtualNetworkPeerings/peering-${uuidv5("url", spoke_resource_id)}"
           managed_by_module = local.deploy_outbound_virtual_network_peering[location]
           # Resource definition attributes
-          name = try(
-            local.custom_settings.azurerm_virtual_network_peering["connectivity"][location][spoke_resource_id].name,
-            "peering-${uuidv5("url", spoke_resource_id)}"
-          )
+          # name = try(
+          #   local.custom_settings.azurerm_virtual_network_peering["connectivity"][location][spoke_resource_id].name,
+          #   "peering-${uuidv5("url", spoke_resource_id)}"
+          # )
+          name = "peering-${uuidv5("url", spoke_resource_id)}"
           resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name      = local.virtual_network_name[location]
           remote_virtual_network_id = spoke_resource_id
