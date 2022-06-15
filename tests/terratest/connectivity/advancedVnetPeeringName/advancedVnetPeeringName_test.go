@@ -11,22 +11,47 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestAdvancedVnetPeeringName tests the advanced block vnet peering name functionality
-func TestConnectivityAdvancedVnetPeeringNameNotSet(t *testing.T) {
-	var peeringname string = "peering-134dd88d-86f2-5006-9401-698a1f46852e"
-	to := utils.GetDefaultTerraformOptions(t)
-	runTest(t, peeringname, to)
+type testcase struct {
+	Name        string
+	PeeringName string
+	TFVars      map[string]interface{}
 }
 
-func TestConnectivityAdvancedVnetPeeringNameSet(t *testing.T) {
-	var peeringname string = "test"
+// TestAdvancedVnetPeeringName tests the standard vnet peering naming functionality
+func TestConnectivityAdvancedVnetPeering(t *testing.T) {
+	testCases := []testcase{
+		{
+			Name:        "StandardVnetPeeringNaming",
+			PeeringName: "peering-134dd88d-86f2-5006-9401-698a1f46852e",
+			TFVars:      map[string]interface{}{},
+		},
+		{
+			Name:        "AdvancedVnetPeeringNaming",
+			PeeringName: "test",
+			TFVars: map[string]interface{}{
+				"test_advanced_name": true,
+			},
+		},
+	}
 	to := utils.GetDefaultTerraformOptions(t)
-	to.Vars["test_advanced_name"] = true
-	runTest(t, peeringname, to)
+	_, err := terraform.InitE(t, to)
+	require.NoError(t, err)
+	for i, tc := range testCases {
+		t.Run(tc.Name, func(t *testing.T) {
+			var testOpts terraform.Options = *to
+			testOpts.PlanFilePath = fmt.Sprintf("./tfplan%d", i)
+			testOpts.Vars = tc.TFVars
+			runTest(t, tc.PeeringName, &testOpts)
+		})
+	}
 }
 
+// runTest runs the test case after init
 func runTest(t *testing.T, peeringName string, to *terraform.Options) {
-	pl, err := terraform.InitAndPlanAndShowWithStructE(t, to)
+	t.Parallel()
+	_, err := terraform.PlanE(t, to)
+	require.NoError(t, err)
+	pl, err := terraform.ShowWithStructE(t, to)
 	subId := os.Getenv("ARM_SUBSCRIPTION_ID")
 	require.NoError(t, err)
 	peeringMapKey := fmt.Sprintf(
