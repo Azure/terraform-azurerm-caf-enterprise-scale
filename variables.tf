@@ -117,7 +117,7 @@ variable "configure_management_resources" {
     advanced = optional(any, {})
   })
   description = "If specified, will customize the \"Management\" landing zone settings and resources."
-  default = {}
+  default     = {}
 }
 
 variable "deploy_identity_resources" {
@@ -128,32 +128,20 @@ variable "deploy_identity_resources" {
 
 variable "configure_identity_resources" {
   type = object({
-    settings = object({
-      identity = object({
-        enabled = bool
-        config = object({
-          enable_deny_public_ip             = bool
-          enable_deny_rdp_from_internet     = bool
-          enable_deny_subnet_without_nsg    = bool
-          enable_deploy_azure_backup_on_vms = bool
-        })
-      })
-    })
+    settings = optional(object({
+      identity = optional(object({
+        enabled = optional(bool, true)
+        config = optional(object({
+          enable_deny_public_ip             = optional(bool, true)
+          enable_deny_rdp_from_internet     = optional(bool, true)
+          enable_deny_subnet_without_nsg    = optional(bool, true)
+          enable_deploy_azure_backup_on_vms = optional(bool, true)
+        }), {})
+      }), {})
+    }), {})
   })
   description = "If specified, will customize the \"Identity\" landing zone settings."
-  default = {
-    settings = {
-      identity = {
-        enabled = true
-        config = {
-          enable_deny_public_ip             = true
-          enable_deny_rdp_from_internet     = true
-          enable_deny_subnet_without_nsg    = true
-          enable_deploy_azure_backup_on_vms = true
-        }
-      }
-    }
-  }
+  default     = {}
 }
 
 variable "deploy_connectivity_resources" {
@@ -181,60 +169,60 @@ variable "deploy_connectivity_resources" {
 
 variable "configure_connectivity_resources" {
   type = object({
-    settings = object({
-      hub_networks = list(
+    settings = optional(object({
+      hub_networks = optional(list(
         object({
-          enabled = bool
+          enabled = optional(bool, true)
           config = object({
             address_space                = list(string)
-            location                     = string
-            link_to_ddos_protection_plan = bool
-            dns_servers                  = list(string)
-            bgp_community                = string
-            subnets = list(
+            location                     = optional(string, "")
+            link_to_ddos_protection_plan = optional(bool, false)
+            dns_servers                  = optional(list(string), [])
+            bgp_community                = optional(string, "")
+            subnets = optional(list(
               object({
                 name                      = string
                 address_prefixes          = list(string)
-                network_security_group_id = string
-                route_table_id            = string
+                network_security_group_id = optional(string, "")
+                route_table_id            = optional(string, "")
               })
-            )
-            virtual_network_gateway = object({
-              enabled = bool
-              config = object({
-                address_prefix           = string
-                gateway_sku_expressroute = string
-                gateway_sku_vpn          = string
-                advanced_vpn_settings = object({
-                  enable_bgp                       = bool
-                  active_active                    = bool
-                  private_ip_address_allocation    = string
-                  default_local_network_gateway_id = string
-                  vpn_client_configuration = list(
+            ), [])
+            virtual_network_gateway = optional(object({
+              enabled = optional(bool, true)
+              config = optional(object({
+                address_prefix           = optional(string, "")
+                gateway_sku_expressroute = optional(string, "")
+                gateway_sku_vpn          = optional(string, "")
+                advanced_vpn_settings = optional(object({
+                  enable_bgp                       = optional(bool, null)
+                  active_active                    = optional(bool, null)
+                  private_ip_address_allocation    = optional(string, "")
+                  default_local_network_gateway_id = optional(string, "")
+                  vpn_client_configuration = optional(list(
                     object({
                       address_space = list(string)
-                      aad_tenant    = string
-                      aad_audience  = string
-                      aad_issuer    = string
-                      root_certificate = list(
+                      aad_tenant    = optional(string, "")
+                      aad_audience  = optional(string, "")
+                      aad_issuer    = optional(string, "")
+                      root_certificate = optional(list(
                         object({
                           name             = string
                           public_cert_data = string
                         })
-                      )
-                      revoked_certificate = list(
+                      ), [])
+                      revoked_certificate = optional(list(
                         object({
                           name             = string
                           public_cert_data = string
                         })
-                      )
-                      radius_server_address = string
-                      radius_server_secret  = string
-                      vpn_client_protocols  = list(string)
-                      vpn_auth_types        = list(string)
+                      ), [])
+                      radius_server_address = optional(string, "")
+                      radius_server_secret  = optional(string, "")
+                      vpn_client_protocols  = optional(list(string), [])
+                      vpn_auth_types        = optional(list(string), [])
                     })
-                  )
-                  bgp_settings = list(
+                  ), [])
+                  bgp_settings = optional(list(
                     object({
                       asn         = number
                       peer_weight = number
@@ -245,61 +233,61 @@ variable "configure_connectivity_resources" {
                         })
                       )
                     })
-                  )
-                  custom_route = list(
+                  ), [])
+                  custom_route = optional(list(
                     object({
                       address_prefixes = list(string)
                     })
-                  )
-                })
-              })
-            })
-            azure_firewall = object({
-              enabled = bool
-              config = object({
-                address_prefix                = string
-                enable_dns_proxy              = bool
-                dns_servers                   = list(string)
-                sku_tier                      = string
-                base_policy_id                = string
-                private_ip_ranges             = list(string)
-                threat_intelligence_mode      = string
-                threat_intelligence_allowlist = list(string)
-                availability_zones = object({
-                  zone_1 = bool
-                  zone_2 = bool
-                  zone_3 = bool
-                })
-              })
-            })
-            spoke_virtual_network_resource_ids      = list(string)
-            enable_outbound_virtual_network_peering = bool
+                  ), [])
+                }), {})
+              }), {})
+            }), {})
+            azure_firewall = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                address_prefix                = optional(string, "")
+                enable_dns_proxy              = optional(bool, true)
+                dns_servers                   = optional(list(string), [])
+                sku_tier                      = optional(string, "Standard")
+                base_policy_id                = optional(string, "")
+                private_ip_ranges             = optional(list(string), [])
+                threat_intelligence_mode      = optional(string, "")
+                threat_intelligence_allowlist = optional(list(string), [])
+                availability_zones = optional(object({
+                  zone_1 = optional(bool, true)
+                  zone_2 = optional(bool, true)
+                  zone_3 = optional(bool, true)
+                }), {})
+              }), {})
+            }), {})
+            spoke_virtual_network_resource_ids      = optional(list(string), [])
+            enable_outbound_virtual_network_peering = optional(bool, false)
           })
         })
-      )
-      vwan_hub_networks = list(
+      ), [])
+      vwan_hub_networks = optional(list(
         object({
-          enabled = bool
+          enabled = optional(bool, true)
           config = object({
             address_prefix = string
             location       = string
             sku            = string
-            routes = list(
+            routes = optional(list(
               object({
                 address_prefixes    = list(string)
                 next_hop_ip_address = string
               })
-            )
-            expressroute_gateway = object({
-              enabled = bool
-              config = object({
-                scale_unit = number
-              })
-            })
-            vpn_gateway = object({
-              enabled = bool
-              config = object({
-                bgp_settings = list(
+            ), [])
+            expressroute_gateway = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                scale_unit = optional(number, 1)
+              }), {})
+            }), {})
+            vpn_gateway = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                bgp_settings = optional(list(
                   object({
                     asn         = number
                     peer_weight = number
@@ -314,97 +302,97 @@ variable "configure_connectivity_resources" {
                       })
                     )
                   })
-                )
-                routing_preference = string
-                scale_unit         = number
-              })
-            })
-            azure_firewall = object({
-              enabled = bool
-              config = object({
-                enable_dns_proxy              = bool
-                dns_servers                   = list(string)
-                sku_tier                      = string
-                base_policy_id                = string
-                private_ip_ranges             = list(string)
-                threat_intelligence_mode      = string
-                threat_intelligence_allowlist = list(string)
-                availability_zones = object({
-                  zone_1 = bool
-                  zone_2 = bool
-                  zone_3 = bool
-                })
-              })
-            })
-            spoke_virtual_network_resource_ids = list(string)
-            enable_virtual_hub_connections     = bool
+                ), [])
+                routing_preference = optional(string, "Microsoft Network")
+                scale_unit         = optional(number, 1)
+              }), {})
+            }), {})
+            azure_firewall = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                enable_dns_proxy              = optional(bool, true)
+                dns_servers                   = optional(list(string), [])
+                sku_tier                      = optional(string, "")
+                base_policy_id                = optional(string, "")
+                private_ip_ranges             = optional(list(string), [])
+                threat_intelligence_mode      = optional(string, "")
+                threat_intelligence_allowlist = optional(list(string), [])
+                availability_zones = optional(object({
+                  zone_1 = optional(bool, true)
+                  zone_2 = optional(bool, true)
+                  zone_3 = optional(bool, true)
+                }), {})
+              }), {})
+            }), {})
+            spoke_virtual_network_resource_ids = optional(list(string), [])
+            enable_virtual_hub_connections     = optional(bool, false)
           })
         })
-      )
-      ddos_protection_plan = object({
-        enabled = bool
-        config = object({
-          location = string
-        })
-      })
-      dns = object({
-        enabled = bool
-        config = object({
-          location = string
-          enable_private_link_by_service = object({
-            azure_automation_webhook             = bool
-            azure_automation_dscandhybridworker  = bool
-            azure_sql_database_sqlserver         = bool
-            azure_synapse_analytics_sqlserver    = bool
-            azure_synapse_analytics_sql          = bool
-            storage_account_blob                 = bool
-            storage_account_table                = bool
-            storage_account_queue                = bool
-            storage_account_file                 = bool
-            storage_account_web                  = bool
-            azure_data_lake_file_system_gen2     = bool
-            azure_cosmos_db_sql                  = bool
-            azure_cosmos_db_mongodb              = bool
-            azure_cosmos_db_cassandra            = bool
-            azure_cosmos_db_gremlin              = bool
-            azure_cosmos_db_table                = bool
-            azure_database_for_postgresql_server = bool
-            azure_database_for_mysql_server      = bool
-            azure_database_for_mariadb_server    = bool
-            azure_key_vault                      = bool
-            azure_kubernetes_service_management  = bool
-            azure_search_service                 = bool
-            azure_container_registry             = bool
-            azure_app_configuration_stores       = bool
-            azure_backup                         = bool
-            azure_site_recovery                  = bool
-            azure_event_hubs_namespace           = bool
-            azure_service_bus_namespace          = bool
-            azure_iot_hub                        = bool
-            azure_relay_namespace                = bool
-            azure_event_grid_topic               = bool
-            azure_event_grid_domain              = bool
-            azure_web_apps_sites                 = bool
-            azure_machine_learning_workspace     = bool
-            signalr                              = bool
-            azure_monitor                        = bool
-            cognitive_services_account           = bool
-            azure_file_sync                      = bool
-            azure_data_factory                   = bool
-            azure_data_factory_portal            = bool
-            azure_cache_for_redis                = bool
-          })
-          private_link_locations                                 = list(string)
-          public_dns_zones                                       = list(string)
-          private_dns_zones                                      = list(string)
-          enable_private_dns_zone_virtual_network_link_on_hubs   = bool
-          enable_private_dns_zone_virtual_network_link_on_spokes = bool
-        })
-      })
-    })
-    location = any
-    tags     = any
-    advanced = any
+      ), [])
+      ddos_protection_plan = optional(object({
+        enabled = optional(bool, false)
+        config = optional(object({
+          location = optional(string, "")
+        }), {})
+      }), {})
+      dns = optional(object({
+        enabled = optional(bool, true)
+        config = optional(object({
+          location = optional(string, "")
+          enable_private_link_by_service = optional(object({
+            azure_automation_webhook             = optional(bool, true)
+            azure_automation_dscandhybridworker  = optional(bool, true)
+            azure_sql_database_sqlserver         = optional(bool, true)
+            azure_synapse_analytics_sqlserver    = optional(bool, true)
+            azure_synapse_analytics_sql          = optional(bool, true)
+            storage_account_blob                 = optional(bool, true)
+            storage_account_table                = optional(bool, true)
+            storage_account_queue                = optional(bool, true)
+            storage_account_file                 = optional(bool, true)
+            storage_account_web                  = optional(bool, true)
+            azure_data_lake_file_system_gen2     = optional(bool, true)
+            azure_cosmos_db_sql                  = optional(bool, true)
+            azure_cosmos_db_mongodb              = optional(bool, true)
+            azure_cosmos_db_cassandra            = optional(bool, true)
+            azure_cosmos_db_gremlin              = optional(bool, true)
+            azure_cosmos_db_table                = optional(bool, true)
+            azure_database_for_postgresql_server = optional(bool, true)
+            azure_database_for_mysql_server      = optional(bool, true)
+            azure_database_for_mariadb_server    = optional(bool, true)
+            azure_key_vault                      = optional(bool, true)
+            azure_kubernetes_service_management  = optional(bool, true)
+            azure_search_service                 = optional(bool, true)
+            azure_container_registry             = optional(bool, true)
+            azure_app_configuration_stores       = optional(bool, true)
+            azure_backup                         = optional(bool, true)
+            azure_site_recovery                  = optional(bool, true)
+            azure_event_hubs_namespace           = optional(bool, true)
+            azure_service_bus_namespace          = optional(bool, true)
+            azure_iot_hub                        = optional(bool, true)
+            azure_relay_namespace                = optional(bool, true)
+            azure_event_grid_topic               = optional(bool, true)
+            azure_event_grid_domain              = optional(bool, true)
+            azure_web_apps_sites                 = optional(bool, true)
+            azure_machine_learning_workspace     = optional(bool, true)
+            signalr                              = optional(bool, true)
+            azure_monitor                        = optional(bool, true)
+            cognitive_services_account           = optional(bool, true)
+            azure_file_sync                      = optional(bool, true)
+            azure_data_factory                   = optional(bool, true)
+            azure_data_factory_portal            = optional(bool, true)
+            azure_cache_for_redis                = optional(bool, true)
+          }), {})
+          private_link_locations                                 = optional(list(string), [])
+          public_dns_zones                                       = optional(list(string), [])
+          private_dns_zones                                      = optional(list(string), [])
+          enable_private_dns_zone_virtual_network_link_on_hubs   = optional(bool, true)
+          enable_private_dns_zone_virtual_network_link_on_spokes = optional(bool, true)
+        }), {})
+      }), {})
+    }), {})
+    location = optional(string, "")
+    tags     = optional(any, {})
+    advanced = optional(any, {})
   })
   description = "If specified, will customize the \"Connectivity\" landing zone settings and resources."
   default = {
@@ -413,117 +401,11 @@ variable "configure_connectivity_resources" {
         {
           enabled = true
           config = {
-            address_space                = ["10.100.0.0/16", ]
-            location                     = ""
-            link_to_ddos_protection_plan = false
-            dns_servers                  = []
-            bgp_community                = ""
-            subnets                      = []
-            virtual_network_gateway = {
-              enabled = false
-              config = {
-                address_prefix           = "10.100.1.0/24"
-                gateway_sku_expressroute = "ErGw2AZ"
-                gateway_sku_vpn          = "VpnGw3"
-                advanced_vpn_settings = {
-                  enable_bgp                       = null
-                  active_active                    = null
-                  private_ip_address_allocation    = ""
-                  default_local_network_gateway_id = ""
-                  vpn_client_configuration         = []
-                  bgp_settings                     = []
-                  custom_route                     = []
-                }
-              }
-            }
-            azure_firewall = {
-              enabled = false
-              config = {
-                address_prefix                = "10.100.0.0/24"
-                enable_dns_proxy              = true
-                dns_servers                   = []
-                sku_tier                      = ""
-                base_policy_id                = ""
-                private_ip_ranges             = []
-                threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
-                availability_zones = {
-                  zone_1 = true
-                  zone_2 = true
-                  zone_3 = true
-                }
-              }
-            }
-            spoke_virtual_network_resource_ids      = []
-            enable_outbound_virtual_network_peering = false
+            address_space = ["10.100.0.0/16", ]
           }
         },
       ]
-      vwan_hub_networks = []
-      ddos_protection_plan = {
-        enabled = false
-        config = {
-          location = ""
-        }
-      }
-      dns = {
-        enabled = true
-        config = {
-          location = ""
-          enable_private_link_by_service = {
-            azure_automation_webhook             = true
-            azure_automation_dscandhybridworker  = true
-            azure_sql_database_sqlserver         = true
-            azure_synapse_analytics_sqlserver    = true
-            azure_synapse_analytics_sql          = true
-            storage_account_blob                 = true
-            storage_account_table                = true
-            storage_account_queue                = true
-            storage_account_file                 = true
-            storage_account_web                  = true
-            azure_data_lake_file_system_gen2     = true
-            azure_cosmos_db_sql                  = true
-            azure_cosmos_db_mongodb              = true
-            azure_cosmos_db_cassandra            = true
-            azure_cosmos_db_gremlin              = true
-            azure_cosmos_db_table                = true
-            azure_database_for_postgresql_server = true
-            azure_database_for_mysql_server      = true
-            azure_database_for_mariadb_server    = true
-            azure_key_vault                      = true
-            azure_kubernetes_service_management  = true
-            azure_search_service                 = true
-            azure_container_registry             = true
-            azure_app_configuration_stores       = true
-            azure_backup                         = true
-            azure_site_recovery                  = true
-            azure_event_hubs_namespace           = true
-            azure_service_bus_namespace          = true
-            azure_iot_hub                        = true
-            azure_relay_namespace                = true
-            azure_event_grid_topic               = true
-            azure_event_grid_domain              = true
-            azure_web_apps_sites                 = true
-            azure_machine_learning_workspace     = true
-            signalr                              = true
-            azure_monitor                        = true
-            cognitive_services_account           = true
-            azure_file_sync                      = true
-            azure_data_factory                   = true
-            azure_data_factory_portal            = true
-            azure_cache_for_redis                = true
-          }
-          private_link_locations                                 = []
-          public_dns_zones                                       = []
-          private_dns_zones                                      = []
-          enable_private_dns_zone_virtual_network_link_on_hubs   = true
-          enable_private_dns_zone_virtual_network_link_on_spokes = true
-        }
-      }
     }
-    location = null
-    tags     = null
-    advanced = null
   }
 }
 
