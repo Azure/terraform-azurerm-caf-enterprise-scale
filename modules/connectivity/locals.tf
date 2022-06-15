@@ -203,7 +203,6 @@ locals {
   deploy_outbound_virtual_network_peering = {
     for location, hub_network in local.hub_networks_by_location :
     location =>
-    local.deploy_dns &&
     local.deploy_hub_network[location] &&
     hub_network.config.enable_outbound_virtual_network_peering
   }
@@ -1503,6 +1502,29 @@ locals {
 # Configuration settings for resource type:
 #  - azurerm_virtual_network_peering
 locals {
+  virtual_network_peering_name = {
+    for location, hub_config in local.hub_networks_by_location :
+    location => {
+      for spoke_resource_id in hub_config.config.spoke_virtual_network_resource_ids :
+      spoke_resource_id => try(
+        local.custom_settings.azurerm_virtual_network_peering["connectivity"][location][spoke_resource_id].name,
+        "peering-${uuidv5("url", spoke_resource_id)}"
+      )
+    }
+  }
+  virtual_network_peering_resource_id_prefix = {
+    for location, hub_config in local.hub_networks_by_location :
+    location =>
+    "${local.virtual_network_resource_id[location]}/virtualNetworkPeerings"
+  }
+  virtual_network_peering_resource_id = {
+    for location, hub_config in local.hub_networks_by_location :
+    location => {
+      for spoke_resource_id, peering_name in local.virtual_network_peering_name[location] :
+      spoke_resource_id =>
+      "${local.virtual_network_peering_resource_id_prefix[location]}/${peering_name}"
+    }
+  }
   azurerm_virtual_network_peering = flatten(
     [
       for location, hub_config in local.hub_networks_by_location :
@@ -1510,10 +1532,10 @@ locals {
         for spoke_resource_id in hub_config.config.spoke_virtual_network_resource_ids :
         {
           # Resource logic attributes
-          resource_id       = "${local.virtual_network_resource_id[location]}/virtualNetworkPeerings/peering-${uuidv5("url", spoke_resource_id)}"
+          resource_id       = "${local.virtual_network_peering_resource_id[location][spoke_resource_id]}"
           managed_by_module = local.deploy_outbound_virtual_network_peering[location]
           # Resource definition attributes
-          name                      = "peering-${uuidv5("url", spoke_resource_id)}"
+          name                      = "${local.virtual_network_peering_name[location][spoke_resource_id]}"
           resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name      = local.virtual_network_name[location]
           remote_virtual_network_id = spoke_resource_id
