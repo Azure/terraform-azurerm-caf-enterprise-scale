@@ -188,7 +188,7 @@ variable "configure_connectivity_resources" {
               })
             ), [])
             virtual_network_gateway = optional(object({
-              enabled = optional(bool, true)
+              enabled = optional(bool, false)
               config = optional(object({
                 address_prefix           = optional(string, "")
                 gateway_sku_expressroute = optional(string, "")
