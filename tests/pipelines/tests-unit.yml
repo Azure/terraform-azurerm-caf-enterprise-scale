@@ -40,6 +40,17 @@ jobs:
           targetType: "inline"
           script: "make tf-fmt"
 
+      - task: GoTool@0
+        displayName: [setup go]
+        inputs:
+          version: '1.18'
+
+      - task: Bash@3
+        displayName: "[go test]"
+        inputs:
+          targetType: "inline"
+          script: "make terratest"
+
       - task: Bash@3
         displayName: "[conftest install]"
         inputs:

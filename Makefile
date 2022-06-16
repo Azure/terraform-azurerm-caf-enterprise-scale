@@ -2,7 +2,7 @@
 # Makefile
 #
 
-TEST?=$$(go list ./... | grep -v 'vendor'| grep -v 'examples')
+TEST?=$$(go list ./... |grep -v 'vendor'|grep -v 'utils')
 
 # Azure Pipelines
 
@@ -52,7 +52,7 @@ tf-destroy:
 
 terratest:
 	@echo "==> Running Go test..."
-	cd tests/terratest && go test $(TEST) -run ^$(TESTPREFIX)
+	cd tests/terratest && go test $(TEST) $(TESTARGS) -run ^$(TESTPREFIX)
 
 # OPA Conftest
 
