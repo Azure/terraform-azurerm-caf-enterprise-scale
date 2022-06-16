@@ -19,6 +19,7 @@ type testcase struct {
 
 // TestAdvancedVnetPeeringName tests the standard vnet peering naming functionality
 func TestConnectivityAdvancedVnetPeering(t *testing.T) {
+	require.NotEmptyf(t, os.Getenv("ARM_SUBSCRIPTION_ID"), "env var ARM_SUBSCRIPTION_ID is required")
 	testCases := []testcase{
 		{
 			Name:        "StandardVnetPeeringNaming",
@@ -33,13 +34,14 @@ func TestConnectivityAdvancedVnetPeering(t *testing.T) {
 			},
 		},
 	}
-	to := utils.GetDefaultTerraformOptions(t)
+	dir := utils.GetTestDir(t)
+	to := utils.GetDefaultTerraformOptions(t, dir)
 	_, err := terraform.InitE(t, to)
 	require.NoError(t, err)
 	for i, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
 			var testOpts terraform.Options = *to
-			testOpts.PlanFilePath = fmt.Sprintf("./tfplan%d", i)
+			testOpts.PlanFilePath = fmt.Sprintf("%s/tfplan%d", dir, i)
 			testOpts.Vars = tc.TFVars
 			runTest(t, tc.PeeringName, &testOpts)
 		})

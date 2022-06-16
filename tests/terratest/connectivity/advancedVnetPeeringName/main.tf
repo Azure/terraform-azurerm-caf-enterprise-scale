@@ -8,6 +8,7 @@ terraform {
 
 provider "azurerm" {
   features {}
+  skip_provider_registration = true
 }
 
 variable "test_advanced_name" {
