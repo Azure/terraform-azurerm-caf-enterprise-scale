@@ -46,10 +46,12 @@ jobs:
           version: '1.18'
 
       - task: Bash@3
-        displayName: "[go test]"
+        displayName: "[terratest]"
         inputs:
           targetType: "inline"
           script: "make terratest"
+        env:
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
       - task: Bash@3
         displayName: "[conftest install]"
