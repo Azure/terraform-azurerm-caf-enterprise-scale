@@ -2,6 +2,8 @@
 # Makefile
 #
 
+TEST?=$$(go list ./... |grep -v 'vendor'|grep -v 'utils')
+
 # Azure Pipelines
 
 azp-strategy:
@@ -46,6 +48,12 @@ tf-destroy:
 	@echo "==> Running script..."
 	./tests/scripts/tf-destroy.sh
 
+# Terratest
+
+terratest:
+	@echo "==> Running Go test..."
+	cd tests/terratest && go test $(TEST) $(TESTARGS) -run ^$(TESTPREFIX)
+
 # OPA Conftest
 
 opa-install:
@@ -63,3 +71,5 @@ opa-update-values:
 opa-update-git:
 	@echo "==> Running script..."
 	./tests/scripts/opa-update-git.sh
+
+.PHONY: azp-strategy azp-backend azp-spn-generator tf-install tf-prepare tf-fmt tf-init tf-plan tf-apply tf-destroy terratest opa-install opa-run-tests opa-update-values opa-update-git
