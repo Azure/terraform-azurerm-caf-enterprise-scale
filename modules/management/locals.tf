@@ -2,7 +2,7 @@
 # empty object types in the code.
 locals {
   empty_string = ""
-  empty_list = []
+  empty_list   = []
 }
 
 # Convert the input vars to locals, applying any required
