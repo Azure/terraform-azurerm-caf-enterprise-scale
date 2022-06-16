@@ -2,6 +2,7 @@
 # empty object types in the code.
 locals {
   empty_string = ""
+  empty_list   = []
 }
 
 # Convert the input vars to locals, applying any required
@@ -155,6 +156,7 @@ locals {
     name     = try(local.custom_settings_aa.name, "${local.resource_prefix}-automation${local.resource_suffix}")
     location = try(local.custom_settings_aa.location, local.location)
     sku_name = try(local.custom_settings_aa.sku_name, "Basic")
+    identity = try(local.custom_settings_aa.identity, local.empty_list)
     tags     = try(local.custom_settings_aa.tags, local.tags)
     resource_group_name = coalesce(
       try(local.custom_settings_aa.resource_group_name, null),
