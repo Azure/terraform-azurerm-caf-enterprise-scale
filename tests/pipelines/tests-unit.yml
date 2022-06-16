@@ -49,7 +49,8 @@ jobs:
         displayName: "[terratest]"
         inputs:
           targetType: "inline"
-          script: "make terratest"
+          script: |
+            make terratest
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
