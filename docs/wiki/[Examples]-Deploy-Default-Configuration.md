@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 This example code will deploy the minimum recommended management group and subscription organization from the enterprise-scale reference architecture.

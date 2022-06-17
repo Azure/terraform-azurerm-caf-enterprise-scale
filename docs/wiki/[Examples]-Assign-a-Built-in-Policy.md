@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 This page describes how to assign built-in Azure Policies to your environment using the `caf-enterprise-scale` module.

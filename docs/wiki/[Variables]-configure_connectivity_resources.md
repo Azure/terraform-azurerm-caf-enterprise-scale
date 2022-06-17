@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**configure_connectivity_resources**](#overview) [*see validation for type*](#Validation) (optional)
@@ -502,6 +503,7 @@ Resource ID of an existing Network Security Group (NSG) to attach to the Subnet.
 Resource ID of an existing Route Table (UDR) to attach to the Subnet.
 
 As an example, a two-subnet configuration would look like:
+
 ```hcl
 [
   {

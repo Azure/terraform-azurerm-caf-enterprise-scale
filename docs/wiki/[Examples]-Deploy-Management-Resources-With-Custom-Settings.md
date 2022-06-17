@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context, using custom configuration settings.
@@ -256,6 +257,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Take particular note of the following changes:
 
+<!-- markdownlint-disable no-inline-html -->
 - The `retentionInDays` setting is now configured to `50` days on the Log Analytics workspace.
 - The `dataRetention` parameter value is also configured to `50` days on the `Deploy-Log-Analytics` Policy Assignment.
 - The `emailSecurityContact` parameter value is set to your own email address on the `Deploy-MDFC-Config` (*Deploy Azure Security Center configuration*) Policy Assignment. Once this policy is remediated, you can also view this setting in Azure Security Center.
@@ -263,6 +265,7 @@ Take particular note of the following changes:
 
   > <sup>1</sup> - Due to a pending feature addition, Azure Defender is also `Off` for `Open-source relational databases`.
   We plan to add this feature in a future release (date TBC).
+<!-- markdownlint-enable no-inline-html -->
 
 Although not Policy Assignment related, also note the following changes:
 

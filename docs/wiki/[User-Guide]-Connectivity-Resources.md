@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 The module enables deployment of [Network topology and connectivity][ESLZ-Connectivity] resources into the Subscription context set by the `azurerm.connectivity` provider alias.

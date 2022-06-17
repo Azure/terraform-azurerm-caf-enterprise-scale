@@ -1,7 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## This page has been moved
 
 Please go to the new [Management Resources][wiki_management_resources] page for more information, or [Deploy Management Resources][wiki_deploy_management_resources] for examples.
-
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

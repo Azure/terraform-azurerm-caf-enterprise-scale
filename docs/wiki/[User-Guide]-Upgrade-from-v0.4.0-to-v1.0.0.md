@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 As part of upgrade from release 0.4.0 to 1.0.0, the [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] includes a minor breaking change due to the need to update the minimum supported `azurerm` provider version to `2.77.0`.
@@ -51,6 +52,7 @@ The given key does not identify an element in this collection value.
 ### Resource type: `azurerm_policy_definition`
 
 The following Policy Definitions had `name` and `description` fields updated, which will result in an in-place update:
+
 - `Audit-MachineLearning-PrivateEndpointId`
 - `Deny-MachineLearning-Aks`
 - `Deny-MachineLearning-Compute-SubnetId`

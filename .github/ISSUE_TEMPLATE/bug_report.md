@@ -28,11 +28,11 @@ assignees: ''
 
 ### Description
 
-**Describe the bug**
+#### Describe the bug
 
 <!-- A clear and concise description of what the bug is. -->
 
-**Steps to Reproduce**
+#### Steps to Reproduce
 
 <!-- Please provide detailed steps for reproducing the issue. -->
 
@@ -40,10 +40,10 @@ assignees: ''
 2. step 2
 3. you get it...
 
-**Screenshots**
+#### Screenshots
 
 <!-- If applicable, add screenshots to help explain your problem. -->
 
-**Additional context**
+#### Additional context
 
 <!-- Add any other context about the problem here. -->

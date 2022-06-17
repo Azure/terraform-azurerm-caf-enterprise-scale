@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**root_id**](#overview) `string` (optional)
@@ -22,7 +23,7 @@ To set a custom Name (ID) value for the Enterprise-scale "root" Management Group
   root_id = "myorg"
 ```
 
-> WARNING: Changing this value will cause Terraform to re-create <u>all</u> resources managed by this module
+> WARNING: Changing this value will cause Terraform to re-create **all** resources managed by this module
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

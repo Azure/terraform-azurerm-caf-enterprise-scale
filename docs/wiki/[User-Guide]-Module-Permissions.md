@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Core resources
 
 This module is primarily designed to build your resource hierarchy, manage policies and set permissions.
@@ -59,7 +60,6 @@ Initial deployment may fail if the target Subscription hasn't already been moved
 
 You may also need to add these permissions if running dedicated pipelines for [Core resources](#core-resources), [Connectivity resources](#connectivity-resources), and [Management resources](#management-resources).
 
-
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
@@ -68,6 +68,6 @@ You may also need to add these permissions if running dedicated pipelines for [C
 [azure_hierarchy_set_default]:           https://docs.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy#setting---default-management-group "Setting a default Management Group"
 [azure_hierarchy_moving]:                https://docs.microsoft.com/azure/governance/management-groups/overview#moving-management-groups-and-subscriptions "Moving management groups and subscriptions"
 [azure_transition]:                      https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/transition "Transition existing Azure environments to enterprise-scale"
-[azure_sentinel]:                        https://azure.microsoft.com/en-gb/services/azure-sentinel/ "Azure Sentinel - Intelligent security analytics for your entire enterprise."
+[azure_sentinel]:                        https://azure.microsoft.com/services/azure-sentinel/ "Azure Sentinel - Intelligent security analytics for your entire enterprise."
 [azure_network_contributor]:             https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#network-contributor "Azure built-in roles # Network Contributor"
 [azure_log_analytics_contributor]:       https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#log-analytics-contributor "Azure built-in roles # Log Analytics Contributor"

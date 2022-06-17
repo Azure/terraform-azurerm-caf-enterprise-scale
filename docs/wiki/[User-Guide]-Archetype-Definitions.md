@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## What is an archetype?
 
 Archetypes are used in the Enterprise-scale architecture to describe the Landing Zone configuration using a template-driven approach. The archetype is what fundamentally transforms ***Management Groups*** and ***Subscriptions*** into ***Landing Zones***.

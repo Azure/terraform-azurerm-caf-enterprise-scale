@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Table of Contents
 
 Please refer to the following to learn about the module:

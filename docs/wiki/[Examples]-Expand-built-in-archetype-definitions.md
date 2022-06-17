@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 This page describes how to deploy Enterprise-scale with a basic configuration based mainly on module defaults.
@@ -190,7 +191,6 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 ### Excluded Policy Assignments
 
 ![Expand-Built-In-Archetype-Definitions-02](./media/examples-expand-built-in-archetype-definitions-02.png)
-
 
 ## Summary
 

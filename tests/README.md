@@ -40,6 +40,7 @@ To give assurance that the module works with the specified range of supported ve
 
 The Unit Tests consist of the following tasks:
 
+<!-- markdownlint-disable no-inline-html -->
 | *Task Name* | *Description* |
 | --- | --- |
 | **Install Terraform Pre-requisites** | Ensures the required version of Terraform is installed on the agent. |
@@ -58,6 +59,7 @@ The Unit Tests consist of the following tasks:
 
 <sup>1</sup> *Each job uses a dedicated SPN (with certificate based authentication) to connect to Azure.*
 *This is to minimize the risk of API rate limiting when running highly parallel resource deployments in the pipeline.*
+<!-- markdownlint-enable no-inline-html -->
 
 The `Unit Tests` Azure Pipeline is a mandatory check on all PR's being raised against the `main` branch, enforced using branch protection rules.
 To maintain security of the test environment, the `Unit Tests` Azure Pipeline must be manually initiated by a repository Admin or Maintainer once the submitted code changes have been reviewed.
@@ -76,6 +78,7 @@ It also allows us to verify that the module is able to successful destroy resour
 
 The E2E Tests consist of the following tasks:
 
+<!-- markdownlint-disable no-inline-html -->
 | *Task Name* | *Description* |
 | --- | --- |
 | **Install Terraform Pre-requisites** | Ensures the required version of Terraform is installed on the agent. |
@@ -96,6 +99,7 @@ The E2E Tests consist of the following tasks:
 > *This is to minimize the risk of API rate limiting when running highly parallel resource deployments in the pipeline.*
 >
 > <sup>2</sup> *The* `terraform destroy` *task uses the* `always()` *condition to ensure the environment is cleaned-up if any of the previous tasks fail after a partial deployment.*
+<!-- markdownlint-enable no-inline-html -->
 
 The `E2E Tests` Azure Pipeline is an optional check for PR's being raised against the `main` branch.
 Although not enforced through branch protection rules, this test should always be run before merging any code changes to the repository which could impact the functionality of the module.

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 This page describes how to deploy Enterprise-scale with the [Connectivity resources][wiki_connectivity_resources] created in the current Subscription context, using custom configuration settings.
@@ -9,6 +10,7 @@ For the Connectivity resources, this is configured through the [`configure_conne
 
 In this example, we take the base [Deploy Connectivity resources][wiki_deploy_connectivity_resources] configuration and make the following changes:
 
+<!-- markdownlint-disable no-inline-html -->
 - Add input variable on the root module for enabling/disabling Connectivity resources
 - Add a local variable for `configure_connectivity_resources` and set custom values for the following:
   - Deploy a shared DDoS Protection Standard plan in the `northeurope` region
@@ -26,8 +28,9 @@ By default, the module will use the location set by the `configure_connectivity_
 To deploy Private DNS Zones to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
 Each value in this list must be in the shortname format (`uksouth`), and not DisplayName (`UK South`).
 Setting this value will overwrite the default value.
+<!-- markdownlint-enable no-inline-html -->
 
-The module allows for further customisation of the Connectivity resources through the `advanced` setting, however this is out-of-scope for this example.
+The module allows for further customization of the Connectivity resources through the `advanced` setting, however this is out-of-scope for this example.
 
 > Use of the `advanced` setting is currently undocumented and experimental.
 Please be aware that using this setting may result in future breaking changes.

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Initial considerations
 
 Before getting started with this module, please take note of the following considerations:

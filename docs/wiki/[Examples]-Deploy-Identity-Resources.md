@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 This page describes how to deploy Enterprise-scale with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using the default configuration settings.
@@ -12,6 +13,7 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
 - Set the `subscription_id_identity` value to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features designed to protect resources in the `identity` Subscription including:
+
 - Disable creation of Public IP resources;
 - Disable RDP connectivity from the Internet;
 - Enforce NSG on Subnets;

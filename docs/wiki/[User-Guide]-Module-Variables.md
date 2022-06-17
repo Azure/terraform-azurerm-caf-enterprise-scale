@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 The module can be customized using the input variables listed below (click on each `input name` for more details).
@@ -14,18 +15,21 @@ In all cases, the default values can simply be copied into your configuration an
 
 These variables must be set in the `module` block when using this module.
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**root_parent_id**][root_parent_id] `string`
 
 The root_parent_id is used to specify where to set the root for all Landing Zone deployments. Usually the Tenant ID when deploying the core Enterprise-scale Landing Zones.
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 ## Optional Inputs
 
 These variables have default values and don't have to be set to use this module. You may set these variables in the `module` block to override their default values.
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**archetype_config_overrides**][archetype_config_overrides] `any`
@@ -34,6 +38,7 @@ If specified, will set custom Archetype configurations to the default Enterprise
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
@@ -164,6 +169,7 @@ Default:
 }
 ```
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**configure_identity_resources**][configure_identity_resources] `object({ settings = object({ identity = object({ enabled = bool config = object({ enable_deny_public_ip = bool enable_deny_rdp_from_internet = bool enable_deny_subnet_without_nsg = bool enable_deploy_azure_backup_on_vms = bool }) }) }) })`
@@ -188,6 +194,7 @@ Default:
 }
 ```
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
@@ -243,6 +250,7 @@ Default:
 }
 ```
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**create_duration_delay**][create_duration_delay] `map(string)`
@@ -262,6 +270,7 @@ Default:
 }
 ```
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**custom_landing_zones**][custom_landing_zones] `any`
@@ -270,6 +279,7 @@ If specified, will deploy additional Management Groups alongside Enterprise-scal
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**custom_policy_roles**][custom_policy_roles] `map(list(string))`
@@ -278,6 +288,7 @@ If specified, the custom_policy_roles variable overrides which Role Definition I
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**default_location**][default_location] `string`
@@ -286,6 +297,7 @@ If specified, will use set the default location used for resource deployments wh
 
 Default: `"eastus"`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**default_tags**][default_tags] `map(string)`
@@ -294,6 +306,7 @@ If specified, will set the default tags for all resources deployed by this modul
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_connectivity_resources**][deploy_core_landing_zones] `bool`
@@ -302,6 +315,7 @@ If set to true, will deploy the \"Connectivity\" landing zone settings and add r
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_core_landing_zones**][deploy_core_landing_zones] `bool`
@@ -310,6 +324,7 @@ If set to true, will include the core Enterprise-scale Management Group hierarch
 
 Default: `true`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_corp_landing_zones**][deploy_corp_landing_zones] `bool`
@@ -318,6 +333,7 @@ If set to true, module will deploy the "Corp" Management Group, including "out o
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_demo_landing_zones**][deploy_demo_landing_zones] `bool`
@@ -326,6 +342,7 @@ If set to true, will include the demo "Landing Zone" Management Groups.
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_identity_resources**][deploy_identity_resources] `bool`
@@ -334,6 +351,7 @@ If set to true, will deploy the \"Identity\" landing zone settings.
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_management_resources**][deploy_management_resources] `bool`
@@ -342,6 +360,7 @@ If set to true, will deploy the \"Management\" landing zone settings and add res
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_online_landing_zones**][deploy_online_landing_zones] `bool`
@@ -350,6 +369,7 @@ If set to true, module will deploy the "Online" Management Group, including "out
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_sap_landing_zones**][deploy_sap_landing_zones] `bool`
@@ -358,6 +378,7 @@ If set to true, module will deploy the "SAP" Management Group, including "out of
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**destroy_duration_delay**][destroy_duration_delay] `map(string)`
@@ -377,6 +398,7 @@ Default:
 }
 ```
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**disable_base_module_tags**][disable_base_module_tags] `bool`
@@ -385,6 +407,7 @@ If set to true, will remove the base module tags applied to all resources deploy
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**disable_telemetry**][disable_tememetry] `bool`
@@ -394,6 +417,7 @@ See link for more information.
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**library_path**][library_path] `string`
@@ -402,6 +426,7 @@ If specified, sets the path to a custom library folder for archetype artefacts. 
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**root_id**][root_id] `string`
@@ -410,6 +435,7 @@ If specified, will set a custom Name (ID) value for the Enterprise-scale "root" 
 
 Default: `"es"`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**root_name**][root_name] `string`
@@ -418,6 +444,7 @@ If specified, will set a custom DisplayName value for the Enterprise-scale "root
 
 Default: `"Enterprise-Scale"`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_connectivity**][subscription_id_connectivity] `string`
@@ -426,6 +453,7 @@ If specified, identifies the Platform subscription for \"Connectivity\" for reso
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_identity**][subscription_id_identity] `string`
@@ -434,6 +462,7 @@ If specified, identifies the Platform subscription for \"Identity\" for resource
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_management**][subscription_id_management] `string`
@@ -442,6 +471,7 @@ If specified, identifies the Platform subscription for \"Management\" for resour
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_overrides**][subscription_id_overrides] `map(list(string))`
@@ -450,6 +480,7 @@ If specified, will be used to assign subscription_ids to the default Enterprise-
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**template_file_variables**][template_file_variables] `any`
@@ -458,6 +489,7 @@ If specified, provides the ability to define custom template variables used when
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 A summary of these variables can also be found on the [Inputs][estf-inputs] tab of the module entry in Terraform Registry.
