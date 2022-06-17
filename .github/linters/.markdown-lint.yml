@@ -15,6 +15,8 @@
 #   <!-- markdownlint-restore -->
 #
 
+default: true
+
 ###############
 # Rules by id #
 ###############
@@ -44,19 +46,19 @@ MD029: false
 
 # Inline HTML
 # no-inline-html
-MD033: false
+MD033: true
 
 # Emphasis used instead of a heading
 # no-emphasis-as-heading/no-emphasis-as-header
-MD036: false
+MD036: true
 
 # First line in a file should be a top-level heading
 # first-line-heading/first-line-h1
-MD041: false
+MD041: true
 
 #################
 # Rules by tags #
 #################
 
 # MD012, MD022, MD031, MD032, MD047
-blank_lines: false
+blank_lines: true
