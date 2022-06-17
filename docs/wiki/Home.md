@@ -12,17 +12,18 @@ Depending on selected options, this module can deploy different sets of resource
 
 Please click on each of the above links for more details.
 
-## Critical design areas
+## Design areas
 
-The module provides a consistent approach for deploying and managing resources relating to the following Enterprise-scale critical design areas:
+The module provides a consistent approach for deploying and managing resources relating to the following design areas:
 
-- [Management Group and Subscription organization][alz_hierarchy]
+- [Resource organization][alz_hierarchy]
   - Create the Management Group resource hierarchy
   - Assign Subscriptions to Management Groups
   - Create custom Policy Assignments, Policy Definitions and Policy Set Definitions (Initiatives)
 - [Identity and access management][alz_identity]
+  - Secure the identity subscription using Azure Policy
   - Create custom Role Assignments and Role Definitions
-- [Management and monitoring][alz_management]
+- [Management][alz_management]
   - Create a central Log Analytics workspace and Automation Account
   - Link Log Analytics workspace to the Automation Account
   - Deploy recommended Log Analytics Solutions
@@ -38,8 +39,6 @@ The module provides a consistent approach for deploying and managing resources r
     - Azure Virtual Network Gateway
     - Azure ExpressRoute Gateway
   - Centrally managed DNS zones
-- [Identity and access management][alz_identity]
-  - Secure the identity subscription using Azure Policy
 
 ## Next steps
 
