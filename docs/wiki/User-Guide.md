@@ -43,7 +43,7 @@ Please refer to the following to learn about the module:
 - [Connectivity Resources][wiki_connectivity_resources]
 - [Identity Resources][wiki_identity_resources]
 
-If you are looking for guidance when upgrading between major releases, please refer to the following:
+If you need guidance when upgrading between major releases, please refer to the following:
 
 - [Upgrade from v1.1.4 to v2.0.0][wiki_upgrade_from_v1_1_4_to_v2_0_0]
 - [Upgrade from v0.4.0 to v1.0.0][wiki_upgrade_from_v0_4_0_to_v1_0_0]

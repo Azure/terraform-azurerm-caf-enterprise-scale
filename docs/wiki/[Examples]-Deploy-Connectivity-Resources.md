@@ -4,7 +4,7 @@
 This page describes how to deploy Azure landing zones with connectivity resources based on the [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] created in the current Subscription context, using the default configuration settings.
 
 > **NOTE:**
-> If you are looking to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources (Virtual WAN)][wiki_deploy_virtual_wan_resources] example.
+> If you need to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources (Virtual WAN)][wiki_deploy_virtual_wan_resources] example.
 
 As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimizing cost.
 Please refer to the [Network topology and connectivity][alz_connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
