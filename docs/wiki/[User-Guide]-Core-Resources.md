@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-The core capability of this module deploys the foundations of the [conceptual architecture for Azure landing zones][msdocs_alz_architecture], with a focus on the central [resource organization][alz-resourceorg].
+The core capability of this module deploys the foundations of the [conceptual architecture for Azure landing zones][msdocs_alz_architecture], with a focus on the central [resource organization][alz_resourceorg].
 
 ![Overview of the Azure landing zones core resources][alz_core_overview]
 
@@ -40,7 +40,7 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
 
 [msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
-[alz_resourceorg]:  design-area/resource-org.md "Resource organization for Azure landing zones on the Cloud Adoption Framework."
+[alz_resourceorg]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org "Resource organization for Azure landing zones on the Cloud Adoption Framework."
 
 [arm_management_group]:               https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups
 [arm_management_group_subscriptions]: https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups/subscriptions
@@ -50,12 +50,12 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
 [arm_role_assignment]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roleassignments
 [arm_role_definition]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roledefinitions
 
-[azurerm_management_group]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
-[azurerm_policy_assignment]:     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_assignment
-[azurerm_policy_definition]:     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition
-[azurerm_policy_set_definition]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
-[azurerm_role_assignment]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
-[azurerm_role_definition]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
+[azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
+[azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
+[azurerm_policy_definition]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition
+[azurerm_policy_set_definition]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
+[azurerm_role_assignment]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
+[azurerm_role_definition]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
 
 [wiki_deploy_default_configuration]: %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 

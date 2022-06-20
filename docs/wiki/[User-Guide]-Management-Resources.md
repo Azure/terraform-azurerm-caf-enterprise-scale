@@ -38,7 +38,7 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
 
 [msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
-[alz_management]: design-area/management.md "Management and monitoring for Azure landing zones on the Cloud Adoption Framework."
+[alz_management]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management "Management and monitoring for Azure landing zones on the Cloud Adoption Framework."
 
 [arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
 [arm_log_analytics_workspace]:        https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
@@ -52,4 +52,5 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
 [azurerm_automation_account]:           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
 [azurerm_log_analytics_linked_service]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
 
-[wiki_deploy_management_resources]:           https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_deploy_management_resources]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_provider_configuration]:      https://github.com/krowlandson/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider configuration"

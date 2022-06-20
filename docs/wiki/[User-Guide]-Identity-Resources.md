@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-The module provides an option to configure policies relating to the [identity and access management][alz-identity] landing zone. It also ensures that the specified subscription is placed in the right management group.
+The module provides an option to configure policies relating to the [identity and access management][alz_identity] landing zone. It also ensures that the specified subscription is placed in the right management group.
 
 ![Overview of the Azure landing zones identity resources][alz_identity_overview]
 
@@ -19,6 +19,6 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[alz-identity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
+[alz_identity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
 
 [wiki_deploy_identity_resources]: %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"

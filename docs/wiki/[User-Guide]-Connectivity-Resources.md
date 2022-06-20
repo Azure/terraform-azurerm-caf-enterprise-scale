@@ -123,14 +123,13 @@ Please refer to the following for examples showing how to use this capability:
  [//]: # (************************)
 
 [msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
-[msdocs_alz_connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity
 [msdocs_hub_and_spoke]:    https://docs.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/traditional-azure-networking-topology
 [msdocs_virtual_wan]:      https://docs.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/virtual-wan-network-topology
 
-[alz_connectivity]: design-area/network-topology-and-connectivity.md "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
+[alz_connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
 
-[about_ddos_protection_standard]: /azure/ddos-protection/ddos-protection-overview
-[about_dns_for_private_endpoint]: /azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration
+[about_ddos_protection_standard]: https://docs.microsoft.com/azure/ddos-protection/ddos-protection-overview
+[about_dns_for_private_endpoint]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration
 
 [arm_resource_group]:                        https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
 [arm_virtual_network]:                       https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks
