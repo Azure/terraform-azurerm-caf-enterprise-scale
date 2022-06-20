@@ -35,7 +35,7 @@ Although `subscription_id_connectivity` is required, the subscription used for c
 Please ensure you have a provider configured with access to the same subscription specified by `subscription_id_connectivity`, and map this to `azurerm.connectivity` in the module providers object.
 
 As the module is configured to create a [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] by default, this example requires configuration of the `configure_connectivity_resources` input variable.
-Although this looks complicated, the value is simply copied from the `default` value used in the variable and updated according to the guidance in [Configure hub networks (Virtual WAN)][wiki_configure_connectivity_resources_virtual_hubs].
+Although this looks complicated, the value is simply copied from the `default` value used in the variable and updated according to the variable documentation for [Configure hub networks (Virtual WAN)][wiki_configure_hub_networks_virtual_wan].
 In this case we perform the following updates:
 
 1. Remove the default value from `configure_connectivity_resources.settings.hub_networks`
@@ -296,7 +296,9 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_provider_configuration]:               %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
 [wiki_connectivity_resources_virtual_wan]:   %5BUser-Guide%5D-Connectivity-Resources#virtual-wan-network-topology-microsoft-managed "Wiki - Connectivity Resources - Virtual WAN network topology (Microsoft-managed)"
+[wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub & Spoke)"
 [wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Virtual WAN Resources With Custom Settings"
+[wiki_configure_hub_networks_virtual_wan]:   %5BVariables%5D-configure_connectivity_resources#configure-hub-networks-virtual-wan "Wiki - configure_connectivity_resources - Configure hub networks (Virtual WAN)"
 [wiki_examples]:                             Examples "Wiki - Examples"
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_deploy_default_configuration]:         %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
