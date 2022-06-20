@@ -105,7 +105,7 @@ Please refer to the following for examples showing how to use this capability:
 - [Deploy Connectivity Examples][wiki_deploy_connectivity_resources]
 - [Deploy Virtual WAN Examples][wiki_deploy_virtual_wan_resources]
 - [Configure hub networks (Hub and Spoke)][wiki_configure_connectivity_resources_hubs]
-- [Configure hub networks (Hub and Spoke)][wiki_configure_connectivity_resources_virtual_hubs]
+- [Configure hub networks (Virtual WAN)][wiki_configure_connectivity_resources_virtual_hubs]
 - [Configure DDoS Protection settings][wiki_configure_connectivity_resources_ddos]
 - [Configure DNS settings][wiki_configure_connectivity_resources_dns]
 
