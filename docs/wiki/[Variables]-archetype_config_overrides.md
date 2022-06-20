@@ -104,7 +104,7 @@ This is the value you need to specify in the `access_control` object.
 [//]: # (INSERT IMAGE REFERENCES BELOW)
 [//]: # (*****************************)
 
-[archetype_config_overrides_mapping]: ./media/variables-archetype_config_overrides-mapping.png "Mapping of archetype_config_overrides entries to their respective sources"
+[archetype_config_overrides_mapping]: media/variables-archetype_config_overrides-mapping.png "Mapping of archetype_config_overrides entries to their respective sources"
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
@@ -114,4 +114,4 @@ This is the value you need to specify in the `access_control` object.
 
 [azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
 
-[archetype_config_object]: ./%5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"
+[archetype_config_object]: %5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"

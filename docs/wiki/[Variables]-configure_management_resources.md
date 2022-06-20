@@ -376,4 +376,4 @@ See [Using the Advanced Block with Management Resources][wiki_management_advance
 [vm_insights_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
 [microsoft_defender_for_cloud]:           https://docs.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction
 [microsoft_defender_for_sql]:             https://docs.microsoft.com/azure/azure-sql/database/azure-defender-for-sql
-[wiki_management_advanced_block]:         ./%5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
+[wiki_management_advanced_block]:         %5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"

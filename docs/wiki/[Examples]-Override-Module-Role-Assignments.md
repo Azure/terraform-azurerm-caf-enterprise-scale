@@ -10,10 +10,10 @@ We will use the `Deploy-HITRUST-HIPAA` and `Deploy-SQL-Auditing` policy assignme
 On deployment, the module will auto-generate the role assignments necessary for any Policy Assignment when a Managed Identity is required to support policies using `Modify` or `DeployIfNotExists` effects.
 
 - For `Deploy-HITRUST-HIPAA` the module will generate 5 role assignments:
-  ![Override-Module-Role-Assignments](./media/examples-override-module-role-assignments.png)
+  ![Override-Module-Role-Assignments](media/examples-override-module-role-assignments.png)
 
 - For `Deploy-SQL-Auditing`the module will generate 2 role assignments:
-  ![Override-Module-Role-Assignments-01](./media/examples-override-module-role-assignments-01.png)
+  ![Override-Module-Role-Assignments-01](media/examples-override-module-role-assignments-01.png)
 
 We will update the built-in configuration following these steps:
 
@@ -88,7 +88,7 @@ It also contains the module declaration for this module, containing a number of 
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -278,8 +278,8 @@ For this example the`custom_policy_roles` is this:
 
 ## Override Module Role Assignments
 
-![Override-Module-Role-Assignments-03](./media/examples-override-module-role-assignments-03.png)
+![Override-Module-Role-Assignments-03](media/examples-override-module-role-assignments-03.png)
 
-![Override-Module-Role-Assignments-04](./media/examples-override-module-role-assignments-04.png)
+![Override-Module-Role-Assignments-04](media/examples-override-module-role-assignments-04.png)
 
 You have successfully override the built-in role definitions using the `custom_policy_roles` feature of Enterprise-scale module.

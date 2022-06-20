@@ -62,7 +62,7 @@ module "enterprise_scale" {
 
 ## Deployed Management Groups
 
-![Deploy-Default-Configuration](./media/examples-deploy-default-configuration.png)
+![Deploy-Default-Configuration](media/examples-deploy-default-configuration.png)
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
@@ -70,4 +70,4 @@ You have successfully created the default Management Group resource hierarchy, a
 
 ## Next steps
 
-Go to our next example to learn how to deploy the [demo landing zone archetypes](./%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes).
+Go to our next example to learn how to deploy the [demo landing zone archetypes](%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes).

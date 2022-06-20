@@ -80,7 +80,7 @@ module "enterprise_scale" {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-identity-core.png)
+![Deployed resource hierarchy](media/examples-deploy-identity-core.png)
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
@@ -102,7 +102,7 @@ Check the following Policy Assignments to see how these have been configured wit
 
 The following shows the `Deploy-VM-Backup` Policy Assignment with a user-defined values set by the module for the parameters.
 
-![Policy Assignment parameters example](./media/examples-deploy-identity-policy-parameters.png)
+![Policy Assignment parameters example](media/examples-deploy-identity-policy-parameters.png)
 
 ### Policy Assignment compliance
 
@@ -121,7 +121,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Go to our next example to learn how to deploy the [Identity resources with custom settings][wiki_deploy_identity_resources_custom].
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -129,10 +129,10 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_identity_resources]:               ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_deploy_identity_resources_custom]: ./%5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
-[wiki_examples]:                         ./Examples "Wiki - Examples"
-[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_identity_resources]:               %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_deploy_identity_resources_custom]: %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
+[wiki_examples]:                         Examples "Wiki - Examples"
+[wiki_deploy_default_configuration]:     %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
-[archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[archetype_exclusions]: %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"

@@ -1,5 +1,5 @@
 <!-- markdownlint-disable first-line-h1 -->
-Please ensure you have read our [Contributing](./Contributing) page before going any further.
+Please ensure you have read our [Contributing](Contributing) page before going any further.
 
 ## Checklist
 

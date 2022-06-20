@@ -41,7 +41,7 @@ We need to ensure that every custom role we create has a unique value for "name"
 
 In this example, we will use `New-Guid` to generate the name value for our `Reader-Support-Tickets` role definition. Using `New-Guid` is as simple as opening a PowerShell window and running the `New-Guid` cmdlet. It will then generate a unique value for you to use.
 
-![Create-and-Assign-Custom-RBAC-Roles-New-Guid-01](./media/examples-create-and-assign-custom-rbac-roles-new-guid_01.png)
+![Create-and-Assign-Custom-RBAC-Roles-New-Guid-01](media/examples-create-and-assign-custom-rbac-roles-new-guid_01.png)
 
 Now that we have a unique "name" for our new role definition, copy the below code in to the `role_definition_es_reader_support_tickets.tmpl.json` file and save it, making sure to update the value of "name" with your result from running `New-Guid`.
 

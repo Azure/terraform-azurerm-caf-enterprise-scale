@@ -120,7 +120,7 @@ It also contains the module declaration for this module, containing a number of 
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -226,7 +226,7 @@ The `lib/archetype_definition_customer_online.json` file contains a custom "arch
 
 In this example, we are using this archetype definition to create an archetype called `customer_online`. This archetype definition includes the creation of Policy Assignments for `Deny-Resource-Locations` and `Deny-RSG-Locations`, with default values pre-defined in the archetype definition template.
 
-For more details about working with archetype definitions, please refer to the [archetype definition user guide](./%5BUser-Guide%5D-Archetype-Definitions).
+For more details about working with archetype definitions, please refer to the [archetype definition user guide](%5BUser-Guide%5D-Archetype-Definitions).
 
 ```json
 {
@@ -264,7 +264,7 @@ For more details about working with archetype definitions, please refer to the [
 
 ## Deployed Management Groups
 
-![Deploy-Using-Module-Nesting](./media/examples-deploy-using-module-nesting.png)
+![Deploy-Using-Module-Nesting](media/examples-deploy-using-module-nesting.png)
 
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale, using module nesting.
 

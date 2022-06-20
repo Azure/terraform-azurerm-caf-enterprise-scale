@@ -344,7 +344,7 @@ locals {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-connectivity-custom-core.png)
+![Deployed resource hierarchy](media/examples-deploy-connectivity-custom-core.png)
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
@@ -366,7 +366,7 @@ Once evaluated, the compliance state should also be updated and you can run reme
 
 Once deployment is complete and policy has run, you should have the following Resource Groups deployed in your assigned Connectivity Subscription:
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsgs.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsgs.png)
 
 You should see that each of the Resource Groups are aligned to regions based on the configuration.
 In this case, they are set as follows:
@@ -388,7 +388,7 @@ This should contain a hidden `microsoft.security/automations` resource `ExportTo
 
 The Resource Group `myorg-connectivity-northeurope` should be created and contain the following resources:
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-northeurope.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-northeurope.png)
 
 When you explore the configuration, note that `myorg-hub-northeurope` is pre-configured with Subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
 These are now used by the created ExpressRoute Gateway and Azure Firewall resources.
@@ -398,7 +398,7 @@ DDoS Protection Standard should also be set to `Enable` and connected to the DDo
 
 The Resource Group `myorg-connectivity-westeurope` should be created and contain the following resources:
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-westeurope.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-westeurope.png)
 
 When you explore the configuration, note that `myorg-hub-westeurope` is pre-configured with a Subnet for `GatewaySubnet` only. The `AzureFirewallSubnet` is no longer deployed as we removed the `azure_firewall.config.address_prefix` value for the this hub network.
 This now used by the created VPN Gateway resource.
@@ -412,14 +412,14 @@ As such, the Resource Group name doesn't include the location.
 
 The Resource Group and DDoS protection plan are created in `northeurope`, as specified via the `ddos_protection_plan.config.location` value.
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-ddos.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-ddos.png)
 
 ### Resource Group `myorg-dns`
 
 The Resource Group is created in `UK South`, as per the default example. This was set by the default value for `var.connectivity_resources_location` which is assigned to the `settings.location` value from the local variable `configure_connectivity_resources`.
 All Private DNS Zone resources are `Global`.
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-dns.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-dns.png)
 
 By default we create a Private DNS Zone for all services which currently [support Private Endpoints][azure_private_endpoint_support].
 New Private DNS Zones may be added in future releases as additional services release Private Endpoint support.
@@ -453,7 +453,7 @@ Take particular note of the following additional changes:
 Try updating the configuration settings in the `configure_connectivity_resources` local variable to see how this changes your configuration.
 Also try setting your own values in the input variables, and toggling the `deploy_connectivity_resources` input variable to see which resources are created/destroyed.
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -465,17 +465,17 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 
 [azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
-[wiki_management_resources]:         ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
-[wiki_connectivity_resources]:         ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources."
-[wiki_deploy_connectivity_resources]:  ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources."
-[wiki_provider_configuration_multi]:   ./%5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
-[wiki_examples]:                       ./Examples "Wiki - Examples"
+[wiki_management_resources]:         %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
+[wiki_connectivity_resources]:         %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources."
+[wiki_deploy_connectivity_resources]:  %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources."
+[wiki_provider_configuration_multi]:   %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
+[wiki_examples]:                       Examples "Wiki - Examples"
 
-[configure_connectivity_resources]: ./%5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
-[deploy_connectivity_resources]:    ./%5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
-[subscription_id_connectivity]:     ./%5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
-[default_location]:                 ./%5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[archetype_exclusions]:             ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:                ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[configure_connectivity_resources]: %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
+[deploy_connectivity_resources]:    %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
+[subscription_id_connectivity]:     %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
+[default_location]:                 %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
+[archetype_exclusions]:             %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:                %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
 
 [azure_tag_support]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"

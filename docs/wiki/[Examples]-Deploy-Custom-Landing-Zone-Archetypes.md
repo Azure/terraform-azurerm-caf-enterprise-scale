@@ -80,7 +80,7 @@ It also contains the module declaration for this module, containing a number of 
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -149,7 +149,7 @@ The `lib/archetype_definition_customer_online.json` file contains a custom "arch
 
 In this example, we are using this archetype definition to create an archetype called `customer_online`. This archetype definition includes the creation of Policy Assignments for `Deny-Resource-Locations` and `Deny-RSG-Locations`, with default values pre-defined in the archetype definition template.
 
-For more details about working with archetype definitions, please refer to the [archetype definition user guide](./%5BUser-Guide%5D-Archetype-Definitions).
+For more details about working with archetype definitions, please refer to the [archetype definition user guide](%5BUser-Guide%5D-Archetype-Definitions).
 
 ```json
 {
@@ -187,7 +187,7 @@ For more details about working with archetype definitions, please refer to the [
 
 ## Deployed Management Groups
 
-![Deploy-Default-Configuration](./media/examples-deploy-custom-demo-landing-zone-archetypes.png)
+![Deploy-Default-Configuration](media/examples-deploy-custom-demo-landing-zone-archetypes.png)
 
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
@@ -208,10 +208,10 @@ Looking for further inspiration? Why not try some of our more advanced examples?
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
-[wiki_deploy_connectivity_resources]:         ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
-[wiki_deploy_identity_resources]:             ./%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
-[wiki_deploy_using_module_nesting]:           ./%5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
-[wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
-[wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
-[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_deploy_management_resources]:           %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_deploy_connectivity_resources]:         %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
+[wiki_deploy_identity_resources]:             %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
+[wiki_deploy_using_module_nesting]:           %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
+[wiki_expand_built_in_archetype_definitions]: %5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
+[wiki_override_module_role_assignments]:      %5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+[wiki_deploy_default_configuration]:     %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"

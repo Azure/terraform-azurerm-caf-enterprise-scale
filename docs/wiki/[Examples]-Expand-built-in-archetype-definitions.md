@@ -56,7 +56,7 @@ For the purpose of this example, we use the following:
 - [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zonestmpljson)
 - [lib/archetype_exclusion_es_landing_zones.tmpl.json](#libarchetype_exclusion_es_landing_zonestmpljson)
 
-![Expand-Built-In-Archetype-Definitions](./media/examples-expand-built-in-archetype-definitions.png)
+![Expand-Built-In-Archetype-Definitions](media/examples-expand-built-in-archetype-definitions.png)
 
 ### `main.tf`
 
@@ -68,7 +68,7 @@ This example code will deploy the minimum recommended management group and subsc
 To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 In our example, the directory is `/lib`.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # We strongly recommend using the required_providers block to set the
@@ -151,7 +151,7 @@ In this example, we want to add the policy assignment `"Deny-Resource-Locations"
 
 ### Extended Policy Assignment
 
-![Expand-Built-In-Archetype-Definitions-01](./media/examples-expand-built-in-archetype-definitions-01.png)
+![Expand-Built-In-Archetype-Definitions-01](media/examples-expand-built-in-archetype-definitions-01.png)
 
 ## To enable the exclusion function
 
@@ -190,7 +190,7 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 
 ### Excluded Policy Assignments
 
-![Expand-Built-In-Archetype-Definitions-02](./media/examples-expand-built-in-archetype-definitions-02.png)
+![Expand-Built-In-Archetype-Definitions-02](media/examples-expand-built-in-archetype-definitions-02.png)
 
 ## Summary
 

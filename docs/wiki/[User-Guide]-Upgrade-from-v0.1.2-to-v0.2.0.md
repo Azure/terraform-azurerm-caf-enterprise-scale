@@ -73,7 +73,7 @@ This Policy Assignment now has the following additional parameters:
 
 > **IMPORTANT** If you are using custom archetype definitions, please ensure you update this to reflect the above changes.
 
-Take a look at the latest [User Guide](./User-Guide) documentation and our [Examples](./Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
+Take a look at the latest [User Guide](User-Guide) documentation and our [Examples](Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

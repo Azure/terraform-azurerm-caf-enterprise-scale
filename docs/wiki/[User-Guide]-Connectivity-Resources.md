@@ -47,7 +47,7 @@ Please refer to [Deploy Connectivity Examples][wiki_deploy_connectivity_resource
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Connectivity]: ./media/terraform-caf-enterprise-scale-connectivity.png "Diagram showing the Connectivity resources for Azure landing zones architecture deployed by this module."
+[TFAES-Connectivity]: media/terraform-caf-enterprise-scale-connectivity.png "Diagram showing the Connectivity resources for Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)

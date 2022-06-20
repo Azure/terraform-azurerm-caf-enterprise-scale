@@ -46,7 +46,7 @@ You will then need to create a file named `policy_assignment_not_allowed_resourc
 
 To assign the correct policy, we need to provide the appropriate value for `policyDefinitionID` within our assignment file. You can retrieve the PolicyDefinitionID for your policy either through the Azure Portal, [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azpolicydefinition?view=azps-7.3.0) or the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/policy/definition?view=azure-cli-latest)
 
-![Policy DefinitionID](./media/examples-assign-a-built-in-policy-definitionID.png)
+![Policy DefinitionID](media/examples-assign-a-built-in-policy-definitionID.png)
 
 ### `lib/policy_assignments/policy_assignment_not_allowed_resource_types.json`
 

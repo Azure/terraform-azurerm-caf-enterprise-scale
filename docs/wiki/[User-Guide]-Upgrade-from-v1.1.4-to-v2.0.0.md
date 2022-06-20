@@ -338,7 +338,7 @@ These are all within the scope of `configure_connectivity_resources.advanced.cus
 
 ## Next steps
 
-Take a look at the latest [User Guide](./User-Guide) documentation and our [Examples](./Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
+Take a look at the latest [User Guide](User-Guide) documentation and our [Examples](Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
 
 ## Need help?
 

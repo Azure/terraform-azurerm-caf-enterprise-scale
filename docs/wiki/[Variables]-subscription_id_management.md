@@ -31,4 +31,4 @@ To identify the Management Subscription by ID, set the `subscription_id_manageme
 
 [this_page]: # "Link for the current page."
 
-[wiki_provider_configuration]: ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
+[wiki_provider_configuration]: %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"

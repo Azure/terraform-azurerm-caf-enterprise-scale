@@ -9,10 +9,10 @@ Please familiarize yourself with our [Code of Conduct][Code-of-Conduct] and the 
 
 ## Next steps
 
-- [Raising an Issue](./Raising-an-Issue)
-- [Feature Requests](./Feature-Requests)
-- [Contributing to Code](./Contributing-to-Code)
-- [Contributing to Documentation](./Contributing-to-Documentation)
+- [Raising an Issue](Raising-an-Issue)
+- [Feature Requests](Feature-Requests)
+- [Contributing to Code](Contributing-to-Code)
+- [Contributing to Documentation](Contributing-to-Documentation)
 
 <!--Reference links in article-->
 

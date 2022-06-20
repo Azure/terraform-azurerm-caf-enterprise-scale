@@ -42,13 +42,13 @@ The module provides a consistent approach for deploying and managing resources r
 
 ## Next steps
 
-Check out the [User Guide](./User-Guide), or go straight to our [Examples](./Examples).
+Check out the [User Guide](User-Guide), or go straight to our [Examples](Examples).
 
  [//]: # (*****************************)
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[alz_tf_overview]: ./media/alz-tf-module-overview.png "A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module."
+[alz_tf_overview]: media/alz-tf-module-overview.png "A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
@@ -86,7 +86,7 @@ Check out the [User Guide](./User-Guide), or go straight to our [Examples](./Exa
 [azurerm_automation_account]:           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
 [azurerm_log_analytics_linked_service]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
 
-[wiki_core_resources]:         ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
-[wiki_management_resources]:   ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]: ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_identity_resources]:     ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_core_resources]:         %5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
+[wiki_management_resources]:   %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]: %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_identity_resources]:     %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"

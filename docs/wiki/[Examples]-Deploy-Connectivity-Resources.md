@@ -86,7 +86,7 @@ module "enterprise_scale" {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-connectivity-core.png)
+![Deployed resource hierarchy](media/examples-deploy-connectivity-core.png)
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
@@ -107,7 +107,7 @@ Check the following Policy Assignments to see how these have been configured wit
 
 Once deployment is complete and policy has run, you should have the following Resource Groups deployed in your assigned Connectivity Subscription:
 
-![Deployed Resources](./media/examples-deploy-connectivity-rsgs.png)
+![Deployed Resources](media/examples-deploy-connectivity-rsgs.png)
 
 > **NOTE:** `myorg-asc-export` is related to the [Management resources][wiki_management_resources].
 This should contain a hidden `microsoft.security/automations` resource `ExportToWorkspace` once the [Management resources][wiki_management_resources] are configured and Azure Policy has completed remediation.
@@ -117,7 +117,7 @@ This should contain a hidden `microsoft.security/automations` resource `ExportTo
 
 The Resource Group `myorg-connectivity-eastus` should be created, and will initially contain a single Virtual Network called `myorg-hub-eastus`.
 
-![Deployed Resources](./media/examples-deploy-connectivity-rsg.png)
+![Deployed Resources](media/examples-deploy-connectivity-rsg.png)
 
 When you explore the configuration, note that `myorg-hub-eastus` is pre-configured with Subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
 DDoS Protection Standard should also be set to `Disable`, although we recommend you **enable this for production environments**.
@@ -129,7 +129,7 @@ These settings can all be changed if needed!
 As DNS resource are `Global` resources, the Resource Group is created in the region specified via the `default_location` input variable, which uses the default value of `eastus` in this example.
 All Private DNS Zone resources are `Global`.
 
-![Deployed Resources](./media/examples-deploy-connectivity-dns-rsg.png)
+![Deployed Resources](media/examples-deploy-connectivity-dns-rsg.png)
 
 By default we create a Private DNS Zone for all services which currently [support Private Endpoints][azure_private_endpoint_support].
 New Private DNS Zones may be added in future releases as additional services release Private Endpoint support.
@@ -145,7 +145,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Go to our next example to learn how to deploy the [Connectivity resources with custom settings][wiki_deploy_connectivity_resources_custom].
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -157,11 +157,11 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 
 [azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
-[wiki_connectivity_resources]:               ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_deploy_connectivity_resources_custom]: ./%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
-[wiki_examples]:                             ./Examples "Wiki - Examples"
-[wiki_management_resources]:                 ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_deploy_default_configuration]:         ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_connectivity_resources]:               %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
+[wiki_examples]:                             Examples "Wiki - Examples"
+[wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_deploy_default_configuration]:         %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
-[archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[archetype_exclusions]: %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"

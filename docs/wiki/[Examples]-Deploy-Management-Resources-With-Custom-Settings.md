@@ -205,7 +205,7 @@ locals {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-management-custom-core.png)
+![Deployed resource hierarchy](media/examples-deploy-management-custom-core.png)
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
 
@@ -234,19 +234,19 @@ Once evaluated, the compliance state should also be updated and you can run reme
 The following shows the `Deploy-AzActivity-Log` Policy Assignment with a user-defined value set by the module for the `logAnalytics` parameter.
 You will see that this value matches the resource ID of the Log Analytics workspace deployed by this module.
 
-![Policy Assignment parameters example](./media/examples-deploy-management-custom-policy-parameters.png)
+![Policy Assignment parameters example](media/examples-deploy-management-custom-policy-parameters.png)
 
 ### Policy Assignment compliance
 
 When reviewing the Policy Assignment compliance, you will see that some Policies may need remediation.
 
-![Policy Assignment compliance](./media/examples-deploy-management-custom-policy-compliance.png)
+![Policy Assignment compliance](media/examples-deploy-management-custom-policy-compliance.png)
 
 ## Deployed Management resources
 
 You should also have the following resources deployed in your assigned Management Subscription:
 
-![Deployed Resources](./media/examples-deploy-management-custom-resources.png)
+![Deployed Resources](media/examples-deploy-management-custom-resources.png)
 
 ## Additional considerations
 
@@ -275,7 +275,7 @@ Although not Policy Assignment related, also note the following changes:
 Try updating the configuration settings in the `configure_management_resources` local variable to see how this changes your configuration.
 Also try setting your own values in the input variables, and toggling the `deploy_management_resources` input variable to see which resources are created/destroyed.
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -283,16 +283,16 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_management_resources]:         ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
-[wiki_deploy_management_resources]:  ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources."
-[wiki_provider_configuration_multi]: ./%5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
-[wiki_examples]:                     ./Examples "Wiki - Examples"
+[wiki_management_resources]:         %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
+[wiki_deploy_management_resources]:  %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources."
+[wiki_provider_configuration_multi]: %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
+[wiki_examples]:                     Examples "Wiki - Examples"
 
-[configure_management_resources]: ./%5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[deploy_management_resources]:    ./%5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
-[subscription_id_management]:     ./%5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
-[default_location]:               ./%5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[archetype_exclusions]:           ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:              ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[configure_management_resources]: %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
+[deploy_management_resources]:    %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
+[subscription_id_management]:     %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
+[default_location]:               %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
+[archetype_exclusions]:           %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:              %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
 
 [azure_tag_support]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"

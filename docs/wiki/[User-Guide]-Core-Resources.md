@@ -3,7 +3,7 @@
 
 The core capability of this module deploys the foundations of the [conceptual architecture for Azure landing zones][msdocs-alz-architecture], with a focus on the central [resource organization][alz-resourceorg].
 
-![Enterprise-scale Core Landing Zones Architecture][alz_tf_overview]
+![Overview of the Azure landing zones core resources][alz_core_overview]
 
 ## Resource types
 
@@ -32,13 +32,15 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[alz_tf_overview]: media/terraform-caf-enterprise-scale-core.png "Diagram showing the core Azure landing zones architecture deployed by this module."
+[alz_core_overview]: media/terraform-caf-enterprise-scale-core.png "Diagram showing the core Azure landing zones architecture deployed by this module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture
+[msdocs-alz-architecture]: index.md#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+
+[alz_resourceorg]:  design-area/resource-org.md "Resource organization for Azure landing zones on the Cloud Adoption Framework."
 
 [arm_management_group]:               https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups
 [arm_management_group_subscriptions]: https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups/subscriptions
@@ -55,6 +57,6 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
 [azurerm_role_assignment]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
 [azurerm_role_definition]:       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
 
-[wiki_deploy_default_configuration]: ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_deploy_default_configuration]: %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
 [azurerm_auth]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure "Authenticate to Azure when using the AzureRM provider."
