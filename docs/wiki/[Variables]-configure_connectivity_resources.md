@@ -60,7 +60,50 @@ If specified, will customize the "Connectivity" landing zone settings and resour
         }
       },
     ]
-    vwan_hub_networks = []
+    vwan_hub_networks = [
+      {
+        enabled = false
+        config = {
+          address_prefix = "10.200.0.0/22"
+          location       = ""
+          sku            = ""
+          routes         = []
+          expressroute_gateway = {
+            enabled = false
+            config = {
+              scale_unit = 1
+            }
+          }
+          vpn_gateway = {
+            enabled = false
+            config = {
+              bgp_settings       = []
+              routing_preference = ""
+              scale_unit         = 1
+            }
+          }
+          azure_firewall = {
+            enabled = false
+            config = {
+              enable_dns_proxy              = false
+              dns_servers                   = []
+              sku_tier                      = "Standard"
+              base_policy_id                = ""
+              private_ip_ranges             = []
+              threat_intelligence_mode      = ""
+              threat_intelligence_allowlist = []
+              availability_zones = {
+                zone_1 = true
+                zone_2 = true
+                zone_3 = true
+              }
+            }
+          }
+          spoke_virtual_network_resource_ids = []
+          enable_virtual_hub_connections     = false
+        }
+      },
+    ]
     ddos_protection_plan = {
       enabled = false
       config = {
