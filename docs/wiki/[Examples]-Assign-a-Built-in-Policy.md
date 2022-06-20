@@ -18,13 +18,13 @@ You will update the built-in configuration by following these steps:
 - Assign the policy set definition for `NIST SP 800-53 Rev. 5` at the `es_root` Management Group by extending the built-in archetype for `es_root`
 - Assign the policy definition for `Not allowed resource types` at the `Landing Zones` Management Group by extending the built-in archetype for `es_landing_zones`.
 
->**IMPORTANT**: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
+> **IMPORTANT**: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
 In order to assign built-in policies, there needs to be an assignment file for each policy or policy set definition that we want to use.
 This module already includes assignment files for some built-in policies so it's important to check whether or not one exists before creating your own.
 You can do this by navigating to  [`\modules\archetypes\lib\policy_assignments`](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib) and looking for an assignment file that matches the policy you want to assign.
 
-An example of a built-in policy that already has an assignment file included within the module is the `Kubernetes clusters should be accessible only over HTTPS` policy. The assignment file for this policy is called `policy_assignment_es_deny_http_ingress_aks.tmpl.json`.
+An example of a built-in policy that already has an assignment file included within the module is the `Kubernetes clusters should be accessible only over HTTPS` policy. The assignment file for this policy is named `policy_assignment_es_deny_http_ingress_aks.tmpl.json`.
 
 > **NOTE:** You can view the module lib directly [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib)
 

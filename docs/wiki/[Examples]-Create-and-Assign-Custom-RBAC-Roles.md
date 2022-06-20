@@ -3,7 +3,7 @@
 
 This page describes how to use the module to create your own custom RBAC roles and assign them at the appropriate scopes within your Enterprise-Scale deployment.
 
-In this example, we will create a custom RBAC role called "Reader Support Tickets" which will allow members to read everything in a subscription and to also open support tickets.
+In this example, we will create a custom RBAC role with the name "Reader Support Tickets" which will allow members to read everything in a subscription and to also open support tickets.
 
 We will then assign the new RBAC Role at the `es_landing_zones` scope.
 
