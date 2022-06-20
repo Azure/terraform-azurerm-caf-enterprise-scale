@@ -24,13 +24,13 @@ In this example, we take the base [Deploy Connectivity Resources (Hub and Spoke)
   - Deploy a VPN gateway to the hub virtual network in `westeurope`
   - Remove the `AzureFirewallSubnet` subnet from the hub virtual network in `westeurope`
   - Link the hub virtual network in `northeurope` and `westeurope` to the central DDoS Protection Standard plan
-  - Ensure private DNS zone for private endpoints are enabled for `northeurope` and `westeurope` regions <sup>1</sup>
-  - Set a different default location for connectivity resources (controlled through an input variable on the root module)
-  - Add custom resource tags for connectivity resources (controlled through an input variable on the root module)
+  - Ensure private DNS zones for private endpoints are enabled for `northeurope` and `westeurope` regions <sup>1</sup>
+  - Set a different default location for connectivity resources (*controlled through an input variable on the root module*)
+  - Add custom resource tags for connectivity resources (*controlled through an input variable on the root module*)
 
 > <sup>1</sup> - The domain namespace for some private endpoints (e.g. Azure Batch) are bound to a specific Azure Region.
 By default, the module will use the location set by the `configure_connectivity_resources.location` value, or the `default_location` value (`eastus`), in order of precedence.
-To deploy private DNS zone to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
+To deploy private DNS zones to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
 Each value in this list must be in the shortname format (`uksouth`), and not DisplayName (`UK South`).
 Setting this value will overwrite the default value.
 <!-- markdownlint-enable no-inline-html -->
@@ -83,7 +83,7 @@ provider "azurerm" {
 }
 ```
 
-If you wish to deploy the Connectivity resources to a different subscription context than the one used for core resources, please refer to our guide for [Multi-Subscription deployment][wiki_provider_configuration_multi].
+If you wish to deploy the connectivity resources to a different subscription context than the one used for core resources, please refer to our guide for [multi-subscription deployment][wiki_provider_configuration_multi].
 
 ### `variables.tf`
 
@@ -105,16 +105,6 @@ variable "root_name" {
 variable "deploy_connectivity_resources" {
   type    = bool
   default = true
-}
-
-variable "log_retention_in_days" {
-  type    = number
-  default = 50
-}
-
-variable "security_alerts_email_address" {
-  type    = string
-  default = "my_valid_security_contact@replace_me" # Replace this value with your own email address.
 }
 
 variable "connectivity_resources_location" {
