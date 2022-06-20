@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-The core capability of this module deploys the foundations of the [conceptual architecture for Azure landing zones][msdocs-alz-architecture], with a focus on the central [resource organization][alz-resourceorg].
+The core capability of this module deploys the foundations of the [conceptual architecture for Azure landing zones][msdocs_alz_architecture], with a focus on the central [resource organization][alz-resourceorg].
 
 ![Overview of the Azure landing zones core resources][alz_core_overview]
 
@@ -38,7 +38,7 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[msdocs-alz-architecture]: index.md#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+[msdocs_alz_architecture]: index.md#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
 [alz_resourceorg]:  design-area/resource-org.md "Resource organization for Azure landing zones on the Cloud Adoption Framework."
 
