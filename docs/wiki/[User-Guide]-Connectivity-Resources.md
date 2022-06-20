@@ -61,7 +61,7 @@ When you deploy resources based on a Virtual WAN network topology (Microsoft-man
 | Azure Firewall Policies | [`Microsoft.Network/firewallPolicies`][arm_firewall_policy] | [`azurerm_firewall_policy`][azurerm_firewall_policy] |
 | Virtual Hub Connections | [`Microsoft.Network/virtualHubs/hubVirtualNetworkConnections`][arm_virtual_hub_connection] | [`azurerm_virtual_hub_connection`][azurerm_virtual_hub_connection] |
 
-For more information about how to use this capability, see the [Deploy Virtual WAN Resources][wiki_deploy_virtual_wan_resources] wiki page.
+For more information about how to use this capability, see the [Deploy Virtual WAN Resources With Custom Settings][wiki_deploy_virtual_wan_resources] wiki page.
 
 ### DDoS Protection plan
 
@@ -168,7 +168,7 @@ Please refer to the following for examples showing how to use this capability:
 [azurerm_virtual_hub_connection]:                https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection
 
 [wiki_deploy_connectivity_resources]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
-[wiki_deploy_virtual_wan_resources]:          https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki: Deploy Virtual WAN Resources"
+[wiki_deploy_virtual_wan_resources]:          https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki: Deploy Virtual WAN Resources With Custom Settings"
 [wiki_configure_connectivity_resources_ddos]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources#configure-hub-networks-hub-and-spoke "Instructions for how to use the configure_connectivity_resources variable to configure hub network settings."
 [wiki_configure_connectivity_resources_ddos]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources#configure-hub-networks-virtual-wan "Instructions for how to use the configure_connectivity_resources variable to configure virtual hub network settings."
 [wiki_configure_connectivity_resources_ddos]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-configure_connectivity_resources#configure-ddos-protection-plan "Instructions for how to use the configure_connectivity_resources variable to configure DDoS protection plan settings."
