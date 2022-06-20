@@ -54,7 +54,7 @@ To do this, simply create an entry similar to the `root` example below for one o
 
 This variable can also be used to customize the [demo Management Groups](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-deploy_demo_landing_zones): `demo-corp`, `demo-online`, `demo-sap`
 
-The `archetype_config_overrides` example below shows how to set an override for the `root` Management Group, setting the `archetype_id` to `custom_archetype_definition` showing example parameters with different value types for a Policy Assignment called `Example-Policy-Assignment`, and a Role Assignment adding two Object IDs to a Role Definition called `Example-Role-Definition`:
+The `archetype_config_overrides` example below shows how to set an override for the `root` Management Group, setting the `archetype_id` to `custom_archetype_definition` showing example parameters with different value types for a Policy Assignment with the name `Example-Policy-Assignment`, and a Role Assignment adding two Object IDs to a Role Definition with the name `Example-Role-Definition`:
 
 ```hcl
   archetype_config_overrides = {
