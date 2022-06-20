@@ -410,7 +410,7 @@ Configure resources for the `connectivity` Landing Zone, including:
 
 - Hub network(s) for a traditional hub and spoke network topology.
 - Hub network(s) for an Azure Virtual WAN network topology.
-- DDoS Protection Plan.
+- DDoS protection plan.
 - Public and private Azure DNS zones, including DNS for Private Endpoints.
 
 ### Configure hub networks (Hub and Spoke)
@@ -496,7 +496,7 @@ By default, a `hub_network` with an empty value in the `location` field will be 
 
 ##### `settings.hub_networks[].config.link_to_ddos_protection_plan`
 
-The `link_to_ddos_protection_plan` (`bool`) input controls whether to link the hub network to the DDoS Protection plan managed by the module.
+The `link_to_ddos_protection_plan` (`bool`) input controls whether to link the hub network to the DDoS protection plan managed by the module.
 
 For this to work, the `ddos_protection_plan.enabled` value must be set to `true`.
 
@@ -894,7 +894,7 @@ e.g. `10.0.1.4`
 
 ### Configure DDoS Protection Plan
 
-Optionally enable a DDoS Protection Plan, and set the location.
+Optionally enable a DDoS protection plan, and set the location.
 
 ```hcl
 ddos_protection_plan = {

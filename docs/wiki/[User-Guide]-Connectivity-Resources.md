@@ -68,7 +68,7 @@ For more information about how to use this capability, see the [Deploy Virtual W
 The module can optionally deploy [DDoS Protection Standard][about_ddos_protection_standard], and link Virtual Networks to the plan if needed.
 
 > **NOTE:**
-> Due to platform limitations, DDoS Protection plans can only be enabled for traditional virtual networks. Virtual Hub support is not currently available.
+> Due to platform limitations, DDoS protection plans can only be enabled for traditional virtual networks. Virtual Hub support is not currently available.
 
 <!-- comment added to prevent linting error #MD028-no-blanks-blockquote-->
 
@@ -77,12 +77,12 @@ The module can optionally deploy [DDoS Protection Standard][about_ddos_protectio
 >
 > For production environments, we strongly recommend enabling this capability.
 
-When you enable deployment of deployment of DDoS Protection plan resources, the module deploys and manages the following resource types (*depending on configuration*):
+When you enable deployment of deployment of DDoS protection plan resources, the module deploys and manages the following resource types (*depending on configuration*):
 
 | Resource | Azure resource type | Terraform resource type |
 | --- | --- | --- |
 | Resource groups | [`Microsoft.Resources/resourceGroups`][arm_resource_group] | [`azurerm_resource_group`][azurerm_resource_group] |
-| DDoS Protection plans | [`Microsoft.Network/ddosProtectionPlans`][arm_ddos_protection_plan] | [`azurerm_network_ddos_protection_plan`][azurerm_network_ddos_protection_plan] |
+| DDoS protection plans | [`Microsoft.Network/ddosProtectionPlans`][arm_ddos_protection_plan] | [`azurerm_network_ddos_protection_plan`][azurerm_network_ddos_protection_plan] |
 
 ### DNS
 

@@ -4,7 +4,7 @@
 This page describes how to deploy Azure landing zones with connectivity resources based on the [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] created in the current Subscription context, using the default configuration settings.
 
 > **NOTE:**
-> If you are looking to deploy a network based on Virtual WAN, please see our [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan] guidance.
+> If you are looking to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources (Virtual WAN)][wiki_deploy_virtual_wan_resources] example.
 
 As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimizing cost.
 Please refer to the [Network topology and connectivity][alz_connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
@@ -17,7 +17,7 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
   - Azure private DNS zones for private endpoints.
 - Set `subscription_id_connectivity` to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
-When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of policy assignments, to enable features relating to the DDoS Protection plan and private DNS zones for private endpoints.
+When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of policy assignments, to enable features relating to the DDoS protection plan and private DNS zones for private endpoints.
 
 <!-- Some private DNS zones for private endpoints are bound to a specific Azure Region.
 By default, the module will use the location set for connectivity resources, or the `default_location` value (`eastus`), in order of precedence.
@@ -105,7 +105,7 @@ Check the following policy assignments to see how these have been configured wit
 - Scope = `corp`
   - `Deploy-Private-DNS-Zones`
 
-> You may want to [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom] to change some of these settings.
+> You may want to [Deploy Connectivity Resources (Hub and Spoke) With Custom Settings][wiki_deploy_connectivity_resources_custom] to change some of these settings.
 
 ## Deployed Connectivity resources
 
@@ -144,8 +144,8 @@ This can be optionally enabled for spoke virtual networks being peered to the hu
 
 ## Additional considerations
 
-If you are using [archetype exclusions][archetype_exclusions] or [custom archetypes][custom_archetypes] in your code, make sure to not disable DDoS or DNS policies if you require policy integration using this module.
-The relationship between the resources deployed and the Policy parameters is dependent on [specific policy assignments](#policy-assignment-configuration) being used.
+If you are using [archetype exclusions][wiki_archetype_exclusions] or [custom archetypes][wiki_custom_archetypes] in your code, make sure to not disable DDoS or DNS policies if you require policy integration using this module.
+The relationship between the resources deployed and the policy parameters are dependent on [specific policy assignments](#policy-assignment-configuration) being used.
 
 ## Next steps
 
@@ -166,11 +166,10 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_module_variables]:                     %5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
 [wiki_provider_configuration]:               %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
-[wiki_connectivity_resources_virtual_wan]:   %5BUser-Guide%5D-Connectivity-Resources#virtual-wan-network-topology-microsoft-managed "Wiki - Connectivity Resources - Virtual WAN network topology (Microsoft-managed)"
-[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
+[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Hub and Spoke) With Custom Settings"
+[wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
 [wiki_examples]:                             Examples "Wiki - Examples"
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_deploy_default_configuration]:         %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
-
-[archetype_exclusions]: %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[wiki_archetype_exclusions]:                 %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[wiki_custom_archetypes]:                    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"

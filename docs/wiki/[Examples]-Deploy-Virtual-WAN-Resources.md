@@ -4,7 +4,7 @@
 This page describes how to deploy Azure landing zones with connectivity resources based on the [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan] created in the current Subscription context, using the default configuration settings.
 
 > **NOTE:**
-> If you are looking to deploy a network based on traditional virtual networks, please see our [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] guidance.
+> If you are looking to deploy a network based on traditional virtual networks, please see our [Deploy Connectivity Resources (Hub and Spoke)][wiki_deploy_connectivity_resources] example.
 
 As connectivity resources can start to significantly increase Azure consumption costs, the module defaults are aimed to help build the basic connectivity configuration whilst minimizing cost.
 Please refer to the [Network topology and connectivity][alz_connectivity] recommendations to better understand which of these settings you should enable in a Production environment.
@@ -15,7 +15,7 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
 - Set `subscription_id_connectivity` to ensure the subscription is moved to the correct management group, and policies are updated with the correct values.
 - Set `configure_connectivity_resources` to enable creation of the virtual WAN resources.
 
-When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of policy assignments, to enable features relating to the DDoS Protection plan and private DNS zones for private endpoints.
+When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of policy assignments, to enable features relating to the DDoS protection plan and private DNS zones for private endpoints.
 
 <!-- Some private DNS zones for private endpoints are bound to a specific Azure Region.
 By default, the module will use the location set for connectivity resources, or the `default_location` value (`eastus`), in order of precedence.
@@ -272,7 +272,7 @@ This can be optionally enabled for spoke virtual networks being peered to the vi
 ## Additional considerations
 
 If you are using [archetype exclusions][archetype_exclusions] or [custom archetypes][custom_archetypes] in your code, make sure to not disable DDoS or DNS policies if you require policy integration using this module.
-The relationship between the resources deployed and the Policy parameters is dependent on [specific policy assignments](#policy-assignment-configuration) being used.
+The relationship between the resources deployed and the policy parameters are dependent on [specific policy assignments](#policy-assignment-configuration) being used.
 
 ## Next steps
 
