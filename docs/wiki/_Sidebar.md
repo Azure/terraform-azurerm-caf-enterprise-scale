@@ -22,12 +22,14 @@
   - [Level 200][wiki_examples_level_200]
     - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
     - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
+    - [Deploy Virtual WAN Resources][wiki_deploy_virtual_wan_resources]
     - [Deploy Identity Resources][wiki_deploy_identity_resources]
     - [Deploy Management Resources][wiki_deploy_management_resources]
     - [Assign a Built-in Policy][wiki_assign_a_built_in_policy]
     - [Create and Assign Custom RBAC Roles][wiki_create_and_assign_custom_rbac_roles]
   - [Level 300][wiki_examples_level_300]
     - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
+    - [Deploy Virtual WAN Resources With Custom Settings][wiki_deploy_virtual_wan_resources_custom]
     - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
     - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
     - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
@@ -80,6 +82,8 @@
 [wiki_deploy_management_resources_custom]:                 %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
 [wiki_deploy_connectivity_resources]:                      %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
 [wiki_deploy_connectivity_resources_custom]:               %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
+[wiki_deploy_virtual_wan_resources]:                       %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Virtual WAN Resources"
+[wiki_deploy_virtual_wan_resources_custom]:                %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Virtual WAN Resources With Custom Settings"
 [wiki_deploy_identity_resources]:                          %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
 [wiki_deploy_identity_resources_custom]:                   %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
 [wiki_deploy_using_module_nesting]:                        %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
