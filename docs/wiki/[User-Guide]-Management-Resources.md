@@ -36,7 +36,7 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[msdocs_alz_architecture]: index.md#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+[msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
 [alz_management]: design-area/management.md "Management and monitoring for Azure landing zones on the Cloud Adoption Framework."
 

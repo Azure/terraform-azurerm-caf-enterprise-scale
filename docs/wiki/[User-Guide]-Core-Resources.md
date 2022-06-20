@@ -38,7 +38,7 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[msdocs_alz_architecture]: index.md#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+[msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
 [alz_resourceorg]:  design-area/resource-org.md "Resource organization for Azure landing zones on the Cloud Adoption Framework."
 
