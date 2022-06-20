@@ -14,12 +14,12 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
 - Set `deploy_connectivity_resources` to enable creation of the default Connectivity resources, including:
   - Resource Groups to contain all connectivity resources.
   - Virtual Network to use as a hub for hybrid-connectivity.
-  - Azure private DNS zones for Private Endpoints.
+  - Azure private DNS zones for private endpoints.
 - Set `subscription_id_connectivity` to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
-When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features relating to the DDoS Protection Plan and private DNS zones for Private Endpoints.
+When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of policy assignments, to enable features relating to the DDoS Protection plan and private DNS zones for private endpoints.
 
-<!-- Some private DNS zones for Private Endpoints are bound to a specific Azure Region.
+<!-- Some private DNS zones for private endpoints are bound to a specific Azure Region.
 By default, the module will use the location set for connectivity resources, or the `default_location` value (`eastus`), in order of precedence.
 To add more locations, simply add them to the `configure_connectivity_resources.settings.dns.config.private_link_locations` value.
 This must be in the short format (`uksouth`), and not DisplayName (`UK South`). -->
@@ -33,8 +33,8 @@ This must be in the short format (`uksouth`), and not DisplayName (`UK South`). 
 
 To create the Connectivity resources, `deploy_connectivity_resources` must be set to `true`, and the `subscription_id_connectivity` is also required.
 
-Although `subscription_id_connectivity` is required, the Subscription used for creation of resources is determined by the [provider configuration][wiki_provider_configuration].
-Please ensure you have a provider configured with access to the same Subscription specified by `subscription_id_connectivity`, and map this to `azurerm.connectivity` in the module providers object.
+Although `subscription_id_connectivity` is required, the subscription used for creation of resources is determined by the [provider configuration][wiki_provider_configuration].
+Please ensure you have a provider configured with access to the same subscription specified by `subscription_id_connectivity`, and map this to `azurerm.connectivity` in the module providers object.
 
 > **TIP:**
 > The exact number of resources created depends on the module configuration, but you can expect upwards of 260 resources to be created by the module for this example.

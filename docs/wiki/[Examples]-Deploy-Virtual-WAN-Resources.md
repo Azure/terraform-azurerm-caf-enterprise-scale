@@ -11,11 +11,11 @@ Please refer to the [Network topology and connectivity][alz_connectivity] recomm
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
-- Set `deploy_connectivity_resources` to enable creation of the default Connectivity resources.
-- Set `subscription_id_connectivity` to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
-- Set `configure_connectivity_resources` to enable creation of the Virtual WAN resources.
+- Set `deploy_connectivity_resources` to enable creation of the default connectivity resources.
+- Set `subscription_id_connectivity` to ensure the subscription is moved to the correct management group, and policies are updated with the correct values.
+- Set `configure_connectivity_resources` to enable creation of the virtual WAN resources.
 
-When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features relating to the DDoS Protection Plan and private DNS zones for private endpoints.
+When `deploy_connectivity_resources` is set to `true`, the module updates the `parameters` and `enforcement_mode` for a number of policy assignments, to enable features relating to the DDoS Protection plan and private DNS zones for private endpoints.
 
 <!-- Some private DNS zones for private endpoints are bound to a specific Azure Region.
 By default, the module will use the location set for connectivity resources, or the `default_location` value (`eastus`), in order of precedence.
