@@ -4,7 +4,7 @@
 This page describes how to deploy Azure landing zones with connectivity resources based on the [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan] created in the current Subscription context, using custom configuration settings.
 
 > **NOTE:**
-> If you need to deploy a network based on traditional virtual networks, please see our [Deploy Connectivity Resources (Hub and Spoke) With Custom Settings][wiki_deploy_connectivity_resources_custom] example.
+> If you need to deploy a network based on traditional virtual networks, please see our [Deploy Connectivity Resources With Custom Settings (Hub and Spoke)][wiki_deploy_connectivity_resources_custom] example.
 
 <!-- markdownlint-disable-next-line no-blanks-blockquote-->
 > **WARNING:**
@@ -444,8 +444,8 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_configure_connectivity_resources]:     %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
 [wiki_default_location]:                     %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
 [wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Hub and Spoke) With Custom Settings"
+[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
 [wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
-[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Virtual WAN) With Custom Settings"
+[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
 [wiki_spoke_virtual_network_resource_ids]:   %5BVariables%5D-configure_connectivity_resources#settingsvwan_hub_networksconfigspoke_virtual_network_resource_ids "Wiki - configure_connectivity_resources - spoke_virtual_network_resource_ids"
 [wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"

@@ -20,8 +20,8 @@ Use the links below to explore these examples in more detail.
 
 ### Advanced (Level 300)
 
-- [Deploy Connectivity Resources (Hub and Spoke) With Custom Settings][wiki_deploy_connectivity_resources_custom]
-- [Deploy Connectivity Resources (Virtual WAN) With Custom Settings][wiki_deploy_virtual_wan_resources_custom]
+- [Deploy Connectivity Resources With Custom Settings (Hub and Spoke)][wiki_deploy_connectivity_resources_custom]
+- [Deploy Connectivity Resources With Custom Settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom]
 - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
 - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
 - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
@@ -39,9 +39,9 @@ Use the links below to explore these examples in more detail.
 [wiki_deploy_management_resources]:                        %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
 [wiki_deploy_management_resources_custom]:                 %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
 [wiki_deploy_connectivity_resources]:                      %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]:               %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Hub and Spoke) With Custom Settings"
+[wiki_deploy_connectivity_resources_custom]:               %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
 [wiki_deploy_virtual_wan_resources]:                       %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
-[wiki_deploy_virtual_wan_resources_custom]:                %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Virtual WAN) With Custom Settings"
+[wiki_deploy_virtual_wan_resources_custom]:                %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
 [wiki_deploy_identity_resources]:                          %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
 [wiki_deploy_identity_resources_custom]:                   %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
 [wiki_deploy_using_module_nesting]:                        %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
