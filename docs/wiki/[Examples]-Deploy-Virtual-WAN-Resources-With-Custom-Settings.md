@@ -306,7 +306,7 @@ locals {
             azure_data_factory_portal            = true
             azure_cache_for_redis                = true
           }
-          private_link_locations                                 = [
+          private_link_locations = [
             "northeurope",
             "westeurope",
           ]
