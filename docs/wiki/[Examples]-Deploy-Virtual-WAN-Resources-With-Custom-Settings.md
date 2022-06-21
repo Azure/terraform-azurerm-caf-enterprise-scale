@@ -412,8 +412,6 @@ This provides support for services which use region-bound endpoints:
 Because virtual hubs do not support virtual network links, none have been created to connect the private DNS zones to the hub networks.
 The module will still create these for any spoke networks specified by the [spoke_virtual_network_resource_ids][wiki_spoke_virtual_network_resource_ids] input.
 
-> **NOTE:** As we have defined custom locations, note that the default `eastus` location is no longer included.
-
 ## Additional considerations
 
 If you are using [archetype exclusions][wiki_archetype_exclusions] or [custom archetypes][wiki_custom_archetypes] in your code, make sure to not disable DDoS or DNS policies if you require policy integration using this module.
