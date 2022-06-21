@@ -422,7 +422,7 @@ The relationship between the resources deployed and the policy parameters are de
 Try updating the configuration settings in the `configure_connectivity_resources` local variable to see how this changes your configuration.
 Also try setting your own values in the input variables, and toggling the `deploy_connectivity_resources` input variable to see which resources are created/destroyed.
 
-For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 

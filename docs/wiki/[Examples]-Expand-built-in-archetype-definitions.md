@@ -68,7 +68,7 @@ This example code will deploy the minimum recommended management group and subsc
 To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 In our example, the directory is `/lib`.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # We strongly recommend using the required_providers block to set the

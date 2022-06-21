@@ -278,7 +278,7 @@ The relationship between the resources deployed and the policy parameters are de
 
 Go to our next example to learn how to deploy the [Virtual WAN resources with custom settings][wiki_deploy_virtual_wan_resources_custom].
 
-For more information regarding configuration of this module, please refer to the [Module Variables][wiki_module_variables] documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables][wiki_module_variables] documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 

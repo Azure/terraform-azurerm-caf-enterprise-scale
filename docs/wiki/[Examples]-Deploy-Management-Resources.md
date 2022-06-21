@@ -132,7 +132,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Go to our next example to learn how to deploy the [Management resources with custom settings][wiki_deploy_management_resources_custom].
 
-For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 

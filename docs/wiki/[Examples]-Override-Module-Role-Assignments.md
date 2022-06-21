@@ -88,7 +88,7 @@ It also contains the module declaration for this module, containing a number of 
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `/lib`.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
