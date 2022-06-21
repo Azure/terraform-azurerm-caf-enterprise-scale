@@ -4,7 +4,7 @@
 This page describes how to deploy Azure landing zones with connectivity resources based on the [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] created in the current Subscription context, using custom configuration settings.
 
 > **NOTE:**
-> If you need to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources (Virtual WAN) With Custom Settings][wiki_deploy_virtual_wan_resources_custom] example.
+> If you need to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources With Custom Settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom] example.
 
 <!-- markdownlint-disable-next-line no-blanks-blockquote-->
 > **WARNING:**
@@ -320,7 +320,10 @@ locals {
             azure_data_factory_portal            = true
             azure_cache_for_redis                = true
           }
-          private_link_locations                                 = []
+          private_link_locations = [
+            "northeurope",
+            "westeurope",
+          ]
           public_dns_zones                                       = []
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
@@ -400,25 +403,29 @@ DDoS Protection Standard should also be set to `Enable` and connected to the DDo
 
 ### Resource Group `myorg-ddos`
 
-In this example, we have now deployed a DDoS protection plan (Standard).
-The Enterprise-scale recommendation is to deploy a single, centralized DDoS protection plan.
-As such, the resource group name doesn't include the location.
+The resource group and DDoS protection plan are created in `northeurope`, as specified via the `configure_connectivity_resources.settings.ddos_protection_plan.config.location` value.
 
-The resource group and DDoS protection plan are created in `northeurope`, as specified via the `ddos_protection_plan.config.location` value.
+The module creates a single, centralized DDoS protection plan as per the Azure landing zones recommendation.
+As such, the resource group name doesn't include the location.
 
 ![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-ddos.png)
 
+Additionally, the module has linked the DDoS protection plan to both hub virtual networks in `northeurope` and `westeurope`.
+
 ### Resource Group `myorg-dns`
 
-The Resource Group is created in `UK South`, as per the default example. This was set by the default value for `var.connectivity_resources_location` which is assigned to the `settings.location` value from the local variable `configure_connectivity_resources`.
-All Private DNS Zone resources are `Global`.
+The resource group for DNS is created in `UK South`, differing to the default config example which used `eastus`.
+This is set by the `var.connectivity_resources_location` input variable which set the value for `configure_connectivity_resources.settings.location`.
+All private DNS zones are `Global` resources and therefore not bound to a region.
 
 ![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-dns.png)
 
-By default we create a Private DNS Zone for all services which currently [support private endpoints][azure_private_endpoint_support].
-New private DNS zone may be added in future releases as additional services release private endpoint support.
+By default the module create a private DNS zone for all services which currently [support private endpoints][azure_private_endpoint_support].
+New private DNS zones may be added in future releases as additional services offer private endpoint support.
 
-In this example, we have also enabled additional private DNS zone for the services which use region-bound endpoints:
+Using the [private_link_locations][wiki_private_link_locations] input, the module has created private DNS zones for each location specified.
+This input overrides the default location value, as used by the resource group.
+This provides support for services which use region-bound endpoints:
 
 - `northeurope.privatelink.siterecovery.windowsazure.com`
 - `privatelink.northeurope.azmk8s.io`
@@ -427,9 +434,9 @@ In this example, we have also enabled additional private DNS zone for the servic
 - `privatelink.westeurope.backup.windowsazure.com`
 - `westeurope.privatelink.siterecovery.windowsazure.com`
 
-We also configure `Virtual network links` to connect each Private DNS Zone to the hub Virtual Networks, which in this example are `myorg-hub-northeurope` and `myorg-hub-westeurope`.
+The module also creates virtual network links to connect each private DNS zone to the hub networks, which in this example are `myorg-hub-northeurope` and `myorg-hub-westeurope`.
 
-> **NOTE:** As we have defined custom locations, note that the default `eastus` location is no longer included.
+Additionally, the module has linked all private DNS zones to both hub virtual networks in `northeurope` and `westeurope`.
 
 ## Additional considerations
 
@@ -438,16 +445,10 @@ The relationship between the resources deployed and the policy parameters are de
 
 ## Next steps
 
-Take particular note of the following additional changes:
-
-- All private DNS zones are linked to both hub virtual networks in `northeurope` and `westeurope`.
-- Both virtual networks in `northeurope` and `westeurope` are linked to the DDoS protection plan.
-- As we defined custom locations for `dns.config.private_link_locations`, note that the default `eastus` location is no longer included in the private DNS zone locations.
-
 Try updating the configuration settings in the `configure_connectivity_resources` local variable to see how this changes your configuration.
 Also try setting your own values in the input variables, and toggling the `deploy_connectivity_resources` input variable to see which resources are created/destroyed.
 
-For more information regarding configuration of this module, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -467,6 +468,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_configure_connectivity_resources]:     %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable"
 [wiki_default_location]:                     %5BVariables%5D-default_location "Instructions for how to use the default_location variable"
 [wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Hub and Spoke) With Custom Settings"
+[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
 [wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
-[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources (Virtual WAN) With Custom Settings"
+[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
+[wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"
