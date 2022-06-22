@@ -1,14 +1,19 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.ddos**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.ddos_protection_plan**](#overview) [*see validation for type*](#Validation) (optional)
 
-The [configure_connectivity_resources.settings.ddos][wiki_dns] object provides configuration settings to control creation of DDoS resources in the target location.
+The 'configure_connectivity_resources.settings.ddos_protection_plan' object provides configuration settings to control creation of DDoS resources in the target location.
 
 ## Default value
 
 ```hcl
-
+ddos_protection_plan = {
+  enabled = false
+  config = {
+    location = ""
+  }
+}
 ```
 
 ## Validation

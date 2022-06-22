@@ -3,7 +3,7 @@
 
 [**configure_connectivity_resources.settings.vwan_hub_networks[]**](#overview) [*see validation for type*](#Validation) (optional)
 
-For each configuration object added to the [configure_connectivity_resources.settings.vwan_hub_networks[]][wiki_vwan_hub_networks] list, the module will create a hub network and associated resources in the target location based on a [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan].
+For each configuration object added to the `configure_connectivity_resources.settings.vwan_hub_networks[]` list, the module will create a hub network and associated resources in the target location based on a [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan].
 
 ## Default value
 

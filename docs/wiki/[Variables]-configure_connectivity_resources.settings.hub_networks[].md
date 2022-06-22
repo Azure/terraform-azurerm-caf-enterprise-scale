@@ -3,7 +3,7 @@
 
 [**configure_connectivity_resources.settings.hub_networks[]**](#overview) [*see validation for type*](#Validation) (optional)
 
-For each configuration object added to the [configure_connectivity_resources.settings.hub_networks[]][wiki_hub_networks] list, the module will create a hub network and associated resources in the target location based on a [traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke].
+For each configuration object added to the `configure_connectivity_resources.settings.hub_networks[]` list, the module will create a hub network and associated resources in the target location based on a [traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke].
 
 ## Default value
 
