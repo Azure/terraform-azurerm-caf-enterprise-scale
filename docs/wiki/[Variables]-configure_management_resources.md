@@ -3,7 +3,7 @@
 
 [**configure_management_resources**](#overview) [*see validation for type*](#Validation) (optional)
 
-If specified, will customize the "Management" landing zone settings and resources.
+If specified, will customize the "management" landing zone settings and resources.
 
 ## Default value
 
@@ -115,11 +115,12 @@ object({
 
 ## Usage
 
-Configure resources for the `management` Landing Zone, including:
+Configure resources for the `management` landing zone.
+This is sub divided into configuration objects for the following:
 
-- Central Log Analytics workspace
-- Azure Sentinel
-- Microsoft Defender for Cloud (previously Security Center/Azure Defender)
+- [Configure Log Analytics](#configure-log-analytics)
+- [Configure Microsoft Defender for Cloud (including Azure Sentinel)](#configure-microsoft-defender-for-cloud)
+- [Additional settings](#additional-settings)
 
 ### Configure Log Analytics
 
@@ -343,6 +344,10 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 
 Enables the the Standard pricing tier for `StorageAccounts` using the "Configure Azure Defender for Storage to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
+
+### Additional settings
+
+The following additional settings can be used to set configuration on all management resources:
 
 #### `settings.location`
 

@@ -3,7 +3,7 @@
 
 [**configure_connectivity_resources**](#overview) [*see validation for type*](#Validation) (optional)
 
-If specified, will customize the "Connectivity" landing zone settings and resources.
+If specified, will customize the "connectivity" landing zone settings and resources.
 
 ## Default value
 
@@ -416,14 +416,14 @@ object({
 
 ## Usage
 
-Configure resources for the `connectivity` Landing Zone.
+Configure resources for the `connectivity` landing zone.
 This is sub divided into configuration objects for the following:
 
-- [Hub network(s) for a traditional hub and spoke network topology](#configure-hub-networks-hub-and-spoke)
-- [Hub network(s) for an Azure Virtual WAN network topology](#configure-hub-networks-virtual-wan)
-- [DDoS protection plan](#configure-ddos-protection-plan)
-- [Public and private Azure DNS zones, including DNS configuration for Private Endpoints](#configure-dns)
-- [Additional settings for connectivity resources](#additional-settings)
+- [Configure hub networks (Hub and Spoke)](#configure-hub-networks-hub-and-spoke)
+- [Configure hub networks (Virtual WAN)](#configure-hub-networks-virtual-wan)
+- [Configure DDoS protection plan](#configure-ddos-protection-plan)
+- [Configure DNS](#configure-dns)
+- [Additional settings](#additional-settings)
 
 > **NOTE:**
 > For consistency across the module, each configuration object includes an `enabled` attribute to enable and disable individual instances, and a `config` object to configure individual settings.
