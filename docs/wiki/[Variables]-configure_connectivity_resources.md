@@ -413,6 +413,7 @@ This is sub divided into configuration objects for the following:
 - [Hub network(s) for an Azure Virtual WAN network topology](#configure-hub-networks-virtual-wan)
 - [DDoS protection plan](#configure-ddos-protection-plan)
 - [Public and private Azure DNS zones, including DNS configuration for Private Endpoints](#configure-dns)
+- [Additional settings for connectivity resources](#additional-settings)
 
 > **NOTE:**
 > For consistency across the module, each configuration object includes an `enabled` attribute to enable and disable individual instances, and a `config` object to configure individual settings.
@@ -478,14 +479,59 @@ The `settings.dns` object allows defining DNS settings for the module.
 
 For more information, see our guidance on configuring the [configure_connectivity_resources.settings.dns][wiki_dns_variable] input.
 
+### Additional settings
+
+The following additional settings can be used to set configuration on all connectivity resources:
+
+#### `settings.location`
+
+Set the location/region where the connectivity resources are created.
+Changing this forces new resources to be created.
+
+By default, leaving an empty value in the `location` field will deploy all connectivity resources in either the location inherited from the top-level variable `default_location`, or from a more specific `location` value if set at a lower scope.
+
+Location can also be overridden for individual resources using the [advanced](#settingsadvanced) input.
+
+#### `settings.tags`
+
+Set additional tags for all connectivity resources.
+Tags are appended to those inherited from the top-level variable `default_tags`.
+
+```hcl
+tags = {
+  MyTag  = "MyValue"
+  MyTag2 = "MyValue2"
+}
+```
+
+> **NOTE:**
+> The inherited tags will include those set by the module, unless [disable_base_module_tags][wiki_disable_base_module_tags] is set to `true`.
+
+#### `settings.advanced`
+
+The `advanced` block provides a way to manipulate almost any setting on any connectivity resource created by the module.
+This is currently undocumented and only intended for experienced users.
+
+> :warning: **WARNING**
+>
+> Although the `advanced` block has now evolved to a stable state, we recommend that customers use this with caution as it is not officially supported.
+> The long awaited GA release of the `optional()` feature is expected in Terraform `v1.3`.
+> This is likely to be used to supplement or replace the `advanced` input in release `v3.0.0` of the module.
+
+See [Using the Advanced Block with connectivity resources][wiki_connectivity_advanced_block] page for more information.
+
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
 [this_page]: # "Link for the current page."
 
-[wiki_ddos_variable]:              %5BVariables%5D-configure_connectivity_resources.settings.ddos_protection_plan "Wiki - configure_connectivity_resources settings ddos"
-[wiki_dns_variable]:               %5BVariables%5D-configure_connectivity_resources.settings.dns "Wiki - configure_connectivity_resources settings dns"
-[wiki_hub_networks_variable]:      %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D "Wiki - configure_connectivity_resources settings hub_networks"
-[wiki_vwan_hub_networks_variable]: %5BVariables%5D-configure_connectivity_resources.settings.vwan_hub_networks%5B%5D "Wiki - configure_connectivity_resources settings vwan_hub_networks"
-[wiki_link_virtual_networks]:      %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config linktoddosprotectionplan"
+[wiki_ddos_variable]:               %5BVariables%5D-configure_connectivity_resources.settings.ddos_protection_plan "Wiki - configure_connectivity_resources settings ddos"
+[wiki_dns_variable]:                %5BVariables%5D-configure_connectivity_resources.settings.dns "Wiki - configure_connectivity_resources settings dns"
+[wiki_hub_networks_variable]:       %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D "Wiki - configure_connectivity_resources settings hub_networks"
+[wiki_vwan_hub_networks_variable]:  %5BVariables%5D-configure_connectivity_resources.settings.vwan_hub_networks%5B%5D "Wiki - configure_connectivity_resources settings vwan_hub_networks"
+[wiki_link_virtual_networks]:       %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config linktoddosprotectionplan"
+[wiki_disable_base_module_tags]:    %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
+[wiki_connectivity_advanced_block]: %5BVariables%5D-configure_connectivity_resources_advanced "Using the advanced block with connectivity resources"
+
+[tf_discuss_optional]: https://discuss.hashicorp.com/t/request-for-feedback-optional-object-type-attributes-with-defaults-in-v1-3-alpha/40550 "Optional object type attributes with defaults in v1.3 alpha"

@@ -334,29 +334,42 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 Enables the the Standard pricing tier for `StorageAccounts` using the "Configure Azure Defender for Storage to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-### `location`
+#### `settings.location`
 
-This allows the default location for all management resource to be set.
-Will override the `default_location` property set in the module.
-Can be overridden for specific resources using the `advanced` block (see below).
+Set the location/region where the management resources are created.
+Changing this forces new resources to be created.
 
-### `tags`
+By default, leaving an empty value in the `location` field will deploy all management resources in either the location inherited from the top-level variable `default_location`, or from a more specific `location` value if set at a lower scope.
 
-A mapping of tags which should be assigned to the resources.
+Location can also be overridden for individual resources using the [advanced](#settingsadvanced) input.
 
-e.g.
+#### `settings.tags`
 
-```terraform
+Set additional tags for all management resources.
+Tags are appended to those inherited from the top-level variable `default_tags`.
+
+```hcl
 tags = {
   MyTag  = "MyValue"
   MyTag2 = "MyValue2"
 }
-
 ```
 
-### `advanced`
+> **NOTE:**
+> The inherited tags will include those set by the module, unless [disable_base_module_tags][wiki_disable_base_module_tags] is set to `true`.
 
-See [Using the Advanced Block with Management Resources][wiki_management_advanced_block].
+#### `settings.advanced`
+
+The `advanced` block provides a way to manipulate almost any setting on any management resource created by the module.
+This is currently undocumented and only intended for experienced users.
+
+> :warning: **WARNING**
+>
+> Although the `advanced` block has now evolved to a stable state, we recommend that customers use this with caution as it is not officially supported.
+> The long awaited GA release of the `optional()` feature is expected in Terraform `v1.3`.
+> This is likely to be used to supplement or replace the `advanced` input in release `v3.0.0` of the module.
+
+See [Using the Advanced Block with management resources][wiki_management_advanced_block] page for more information.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
@@ -376,4 +389,6 @@ See [Using the Advanced Block with Management Resources][wiki_management_advance
 [vm_insights_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
 [microsoft_defender_for_cloud]:           https://docs.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction
 [microsoft_defender_for_sql]:             https://docs.microsoft.com/azure/azure-sql/database/azure-defender-for-sql
-[wiki_management_advanced_block]:         %5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
+
+[wiki_management_advanced_block]: %5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
+[wiki_disable_base_module_tags]:   %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
