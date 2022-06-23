@@ -7,6 +7,9 @@ For each configuration object added to the `configure_connectivity_resources.set
 
 ## Default value
 
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
+
 ```hcl
 {
   enabled = true
@@ -58,9 +61,14 @@ For each configuration object added to the `configure_connectivity_resources.set
 }
 ```
 
+</details>
+
 ## Validation
 
 Validation provided by schema:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 object({
@@ -157,6 +165,8 @@ object({
   })
 })
 ```
+
+</details>
 
 ## Usage
 

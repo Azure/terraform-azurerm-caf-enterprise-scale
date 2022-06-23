@@ -7,6 +7,9 @@ The [configure_connectivity_resources.settings.dns][wiki_dns] object provides co
 
 ## Default value
 
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
+
 ```hcl
 {
   enabled = true
@@ -64,9 +67,14 @@ The [configure_connectivity_resources.settings.dns][wiki_dns] object provides co
 }
 ```
 
+</details>
+
 ## Validation
 
 Validation provided by schema:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 object({
@@ -124,6 +132,8 @@ object({
   })
 })
 ```
+
+</details>
 
 ## Usage
 
