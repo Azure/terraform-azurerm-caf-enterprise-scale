@@ -17,4 +17,4 @@ Please ensure you have read our [Contributing](Contributing) page before going a
 
 [Issues]:     https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues "Our issues log"
 [Unit-Tests]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/tests/pipelines/tests-unit.yml "Unit tests YAML"
-[E2E-Tests]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/tests/pipelines/tests-e2e.yml "E2E tests YAML"
+[E2E-Tests]:  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/tests/pipelines/tests-e2e.yml "E2E tests YAML"
