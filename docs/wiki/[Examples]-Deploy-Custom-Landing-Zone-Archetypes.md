@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to customize the Management Group hierarchy.
+This page describes how to deploy your Azure landing zone with a custom configuration, including guidance on how to customize the Management Group hierarchy.
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
@@ -76,7 +76,7 @@ variable "root_name" {
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure. This is used to ensure the deployment will target your `Tenant Root Group` by default.
 
-It also contains the module declaration for this module, containing a number of customisations as needed to meet the specification defined in the overview above.
+It also contains the module declaration for this module, containing a number of customizations as needed to meet the specification defined in the overview above.
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 
@@ -189,7 +189,7 @@ For more details about working with archetype definitions, please refer to the [
 
 ![Deploy-Default-Configuration](media/examples-deploy-custom-demo-landing-zone-archetypes.png)
 
-You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
 

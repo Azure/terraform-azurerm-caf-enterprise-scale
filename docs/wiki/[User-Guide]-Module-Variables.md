@@ -4,11 +4,11 @@
 The module can be customized using the input variables listed below (click on each `input name` for more details).
 
 To provide the depth of configuration options needed by the module without creating too many different input variables, we decided to use a number of complex `object({})` type variables.
-Whilst these may look intimidating at first, these are all configured with default values and only need to be updated if you want to start customising the deployment.
+Whilst these may look intimidating at first, these are all configured with default values and only need to be updated if you want to start customizing the deployment.
 In all cases, the default values can simply be copied into your configuration and edited as required.
 
 > To make your code easier to maintain, we recommend using [Local Values][local_values] in your root module to store custom values, rather than putting these in-line within the module block.
-> This helps to improve readability of the module block, and also makes these values re-usable when using multiple instances of the module to build out your Enterprise-scale platform on Azure.
+> This helps to improve readability of the module block, and also makes these values re-usable when using multiple instances of the module to build out your Azure landing zone.
 > Only use [Input Variables][input_variables] for simple values which need to be changed across multiple deployments (e.g. environment-specific values).
 
 ## Required Inputs
@@ -47,6 +47,9 @@ Default: `{}`
 If specified, will customize the \"Connectivity\" landing zone settings and resources.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -169,6 +172,8 @@ Default:
 }
 ```
 
+</details>
+
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
@@ -177,6 +182,9 @@ Default:
 If specified, will customize the \"Identity\" landing zone settings.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -194,6 +202,8 @@ Default:
 }
 ```
 
+</details>
+
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
@@ -203,6 +213,9 @@ Default:
 If specified, will customize the \"Management\" landing zone settings and resources.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -250,6 +263,8 @@ Default:
 }
 ```
 
+</details>
+
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
@@ -258,6 +273,9 @@ Default:
 Used to tune `terraform apply` when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after creation of the specified resource type.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -269,6 +287,8 @@ Default:
   azurerm_role_definition       = "60s"
 }
 ```
+
+</details>
 
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
@@ -387,6 +407,9 @@ Used to tune terraform deploy when faced with errors caused by API caching or ev
 
 Default:
 
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
+
 ```hcl
 {
   azurerm_management_group      = "0s"
@@ -397,6 +420,8 @@ Default:
   azurerm_role_definition       = "0s"
 }
 ```
+
+</details>
 
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>

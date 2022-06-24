@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This example code will deploy the minimum recommended management group and subscription organization from the enterprise-scale reference architecture.
+This example code will deploy the minimum recommended management group and subscription organization from the Azure landing zone conceptual architecture.
 You can then start to customize your deployment once you've got this up and running.
 
 This is a good starting point when first discovering what resources are created by this module.
@@ -64,7 +64,7 @@ module "enterprise_scale" {
 
 ![Deploy-Default-Configuration](media/examples-deploy-default-configuration.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
 

@@ -1,5 +1,5 @@
 <!-- markdownlint-disable first-line-h1 -->
-![caf-enterprise-scale](media/azure.svg)
+![Azure logo](media/azure.svg)
 
 ## Azure landing zones Terraform module
 

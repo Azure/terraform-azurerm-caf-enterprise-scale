@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context, using the default configuration settings.
+This page describes how to deploy your Azure landing zone with the [Management resources][wiki_management_resources] created in the current Subscription context, using the default configuration settings.
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
@@ -83,7 +83,7 @@ module "enterprise_scale" {
 
 ![Deployed resource hierarchy](media/examples-deploy-management-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 

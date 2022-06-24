@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-heading first-line-h1 -->
 The [Azure landing zones Terraform module][alz_tf_registry] provides an opinionated approach for deploying and managing the core platform capabilities of [Azure landing zones architecture][alz_architecture] using Terraform, with a focus on the central resource hierarchy:
 
-![Enterprise-scale Landing Zone Architecture][alz_tf_overview]
+![Azure landing zone conceptual architecture][alz_tf_overview]
 
 Depending on selected options, this module can deploy different sets of resources based on the following capabilities:
 

@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to use the module to create your own custom RBAC roles and assign them at the appropriate scopes within your Enterprise-Scale deployment.
+This page describes how to use the module to create your own custom RBAC roles and assign them at the appropriate scopes within your Azure landing zone deployment.
 
 In this example, we will create a custom RBAC role with the name "Reader Support Tickets" which will allow members to read everything in a subscription and to also open support tickets.
 

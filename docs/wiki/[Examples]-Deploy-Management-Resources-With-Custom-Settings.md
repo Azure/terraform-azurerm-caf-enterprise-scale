@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context, using custom configuration settings.
+This page describes how to deploy your Azure landing zone with the [Management resources][wiki_management_resources] created in the current Subscription context, using custom configuration settings.
 
 The module supports customising almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
 For the Management resources, this is configured through the [`configure_management_resources`][configure_management_resources] input variable.
@@ -16,7 +16,7 @@ In this example, we take the base [Deploy Management resources][wiki_deploy_mana
   - Set a different location for Management resources (controlled through an input variable on the root module)
   - Add custom resource tags for Management resources (controlled through an input variable on the root module)
 
-The module allows for further customisation of the Management resources through the `advanced` setting, however this is out-of-scope for this example.
+The module allows for further customization of the Management resources through the `advanced` setting, however this is out-of-scope for this example.
 
 > Use of the `advanced` setting is currently undocumented and experimental.
 Please be aware that using this setting may result in future breaking changes.
@@ -116,7 +116,7 @@ variable "management_resources_tags" {
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID and Subscription ID values from your user connection to Azure. These are used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_management` input variable.
 
-It also contains the module declaration for this module, containing a number of customisations as needed to meet the specification defined in the overview above.
+It also contains the module declaration for this module, containing a number of customizations as needed to meet the specification defined in the overview above.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -207,7 +207,7 @@ locals {
 
 ![Deployed resource hierarchy](media/examples-deploy-management-custom-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 

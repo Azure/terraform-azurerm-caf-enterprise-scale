@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with a custom configuration, including guidance on how to override the dynamically generated Role Assignments for a specific Policy Assignment with Managed Identity.
+This page describes how to deploy your Azure landing zone with a custom configuration, including guidance on how to override the dynamically generated Role Assignments for a specific Policy Assignment with Managed Identity.
 
 > **NOTE:** This feature is available from version 0.2.2.
 
@@ -282,4 +282,4 @@ For this example the`custom_policy_roles` is this:
 
 ![Override-Module-Role-Assignments-04](media/examples-override-module-role-assignments-04.png)
 
-You have successfully override the built-in role definitions using the `custom_policy_roles` feature of Enterprise-scale module.
+You have successfully overridden the built-in role definitions using `custom_policy_roles` for your Azure landing zone.

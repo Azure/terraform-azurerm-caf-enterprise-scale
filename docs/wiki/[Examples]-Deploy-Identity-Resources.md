@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using the default configuration settings.
+This page describes how to deploy your Azure landing zone with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using the default configuration settings.
 
 Unlike the `connectivity` and `management` solutions, no resources are currently deployed when enabling `deploy_identity_resources`.
 Instead, the Policy Assignments associated with the `identity` Management Group are enabled and configured based on the optional `configure_identity_resources` input variable.
@@ -82,7 +82,7 @@ module "enterprise_scale" {
 
 ![Deployed resource hierarchy](media/examples-deploy-identity-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 You have also assigned the current Subscription from your provider configuration to the `identity` Management Group.
 
