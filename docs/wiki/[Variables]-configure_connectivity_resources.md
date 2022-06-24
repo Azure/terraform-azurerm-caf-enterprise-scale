@@ -448,7 +448,7 @@ Each `hub_network` entry contains configuration settings for all hub network res
 - Firewall settings
 - etc.
 
-For more information, see our guidance on configuring the [configure_connectivity_resources.settings.hub_networks[]][wiki_hub_networks_variable] input.
+For more information, see our guidance on configuring the [configure_connectivity_resources.settings.hub_networks][wiki_hub_networks_variable] input.
 
 ### Configure hub networks (Virtual WAN)
 
@@ -467,11 +467,11 @@ Each `vwan_hub_network` entry contains configuration settings for all hub networ
 - Firewall settings
 - etc.
 
-For more information, see our guidance on configuring the [configure_connectivity_resources.settings.vwan_hub_networks[]][wiki_vwan_hub_networks_variable] input.
+For more information, see our guidance on configuring the [configure_connectivity_resources.settings.vwan_hub_networks][wiki_vwan_hub_networks_variable] input.
 
 ### Configure DDoS protection plan
 
-The `settings.ddos_protection_plan` object allows defining DDoS protection plan settings for the module.
+The `settings.ddos_protection_plan` object allows defining [DDoS protection plan settings][wiki_connectivity_resources_ddos] for the module.
 
 The module can optionally [link virtual networks][wiki_link_virtual_networks] to the DDoS protection plan when using [hub_networks](#configure-hub-networks-hub-and-spoke).
 
@@ -479,7 +479,7 @@ For more information, see our guidance on configuring the [configure_connectivit
 
 ### Configure DNS
 
-The `settings.dns` object allows defining DNS settings for the module.
+The `settings.dns` object allows defining [DNS settings][wiki_connectivity_resources_dns] for the module.
 
 - Create DNS zones for Private Link by service
 - Create location-specific DNS zones where needed for Private Link services
@@ -536,12 +536,16 @@ See [Using the Advanced Block with connectivity resources][wiki_connectivity_adv
 
 [this_page]: # "Link for the current page."
 
-[wiki_ddos_variable]:               %5BVariables%5D-configure_connectivity_resources.settings.ddos_protection_plan "Wiki - configure_connectivity_resources settings ddos"
-[wiki_dns_variable]:                %5BVariables%5D-configure_connectivity_resources.settings.dns "Wiki - configure_connectivity_resources settings dns"
-[wiki_hub_networks_variable]:       %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D "Wiki - configure_connectivity_resources settings hub_networks"
-[wiki_vwan_hub_networks_variable]:  %5BVariables%5D-configure_connectivity_resources.settings.vwan_hub_networks%5B%5D "Wiki - configure_connectivity_resources settings vwan_hub_networks"
-[wiki_link_virtual_networks]:       %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config linktoddosprotectionplan"
-[wiki_disable_base_module_tags]:    %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
-[wiki_connectivity_advanced_block]: %5BVariables%5D-configure_connectivity_resources_advanced "Using the advanced block with connectivity resources"
+[wiki_ddos_variable]:                        %5BVariables%5D-configure_connectivity_resources.settings.ddos_protection_plan "Wiki - configure_connectivity_resources settings ddos"
+[wiki_dns_variable]:                         %5BVariables%5D-configure_connectivity_resources.settings.dns "Wiki - configure_connectivity_resources settings dns"
+[wiki_hub_networks_variable]:                %5BVariables%5D-configure_connectivity_resources.settings.hub_networks "Wiki - configure_connectivity_resources settings hub_networks"
+[wiki_vwan_hub_networks_variable]:           %5BVariables%5D-configure_connectivity_resources.settings.vwan_hub_networks "Wiki - configure_connectivity_resources settings vwan_hub_networks"
+[wiki_link_virtual_networks]:                %5BVariables%5D-configure_connectivity_resources.settings.hub_networks#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config linktoddosprotectionplan"
+[wiki_disable_base_module_tags]:             %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
+[wiki_connectivity_advanced_block]:          %5BVariables%5D-configure_connectivity_resources_advanced "Using the advanced block with connectivity resources"
+[wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity resources - Traditional Azure networking topology (hub and spoke)"
+[wiki_connectivity_resources_virtual_wan]:   %5BUser-Guide%5D-Connectivity-Resources#virtual-wan-network-topology-microsoft-managed "Wiki - Connectivity resources - Virtual WAN network topology (Microsoft-managed)"
+[wiki_connectivity_resources_ddos]:          %5BUser-Guide%5D-Connectivity-Resources#ddos-protection-plan "Wiki - Connectivity resources - DDoS Protection plan"
+[wiki_connectivity_resources_dns]:           %5BUser-Guide%5D-Connectivity-Resources#dns "Wiki - Connectivity resources - DNS"
 
 [tf_discuss_optional]: https://discuss.hashicorp.com/t/request-for-feedback-optional-object-type-attributes-with-defaults-in-v1-3-alpha/40550 "Optional object type attributes with defaults in v1.3 alpha"

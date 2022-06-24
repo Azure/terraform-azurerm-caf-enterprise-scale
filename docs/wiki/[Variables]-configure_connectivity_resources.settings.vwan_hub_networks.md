@@ -1,9 +1,9 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.vwan_hub_networks[]**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.vwan_hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#Validation) (optional)
 
-For each configuration object added to the `configure_connectivity_resources.settings.vwan_hub_networks[]` list, the module will create a hub network and associated resources in the target location based on a [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan].
+For each configuration object added to the `configure_connectivity_resources.settings.vwan_hub_networks` list, the module will create a hub network and associated resources in the target location based on a [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan].
 
 ## Default value
 
@@ -341,6 +341,6 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 
 [wiki_connectivity_resources_virtual_wan]: %5BUser-Guide%5D-Connectivity-Resources#virtual-wan-network-topology-microsoft-managed "Wiki - Connectivity Resources - Virtual WAN network topology (Microsoft-managed)"
 
-[tf_reg_bgp_settings]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/vpn_gateway#bgp_settings "Documentation for bgp_settings blocks on the Terraform Registry."
-[tf_reg_route]:        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub#route "Documentation for route blocks on the Terraform Registry."
+[tf_reg_bgp_settings]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/vpn_gateway#bgp_settings "Documentation for bgp_settings blocks on the Terraform Registry."
+[tf_reg_route]:                         https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub#route "Documentation for route blocks on the Terraform Registry."
 [tf_reg_threat_intelligence_allowlist]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy#threat_intelligence_allowlist  "Documentation for threat_intelligence_allowlist blocks on the Terraform Registry."

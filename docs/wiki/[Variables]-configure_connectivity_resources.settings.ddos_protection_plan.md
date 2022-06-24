@@ -1,9 +1,9 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.ddos_protection_plan**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.ddos_protection_plan**](#overview) `object({})` [*see validation for detailed type*](#Validation) (optional)
 
-The 'configure_connectivity_resources.settings.ddos_protection_plan' object provides configuration settings to control creation of DDoS resources in the target location.
+The `configure_connectivity_resources.settings.ddos_protection_plan` object provides configuration settings to control creation of DDoS resources in the target location.
 
 ## Default value
 
@@ -58,4 +58,4 @@ By default, leaving an empty value in the `location` field will deploy the DDoS 
 
 [this_page]: # "Link for the current page."
 
-[wiki_hub_networks_link_to_ddos_protection_plan]: %5BVariables%5D-configure_connectivity_resources.settings.hub_networks%5B%5D#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config link_to_ddos_protection_plan"
+[wiki_hub_networks_link_to_ddos_protection_plan]: %5BVariables%5D-configure_connectivity_resources.settings.hub_networks#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config link_to_ddos_protection_plan"

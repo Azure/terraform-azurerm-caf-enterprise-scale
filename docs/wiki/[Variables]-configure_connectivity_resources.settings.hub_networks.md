@@ -1,9 +1,9 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.hub_networks[]**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#Validation) (optional)
 
-For each configuration object added to the `configure_connectivity_resources.settings.hub_networks[]` list, the module will create a hub network and associated resources in the target location based on a [traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke].
+For each configuration object added to the `configure_connectivity_resources.settings.hub_networks` list, the module will create a hub network and associated resources in the target location based on a [traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke].
 
 ## Default value
 
@@ -467,8 +467,8 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 
 [this_page]: # "Link for the current page."
 
-[virtual_network_gateway_sku]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
-[azfw_policy_rule_hierarchy]: https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
+[virtual_network_gateway_sku]:     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
+[azfw_policy_rule_hierarchy]:      https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
 [azurerm_virtual_network_gateway]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway
 
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
@@ -477,8 +477,9 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 [msdocs_virtualNetworkPeerings]: https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings "Microsoft.Network virtualNetworks/virtualNetworkPeerings"
 [msdocs_virtualNetworks]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks "Microsoft.Network virtualNetworks"
 
-[tf_reg_vpn_client_configuration]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#vpn_client_configuration "Documentation for vpn_client_configuration blocks on the Terraform Registry."
-[tf_reg_bgp_settings]:             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#bgp_settings "Documentation for bgp_settings blocks on the Terraform Registry."
-[tf_reg_custom_route]:             https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#address_prefixes "Documentation for custom_route blocks on the Terraform Registry (links to address_prefixes)."
-[tf_reg_azapi]:                    https://registry.terraform.io/providers/Azure/azapi/latest/docs "Documentation for the AzAPI provider on the Terraform Registry."
-[tf_reg_azapi_parent_id]:          https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/azapi_resource#parent_id "Documentation for parent_id input variable of the AzAPI provider on the Terraform Registry."
+[tf_reg_vpn_client_configuration]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#vpn_client_configuration "Documentation for vpn_client_configuration blocks on the Terraform Registry."
+[tf_reg_bgp_settings]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#bgp_settings "Documentation for bgp_settings blocks on the Terraform Registry."
+[tf_reg_custom_route]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#address_prefixes "Documentation for custom_route blocks on the Terraform Registry (links to address_prefixes)."
+[tf_reg_azapi]:                         https://registry.terraform.io/providers/Azure/azapi/latest/docs "Documentation for the AzAPI provider on the Terraform Registry."
+[tf_reg_azapi_parent_id]:               https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/azapi_resource#parent_id "Documentation for parent_id input variable of the AzAPI provider on the Terraform Registry."
+[tf_reg_threat_intelligence_allowlist]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy#threat_intelligence_allowlist  "Documentation for threat_intelligence_allowlist blocks on the Terraform Registry."

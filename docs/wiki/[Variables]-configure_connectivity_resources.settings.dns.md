@@ -1,9 +1,9 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.dns**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.dns**](#overview) `object({})` [*see validation for detailed type*](#Validation) (optional)
 
-The [configure_connectivity_resources.settings.dns][wiki_dns] object provides configuration settings to control creation of DNS resources in the target location.
+The `configure_connectivity_resources.settings.dns` object provides configuration settings to control creation of DNS resources in the target location.
 
 ## Default value
 
