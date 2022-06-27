@@ -1,6 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## What is an archetype?
 
-Archetypes are used in the Enterprise-scale architecture to describe the Landing Zone configuration using a template-driven approach. The archetype is what fundamentally transforms ***Management Groups*** and ***Subscriptions*** into ***Landing Zones***.
+Archetypes are used in the Azure landing zone conceptual architecture to describe the Landing Zone configuration using a template-driven approach. The archetype is what fundamentally transforms ***Management Groups*** and ***Subscriptions*** into ***Landing Zones***.
 
 An archetype defines which Azure Policy and Access control (IAM) settings are needed to secure and configure the Landing Zones with everything needed for safe handover to the Landing Zone owner. This covers critical platform controls and configuration items, such as:
 
@@ -34,11 +35,11 @@ Save your custom templates in the custom library location and as long as they ar
 >
 >- Policies in Terraform require you to understand how to write significant sections of the resource configuration in the native ARM format, and then convert this to a JSON string within Terraform resource.
 >- Using a native ARM format makes copying these template assets between ARM and Terraform much easier.
->- Terraform doesn't support importing data objects from native Terraform file formats (`.hcl`, `.tf` or `.tfvar`) so we had to use an alternative to be able to support the custom library model for extensibility and customisation.
+>- Terraform doesn't support importing data objects from native Terraform file formats (`.hcl`, `.tf` or `.tfvar`) so we had to use an alternative to be able to support the custom library model for extensibility and customization.
 >
 > **PRO TIP:** The module also supports YAML for these files as long as they match the ARM schema.
 
-This template driven approach is designed to simplify the process of defining an archetype and forms the foundations for how the module is able to provide feature-rich defaults, whilst also allowing a great degree of extensibility and customisation through the input variables instead of having to fork and modify the module.
+This template driven approach is designed to simplify the process of defining an archetype and forms the foundations for how the module is able to provide feature-rich defaults, whilst also allowing a great degree of extensibility and customization through the input variables instead of having to fork and modify the module.
 To increase flexibility when writing these files, we have provided full support for the Terraform [templatefile()][terraform_templatefile] function, allowing you to create re-usable templates which can be automatically populated with pre-defined template variables from the module, or user-provided template variables.
 For more information about which values are pre-defined by the module or how to add your own, please refer for the Wiki page for [template_file_variables][wiki_variables_template_file_variables].
 
@@ -46,7 +47,7 @@ The `archetype_definition` template contains lists of the Policy Assignments, Po
 
 To keep the `archetype_definition` template as lean as possible, we simply declare the value of the `name` field from the resource templates (by type). The exception is Role Definitions which must have a GUID for the `name` field, so we use the `roleName` value from `properties` instead.
 
-As long as you follow these patterns, you can create your own archetype definitions to start advanced customisation of your Enterprise-scale deployment.
+As long as you follow these patterns, you can create your own archetype definitions to start advanced customization of your Azure landing zone.
 
 This template-based approach was chosen to make the desired-state easier to understand, simplify the process of managing configuration and versioning, reduce code duplication (DRY), and to improve consistency in complex environments.
 
@@ -201,8 +202,8 @@ This allows you to override parameter values for as many or as few Policy Assign
 
 [TFAES-Library]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib
 
-[wiki_variables_archetype_config_overrides]: ./%5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
-[wiki_variables_custom_landing_zones]:       ./%5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
-[wiki_variables_template_file_variables]:    ./%5BVariables%5D-template_file_variables "Wiki - Variables - template_file_variables"
+[wiki_variables_archetype_config_overrides]: %5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
+[wiki_variables_custom_landing_zones]:       %5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
+[wiki_variables_template_file_variables]:    %5BVariables%5D-template_file_variables "Wiki - Variables - template_file_variables"
 
 [terraform_templatefile]: https://www.terraform.io/language/functions/templatefile "Terraform documentation: templatefile Function"

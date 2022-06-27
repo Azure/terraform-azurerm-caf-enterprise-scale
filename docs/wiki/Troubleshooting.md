@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 Having trouble using the module and unable to find a solution in the Wiki?
 
 If it isn't listed below, let us know about it in our [Issues][Issues] log. We'll do our best to help and you may find your issue documented here in the future!
@@ -6,6 +7,7 @@ If it isn't listed below, let us know about it in our [Issues][Issues] log. We'l
 
 #### Errors creating Role Definitions and Role Assignments
 
+<!-- markdownlint-disable no-inline-html -->
 <details>
   <summary><samp>Error: authorization.RoleDefinitionsClient#Get: Failure responding to request: StatusCode=404 -- Original Error: autorest/azure: Service returned an error. Status=404 Code="RoleDefinitionDoesNotExist" Message="The specified role definition with ID '&#60;redacted&#62;' does not exist."
 </samp></summary>
@@ -29,3 +31,4 @@ If it isn't listed below, let us know about it in our [Issues][Issues] log. We'l
     <dd>Coming soon</dd>
   </dl>
 </details>
+<!-- markdownlint-enable no-inline-html -->

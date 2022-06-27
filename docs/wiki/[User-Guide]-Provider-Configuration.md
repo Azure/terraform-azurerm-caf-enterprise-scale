@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] uses multiple provider aliases to allow resources to be deployed directly to the intended Subscription, without the need to specify multiple instances of the module.
@@ -81,7 +82,7 @@ module "caf-enterprise-scale" {
 }
 ```
 
-For more detailed instructions, follow the [next steps](#next-steps) listed below or go straight to our [Examples](./Examples).
+For more detailed instructions, follow the [next steps](#next-steps) listed below or go straight to our [Examples](Examples).
 
 ### Multi-Subscription deployment
 
@@ -233,7 +234,7 @@ module "enterprise_scale" {
 }
 ```
 
-For more detailed instructions, follow the [next steps](#next-steps) listed below or go straight to our [Examples](./Examples).
+For more detailed instructions, follow the [next steps](#next-steps) listed below or go straight to our [Examples](Examples).
 
 ## Next steps
 
@@ -248,9 +249,9 @@ Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to cu
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 [authenticating_to_azure]:                 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure "Terraform Registry: Azure Provider (Authenticating to Azure)"
 
-[wiki_core_resources]:                        ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
-[wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]:                ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_identity_resources]:                    ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_core_resources]:                        %5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
+[wiki_management_resources]:                  %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]:                %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_identity_resources]:                    %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
 
 [azurerm_client_config]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config "Data Source: azurerm_client_config"

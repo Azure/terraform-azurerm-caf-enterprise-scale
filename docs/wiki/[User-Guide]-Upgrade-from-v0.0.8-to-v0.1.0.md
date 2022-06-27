@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 As part of upgrade from release 0.0.8 to 0.1.0, the [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] has undergone a significant update to the included `Policy Assignments`, `Policy Definitions` and `Policy Set Definitions`.
@@ -204,11 +205,12 @@ As such, this archetype definition contains references for ALL of the Policy Def
 
 To bring this in alignment with the Enterprise-scale reference architecture, the following changes will be made to the Policy Assignments created by this archetype from v0.1.0 onwards:
 
-<!-- markdownlint-disable MD013 -->
-| Policy Assignments (v0.0.8)                                                                                                                                                                                                              | Policy Assignments (v0.1.0)                                                                                                                                                                                     |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+<!-- markdownlint-disable no-inline-html -->
+| Policy Assignments (v0.0.8) | Policy Assignments (v0.1.0) |
+| :--- | :--- |
+<!-- markdownlint-disable-next-line line-length -->
 | ES-Allowed-Locations<br>ES-Allowed-RSG-Locations<br>ES-Deny-AppGW-No-WAF<br>ES-Deny-VMIPForwarding<br>ES-Deny-RDPFromInternet<br>ES-Deny-ResourceTypes<br>ES-Deny-SubnetWithoutNsg<br>ES-Deploy-ASC-Monitoring<br>ES-Deploy-ASC-Standard | Deploy-ASC-Monitoring<br>Deploy-ASC-Defender<br>Deploy-AzActivity-Log<br>Deploy-LX-Arc-Monitoring<br>Deploy-Resource-Diag<br>Deploy-VM-Monitoring<br>Deploy-VMSS-Monitoring<br>Deploy-WS-Arc-Monitoring<br><br> |
-<!-- markdownlint-restore -->
+<!-- markdownlint-enable no-inline-html -->
 
 If you are using a copy of this archetype in your custom library (as specified using the `library_path` variable), please ensure you update all applicable resource names from the v0.0.8 format to v0.1.0.
 
@@ -248,7 +250,7 @@ To help with this, we have automated the process used to keep the policies in sy
 
 ## Next steps
 
-Take a look at the latest [User Guide](./User-Guide) documentation and our [Examples](./Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
+Take a look at the latest [User Guide](User-Guide) documentation and our [Examples](Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

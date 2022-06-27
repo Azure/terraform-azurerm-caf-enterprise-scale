@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Initial considerations
 
 Before getting started with this module, please take note of the following considerations:
@@ -12,7 +13,7 @@ Before getting started with this module, please take note of the following consi
 
 1. We recommend providing the `root_parent_id` value needed by the module using one of the following options:
     - Explicitly using an input variable in your root module, with the value specified via command-line using `-var 'root_parent_id={{ tenant_id }}'` or your preferred method of specifying variables at runtime.
-    - Implicitly using the `azurerm_client_config` data resource in your root module to extract the `tenant_id` value from the current logged in user context (_see our [examples](./Examples)_).
+    - Implicitly using the `azurerm_client_config` data resource in your root module to extract the `tenant_id` value from the current logged in user context (_see our [examples](Examples)_).
 
       > **NOTE:** Using the `azurerm_subscription` data resource to provide a `tenant_id` value from the current context for `root_parent_id` should be avoided. This has been observed to generate a warning that Terraform cannot determine the number of resources to create during the `plan` stage.
       > Terraform will ask to run `terraform apply -target=resource` against the `azurerm_subscription` data resource. This is due to the `root_parent_id` being used within the module to generate values which are used as `keys` within the `for-each` loops for resource creation. To avoid this error, please use one of the recommended methods above.
@@ -40,8 +41,9 @@ Please refer to the [upgrade guide][wiki_upgrade_from_v0_3_3_to_v0_4_0] for more
 
 ## Additional considerations when deploying Landing Zone resources with Terraform
 
-Although you may be considering managing your platform using this Terraform module, Enterprise-scale is not prescriptive on which deployment method is used for deploying resources inside Landing Zone Subscriptions.
-For example, application teams could use Bicep, ARM templates, or Terraform to deploy resources within their own subscriptions.
+Although you may be considering managing your platform using this module, the Azure landing zone guidance is not prescriptive on how application teams deploy resources inside landing zone subscriptions.
+To enable application team autonomy, the Azure landing zone guidance recommends that application teams should be free to use their preferred method to deploy resources into their own subscriptions.
+This could be Bicep, ARM templates, or Terraform, and using this module has no downstream impact on this decision.
 However, when application teams choose to deploy resources with Terraform, the following additional considerations apply:
 
 1. `Deny-Subnet-Without-NSG` Policy Assignment
@@ -83,7 +85,7 @@ module "caf-enterprise-scale" {
 }
 ```
 
-For more detailed instructions, follow the [next steps](#next-steps) listed below or go straight to our [Examples](./Examples).
+For more detailed instructions, follow the [next steps](#next-steps) listed below or go straight to our [Examples](Examples).
 
 ## Next steps
 
@@ -95,9 +97,9 @@ Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to cu
 
 [ESLZ-Management]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
 
-[wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]:                ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_identity_resources]:                    ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_upgrade_from_v0_0_8_to_v0_1_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
-[wiki_upgrade_from_v0_1_2_to_v0_2_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
-[wiki_upgrade_from_v0_3_3_to_v0_4_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
+[wiki_management_resources]:                  %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]:                %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_identity_resources]:                    %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_upgrade_from_v0_0_8_to_v0_1_0]:         %5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
+[wiki_upgrade_from_v0_1_2_to_v0_2_0]:         %5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
+[wiki_upgrade_from_v0_3_3_to_v0_4_0]:         %5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"

@@ -1,6 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with a nested module instance. This example is building on top of
+This page describes how to deploy your Azure landing zone with a nested module instance. This example is building on top of
 [Deploy Custom Landing Zone Archetypes](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes)
 and creates a nested management group, in the previously deployed custom landing zones.
 
@@ -115,11 +116,11 @@ variable "root_name" {
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure. This is used to ensure the deployment will target your `Tenant Root Group` by default.
 
-It also contains the module declaration for this module, containing a number of customisations as needed to meet the specification defined in the overview above.
+It also contains the module declaration for this module, containing a number of customizations as needed to meet the specification defined in the overview above.
 
 To allow the declaration of custom templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -223,9 +224,9 @@ module "enterprise_scale_nested_landing_zone" {
 
 The `lib/archetype_definition_customer_online.json` file contains a custom "archetype definition". This is a custom JSON format used specifically by the Azure landing zones Terraform module.
 
-In this example, we are using this archetype definition to create an archetype called `customer_online`. This archetype definition includes the creation of Policy Assignments for `Deny-Resource-Locations` and `Deny-RSG-Locations`, with default values pre-defined in the archetype definition template.
+In this example, we are using this archetype definition to create an archetype with the name `customer_online`. This archetype definition includes the creation of Policy Assignments for `Deny-Resource-Locations` and `Deny-RSG-Locations`, with default values pre-defined in the archetype definition template.
 
-For more details about working with archetype definitions, please refer to the [archetype definition user guide](./%5BUser-Guide%5D-Archetype-Definitions).
+For more details about working with archetype definitions, please refer to the [archetype definition user guide](%5BUser-Guide%5D-Archetype-Definitions).
 
 ```json
 {
@@ -263,8 +264,8 @@ For more details about working with archetype definitions, please refer to the [
 
 ## Deployed Management Groups
 
-![Deploy-Using-Module-Nesting](./media/examples-deploy-using-module-nesting.png)
+![Deploy-Using-Module-Nesting](media/examples-deploy-using-module-nesting.png)
 
-You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale, using module nesting.
+You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating custom Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone, using module nesting.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.

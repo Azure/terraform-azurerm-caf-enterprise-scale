@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**deploy_management_resources**](#overview) `bool` (optional)
@@ -32,6 +33,6 @@ The resources deployed by this module and their corresponding configuration sett
 
 [this_page]: # "Link for the current page."
 
-[subscription_id_management]:     ./%5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
-[configure_management_resources]: ./%5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[wiki_multi_subscription]:        ./%5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "[User Guide] Provider Configuration # Multi-Subscription deployment"
+[subscription_id_management]:     %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
+[configure_management_resources]: %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
+[wiki_multi_subscription]:        %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "[User Guide] Provider Configuration # Multi-Subscription deployment"

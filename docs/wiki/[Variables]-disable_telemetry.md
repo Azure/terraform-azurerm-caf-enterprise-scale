@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**disable_telemetry**](#overview) `bool` (optional)
@@ -12,7 +13,7 @@ The data is collected and governed by Microsoft's privacy policies, located at t
 
 For more information see the [customer usage attribution documentation](https://docs.microsoft.com/azure/marketplace/azure-partner-customer-usage-attribution)
 
-To disable this tracking, we have included a variable called `disable_telemetry` with a simple boolean flag. The default value is `false` which does not disable the telemetry.
+To disable this tracking, we have included a variable with the name `disable_telemetry` with a simple boolean flag. The default value is `false` which does not disable the telemetry.
 If you would like to disable this tracking, then simply set this value to `true` and this module will not create the telemetry tracking resources and therefore telemetry tracking will be disabled.
 
 For example, to disable telemetry tracking, you can add this variable to the module declaration:

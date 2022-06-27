@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 As part of upgrade from release 0.4.0 to 1.0.0, the [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] includes a minor breaking change due to the need to update the minimum supported `azurerm` provider version to `2.77.0`.
@@ -51,6 +52,7 @@ The given key does not identify an element in this collection value.
 ### Resource type: `azurerm_policy_definition`
 
 The following Policy Definitions had `name` and `description` fields updated, which will result in an in-place update:
+
 - `Audit-MachineLearning-PrivateEndpointId`
 - `Deny-MachineLearning-Aks`
 - `Deny-MachineLearning-Compute-SubnetId`
@@ -87,7 +89,7 @@ Code="Conflict" Message="A virtual network can only be linked to 1 Private DNS z
 
 ## Next steps
 
-Take a look at the latest [User Guide](./User-Guide) documentation and our [Examples](./Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
+Take a look at the latest [User Guide](User-Guide) documentation and our [Examples](Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
@@ -103,4 +105,4 @@ Take a look at the latest [User Guide](./User-Guide) documentation and our [Exam
 [azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
 [azurerm_policy_assignment]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_assignment
 
-[wiki_provider_configuration]: ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
+[wiki_provider_configuration]: %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"

@@ -1,10 +1,11 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-The module enables deployment and configuration of Azure Policy to control governance over the [Identity and access management][ESLZ-Identity] Subscription.
+The module provides an option to configure policies relating to the [identity and access management][alz_identity] landing zone. It also ensures that the specified subscription is placed in the right management group.
 
-![Enterprise-scale Identity Landing Zone Architecture][TFAES-Identity]
+![Overview of the Azure landing zones identity resources][alz_identity_overview]
 
-No additional resources are deployed by this capability, however policy settings relating to the `Identity` Management Group can now be easily updated via the `configure_identity_resources` input variable.
+This capability doesn't deploy any resources. If you want to update policy settings related to the identity management group, use the `configure_identity_resources` input variable.
 
 Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] page on our Wiki for more information about how to use this capability.
 
@@ -12,12 +13,12 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Identity]: ./media/terraform-caf-enterprise-scale-identity.png "Diagram showing the Identity resources for Azure landing zones architecture deployed by this module."
+[alz_identity_overview]: media/terraform-caf-enterprise-scale-identity.png "A conceptual architecture diagram focusing on the identity resources for an Azure landing zone."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Identity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/identity-and-access-management
+[alz_identity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
 
-[wiki_deploy_identity_resources]: ./%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
+[wiki_deploy_identity_resources]: %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"

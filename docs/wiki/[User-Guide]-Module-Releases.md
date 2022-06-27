@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Release strategy
 
 The Azure landing zones Terraform module is designed to be published and consumed through the Terraform Registry.

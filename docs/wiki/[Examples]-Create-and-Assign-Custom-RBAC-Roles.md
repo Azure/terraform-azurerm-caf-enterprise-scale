@@ -1,8 +1,9 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to use the module to create your own custom RBAC roles and assign them at the appropriate scopes within your Enterprise-Scale deployment.
+This page describes how to use the module to create your own custom RBAC roles and assign them at the appropriate scopes within your Azure landing zone deployment.
 
-In this example, we will create a custom RBAC role called "Reader Support Tickets" which will allow members to read everything in a subscription and to also open support tickets.
+In this example, we will create a custom RBAC role with the name "Reader Support Tickets" which will allow members to read everything in a subscription and to also open support tickets.
 
 We will then assign the new RBAC Role at the `es_landing_zones` scope.
 
@@ -40,7 +41,7 @@ We need to ensure that every custom role we create has a unique value for "name"
 
 In this example, we will use `New-Guid` to generate the name value for our `Reader-Support-Tickets` role definition. Using `New-Guid` is as simple as opening a PowerShell window and running the `New-Guid` cmdlet. It will then generate a unique value for you to use.
 
-![Create-and-Assign-Custom-RBAC-Roles-New-Guid-01](./media/examples-create-and-assign-custom-rbac-roles-new-guid_01.png)
+![Create-and-Assign-Custom-RBAC-Roles-New-Guid-01](media/examples-create-and-assign-custom-rbac-roles-new-guid_01.png)
 
 Now that we have a unique "name" for our new role definition, copy the below code in to the `role_definition_es_reader_support_tickets.tmpl.json` file and save it, making sure to update the value of "name" with your result from running `New-Guid`.
 

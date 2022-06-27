@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 As part of upgrade from release 0.3.3 to 0.4.0, the [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale] includes a number of breaking changes.
@@ -122,6 +123,7 @@ Please see the next section for a list of further changes.
 All `azurerm_policy_assignment` resources have been replaced by the `azurerm_management_group_policy_assignment` resource type.
 
 In addition to the resource type change, the following Policy Assignment changes are included in this update:
+
 - `Deny-http-Ingress-AKS` has been renamed to `Enforce-AKS-HTTPS`
 - `Deny-IP-Forwarding` updated display name and description fields
 - `Deny-Priv-Containers-AKS` updated display name and description fields
@@ -153,6 +155,7 @@ All Policy Definition templates were updated to the latest `apiVersion` of `2021
 A number of Policy Definition `description` fields were also updated, which will result in an in-place update of these.
 
 The following Policy Definition changes are included in this update:
+
 - `Append-AppService-latestTLS` has been updated from `Indexed` to `All` for the `mode` attribute.
 - `Audit-MachineLearning-PrivateEndpointId` added
 - `Deny-MachineLearning-Aks` added
@@ -270,7 +273,7 @@ This includes:
 
 ## Next steps
 
-Take a look at the latest [User Guide](./User-Guide) documentation and our [Examples](./Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
+Take a look at the latest [User Guide](User-Guide) documentation and our [Examples](Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
@@ -286,4 +289,4 @@ Take a look at the latest [User Guide](./User-Guide) documentation and our [Exam
 [azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
 [azurerm_policy_assignment]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_assignment
 
-[wiki_provider_configuration]: ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
+[wiki_provider_configuration]: %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"

@@ -1,6 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with a basic configuration based mainly on module defaults.
+This page describes how to deploy your Azure landing zone with a basic configuration based mainly on module defaults.
 We then show how to dynamically modify the built-in archetype definitions using the `archetype extensions` and `archetype exclusions`.
 
 > **NOTE:** This feature is available from version `0.2.0` and also works on your own custom archetype definitions.
@@ -55,19 +56,19 @@ For the purpose of this example, we use the following:
 - [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zonestmpljson)
 - [lib/archetype_exclusion_es_landing_zones.tmpl.json](#libarchetype_exclusion_es_landing_zonestmpljson)
 
-![Expand-Built-In-Archetype-Definitions](./media/examples-expand-built-in-archetype-definitions.png)
+![Expand-Built-In-Archetype-Definitions](media/examples-expand-built-in-archetype-definitions.png)
 
 ### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure.
 This is used to ensure the deployment will target your `Tenant Root Group` by default.
 
-This example code will deploy the minimum recommended management group and subscription organization from the enterprise-scale reference architecture.
+This example code will deploy the minimum recommended management group and subscription organization from the Azure landing zone conceptual architecture.
 
 To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration.
 In our example, the directory is `/lib`.
 
-> **NOTE:** For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+> **NOTE:** To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 ```hcl
 # We strongly recommend using the required_providers block to set the
@@ -150,7 +151,7 @@ In this example, we want to add the policy assignment `"Deny-Resource-Locations"
 
 ### Extended Policy Assignment
 
-![Expand-Built-In-Archetype-Definitions-01](./media/examples-expand-built-in-archetype-definitions-01.png)
+![Expand-Built-In-Archetype-Definitions-01](media/examples-expand-built-in-archetype-definitions-01.png)
 
 ## To enable the exclusion function
 
@@ -189,11 +190,10 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 
 ### Excluded Policy Assignments
 
-![Expand-Built-In-Archetype-Definitions-02](./media/examples-expand-built-in-archetype-definitions-02.png)
-
+![Expand-Built-In-Archetype-Definitions-02](media/examples-expand-built-in-archetype-definitions-02.png)
 
 ## Summary
 
-You have successfully expanded the archetype(s) by adding or removing configuration settings from the built-in archetype definitions for Enterprise-scale.
+You have successfully expanded the archetype(s) by adding or removing configuration settings from the built-in archetype definitions for your Azure landing zone.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.

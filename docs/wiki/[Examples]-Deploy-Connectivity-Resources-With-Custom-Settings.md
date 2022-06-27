@@ -1,45 +1,51 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Connectivity resources][wiki_connectivity_resources] created in the current Subscription context, using custom configuration settings.
+This page describes how to deploy Azure landing zones with connectivity resources based on the [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] created in the current Subscription context, using custom configuration settings.
 
-> **WARNING:** This deployment includes resource types which can incur increased consumption costs. Please take care to review the resources being deployed before proceeding.
+> **NOTE:**
+> If you need to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources With Custom Settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom] example.
 
-The module supports customising almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
-For the Connectivity resources, this is configured through the [`configure_connectivity_resources`][configure_connectivity_resources] input variable.
+<!-- markdownlint-disable-next-line no-blanks-blockquote-->
+> **WARNING:**
+> This deployment includes resource types which can incur increased consumption costs. Please take care to review the resources being deployed before proceeding.
 
-In this example, we take the base [Deploy Connectivity resources][wiki_deploy_connectivity_resources] configuration and make the following changes:
+The module supports customizing almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
+For the connectivity resources, this is configured through the [`configure_connectivity_resources`][wiki_configure_connectivity_resources] input variable.
 
-- Add input variable on the root module for enabling/disabling Connectivity resources
+In this example, we take the base [Deploy Connectivity Resources (Hub and Spoke)][wiki_deploy_connectivity_resources] configuration and make the following changes:
+
+<!-- markdownlint-disable no-inline-html -->
+- Add input variable on the root module for enabling/disabling connectivity resources
 - Add a local variable for `configure_connectivity_resources` and set custom values for the following:
   - Deploy a shared DDoS Protection Standard plan in the `northeurope` region
-  - Deploy hub Virtual Networks to `northeurope` and `westeurope`
-  - Deploy an ExpressRoute Gateway and Azure Firewall to the hub Virtual Network in `northeurope`
-  - Deploy a VPN Gateway to the hub Virtual Network in `westeurope`
-  - Remove the `AzureFirewallSubnet` Subnet from the hub Virtual Network in `westeurope`
-  - Link the hub Virtual Network in `northeurope` and `westeurope` to the central DDoS Protection Standard plan
-  - Ensure Private DNS Zones for Private Endpoints are enabled for `northeurope` and `westeurope` regions <sup>1</sup>
-  - Set a different default location for Connectivity resources (controlled through an input variable on the root module)
-  - Add custom resource tags for Connectivity resources (controlled through an input variable on the root module)
+  - Deploy hub virtual networks to `northeurope` and `westeurope`
+  - Deploy an ExpressRoute gateway and Azure Firewall to the hub virtual network in `northeurope`
+  - Deploy a VPN gateway to the hub virtual network in `westeurope`
+  - Remove the `AzureFirewallSubnet` subnet from the hub virtual network in `westeurope`
+  - Link the hub virtual network in `northeurope` and `westeurope` to the central DDoS Protection Standard plan
+  - Ensure private DNS zones for private endpoints are enabled for `northeurope` and `westeurope` regions <sup>1</sup>
+  - Set a different default location for connectivity resources (*controlled through an input variable on the root module*)
+  - Add custom resource tags for connectivity resources (*controlled through an input variable on the root module*)
 
-> <sup>1</sup> - The domain namespace for some Private Endpoints (e.g. Azure Batch) are bound to a specific Azure Region.
+> <sup>1</sup> - The domain namespace for some private endpoints (e.g. Azure Batch) are bound to a specific Azure Region.
 By default, the module will use the location set by the `configure_connectivity_resources.location` value, or the `default_location` value (`eastus`), in order of precedence.
-To deploy Private DNS Zones to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
+To deploy private DNS zones to more locations for these resource types, update the `configure_connectivity_resources.settings.dns.config.private_link_locations` value to reflect the locations you want to enable.
 Each value in this list must be in the shortname format (`uksouth`), and not DisplayName (`UK South`).
 Setting this value will overwrite the default value.
+<!-- markdownlint-enable no-inline-html -->
 
-The module allows for further customisation of the Connectivity resources through the `advanced` setting, however this is out-of-scope for this example.
+The module allows for further customization of the connectivity resources through the `advanced` setting, however this is out-of-scope for this example.
 
 > Use of the `advanced` setting is currently undocumented and experimental.
 Please be aware that using this setting may result in future breaking changes.
 
 If you've already deployed the [Connectivity resources using default settings][wiki_deploy_connectivity_resources], you will be able to see the changes made when moving to this configuration.
 
-> Due to the way the Azure RM Provider manages dependencies, you may see a number of `azurerm_role_assignment` resources being replaced when updating Policy Assignments.
-Unfortunately this is a product limitation, but should have minimal impact due to the way Azure Policy works.
+If the `configure_connectivity_resources.location` value is not specified, the resources will default to the same location set by the [`default_location`][wiki_default_location] input variable.
 
-If the `configure_connectivity_resources.location` value is not specified, the resources will default to the same location set by the [`default_location`][default_location] input variable.
-
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> **IMPORTANT:**
+> Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -52,7 +58,8 @@ To make the code easier to maintain when extending your configuration, we recomm
 - [main.tf](#maintf)
 - [settings.connectivity.tf](#settingsconnectivitytf)
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 320 resources to be created by the module for this example.
+> **TIP:**
+> The exact number of resources created depends on the module configuration, but you can expect upwards of 320 resources to be created by the module for this example.
 
 ### `terraform.tf`
 
@@ -76,7 +83,7 @@ provider "azurerm" {
 }
 ```
 
-If you wish to deploy the Connectivity resources to a different Subscription context than the one used for Core resources, please refer to our guide for [Multi-Subscription deployment][wiki_provider_configuration_multi].
+If you wish to deploy the connectivity resources to a different subscription context than the one used for core resources, please refer to our guide for [multi-subscription deployment][wiki_provider_configuration_multi].
 
 ### `variables.tf`
 
@@ -100,16 +107,6 @@ variable "deploy_connectivity_resources" {
   default = true
 }
 
-variable "log_retention_in_days" {
-  type    = number
-  default = 50
-}
-
-variable "security_alerts_email_address" {
-  type    = string
-  default = "my_valid_security_contact@replace_me" # Replace this value with your own email address.
-}
-
 variable "connectivity_resources_location" {
   type    = string
   default = "uksouth"
@@ -127,7 +124,7 @@ variable "connectivity_resources_tags" {
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID and Subscription ID values from your user connection to Azure. These are used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_connectivity` input variable.
 
-It also contains the module declaration for this module, containing a number of customisations as needed to meet the specification defined in the overview above.
+It also contains the module declaration for this module, containing a number of customizations as needed to meet the specification defined in the overview above.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -323,7 +320,10 @@ locals {
             azure_data_factory_portal            = true
             azure_cache_for_redis                = true
           }
-          private_link_locations                                 = []
+          private_link_locations = [
+            "northeurope",
+            "westeurope",
+          ]
           public_dns_zones                                       = []
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
@@ -341,31 +341,31 @@ locals {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-connectivity-custom-core.png)
+![Deployed resource hierarchy](media/examples-deploy-connectivity-custom-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default management group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
-You have also assigned the current Subscription from your provider configuration to the `connectivity` Management Group.
+You have also assigned the current subscription from your provider configuration to the `connectivity` management group.
 
 ## Policy Assignment configuration
 
-Check the following Policy Assignments to see how these have been configured with settings matching your Connectivity resources configuration set by `configure_connectivity_resources`:
+Check the following policy assignments to see how these have been configured with settings matching your connectivity resources configuration set by `configure_connectivity_resources`:
 
-- Scope = `connectivity`
+- Scope = `connectivity` and `landing-zones`
   - `Enable-DDoS-VNET`
 - Scope = `corp`
   - `Deploy-Private-DNS-Zones`
 
-These Policy Assignments should all be assigned with custom parameter values based on your configuration, with `enforcement_mode` correctly set.
+These policy assignments should all be assigned with custom parameter values based on your configuration, with `enforcement_mode` correctly set.
 Once evaluated, the compliance state should also be updated and you can run remediation tasks to remediate any non-compliant resources.
 
 ## Deployed Connectivity resources
 
-Once deployment is complete and policy has run, you should have the following Resource Groups deployed in your assigned Connectivity Subscription:
+Once deployment is complete and policy has run, you should have the following resource groups deployed in your assigned connectivity subscription:
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsgs.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsgs.png)
 
-You should see that each of the Resource Groups are aligned to regions based on the configuration.
+You should see that each of the resource groups are aligned to regions based on the configuration.
 In this case, they are set as follows:
 
 - `myorg-asc-export` is set to `East US`, inherited from the module default for `default_location`.
@@ -375,53 +375,57 @@ In this case, they are set as follows:
 - `myorg-dns` is set to `UK South`, set by the default value for `var.connectivity_resources_location` which is assigned to the `settings.location` value from the local variable `configure_connectivity_resources`.
 - `NetworkWatcherRG` is set to `West Europe`, matching the first region where a Virtual Network was deployed and remediated by Policy.
 
-In general, the Resource Group will be set to the same location as the resources within.
+In general, the resource group will be set to the same location as the resources within.
 
 > **NOTE:** `myorg-asc-export` is related to the [Management resources][wiki_management_resources].
-This should contain a hidden `microsoft.security/automations` resource `ExportToWorkspace` once the [Management resources][wiki_management_resources] are configured and Azure Policy has completed remediation.
-`NetworkWatcherRG` is also automatically generated by policy as part of the Virtual Network creation.
+This should contain a hidden `microsoft.security/automations` resource `ExportToWorkspace` once the [management resources][wiki_management_resources] are configured and Azure Policy has completed remediation.
+> `NetworkWatcherRG` is also automatically generated by the Azure platform when at least one virtual network is created within the subscription.
 
 ### Resource Group `myorg-connectivity-northeurope`
 
-The Resource Group `myorg-connectivity-northeurope` should be created and contain the following resources:
+The resource group `myorg-connectivity-northeurope` should be created and contain the following resources:
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-northeurope.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-northeurope.png)
 
-When you explore the configuration, note that `myorg-hub-northeurope` is pre-configured with Subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
-These are now used by the created ExpressRoute Gateway and Azure Firewall resources.
+When you explore the configuration, note that `myorg-hub-northeurope` is pre-configured with subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
+These are now used by the created ExpressRoute gateway and Azure Firewall resources.
 DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-connectivity-westeurope`
 
-The Resource Group `myorg-connectivity-westeurope` should be created and contain the following resources:
+The resource group `myorg-connectivity-westeurope` should be created and contain the following resources:
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-westeurope.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-connectivity-westeurope.png)
 
 When you explore the configuration, note that `myorg-hub-westeurope` is pre-configured with a Subnet for `GatewaySubnet` only. The `AzureFirewallSubnet` is no longer deployed as we removed the `azure_firewall.config.address_prefix` value for the this hub network.
-This now used by the created VPN Gateway resource.
+This now used by the created VPN gateway resource.
 DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-ddos`
 
-In this example, we have now deployed a DDoS protection plan (Standard).
-The Enterprise-scale recommendation is to deploy a single, centralised DDoS protection plan.
-As such, the Resource Group name doesn't include the location.
+The resource group and DDoS protection plan are created in `northeurope`, as specified via the `configure_connectivity_resources.settings.ddos_protection_plan.config.location` value.
 
-The Resource Group and DDoS protection plan are created in `northeurope`, as specified via the `ddos_protection_plan.config.location` value.
+The module creates a single, centralized DDoS protection plan as per the Azure landing zones recommendation.
+As such, the resource group name doesn't include the location.
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-ddos.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-ddos.png)
+
+Additionally, the module has linked the DDoS protection plan to both hub virtual networks in `northeurope` and `westeurope`.
 
 ### Resource Group `myorg-dns`
 
-The Resource Group is created in `UK South`, as per the default example. This was set by the default value for `var.connectivity_resources_location` which is assigned to the `settings.location` value from the local variable `configure_connectivity_resources`.
-All Private DNS Zone resources are `Global`.
+The resource group for DNS is created in `UK South`, differing to the default config example which used `eastus`.
+This is set by the `var.connectivity_resources_location` input variable which set the value for `configure_connectivity_resources.settings.location`.
+All private DNS zones are `Global` resources and therefore not bound to a region.
 
-![Deployed Resources](./media/examples-deploy-connectivity-custom-rsg-myorg-dns.png)
+![Deployed Resources](media/examples-deploy-connectivity-custom-rsg-myorg-dns.png)
 
-By default we create a Private DNS Zone for all services which currently [support Private Endpoints][azure_private_endpoint_support].
-New Private DNS Zones may be added in future releases as additional services release Private Endpoint support.
+By default the module create a private DNS zone for all services which currently [support private endpoints][azure_private_endpoint_support].
+New private DNS zones may be added in future releases as additional services offer private endpoint support.
 
-In this example, we have also enabled additional Private DNS Zones for the services which use region-bound endpoints:
+Using the [private_link_locations][wiki_private_link_locations] input, the module has created private DNS zones for each location specified.
+This input overrides the default location value, as used by the resource group.
+This provides support for services which use region-bound endpoints:
 
 - `northeurope.privatelink.siterecovery.windowsazure.com`
 - `privatelink.northeurope.azmk8s.io`
@@ -430,27 +434,21 @@ In this example, we have also enabled additional Private DNS Zones for the servi
 - `privatelink.westeurope.backup.windowsazure.com`
 - `westeurope.privatelink.siterecovery.windowsazure.com`
 
-We also configure `Virtual network links` to connect each Private DNS Zone to the hub Virtual Networks, which in this example are `myorg-hub-northeurope` and `myorg-hub-westeurope`.
+The module also creates virtual network links to connect each private DNS zone to the hub networks, which in this example are `myorg-hub-northeurope` and `myorg-hub-westeurope`.
 
-> **NOTE:** As we have defined custom locations, note that the default `eastus` location is no longer included.
+Additionally, the module has linked all private DNS zones to both hub virtual networks in `northeurope` and `westeurope`.
 
 ## Additional considerations
 
-If you are using [Archetype Exclusions][archetype_exclusions] or [custom Archetypes][custom_archetypes] in your code, make sure to not disable DDoS or DNS policies if you require policy integration using this module.
-The relationship between the resources deployed and the Policy parameters is dependent on [specific Policy Assignments](#policy-assignment-configuration) being used.
+If you are using [archetype exclusions][wiki_archetype_exclusions] or [custom archetypes][wiki_custom_archetypes] in your code, make sure to not disable DDoS or DNS policies if you require policy integration using this module.
+The relationship between the resources deployed and the policy parameters are dependent on [specific policy assignments](#policy-assignment-configuration) being used.
 
 ## Next steps
-
-Take particular note of the following additional changes:
-
-- All Private DNS zones are linked to both hub Virtual Networks in `northeurope` and `westeurope`.
-- Both Virtual Networks in `northeurope` and `westeurope` are linked to the DDoS protection plan.
-- As we defined custom locations for `dns.config.private_link_locations`, note that the default `eastus` location is no longer included in the Private DNS Zone locations.
 
 Try updating the configuration settings in the `configure_connectivity_resources` local variable to see how this changes your configuration.
 Also try setting your own values in the input variables, and toggling the `deploy_connectivity_resources` input variable to see which resources are created/destroyed.
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -458,21 +456,19 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[ESLZ-Connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/network-topology-and-connectivity
-
 [azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
-[wiki_management_resources]:         ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
-[wiki_connectivity_resources]:         ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources."
-[wiki_deploy_connectivity_resources]:  ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources."
-[wiki_provider_configuration_multi]:   ./%5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
-[wiki_examples]:                       ./Examples "Wiki - Examples"
-
-[configure_connectivity_resources]: ./%5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
-[deploy_connectivity_resources]:    ./%5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
-[subscription_id_connectivity]:     ./%5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
-[default_location]:                 ./%5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[archetype_exclusions]:             ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:                ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
-
-[azure_tag_support]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"
+[wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]:               %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
+[wiki_provider_configuration_multi]:         %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment"
+[wiki_examples]:                             Examples "Wiki - Examples"
+[wiki_archetype_exclusions]:                 %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions - To enable the exclusion function"
+[wiki_custom_archetypes]:                    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[wiki_configure_connectivity_resources]:     %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable"
+[wiki_default_location]:                     %5BVariables%5D-default_location "Instructions for how to use the default_location variable"
+[wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
+[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
+[wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
+[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
+[wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"

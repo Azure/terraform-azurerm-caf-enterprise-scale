@@ -1,12 +1,13 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with a starter configuration based mainly on module defaults, including the additional Management Groups used for demonstrating the Enterprise-scale Landing Zone archetypes:
+This page describes how to deploy your Azure landing zone with a starter configuration based mainly on module defaults, including the additional Management Groups used for demonstrating the Azure landing zone archetypes:
 
 - Corp
 - Online
 - SAP
 
-These demo Landing Zone archetypes provides a good way to learn about archetypes within the Enterprise-scale architecture but should not be used for production workloads.
+These demo Landing Zone archetypes provides a good way to learn about archetypes within the Azure landing zone conceptual architecture but should not be used for production workloads.
 
 > IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
@@ -70,12 +71,12 @@ module "enterprise_scale" {
 
 ## Deployed Management Groups
 
-![Deploy-Default-Configuration](./media/examples-deploy-demo-landing-zone-archetypes.png)
+![Deploy-Default-Configuration](media/examples-deploy-demo-landing-zone-archetypes.png)
 
-You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 > TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
 
 ## Next steps
 
-Go to our next example to learn how to create your own [custom landing zone archetypes](./%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes).
+Go to our next example to learn how to create your own [custom landing zone archetypes](%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes).

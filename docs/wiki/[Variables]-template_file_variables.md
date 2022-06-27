@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**template_file_variables**](#overview) `any` (optional)
@@ -90,4 +91,4 @@ Please refer to the Terraform documentation for more information on using the [`
 [//]: # "************************"
 
 [this_page]: # "Link for the current page."
-[terraform_templatefile]: https://www.terraform.io/language/functions/templatefile "Terraform templatefile function documentation."
+[terraform_templatefile]: https://www.terraform.io/language/functions/templatefile "Terraform templatefile() function documentation."

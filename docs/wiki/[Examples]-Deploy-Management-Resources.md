@@ -1,6 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context, using the default configuration settings.
+This page describes how to deploy your Azure landing zone with the [Management resources][wiki_management_resources] created in the current Subscription context, using the default configuration settings.
 
 In this example, we take the [default configuration][wiki_deploy_default_configuration] and make the following changes:
 
@@ -12,6 +13,7 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
 - Set the `subscription_id_management` value to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features within Log Analytics and Sentinel including but not limited to:
+
 - Enable monitoring for devices managed through Azure Arc;
 - Enable monitoring for VMs;
 - Enable monitoring for VMSS;
@@ -79,9 +81,9 @@ module "enterprise_scale" {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-management-core.png)
+![Deployed resource hierarchy](media/examples-deploy-management-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 
@@ -107,19 +109,19 @@ Check the following Policy Assignments to see how these have been configured wit
 The following shows the `Deploy-AzActivity-Log` Policy Assignment with a user-defined value set by the module for the `logAnalytics` parameter.
 You will see that this value matches the resource ID of the Log Analytics workspace deployed by this module.
 
-![Policy Assignment parameters example](./media/examples-deploy-management-policy-parameters.png)
+![Policy Assignment parameters example](media/examples-deploy-management-policy-parameters.png)
 
 ### Policy Assignment compliance
 
 When reviewing the Policy Assignment compliance, you will see that some Policies may need remediation.
 
-![Policy Assignment compliance](./media/examples-deploy-management-policy-compliance.png)
+![Policy Assignment compliance](media/examples-deploy-management-policy-compliance.png)
 
 ## Deployed Management resources
 
 You should also have the following resources deployed in your assigned Management Subscription:
 
-![Deployed Resources](./media/examples-deploy-management-resources.png)
+![Deployed Resources](media/examples-deploy-management-resources.png)
 
 ## Additional considerations
 
@@ -130,7 +132,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Go to our next example to learn how to deploy the [Management resources with custom settings][wiki_deploy_management_resources_custom].
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -138,10 +140,10 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_management_resources]:               ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_deploy_management_resources_custom]: ./%5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
-[wiki_examples]:                          ./Examples "Wiki - Examples"
-[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_management_resources]:               %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_deploy_management_resources_custom]: %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
+[wiki_examples]:                          Examples "Wiki - Examples"
+[wiki_deploy_default_configuration]:     %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
-[archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[archetype_exclusions]: %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"

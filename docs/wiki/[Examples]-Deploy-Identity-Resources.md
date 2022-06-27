@@ -1,6 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using the default configuration settings.
+This page describes how to deploy your Azure landing zone with the [Identity resources][wiki_identity_resources] created in the current Subscription context, using the default configuration settings.
 
 Unlike the `connectivity` and `management` solutions, no resources are currently deployed when enabling `deploy_identity_resources`.
 Instead, the Policy Assignments associated with the `identity` Management Group are enabled and configured based on the optional `configure_identity_resources` input variable.
@@ -12,6 +13,7 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
 - Set the `subscription_id_identity` value to ensure the Subscription is moved to the correct Management Group, and policies are updated with the correct values.
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features designed to protect resources in the `identity` Subscription including:
+
 - Disable creation of Public IP resources;
 - Disable RDP connectivity from the Internet;
 - Enforce NSG on Subnets;
@@ -78,9 +80,9 @@ module "enterprise_scale" {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-identity-core.png)
+![Deployed resource hierarchy](media/examples-deploy-identity-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 You have also assigned the current Subscription from your provider configuration to the `identity` Management Group.
 
@@ -100,7 +102,7 @@ Check the following Policy Assignments to see how these have been configured wit
 
 The following shows the `Deploy-VM-Backup` Policy Assignment with a user-defined values set by the module for the parameters.
 
-![Policy Assignment parameters example](./media/examples-deploy-identity-policy-parameters.png)
+![Policy Assignment parameters example](media/examples-deploy-identity-policy-parameters.png)
 
 ### Policy Assignment compliance
 
@@ -119,7 +121,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Go to our next example to learn how to deploy the [Identity resources with custom settings][wiki_deploy_identity_resources_custom].
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -127,10 +129,10 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_identity_resources]:               ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_deploy_identity_resources_custom]: ./%5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
-[wiki_examples]:                         ./Examples "Wiki - Examples"
-[wiki_deploy_default_configuration]:     ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_identity_resources]:               %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_deploy_identity_resources_custom]: %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
+[wiki_examples]:                         Examples "Wiki - Examples"
+[wiki_deploy_default_configuration]:     %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
-[archetype_exclusions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:    ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[archetype_exclusions]: %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:    %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"

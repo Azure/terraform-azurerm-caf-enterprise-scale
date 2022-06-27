@@ -1,31 +1,35 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 The module can be customized using the input variables listed below (click on each `input name` for more details).
 
 To provide the depth of configuration options needed by the module without creating too many different input variables, we decided to use a number of complex `object({})` type variables.
-Whilst these may look intimidating at first, these are all configured with default values and only need to be updated if you want to start customising the deployment.
+Whilst these may look intimidating at first, these are all configured with default values and only need to be updated if you want to start customizing the deployment.
 In all cases, the default values can simply be copied into your configuration and edited as required.
 
 > To make your code easier to maintain, we recommend using [Local Values][local_values] in your root module to store custom values, rather than putting these in-line within the module block.
-> This helps to improve readability of the module block, and also makes these values re-usable when using multiple instances of the module to build out your Enterprise-scale platform on Azure.
+> This helps to improve readability of the module block, and also makes these values re-usable when using multiple instances of the module to build out your Azure landing zone.
 > Only use [Input Variables][input_variables] for simple values which need to be changed across multiple deployments (e.g. environment-specific values).
 
 ## Required Inputs
 
 These variables must be set in the `module` block when using this module.
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**root_parent_id**][root_parent_id] `string`
 
 The root_parent_id is used to specify where to set the root for all Landing Zone deployments. Usually the Tenant ID when deploying the core Enterprise-scale Landing Zones.
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 ## Optional Inputs
 
 These variables have default values and don't have to be set to use this module. You may set these variables in the `module` block to override their default values.
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**archetype_config_overrides**][archetype_config_overrides] `any`
@@ -34,6 +38,7 @@ If specified, will set custom Archetype configurations to the default Enterprise
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
@@ -42,6 +47,9 @@ Default: `{}`
 If specified, will customize the \"Connectivity\" landing zone settings and resources.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -164,6 +172,9 @@ Default:
 }
 ```
 
+</details>
+
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**configure_identity_resources**][configure_identity_resources] `object({ settings = object({ identity = object({ enabled = bool config = object({ enable_deny_public_ip = bool enable_deny_rdp_from_internet = bool enable_deny_subnet_without_nsg = bool enable_deploy_azure_backup_on_vms = bool }) }) }) })`
@@ -171,6 +182,9 @@ Default:
 If specified, will customize the \"Identity\" landing zone settings.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -188,6 +202,9 @@ Default:
 }
 ```
 
+</details>
+
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
@@ -196,6 +213,9 @@ Default:
 If specified, will customize the \"Management\" landing zone settings and resources.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -243,6 +263,9 @@ Default:
 }
 ```
 
+</details>
+
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**create_duration_delay**][create_duration_delay] `map(string)`
@@ -250,6 +273,9 @@ Default:
 Used to tune `terraform apply` when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after creation of the specified resource type.
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -262,6 +288,9 @@ Default:
 }
 ```
 
+</details>
+
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**custom_landing_zones**][custom_landing_zones] `any`
@@ -270,6 +299,7 @@ If specified, will deploy additional Management Groups alongside Enterprise-scal
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**custom_policy_roles**][custom_policy_roles] `map(list(string))`
@@ -278,6 +308,7 @@ If specified, the custom_policy_roles variable overrides which Role Definition I
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**default_location**][default_location] `string`
@@ -286,6 +317,7 @@ If specified, will use set the default location used for resource deployments wh
 
 Default: `"eastus"`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**default_tags**][default_tags] `map(string)`
@@ -294,6 +326,7 @@ If specified, will set the default tags for all resources deployed by this modul
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_connectivity_resources**][deploy_core_landing_zones] `bool`
@@ -302,6 +335,7 @@ If set to true, will deploy the \"Connectivity\" landing zone settings and add r
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_core_landing_zones**][deploy_core_landing_zones] `bool`
@@ -310,6 +344,7 @@ If set to true, will include the core Enterprise-scale Management Group hierarch
 
 Default: `true`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_corp_landing_zones**][deploy_corp_landing_zones] `bool`
@@ -318,6 +353,7 @@ If set to true, module will deploy the "Corp" Management Group, including "out o
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_demo_landing_zones**][deploy_demo_landing_zones] `bool`
@@ -326,6 +362,7 @@ If set to true, will include the demo "Landing Zone" Management Groups.
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_identity_resources**][deploy_identity_resources] `bool`
@@ -334,6 +371,7 @@ If set to true, will deploy the \"Identity\" landing zone settings.
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_management_resources**][deploy_management_resources] `bool`
@@ -342,6 +380,7 @@ If set to true, will deploy the \"Management\" landing zone settings and add res
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_online_landing_zones**][deploy_online_landing_zones] `bool`
@@ -350,6 +389,7 @@ If set to true, module will deploy the "Online" Management Group, including "out
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**deploy_sap_landing_zones**][deploy_sap_landing_zones] `bool`
@@ -358,6 +398,7 @@ If set to true, module will deploy the "SAP" Management Group, including "out of
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**destroy_duration_delay**][destroy_duration_delay] `map(string)`
@@ -365,6 +406,9 @@ Default: `false`
 Used to tune terraform deploy when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after destruction of the specified resource type. ##check_value tune terraform deploy == terraform destroy?
 
 Default:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -377,6 +421,9 @@ Default:
 }
 ```
 
+</details>
+
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**disable_base_module_tags**][disable_base_module_tags] `bool`
@@ -385,6 +432,7 @@ If set to true, will remove the base module tags applied to all resources deploy
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**disable_telemetry**][disable_tememetry] `bool`
@@ -394,6 +442,7 @@ See link for more information.
 
 Default: `false`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**library_path**][library_path] `string`
@@ -402,6 +451,7 @@ If specified, sets the path to a custom library folder for archetype artefacts. 
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**root_id**][root_id] `string`
@@ -410,6 +460,7 @@ If specified, will set a custom Name (ID) value for the Enterprise-scale "root" 
 
 Default: `"es"`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**root_name**][root_name] `string`
@@ -418,6 +469,7 @@ If specified, will set a custom DisplayName value for the Enterprise-scale "root
 
 Default: `"Enterprise-Scale"`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_connectivity**][subscription_id_connectivity] `string`
@@ -426,6 +478,7 @@ If specified, identifies the Platform subscription for \"Connectivity\" for reso
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_identity**][subscription_id_identity] `string`
@@ -434,6 +487,7 @@ If specified, identifies the Platform subscription for \"Identity\" for resource
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_management**][subscription_id_management] `string`
@@ -442,6 +496,7 @@ If specified, identifies the Platform subscription for \"Management\" for resour
 
 Default: `""`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**subscription_id_overrides**][subscription_id_overrides] `map(list(string))`
@@ -450,6 +505,7 @@ If specified, will be used to assign subscription_ids to the default Enterprise-
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 [**template_file_variables**][template_file_variables] `any`
@@ -458,13 +514,14 @@ If specified, provides the ability to define custom template variables used when
 
 Default: `{}`
 
+<!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
 A summary of these variables can also be found on the [Inputs][estf-inputs] tab of the module entry in Terraform Registry.
 
 ## Next steps
 
-Now you understand how to customize your deployment using the input variables, check out our [Examples](./Examples).
+Now you understand how to customize your deployment using the input variables, check out our [Examples](Examples).
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
@@ -475,32 +532,32 @@ Now you understand how to customize your deployment using the input variables, c
 [local_values]:    https://www.terraform.io/docs/language/values/locals.html "Local Values"
 [input_variables]: https://www.terraform.io/docs/language/values/variables.html "Input Variables"
 
-[root_parent_id]:                   ./%5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
-[archetype_config_overrides]:       ./%5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
-[configure_connectivity_resources]: ./%5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
-[configure_identity_resources]:     ./%5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."
-[configure_management_resources]:   ./%5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[create_duration_delay]:            ./%5BVariables%5D-create_duration_delay "Instructions for how to use the create_duration_delay variable."
-[custom_landing_zones]:             ./%5BVariables%5D-custom_landing_zones "Instructions for how to use the custom_landing_zones variable."
-[custom_policy_roles]:              ./%5BVariables%5D-custom_policy_roles "Instructions for how to use the custom_policy_roles variable."
-[default_location]:                 ./%5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[default_tags]:                     ./%5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
-[deploy_core_landing_zones]:        ./%5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
-[deploy_corp_landing_zones]:        ./%5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
-[deploy_demo_landing_zones]:        ./%5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
-[deploy_connectivity_resources]:    ./%5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
-[deploy_identity_resources]:        ./%5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
-[deploy_management_resources]:      ./%5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
-[deploy_online_landing_zones]:      ./%5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
-[deploy_sap_landing_zones]:         ./%5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
-[destroy_duration_delay]:           ./%5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
-[disable_base_module_tags]:         ./%5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
-[disable_tememetry]:                ./%5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
-[library_path]:                     ./%5BVariables%5D-library_path "Instructions for how to use the library_path variable."
-[root_id]:                          ./%5BVariables%5D-root_id "Instructions for how to use the root_id variable."
-[root_name]:                        ./%5BVariables%5D-root_name "Instructions for how to use the root_name variable."
-[subscription_id_connectivity]:     ./%5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
-[subscription_id_identity]:         ./%5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
-[subscription_id_management]:       ./%5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
-[subscription_id_overrides]:        ./%5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
-[template_file_variables]:          ./%5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."
+[root_parent_id]:                   %5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
+[archetype_config_overrides]:       %5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
+[configure_connectivity_resources]: %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
+[configure_identity_resources]:     %5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."
+[configure_management_resources]:   %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
+[create_duration_delay]:            %5BVariables%5D-create_duration_delay "Instructions for how to use the create_duration_delay variable."
+[custom_landing_zones]:             %5BVariables%5D-custom_landing_zones "Instructions for how to use the custom_landing_zones variable."
+[custom_policy_roles]:              %5BVariables%5D-custom_policy_roles "Instructions for how to use the custom_policy_roles variable."
+[default_location]:                 %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
+[default_tags]:                     %5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
+[deploy_core_landing_zones]:        %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
+[deploy_corp_landing_zones]:        %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
+[deploy_demo_landing_zones]:        %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
+[deploy_connectivity_resources]:    %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
+[deploy_identity_resources]:        %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
+[deploy_management_resources]:      %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
+[deploy_online_landing_zones]:      %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
+[deploy_sap_landing_zones]:         %5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
+[destroy_duration_delay]:           %5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
+[disable_base_module_tags]:         %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
+[disable_tememetry]:                %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
+[library_path]:                     %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
+[root_id]:                          %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
+[root_name]:                        %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
+[subscription_id_connectivity]:     %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
+[subscription_id_identity]:         %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
+[subscription_id_management]:       %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
+[subscription_id_overrides]:        %5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
+[template_file_variables]:          %5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."
