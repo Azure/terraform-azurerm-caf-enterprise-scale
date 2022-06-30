@@ -663,7 +663,7 @@ variable "custom_landing_zones" {
   default     = {}
 
   validation {
-    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-z0-9-]{2,36}$", k)]) || length(keys(var.custom_landing_zones)) == 0
+    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-]{2,36}$", k)]) || length(keys(var.custom_landing_zones)) == 0
     error_message = "The custom_landing_zones keys must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
   }
 }
