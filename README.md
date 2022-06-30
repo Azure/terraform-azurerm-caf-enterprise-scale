@@ -179,7 +179,7 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[alz_tf_overview]: https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/alz-tf-overview.png "A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module."
+[alz_tf_overview]: https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/alz-tf-module-overview.png "A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
