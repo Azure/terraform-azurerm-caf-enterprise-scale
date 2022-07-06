@@ -13,7 +13,7 @@ The extra code needed to extend your configuration, is the following:
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.1"
+  version = "2.1.2"
 
   providers = {
     azurerm              = azurerm
@@ -70,7 +70,7 @@ To make the code easier to maintain when extending your configuration, we recomm
 - [terraform.tf](#terraformtf)
 - [variables.tf](#variablestf)
 - [main.tf](#maintf)
-- [lib/archetype_definition_customer_online.json](#lib-archetype-definition-customer-online-json)
+- [lib/archetype_definition_customer_online.json](#libarchetypedefinitioncustomeronlinejson)
 
 ### `terraform.tf`
 
@@ -135,7 +135,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.1"
+  version = "2.1.2"
 
   providers = {
     azurerm              = azurerm
@@ -184,7 +184,7 @@ module "enterprise_scale" {
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.1"
+  version = "2.1.2"
 
   providers = {
     azurerm              = azurerm

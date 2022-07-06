@@ -1,3 +1,3 @@
 locals {
-  module_version = "v2.1.1"
+  module_version = "v2.1.2"
 }

@@ -40,7 +40,7 @@ Please be aware that using this setting may result in future breaking changes.
 
 If you've already deployed the [virtual WAN resources using default settings][wiki_deploy_virtual_wan_resources], you will be able to see the changes made when moving to this configuration.
 
-If the `configure_connectivity_resources.location` value is not specified, the resources will default to the same location set by the [`default_location`][default_location] input variable.
+If the `configure_connectivity_resources.location` value is not specified, the resources will default to the same location set by the [`default_location`][wiki_default_location] input variable.
 
 > **IMPORTANT:**
 > Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
@@ -137,7 +137,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.1"
+  version = "2.1.2"
 
   providers = {
     azurerm              = azurerm
@@ -402,12 +402,15 @@ Using the [private_link_locations][wiki_private_link_locations] input, the modul
 This input overrides the default location value, as used by the resource group.
 This provides support for services which use region-bound endpoints:
 
-- `northeurope.privatelink.siterecovery.windowsazure.com`
 - `privatelink.northeurope.azmk8s.io`
-- `privatelink.northeurope.backup.windowsazure.com`
+- `privatelink.ne.backup.windowsazure.com`
 - `privatelink.westeurope.azmk8s.io`
-- `privatelink.westeurope.backup.windowsazure.com`
-- `westeurope.privatelink.siterecovery.windowsazure.com`
+- `privatelink.we.backup.windowsazure.com`
+
+> **NOTE:**
+> When configuring private endpoints for Azure Backup, note that this service uses a `geo` region code.
+> In the example above, this is reflected by `ne` and `we` for North Europe and West Europe.
+> For more information, please refer to the Microsoft Docs guidance for [configuring custom DNS or host files when using private endpoints with Azure Backup][azure_backup_private_endpoint].
 
 Because virtual hubs do not support virtual network links, none have been created to connect the private DNS zones to the hub networks.
 The module will still create these for any spoke networks specified by the [spoke_virtual_network_resource_ids][wiki_spoke_virtual_network_resource_ids] input.
@@ -431,6 +434,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "************************"
 
 [azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
+[azure_backup_private_endpoint]:  https://docs.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files "Configuring custom DNS or host files when using private endpoints with Azure Backup"
 
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
 [wiki_connectivity_resources]:               %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources."
@@ -445,5 +449,5 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
 [wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
 [wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
-[wiki_spoke_virtual_network_resource_ids]:   %5BVariables%5D-configure_connectivity_resources#settingsvwan_hub_networksconfigspoke_virtual_network_resource_ids "Wiki - configure_connectivity_resources - spoke_virtual_network_resource_ids"
+[wiki_spoke_virtual_network_resource_ids]:   %5BVariables%5D-configure_connectivity_resources.settings.vwan_hub_networks.md#configspoke_virtual_network_resource_ids "Wiki - configure_connectivity_resources - spoke_virtual_network_resource_ids"
 [wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"

@@ -139,7 +139,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.1"
+  version = "2.1.2"
 
   providers = {
     azurerm              = azurerm
@@ -427,12 +427,15 @@ Using the [private_link_locations][wiki_private_link_locations] input, the modul
 This input overrides the default location value, as used by the resource group.
 This provides support for services which use region-bound endpoints:
 
-- `northeurope.privatelink.siterecovery.windowsazure.com`
 - `privatelink.northeurope.azmk8s.io`
-- `privatelink.northeurope.backup.windowsazure.com`
+- `privatelink.ne.backup.windowsazure.com`
 - `privatelink.westeurope.azmk8s.io`
-- `privatelink.westeurope.backup.windowsazure.com`
-- `westeurope.privatelink.siterecovery.windowsazure.com`
+- `privatelink.we.backup.windowsazure.com`
+
+> **NOTE:**
+> When configuring private endpoints for Azure Backup, note that this service uses a `geo` region code.
+> In the example above, this is reflected by `ne` and `we` for North Europe and West Europe.
+> For more information, please refer to the Microsoft Docs guidance for [configuring custom DNS or host files when using private endpoints with Azure Backup][azure_backup_private_endpoint].
 
 The module also creates virtual network links to connect each private DNS zone to the hub networks, which in this example are `myorg-hub-northeurope` and `myorg-hub-westeurope`.
 
@@ -457,6 +460,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "************************"
 
 [azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
+[azure_backup_private_endpoint]:  https://docs.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files "Configuring custom DNS or host files when using private endpoints with Azure Backup"
 
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:               %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"

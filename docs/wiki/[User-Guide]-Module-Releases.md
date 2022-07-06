@@ -61,7 +61,7 @@ To do this, you would use the following version constraint syntax:
 ```terraform
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.1"
+  version = "2.1.2"
 
   # Insert provider block and input variables here
 }
@@ -74,7 +74,7 @@ To allow automatic upgrades to the latest patch release, use the following versi
 ```terraform
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "~> 2.1.1"
+  version = "~> 2.1.2"
 
   # Insert provider block and input variables here
 }
