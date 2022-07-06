@@ -3,7 +3,7 @@
 
 This page describes how to deploy your Azure landing zone with the [Management resources][wiki_management_resources] created in the current Subscription context, using custom configuration settings.
 
-The module supports customising almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
+The module supports customizing almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
 For the Management resources, this is configured through the [`configure_management_resources`][configure_management_resources] input variable.
 
 In this example, we take the base [Deploy Management resources][wiki_deploy_management_resources] configuration and make the following changes:

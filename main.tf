@@ -84,5 +84,6 @@ module "connectivity_resources" {
   existing_ddos_protection_plan_resource_id = lookup(local.connectivity_resources_advanced, "existing_ddos_protection_plan_resource_id", local.empty_string)
   existing_virtual_wan_resource_id          = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_id", local.empty_string)
   resource_group_per_virtual_hub_location   = lookup(local.connectivity_resources_advanced, "resource_group_per_virtual_hub_location", false)
+  custom_azure_backup_geo_codes             = lookup(local.connectivity_resources_advanced, "custom_azure_backup_geo_codes", local.empty_map)
   custom_settings_by_resource_type          = lookup(local.connectivity_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
 }
