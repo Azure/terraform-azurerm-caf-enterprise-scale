@@ -23,6 +23,7 @@ locals {
   existing_ddos_protection_plan_resource_id = var.existing_ddos_protection_plan_resource_id
   existing_virtual_wan_resource_id          = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
   resource_group_per_virtual_hub_location   = var.resource_group_per_virtual_hub_location
+  custom_azure_backup_geo_codes             = var.custom_azure_backup_geo_codes
   custom_settings                           = var.custom_settings_by_resource_type
 }
 
@@ -1270,6 +1271,10 @@ locals {
   enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
   private_link_locations         = coalescelist(local.settings.dns.config.private_link_locations, [local.location])
   private_dns_zone_prefix        = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
+  lookup_azure_backup_geo_codes = merge(
+    local.builtin_azure_backup_geo_codes,
+    local.custom_azure_backup_geo_codes,
+  )
   lookup_private_link_dns_zone_by_service = {
     azure_automation_webhook             = ["privatelink.azure-automation.net"]
     azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]
@@ -1300,12 +1305,9 @@ locals {
     azure_app_configuration_stores = ["privatelink.azconfig.io"]
     azure_backup = [
       for location in local.private_link_locations :
-      "privatelink.${location}.backup.windowsazure.com"
+      "privatelink.${local.lookup_azure_backup_geo_codes[location]}.backup.windowsazure.com"
     ]
-    azure_site_recovery = [
-      for location in local.private_link_locations :
-      "${location}.privatelink.siterecovery.windowsazure.com"
-    ]
+    azure_site_recovery              = ["privatelink.siterecovery.windowsazure.com"]
     azure_event_hubs_namespace       = ["privatelink.servicebus.windows.net"]
     azure_service_bus_namespace      = ["privatelink.servicebus.windows.net"]
     azure_iot_hub                    = ["privatelink.azure-devices.net", "privatelink.servicebus.windows.net"]
