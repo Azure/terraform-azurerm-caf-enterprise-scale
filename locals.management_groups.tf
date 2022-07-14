@@ -319,8 +319,8 @@ locals {
   # Empty unless var.relaxed_management_group_subscription_association is set to true
   mg_sub_association_map = { for item in local.mg_sub_association_list :
     "${local.provider_path.management_groups}${item.management_group_name}/subscriptions/${item.subscription_id}" => {
-      management_group_name = "${local.provider_path.management_groups}${item.management_group_name}"
-      subscription_id       = item.subscription_id
+      management_group_id = "${local.provider_path.management_groups}${item.management_group_name}"
+      subscription_id     = item.subscription_id
     }
   }
 }
