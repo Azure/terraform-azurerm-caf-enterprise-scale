@@ -317,7 +317,7 @@ locals {
   # mg_sub_association_map is used as the for_each value to create azurerm_management_group_subscription_association
   # resources in relaxed mode.
   # Empty unless var.relaxed_management_group_subscription_association is set to true
-  mg_sub_association_map = { for item in mg_sub_association_list :
+  mg_sub_association_map = { for item in local.mg_sub_association_list :
     "${item.management_group_id}-${item.subscription_id}" => {
       management_group_id = "${local.provider_path.management_groups}${item.management_group_name}"
       subscription_id     = item.subscription_id
