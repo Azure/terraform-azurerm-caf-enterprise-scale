@@ -745,3 +745,9 @@ variable "disable_telemetry" {
   description = "If set to true, will disable telemetry for the module. See https://aka.ms/alz-terraform-module-telemetry."
   default     = false
 }
+
+variable "relaxed_management_group_subscription_association" {
+  type        = bool
+  description = "If set to true, will use the azurerm_management_group_subscription_association resource to assign subscriptions to Management Groups, meaning the membership is not explicitly defined in this module. If left at default, management group association will be explicitly defined using the azurerm_management_group's subscription_ids property and any subscriptions added to managed management groups by another process will be removed."
+  default     = false
+}

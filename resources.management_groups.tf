@@ -86,6 +86,14 @@ resource "time_sleep" "after_azurerm_management_group" {
     azurerm_management_group.level_6,
   ]
 
+  # This is used when var.relaxed_management_group_subscription_association is set to true
+  resource "azurerm_management_group_association" "this" {
+    for_each            = local.mg_sub_association_map
+
+    management_group_id = each.value.management_group_id
+    subscription_id     = each.value.subscription_id
+  }
+
   triggers = {
     "azurerm_management_group_level_1" = jsonencode(keys(azurerm_management_group.level_1))
     "azurerm_management_group_level_2" = jsonencode(keys(azurerm_management_group.level_2))
