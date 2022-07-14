@@ -6,7 +6,7 @@
 If set to true, will allow subscriptions not defined in this module to be associated with managed management groups.
 The default is `false`, meaning that management group subscription membership must be exclusively defined in this module.
 
-Note that platform subscriptions should always be asses to their respective management groups using this module, due to other dependencies on these inputs.
+Note that platform subscriptions should always be associated to their respective management groups using this module, due to other dependencies on these inputs.
 
 See:
 
