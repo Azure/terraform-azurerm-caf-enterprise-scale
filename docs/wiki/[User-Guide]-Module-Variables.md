@@ -454,6 +454,13 @@ Default: `""`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
+[**relaxed_management_group_subscription_association**][relaxed_management_group_subscription_association] `bool`
+
+If set to true, will allow subscriptions not defined in this module to be associated with managed management groups.
+The default is `false`, meaning that management group subscription membership must be exclusively defined in this module.
+
+Default: `false`
+
 [**root_id**][root_id] `string`
 
 If specified, will set a custom Name (ID) value for the Enterprise-scale "root" Management Group, and append this to the ID for all core Enterprise-scale Management Groups.
@@ -532,32 +539,33 @@ Now you understand how to customize your deployment using the input variables, c
 [local_values]:    https://www.terraform.io/docs/language/values/locals.html "Local Values"
 [input_variables]: https://www.terraform.io/docs/language/values/variables.html "Input Variables"
 
-[root_parent_id]:                   %5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
-[archetype_config_overrides]:       %5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
-[configure_connectivity_resources]: %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
-[configure_identity_resources]:     %5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."
-[configure_management_resources]:   %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[create_duration_delay]:            %5BVariables%5D-create_duration_delay "Instructions for how to use the create_duration_delay variable."
-[custom_landing_zones]:             %5BVariables%5D-custom_landing_zones "Instructions for how to use the custom_landing_zones variable."
-[custom_policy_roles]:              %5BVariables%5D-custom_policy_roles "Instructions for how to use the custom_policy_roles variable."
-[default_location]:                 %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[default_tags]:                     %5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
-[deploy_core_landing_zones]:        %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
-[deploy_corp_landing_zones]:        %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
-[deploy_demo_landing_zones]:        %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
-[deploy_connectivity_resources]:    %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
-[deploy_identity_resources]:        %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
-[deploy_management_resources]:      %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
-[deploy_online_landing_zones]:      %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
-[deploy_sap_landing_zones]:         %5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
-[destroy_duration_delay]:           %5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
-[disable_base_module_tags]:         %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
-[disable_tememetry]:                %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
-[library_path]:                     %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
-[root_id]:                          %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
-[root_name]:                        %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
-[subscription_id_connectivity]:     %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
-[subscription_id_identity]:         %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
-[subscription_id_management]:       %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
-[subscription_id_overrides]:        %5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
-[template_file_variables]:          %5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."
+[root_parent_id]:                                    %5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
+[archetype_config_overrides]:                        %5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
+[configure_connectivity_resources]:                  %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
+[configure_identity_resources]:                      %5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."
+[configure_management_resources]:                    %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
+[create_duration_delay]:                             %5BVariables%5D-create_duration_delay "Instructions for how to use the create_duration_delay variable."
+[custom_landing_zones]:                              %5BVariables%5D-custom_landing_zones "Instructions for how to use the custom_landing_zones variable."
+[custom_policy_roles]:                               %5BVariables%5D-custom_policy_roles "Instructions for how to use the custom_policy_roles variable."
+[default_location]:                                  %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
+[default_tags]:                                      %5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
+[deploy_core_landing_zones]:                         %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
+[deploy_corp_landing_zones]:                         %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
+[deploy_demo_landing_zones]:                         %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
+[deploy_connectivity_resources]:                     %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
+[deploy_identity_resources]:                         %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
+[deploy_management_resources]:                       %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
+[deploy_online_landing_zones]:                       %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
+[deploy_sap_landing_zones]:                          %5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
+[destroy_duration_delay]:                            %5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
+[disable_base_module_tags]:                          %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
+[disable_tememetry]:                                 %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
+[library_path]:                                      %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
+[root_id]:                                           %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
+[root_name]:                                         %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
+[relaxed_management_group_subscription_association]: %5BVariables%5D-relaxed_management_group_subscription_association "Instructions for how to use the relaxed_management_group_subscription_association variable."
+[subscription_id_connectivity]:                      %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
+[subscription_id_identity]:                          %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
+[subscription_id_management]:                        %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
+[subscription_id_overrides]:                         %5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
+[template_file_variables]:                           %5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."
