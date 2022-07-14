@@ -286,7 +286,7 @@ locals {
       id                         = key
       display_name               = value.display_name
       parent_management_group_id = coalesce(value.parent_management_group_id, local.root_parent_id)
-      subscription_ids           = relaxed_management_group_subscription_association ? [] : value.subscription_ids
+      subscription_ids           = relaxed_management_group_subscription_association ? null : value.subscription_ids
       archetype_config = {
         archetype_id   = value.archetype_config.archetype_id
         access_control = value.archetype_config.access_control
