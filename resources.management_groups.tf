@@ -87,7 +87,7 @@ resource "time_sleep" "after_azurerm_management_group" {
   ]
 
   # This is used when var.relaxed_management_group_subscription_association is set to true
-  resource "azurerm_management_group_association" "this" {
+  resource "azurerm_management_group_association" "enterprise_scale" {
     for_each            = local.mg_sub_association_map
 
     management_group_id = each.value.management_group_id
