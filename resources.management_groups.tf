@@ -84,7 +84,7 @@ resource "azurerm_management_group_association" "enterprise_scale" {
   subscription_id     = each.value.subscription_id
 
   depends_on = [
-    time_sleep.azurerm_management_group
+    time_sleep.after_azurerm_management_group
   ]
 }
 
