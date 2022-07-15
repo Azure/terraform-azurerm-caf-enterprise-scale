@@ -745,3 +745,9 @@ variable "disable_telemetry" {
   description = "If set to true, will disable telemetry for the module. See https://aka.ms/alz-terraform-module-telemetry."
   default     = false
 }
+
+variable "strict_subscription_association" {
+  type        = bool
+  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed."
+  default     = true
+}

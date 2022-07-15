@@ -45,6 +45,8 @@ module "test_core" {
   configure_connectivity_resources = module.settings.connectivity.configure_connectivity_resources
   subscription_id_connectivity     = data.azurerm_client_config.connectivity.subscription_id
 
+  # Disable strict management group subscription association
+  strict_subscription_association = false
 }
 
 module "test_core_nested" {

@@ -12,7 +12,7 @@ The following resource types are deployed and managed by this module when using 
 | Resource | Azure resource type | Terraform resource type |
 | --- | --- | --- |
 | Management groups | [`Microsoft.Management/managementGroups`][arm_management_group] | [`azurerm_management_group`][azurerm_management_group] |
-| Management group subscriptions | [`Microsoft.Management/managementGroups/subscriptions`][arm_management_group_subscriptions] | [`azurerm_management_group`][azurerm_management_group] |
+| Management group subscriptions | [`Microsoft.Management/managementGroups/subscriptions`][arm_management_group_subscriptions]  | [`azurerm_management_group`][azurerm_management_group] Or [`azurerm_management_group_subscription_association`][azurerm_management_group_subscription_association] |
 | Policy assignments | [`Microsoft.Authorization/policyAssignments`][arm_policy_assignment] | [`azurerm_management_group_policy_assignment`][azurerm_management_group_policy_assignment] |
 | Policy definitions | [`Microsoft.Authorization/policyDefinitions`][arm_policy_definition] | [`azurerm_policy_definition`][azurerm_policy_definition] |
 | Policy set definitions | [`Microsoft.Authorization/policySetDefinitions`][arm_policy_set_definition] | [`azurerm_policy_set_definition`][azurerm_policy_set_definition] |
@@ -50,12 +50,13 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
 [arm_role_assignment]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roleassignments
 [arm_role_definition]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roledefinitions
 
-[azurerm_management_group]:                   https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
-[azurerm_management_group_policy_assignment]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
-[azurerm_policy_definition]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition
-[azurerm_policy_set_definition]:              https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
-[azurerm_role_assignment]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
-[azurerm_role_definition]:                    https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
+[azurerm_management_group]:                          https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
+[azurerm_management_group_subscription_association]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_subscription_association
+[azurerm_management_group_policy_assignment]:        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
+[azurerm_policy_definition]:                         https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition
+[azurerm_policy_set_definition]:                     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
+[azurerm_role_assignment]:                           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment
+[azurerm_role_definition]:                           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition
 
 [wiki_deploy_default_configuration]: %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
 
