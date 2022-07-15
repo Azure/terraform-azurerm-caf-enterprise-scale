@@ -136,6 +136,15 @@
                   ]
                 }
               ],
+              "azurerm_management_group_subscription_association": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
               "azurerm_network_ddos_protection_plan": [
                 "object",
                 {
@@ -533,6 +542,18 @@
                       "string",
                       "string",
                       "string",
+                      "string",
+                      "string"
+                    ]
+                  ]
+                }
+              ],
+              "azurerm_management_group_subscription_association": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    [
                       "string",
                       "string"
                     ]
@@ -988,6 +1009,15 @@
                   ]
                 }
               ],
+              "azurerm_management_group_subscription_association": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
               "azurerm_network_ddos_protection_plan": [
                 "object",
                 {
@@ -1291,6 +1321,15 @@
                   ]
                 }
               ],
+              "azurerm_management_group_subscription_association": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
               "azurerm_network_ddos_protection_plan": [
                 "object",
                 {
@@ -1511,6 +1550,9 @@
           "azurerm_management_group_policy_assignment": {
             "enterprise_scale": []
           },
+          "azurerm_management_group_subscription_association": {
+            "enterprise_scale": []
+          },
           "azurerm_network_ddos_protection_plan": {
             "connectivity": []
           },
@@ -1717,6 +1759,12 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-WS-Arc-Monitoring"
+            ]
+          },
+          "azurerm_management_group_subscription_association": {
+            "enterprise_scale": [
+              "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-management/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e"
             ]
           },
           "azurerm_network_ddos_protection_plan": {
@@ -1973,6 +2021,9 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-custom-lz1/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations"
             ]
           },
+          "azurerm_management_group_subscription_association": {
+            "enterprise_scale": []
+          },
           "azurerm_network_ddos_protection_plan": {
             "connectivity": []
           },
@@ -2079,6 +2130,9 @@
             "level_6": []
           },
           "azurerm_management_group_policy_assignment": {
+            "enterprise_scale": []
+          },
+          "azurerm_management_group_subscription_association": {
             "enterprise_scale": []
           },
           "azurerm_network_ddos_protection_plan": {

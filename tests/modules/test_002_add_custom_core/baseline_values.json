@@ -195,6 +195,15 @@
                   ]
                 }
               ],
+              "azurerm_management_group_subscription_association": [
+                "object",
+                {
+                  "enterprise_scale": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
               "azurerm_network_ddos_protection_plan": [
                 "object",
                 {
@@ -630,6 +639,9 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-WS-Arc-Monitoring"
             ]
+          },
+          "azurerm_management_group_subscription_association": {
+            "enterprise_scale": []
           },
           "azurerm_network_ddos_protection_plan": {
             "connectivity": []
