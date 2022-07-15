@@ -454,13 +454,6 @@ Default: `""`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
-[**relaxed_management_group_subscription_association**][relaxed_management_group_subscription_association] `bool`
-
-If set to true, will allow subscriptions not defined in this module to be associated with managed management groups.
-The default is `false`, meaning that management group subscription membership must be exclusively defined in this module.
-
-Default: `false`
-
 [**root_id**][root_id] `string`
 
 If specified, will set a custom Name (ID) value for the Enterprise-scale "root" Management Group, and append this to the ID for all core Enterprise-scale Management Groups.
@@ -478,6 +471,13 @@ Default: `"Enterprise-Scale"`
 
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
+
+[**strict_subscription_association**][strict_subscription_association] `bool`
+
+If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed.
+If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed.
+
+Default: `true`
 
 [**subscription_id_connectivity**][subscription_id_connectivity] `string`
 
@@ -563,7 +563,7 @@ Now you understand how to customize your deployment using the input variables, c
 [library_path]:                                      %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
 [root_id]:                                           %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
 [root_name]:                                         %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
-[relaxed_management_group_subscription_association]: %5BVariables%5D-relaxed_management_group_subscription_association "Instructions for how to use the relaxed_management_group_subscription_association variable."
+[strict_subscription_association]:                   %5BVariables%5D-strict_subscription_association "Instructions for how to use the strict_subscription_association variable."
 [subscription_id_connectivity]:                      %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
 [subscription_id_identity]:                          %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
 [subscription_id_management]:                        %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."

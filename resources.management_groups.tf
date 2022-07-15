@@ -76,9 +76,9 @@ resource "azurerm_management_group" "level_6" {
 
 }
 
-# This is used when var.relaxed_management_group_subscription_association is set to true
+# This is used when strict_subscription_association is set to true
 resource "azurerm_management_group_subscription_association" "enterprise_scale" {
-  for_each = local.mg_sub_association_map
+  for_each = local.azurerm_management_group_subscription_association_enterprise_scale
 
   management_group_id = each.value.management_group_id
   subscription_id     = each.value.subscription_id
