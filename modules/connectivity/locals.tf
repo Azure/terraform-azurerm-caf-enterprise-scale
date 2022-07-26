@@ -1527,7 +1527,41 @@ locals {
       "${local.virtual_network_peering_resource_id_prefix[location]}/${peering_name}"
     }
   }
-  azurerm_virtual_network_peering = flatten(
+  virtual_network_hub_peerings = {
+    for location_src, hub_config_src in local.hub_networks_by_location :
+    location_src => {
+      for location_dst, hub_config_dst in local.hub_networks_by_location :
+      location_dst => {
+        remote_virtual_network_id           = local.virtual_network_resource_id[location_dst]
+        virtual_network_peering_name        = "peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
+        virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location]}/virtualNetworkPeerings/peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
+      } if location_src != location_dst && hub_config_dst.peer_hub_networks
+    } if hub_config_src.config.peer_hub_networks
+  }
+  azurerm_virtual_network_peering_hubs = flatten(
+    [
+      for location, remote in local.virtual_network_hub_peerings :
+      [
+        for location_dst, peerconfig in remote :
+        {
+          # Resource logic attributes
+          resource_id       = peerconfig.virtual_network_peering_resource_id
+          managed_by_module = true
+          # Resource definition attributes
+          name                      = peerconfig.virtual_network_peering_name
+          resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          virtual_network_name      = local.virtual_network_name[location]
+          remote_virtual_network_id = peerconfig.remote_virtual_network_id
+          # Optional definition attributes
+          allow_virtual_network_access = true
+          allow_forwarded_traffic      = true
+          allow_gateway_transit        = true
+          use_remote_gateways          = false
+        }
+      ]
+    ]
+  )
+  azurerm_virtual_network_peering_spokes = flatten(
     [
       for location, hub_config in local.hub_networks_by_location :
       [
@@ -1549,6 +1583,10 @@ locals {
         }
       ]
     ]
+  )
+  azurerm_virtual_network_peering = merge(
+    local.azurerm_virtual_network_peering_hubs,
+    local.azurerm_virtual_network_peering_spokes
   )
 }
 
