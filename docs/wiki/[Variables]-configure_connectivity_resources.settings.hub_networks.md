@@ -57,6 +57,7 @@ For each configuration object added to the `configure_connectivity_resources.set
     }
     spoke_virtual_network_resource_ids      = []
     enable_outbound_virtual_network_peering = false
+    enable_hub_network_mesh_peering         = false
   }
 }
 ```
@@ -162,6 +163,7 @@ object({
     })
     spoke_virtual_network_resource_ids      = list(string)
     enable_outbound_virtual_network_peering = bool
+    enable_hub_network_mesh_peering         = bool
   })
 })
 ```
@@ -460,6 +462,10 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 > This prevents us from creating the spoke-to-hub-peering.
 >
 > We are working on a solution for this using the recently released [AzAPI provider][tf_reg_azapi] which allows a single provider to deploy resources into multiple subscriptions using a [parent_id][tf_reg_azapi_parent_id] input.
+
+#### `config.enable_hub_network_mesh_peering`
+
+`bool` input to control whether the module will create fully meshed Virtual Network peerings between the hub networks that have this setting enabled.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
