@@ -1534,9 +1534,9 @@ locals {
       location_dst => {
         remote_virtual_network_id           = local.virtual_network_resource_id[location_dst]
         virtual_network_peering_name        = "peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
-        virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location]}/virtualNetworkPeerings/peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
-      } if location_src != location_dst && hub_config_dst.peer_hub_networks
-    } if hub_config_src.config.peer_hub_networks
+        virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location_dst]}/virtualNetworkPeerings/peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
+      } if location_src != location_dst && hub_config_dst.config.enable_hub_network_mesh_peering
+    } if hub_config_src.config.enable_hub_network_mesh_peering
   }
   azurerm_virtual_network_peering_hubs = flatten(
     [
@@ -1584,10 +1584,10 @@ locals {
       ]
     ]
   )
-  azurerm_virtual_network_peering = merge(
-    local.azurerm_virtual_network_peering_hubs,
-    local.azurerm_virtual_network_peering_spokes
-  )
+  azurerm_virtual_network_peering = flatten([
+    [ for p in local.azurerm_virtual_network_peering_hubs : p],
+    [ for p in local.azurerm_virtual_network_peering_spokes : p]
+  ])
 }
 
 # Configuration settings for resource type:
