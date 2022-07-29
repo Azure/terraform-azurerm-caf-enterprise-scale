@@ -1546,7 +1546,7 @@ locals {
         virtual_network_peering_name        = local.virtual_network_hub_peering_name[location_src][location_dst]
         virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location_src]}/virtualNetworkPeerings/${local.virtual_network_hub_peering_name[location_src][location_dst]}"
       } if location_src != location_dst && hub_config_dst.config.enable_hub_network_mesh_peering
-    } if hub_config_src.config.enable_hub_network_mesh_peering
+    } if hub_config_src.config.enable_hub_network_mesh_peering && hub_config_src.enabled && local.enabled
   }
   azurerm_virtual_network_peering_hubs = flatten(
     [
