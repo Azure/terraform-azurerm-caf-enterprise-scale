@@ -1585,8 +1585,8 @@ locals {
     ]
   )
   azurerm_virtual_network_peering = flatten([
-    [ for p in local.azurerm_virtual_network_peering_hubs : p],
-    [ for p in local.azurerm_virtual_network_peering_spokes : p]
+    [for p in local.azurerm_virtual_network_peering_hubs : p],
+    [for p in local.azurerm_virtual_network_peering_spokes : p]
   ])
 }
 
