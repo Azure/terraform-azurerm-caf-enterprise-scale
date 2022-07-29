@@ -506,7 +506,10 @@
                 {
                   "connectivity": [
                     "tuple",
-                    []
+                    [
+                      "string",
+                      "string"
+                    ]
                   ]
                 }
               ],
@@ -848,7 +851,10 @@
             "connectivity": []
           },
           "azurerm_virtual_network_peering": {
-            "connectivity": []
+            "connectivity": [
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626"
+            ]
           },
           "azurerm_virtual_wan": {
             "virtual_wan": []
@@ -6406,6 +6412,48 @@
               "template_content": "{\"$schema\":\"https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{\"telemetry\":{\"type\":\"String\",\"value\":\"For more information, see https://aka.ms/alz/tf/telemetry\"}},\"parameters\":{},\"resources\":[],\"variables\":{}}",
               "template_spec_version_id": null,
               "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_core.azurerm_virtual_network_peering.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network_peering",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allow_forwarded_traffic": true,
+              "allow_gateway_transit": true,
+              "allow_virtual_network_access": true,
+              "name": "peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
+              "remote_virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope",
+              "resource_group_name": "root-id-1-connectivity-westeurope",
+              "timeouts": null,
+              "use_remote_gateways": false,
+              "virtual_network_name": "root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_core.azurerm_virtual_network_peering.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network_peering",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allow_forwarded_traffic": true,
+              "allow_gateway_transit": true,
+              "allow_virtual_network_access": true,
+              "name": "peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "remote_virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope",
+              "resource_group_name": "root-id-1-connectivity-northeurope",
+              "timeouts": null,
+              "use_remote_gateways": false,
+              "virtual_network_name": "root-id-1-hub-northeurope"
             },
             "sensitive_values": {}
           },
