@@ -1514,6 +1514,16 @@ locals {
       )
     }
   }
+  virtual_network_hub_peering_name = {
+    for location_src, hub_config_src in local.hub_networks_by_location :
+    location_src => {
+      for location_dst, hub_config_dst in local.hub_networks_by_location :
+      location_dst => try(
+        local.custom_settings.azurerm_virtual_network_peering["connectivity"][location_src][location_dst].name,
+        "peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
+      ) if location_src != location_dst && hub_config_dst.config.enable_hub_network_mesh_peering
+    } if hub_config_src.config.enable_hub_network_mesh_peering
+  }
   virtual_network_peering_resource_id_prefix = {
     for location, hub_config in local.hub_networks_by_location :
     location =>
@@ -1533,14 +1543,14 @@ locals {
       for location_dst, hub_config_dst in local.hub_networks_by_location :
       location_dst => {
         remote_virtual_network_id           = local.virtual_network_resource_id[location_dst]
-        virtual_network_peering_name        = "peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
-        virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location_dst]}/virtualNetworkPeerings/peering-${uuidv5("url", local.virtual_network_resource_id[location_dst])}"
+        virtual_network_peering_name        = local.virtual_network_hub_peering_name[location_src][location_dst]
+        virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location_src]}/virtualNetworkPeerings/${local.virtual_network_hub_peering_name[location_src][location_dst]}"
       } if location_src != location_dst && hub_config_dst.config.enable_hub_network_mesh_peering
     } if hub_config_src.config.enable_hub_network_mesh_peering
   }
   azurerm_virtual_network_peering_hubs = flatten(
     [
-      for location, remote in local.virtual_network_hub_peerings :
+      for location_src, remote in local.virtual_network_hub_peerings :
       [
         for location_dst, peerconfig in remote :
         {
@@ -1549,8 +1559,8 @@ locals {
           managed_by_module = true
           # Resource definition attributes
           name                      = peerconfig.virtual_network_peering_name
-          resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location]
-          virtual_network_name      = local.virtual_network_name[location]
+          resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location_src]
+          virtual_network_name      = local.virtual_network_name[location_src]
           remote_virtual_network_id = peerconfig.remote_virtual_network_id
           # Optional definition attributes
           allow_virtual_network_access = true
@@ -1584,10 +1594,10 @@ locals {
       ]
     ]
   )
-  azurerm_virtual_network_peering = flatten([
-    [for p in local.azurerm_virtual_network_peering_hubs : p],
-    [for p in local.azurerm_virtual_network_peering_spokes : p]
-  ])
+  azurerm_virtual_network_peering = distinct(concat(
+    local.azurerm_virtual_network_peering_hubs,
+    local.azurerm_virtual_network_peering_spokes
+  ))
 }
 
 # Configuration settings for resource type:
@@ -1959,128 +1969,132 @@ locals {
 
 locals {
   debug_output = {
-    hub_networks                                             = local.hub_networks
-    hub_networks_by_location                                 = local.hub_networks_by_location
-    hub_network_locations                                    = local.hub_network_locations
-    virtual_hubs                                             = local.virtual_hubs
-    virtual_hubs_by_location                                 = local.virtual_hubs_by_location
-    virtual_hubs_by_location_for_resource_group_per_location = local.virtual_hubs_by_location_for_resource_group_per_location
-    virtual_hubs_by_location_for_shared_resource_group       = local.virtual_hubs_by_location_for_shared_resource_group
-    virtual_hubs_by_location_for_managed_virtual_wan         = local.virtual_hubs_by_location_for_managed_virtual_wan
-    virtual_hubs_by_location_for_existing_virtual_wan        = local.virtual_hubs_by_location_for_existing_virtual_wan
-    virtual_hub_locations                                    = local.virtual_hub_locations
-    virtual_wan_locations                                    = local.virtual_wan_locations
-    ddos_location                                            = local.ddos_location
-    dns_location                                             = local.dns_location
+    archetype_config_overrides                               = local.archetype_config_overrides
+    azfw_name                                                = local.azfw_name
+    azfw_pip_name                                            = local.azfw_pip_name
+    azfw_pip_resource_id                                     = local.azfw_pip_resource_id
+    azfw_pip_resource_id_prefix                              = local.azfw_pip_resource_id_prefix
+    azfw_policy_name                                         = local.azfw_policy_name
+    azfw_policy_resource_id                                  = local.azfw_policy_resource_id
+    azfw_policy_resource_id_prefix                           = local.azfw_policy_resource_id_prefix
+    azfw_resource_id                                         = local.azfw_resource_id
+    azfw_resource_id_prefix                                  = local.azfw_resource_id_prefix
+    azfw_zones                                               = local.azfw_zones
+    azfw_zones_enabled                                       = local.azfw_zones_enabled
+    azurerm_dns_zone                                         = local.azurerm_dns_zone
+    azurerm_express_route_gateway                            = local.azurerm_express_route_gateway
+    azurerm_firewall                                         = local.azurerm_firewall
+    azurerm_firewall_policy                                  = local.azurerm_firewall_policy
+    azurerm_network_ddos_protection_plan                     = local.azurerm_network_ddos_protection_plan
+    azurerm_private_dns_zone                                 = local.azurerm_private_dns_zone
+    azurerm_private_dns_zone_virtual_network_link            = local.azurerm_private_dns_zone_virtual_network_link
+    azurerm_public_ip                                        = local.azurerm_public_ip
+    azurerm_resource_group                                   = local.azurerm_resource_group
+    azurerm_subnet                                           = local.azurerm_subnet
+    azurerm_virtual_hub                                      = local.azurerm_virtual_hub
+    azurerm_virtual_hub_connection                           = local.azurerm_virtual_hub_connection
+    azurerm_virtual_network                                  = local.azurerm_virtual_network
+    azurerm_virtual_network_gateway                          = local.azurerm_virtual_network_gateway
+    azurerm_virtual_network_gateway_express_route            = local.azurerm_virtual_network_gateway_express_route
+    azurerm_virtual_network_gateway_vpn                      = local.azurerm_virtual_network_gateway_vpn
+    azurerm_virtual_network_peering                          = local.azurerm_virtual_network_peering
+    azurerm_virtual_network_peering_hubs                     = local.azurerm_virtual_network_peering_hubs
+    azurerm_virtual_network_peering_spokes                   = local.azurerm_virtual_network_peering_spokes
+    azurerm_virtual_wan                                      = local.azurerm_virtual_wan
+    azurerm_vpn_gateway                                      = local.azurerm_vpn_gateway
     connectivity_locations                                   = local.connectivity_locations
-    result_when_location_missing                             = local.result_when_location_missing
-    vpn_gen1_only_skus                                       = local.vpn_gen1_only_skus
-    private_ip_address_allocation_values                     = local.private_ip_address_allocation_values
-    deploy_resource_groups                                   = local.deploy_resource_groups
+    ddos_location                                            = local.ddos_location
+    ddos_protection_plan_name                                = local.ddos_protection_plan_name
+    ddos_protection_plan_resource_id                         = local.ddos_protection_plan_resource_id
+    ddos_resource_group_id                                   = local.ddos_resource_group_id
+    deploy_azure_firewall                                    = local.deploy_azure_firewall
+    deploy_azure_firewall_policy                             = local.deploy_azure_firewall_policy
     deploy_ddos_protection_plan                              = local.deploy_ddos_protection_plan
     deploy_dns                                               = local.deploy_dns
+    deploy_hub_network                                       = local.deploy_hub_network
+    deploy_outbound_virtual_network_peering                  = local.deploy_outbound_virtual_network_peering
     deploy_private_dns_zone_virtual_network_link_on_hubs     = local.deploy_private_dns_zone_virtual_network_link_on_hubs
     deploy_private_dns_zone_virtual_network_link_on_spokes   = local.deploy_private_dns_zone_virtual_network_link_on_spokes
-    deploy_hub_network                                       = local.deploy_hub_network
+    deploy_resource_groups                                   = local.deploy_resource_groups
+    deploy_virtual_hub                                       = local.deploy_virtual_hub
+    deploy_virtual_hub_azure_firewall                        = local.deploy_virtual_hub_azure_firewall
+    deploy_virtual_hub_azure_firewall_policy                 = local.deploy_virtual_hub_azure_firewall_policy
+    deploy_virtual_hub_connection                            = local.deploy_virtual_hub_connection
+    deploy_virtual_hub_express_route_gateway                 = local.deploy_virtual_hub_express_route_gateway
+    deploy_virtual_hub_vpn_gateway                           = local.deploy_virtual_hub_vpn_gateway
     deploy_virtual_network_gateway                           = local.deploy_virtual_network_gateway
     deploy_virtual_network_gateway_express_route             = local.deploy_virtual_network_gateway_express_route
     deploy_virtual_network_gateway_vpn                       = local.deploy_virtual_network_gateway_vpn
-    deploy_azure_firewall_policy                             = local.deploy_azure_firewall_policy
-    deploy_azure_firewall                                    = local.deploy_azure_firewall
-    deploy_outbound_virtual_network_peering                  = local.deploy_outbound_virtual_network_peering
     deploy_virtual_wan                                       = local.deploy_virtual_wan
-    deploy_virtual_hub                                       = local.deploy_virtual_hub
-    deploy_virtual_hub_express_route_gateway                 = local.deploy_virtual_hub_express_route_gateway
-    deploy_virtual_hub_vpn_gateway                           = local.deploy_virtual_hub_vpn_gateway
-    deploy_virtual_hub_azure_firewall_policy                 = local.deploy_virtual_hub_azure_firewall_policy
-    deploy_virtual_hub_azure_firewall                        = local.deploy_virtual_hub_azure_firewall
-    deploy_virtual_hub_connection                            = local.deploy_virtual_hub_connection
-    resource_group_names_by_scope_and_location               = local.resource_group_names_by_scope_and_location
-    resource_group_config_by_scope_and_location              = local.resource_group_config_by_scope_and_location
-    azurerm_resource_group                                   = local.azurerm_resource_group
-    ddos_resource_group_id                                   = local.ddos_resource_group_id
-    ddos_protection_plan_name                                = local.ddos_protection_plan_name
-    ddos_protection_plan_resource_id                         = local.ddos_protection_plan_resource_id
-    azurerm_network_ddos_protection_plan                     = local.azurerm_network_ddos_protection_plan
-    virtual_network_name                                     = local.virtual_network_name
-    virtual_network_resource_group_id                        = local.virtual_network_resource_group_id
-    virtual_network_resource_id_prefix                       = local.virtual_network_resource_id_prefix
-    virtual_network_resource_id                              = local.virtual_network_resource_id
-    azurerm_virtual_network                                  = local.azurerm_virtual_network
-    subnets_by_virtual_network                               = local.subnets_by_virtual_network
-    azurerm_subnet                                           = local.azurerm_subnet
-    er_gateway_name                                          = local.er_gateway_name
-    er_gateway_resource_id_prefix                            = local.er_gateway_resource_id_prefix
-    er_gateway_resource_id                                   = local.er_gateway_resource_id
-    er_gateway_pip_name                                      = local.er_gateway_pip_name
-    er_gateway_pip_resource_id_prefix                        = local.er_gateway_pip_resource_id_prefix
-    er_gateway_pip_resource_id                               = local.er_gateway_pip_resource_id
-    azurerm_virtual_network_gateway_express_route            = local.azurerm_virtual_network_gateway_express_route
-    vpn_gateway_name                                         = local.vpn_gateway_name
-    vpn_gateway_resource_id_prefix                           = local.vpn_gateway_resource_id_prefix
-    vpn_gateway_resource_id                                  = local.vpn_gateway_resource_id
-    vpn_gateway_pip_name                                     = local.vpn_gateway_pip_name
-    vpn_gateway_pip_2_name                                   = local.vpn_gateway_pip_2_name
-    vpn_gateway_pip_resource_id_prefix                       = local.vpn_gateway_pip_resource_id_prefix
-    vpn_gateway_pip_resource_id                              = local.vpn_gateway_pip_resource_id
-    vpn_gateway_pip_2_resource_id                            = local.vpn_gateway_pip_2_resource_id
-    azurerm_virtual_network_gateway_vpn                      = local.azurerm_virtual_network_gateway_vpn
-    azurerm_virtual_network_gateway                          = local.azurerm_virtual_network_gateway
-    azfw_name                                                = local.azfw_name
-    azfw_resource_id_prefix                                  = local.azfw_resource_id_prefix
-    azfw_resource_id                                         = local.azfw_resource_id
-    azfw_zones                                               = local.azfw_zones
-    azfw_zones_enabled                                       = local.azfw_zones_enabled
-    azfw_policy_name                                         = local.azfw_policy_name
-    azfw_policy_resource_id_prefix                           = local.azfw_policy_resource_id_prefix
-    azfw_policy_resource_id                                  = local.azfw_policy_resource_id
-    azfw_pip_name                                            = local.azfw_pip_name
-    azfw_pip_resource_id_prefix                              = local.azfw_pip_resource_id_prefix
-    azfw_pip_resource_id                                     = local.azfw_pip_resource_id
-    virtual_hub_azfw_name                                    = local.virtual_hub_azfw_name
-    virtual_hub_azfw_resource_id_prefix                      = local.virtual_hub_azfw_resource_id_prefix
-    virtual_hub_azfw_resource_id                             = local.virtual_hub_azfw_resource_id
-    virtual_hub_azfw_policy_name                             = local.virtual_hub_azfw_policy_name
-    virtual_hub_azfw_policy_resource_id_prefix               = local.virtual_hub_azfw_policy_resource_id_prefix
-    virtual_hub_azfw_policy_resource_id                      = local.virtual_hub_azfw_policy_resource_id
-    virtual_hub_azfw_zones                                   = local.virtual_hub_azfw_zones
-    azurerm_firewall                                         = local.azurerm_firewall
-    azurerm_firewall_policy                                  = local.azurerm_firewall_policy
-    virtual_wan_name                                         = local.virtual_wan_name
-    virtual_wan_resource_group_id                            = local.virtual_wan_resource_group_id
-    virtual_wan_resource_id_prefix                           = local.virtual_wan_resource_id_prefix
-    virtual_wan_resource_id                                  = local.virtual_wan_resource_id
-    azurerm_virtual_wan                                      = local.azurerm_virtual_wan
-    virtual_hub_name                                         = local.virtual_hub_name
-    virtual_hub_resource_group_name                          = local.virtual_hub_resource_group_name
-    virtual_hub_resource_group_id                            = local.virtual_hub_resource_group_id
-    virtual_hub_resource_id_prefix                           = local.virtual_hub_resource_id_prefix
-    virtual_hub_resource_id                                  = local.virtual_hub_resource_id
-    azurerm_virtual_hub                                      = local.azurerm_virtual_hub
-    virtual_hub_express_route_gateway_name                   = local.virtual_hub_express_route_gateway_name
-    virtual_hub_express_route_gateway_resource_id_prefix     = local.virtual_hub_express_route_gateway_resource_id_prefix
-    virtual_hub_express_route_gateway_resource_id            = local.virtual_hub_express_route_gateway_resource_id
-    azurerm_express_route_gateway                            = local.azurerm_express_route_gateway
-    virtual_hub_vpn_gateway_name                             = local.virtual_hub_vpn_gateway_name
-    virtual_hub_vpn_gateway_resource_id_prefix               = local.virtual_hub_vpn_gateway_resource_id_prefix
-    virtual_hub_vpn_gateway_resource_id                      = local.virtual_hub_vpn_gateway_resource_id
-    azurerm_vpn_gateway                                      = local.azurerm_vpn_gateway
-    azurerm_public_ip                                        = local.azurerm_public_ip
+    dns_location                                             = local.dns_location
     enable_private_link_by_service                           = local.enable_private_link_by_service
-    private_link_locations                                   = local.private_link_locations
+    er_gateway_name                                          = local.er_gateway_name
+    er_gateway_pip_name                                      = local.er_gateway_pip_name
+    er_gateway_pip_resource_id                               = local.er_gateway_pip_resource_id
+    er_gateway_pip_resource_id_prefix                        = local.er_gateway_pip_resource_id_prefix
+    er_gateway_resource_id                                   = local.er_gateway_resource_id
+    er_gateway_resource_id_prefix                            = local.er_gateway_resource_id_prefix
+    hub_network_locations                                    = local.hub_network_locations
+    hub_networks                                             = local.hub_networks
+    hub_networks_by_location                                 = local.hub_networks_by_location
+    hub_virtual_networks_for_dns                             = local.hub_virtual_networks_for_dns
     lookup_private_link_dns_zone_by_service                  = local.lookup_private_link_dns_zone_by_service
     lookup_private_link_group_id_by_service                  = local.lookup_private_link_group_id_by_service
-    services_by_private_link_dns_zone                        = local.services_by_private_link_dns_zone
     private_dns_zone_enabled                                 = local.private_dns_zone_enabled
-    azurerm_private_dns_zone                                 = local.azurerm_private_dns_zone
-    azurerm_dns_zone                                         = local.azurerm_dns_zone
-    hub_virtual_networks_for_dns                             = local.hub_virtual_networks_for_dns
+    private_ip_address_allocation_values                     = local.private_ip_address_allocation_values
+    private_link_locations                                   = local.private_link_locations
+    resource_group_config_by_scope_and_location              = local.resource_group_config_by_scope_and_location
+    resource_group_names_by_scope_and_location               = local.resource_group_names_by_scope_and_location
+    result_when_location_missing                             = local.result_when_location_missing
+    services_by_private_link_dns_zone                        = local.services_by_private_link_dns_zone
     spoke_virtual_networks_for_dns                           = local.spoke_virtual_networks_for_dns
-    virtual_networks_for_dns                                 = local.virtual_networks_for_dns
-    azurerm_private_dns_zone_virtual_network_link            = local.azurerm_private_dns_zone_virtual_network_link
-    azurerm_virtual_network_peering                          = local.azurerm_virtual_network_peering
-    azurerm_virtual_hub_connection                           = local.azurerm_virtual_hub_connection
-    archetype_config_overrides                               = local.archetype_config_overrides
+    subnets_by_virtual_network                               = local.subnets_by_virtual_network
     template_file_variables                                  = local.template_file_variables
+    virtual_hub_azfw_name                                    = local.virtual_hub_azfw_name
+    virtual_hub_azfw_policy_name                             = local.virtual_hub_azfw_policy_name
+    virtual_hub_azfw_policy_resource_id                      = local.virtual_hub_azfw_policy_resource_id
+    virtual_hub_azfw_policy_resource_id_prefix               = local.virtual_hub_azfw_policy_resource_id_prefix
+    virtual_hub_azfw_resource_id                             = local.virtual_hub_azfw_resource_id
+    virtual_hub_azfw_resource_id_prefix                      = local.virtual_hub_azfw_resource_id_prefix
+    virtual_hub_azfw_zones                                   = local.virtual_hub_azfw_zones
+    virtual_hub_express_route_gateway_name                   = local.virtual_hub_express_route_gateway_name
+    virtual_hub_express_route_gateway_resource_id            = local.virtual_hub_express_route_gateway_resource_id
+    virtual_hub_express_route_gateway_resource_id_prefix     = local.virtual_hub_express_route_gateway_resource_id_prefix
+    virtual_hub_locations                                    = local.virtual_hub_locations
+    virtual_hub_name                                         = local.virtual_hub_name
+    virtual_hub_resource_group_id                            = local.virtual_hub_resource_group_id
+    virtual_hub_resource_group_name                          = local.virtual_hub_resource_group_name
+    virtual_hub_resource_id                                  = local.virtual_hub_resource_id
+    virtual_hub_resource_id_prefix                           = local.virtual_hub_resource_id_prefix
+    virtual_hub_vpn_gateway_name                             = local.virtual_hub_vpn_gateway_name
+    virtual_hub_vpn_gateway_resource_id                      = local.virtual_hub_vpn_gateway_resource_id
+    virtual_hub_vpn_gateway_resource_id_prefix               = local.virtual_hub_vpn_gateway_resource_id_prefix
+    virtual_hubs                                             = local.virtual_hubs
+    virtual_hubs_by_location                                 = local.virtual_hubs_by_location
+    virtual_hubs_by_location_for_existing_virtual_wan        = local.virtual_hubs_by_location_for_existing_virtual_wan
+    virtual_hubs_by_location_for_managed_virtual_wan         = local.virtual_hubs_by_location_for_managed_virtual_wan
+    virtual_hubs_by_location_for_resource_group_per_location = local.virtual_hubs_by_location_for_resource_group_per_location
+    virtual_hubs_by_location_for_shared_resource_group       = local.virtual_hubs_by_location_for_shared_resource_group
+    virtual_network_hub_peering_name                         = local.virtual_network_hub_peering_name
+    virtual_network_hub_peerings                             = local.virtual_network_hub_peerings
+    virtual_network_name                                     = local.virtual_network_name
+    virtual_network_resource_group_id                        = local.virtual_network_resource_group_id
+    virtual_network_resource_id                              = local.virtual_network_resource_id
+    virtual_network_resource_id_prefix                       = local.virtual_network_resource_id_prefix
+    virtual_networks_for_dns                                 = local.virtual_networks_for_dns
+    virtual_wan_locations                                    = local.virtual_wan_locations
+    virtual_wan_name                                         = local.virtual_wan_name
+    virtual_wan_resource_group_id                            = local.virtual_wan_resource_group_id
+    virtual_wan_resource_id                                  = local.virtual_wan_resource_id
+    virtual_wan_resource_id_prefix                           = local.virtual_wan_resource_id_prefix
+    vpn_gateway_name                                         = local.vpn_gateway_name
+    vpn_gateway_pip_2_name                                   = local.vpn_gateway_pip_2_name
+    vpn_gateway_pip_2_resource_id                            = local.vpn_gateway_pip_2_resource_id
+    vpn_gateway_pip_name                                     = local.vpn_gateway_pip_name
+    vpn_gateway_pip_resource_id                              = local.vpn_gateway_pip_resource_id
+    vpn_gateway_pip_resource_id_prefix                       = local.vpn_gateway_pip_resource_id_prefix
+    vpn_gateway_resource_id                                  = local.vpn_gateway_resource_id
+    vpn_gateway_resource_id_prefix                           = local.vpn_gateway_resource_id_prefix
+    vpn_gen1_only_skus                                       = local.vpn_gen1_only_skus
   }
 }
