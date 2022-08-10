@@ -84,7 +84,13 @@ resource "azurerm_management_group_subscription_association" "enterprise_scale" 
   subscription_id     = each.value.subscription_id
 
   depends_on = [
-    time_sleep.after_azurerm_management_group
+    time_sleep.after_azurerm_management_group,
+    azurerm_management_group.level_1,
+    azurerm_management_group.level_2,
+    azurerm_management_group.level_3,
+    azurerm_management_group.level_4,
+    azurerm_management_group.level_5,
+    azurerm_management_group.level_6,
   ]
 }
 
