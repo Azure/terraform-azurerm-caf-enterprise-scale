@@ -207,6 +207,12 @@ locals {
     local.deploy_hub_network[location] &&
     hub_network.config.enable_outbound_virtual_network_peering
   }
+  deploy_hub_virtual_network_mesh_peering = {
+    for location, hub_network in local.hub_networks_by_location :
+    location =>
+    local.deploy_hub_network[location] &&
+    hub_network.config.enable_hub_network_mesh_peering
+  }
 }
 
 # Logic to determine whether specific resources
@@ -1546,7 +1552,7 @@ locals {
         virtual_network_peering_name        = local.virtual_network_hub_peering_name[location_src][location_dst]
         virtual_network_peering_resource_id = "${local.virtual_network_resource_id[location_src]}/virtualNetworkPeerings/${local.virtual_network_hub_peering_name[location_src][location_dst]}"
       } if location_src != location_dst && hub_config_dst.config.enable_hub_network_mesh_peering
-    } if hub_config_src.config.enable_hub_network_mesh_peering && hub_config_src.enabled && local.enabled
+    } if hub_config_src.config.enable_hub_network_mesh_peering
   }
   azurerm_virtual_network_peering_hubs = flatten(
     [
@@ -1556,7 +1562,7 @@ locals {
         {
           # Resource logic attributes
           resource_id       = peerconfig.virtual_network_peering_resource_id
-          managed_by_module = true
+          managed_by_module = local.deploy_hub_virtual_network_mesh_peering[location_src]
           # Resource definition attributes
           name                      = peerconfig.virtual_network_peering_name
           resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location_src]
