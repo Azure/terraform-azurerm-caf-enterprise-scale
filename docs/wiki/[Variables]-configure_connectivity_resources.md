@@ -60,6 +60,7 @@ If specified, will customize the "connectivity" landing zone settings and resour
           }
           spoke_virtual_network_resource_ids      = []
           enable_outbound_virtual_network_peering = false
+          enable_hub_network_mesh_peering         = false
         }
       },
     ]
@@ -278,6 +279,7 @@ object({
           })
           spoke_virtual_network_resource_ids      = list(string)
           enable_outbound_virtual_network_peering = bool
+          enable_hub_network_mesh_peering         = bool
         })
       })
     )

@@ -316,6 +316,7 @@ variable "configure_connectivity_resources" {
             })
             spoke_virtual_network_resource_ids      = list(string)
             enable_outbound_virtual_network_peering = bool
+            enable_hub_network_mesh_peering         = bool
           })
         })
       )
@@ -498,6 +499,7 @@ variable "configure_connectivity_resources" {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = false
+            enable_hub_network_mesh_peering         = false
           }
         },
       ]
