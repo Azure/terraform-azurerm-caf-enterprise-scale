@@ -70,7 +70,7 @@ provider "azurerm" {
 
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.2.0"
+  version = "2.3.0"
 
   providers = {
     azurerm              = azurerm
@@ -150,7 +150,7 @@ provider "azurerm" {
 
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.2.0"
+  version = "2.3.0"
 
   providers = {
     azurerm              = azurerm
@@ -208,7 +208,7 @@ data "azurerm_client_config" "connectivity" {
 # Map each module provider to their corresponding `azurerm` provider using the providers input object
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.2.0"
+  version = "2.3.0"
 
   providers = {
     azurerm              = azurerm
