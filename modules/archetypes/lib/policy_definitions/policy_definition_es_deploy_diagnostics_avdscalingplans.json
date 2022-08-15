@@ -1,13 +1,13 @@
 {
-  "name": "Deploy-Diagnostics-APIMgmt",
+  "name": "Deploy-Diagnostics-AVDScalingPlans",
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
   "scope": null,
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deploy Diagnostic Settings for API Management to Log Analytics workspace",
-    "description": "Deploys the diagnostic settings for API Management to stream to a Log Analytics workspace when any API Management which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
+    "displayName": "Deploy Diagnostic Settings for AVD Scaling Plans to Log Analytics workspace",
+    "description": "Deploys the diagnostic settings for AVD Scaling Plans to stream to a Log Analytics workspace when any Scaling Plan which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all and categorys enabled.",
     "metadata": {
       "version": "1.0.0",
       "category": "Monitoring"
@@ -41,18 +41,6 @@
           "description": "The diagnostic settings profile name"
         }
       },
-      "metricsEnabled": {
-        "type": "String",
-        "defaultValue": "True",
-        "allowedValues": [
-          "True",
-          "False"
-        ],
-        "metadata": {
-          "displayName": "Enable metrics",
-          "description": "Whether to enable metrics stream to the Log Analytics workspace - True or False"
-        }
-      },
       "logsEnabled": {
         "type": "String",
         "defaultValue": "True",
@@ -69,7 +57,7 @@
     "policyRule": {
       "if": {
         "field": "type",
-        "equals": "Microsoft.ApiManagement/service"
+        "equals": "Microsoft.DesktopVirtualization/scalingplans"
       },
       "then": {
         "effect": "[parameters('effect')]",
@@ -80,10 +68,6 @@
             "allOf": [
               {
                 "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
-                "equals": "true"
-              },
-              {
-                "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
                 "equals": "true"
               },
               {
@@ -115,9 +99,6 @@
                   "profileName": {
                     "type": "String"
                   },
-                  "metricsEnabled": {
-                    "type": "String"
-                  },
                   "logsEnabled": {
                     "type": "String"
                   }
@@ -125,31 +106,16 @@
                 "variables": {},
                 "resources": [
                   {
-                    "type": "Microsoft.ApiManagement/service/providers/diagnosticSettings",
+                    "type": "Microsoft.DesktopVirtualization/scalingplans/providers/diagnosticSettings",
                     "apiVersion": "2017-05-01-preview",
                     "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]",
                     "location": "[parameters('location')]",
                     "dependsOn": [],
                     "properties": {
                       "workspaceId": "[parameters('logAnalytics')]",
-                      "metrics": [
-                        {
-                          "category": "AllMetrics",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
-                        }
-                      ],
                       "logs": [
                         {
-                          "category": "GatewayLogs",
-                          "enabled": "[parameters('logsEnabled')]"
-                        },
-                        {
-                          "category": "WebSocketConnectionLogs",
+                          "category": "Autoscale",
                           "enabled": "[parameters('logsEnabled')]"
                         }
                       ]
@@ -170,9 +136,6 @@
                 },
                 "profileName": {
                   "value": "[parameters('profileName')]"
-                },
-                "metricsEnabled": {
-                  "value": "[parameters('metricsEnabled')]"
                 },
                 "logsEnabled": {
                   "value": "[parameters('logsEnabled')]"

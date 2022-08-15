@@ -6,10 +6,10 @@
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deploy Diagnostic Settings for WVD Application group to Log Analytics workspace",
-    "description": "Deploys the diagnostic settings for WVD Application group to stream to a Log Analytics workspace when any application group which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all and categorys enabled.",
+    "displayName": "Deploy Diagnostic Settings for AVD Application group to Log Analytics workspace",
+    "description": "Deploys the diagnostic settings for AVD Application group to stream to a Log Analytics workspace when any application group which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all and categorys enabled.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "Monitoring"
     },
     "parameters": {
