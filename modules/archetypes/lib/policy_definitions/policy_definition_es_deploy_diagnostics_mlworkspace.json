@@ -9,7 +9,7 @@
     "displayName": "Deploy Diagnostic Settings for Machine Learning workspace to Log Analytics workspace",
     "description": "Deploys the diagnostic settings for Machine Learning workspace to stream to a Log Analytics workspace when any Machine Learning workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Monitoring"
     },
     "parameters": {
@@ -134,39 +134,12 @@
                       "workspaceId": "[parameters('logAnalytics')]",
                       "metrics": [
                         {
-                          "category": "Run",
+                          "category": "AllMetrics",
                           "enabled": "[parameters('metricsEnabled')]",
                           "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
-                        },
-                        {
-                          "category": "Model",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": true
+                            "enabled": false,
+                            "days": 0
                           }
-                        },
-                        {
-                          "category": "Quota",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
-                        },
-                        {
-                          "category": "Resource",
-                          "enabled": "[parameters('metricsEnabled')]",
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          },
-                          "timeGrain": null
                         }
                       ],
                       "logs": [
@@ -188,6 +161,90 @@
                         },
                         {
                           "category": "AmlRunStatusChangedEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "ModelsChangeEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "ModelsReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "ModelsActionEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DeploymentReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DeploymentEventACI",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DeploymentEventAKS",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "InferencingOperationAKS",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "InferencingOperationACI",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DataLabelChangeEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DataLabelReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "ComputeInstanceEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DataStoreChangeEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DataStoreReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DataSetChangeEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "DataSetReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "PipelineChangeEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "PipelineReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "RunEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "RunReadEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "EnvironmentChangeEvent",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "EnvironmentReadEvent",
                           "enabled": "[parameters('logsEnabled')]"
                         }
                       ]

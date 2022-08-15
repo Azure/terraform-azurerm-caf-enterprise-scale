@@ -7,9 +7,9 @@
     "policyType": "Custom",
     "mode": "Indexed",
     "displayName": "Azure Storage deploy a specific min TLS version requirement and enforce SSL/HTTPS ",
-    "description": "Deploy a specific min TLS version requirement and enforce SSL on Azure STorage. Enables secure server to client by enforce  minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your database server.",
+    "description": "Deploy a specific min TLS version requirement and enforce SSL on Azure Storage. Enables secure server to client by enforce minimal Tls Version to secure the connection between your database server and your client applications helps protect against 'man in the middle' attacks by encrypting the data stream between the server and your application. This configuration enforces that SSL is always enabled for accessing your Azure Storage.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Storage"
     },
     "parameters": {
@@ -21,7 +21,7 @@
           "Disabled"
         ],
         "metadata": {
-          "displayName": "Effect Azure STorage",
+          "displayName": "Effect Azure Storage",
           "description": "Enable or disable the execution of the policy minimum TLS version Azure STorage"
         }
       },
@@ -34,7 +34,7 @@
           "TLS1_0"
         ],
         "metadata": {
-          "displayName": "Select version for PostgreSQL server",
+          "displayName": "Select TLS version for Azure Storage server",
           "description": "Select version minimum TLS version Azure STorage to enforce"
         }
       }
@@ -63,7 +63,7 @@
       "then": {
         "effect": "[parameters('effect')]",
         "details": {
-          "type": "Microsoft.DBforPostgreSQL/servers",
+          "type": "Microsoft.Storage/storageAccounts",
           "existenceCondition": {
             "allOf": [
               {
@@ -73,10 +73,6 @@
               {
                 "field": "Microsoft.Storage/storageAccounts/minimumTlsVersion",
                 "equals": "[parameters('minimumTlsVersion')]"
-              },
-              {
-                "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
-                "equals": "false"
               }
             ]
           },

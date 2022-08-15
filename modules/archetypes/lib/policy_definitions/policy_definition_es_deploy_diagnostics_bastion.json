@@ -1,13 +1,13 @@
 {
-  "name": "Deploy-Diagnostics-APIMgmt",
+  "name": "Deploy-Diagnostics-Bastion",
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
   "scope": null,
   "properties": {
     "policyType": "Custom",
     "mode": "Indexed",
-    "displayName": "Deploy Diagnostic Settings for API Management to Log Analytics workspace",
-    "description": "Deploys the diagnostic settings for API Management to stream to a Log Analytics workspace when any API Management which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
+    "displayName": "Deploy Diagnostic Settings for Azure Bastion to Log Analytics workspace",
+    "description": "Deploys the diagnostic settings for Azure Bastion to stream to a Log Analytics workspace when any Azure Bastion which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
     "metadata": {
       "version": "1.0.0",
       "category": "Monitoring"
@@ -69,7 +69,7 @@
     "policyRule": {
       "if": {
         "field": "type",
-        "equals": "Microsoft.ApiManagement/service"
+        "equals": "Microsoft.Network/bastionHosts"
       },
       "then": {
         "effect": "[parameters('effect')]",
@@ -125,7 +125,7 @@
                 "variables": {},
                 "resources": [
                   {
-                    "type": "Microsoft.ApiManagement/service/providers/diagnosticSettings",
+                    "type": "Microsoft.Network/bastionHosts/providers/diagnosticSettings",
                     "apiVersion": "2017-05-01-preview",
                     "name": "[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]",
                     "location": "[parameters('location')]",
@@ -145,11 +145,7 @@
                       ],
                       "logs": [
                         {
-                          "category": "GatewayLogs",
-                          "enabled": "[parameters('logsEnabled')]"
-                        },
-                        {
-                          "category": "WebSocketConnectionLogs",
+                          "category": "BastionAuditLogs",
                           "enabled": "[parameters('logsEnabled')]"
                         }
                       ]

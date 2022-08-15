@@ -59,6 +59,8 @@
       "Deploy-Diagnostics-ApiForFHIR",
       "Deploy-Diagnostics-APIMgmt",
       "Deploy-Diagnostics-ApplicationGateway",
+      "Deploy-Diagnostics-AVDScalingPlans",
+      "Deploy-Diagnostics-Bastion",
       "Deploy-Diagnostics-CDNEndpoints",
       "Deploy-Diagnostics-CognitiveServices",
       "Deploy-Diagnostics-CosmosDB",

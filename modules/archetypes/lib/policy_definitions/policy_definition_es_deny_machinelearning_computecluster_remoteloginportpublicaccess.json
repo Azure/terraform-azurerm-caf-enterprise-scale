@@ -5,11 +5,11 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "mode": "Indexed",
+    "mode": "All",
     "displayName": "Deny public access of Azure Machine Learning clusters via SSH",
     "description": "Deny public access of Azure Machine Learning clusters via SSH.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Machine Learning"
     },
     "parameters": {
