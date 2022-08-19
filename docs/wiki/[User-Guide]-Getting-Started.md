@@ -73,7 +73,7 @@ Copy and paste the following 'module' block into your Terraform configuration, i
 ```hcl
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.3.0"
+  version = "2.3.1"
 
   providers = {
     azurerm              = azurerm
