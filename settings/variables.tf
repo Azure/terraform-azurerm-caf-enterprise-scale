@@ -1,7 +1,7 @@
 variable "root_id" {
   type        = string
   description = "Sets the value used for generating unique resource naming within the module."
-  default     = "test"
+  default     = "ohit-test"
 }
 
 variable "primary_location" {
