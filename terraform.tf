@@ -18,6 +18,8 @@ terraform {
       version = ">= 3.1.0"
     }
   }
-
+  backend "local" {
+    path = "../tfstate/test_framework.tfstate"
+  }
   required_version = ">= 0.15.1"
 }
