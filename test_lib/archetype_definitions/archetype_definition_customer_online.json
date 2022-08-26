@@ -1,0 +1,34 @@
+{
+    "customer_online": {
+        "policy_assignments": [
+            "Deny-Resource-Locations",
+            "Deny-RSG-Locations"
+        ],
+        "policy_definitions": [],
+        "policy_set_definitions": [],
+        "role_definitions": [],
+        "archetype_config": {
+            "parameters": {
+                "Deny-Resource-Locations": {
+                    "listOfAllowedLocations": [
+                        "eastus",
+                        "eastus2",
+                        "westus",
+                        "northcentralus",
+                        "southcentralus"
+                    ]
+                },
+                "Deny-RSG-Locations": {
+                    "listOfAllowedLocations": [
+                        "eastus",
+                        "eastus2",
+                        "westus",
+                        "northcentralus",
+                        "southcentralus"
+                    ]
+                }
+            },
+            "access_control": {}
+        }
+    }
+}

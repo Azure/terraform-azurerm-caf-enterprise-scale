@@ -19,7 +19,7 @@ terraform {
     }
   }
   backend "local" {
-    path = "../tfstate/test_framework.tfstate"
+    path = "./tfstate/test_framework.tfstate"
   }
   required_version = ">= 0.15.1"
 }
