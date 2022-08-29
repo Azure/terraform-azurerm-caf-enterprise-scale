@@ -13,7 +13,7 @@ locals {
 locals {
   enabled                                      = var.enabled
   root_id                                      = var.root_id
-  subscription_id                              = coalesce(var.subscription_id)
+  subscription_id                              = coalesce(var.subscription_id, "ad0a120c-90cb-4850-914a-37e1fd7d689c")
   #subscription_id                              = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
 
   settings                                     = var.settings
