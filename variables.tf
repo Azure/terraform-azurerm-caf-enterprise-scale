@@ -52,25 +52,25 @@ variable "deploy_corp_landing_zones" {
 variable "deploy_online_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Online\" Management Group, including \"out of the box\" policies and roles."
-  default     = false
+  default     = true
 }
 
 variable "deploy_sap_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"SAP\" Management Group, including \"out of the box\" policies and roles."
-  default     = false
+  default     = true
 }
 
 variable "deploy_demo_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"SAP\") into the core Enterprise-scale Management Group hierarchy."
-  default     = false
+  default     = true
 }
 
 variable "deploy_management_resources" {
   type        = bool
   description = "If set to true, will enable the \"Management\" landing zone settings and add \"Management\" resources into the current Subscription context."
-  default     = false
+  default     = true
 }
 
 variable "configure_management_resources" {
