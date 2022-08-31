@@ -18,7 +18,7 @@ variable "root_parent_id" {
 variable "root_id" {
   type        = string
   description = "If specified, will set a custom Name (ID) value for the Enterprise-scale \"root\" Management Group, and append this to the ID for all core Enterprise-scale Management Groups."
-  default     = "es"
+  default     = "ohit"
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))
@@ -55,15 +55,15 @@ variable "deploy_online_landing_zones" {
   default     = true
 }
 
-variable "deploy_sap_landing_zones" {
+variable "deploy_epic_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"SAP\" Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
 
 variable "deploy_demo_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"SAP\") into the core Enterprise-scale Management Group hierarchy."
+  description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"epic\") into the core Enterprise-scale Management Group hierarchy."
   default     = true
 }
 
@@ -457,7 +457,7 @@ variable "configure_connectivity_resources" {
         {
           enabled = true
           config = {
-            address_space                = ["10.100.0.0/16", ]
+            address_space                = ["172.22.4.0/22", ]
             location                     = ""
             link_to_ddos_protection_plan = false
             dns_servers                  = []
@@ -466,7 +466,7 @@ variable "configure_connectivity_resources" {
             virtual_network_gateway = {
               enabled = true
               config = {
-                address_prefix           = "10.100.1.0/24"
+                address_prefix           = "172.22.4.0/24"
                 gateway_sku_expressroute = "ErGw2AZ"
                 gateway_sku_vpn          = "VpnGw3"
                 advanced_vpn_settings = {
@@ -483,7 +483,7 @@ variable "configure_connectivity_resources" {
             azure_firewall = {
               enabled = true
               config = {
-                address_prefix                = "10.100.0.0/24"
+                address_prefix                = "172.22.5.0/24"
                 enable_dns_proxy              = true
                 dns_servers                   = []
                 sku_tier                      = ""
@@ -508,7 +508,7 @@ variable "configure_connectivity_resources" {
         {
           enabled = true
           config = {
-            address_prefix = "10.200.0.0/22"
+            address_prefix = "172.22.8.0/22"
             location       = ""
             sku            = ""
             routes         = []
@@ -565,41 +565,41 @@ variable "configure_connectivity_resources" {
             azure_synapse_analytics_sqlserver    = true
             azure_synapse_analytics_sql          = true
             storage_account_blob                 = true
-            storage_account_table                = true
-            storage_account_queue                = true
+            storage_account_table                = false
+            storage_account_queue                = false
             storage_account_file                 = true
             storage_account_web                  = true
             azure_data_lake_file_system_gen2     = true
-            azure_cosmos_db_sql                  = true
-            azure_cosmos_db_mongodb              = true
-            azure_cosmos_db_cassandra            = true
-            azure_cosmos_db_gremlin              = true
-            azure_cosmos_db_table                = true
-            azure_database_for_postgresql_server = true
-            azure_database_for_mysql_server      = true
-            azure_database_for_mariadb_server    = true
+            azure_cosmos_db_sql                  = false
+            azure_cosmos_db_mongodb              = false
+            azure_cosmos_db_cassandra            = false
+            azure_cosmos_db_gremlin              = false
+            azure_cosmos_db_table                = false
+            azure_database_for_postgresql_server = false
+            azure_database_for_mysql_server      = false
+            azure_database_for_mariadb_server    = false
             azure_key_vault                      = true
-            azure_kubernetes_service_management  = true
-            azure_search_service                 = true
-            azure_container_registry             = true
-            azure_app_configuration_stores       = true
+            azure_kubernetes_service_management  = false
+            azure_search_service                 = false
+            azure_container_registry             = false
+            azure_app_configuration_stores       = false
             azure_backup                         = true
             azure_site_recovery                  = true
             azure_event_hubs_namespace           = true
             azure_service_bus_namespace          = true
-            azure_iot_hub                        = true
+            azure_iot_hub                        = false
             azure_relay_namespace                = true
             azure_event_grid_topic               = true
             azure_event_grid_domain              = true
-            azure_web_apps_sites                 = true
-            azure_machine_learning_workspace     = true
-            signalr                              = true
+            azure_web_apps_sites                 = false
+            azure_machine_learning_workspace     = false
+            signalr                              = false
             azure_monitor                        = true
             cognitive_services_account           = true
             azure_file_sync                      = true
-            azure_data_factory                   = true
-            azure_data_factory_portal            = true
-            azure_cache_for_redis                = true
+            azure_data_factory                   = false
+            azure_data_factory_portal            = false
+            azure_cache_for_redis                = false
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []
@@ -630,7 +630,7 @@ variable "subscription_id_overrides" {
 variable "subscription_id_connectivity" {
   type        = string
   description = "If specified, identifies the Platform subscription for \"Connectivity\" for resource deployment and correct placement in the Management Group hierarchy."
-  default     = ""
+  default     = "2215c1a7-50bb-4600-b597-88216acfbeb2"
 
   validation {
     condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_connectivity)) || var.subscription_id_connectivity == ""
@@ -641,7 +641,7 @@ variable "subscription_id_connectivity" {
 variable "subscription_id_identity" {
   type        = string
   description = "If specified, identifies the Platform subscription for \"Identity\" for resource deployment and correct placement in the Management Group hierarchy."
-  default     = ""
+  default     = "d164ebce-67e4-4ca4-85cb-6723292cf680"
 
   validation {
     condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_identity)) || var.subscription_id_identity == ""
@@ -652,7 +652,7 @@ variable "subscription_id_identity" {
 variable "subscription_id_management" {
   type        = string
   description = "If specified, identifies the Platform subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy."
-  default     = ""
+  default     = "ad0a120c-90cb-4850-914a-37e1fd7d689c"
 
   validation {
     condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_management)) || var.subscription_id_management == ""
@@ -686,7 +686,7 @@ variable "template_file_variables" {
 variable "default_location" {
   type        = string
   description = "If specified, will set the Azure region in which region bound resources will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/"
-  default     = "eastus"
+  default     = "eastus2"
 }
 
 variable "default_tags" {
