@@ -62,8 +62,8 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
-    "${local.root_id}-sap" = {
-      archetype_id   = "es_sap"
+    "${local.root_id}-epic" = {
+      archetype_id   = "es_epic"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -77,8 +77,8 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
-    "${local.root_id}-demo-sap" = {
-      archetype_id   = "es_sap"
+    "${local.root_id}-demo-epic" = {
+      archetype_id   = "es_epic"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -110,10 +110,10 @@ locals {
     "${local.root_id}-identity"       = local.empty_list
     "${local.root_id}-corp"           = local.empty_list
     "${local.root_id}-online"         = local.empty_list
-    "${local.root_id}-sap"            = local.empty_list
+    "${local.root_id}-epic"            = local.empty_list
     "${local.root_id}-demo-corp"      = local.empty_list
     "${local.root_id}-demo-online"    = local.empty_list
-    "${local.root_id}-demo-sap"       = local.empty_list
+    "${local.root_id}-demo-epic"       = local.empty_list
   }
   subscription_id_overrides_map = {
     for key, value in local.subscription_id_overrides :
@@ -230,12 +230,12 @@ locals {
       archetype_config           = local.es_archetype_config_map["${local.root_id}-online"]
     }
   }
-  es_sap_landing_zones = {
-    "${local.root_id}-sap" = {
-      display_name               = "SAP"
+  es_epic_landing_zones = {
+    "${local.root_id}-epic" = {
+      display_name               = "epic"
       parent_management_group_id = "${local.root_id}-landing-zones"
-      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-sap"]
-      archetype_config           = local.es_archetype_config_map["${local.root_id}-sap"]
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-epic"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-epic"]
     }
   }
   # Optional demo "Landing Zone" Enterprise-scale Management Groups
@@ -252,11 +252,11 @@ locals {
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-demo-online"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-demo-online"]
     }
-    "${local.root_id}-demo-sap" = {
-      display_name               = "SAP (Demo)"
+    "${local.root_id}-demo-epic" = {
+      display_name               = "epic (Demo)"
       parent_management_group_id = "${local.root_id}-landing-zones"
-      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-demo-sap"]
-      archetype_config           = local.es_archetype_config_map["${local.root_id}-demo-sap"]
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-demo-epic"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-demo-epic"]
     }
   }
   # Logic to determine whether to include the core Enterprise-scale
@@ -264,7 +264,7 @@ locals {
   es_core_landing_zones_to_include   = local.deploy_core_landing_zones ? local.es_core_landing_zones : null
   es_corp_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_corp_landing_zones ? local.es_corp_landing_zones : null
   es_online_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_online_landing_zones ? local.es_online_landing_zones : null
-  es_sap_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_sap_landing_zones ? local.es_sap_landing_zones : null
+  es_epic_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_epic_landing_zones ? local.es_epic_landing_zones : null
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
   es_demo_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_demo_landing_zones ? local.es_demo_landing_zones : null
@@ -273,7 +273,7 @@ locals {
     local.es_core_landing_zones_to_include,
     local.es_corp_landing_zones_to_include,
     local.es_online_landing_zones_to_include,
-    local.es_sap_landing_zones_to_include,
+    local.es_epic_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
     local.custom_landing_zones,
   )

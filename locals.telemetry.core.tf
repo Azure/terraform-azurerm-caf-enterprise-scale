@@ -14,8 +14,8 @@ locals {
   # Bitfield bit 3: Is deploy online LZ set?
   telem_core_deploy_online_landing_zones = local.deploy_online_landing_zones ? 4 : 0
 
-  # Bitfield bit 4: Is deploy SAP LZ set?
-  telem_core_deploy_sap_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+  # Bitfield bit 4: Is deploy epic LZ set?
+  telem_core_deploy_epic_landing_zones = local.deploy_online_landing_zones ? 8 : 0
 
   # Bitfield bit 5: Are there any custom LZs configured?
   telem_core_custom_lzs_configured = length(local.custom_landing_zones) > 0 ? 16 : 0
@@ -28,7 +28,7 @@ locals {
     local.telem_core_deploy_core_landing_zones +
     local.telem_core_deploy_corp_landing_zones +
     local.telem_core_deploy_online_landing_zones +
-    local.telem_core_deploy_sap_landing_zones +
+    local.telem_core_deploy_epic_landing_zones +
     local.telem_core_custom_lzs_configured
   )
   telem_core_bitfield_hex = format("%04x", local.telem_core_bitfield_denery)

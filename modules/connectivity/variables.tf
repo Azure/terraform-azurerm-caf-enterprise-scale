@@ -32,7 +32,7 @@ variable "subscription_id" {
 variable "location" {
   type        = string
   description = "Sets the default location used for resource deployments where needed."
-  default     = "eastus"
+  #default     = "eastus"
 }
 
 variable "tags" {

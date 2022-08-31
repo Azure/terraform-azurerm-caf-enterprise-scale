@@ -15,7 +15,7 @@ locals {
   deploy_core_landing_zones        = var.deploy_core_landing_zones
   deploy_corp_landing_zones        = var.deploy_corp_landing_zones
   deploy_online_landing_zones      = var.deploy_online_landing_zones
-  deploy_sap_landing_zones         = var.deploy_sap_landing_zones
+  deploy_epic_landing_zones         = var.deploy_epic_landing_zones
   deploy_demo_landing_zones        = var.deploy_demo_landing_zones
   deploy_management_resources      = var.deploy_management_resources
   deploy_identity_resources        = var.deploy_identity_resources

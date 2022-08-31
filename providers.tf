@@ -49,7 +49,7 @@ terraform {
 
 provider "azurerm" {
  # tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
-subscription_id = "ffdd9f66-ac4d-441d-9f1c-982697e34209"
+subscription_id = "d164ebce-67e4-4ca4-85cb-6723292cf680"
   features {}
 }
 
@@ -59,7 +59,7 @@ subscription_id = "ffdd9f66-ac4d-441d-9f1c-982697e34209"
 provider "azurerm" {
   alias           = "connectivity"
  # tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
- subscription_id = "094d439d-3df1-4a4b-be2a-53fede566237"
+ subscription_id = "2215c1a7-50bb-4600-b597-88216acfbeb2"
   features {}
 }
 

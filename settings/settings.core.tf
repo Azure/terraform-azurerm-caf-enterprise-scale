@@ -11,13 +11,13 @@ locals {
         parameters = {
           Deny-Resource-Locations = {
             listOfAllowedLocations = [
-              "eastus",
+              "eastus2",
               "westus",
             ]
           }
           Deny-RSG-Locations = {
             listOfAllowedLocations = [
-              "eastus",
+              "eastus2",
               "westus",
             ]
           }
@@ -27,7 +27,7 @@ locals {
             DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id
             installedApplicationsOnWindowsVM                              = ""
             listOfLocations = [
-              "eastus",
+              "eastus2",
             ]
           }
         }
@@ -53,13 +53,13 @@ locals {
         parameters = {
           Deny-Resource-Locations = {
             listOfAllowedLocations = [
-              "eastus",
+              "eastus2",
               "westus",
             ]
           }
           Deny-RSG-Locations = {
             listOfAllowedLocations = [
-              "eastus",
+              "eastus2",
               "westus",
             ]
           }
@@ -103,7 +103,7 @@ locals {
       parameters = {
         Deny-Resource-Locations = {
           listOfAllowedLocations = [
-            "eastus",
+            "eastus2",
             "eastus2",
             "westus",
             "northcentralus",
@@ -116,7 +116,7 @@ locals {
         }
         Deny-RSG-Locations = {
           listOfAllowedLocations = [
-            "eastus",
+            "eastus2",
             "eastus2",
             "westus",
             "northcentralus",
@@ -133,7 +133,7 @@ locals {
           DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id
           installedApplicationsOnWindowsVM                              = ""
           listOfLocations = [
-            "eastus",
+            "eastus2",
           ]
         }
       }
@@ -171,7 +171,7 @@ locals {
   custom_template_file_variables = {
     testStringKey = "testStringValue"
     listOfAllowedLocations = [
-      "eastus",
+      "eastus2",
       "eastus2",
       "westus",
       "northcentralus",
