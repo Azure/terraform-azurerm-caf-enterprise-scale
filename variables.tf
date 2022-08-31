@@ -46,7 +46,7 @@ variable "deploy_core_landing_zones" {
 variable "deploy_corp_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
-  default     = false
+  default     = true
 }
 
 variable "deploy_online_landing_zones" {
@@ -166,7 +166,7 @@ variable "configure_management_resources" {
 variable "deploy_identity_resources" {
   type        = bool
   description = "If set to true, will enable the \"Identity\" landing zone settings."
-  default     = false
+  default     = true
 }
 
 variable "configure_identity_resources" {
@@ -202,7 +202,7 @@ variable "configure_identity_resources" {
 variable "deploy_connectivity_resources" {
   type        = bool
   description = "If set to true, will enable the \"Connectivity\" landing zone settings and add \"Connectivity\" resources into the current Subscription context."
-  default     = false
+  default     = true
 }
 
 # Notes for the `configure_connectivity_resources` variable:
@@ -464,7 +464,7 @@ variable "configure_connectivity_resources" {
             bgp_community                = ""
             subnets                      = []
             virtual_network_gateway = {
-              enabled = false
+              enabled = true
               config = {
                 address_prefix           = "10.100.1.0/24"
                 gateway_sku_expressroute = "ErGw2AZ"
@@ -481,7 +481,7 @@ variable "configure_connectivity_resources" {
               }
             }
             azure_firewall = {
-              enabled = false
+              enabled = true
               config = {
                 address_prefix                = "10.100.0.0/24"
                 enable_dns_proxy              = true
@@ -500,26 +500,26 @@ variable "configure_connectivity_resources" {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = false
-            enable_hub_network_mesh_peering         = false
+            enable_hub_network_mesh_peering         = true
           }
         },
       ]
       vwan_hub_networks = [
         {
-          enabled = false
+          enabled = true
           config = {
             address_prefix = "10.200.0.0/22"
             location       = ""
             sku            = ""
             routes         = []
             expressroute_gateway = {
-              enabled = false
+              enabled = true
               config = {
                 scale_unit = 1
               }
             }
             vpn_gateway = {
-              enabled = false
+              enabled = true
               config = {
                 bgp_settings       = []
                 routing_preference = ""
@@ -527,7 +527,7 @@ variable "configure_connectivity_resources" {
               }
             }
             azure_firewall = {
-              enabled = false
+              enabled = true
               config = {
                 enable_dns_proxy              = false
                 dns_servers                   = []
@@ -544,7 +544,7 @@ variable "configure_connectivity_resources" {
               }
             }
             spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = false
+            enable_virtual_hub_connections     = true
           }
         },
       ]
