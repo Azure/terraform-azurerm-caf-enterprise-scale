@@ -48,8 +48,8 @@ terraform {
 # This will be used for the deployment of all "Core resources".
 
 provider "azurerm" {
- # tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
-subscription_id = "d164ebce-67e4-4ca4-85cb-6723292cf680"
+  # tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
+  subscription_id = "d164ebce-67e4-4ca4-85cb-6723292cf680"
   features {}
 }
 
@@ -57,9 +57,9 @@ subscription_id = "d164ebce-67e4-4ca4-85cb-6723292cf680"
 # This will be used for the deployment of all "Connectivity resources" to the specified `subscription_id`.
 
 provider "azurerm" {
-  alias           = "connectivity"
- # tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
- subscription_id = "2215c1a7-50bb-4600-b597-88216acfbeb2"
+  alias = "connectivity"
+  # tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
+  subscription_id = "2215c1a7-50bb-4600-b597-88216acfbeb2"
   features {}
 }
 
@@ -67,7 +67,7 @@ provider "azurerm" {
 # This will be used for the deployment of all "Management resources" to the specified `subscription_id`.
 
 provider "azurerm" {
-  alias           = "management"
+  alias = "management"
   #tenant_id = "7f01327e-9d29-46bb-915d-c67edf4dcf4e"
   subscription_id = "ad0a120c-90cb-4850-914a-37e1fd7d689c"
   features {}

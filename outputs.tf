@@ -111,7 +111,7 @@ output "azurerm_automation_account" {
     management = azurerm_automation_account.management
   }
   description = "Returns the configuration data for all Automation Accounts created by this module."
-  sensitive = true
+  sensitive   = true
 }
 
 # The following output is used to ensure all Log Analytics

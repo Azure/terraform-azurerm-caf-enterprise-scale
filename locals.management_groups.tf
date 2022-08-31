@@ -110,10 +110,10 @@ locals {
     "${local.root_id}-identity"       = local.empty_list
     "${local.root_id}-corp"           = local.empty_list
     "${local.root_id}-online"         = local.empty_list
-    "${local.root_id}-epic"            = local.empty_list
+    "${local.root_id}-epic"           = local.empty_list
     "${local.root_id}-demo-corp"      = local.empty_list
     "${local.root_id}-demo-online"    = local.empty_list
-    "${local.root_id}-demo-epic"       = local.empty_list
+    "${local.root_id}-demo-epic"      = local.empty_list
   }
   subscription_id_overrides_map = {
     for key, value in local.subscription_id_overrides :
@@ -264,7 +264,7 @@ locals {
   es_core_landing_zones_to_include   = local.deploy_core_landing_zones ? local.es_core_landing_zones : null
   es_corp_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_corp_landing_zones ? local.es_corp_landing_zones : null
   es_online_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_online_landing_zones ? local.es_online_landing_zones : null
-  es_epic_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_epic_landing_zones ? local.es_epic_landing_zones : null
+  es_epic_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_epic_landing_zones ? local.es_epic_landing_zones : null
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
   es_demo_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_demo_landing_zones ? local.es_demo_landing_zones : null
