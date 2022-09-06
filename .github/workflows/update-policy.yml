@@ -68,6 +68,7 @@ jobs:
               -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}" `
               -Reset
+          azPSVersion: "latest"
 
       - name: Check for changes
         id: git_status
