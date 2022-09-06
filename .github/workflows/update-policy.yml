@@ -34,7 +34,7 @@ jobs:
         with:
           repository: ${{ env.remote_repository }}
           path: ${{ env.remote_repository }}
-          ref: main
+          ref: policy-refactor
 
       - name: Configure local git
         run: |
