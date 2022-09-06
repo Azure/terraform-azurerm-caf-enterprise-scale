@@ -65,8 +65,8 @@ jobs:
           Install-Module -Name "Az.Accounts" -MinimumVersion "${{ env.az_accounts_minimum_version }}" -Force
           Write-Information "==> Running script..." -InformationAction Continue
           ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
-            -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
-            -SourceModulePath ${{ github.workspace }}/${{ env.remote_repository }} `
+            -TargetPath ${{ github.workspace }}/${{ github.repository }} `
+            -SourcePath ${{ github.workspace }}/${{ env.remote_repository }} `
             -Reset
         shell: pwsh
 
