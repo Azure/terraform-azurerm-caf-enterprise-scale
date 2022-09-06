@@ -281,7 +281,6 @@
                     [
                       "string",
                       "string",
-                      "string",
                       "string"
                     ]
                   ]
@@ -1624,7 +1623,6 @@
             "connectivity": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/subnets/AzureFirewallSubnet",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/subnets/GatewaySubnet",
-              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/subnets/AzureFirewallSubnet",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/subnets/GatewaySubnet"
             ]
           },
@@ -3209,35 +3207,6 @@
               "service_endpoints": null,
               "timeouts": null,
               "virtual_network_name": "root-id-1-hub-northeurope"
-            },
-            "sensitive_values": {
-              "address_prefixes": [
-                false
-              ],
-              "delegation": []
-            }
-          },
-          {
-            "address": "module.test_connectivity.azurerm_subnet.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/subnets/AzureFirewallSubnet\"]",
-            "mode": "managed",
-            "type": "azurerm_subnet",
-            "name": "connectivity",
-            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/subnets/AzureFirewallSubnet",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "address_prefixes": [
-                "10.101.0.0/24"
-              ],
-              "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
-              "name": "AzureFirewallSubnet",
-              "resource_group_name": "root-id-1-connectivity-westeurope",
-              "service_endpoint_policy_ids": null,
-              "service_endpoints": null,
-              "timeouts": null,
-              "virtual_network_name": "root-id-1-hub-westeurope"
             },
             "sensitive_values": {
               "address_prefixes": [
