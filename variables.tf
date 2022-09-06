@@ -527,7 +527,7 @@ variable "configure_connectivity_resources" {
               }
             }
             azure_firewall = {
-              enabled = true
+              enabled = false
               config = {
                 enable_dns_proxy              = false
                 dns_servers                   = []
