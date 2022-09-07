@@ -12,7 +12,6 @@ on:
 env:
   remote_repository: "Azure/Enterprise-Scale"
   branch_name: "patch-library"
-  az_accounts_minimum_version: "2.2.3"
   pr_title: "Update Library Templates (automated)"
   pr_body:
     "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\n
@@ -60,16 +59,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
 
       - name: Update library templates
-        run: |
-          Write-Information "==> Installing Az.Accounts PowerShell Module..." -InformationAction Continue
-          Install-Module -Name "Az.Accounts" -MinimumVersion "${{ env.az_accounts_minimum_version }}" -Force
-          Write-Information "==> Running script..." -InformationAction Continue
-          ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
-            -TargetModulePath ${{ github.workspace }}/${{ github.repository }} `
-            -SourceModulePath ${{ github.workspace }}/${{ env.remote_repository }} `
-            -UseCacheFromModule `
-            -Reset
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            Write-Information "==> Running script..." -InformationAction Continue
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
+              -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
+              -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
+              -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}" `
+              -Reset
+          azPSVersion: "latest"
 
       - name: Check for changes
         id: git_status
