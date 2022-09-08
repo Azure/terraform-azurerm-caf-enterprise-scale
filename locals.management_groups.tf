@@ -82,6 +82,31 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
+        "${local.root_id}-citrix" = {
+      archetype_id   = "es_epic"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+        "${local.root_id}-demo-epic" = {
+      archetype_id   = "es_epic"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+        "${local.root_id}-demo-epic" = {
+      archetype_id   = "es_epic"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+        "${local.root_id}-demo-epic" = {
+      archetype_id   = "es_epic"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+        "${local.root_id}-demo-epic" = {
+      archetype_id   = "es_epic"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
   }
   archetype_config_overrides_map = {
     for key, value in local.archetype_config_overrides :

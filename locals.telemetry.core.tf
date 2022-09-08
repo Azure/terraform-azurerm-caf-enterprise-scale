@@ -29,6 +29,10 @@ locals {
     local.telem_core_deploy_corp_landing_zones +
     local.telem_core_deploy_online_landing_zones +
     local.telem_core_deploy_epic_landing_zones +
+    local.telem_core_deploy_finance_landing_zones +
+    local.telem_core_deploy_citrix_landing_zones +
+    local.telem_core_deploy_businiess_landing_zones +
+    local.telem_core_deploy_clinic_landing_zones +
     local.telem_core_custom_lzs_configured
   )
   telem_core_bitfield_hex = format("%04x", local.telem_core_bitfield_denery)
