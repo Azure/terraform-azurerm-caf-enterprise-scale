@@ -52,7 +52,7 @@ variable "deploy_corp_landing_zones" {
 variable "deploy_online_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Online\" Management Group, including \"out of the box\" policies and roles."
-  default     = true
+  default     = false
 }
 
 variable "deploy_epic_landing_zones" {
@@ -60,11 +60,30 @@ variable "deploy_epic_landing_zones" {
   description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-
+variable "deploy_clinic_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+variable "deploy_finance_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+variable "deploy_citrix_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+variable "deploy_business_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
 variable "deploy_demo_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"epic\") into the core Enterprise-scale Management Group hierarchy."
-  default     = true
+  default     = false
 }
 
 variable "deploy_management_resources" {
