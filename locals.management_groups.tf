@@ -32,6 +32,16 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
+        "${local.root_id}-dev-lz" = {
+      archetype_id   = "es_landing_zones"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+        "${local.root_id}-test-lz" = {
+      archetype_id   = "es_landing_zones"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
     "${local.root_id}-platform" = {
       archetype_id   = "es_platform"
       parameters     = local.empty_map
@@ -125,6 +135,8 @@ locals {
     "${local.root_id}-decommissioned" = local.empty_list
     "${local.root_id}-sandboxes"      = local.empty_list
     "${local.root_id}-prod-lz"  = local.empty_list
+        "${local.root_id}-dev-lz"  = local.empty_list
+            "${local.root_id}-test-lz"  = local.empty_list
     "${local.root_id}-platform"       = local.empty_list
     "${local.root_id}-connectivity"   = local.empty_list
     "${local.root_id}-management"     = local.empty_list
@@ -212,6 +224,18 @@ locals {
       parent_management_group_id = local.root_id
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-prod-lz"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-prod-lz"]
+    }
+        "${local.root_id}-dev-lz" = {
+      display_name               = "Ohit Dev LZ"
+      parent_management_group_id = local.root_id
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-dev-lz"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-dev-lz"]
+    }
+        "${local.root_id}-test-lz" = {
+      display_name               = "Ohit Test LZ"
+      parent_management_group_id = local.root_id
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-test-lz"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-test-lz"]
     }
     "${local.root_id}-platform" = {
       display_name               = "Platform"

@@ -532,13 +532,13 @@ variable "configure_connectivity_resources" {
             sku            = ""
             routes         = []
             expressroute_gateway = {
-              enabled = true
+              enabled = false
               config = {
                 scale_unit = 1
               }
             }
             vpn_gateway = {
-              enabled = true
+              enabled = false
               config = {
                 bgp_settings       = []
                 routing_preference = ""
