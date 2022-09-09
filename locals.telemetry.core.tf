@@ -17,6 +17,18 @@ locals {
   # Bitfield bit 4: Is deploy epic LZ set?
   telem_core_deploy_epic_landing_zones = local.deploy_online_landing_zones ? 8 : 0
 
+  # Bitfield bit 4: Is deploy citrix LZ set?
+  telem_core_deploy_citrix_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+
+  # Bitfield bit 4: Is deploy clinic LZ set?
+  telem_core_deploy_clinic_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+
+  # Bitfield bit 4: Is deploy finance LZ set?
+  telem_core_deploy_finance_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+
+  # Bitfield bit 4: Is deploy business LZ set?
+  telem_core_deploy_business_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+
   # Bitfield bit 5: Are there any custom LZs configured?
   telem_core_custom_lzs_configured = length(local.custom_landing_zones) > 0 ? 16 : 0
 }
@@ -31,7 +43,7 @@ locals {
     local.telem_core_deploy_epic_landing_zones +
     local.telem_core_deploy_finance_landing_zones +
     local.telem_core_deploy_citrix_landing_zones +
-    local.telem_core_deploy_businiess_landing_zones +
+    local.telem_core_deploy_business_landing_zones +
     local.telem_core_deploy_clinic_landing_zones +
     local.telem_core_custom_lzs_configured
   )
