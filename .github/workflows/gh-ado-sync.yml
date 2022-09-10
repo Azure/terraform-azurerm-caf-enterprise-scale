@@ -13,7 +13,7 @@ jobs:
   alert:
     runs-on: ubuntu-latest
     name: Sync workflow
-    if: github.repository == 'Azure/terraform-azurerm-caf-enterprise-scale' || github.event_name == 'workflow_dispatch'
+    if: github.repository == 'Azure/terraform-azurerm-caf-enterprise-scale'
 
     steps:
       - name: Checkout code
