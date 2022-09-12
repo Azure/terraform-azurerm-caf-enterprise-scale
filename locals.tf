@@ -20,6 +20,13 @@ locals {
   deploy_business_prod_landing_zones = var.deploy_business_prod_landing_zones
   deploy_clinic_prod_landing_zones   = var.deploy_clinic_prod_landing_zones
   deploy_finance_prod_landing_zones  = var.deploy_finance_prod_landing_zones
+  deploy_corp_dev_landing_zones      = var.deploy_corp_dev_landing_zones
+  deploy_online_dev_landing_zones    = var.deploy_online_dev_landing_zones
+  deploy_epic_dev_landing_zones      = var.deploy_epic_dev_landing_zones
+  deploy_citrix_dev_landing_zones    = var.deploy_citrix_dev_landing_zones
+  deploy_business_dev_landing_zones  = var.deploy_business_dev_landing_zones
+  deploy_clinic_dev_landing_zones    = var.deploy_clinic_dev_landing_zones
+  deploy_finance_dev_landing_zones   = var.deploy_finance_dev_landing_zones
   deploy_demo_landing_zones          = var.deploy_demo_landing_zones
   deploy_management_resources        = var.deploy_management_resources
   deploy_identity_resources          = var.deploy_identity_resources

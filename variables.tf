@@ -80,6 +80,44 @@ variable "deploy_business_prod_landing_zones" {
   description = "If set to true, module will deploy the \"business\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
+#dev
+variable "deploy_corp_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+
+variable "deploy_online_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"Online\" Management Group, including \"out of the box\" policies and roles."
+  default     = false
+}
+
+variable "deploy_epic_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"epic\" dev Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+variable "deploy_clinic_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"clinic\" dev Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+variable "deploy_finance_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"finance\" dev Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+variable "deploy_citrix_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"citrix\" dev Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
+variable "deploy_business_dev_landing_zones" {
+  type        = bool
+  description = "If set to true, module will deploy the \"business\" dev Management Group, including \"out of the box\" policies and roles."
+  default     = true
+}
 variable "deploy_demo_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the demo \"Landing Zone\" Management Groups (\"Corp\", \"Online\", and \"epic\") into the core Enterprise-scale Management Group hierarchy."

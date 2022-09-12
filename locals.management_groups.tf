@@ -62,6 +62,7 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
+    #Prod
     "${local.root_id}-corp_prod" = {
       archetype_id   = "es_corp_prod"
       parameters     = local.empty_map
@@ -74,16 +75,6 @@ locals {
     }
     "${local.root_id}-epic_prod" = {
       archetype_id   = "es_epic_prod"
-      parameters     = local.empty_map
-      access_control = local.empty_map
-    }
-    "${local.root_id}-demo-corp" = {
-      archetype_id   = "es_corp"
-      parameters     = local.empty_map
-      access_control = local.empty_map
-    }
-    "${local.root_id}-demo-online" = {
-      archetype_id   = "es_online"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -104,6 +95,53 @@ locals {
     }
     "${local.root_id}-business_prod" = {
       archetype_id   = "es_business_prod"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    #dev
+    "${local.root_id}-corp_dev" = {
+      archetype_id   = "es_corp_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-online_dev" = {
+      archetype_id   = "es_online_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-epic_dev" = {
+      archetype_id   = "es_epic_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-citrix_dev" = {
+      archetype_id   = "es_citrix_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-clinic_dev" = {
+      archetype_id   = "es_clinic_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-finance_dev" = {
+      archetype_id   = "es_finance_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-business_dev" = {
+      archetype_id   = "es_business_dev"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    #demo
+    "${local.root_id}-demo-corp" = {
+      archetype_id   = "es_corp"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-demo-online" = {
+      archetype_id   = "es_online"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -148,6 +186,13 @@ locals {
     "${local.root_id}-finance_prod"   = local.empty_list
     "${local.root_id}-clinic_prod"    = local.empty_list
     "${local.root_id}-business_prod"  = local.empty_list
+    "${local.root_id}-corp_dev"       = local.empty_list
+    "${local.root_id}-online_dev"     = local.empty_list
+    "${local.root_id}-epic_dev"       = local.empty_list
+    "${local.root_id}-citrix_dev"     = local.empty_list
+    "${local.root_id}-finance_dev"    = local.empty_list
+    "${local.root_id}-clinic_dev"     = local.empty_list
+    "${local.root_id}-business_dev"   = local.empty_list
     "${local.root_id}-demo-corp"      = local.empty_list
     "${local.root_id}-demo-online"    = local.empty_list
     "${local.root_id}-demo-epic"      = local.empty_list
@@ -319,6 +364,63 @@ locals {
       archetype_config           = local.es_archetype_config_map["${local.root_id}-business_prod"]
     }
   }
+  # Optional " Dev Landing Zone" Enterprise-scale Management Groups
+  es_corp_dev_landing_zones = {
+    "${local.root_id}-corp-dev" = {
+      display_name               = "Corp Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-corp_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-corp_dev"]
+    }
+  }
+  es_online_dev_landing_zones = {
+    "${local.root_id}-online-dev" = {
+      display_name               = "Online Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-online_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-online_dev"]
+    }
+  }
+  es_epic_dev_landing_zones = {
+    "${local.root_id}-epic-dev" = {
+      display_name               = "Epic Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-epic_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-epic_dev"]
+    }
+  }
+  es_finance_dev_landing_zones = {
+    "${local.root_id}-finance-dev" = {
+      display_name               = "Finance Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-finance_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-finance_dev"]
+    }
+  }
+  es_citrix_dev_landing_zones = {
+    "${local.root_id}-citrix-dev" = {
+      display_name               = "Citrix Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-citrix_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-citrix_dev"]
+    }
+  }
+  es_clinic_dev_landing_zones = {
+    "${local.root_id}-clinic-dev" = {
+      display_name               = "Clinic Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-clinic_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-clinic_dev"]
+    }
+  }
+  es_business_dev_landing_zones = {
+    "${local.root_id}-business-dev" = {
+      display_name               = "Business Development"
+      parent_management_group_id = "${local.root_id}-dev-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-business_dev"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-business_dev"]
+    }
+  }
   # Optional demo "Landing Zone" Enterprise-scale Management Groups
   es_demo_landing_zones = {
     "${local.root_id}-demo-corp" = {
@@ -350,6 +452,14 @@ locals {
   es_citrix_prod_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_citrix_prod_landing_zones ? local.es_citrix_prod_landing_zones : null
   es_clinic_prod_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_clinic_prod_landing_zones ? local.es_clinic_prod_landing_zones : null
   es_finance_prod_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_finance_prod_landing_zones ? local.es_finance_prod_landing_zones : null
+  es_corp_dev_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_corp_dev_landing_zones ? local.es_corp_dev_landing_zones : null
+  es_online_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_online_dev_landing_zones ? local.es_online_dev_landing_zones : null
+  es_epic_dev_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_epic_dev_landing_zones ? local.es_epic_dev_landing_zones : null
+  es_business_dev_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_business_dev_landing_zones ? local.es_business_dev_landing_zones : null
+  es_citrix_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_citrix_dev_landing_zones ? local.es_citrix_dev_landing_zones : null
+  es_clinic_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_clinic_dev_landing_zones ? local.es_clinic_dev_landing_zones : null
+  es_finance_dev_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_finance_dev_landing_zones ? local.es_finance_dev_landing_zones : null
+
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
   es_demo_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_demo_landing_zones ? local.es_demo_landing_zones : null
@@ -363,6 +473,13 @@ locals {
     local.es_clinic_prod_landing_zones_to_include,
     local.es_business_prod_landing_zones_to_include,
     local.es_finance_prod_landing_zones_to_include,
+    local.es_corp_dev_landing_zones_to_include,
+    local.es_online_dev_landing_zones_to_include,
+    local.es_epic_dev_landing_zones_to_include,
+    local.es_citrix_dev_landing_zones_to_include,
+    local.es_clinic_dev_landing_zones_to_include,
+    local.es_business_dev_landing_zones_to_include,
+    local.es_finance_dev_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
     local.custom_landing_zones,
   )

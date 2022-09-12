@@ -1708,15 +1708,25 @@
             ],
             "level_3": [
               "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
               "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "/providers/Microsoft.Management/managementGroups/root-id-1-management",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-corp_prod",
+
               "/providers/Microsoft.Management/managementGroups/root-id-1-online_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-epic_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-finance_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-business_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_prod",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-corp_dev",
+
+              "/providers/Microsoft.Management/managementGroups/root-id-1-online_dev",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-epic_dev",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_dev",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-finance_dev",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-business_dev",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev",
+
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure"
             ],
             "level_4": [
@@ -3958,24 +3968,7 @@
               ]
             }
           },
-          {
-            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-corp\"]",
-            "mode": "managed",
-            "type": "azurerm_management_group",
-            "name": "level_3",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "display_name": "Corp",
-              "name": "root-id-1-corp",
-              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz",
-              "timeouts": null
-            },
-            "sensitive_values": {
-              "subscription_ids": []
-            }
-          },
+
           {
             "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-identity\"]",
             "mode": "managed",
@@ -4015,6 +4008,24 @@
               "subscription_ids": [
                 false
               ]
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-corp_prod\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Corp",
+              "name": "root-id-1-corp",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
             }
           },
           {
@@ -4107,7 +4118,7 @@
               "subscription_ids": []
             }
           },
-                    {
+          {
             "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-finance_prod\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
@@ -4137,6 +4148,132 @@
               "display_name": "Secure Workloads (HITRUST/HIPAA)",
               "name": "root-id-1-secure",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-corp_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-corp_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Corp Dev",
+              "name": "root-id-1-corp_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-online_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-online_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Online Dev",
+              "name": "root-id-1-online_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-epic_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-epic_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Epic Dev",
+              "name": "root-id-1-epic_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-citrix_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Citrix Dev",
+              "name": "root-id-1-citrix_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-business_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-business_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Business Dev",
+              "name": "root-id-1-business_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Clinic Dev",
+              "name": "root-id-1-clinic_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-finance_dev\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-finance_dev",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Finance Dev",
+              "name": "root-id-1-finance_dev",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
               "timeouts": null
             },
             "sensitive_values": {
