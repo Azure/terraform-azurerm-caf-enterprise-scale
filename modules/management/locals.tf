@@ -3,6 +3,7 @@
 locals {
   empty_string = ""
   empty_list   = []
+  empty_map    = {}
 }
 
 # Convert the input vars to locals, applying any required
@@ -30,11 +31,11 @@ locals {
 # Extract individual custom settings blocks from
 # the custom_settings_by_resource_type variable.
 locals {
-  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], null)
-  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], null)
-  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], null)
-  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], null)
-  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], null)
+  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], local.empty_map)
+  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], local.empty_map)
+  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], local.empty_map)
+  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
+  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
 }
 
 # Logic to determine whether specific resources
@@ -152,16 +153,23 @@ locals {
     local.existing_automation_account_resource_id,
     "${local.resource_group_resource_id}/providers/Microsoft.Automation/automationAccounts/${local.azurerm_automation_account.name}"
   )
+  # As per issue #449, some automation accounts should be created in a different region to the log analytics workspace
+  # The automation_account_location_map local is used to track these
+  automation_account_location_map = {
+    eastus  = "eastus2"
+    eastus2 = "eastus"
+  }
+  automation_account_location = coalesce(
+    lookup(local.custom_settings_aa, "location", null),
+    lookup(local.automation_account_location_map, local.location, local.location)
+  )
   azurerm_automation_account = {
-    name     = try(local.custom_settings_aa.name, "${local.resource_prefix}-automation${local.resource_suffix}")
-    location = try(local.custom_settings_aa.location, local.location)
-    sku_name = try(local.custom_settings_aa.sku_name, "Basic")
-    identity = try(local.custom_settings_aa.identity, local.empty_list)
-    tags     = try(local.custom_settings_aa.tags, local.tags)
-    resource_group_name = coalesce(
-      try(local.custom_settings_aa.resource_group_name, null),
-      local.resource_group_name,
-    )
+    name                = lookup(local.custom_settings_aa, "name", "${local.resource_prefix}-automation${local.resource_suffix}")
+    location            = lookup(local.custom_settings_aa, "location", local.automation_account_location)
+    sku_name            = lookup(local.custom_settings_aa, "sku_name", "Basic")
+    identity            = lookup(local.custom_settings_aa, "identity", local.empty_list)
+    tags                = lookup(local.custom_settings_aa, "tags", local.tags)
+    resource_group_name = lookup(local.custom_settings_aa, "resource_group_name", local.resource_group_name)
   }
 }
 
