@@ -724,7 +724,7 @@ variable "subscription_id_overrides" {
 
 variable "subscription_id_connectivity" {
   type        = string
-  description = "If specified, identifies the Platform subscription for \"Connectivity\" for resource deployment and correct placement in the Management Group hierarchy."
+  description = "If specified, identifies the Shared Services subscription for \"Connectivity\" for resource deployment and correct placement in the Management Group hierarchy."
   default     = "2215c1a7-50bb-4600-b597-88216acfbeb2"
 
   validation {
@@ -735,7 +735,7 @@ variable "subscription_id_connectivity" {
 
 variable "subscription_id_identity" {
   type        = string
-  description = "If specified, identifies the Platform subscription for \"Identity\" for resource deployment and correct placement in the Management Group hierarchy."
+  description = "If specified, identifies the Shared Services subscription for \"Identity\" for resource deployment and correct placement in the Management Group hierarchy."
   default     = "d164ebce-67e4-4ca4-85cb-6723292cf680"
 
   validation {
@@ -746,7 +746,7 @@ variable "subscription_id_identity" {
 
 variable "subscription_id_management" {
   type        = string
-  description = "If specified, identifies the Platform subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy."
+  description = "If specified, identifies the Shared Services subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy."
   default     = "ad0a120c-90cb-4850-914a-37e1fd7d689c"
 
   validation {

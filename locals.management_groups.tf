@@ -42,8 +42,8 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
-    "${local.root_id}-platform" = {
-      archetype_id   = "es_platform"
+    "${local.root_id}-shared_svc" = {
+      archetype_id   = "es_shared_svc"
       parameters     = local.empty_map
       access_control = local.empty_map
     }
@@ -211,7 +211,7 @@ locals {
     "${local.root_id}-prod-lz"        = local.empty_list
     "${local.root_id}-dev-lz"         = local.empty_list
     "${local.root_id}-test-lz"        = local.empty_list
-    "${local.root_id}-platform"       = local.empty_list
+    "${local.root_id}-shared_svc"       = local.empty_list
     "${local.root_id}-connectivity"   = local.empty_list
     "${local.root_id}-management"     = local.empty_list
     "${local.root_id}-identity"       = local.empty_list
@@ -251,7 +251,7 @@ locals {
 }
 
 # The following locals are used to determine Management Group
-# placement for the platform Subscriptions. Preference of
+# placement for the Shared Services Subscriptions. Preference of
 # placement is based on the following:
 #   1. Management
 #   2. Connectivity
@@ -325,27 +325,27 @@ locals {
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-test-lz"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-test-lz"]
     }
-    "${local.root_id}-platform" = {
-      display_name               = "Platform"
+    "${local.root_id}-shared_svc" = {
+      display_name               = "Shared Services"
       parent_management_group_id = local.root_id
-      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-platform"]
-      archetype_config           = local.es_archetype_config_map["${local.root_id}-platform"]
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-shared_svc"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-shared_svc"]
     }
     "${local.root_id}-connectivity" = {
       display_name               = "Connectivity"
-      parent_management_group_id = "${local.root_id}-platform"
+      parent_management_group_id = "${local.root_id}-shared_svc"
       subscription_ids           = local.subscription_ids_connectivity
       archetype_config           = local.es_archetype_config_map["${local.root_id}-connectivity"]
     }
     "${local.root_id}-management" = {
       display_name               = "Management"
-      parent_management_group_id = "${local.root_id}-platform"
+      parent_management_group_id = "${local.root_id}-shared_svc"
       subscription_ids           = local.subscription_ids_management
       archetype_config           = local.es_archetype_config_map["${local.root_id}-management"]
     }
     "${local.root_id}-identity" = {
       display_name               = "Identity"
-      parent_management_group_id = "${local.root_id}-platform"
+      parent_management_group_id = "${local.root_id}-shared_svc"
       subscription_ids           = local.subscription_ids_identity
       archetype_config           = local.es_archetype_config_map["${local.root_id}-identity"]
     }

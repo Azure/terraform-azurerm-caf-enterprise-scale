@@ -1703,7 +1703,7 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz",
               "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
               "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc",
               "/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes"
             ],
             "level_3": [
@@ -3952,16 +3952,16 @@
             }
           },
           {
-            "address": "module.test_core.azurerm_management_group.level_2[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform\"]",
+            "address": "module.test_core.azurerm_management_group.level_2[\"/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
             "name": "level_2",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "display_name": "Platform",
-              "name": "root-id-1-platform",
+              "display_name": "Shared Services",
+              "name": "root-id-1-shared_svc",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "timeouts": null
             },
@@ -3998,7 +3998,7 @@
             "values": {
               "display_name": "Connectivity",
               "name": "root-id-1-connectivity",
-              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc",
               "subscription_ids": [
                 "fa2fa118-a60d-4700-9ef1-fa02beeaaea5"
               ],
@@ -4022,7 +4022,7 @@
             "values": {
               "display_name": "Identity",
               "name": "root-id-1-identity",
-              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc",
               "timeouts": null
             },
             "sensitive_values": {
@@ -4040,7 +4040,7 @@
             "values": {
               "display_name": "Management",
               "name": "root-id-1-management",
-              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc",
               "subscription_ids": [
                 "a9d8bda7-a341-4fe2-bfbf-61145868379e"
               ],
@@ -9651,7 +9651,7 @@
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_management_group_level_1": "[\"/providers/Microsoft.Management/managementGroups/root-id-1\"]",
-                "azurerm_management_group_level_2": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned\",\"/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-test-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes\"]",
+                "azurerm_management_group_level_2": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned\",\"/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-test-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-shared_svc\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes\"]",
                 "azurerm_management_group_level_3": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management\",\"/providers/Microsoft.Management/managementGroups/root-id-1-online_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-epic_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-citrix_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-clinical_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-finance_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-business_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure\"]",
                 "azurerm_management_group_level_4": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-web-emea\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-global\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-us\"]",
                 "azurerm_management_group_level_5": "[]",

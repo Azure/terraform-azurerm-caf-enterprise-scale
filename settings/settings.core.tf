@@ -151,7 +151,7 @@ locals {
     decommissioned = []
     sandboxes      = []
     landing-zones  = [] # Not recommended, put Subscriptions in child management groups.
-    platform       = [] # Not recommended, put Subscriptions in child management groups.
+    shared_svc       = [] # Not recommended, put Subscriptions in child management groups.
     connectivity   = [] # Not recommended, use subscription_id_connectivity instead.
     management     = [] # Not recommended, use subscription_id_management instead.
     identity       = [] # Not recommended, use subscription_id_identity instead.

@@ -24,7 +24,7 @@ module "management_group_archetypes" {
 }
 
 # The following module is used to generate the configuration
-# data used to deploy platform resources based on the
+# data used to deploy Shared Services resources based on the
 # "management" landing zone archetype.
 module "management_resources" {
   source = "./modules/management"
@@ -51,7 +51,7 @@ module "management_resources" {
 }
 
 # The following module is used to generate the configuration
-# data used to deploy platform resources based on the
+# data used to deploy Sharred Services resources based on the
 # "identity" landing zone archetype.
 module "identity_resources" {
   source = "./modules/identity"
@@ -63,7 +63,7 @@ module "identity_resources" {
 }
 
 # The following module is used to generate the configuration
-# data used to deploy platform resources based on the
+# data used to deploy Shared Services resources based on the
 # "connectivity" landing zone archetype.
 module "connectivity_resources" {
   source = "./modules/connectivity"
