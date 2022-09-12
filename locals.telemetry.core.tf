@@ -9,25 +9,25 @@ locals {
   telem_core_deploy_core_landing_zones = local.deploy_core_landing_zones ? 1 : 0
 
   # Bitfield bit 2: Is deploy corp LZ set?
-  telem_core_deploy_corp_landing_zones = local.deploy_corp_landing_zones ? 2 : 0
+  telem_core_deploy_corp_prod_landing_zones = local.deploy_corp_prod_landing_zones ? 2 : 0
 
   # Bitfield bit 3: Is deploy online LZ set?
-  telem_core_deploy_online_landing_zones = local.deploy_online_landing_zones ? 4 : 0
+  telem_core_deploy_online_prod_landing_zones = local.deploy_online_prod_landing_zones ? 4 : 0
 
   # Bitfield bit 4: Is deploy epic LZ set?
-  telem_core_deploy_epic_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+  telem_core_deploy_epic_prod_landing_zones = local.deploy_online_prod_landing_zones ? 8 : 0
 
   # Bitfield bit 4: Is deploy citrix LZ set?
-  telem_core_deploy_citrix_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+  telem_core_deploy_citrix_prod_landing_zones = local.deploy_online_prod_landing_zones ? 8 : 0
 
   # Bitfield bit 4: Is deploy clinic LZ set?
-  telem_core_deploy_clinic_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+  telem_core_deploy_clinic_prod_landing_zones = local.deploy_online_prod_landing_zones ? 10 : 0
 
-  # Bitfield bit 4: Is deploy finance LZ set?
-  telem_core_deploy_finance_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+  # Bitfield bit 11: Is deploy Finance Prod LZ set?
+  telem_core_deploy_finance_prod_landing_zones = local.deploy_online_prod_landing_zones ? 11 : 0
 
   # Bitfield bit 4: Is deploy business LZ set?
-  telem_core_deploy_business_landing_zones = local.deploy_online_landing_zones ? 8 : 0
+  telem_core_deploy_business_prod_landing_zones = local.deploy_online_prod_landing_zones ? 8 : 0
 
   # Bitfield bit 5: Are there any custom LZs configured?
   telem_core_custom_lzs_configured = length(local.custom_landing_zones) > 0 ? 16 : 0
@@ -38,13 +38,13 @@ locals {
 locals {
   telem_core_bitfield_denery = (
     local.telem_core_deploy_core_landing_zones +
-    local.telem_core_deploy_corp_landing_zones +
-    local.telem_core_deploy_online_landing_zones +
-    local.telem_core_deploy_epic_landing_zones +
-    local.telem_core_deploy_finance_landing_zones +
-    local.telem_core_deploy_citrix_landing_zones +
-    local.telem_core_deploy_business_landing_zones +
-    local.telem_core_deploy_clinic_landing_zones +
+    local.telem_core_deploy_corp_prod_landing_zones +
+    local.telem_core_deploy_online_prod_landing_zones +
+    local.telem_core_deploy_epic_prod_landing_zones +
+    local.telem_core_deploy_finance_prod_landing_zones +
+    local.telem_core_deploy_citrix_prod_landing_zones +
+    local.telem_core_deploy_business_prod_landing_zones +
+    local.telem_core_deploy_clinic_prod_landing_zones +
     local.telem_core_custom_lzs_configured
   )
   telem_core_bitfield_hex = format("%04x", local.telem_core_bitfield_denery)

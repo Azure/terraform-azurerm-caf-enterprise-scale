@@ -1,5 +1,5 @@
 {
-    "es_corp": {
+    "es_corp_prod": {
         "policy_assignments": [
             "Deny-Public-Endpoints",
             "Deploy-Private-DNS-Zones",

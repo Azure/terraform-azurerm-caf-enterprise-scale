@@ -43,41 +43,41 @@ variable "deploy_core_landing_zones" {
   default     = true
 }
 
-variable "deploy_corp_landing_zones" {
+variable "deploy_corp_prod_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
 
-variable "deploy_online_landing_zones" {
+variable "deploy_online_prod_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Online\" Management Group, including \"out of the box\" policies and roles."
   default     = false
 }
 
-variable "deploy_epic_landing_zones" {
+variable "deploy_epic_prod_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"epic\" Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"epic\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_clinic_landing_zones" {
+variable "deploy_clinic_prod_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"clinic\" Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"clinic\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_finance_landing_zones" {
+variable "deploy_finance_prod_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"finance\" Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"finance\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_citrix_landing_zones" {
+variable "deploy_citrix_prod_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"citirx\" Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"citrix\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_business_landing_zones" {
+variable "deploy_business_prod_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"business\" Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"business\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
 variable "deploy_demo_landing_zones" {
