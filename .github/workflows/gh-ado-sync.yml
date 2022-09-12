@@ -13,6 +13,7 @@ jobs:
   alert:
     runs-on: ubuntu-latest
     name: Sync workflow
+    if: github.repository == 'Azure/terraform-azurerm-caf-enterprise-scale'
 
     steps:
       - name: Checkout code
