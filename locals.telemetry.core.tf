@@ -20,8 +20,8 @@ locals {
   # Bitfield bit 4: Is deploy citrix LZ set?
   telem_core_deploy_citrix_prod_landing_zones = local.deploy_online_prod_landing_zones ? 8 : 0
 
-  # Bitfield bit 4: Is deploy clinic LZ set?
-  telem_core_deploy_clinic_prod_landing_zones = local.deploy_online_prod_landing_zones ? 10 : 0
+  # Bitfield bit 4: Is deploy clinical LZ set?
+  telem_core_deploy_clinical_prod_landing_zones = local.deploy_online_prod_landing_zones ? 10 : 0
 
   # Bitfield bit 11: Is deploy Finance Prod LZ set?
   telem_core_deploy_finance_prod_landing_zones = local.deploy_online_prod_landing_zones ? 11 : 0
@@ -44,7 +44,7 @@ locals {
     local.telem_core_deploy_finance_prod_landing_zones +
     local.telem_core_deploy_citrix_prod_landing_zones +
     local.telem_core_deploy_business_prod_landing_zones +
-    local.telem_core_deploy_clinic_prod_landing_zones +
+    local.telem_core_deploy_clinical_prod_landing_zones +
     local.telem_core_custom_lzs_configured
   )
   telem_core_bitfield_hex = format("%04x", local.telem_core_bitfield_denery)

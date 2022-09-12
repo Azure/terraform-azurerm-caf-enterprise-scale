@@ -1716,21 +1716,21 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-finance_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-business_prod",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_prod",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-clinical_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-corp_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-online_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-epic_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-finance_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-business_dev",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-clinical_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-corp_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-online_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-epic_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-finance_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-business_test",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-clinical_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure"
             ],
             "level_4": [
@@ -4143,16 +4143,16 @@
             }
           },
           {
-            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinic_prod\"]",
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinical_prod\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
             "name": "level_3",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_prod",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinical_prod",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "display_name": "Clinic Prod",
-              "name": "root-id-1-clinic_prod",
+              "display_name": "Clinical Prod",
+              "name": "root-id-1-clinical_prod",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz",
               "timeouts": null
             },
@@ -4287,16 +4287,16 @@
             }
           },
           {
-            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev\"]",
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinical_dev\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
             "name": "level_3",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinical_dev",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "display_name": "Clinic Dev",
-              "name": "root-id-1-clinic_dev",
+              "display_name": "Clinical Dev",
+              "name": "root-id-1-clinical_dev",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
               "timeouts": null
             },
@@ -4413,16 +4413,16 @@
             }
           },
           {
-            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinic_test\"]",
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinical_test\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
             "name": "level_3",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_test",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinical_test",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "display_name": "Clinic test",
-              "name": "root-id-1-clinic_test",
+              "display_name": "Clinical test",
+              "name": "root-id-1-clinical_test",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
               "timeouts": null
             },
@@ -9652,7 +9652,7 @@
               "triggers": {
                 "azurerm_management_group_level_1": "[\"/providers/Microsoft.Management/managementGroups/root-id-1\"]",
                 "azurerm_management_group_level_2": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned\",\"/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-test-lz\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes\"]",
-                "azurerm_management_group_level_3": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management\",\"/providers/Microsoft.Management/managementGroups/root-id-1-online_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-epic_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-citrix_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-clinic_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-finance_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-business_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure\"]",
+                "azurerm_management_group_level_3": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management\",\"/providers/Microsoft.Management/managementGroups/root-id-1-online_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-epic_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-citrix_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-clinical_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-finance_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-business_prod\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure\"]",
                 "azurerm_management_group_level_4": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-web-emea\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-global\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-us\"]",
                 "azurerm_management_group_level_5": "[]",
                 "azurerm_management_group_level_6": "[]"

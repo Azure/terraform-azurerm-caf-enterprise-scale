@@ -60,9 +60,9 @@ variable "deploy_epic_prod_landing_zones" {
   description = "If set to true, module will deploy the \"epic\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_clinic_prod_landing_zones" {
+variable "deploy_clinical_prod_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"clinic\" Prod Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"clinical\" Prod Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
 variable "deploy_finance_prod_landing_zones" {
@@ -98,9 +98,9 @@ variable "deploy_epic_dev_landing_zones" {
   description = "If set to true, module will deploy the \"epic\" dev Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_clinic_dev_landing_zones" {
+variable "deploy_clinical_dev_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"clinic\" dev Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"clinical\" dev Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
 variable "deploy_finance_dev_landing_zones" {
@@ -136,9 +136,9 @@ variable "deploy_epic_test_landing_zones" {
   description = "If set to true, module will deploy the \"epic\" test Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
-variable "deploy_clinic_test_landing_zones" {
+variable "deploy_clinical_test_landing_zones" {
   type        = bool
-  description = "If set to true, module will deploy the \"clinic\" test Management Group, including \"out of the box\" policies and roles."
+  description = "If set to true, module will deploy the \"clinical\" test Management Group, including \"out of the box\" policies and roles."
   default     = true
 }
 variable "deploy_finance_test_landing_zones" {
