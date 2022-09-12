@@ -1711,7 +1711,6 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "/providers/Microsoft.Management/managementGroups/root-id-1-management",
               "/providers/Microsoft.Management/managementGroups/root-id-1-corp_prod",
-
               "/providers/Microsoft.Management/managementGroups/root-id-1-online_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-epic_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_prod",
@@ -1719,14 +1718,19 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-business_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_prod",
               "/providers/Microsoft.Management/managementGroups/root-id-1-corp_dev",
-
               "/providers/Microsoft.Management/managementGroups/root-id-1-online_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-epic_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-finance_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-business_dev",
               "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_dev",
-
+              "/providers/Microsoft.Management/managementGroups/root-id-1-corp_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-online_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-epic_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-finance_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-business_test",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_test",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure"
             ],
             "level_4": [
@@ -1761,6 +1765,30 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET",
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS",
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deny-IP-Forwarding",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Containers-AKS",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Escalation-AKS",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deny-RDP-From-Internet",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-DB-Auditing",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deny-IP-Forwarding",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Containers-AKS",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Escalation-AKS",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deny-RDP-From-Internet",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-DB-Auditing",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL",
               "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations",
@@ -1939,6 +1967,20 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145",
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
               "/providers/Microsoft.Management/managementGroups/root-id-1-prod-lz/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/1c659f37-1ad5-5577-bc68-922ba20d7523",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/8a906dc2-5af6-5c64-a065-e5782483b6b7",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/1c659f37-1ad5-5577-bc68-922ba20d7523",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/8a906dc2-5af6-5c64-a065-e5782483b6b7",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/e3bad489-c3ed-57c4-9802-e4c4a84ed145",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35",
               "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/roleAssignments/8f7e20b7-7a5d-551d-b4fd-047861c4bc93",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/roleAssignments/3406f92e-62e7-506f-9b80-9c7a6a19c569",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/roleAssignments/7316970a-470a-5a53-bc65-06add2b5a31e",
@@ -4274,6 +4316,132 @@
               "display_name": "Finance Dev",
               "name": "root-id-1-finance_dev",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-dev-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+                    {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-corp_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-corp_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Corp test",
+              "name": "root-id-1-corp_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-online_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-online_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Online test",
+              "name": "root-id-1-online_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-epic_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-epic_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Epic test",
+              "name": "root-id-1-epic_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-citrix_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-citrix_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Citrix test",
+              "name": "root-id-1-citrix_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-business_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-business_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Business test",
+              "name": "root-id-1-business_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-clinic_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-clinic_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Clinic test",
+              "name": "root-id-1-clinic_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "subscription_ids": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group.level_3[\"/providers/Microsoft.Management/managementGroups/root-id-1-finance_test\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group",
+            "name": "level_3",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-finance_test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "display_name": "Finance test",
+              "name": "root-id-1-finance_test",
+              "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-test-lz",
               "timeouts": null
             },
             "sensitive_values": {

@@ -134,6 +134,42 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
+        #test
+    "${local.root_id}-corp_test" = {
+      archetype_id   = "es_corp_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-online_test" = {
+      archetype_id   = "es_online_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-epic_test" = {
+      archetype_id   = "es_epic_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-citrix_test" = {
+      archetype_id   = "es_citrix_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-clinic_test" = {
+      archetype_id   = "es_clinic_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-finance_test" = {
+      archetype_id   = "es_finance_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-business_test" = {
+      archetype_id   = "es_business_test"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
     #demo
     "${local.root_id}-demo-corp" = {
       archetype_id   = "es_corp"
@@ -193,6 +229,13 @@ locals {
     "${local.root_id}-finance_dev"    = local.empty_list
     "${local.root_id}-clinic_dev"     = local.empty_list
     "${local.root_id}-business_dev"   = local.empty_list
+        "${local.root_id}-corp_test"       = local.empty_list
+    "${local.root_id}-online_test"     = local.empty_list
+    "${local.root_id}-epic_test"       = local.empty_list
+    "${local.root_id}-citrix_test"     = local.empty_list
+    "${local.root_id}-finance_test"    = local.empty_list
+    "${local.root_id}-clinic_test"     = local.empty_list
+    "${local.root_id}-business_test"   = local.empty_list
     "${local.root_id}-demo-corp"      = local.empty_list
     "${local.root_id}-demo-online"    = local.empty_list
     "${local.root_id}-demo-epic"      = local.empty_list
@@ -421,6 +464,63 @@ locals {
       archetype_config           = local.es_archetype_config_map["${local.root_id}-business_dev"]
     }
   }
+    # Optional " test Landing Zone" Enterprise-scale Management Groups
+  es_corp_test_landing_zones = {
+    "${local.root_id}-corp-test" = {
+      display_name               = "Corp Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-corp_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-corp_test"]
+    }
+  }
+  es_online_test_landing_zones = {
+    "${local.root_id}-online-test" = {
+      display_name               = "Online Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-online_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-online_test"]
+    }
+  }
+  es_epic_test_landing_zones = {
+    "${local.root_id}-epic-test" = {
+      display_name               = "Epic Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-epic_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-epic_test"]
+    }
+  }
+  es_finance_test_landing_zones = {
+    "${local.root_id}-finance-test" = {
+      display_name               = "Finance Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-finance_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-finance_test"]
+    }
+  }
+  es_citrix_test_landing_zones = {
+    "${local.root_id}-citrix-test" = {
+      display_name               = "Citrix Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-citrix_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-citrix_test"]
+    }
+  }
+  es_clinic_test_landing_zones = {
+    "${local.root_id}-clinic-test" = {
+      display_name               = "Clinic Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-clinic_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-clinic_test"]
+    }
+  }
+  es_business_test_landing_zones = {
+    "${local.root_id}-business-test" = {
+      display_name               = "Business Testing"
+      parent_management_group_id = "${local.root_id}-test-lz"
+      subscription_ids           = local.es_subscription_ids_map["${local.root_id}-business_test"]
+      archetype_config           = local.es_archetype_config_map["${local.root_id}-business_test"]
+    }
+  }
   # Optional demo "Landing Zone" Enterprise-scale Management Groups
   es_demo_landing_zones = {
     "${local.root_id}-demo-corp" = {
@@ -459,6 +559,13 @@ locals {
   es_citrix_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_citrix_dev_landing_zones ? local.es_citrix_dev_landing_zones : null
   es_clinic_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_clinic_dev_landing_zones ? local.es_clinic_dev_landing_zones : null
   es_finance_dev_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_finance_dev_landing_zones ? local.es_finance_dev_landing_zones : null
+es_corp_test_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_corp_test_landing_zones ? local.es_corp_test_landing_zones : null
+  es_online_test_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_online_test_landing_zones ? local.es_online_test_landing_zones : null
+  es_epic_test_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_epic_test_landing_zones ? local.es_epic_test_landing_zones : null
+  es_business_test_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_business_test_landing_zones ? local.es_business_test_landing_zones : null
+  es_citrix_test_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_citrix_test_landing_zones ? local.es_citrix_test_landing_zones : null
+  es_clinic_test_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_clinic_test_landing_zones ? local.es_clinic_test_landing_zones : null
+  es_finance_test_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_finance_test_landing_zones ? local.es_finance_test_landing_zones : null
 
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
@@ -480,6 +587,13 @@ locals {
     local.es_clinic_dev_landing_zones_to_include,
     local.es_business_dev_landing_zones_to_include,
     local.es_finance_dev_landing_zones_to_include,
+        local.es_corp_test_landing_zones_to_include,
+    local.es_online_test_landing_zones_to_include,
+    local.es_epic_test_landing_zones_to_include,
+    local.es_citrix_test_landing_zones_to_include,
+    local.es_clinic_test_landing_zones_to_include,
+    local.es_business_test_landing_zones_to_include,
+    local.es_finance_test_landing_zones_to_include,
     local.es_demo_landing_zones_to_include,
     local.custom_landing_zones,
   )
