@@ -7,11 +7,6 @@ name: Code Review
 
 # yamllint disable-line rule:truthy
 on:
-  push:
-    branches-ignore:
-      - main
-      - patch-library
-      - release/**
   pull_request:
     branches:
       - main
