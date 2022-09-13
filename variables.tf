@@ -46,7 +46,7 @@ variable "deploy_core_landing_zones" {
 variable "deploy_corp_prod_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
-  default     = true
+  default     = false
 }
 
 variable "deploy_online_prod_landing_zones" {
@@ -84,7 +84,7 @@ variable "deploy_business_prod_landing_zones" {
 variable "deploy_corp_dev_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
-  default     = true
+  default     = false
 }
 
 variable "deploy_online_dev_landing_zones" {
@@ -122,7 +122,7 @@ variable "deploy_business_dev_landing_zones" {
 variable "deploy_corp_test_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the \"Corp\" Management Group, including \"out of the box\" policies and roles."
-  default     = true
+  default     = false
 }
 
 variable "deploy_online_test_landing_zones" {

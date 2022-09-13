@@ -134,7 +134,7 @@ locals {
       parameters     = local.empty_map
       access_control = local.empty_map
     }
-        #test
+    #test
     "${local.root_id}-corp_test" = {
       archetype_id   = "es_corp_test"
       parameters     = local.empty_map
@@ -211,7 +211,7 @@ locals {
     "${local.root_id}-prod-lz"        = local.empty_list
     "${local.root_id}-dev-lz"         = local.empty_list
     "${local.root_id}-test-lz"        = local.empty_list
-    "${local.root_id}-shared_svc"       = local.empty_list
+    "${local.root_id}-shared_svc"     = local.empty_list
     "${local.root_id}-connectivity"   = local.empty_list
     "${local.root_id}-management"     = local.empty_list
     "${local.root_id}-identity"       = local.empty_list
@@ -220,22 +220,22 @@ locals {
     "${local.root_id}-epic_prod"      = local.empty_list
     "${local.root_id}-citrix_prod"    = local.empty_list
     "${local.root_id}-finance_prod"   = local.empty_list
-    "${local.root_id}-clinical_prod"    = local.empty_list
+    "${local.root_id}-clinical_prod"  = local.empty_list
     "${local.root_id}-business_prod"  = local.empty_list
     "${local.root_id}-corp_dev"       = local.empty_list
     "${local.root_id}-online_dev"     = local.empty_list
     "${local.root_id}-epic_dev"       = local.empty_list
     "${local.root_id}-citrix_dev"     = local.empty_list
     "${local.root_id}-finance_dev"    = local.empty_list
-    "${local.root_id}-clinical_dev"     = local.empty_list
+    "${local.root_id}-clinical_dev"   = local.empty_list
     "${local.root_id}-business_dev"   = local.empty_list
-        "${local.root_id}-corp_test"       = local.empty_list
-    "${local.root_id}-online_test"     = local.empty_list
-    "${local.root_id}-epic_test"       = local.empty_list
-    "${local.root_id}-citrix_test"     = local.empty_list
-    "${local.root_id}-finance_test"    = local.empty_list
-    "${local.root_id}-clinical_test"     = local.empty_list
-    "${local.root_id}-business_test"   = local.empty_list
+    "${local.root_id}-corp_test"      = local.empty_list
+    "${local.root_id}-online_test"    = local.empty_list
+    "${local.root_id}-epic_test"      = local.empty_list
+    "${local.root_id}-citrix_test"    = local.empty_list
+    "${local.root_id}-finance_test"   = local.empty_list
+    "${local.root_id}-clinical_test"  = local.empty_list
+    "${local.root_id}-business_test"  = local.empty_list
     "${local.root_id}-demo-corp"      = local.empty_list
     "${local.root_id}-demo-online"    = local.empty_list
     "${local.root_id}-demo-epic"      = local.empty_list
@@ -464,7 +464,7 @@ locals {
       archetype_config           = local.es_archetype_config_map["${local.root_id}-business_dev"]
     }
   }
-    # Optional " test Landing Zone" Enterprise-scale Management Groups
+  # Optional " test Landing Zone" Enterprise-scale Management Groups
   es_corp_test_landing_zones = {
     "${local.root_id}-corp-test" = {
       display_name               = "Corp Testing"
@@ -550,22 +550,22 @@ locals {
   es_epic_prod_landing_zones_to_include     = local.deploy_core_landing_zones && local.deploy_epic_prod_landing_zones ? local.es_epic_prod_landing_zones : null
   es_business_prod_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_business_prod_landing_zones ? local.es_business_prod_landing_zones : null
   es_citrix_prod_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_citrix_prod_landing_zones ? local.es_citrix_prod_landing_zones : null
-  es_clinical_prod_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_clinical_prod_landing_zones ? local.es_clinical_prod_landing_zones : null
+  es_clinical_prod_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_clinical_prod_landing_zones ? local.es_clinical_prod_landing_zones : null
   es_finance_prod_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_finance_prod_landing_zones ? local.es_finance_prod_landing_zones : null
   es_corp_dev_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_corp_dev_landing_zones ? local.es_corp_dev_landing_zones : null
   es_online_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_online_dev_landing_zones ? local.es_online_dev_landing_zones : null
   es_epic_dev_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_epic_dev_landing_zones ? local.es_epic_dev_landing_zones : null
   es_business_dev_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_business_dev_landing_zones ? local.es_business_dev_landing_zones : null
   es_citrix_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_citrix_dev_landing_zones ? local.es_citrix_dev_landing_zones : null
-  es_clinical_dev_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_clinical_dev_landing_zones ? local.es_clinical_dev_landing_zones : null
+  es_clinical_dev_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_clinical_dev_landing_zones ? local.es_clinical_dev_landing_zones : null
   es_finance_dev_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_finance_dev_landing_zones ? local.es_finance_dev_landing_zones : null
-es_corp_test_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_corp_test_landing_zones ? local.es_corp_test_landing_zones : null
-  es_online_test_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_online_test_landing_zones ? local.es_online_test_landing_zones : null
-  es_epic_test_landing_zones_to_include      = local.deploy_core_landing_zones && local.deploy_epic_test_landing_zones ? local.es_epic_test_landing_zones : null
-  es_business_test_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_business_test_landing_zones ? local.es_business_test_landing_zones : null
-  es_citrix_test_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_citrix_test_landing_zones ? local.es_citrix_test_landing_zones : null
-  es_clinical_test_landing_zones_to_include    = local.deploy_core_landing_zones && local.deploy_clinical_test_landing_zones ? local.es_clinical_test_landing_zones : null
-  es_finance_test_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_finance_test_landing_zones ? local.es_finance_test_landing_zones : null
+  es_corp_test_landing_zones_to_include     = local.deploy_core_landing_zones && local.deploy_corp_test_landing_zones ? local.es_corp_test_landing_zones : null
+  es_online_test_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_online_test_landing_zones ? local.es_online_test_landing_zones : null
+  es_epic_test_landing_zones_to_include     = local.deploy_core_landing_zones && local.deploy_epic_test_landing_zones ? local.es_epic_test_landing_zones : null
+  es_business_test_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_business_test_landing_zones ? local.es_business_test_landing_zones : null
+  es_citrix_test_landing_zones_to_include   = local.deploy_core_landing_zones && local.deploy_citrix_test_landing_zones ? local.es_citrix_test_landing_zones : null
+  es_clinical_test_landing_zones_to_include = local.deploy_core_landing_zones && local.deploy_clinical_test_landing_zones ? local.es_clinical_test_landing_zones : null
+  es_finance_test_landing_zones_to_include  = local.deploy_core_landing_zones && local.deploy_finance_test_landing_zones ? local.es_finance_test_landing_zones : null
 
   # Logic to determine whether to include the demo "Landing Zone"
   # Enterprise-scale Management Groups as part of the deployment
@@ -587,7 +587,7 @@ es_corp_test_landing_zones_to_include      = local.deploy_core_landing_zones && 
     local.es_clinical_dev_landing_zones_to_include,
     local.es_business_dev_landing_zones_to_include,
     local.es_finance_dev_landing_zones_to_include,
-        local.es_corp_test_landing_zones_to_include,
+    local.es_corp_test_landing_zones_to_include,
     local.es_online_test_landing_zones_to_include,
     local.es_epic_test_landing_zones_to_include,
     local.es_citrix_test_landing_zones_to_include,
