@@ -201,7 +201,8 @@ locals {
     for location, hub_network in local.hub_networks_by_location :
     location =>
     local.deploy_hub_network[location] &&
-    hub_network.config.azure_firewall.enabled
+    hub_network.config.azure_firewall.enabled &&
+    hub_network.config.azure_firewall.config.address_prefix != local.empty_string
   }
   deploy_outbound_virtual_network_peering = {
     for location, hub_network in local.hub_networks_by_location :
@@ -416,7 +417,7 @@ locals {
         )
       ],
       # Conditionally add Virtual Network Gateway subnet
-      hub_network.config.virtual_network_gateway.config.address_prefix != local.empty_string ? [
+      local.deploy_virtual_network_gateway[location] ? [
         {
           # Resource logic attributes
           resource_id               = "${local.virtual_network_resource_id[location]}/subnets/GatewaySubnet"
@@ -436,7 +437,7 @@ locals {
         }
       ] : local.empty_list,
       # Conditionally add Azure Firewall subnet
-      hub_network.config.azure_firewall.config.address_prefix != local.empty_string ? [
+      local.deploy_azure_firewall[location] ? [
         {
           # Resource logic attributes
           resource_id               = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet"

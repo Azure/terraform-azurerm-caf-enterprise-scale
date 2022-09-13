@@ -10,7 +10,11 @@
     "description": "Enforces the use of vnet injection for Databricks workspaces.",
     "metadata": {
       "version": "1.0.0",
-      "category": "Databricks"
+      "category": "Databricks",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ]
     },
     "parameters": {
       "effect": {

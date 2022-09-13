@@ -10,7 +10,13 @@
     "description": "This policy deploys virtual network and peer to the hub",
     "metadata": {
       "version": "1.1.0",
-      "category": "Network"
+      "category": "Network",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
     },
     "parameters": {
       "vNetName": {
@@ -157,7 +163,7 @@
                   {
                     "type": "Microsoft.Resources/deployments",
                     "apiVersion": "2021-04-01",
-                    "name": "[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6),'-rg')]",
+                    "name": "[concat('alz-vnet-rg-', parameters('vNetLocation'), '-', substring(uniqueString(subscription().id),0,6))]",
                     "location": "[parameters('vNetLocation')]",
                     "dependsOn": [],
                     "properties": {
@@ -183,9 +189,9 @@
                   {
                     "type": "Microsoft.Resources/deployments",
                     "apiVersion": "2021-04-01",
-                    "name": "[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6))]",
+                    "name": "[concat('alz-vnet-', parameters('vNetLocation'), '-', substring(uniqueString(subscription().id),0,6))]",
                     "dependsOn": [
-                      "[concat('es-lz-vnet-',substring(uniqueString(subscription().id),0,6),'-rg')]"
+                      "[concat('alz-vnet-rg-', parameters('vNetLocation'), '-', substring(uniqueString(subscription().id),0,6))]"
                     ],
                     "properties": {
                       "mode": "Incremental",
@@ -232,7 +238,7 @@
                           {
                             "type": "Microsoft.Resources/deployments",
                             "apiVersion": "2021-04-01",
-                            "name": "[concat('es-lz-hub-',substring(uniqueString(subscription().id),0,6),'-peering')]",
+                            "name": "[concat('alz-hub-peering-', parameters('vNetLocation'), '-', substring(uniqueString(subscription().id),0,6))]",
                             "subscriptionId": "[split(parameters('hubResourceId'),'/')[2]]",
                             "resourceGroup": "[split(parameters('hubResourceId'),'/')[4]]",
                             "dependsOn": [

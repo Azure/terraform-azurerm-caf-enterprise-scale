@@ -9,7 +9,13 @@
     "description": "Deploy Microsoft Defender for Cloud configuration",
     "metadata": {
       "version": "3.0.0",
-      "category": "Security Center"
+      "category": "Security Center",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
     },
     "parameters": {
       "emailSecurityContact": {
