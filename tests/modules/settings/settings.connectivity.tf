@@ -202,6 +202,8 @@ locals {
             azure_automation_webhook             = false
             azure_automation_dscandhybridworker  = false
             azure_sql_database_sqlserver         = false
+            azure_synapse                        = false
+            azure_synapse_dev                    = false
             azure_synapse_analytics_sqlserver    = false
             azure_synapse_analytics_sql          = false
             storage_account_blob                 = true
@@ -240,6 +242,8 @@ locals {
             azure_data_factory                   = false
             azure_data_factory_portal            = false
             azure_cache_for_redis                = false
+            azure_purview                        = false
+            azure_purview_studio                 = false
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []

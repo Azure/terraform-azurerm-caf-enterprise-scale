@@ -267,6 +267,8 @@ locals {
             azure_automation_webhook             = true
             azure_automation_dscandhybridworker  = true
             azure_sql_database_sqlserver         = true
+            azure_synapse                        = true
+            azure_synapse_dev                    = true
             azure_synapse_analytics_sqlserver    = true
             azure_synapse_analytics_sql          = true
             storage_account_blob                 = true
@@ -305,6 +307,8 @@ locals {
             azure_data_factory                   = true
             azure_data_factory_portal            = true
             azure_cache_for_redis                = true
+            azure_purview                        = true
+            azure_purview_studio                 = true
           }
           private_link_locations = [
             "northeurope",

@@ -19,6 +19,8 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_automation_webhook             = true
       azure_automation_dscandhybridworker  = true
       azure_sql_database_sqlserver         = true
+      azure_synapse                        = true
+      azure_synapse_dev                    = true
       azure_synapse_analytics_sqlserver    = true
       azure_synapse_analytics_sql          = true
       storage_account_blob                 = true
@@ -57,6 +59,8 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_data_factory                   = true
       azure_data_factory_portal            = true
       azure_cache_for_redis                = true
+      azure_purview                        = true
+      azure_purview_studio                 = true
     }
     private_link_locations                                 = []
     public_dns_zones                                       = []
@@ -85,6 +89,8 @@ object({
       azure_automation_webhook             = bool
       azure_automation_dscandhybridworker  = bool
       azure_sql_database_sqlserver         = bool
+      azure_synapse                        = bool
+      azure_synapse_dev                    = bool
       azure_synapse_analytics_sqlserver    = bool
       azure_synapse_analytics_sql          = bool
       storage_account_blob                 = bool
@@ -123,6 +129,8 @@ object({
       azure_data_factory                   = bool
       azure_data_factory_portal            = bool
       azure_cache_for_redis                = bool
+      azure_purview                        = bool
+      azure_purview_studio                 = bool
     })
     private_link_locations                                 = list(string)
     public_dns_zones                                       = list(string)
@@ -160,6 +168,8 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 - `azure_automation_webhook`
 - `azure_automation_dscandhybridworker`
 - `azure_sql_database_sqlserver`
+- `azure_synapse`
+- `azure_synapse_dev`
 - `azure_synapse_analytics_sqlserver`
 - `azure_synapse_analytics_sql`
 - `storage_account_blob`
@@ -198,6 +208,8 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 - `azure_data_factory`
 - `azure_data_factory_portal`
 - `azure_cache_for_redis`
+- `azure_purview`
+- `azure_purview_studio`
 
 #### `config.private_link_locations`
 

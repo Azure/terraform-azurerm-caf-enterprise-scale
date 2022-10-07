@@ -1288,6 +1288,8 @@ locals {
     azure_sql_database_sqlserver         = ["privatelink.database.windows.net"]
     azure_synapse_analytics_sqlserver    = ["privatelink.database.windows.net"]
     azure_synapse_analytics_sql          = ["privatelink.sql.azuresynapse.net"]
+    azure_synapse                        = ["privatelink.azuresynapse.net"]
+    azure_synapse_dev                    = ["privatelink.dev.azuresynapse.net"]
     storage_account_blob                 = ["privatelink.blob.core.windows.net"]
     storage_account_table                = ["privatelink.table.core.windows.net"]
     storage_account_queue                = ["privatelink.queue.core.windows.net"]
@@ -1330,11 +1332,15 @@ locals {
     azure_data_factory               = ["privatelink.datafactory.azure.net"]
     azure_data_factory_portal        = ["privatelink.adf.azure.com"]
     azure_cache_for_redis            = ["privatelink.redis.cache.windows.net"]
+    azure_purview                    = ["privatelink.purview.azure.com"]
+    azure_purview_studio             = ["privatelink.purviewstudio.azure.com"]
   }
   lookup_private_link_group_id_by_service = {
     azure_automation_webhook             = local.empty_string
     azure_automation_dscandhybridworker  = local.empty_string
     azure_sql_database_sqlserver         = "sqlServer"
+    azure_synapse                        = local.empty_string
+    azure_synapse_dev                    = local.empty_string
     azure_synapse_analytics_sqlserver    = local.empty_string
     azure_synapse_analytics_sql          = local.empty_string
     storage_account_blob                 = "blob"
@@ -1373,6 +1379,8 @@ locals {
     azure_data_factory                   = local.empty_string
     azure_data_factory_portal            = local.empty_string
     azure_cache_for_redis                = local.empty_string
+    azure_purview                        = local.empty_string
+    azure_purview_studio                 = local.empty_string
   }
   services_by_private_link_dns_zone = transpose(local.lookup_private_link_dns_zone_by_service)
   private_dns_zone_enabled = {

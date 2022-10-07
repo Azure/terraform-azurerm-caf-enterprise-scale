@@ -400,6 +400,8 @@ variable "configure_connectivity_resources" {
             azure_sql_database_sqlserver         = bool
             azure_synapse_analytics_sqlserver    = bool
             azure_synapse_analytics_sql          = bool
+            azure_synapse                        = bool
+            azure_synapse_dev                    = bool
             storage_account_blob                 = bool
             storage_account_table                = bool
             storage_account_queue                = bool
@@ -436,6 +438,8 @@ variable "configure_connectivity_resources" {
             azure_data_factory                   = bool
             azure_data_factory_portal            = bool
             azure_cache_for_redis                = bool
+            azure_purview                        = bool
+            azure_purview_studio                 = bool
           })
           private_link_locations                                 = list(string)
           public_dns_zones                                       = list(string)
@@ -563,6 +567,8 @@ variable "configure_connectivity_resources" {
             azure_sql_database_sqlserver         = true
             azure_synapse_analytics_sqlserver    = true
             azure_synapse_analytics_sql          = true
+            azure_synapse                        = true
+            azure_synapse_dev                    = true
             storage_account_blob                 = true
             storage_account_table                = true
             storage_account_queue                = true
@@ -599,6 +605,8 @@ variable "configure_connectivity_resources" {
             azure_data_factory                   = true
             azure_data_factory_portal            = true
             azure_cache_for_redis                = true
+            azure_purview                        = true
+            azure_purview_studio                 = true
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []
