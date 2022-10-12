@@ -135,6 +135,7 @@ variable "settings" {
           })
           spoke_virtual_network_resource_ids      = list(string)
           enable_outbound_virtual_network_peering = bool
+          enable_hub_network_mesh_peering         = bool
         })
       })
     )
@@ -369,6 +370,15 @@ variable "resource_group_per_virtual_hub_location" {
   type        = bool
   description = "If set to true, module will place each Virtual Hub (and associated resources) in a location-specific Resource Group. Default behaviour is to colocate Virtual Hub resources in the same Resource Group as the Virtual WAN resource."
   default     = false
+}
+
+variable "custom_azure_backup_geo_codes" {
+  type        = map(string)
+  description = <<DESCRIPTION
+If specified, the custom_azure_backup_geo_codes variable will override or append Geo Codes (value) used to generate region-specific DNS zone names for Azure Backup private endpoints.
+For more information, please refer to: https://docs.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files
+DESCRIPTION
+  default     = {}
 }
 
 variable "custom_settings_by_resource_type" {

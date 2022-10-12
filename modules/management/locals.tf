@@ -2,6 +2,8 @@
 # empty object types in the code.
 locals {
   empty_string = ""
+  empty_list   = []
+  empty_map    = {}
 }
 
 # Convert the input vars to locals, applying any required
@@ -29,11 +31,11 @@ locals {
 # Extract individual custom settings blocks from
 # the custom_settings_by_resource_type variable.
 locals {
-  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], null)
-  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], null)
-  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], null)
-  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], null)
-  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], null)
+  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], local.empty_map)
+  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], local.empty_map)
+  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], local.empty_map)
+  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
+  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
 }
 
 # Logic to determine whether specific resources
@@ -80,14 +82,13 @@ locals {
 locals {
   resource_group_name = coalesce(
     local.existing_resource_group_name,
-    try(local.custom_settings_rsg.name, null),
-    "${local.resource_prefix}-mgmt",
+    lookup(local.custom_settings_rsg, "name", "${local.resource_prefix}-mgmt"),
   )
   resource_group_resource_id = "/subscriptions/${local.subscription_id}/resourceGroups/${local.resource_group_name}"
   azurerm_resource_group = {
     name     = local.resource_group_name,
-    location = try(local.custom_settings_rsg.location, local.location)
-    tags     = try(local.custom_settings_rsg.tags, local.tags)
+    location = lookup(local.custom_settings_rsg, "location", local.location)
+    tags     = lookup(local.custom_settings_rsg, "tags", local.tags)
   }
 }
 
@@ -100,19 +101,16 @@ locals {
     "${local.resource_group_resource_id}/providers/Microsoft.OperationalInsights/workspaces/${local.azurerm_log_analytics_workspace.name}"
   )
   azurerm_log_analytics_workspace = {
-    name                              = try(local.custom_settings_la_workspace.name, "${local.resource_prefix}-la${local.resource_suffix}")
-    location                          = try(local.custom_settings_la_workspace.location, local.location)
-    sku                               = try(local.custom_settings_la_workspace.sku, "PerGB2018")
-    retention_in_days                 = try(local.custom_settings_la_workspace.retention_in_days, local.settings.log_analytics.config.retention_in_days)
-    daily_quota_gb                    = try(local.custom_settings_la_workspace.daily_quota_gb, null)
-    internet_ingestion_enabled        = try(local.custom_settings_la_workspace.internet_ingestion_enabled, true)
-    internet_query_enabled            = try(local.custom_settings_la_workspace.internet_query_enabled, true)
-    reservation_capcity_in_gb_per_day = try(local.custom_settings_la_workspace.reservation_capcity_in_gb_per_day, null) # Requires version = "~> 2.48.0"
-    tags                              = try(local.custom_settings_la_workspace.tags, local.tags)
-    resource_group_name = coalesce(
-      try(local.custom_settings_la_workspace.resource_group_name, null),
-      local.resource_group_name,
-    )
+    name                              = lookup(local.custom_settings_la_workspace, "name", "${local.resource_prefix}-la${local.resource_suffix}")
+    resource_group_name               = lookup(local.custom_settings_la_workspace, "resource_group_name", local.resource_group_name)
+    location                          = lookup(local.custom_settings_la_workspace, "location", local.location)
+    sku                               = lookup(local.custom_settings_la_workspace, "sku", "PerGB2018")
+    retention_in_days                 = lookup(local.custom_settings_la_workspace, "retention_in_days", local.settings.log_analytics.config.retention_in_days)
+    daily_quota_gb                    = lookup(local.custom_settings_la_workspace, "daily_quota_gb", null)
+    internet_ingestion_enabled        = lookup(local.custom_settings_la_workspace, "internet_ingestion_enabled", true)
+    internet_query_enabled            = lookup(local.custom_settings_la_workspace, "internet_query_enabled", true)
+    reservation_capcity_in_gb_per_day = lookup(local.custom_settings_la_workspace, "reservation_capcity_in_gb_per_day", null) # Requires version = "~> 2.48.0"
+    tags                              = lookup(local.custom_settings_la_workspace, "tags", local.tags)
   }
 }
 
@@ -127,18 +125,15 @@ locals {
     for solution_name, solution_enabled in local.deploy_azure_monitor_solutions :
     {
       solution_name         = solution_name
-      location              = try(local.custom_settings_la_solution.location, local.location)
+      resource_group_name   = lookup(local.custom_settings_la_solution, "resource_group_name", local.resource_group_name)
+      location              = lookup(local.custom_settings_la_solution, "location", local.location)
       workspace_resource_id = local.log_analytics_workspace_resource_id
       workspace_name        = basename(local.log_analytics_workspace_resource_id)
-      tags                  = try(local.custom_settings_la_solution.tags, local.tags)
+      tags                  = lookup(local.custom_settings_la_solution, "tags", local.tags)
       plan = {
         publisher = "Microsoft"
         product   = "OMSGallery/${solution_name}"
       }
-      resource_group_name = coalesce(
-        try(local.custom_settings_la_solution.resource_group_name, null),
-        local.resource_group_name,
-      )
     }
     if solution_enabled
   ]
@@ -151,15 +146,23 @@ locals {
     local.existing_automation_account_resource_id,
     "${local.resource_group_resource_id}/providers/Microsoft.Automation/automationAccounts/${local.azurerm_automation_account.name}"
   )
+  # As per issue #449, some automation accounts should be created in a different region to the log analytics workspace
+  # The automation_account_location_map local is used to track these
+  automation_account_location_map = {
+    eastus  = "eastus2"
+    eastus2 = "eastus"
+  }
+  automation_account_location = coalesce(
+    lookup(local.custom_settings_aa, "location", null),
+    lookup(local.automation_account_location_map, local.location, local.location)
+  )
   azurerm_automation_account = {
-    name     = try(local.custom_settings_aa.name, "${local.resource_prefix}-automation${local.resource_suffix}")
-    location = try(local.custom_settings_aa.location, local.location)
-    sku_name = try(local.custom_settings_aa.sku_name, "Basic")
-    tags     = try(local.custom_settings_aa.tags, local.tags)
-    resource_group_name = coalesce(
-      try(local.custom_settings_aa.resource_group_name, null),
-      local.resource_group_name,
-    )
+    name                = lookup(local.custom_settings_aa, "name", "${local.resource_prefix}-automation${local.resource_suffix}")
+    resource_group_name = lookup(local.custom_settings_aa, "resource_group_name", local.resource_group_name)
+    location            = lookup(local.custom_settings_aa, "location", local.automation_account_location)
+    sku_name            = lookup(local.custom_settings_aa, "sku_name", "Basic")
+    identity            = lookup(local.custom_settings_aa, "identity", local.empty_list)
+    tags                = lookup(local.custom_settings_aa, "tags", local.tags)
   }
 }
 
@@ -168,13 +171,10 @@ locals {
 locals {
   log_analytics_linked_service_resource_id = "${local.log_analytics_workspace_resource_id}/linkedServices/Automation"
   azurerm_log_analytics_linked_service = {
-    workspace_id    = try(local.custom_settings_la_linked_service.workspace_id, local.log_analytics_workspace_resource_id)
-    read_access_id  = try(local.custom_settings_la_linked_service.read_access_id, local.automation_account_resource_id) # This should be used for linking to an Automation Account resource.
-    write_access_id = null                                                                                              # DO NOT USE. This should be used for linking to a Log Analytics Cluster resource
-    resource_group_name = coalesce(
-      try(local.custom_settings_la_linked_service.resource_group_name, null),
-      local.resource_group_name,
-    )
+    resource_group_name = lookup(local.custom_settings_la_linked_service, "resource_group_name", local.resource_group_name)
+    workspace_id        = lookup(local.custom_settings_la_linked_service, "workspace_id", local.log_analytics_workspace_resource_id)
+    read_access_id      = lookup(local.custom_settings_la_linked_service, "read_access_id", local.automation_account_resource_id) # This should be used for linking to an Automation Account resource.
+    write_access_id     = null                                                                                                    # DO NOT USE. This should be used for linking to a Log Analytics Cluster resource
   }
 }
 

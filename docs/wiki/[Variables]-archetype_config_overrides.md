@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**archetype_config_overrides**](#overview) `any` (optional)
@@ -53,7 +54,7 @@ To do this, simply create an entry similar to the `root` example below for one o
 
 This variable can also be used to customize the [demo Management Groups](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-deploy_demo_landing_zones): `demo-corp`, `demo-online`, `demo-sap`
 
-The `archetype_config_overrides` example below shows how to set an override for the `root` Management Group, setting the `archetype_id` to `custom_archetype_definition` showing example parameters with different value types for a Policy Assignment called `Example-Policy-Assignment`, and a Role Assignment adding two Object IDs to a Role Definition called `Example-Role-Definition`:
+The `archetype_config_overrides` example below shows how to set an override for the `root` Management Group, setting the `archetype_id` to `custom_archetype_definition` showing example parameters with different value types for a Policy Assignment with the name `Example-Policy-Assignment`, and a Role Assignment adding two Object IDs to a Role Definition with the name `Example-Role-Definition`:
 
 ```hcl
   archetype_config_overrides = {
@@ -103,7 +104,7 @@ This is the value you need to specify in the `access_control` object.
 [//]: # (INSERT IMAGE REFERENCES BELOW)
 [//]: # (*****************************)
 
-[archetype_config_overrides_mapping]: ./media/variables-archetype_config_overrides-mapping.png "Mapping of archetype_config_overrides entries to their respective sources"
+[archetype_config_overrides_mapping]: media/variables-archetype_config_overrides-mapping.png "Mapping of archetype_config_overrides entries to their respective sources"
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
@@ -113,4 +114,4 @@ This is the value you need to specify in the `access_control` object.
 
 [azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
 
-[archetype_config_object]: ./%5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"
+[archetype_config_object]: %5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"

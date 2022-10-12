@@ -1,21 +1,26 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-The module includes functionality to enable deployment of [Management and monitoring][ESLZ-Management] resources into the Subscription context set by the `azurerm.management` provider alias.
+The module provides an option to enable deployment of [management and monitoring][alz_management] resources from the [conceptual architecture for Azure landing zones][msdocs_alz_architecture] into the specified subscription, as described on the [Provider Configuration][wiki_provider_configuration] wiki page.
+The module also ensures that the specified subscription is placed in the right management group.
+
 This brings the benefit of being able to manage the full lifecycle of these resources using Terraform, with native integration into the corresponding Policy Assignments to ensure full policy compliance.
 
-![Enterprise-scale Management Landing Zone Architecture][TFAES-Management]
+![Overview of the Azure landing zones management resources][alz_management_overview]
 
 ## Resource types
 
-The following resource types are deployed and managed by this module when the Management resources capabilities are enabled:
+When you enable deployment of management resources, the module deploys and manages the following resource types (*depending on configuration*):
 
-|     | Azure Resource | Terraform Resource |
-| --- | -------------- | ------------------ |
-| Resource Groups | [`Microsoft.Resources/resourceGroups`][arm_resource_group] | [`azurerm_resource_group`][azurerm_resource_group] |
-| Log Analytics Workspace | [`Microsoft.OperationalInsights/workspaces`][arm_log_analytics_workspace] | [`azurerm_log_analytics_workspace`][azurerm_log_analytics_workspace] |
-| Log Analytics Solutions | [`Microsoft.OperationsManagement/solutions`][arm_log_analytics_solution] | [`azurerm_log_analytics_solution`][azurerm_log_analytics_solution] |
-| Automation Account | [`Microsoft.Automation/automationAccounts`][arm_automation_account] | [`azurerm_automation_account`][azurerm_automation_account] |
-| Log Analytics Linked Service | [`Microsoft.OperationalInsights/workspaces /linkedServices`][arm_log_analytics_linked_service] | [`azurerm_log_analytics_linked_service`][azurerm_log_analytics_linked_service] |
+| Resource | Azure resource type | Terraform resource type |
+| --- | --- | --- |
+| Resource groups | [`Microsoft.Resources/resourceGroups`][arm_resource_group] | [`azurerm_resource_group`][azurerm_resource_group] |
+| Log Analytics workspace | [`Microsoft.OperationalInsights/workspaces`][arm_log_analytics_workspace] | [`azurerm_log_analytics_workspace`][azurerm_log_analytics_workspace] |
+| Log Analytics solutions | [`Microsoft.OperationsManagement/solutions`][arm_log_analytics_solution] | [`azurerm_log_analytics_solution`][azurerm_log_analytics_solution] |
+| Automation account | [`Microsoft.Automation/automationAccounts`][arm_automation_account] | [`azurerm_automation_account`][azurerm_automation_account] |
+| Log Analytics linked service | [`Microsoft.OperationalInsights/workspaces /linkedServices`][arm_log_analytics_linked_service] | [`azurerm_log_analytics_linked_service`][azurerm_log_analytics_linked_service] |
+
+In addition to deploying the above resources, the module provides native integration into the corresponding policy assignments to ensure full policy compliance.
 
 ## Next steps
 
@@ -25,13 +30,15 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
  [//]: # (INSERT IMAGE REFERENCES BELOW)
  [//]: # (*****************************)
 
-[TFAES-Management]:./media/terraform-caf-enterprise-scale-management.png "Diagram showing the Management resources for Azure landing zones architecture deployed by this module."
+[alz_management_overview]: media/terraform-caf-enterprise-scale-management.png "A conceptual architecture diagram focusing on the management resources for an Azure landing zone."
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[ESLZ-Management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
+[msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+
+[alz_management]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management "Management and monitoring for Azure landing zones on the Cloud Adoption Framework."
 
 [arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
 [arm_log_analytics_workspace]:        https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
@@ -45,4 +52,5 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
 [azurerm_automation_account]:           https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account
 [azurerm_log_analytics_linked_service]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_linked_service
 
-[wiki_deploy_management_resources]:           https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_deploy_management_resources]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_provider_configuration]:      https://github.com/krowlandson/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider configuration"

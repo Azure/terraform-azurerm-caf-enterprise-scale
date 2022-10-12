@@ -1,4 +1,5 @@
-![caf-enterprise-scale](media/azure.svg)
+<!-- markdownlint-disable first-line-h1 -->
+![Azure logo](media/azure.svg)
 
 ## Azure landing zones Terraform module
 
@@ -20,13 +21,15 @@
     - [Deploy Demo Landing Zone Archetypes][wiki_deploy_demo_landing_zone_archetypes]
   - [Level 200][wiki_examples_level_200]
     - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
-    - [Deploy Connectivity Resources][wiki_deploy_connectivity_resources]
+    - [Deploy Connectivity Resources (Hub and Spoke)][wiki_deploy_connectivity_resources]
+    - [Deploy Connectivity Resources (Virtual WAN)][wiki_deploy_virtual_wan_resources]
     - [Deploy Identity Resources][wiki_deploy_identity_resources]
     - [Deploy Management Resources][wiki_deploy_management_resources]
     - [Assign a Built-in Policy][wiki_assign_a_built_in_policy]
     - [Create and Assign Custom RBAC Roles][wiki_create_and_assign_custom_rbac_roles]
   - [Level 300][wiki_examples_level_300]
-    - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
+    - [Deploy Connectivity Resources With Custom Settings (Hub and Spoke)][wiki_deploy_connectivity_resources_custom]
+    - [Deploy Connectivity Resources With Custom Settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom]
     - [Deploy Identity Resources With Custom Settings][wiki_deploy_identity_resources_custom]
     - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
     - [Expand Built-in Archetype Definitions][wiki_expand_built_in_archetype_definitions]
@@ -51,46 +54,48 @@
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_home]:                                  ./Home "Wiki - Home"
-[wiki_user_guide]:                            ./User-Guide "Wiki - User Guide"
-[wiki_getting_started]:                       ./%5BUser-Guide%5D-Getting-Started "Wiki - Getting Started"
-[wiki_module_permissions]:                    ./%5BUser-Guide%5D-Module-Permissions "Wiki - Module Permissions"
-[wiki_module_variables]:                      ./%5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
-[wiki_module_releases]:                       ./%5BUser-Guide%5D-Module-Releases "Wiki - Module Releases"
-[wiki_provider_configuration]:                ./%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
-[wiki_archetype_definitions]:                 ./%5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
-[wiki_core_resources]:                        ./%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
-[wiki_management_resources]:                  ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]:                ./%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki_identity_resources]:                    ./%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki_upgrade_from_v1_1_4_to_v2_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
-[wiki_upgrade_from_v0_4_0_to_v1_0_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
-[wiki_upgrade_from_v0_3_3_to_v0_4_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
-[wiki_upgrade_from_v0_1_2_to_v0_2_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
-[wiki_upgrade_from_v0_0_8_to_v0_1_0]:         ./%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
-[wiki_examples]:                              ./Examples "Wiki - Examples"
-[wiki_examples_level_100]:                    ./Examples#advanced-level-100 "Wiki - Examples"
-[wiki_examples_level_200]:                    ./Examples#advanced-level-200 "Wiki - Examples"
-[wiki_examples_level_300]:                    ./Examples#advanced-level-300 "Wiki - Examples"
-[wiki_deploy_default_configuration]:          ./%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
-[wiki_deploy_demo_landing_zone_archetypes]:   ./%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy Demo Landing Zone Archetypes"
-[wiki_deploy_custom_landing_zone_archetypes]: ./%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
-[wiki_deploy_management_resources]:           ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
-[wiki_deploy_management_resources_custom]:    ./%5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
-[wiki_deploy_connectivity_resources]:         ./%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
-[wiki_deploy_connectivity_resources_custom]:  ./%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
-[wiki_deploy_identity_resources]:             ./%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
-[wiki_deploy_identity_resources_custom]:      ./%5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
-[wiki_deploy_using_module_nesting]:           ./%5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
-[wiki_frequently_asked_questions]:            ./Frequently-Asked-Questions "Wiki - Frequently Asked Questions"
-[wiki_troubleshooting]:                       ./Troubleshooting "Wiki - Troubleshooting"
-[wiki_contributing]:                          ./Contributing "Wiki - Contributing"
-[wiki_raising_an_issue]:                      ./Raising-an-Issue "Wiki - Raising an Issue"
-[wiki_feature_requests]:                      ./Feature-Requests "Wiki - Feature Requests"
-[wiki_contributing_to_code]:                  ./Contributing-to-Code "Wiki - Contributing to Code"
-[wiki_contributing_to_documentation]:         ./Contributing-to-Documentation "Wiki - Contributing to Documentation"
-[wiki_expand_built_in_archetype_definitions]: ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
-[wiki_override_module_role_assignments]:      ./%5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
-[wiki_create_custom_policies_policy_sets_and_assignments]:      ./%5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
-[wiki_assign_a_built_in_policy]:      ./%5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a Built-in Policy"
-[wiki_create_and_assign_custom_rbac_roles]:      ./%5BExamples%5D-Create-and-Assign-Custom-RBAC-Roles "Wiki - Create and Assign Custom RBAC Roles"
+[wiki_home]:                                               Home "Wiki - Home"
+[wiki_user_guide]:                                         User-Guide "Wiki - User Guide"
+[wiki_getting_started]:                                    %5BUser-Guide%5D-Getting-Started "Wiki - Getting Started"
+[wiki_module_permissions]:                                 %5BUser-Guide%5D-Module-Permissions "Wiki - Module Permissions"
+[wiki_module_variables]:                                   %5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
+[wiki_module_releases]:                                    %5BUser-Guide%5D-Module-Releases "Wiki - Module Releases"
+[wiki_provider_configuration]:                             %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
+[wiki_archetype_definitions]:                              %5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
+[wiki_core_resources]:                                     %5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
+[wiki_management_resources]:                               %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
+[wiki_connectivity_resources]:                             %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
+[wiki_identity_resources]:                                 %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_upgrade_from_v1_1_4_to_v2_0_0]:                      %5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
+[wiki_upgrade_from_v0_4_0_to_v1_0_0]:                      %5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
+[wiki_upgrade_from_v0_3_3_to_v0_4_0]:                      %5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
+[wiki_upgrade_from_v0_1_2_to_v0_2_0]:                      %5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
+[wiki_upgrade_from_v0_0_8_to_v0_1_0]:                      %5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
+[wiki_examples]:                                           Examples "Wiki - Examples"
+[wiki_examples_level_100]:                                 Examples#basic-level-100 "Wiki - Examples"
+[wiki_examples_level_200]:                                 Examples#intermediate-level-200 "Wiki - Examples"
+[wiki_examples_level_300]:                                 Examples#advanced-level-300 "Wiki - Examples"
+[wiki_deploy_default_configuration]:                       %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
+[wiki_deploy_demo_landing_zone_archetypes]:                %5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy Demo Landing Zone Archetypes"
+[wiki_deploy_custom_landing_zone_archetypes]:              %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
+[wiki_deploy_management_resources]:                        %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
+[wiki_deploy_management_resources_custom]:                 %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
+[wiki_deploy_connectivity_resources]:                      %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
+[wiki_deploy_connectivity_resources_custom]:               %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
+[wiki_deploy_virtual_wan_resources]:                       %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
+[wiki_deploy_virtual_wan_resources_custom]:                %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
+[wiki_deploy_identity_resources]:                          %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
+[wiki_deploy_identity_resources_custom]:                   %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
+[wiki_deploy_using_module_nesting]:                        %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
+[wiki_frequently_asked_questions]:                         Frequently-Asked-Questions "Wiki - Frequently Asked Questions"
+[wiki_troubleshooting]:                                    Troubleshooting "Wiki - Troubleshooting"
+[wiki_contributing]:                                       Contributing "Wiki - Contributing"
+[wiki_raising_an_issue]:                                   Raising-an-Issue "Wiki - Raising an Issue"
+[wiki_feature_requests]:                                   Feature-Requests "Wiki - Feature Requests"
+[wiki_contributing_to_code]:                               Contributing-to-Code "Wiki - Contributing to Code"
+[wiki_contributing_to_documentation]:                      Contributing-to-Documentation "Wiki - Contributing to Documentation"
+[wiki_expand_built_in_archetype_definitions]:              %5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
+[wiki_override_module_role_assignments]:                   %5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
+[wiki_create_custom_policies_policy_sets_and_assignments]: %5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
+[wiki_assign_a_built_in_policy]:                           %5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a Built-in Policy"
+[wiki_create_and_assign_custom_rbac_roles]:                %5BExamples%5D-Create-and-Assign-Custom-RBAC-Roles "Wiki - Create and Assign Custom RBAC Roles"

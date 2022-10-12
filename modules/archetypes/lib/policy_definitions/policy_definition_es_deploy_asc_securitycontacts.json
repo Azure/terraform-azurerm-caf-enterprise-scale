@@ -10,7 +10,13 @@
     "description": "Deploy Azure Security Center Security Contacts",
     "metadata": {
       "version": "1.0.0",
-      "category": "Security Center"
+      "category": "Security Center",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
     },
     "parameters": {
       "emailSecurityContact": {

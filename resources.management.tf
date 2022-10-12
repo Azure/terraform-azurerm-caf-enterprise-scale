@@ -87,6 +87,17 @@ resource "azurerm_automation_account" "management" {
   sku_name = each.value.template.sku_name
   tags     = each.value.template.tags
 
+  # Dynamic configuration blocks
+  # Identity block
+  dynamic "identity" {
+    for_each = each.value.template.identity
+    content {
+      type = identity.value.type
+      # Optional attributes
+      identity_ids = lookup(identity.value, "identity_ids", null)
+    }
+  }
+
   # Set explicit dependency on Resource Group deployment
   depends_on = [
     azurerm_resource_group.management,

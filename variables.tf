@@ -316,6 +316,7 @@ variable "configure_connectivity_resources" {
             })
             spoke_virtual_network_resource_ids      = list(string)
             enable_outbound_virtual_network_peering = bool
+            enable_hub_network_mesh_peering         = bool
           })
         })
       )
@@ -498,10 +499,54 @@ variable "configure_connectivity_resources" {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = false
+            enable_hub_network_mesh_peering         = false
           }
         },
       ]
-      vwan_hub_networks = []
+      vwan_hub_networks = [
+        {
+          enabled = false
+          config = {
+            address_prefix = "10.200.0.0/22"
+            location       = ""
+            sku            = ""
+            routes         = []
+            expressroute_gateway = {
+              enabled = false
+              config = {
+                scale_unit = 1
+              }
+            }
+            vpn_gateway = {
+              enabled = false
+              config = {
+                bgp_settings       = []
+                routing_preference = ""
+                scale_unit         = 1
+              }
+            }
+            azure_firewall = {
+              enabled = false
+              config = {
+                enable_dns_proxy              = false
+                dns_servers                   = []
+                sku_tier                      = "Standard"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = true
+                }
+              }
+            }
+            spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections     = false
+          }
+        },
+      ]
       ddos_protection_plan = {
         enabled = false
         config = {
@@ -620,7 +665,7 @@ variable "custom_landing_zones" {
   default     = {}
 
   validation {
-    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-z0-9-]{2,36}$", k)]) || length(keys(var.custom_landing_zones)) == 0
+    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-]{2,36}$", k)]) || length(keys(var.custom_landing_zones)) == 0
     error_message = "The custom_landing_zones keys must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
   }
 }
@@ -701,4 +746,10 @@ variable "disable_telemetry" {
   type        = bool
   description = "If set to true, will disable telemetry for the module. See https://aka.ms/alz-terraform-module-telemetry."
   default     = false
+}
+
+variable "strict_subscription_association" {
+  type        = bool
+  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed."
+  default     = true
 }

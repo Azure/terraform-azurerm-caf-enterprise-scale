@@ -1,4 +1,5 @@
-Please ensure you have read our [Contributing](./Contributing) page before going any further.
+<!-- markdownlint-disable first-line-h1 -->
+Please ensure you have read our [Contributing](Contributing) page before going any further.
 
 ## Checklist
 
@@ -14,6 +15,6 @@ Please ensure you have read our [Contributing](./Contributing) page before going
 
 <!--Reference links in article-->
 
-[Issues]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues "Our issues log"
+[Issues]:     https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues "Our issues log"
 [Unit-Tests]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/tests/pipelines/tests-unit.yml "Unit tests YAML"
-[E2E-Tests]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/tests/pipelines/tests-e2e.yml "E2E tests YAML"
+[E2E-Tests]:  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/tests/pipelines/tests-e2e.yml "E2E tests YAML"

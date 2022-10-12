@@ -1,6 +1,7 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-Scale with custom policy definitions and policy set (Initiative) definitions.
+This page describes how to deploy your Azure landing zone with custom policy definitions and policy set (Initiative) definitions.
 
 In this example you will use three custom policies and a custom policy set definition. The custom policies will be named `Enforce-RG-Tags`, `Enforce-Resource-Tags` and `Deny-NIC-NSG`. You will then create a custom policy set definition (Initiative) named `Enforce-Mandatory-Tags` that will include the `Enforce-RG-Tags` and `Enforce-Resource-Tags` custom policies.
 
@@ -28,7 +29,7 @@ In order to create and assign custom policies, we need to create both a definiti
 - [lib/policy_assignments/policy_assignment_es_deny_nic_nsg.json](#libpolicy_assignmentspolicy_assignment_es_deny_nic_nsgjson)
 - [lib/policy_assignments/policy_assignment_es_enforce_mandatory_tagging.json](#libpolicy_assignmentspolicy_assignment_es_enforce_mandatory_taggingjson)
 
-> **NOTE:** This module provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path. For more info [click here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/[Variables]-template_file_variables).
+> **NOTE:** This module provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path. For more info [click here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-template_file_variables).
 
 ## Create Custom Policy Definition
 

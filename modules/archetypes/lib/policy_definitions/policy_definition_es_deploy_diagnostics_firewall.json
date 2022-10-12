@@ -10,7 +10,13 @@
     "description": "Deploys the diagnostic settings for Firewall to stream to a Log Analytics workspace when any Firewall which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
     "metadata": {
       "version": "1.0.0",
-      "category": "Monitoring"
+      "category": "Monitoring",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
     },
     "parameters": {
       "logAnalytics": {
@@ -154,6 +160,50 @@
                         },
                         {
                           "category": "AzureFirewallDnsProxy",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWNetworkRule",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWApplicationRule",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWNatRule",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWThreatIntel",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWIdpsSignature",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWDnsQuery",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWFqdnResolveFailure",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWApplicationRuleAggregation",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWNetworkRuleAggregation",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWNatRuleAggregation",
+                          "enabled": "[parameters('logsEnabled')]"
+                        },
+                        {
+                          "category": "AZFWFatFlow",
                           "enabled": "[parameters('logsEnabled')]"
                         }
                       ]
