@@ -1334,6 +1334,21 @@ locals {
     azure_cache_for_redis            = ["privatelink.redis.cache.windows.net"]
     azure_purview                    = ["privatelink.purview.azure.com"]
     azure_purview_studio             = ["privatelink.purviewstudio.azure.com"]
+    azure_batch_account              = ["privatelink.batch.azure.com"]
+    azure_managed_hsm                = ["privatelink.managedhsm.azure.net"]
+    azure_cache_for_redis_enterprise = ["privatelink.redisenterprise.cache.azure.net"]
+    azure_digital_twins              = ["privatelink.digitaltwins.azure.net"]
+    azure_hdinsights                 = ["privatelink.azurehdinsight.net"]
+    azure_media_services             = ["privatelink.media.azure.net"]
+    azure_migrate                    = ["privatelink.prod.migration.windowsazure.com"]
+    azure_arc                        = ["privatelink.his.arc.azure.com", "privatelink.guestconfiguration.azure.com"]
+    azure_api_management             = ["privatelink.azure-api.net", "privatelink.developer.azure-api.net"]
+    azure_data_explorer              = [
+      for location in local.private_link_locations :
+      "privatelink.${location}.kusto.windows.net"
+    ]
+    microsoft_power_bi               = ["privatelink.analysis.windows.net", "privatelink.pbidedicated.windows.net", "privatelink.tip1.powerquery.microsoft.com"]
+    azure_bot_service                = ["botplinks.botframework.com", "bottoken.botframework.com"]
   }
   lookup_private_link_group_id_by_service = {
     azure_automation_webhook             = local.empty_string
@@ -1381,6 +1396,18 @@ locals {
     azure_cache_for_redis                = local.empty_string
     azure_purview                        = local.empty_string
     azure_purview_studio                 = local.empty_string
+    azure_batch_account                  = local.empty_string
+    azure_managed_hsm                    = local.empty_string
+    azure_cache_for_redis_enterprise     = local.empty_string
+    azure_digital_twins                  = local.empty_string
+    azure_hdinsights                     = local.empty_string
+    azure_media_services                 = local.empty_string
+    azure_migrate                        = local.empty_string
+    azure_arc                            = local.empty_string
+    azure_api_management                 = local.empty_string
+    azure_data_explorer                  = local.empty_string
+    microsoft_power_bi                   = local.empty_string
+    azure_bot_service                    = local.empty_string
   }
   services_by_private_link_dns_zone = transpose(local.lookup_private_link_dns_zone_by_service)
   private_dns_zone_enabled = {

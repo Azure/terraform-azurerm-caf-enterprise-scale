@@ -244,6 +244,18 @@ locals {
             azure_cache_for_redis                = false
             azure_purview                        = false
             azure_purview_studio                 = false
+            azure_batch_account                  = false
+            azure_managed_hsm                    = false
+            azure_cache_for_redis_enterprise     = false
+            azure_digital_twins                  = false
+            azure_hdinsights                     = false
+            azure_media_services                 = false
+            azure_migrate                        = false
+            azure_arc                            = false
+            azure_api_management                 = false
+            azure_data_explorer                  = false
+            microsoft_power_bi                   = false
+            azure_bot_service                    = false
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []

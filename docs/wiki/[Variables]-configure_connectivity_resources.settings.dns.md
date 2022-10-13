@@ -61,6 +61,18 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_cache_for_redis                = true
       azure_purview                        = true
       azure_purview_studio                 = true
+      azure_batch_account                  = true
+      azure_managed_hsm                    = true
+      azure_cache_for_redis_enterprise     = true
+      azure_digital_twins                  = true
+      azure_hdinsights                     = true
+      azure_media_services                 = true
+      azure_migrate                        = true
+      azure_arc                            = true
+      azure_api_management                 = true
+      azure_data_explorer                  = true
+      microsoft_power_bi                   = true
+      azure_bot_service                    = true
     }
     private_link_locations                                 = []
     public_dns_zones                                       = []
@@ -131,6 +143,18 @@ object({
       azure_cache_for_redis                = bool
       azure_purview                        = bool
       azure_purview_studio                 = bool
+      azure_batch_account                  = bool
+      azure_managed_hsm                    = bool
+      azure_cache_for_redis_enterprise     = bool
+      azure_digital_twins                  = bool
+      azure_hdinsights                     = bool
+      azure_media_services                 = bool
+      azure_migrate                        = bool
+      azure_arc                            = bool
+      azure_api_management                 = bool
+      azure_data_explorer                  = bool
+      microsoft_power_bi                   = bool
+      azure_bot_service                    = bool
     })
     private_link_locations                                 = list(string)
     public_dns_zones                                       = list(string)
@@ -210,7 +234,18 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 - `azure_cache_for_redis`
 - `azure_purview`
 - `azure_purview_studio`
-
+- `azure_batch_account`
+- `azure_managed_hsm`
+- `azure_cache_for_redis_enterprise`
+- `azure_digital_twins`
+- `azure_hdinsights`
+- `azure_media_services`
+- `azure_migrate`
+- `azure_arc`
+- `azure_api_management`
+- `azure_data_explorer`
+- `microsoft_power_bi`
+- `azure_bot_service`
 #### `config.private_link_locations`
 
 #### `config.public_dns_zones`
