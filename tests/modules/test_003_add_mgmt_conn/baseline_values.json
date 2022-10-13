@@ -3170,8 +3170,8 @@
                 "10.100.0.0/24"
               ],
               "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
+              "private_endpoint_network_policies_enabled": true,
+              "private_link_service_network_policies_enabled": true,
               "name": "AzureFirewallSubnet",
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "service_endpoint_policy_ids": null,
@@ -3199,8 +3199,8 @@
                 "10.100.1.0/24"
               ],
               "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
+              "private_endpoint_network_policies_enabled": true,
+              "private_link_service_network_policies_enabled": true,
               "name": "GatewaySubnet",
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "service_endpoint_policy_ids": null,
@@ -3228,8 +3228,8 @@
                 "10.101.1.0/24"
               ],
               "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
+              "private_endpoint_network_policies_enabled": true,
+              "private_link_service_network_policies_enabled": true,
               "name": "GatewaySubnet",
               "resource_group_name": "root-id-1-connectivity-westeurope",
               "service_endpoint_policy_ids": null,
