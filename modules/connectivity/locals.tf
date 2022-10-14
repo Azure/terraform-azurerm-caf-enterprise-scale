@@ -404,13 +404,13 @@ locals {
             resource_id = "${local.virtual_network_resource_id[location]}/subnets/${subnet.name}"
             location    = location
             # Resource definition attributes
-            resource_group_name                            = local.resource_group_names_by_scope_and_location["connectivity"][location]
-            virtual_network_name                           = local.virtual_network_name[location]
-            private_endpoint_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_endpoint_network_policies_enabled, null)
-            private_link_service_network_policies_enabled  = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_link_service_network_policies_enabled, null)
-            service_endpoints                              = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoints, null)
-            service_endpoint_policy_ids                    = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoint_policy_ids, null)
-            delegation                                     = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].delegation, local.empty_list)
+            resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
+            virtual_network_name                          = local.virtual_network_name[location]
+            private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_endpoint_network_policies_enabled, null)
+            private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_link_service_network_policies_enabled, null)
+            service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoints, null)
+            service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoint_policy_ids, null)
+            delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].delegation, local.empty_list)
           }
         )
       ],
@@ -423,15 +423,15 @@ locals {
           network_security_group_id = null
           route_table_id            = null
           # Resource definition attributes
-          name                                           = "GatewaySubnet"
-          address_prefixes                               = [hub_network.config.virtual_network_gateway.config.address_prefix, ]
-          resource_group_name                            = local.resource_group_names_by_scope_and_location["connectivity"][location]
-          virtual_network_name                           = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_endpoint_network_policies_enabled, null)
-          private_link_service_network_policies_enabled  = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_link_service_network_policies_enabled, null)
-          service_endpoints                              = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoints, null)
-          service_endpoint_policy_ids                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoint_policy_ids, null)
-          delegation                                     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].delegation, local.empty_list)
+          name                                          = "GatewaySubnet"
+          address_prefixes                              = [hub_network.config.virtual_network_gateway.config.address_prefix, ]
+          resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          virtual_network_name                          = local.virtual_network_name[location]
+          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_endpoint_network_policies_enabled, null)
+          private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_link_service_network_policies_enabled, null)
+          service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoints, null)
+          service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoint_policy_ids, null)
+          delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].delegation, local.empty_list)
         }
       ] : local.empty_list,
       # Conditionally add Azure Firewall subnet
@@ -443,15 +443,15 @@ locals {
           network_security_group_id = null
           route_table_id            = null
           # Resource definition attributes
-          name                                           = "AzureFirewallSubnet"
-          address_prefixes                               = [hub_network.config.azure_firewall.config.address_prefix, ]
-          resource_group_name                            = local.resource_group_names_by_scope_and_location["connectivity"][location]
-          virtual_network_name                           = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_endpoint_network_policies_enabled, null)
-          private_link_service_network_policies_enabled  = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_link_service_network_policies_enabled, null)
-          service_endpoints                              = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoints, null)
-          service_endpoint_policy_ids                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoint_policy_ids, null)
-          delegation                                     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].delegation, local.empty_list)
+          name                                          = "AzureFirewallSubnet"
+          address_prefixes                              = [hub_network.config.azure_firewall.config.address_prefix, ]
+          resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          virtual_network_name                          = local.virtual_network_name[location]
+          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_endpoint_network_policies_enabled, null)
+          private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_link_service_network_policies_enabled, null)
+          service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoints, null)
+          service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoint_policy_ids, null)
+          delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].delegation, local.empty_list)
         }
       ] : local.empty_list,
     )
