@@ -155,9 +155,8 @@ module "enterprise_scale" {
             azure_automation_webhook             = true
             azure_automation_dscandhybridworker  = true
             azure_sql_database_sqlserver         = true
-            azure_synapse_studio                       = true
+            azure_synapse_studio                 = true
             azure_synapse_dev                    = true
-            azure_synapse_analytics_sqlserver    = true
             azure_synapse_analytics_sql          = true
             storage_account_blob                 = true
             storage_account_table                = true

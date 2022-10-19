@@ -1286,7 +1286,6 @@ locals {
     azure_automation_webhook             = ["privatelink.azure-automation.net"]
     azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]
     azure_sql_database_sqlserver         = ["privatelink.database.windows.net"]
-    azure_synapse_analytics_sqlserver    = ["privatelink.database.windows.net"]
     azure_synapse_analytics_sql          = ["privatelink.sql.azuresynapse.net"]
     azure_synapse_studio                 = ["privatelink.azuresynapse.net"]
     azure_synapse_dev                    = ["privatelink.dev.azuresynapse.net"]
@@ -1356,7 +1355,6 @@ locals {
     azure_sql_database_sqlserver         = "sqlServer"
     azure_synapse_studio                 = local.empty_string
     azure_synapse_dev                    = local.empty_string
-    azure_synapse_analytics_sqlserver    = local.empty_string
     azure_synapse_analytics_sql          = local.empty_string
     storage_account_blob                 = "blob"
     storage_account_table                = "table"

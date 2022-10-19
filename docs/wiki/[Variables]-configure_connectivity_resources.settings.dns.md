@@ -19,9 +19,8 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_automation_webhook             = true
       azure_automation_dscandhybridworker  = true
       azure_sql_database_sqlserver         = true
-      azure_synapse_studio                       = true
+      azure_synapse_studio                 = true
       azure_synapse_dev                    = true
-      azure_synapse_analytics_sqlserver    = true
       azure_synapse_analytics_sql          = true
       storage_account_blob                 = true
       storage_account_table                = true
@@ -101,9 +100,8 @@ object({
       azure_automation_webhook             = bool
       azure_automation_dscandhybridworker  = bool
       azure_sql_database_sqlserver         = bool
-      azure_synapse_studio                       = bool
+      azure_synapse_studio                 = bool
       azure_synapse_dev                    = bool
-      azure_synapse_analytics_sqlserver    = bool
       azure_synapse_analytics_sql          = bool
       storage_account_blob                 = bool
       storage_account_table                = bool

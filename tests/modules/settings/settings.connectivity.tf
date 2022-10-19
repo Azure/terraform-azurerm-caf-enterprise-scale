@@ -204,7 +204,6 @@ locals {
             azure_sql_database_sqlserver         = false
             azure_synapse_studio                 = false
             azure_synapse_dev                    = false
-            azure_synapse_analytics_sqlserver    = false
             azure_synapse_analytics_sql          = false
             storage_account_blob                 = true
             storage_account_table                = true
