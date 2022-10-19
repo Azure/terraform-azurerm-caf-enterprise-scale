@@ -54,7 +54,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.2"
+      version = ">= 3.18.0"
     }
   }
 }
@@ -70,7 +70,7 @@ provider "azurerm" {
 
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.3.1"
+  version = "2.4.1"
 
   providers = {
     azurerm              = azurerm
@@ -112,7 +112,7 @@ terraform {
   required_providers {
     azurerm = {
       source                = "hashicorp/azurerm"
-      version               = ">= 3.0.2"
+      version               = ">= 3.18.0"
       configuration_aliases = [
         azurerm.connectivity,
         azurerm.management,
@@ -150,7 +150,7 @@ provider "azurerm" {
 
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.3.1"
+  version = "2.4.1"
 
   providers = {
     azurerm              = azurerm
@@ -208,7 +208,7 @@ data "azurerm_client_config" "connectivity" {
 # Map each module provider to their corresponding `azurerm` provider using the providers input object
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.3.1"
+  version = "2.4.1"
 
   providers = {
     azurerm              = azurerm

@@ -1,6 +1,6 @@
 # Azure landing zones Terraform module
 
-[![Build Status](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_apis/build/status/Tests/E2E?branchName=refs%2Ftags%2Fv2.3.1)](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_build/latest?definitionId=26&branchName=refs%2Ftags%2Fv2.3.1)
+[![Build Status](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_apis/build/status/Tests/E2E?branchName=refs%2Ftags%2Fv2.4.1)](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_build/latest?definitionId=26&branchName=refs%2Ftags%2Fv2.4.1)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 Detailed information about how to use, configure and extend this module can be found on our Wiki:
@@ -38,7 +38,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `0.15.1` and AzureRM Provider `3.0.2` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `0.15.1` and AzureRM Provider `3.18.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -61,7 +61,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.2"
+      version = ">= 3.18.0"
     }
   }
 }
@@ -94,7 +94,7 @@ variable "root_name" {
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.3.1"
+  version = "2.4.1"
 
   providers = {
     azurerm              = azurerm
