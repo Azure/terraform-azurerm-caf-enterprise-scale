@@ -189,75 +189,107 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 
 #### `config.enable_private_link_by_service`
 
-- `azure_automation_webhook`
+Enable deployment of private DNS zones for private link by service.
+
+The following services are currently supported by the module:
+
+- `azure_api_management`
+- `azure_app_configuration_stores`
+- `azure_arc`
 - `azure_automation_dscandhybridworker`
-- `azure_sql_database_sqlserver`
-- `azure_synapse`
-- `azure_synapse_analytics_dev`
-- `azure_synapse_analytics_sqlserver`
-- `azure_synapse_analytics_sql`
-- `storage_account_blob`
-- `storage_account_table`
-- `storage_account_queue`
-- `storage_account_file`
-- `storage_account_web`
-- `azure_data_lake_file_system_gen2`
-- `azure_cosmos_db_sql`
-- `azure_cosmos_db_mongodb`
+- `azure_automation_webhook`
+- `azure_backup`
+- `azure_batch_account`
+- `azure_bot_service_bot`
+- `azure_bot_service_token`
+- `azure_cache_for_redis`
+- `azure_cache_for_redis_enterprise`
+- `azure_container_registry`
 - `azure_cosmos_db_cassandra`
 - `azure_cosmos_db_gremlin`
+- `azure_cosmos_db_mongodb`
+- `azure_cosmos_db_sql`
 - `azure_cosmos_db_table`
-- `azure_database_for_postgresql_server`
-- `azure_database_for_mysql_server`
-- `azure_database_for_mariadb_server`
-- `azure_key_vault`
-- `azure_kubernetes_service_management`
-- `azure_search_service`
-- `azure_container_registry`
-- `azure_app_configuration_stores`
-- `azure_backup`
-- `azure_site_recovery`
-- `azure_event_hubs_namespace`
-- `azure_service_bus_namespace`
-- `azure_iot_hub`
-- `azure_relay_namespace`
-- `azure_event_grid_topic`
-- `azure_event_grid_domain`
-- `azure_web_apps_sites`
-- `azure_machine_learning_workspace`
-- `signalr`
-- `azure_monitor`
-- `cognitive_services_account`
-- `azure_file_sync`
+- `azure_data_explorer`
 - `azure_data_factory`
 - `azure_data_factory_portal`
-- `azure_cache_for_redis`
-- `azure_purview`
-- `azure_purview_studio`
-- `azure_batch_account`
-- `azure_key_vault_managed_hsm`
-- `azure_cache_for_redis_enterprise`
+- `azure_data_lake_file_system_gen2`
+- `azure_database_for_mariadb_server`
+- `azure_database_for_mysql_server`
+- `azure_database_for_postgresql_server`
 - `azure_digital_twins`
+- `azure_event_grid_domain`
+- `azure_event_grid_topic`
+- `azure_event_hubs_namespace`
+- `azure_file_sync`
 - `azure_hdinsights`
+- `azure_iot_hub`
+- `azure_key_vault`
+- `azure_key_vault_managed_hsm`
+- `azure_kubernetes_service_management`
+- `azure_machine_learning_workspace`
 - `azure_media_services`
 - `azure_migrate`
-- `azure_arc`
-- `azure_api_management`
-- `azure_data_explorer`
+- `azure_monitor`
+- `azure_purview_account`
+- `azure_purview_studio`
+- `azure_relay_namespace`
+- `azure_search_service`
+- `azure_service_bus_namespace`
+- `azure_site_recovery`
+- `azure_sql_database_sqlserver`
+- `azure_synapse_analytics_dev`
+- `azure_synapse_analytics_sql`
+- `azure_synapse_studio`
+- `azure_web_apps_sites`
+- `azure_web_apps_static_sites`
+- `cognitive_services_account`
 - `microsoft_power_bi`
-- `azure_bot_service`
+- `signalr`
+- `storage_account_blob`
+- `storage_account_file`
+- `storage_account_queue`
+- `storage_account_table`
+- `storage_account_web`
+
+> If you need to enable private link for `Azure SQL Managed Instance (Microsoft.Sql/managedInstances)` resources using the `privatelink.{dnsPrefix}.database.windows.net` namespace, please add these using the [config.private_dns_zones](#configprivate_dns_zones) attribute so you can specify the required `dnsPrefix` value(s).
+
+> If you need to enable private link for `Azure Static Web Apps (Microsoft.Web/staticSites) / staticSites` resources using the `privatelink.{partitionId}.azurestaticapps.net` namespace, please add these using the [config.private_dns_zones](#configprivate_dns_zones) attribute so you can specify the required `partitionId` value(s).
+
+For more information, please refer to the [Azure Private Endpoint DNS configuration][msdocs_private_endpoint_dns] documentation.
+
 #### `config.private_link_locations`
+
+Set custom location(s) for private link services which require private DNS zones set per location / region.
+
+Currently this applies to the following services:
+
+| Private link service | Private DNS zone name |
+| --- | --- |
+| `azure_backup` | `privatelink.{region}.backup.windowsazure.us` |
+| `azure_data_explorer` | `privatelink.{region}.kusto.windows.net` |
+| `azure_kubernetes_service_management` | `privatelink.{region}.azmk8s.io` |
 
 #### `config.public_dns_zones`
 
+Add custom namespaces to create additional public DNS zones using the module.
+
 #### `config.private_dns_zones`
+
+Add custom namespaces to create additional private DNS zones using the module.
 
 #### `config.enable_private_dns_zone_virtual_network_link_on_hubs`
 
+Set to true to link all private DNS zones to all hub virtual networks created by the module.
+
 #### `config.enable_private_dns_zone_virtual_network_link_on_spokes`
+
+Set to true to link all private DNS zones to all spoke virtual networks associated to hub virtual networks created by the module.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
 [this_page]: # "Link for the current page."
+
+[msdocs_private_endpoint_dns]: https://learn.microsoft.com/azure/private-link/private-endpoint-dns "Azure Private Endpoint DNS configuration"
