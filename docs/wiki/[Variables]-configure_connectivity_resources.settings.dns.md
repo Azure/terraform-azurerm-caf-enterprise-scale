@@ -16,62 +16,64 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
   config = {
     location = ""
     enable_private_link_by_service = {
-      azure_automation_webhook             = true
+      azure_api_management                 = true
+      azure_app_configuration_stores       = true
+      azure_arc                            = true
       azure_automation_dscandhybridworker  = true
-      azure_sql_database_sqlserver         = true
-      azure_synapse_studio                 = true
-      azure_synapse_dev                    = true
-      azure_synapse_analytics_sql          = true
-      storage_account_blob                 = true
-      storage_account_table                = true
-      storage_account_queue                = true
-      storage_account_file                 = true
-      storage_account_web                  = true
-      azure_data_lake_file_system_gen2     = true
-      azure_cosmos_db_sql                  = true
-      azure_cosmos_db_mongodb              = true
+      azure_automation_webhook             = true
+      azure_backup                         = true
+      azure_batch_account                  = true
+      azure_bot_service_bot                = true
+      azure_bot_service_token              = true
+      azure_cache_for_redis                = true
+      azure_cache_for_redis_enterprise     = true
+      azure_container_registry             = true
       azure_cosmos_db_cassandra            = true
       azure_cosmos_db_gremlin              = true
+      azure_cosmos_db_mongodb              = true
+      azure_cosmos_db_sql                  = true
       azure_cosmos_db_table                = true
-      azure_database_for_postgresql_server = true
-      azure_database_for_mysql_server      = true
-      azure_database_for_mariadb_server    = true
-      azure_key_vault                      = true
-      azure_kubernetes_service_management  = true
-      azure_search_service                 = true
-      azure_container_registry             = true
-      azure_app_configuration_stores       = true
-      azure_backup                         = true
-      azure_site_recovery                  = true
-      azure_event_hubs_namespace           = true
-      azure_service_bus_namespace          = true
-      azure_iot_hub                        = true
-      azure_relay_namespace                = true
-      azure_event_grid_topic               = true
-      azure_event_grid_domain              = true
-      azure_web_apps_sites                 = true
-      azure_machine_learning_workspace     = true
-      signalr                              = true
-      azure_monitor                        = true
-      cognitive_services_account           = true
-      azure_file_sync                      = true
+      azure_data_explorer                  = true
       azure_data_factory                   = true
       azure_data_factory_portal            = true
-      azure_cache_for_redis                = true
-      azure_purview                        = true
-      azure_purview_studio                 = true
-      azure_batch_account                  = true
-      azure_managed_hsm                    = true
-      azure_cache_for_redis_enterprise     = true
+      azure_data_lake_file_system_gen2     = true
+      azure_database_for_mariadb_server    = true
+      azure_database_for_mysql_server      = true
+      azure_database_for_postgresql_server = true
       azure_digital_twins                  = true
+      azure_event_grid_domain              = true
+      azure_event_grid_topic               = true
+      azure_event_hubs_namespace           = true
+      azure_file_sync                      = true
       azure_hdinsights                     = true
+      azure_iot_hub                        = true
+      azure_key_vault                      = true
+      azure_key_vault_managed_hsm          = true
+      azure_kubernetes_service_management  = true
+      azure_machine_learning_workspace     = true
       azure_media_services                 = true
       azure_migrate                        = true
-      azure_arc                            = true
-      azure_api_management                 = true
-      azure_data_explorer                  = true
+      azure_monitor                        = true
+      azure_purview_account                = true
+      azure_purview_studio                 = true
+      azure_relay_namespace                = true
+      azure_search_service                 = true
+      azure_service_bus_namespace          = true
+      azure_site_recovery                  = true
+      azure_sql_database_sqlserver         = true
+      azure_synapse_analytics_dev          = true
+      azure_synapse_analytics_sql          = true
+      azure_synapse_studio                 = true
+      azure_web_apps_sites                 = true
+      azure_web_apps_static_sites          = true
+      cognitive_services_account           = true
       microsoft_power_bi                   = true
-      azure_bot_service                    = true
+      signalr                              = true
+      storage_account_blob                 = true
+      storage_account_file                 = true
+      storage_account_queue                = true
+      storage_account_table                = true
+      storage_account_web                  = true
     }
     private_link_locations                                 = []
     public_dns_zones                                       = []
@@ -101,7 +103,7 @@ object({
       azure_automation_dscandhybridworker  = bool
       azure_sql_database_sqlserver         = bool
       azure_synapse_studio                 = bool
-      azure_synapse_dev                    = bool
+      azure_synapse_analytics_dev          = bool
       azure_synapse_analytics_sql          = bool
       storage_account_blob                 = bool
       storage_account_table                = bool
@@ -142,7 +144,7 @@ object({
       azure_purview                        = bool
       azure_purview_studio                 = bool
       azure_batch_account                  = bool
-      azure_managed_hsm                    = bool
+      azure_key_vault_managed_hsm                    = bool
       azure_cache_for_redis_enterprise     = bool
       azure_digital_twins                  = bool
       azure_hdinsights                     = bool
@@ -191,7 +193,7 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 - `azure_automation_dscandhybridworker`
 - `azure_sql_database_sqlserver`
 - `azure_synapse`
-- `azure_synapse_dev`
+- `azure_synapse_analytics_dev`
 - `azure_synapse_analytics_sqlserver`
 - `azure_synapse_analytics_sql`
 - `storage_account_blob`
@@ -233,7 +235,7 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 - `azure_purview`
 - `azure_purview_studio`
 - `azure_batch_account`
-- `azure_managed_hsm`
+- `azure_key_vault_managed_hsm`
 - `azure_cache_for_redis_enterprise`
 - `azure_digital_twins`
 - `azure_hdinsights`
