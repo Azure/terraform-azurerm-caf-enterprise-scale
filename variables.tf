@@ -576,7 +576,7 @@ variable "configure_connectivity_resources" {
               }
             }
             azure_firewall = {
-              enabled = true
+              enabled = false
               config = {
                 address_prefix                = "172.22.5.0/24"
                 enable_dns_proxy              = true

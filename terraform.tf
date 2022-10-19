@@ -18,8 +18,17 @@ terraform {
       version = ">= 3.1.0"
     }
   }
-  backend "local" {
+  /*backend "local" {
     path = "./tfstate/test_framework.tfstate"
+  }*/
+   
+terraform {
+  backend "azurerm" {
+    resource_group_name      = "rg-tfstate-ohit"
+    storage_account_name     = "tfstateohit"
+    container_name           = "tfstorage"
+    key                      = "terraform.tfstate"
   }
+}
   required_version = ">= 0.15.1"
 }
