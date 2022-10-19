@@ -202,7 +202,7 @@ locals {
             azure_automation_webhook             = false
             azure_automation_dscandhybridworker  = false
             azure_sql_database_sqlserver         = false
-            azure_synapse                        = false
+            azure_synapse_studio                 = false
             azure_synapse_dev                    = false
             azure_synapse_analytics_sqlserver    = false
             azure_synapse_analytics_sql          = false

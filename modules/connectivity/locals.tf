@@ -1288,7 +1288,7 @@ locals {
     azure_sql_database_sqlserver         = ["privatelink.database.windows.net"]
     azure_synapse_analytics_sqlserver    = ["privatelink.database.windows.net"]
     azure_synapse_analytics_sql          = ["privatelink.sql.azuresynapse.net"]
-    azure_synapse                        = ["privatelink.azuresynapse.net"]
+    azure_synapse_studio                 = ["privatelink.azuresynapse.net"]
     azure_synapse_dev                    = ["privatelink.dev.azuresynapse.net"]
     storage_account_blob                 = ["privatelink.blob.core.windows.net"]
     storage_account_table                = ["privatelink.table.core.windows.net"]
@@ -1343,18 +1343,18 @@ locals {
     azure_migrate                    = ["privatelink.prod.migration.windowsazure.com"]
     azure_arc                        = ["privatelink.his.arc.azure.com", "privatelink.guestconfiguration.azure.com"]
     azure_api_management             = ["privatelink.azure-api.net", "privatelink.developer.azure-api.net"]
-    azure_data_explorer              = [
+    azure_data_explorer = [
       for location in local.private_link_locations :
       "privatelink.${location}.kusto.windows.net"
     ]
-    microsoft_power_bi               = ["privatelink.analysis.windows.net", "privatelink.pbidedicated.windows.net", "privatelink.tip1.powerquery.microsoft.com"]
-    azure_bot_service                = ["botplinks.botframework.com", "bottoken.botframework.com"]
+    microsoft_power_bi = ["privatelink.analysis.windows.net", "privatelink.pbidedicated.windows.net", "privatelink.tip1.powerquery.microsoft.com"]
+    azure_bot_service  = ["botplinks.botframework.com", "bottoken.botframework.com"]
   }
   lookup_private_link_group_id_by_service = {
     azure_automation_webhook             = local.empty_string
     azure_automation_dscandhybridworker  = local.empty_string
     azure_sql_database_sqlserver         = "sqlServer"
-    azure_synapse                        = local.empty_string
+    azure_synapse_studio                 = local.empty_string
     azure_synapse_dev                    = local.empty_string
     azure_synapse_analytics_sqlserver    = local.empty_string
     azure_synapse_analytics_sql          = local.empty_string
