@@ -254,6 +254,7 @@ The following services are currently supported by the module:
 
 > If you need to enable private link for `Azure SQL Managed Instance (Microsoft.Sql/managedInstances)` resources using the `privatelink.{dnsPrefix}.database.windows.net` namespace, please add these using the [config.private_dns_zones](#configprivate_dns_zones) attribute so you can specify the required `dnsPrefix` value(s).
 
+<!-- markdownlint-disable-next-line no-blanks-blockquote -->
 > If you need to enable private link for `Azure Static Web Apps (Microsoft.Web/staticSites) / staticSites` resources using the `privatelink.{partitionId}.azurestaticapps.net` namespace, please add these using the [config.private_dns_zones](#configprivate_dns_zones) attribute so you can specify the required `partitionId` value(s).
 
 For more information, please refer to the [Azure Private Endpoint DNS configuration][msdocs_private_endpoint_dns] documentation.
