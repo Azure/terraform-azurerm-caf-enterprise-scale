@@ -3170,8 +3170,6 @@
                 "10.100.0.0/24"
               ],
               "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
               "name": "AzureFirewallSubnet",
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "service_endpoint_policy_ids": null,
@@ -3199,8 +3197,6 @@
                 "10.100.1.0/24"
               ],
               "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
               "name": "GatewaySubnet",
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "service_endpoint_policy_ids": null,
@@ -3228,8 +3224,6 @@
                 "10.101.1.0/24"
               ],
               "delegation": [],
-              "enforce_private_link_endpoint_network_policies": false,
-              "enforce_private_link_service_network_policies": false,
               "name": "GatewaySubnet",
               "resource_group_name": "root-id-1-connectivity-westeurope",
               "service_endpoint_policy_ids": null,
@@ -3622,6 +3616,7 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
+              "bgp_route_translation_for_nat_enabled": false,
               "location": "northeurope",
               "name": "root-id-1-vpngw-northeurope",
               "resource_group_name": "root-id-1-connectivity",
