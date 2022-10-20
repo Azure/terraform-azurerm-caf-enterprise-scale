@@ -1,5 +1,7 @@
+---
 name: Sync Issues to Azure DevOps Work Items
 
+# yamllint disable-line rule:truthy
 on:
   issues:
     types: [opened, closed, deleted, reopened, edited, labeled, unlabeled, assigned, unassigned]
