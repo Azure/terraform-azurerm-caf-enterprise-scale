@@ -126,36 +126,6 @@ This template-based approach was chosen to make the desired-state easier to unde
 > Typically this applies to each `key` in an object but there are also situations where the `value` also needs to be interpreted by the module. For archetype definitions, the case of all values within each section must match those used in the mapped field for each template being assigned. Incorrect casing can result in `terraform plan` identifying unnecessary resource updates.
 > For example, the Azure REST API returns `"type": "String"` in parameter blocks, regardless of what case was used to create the resource. Not using the same casing in your source templates can result in Terraform trying to update resources when no real changes have occurred.
 
-### Practical example of overwriting policy effects
-
-When you would like to overwrite policy effects, it's important to understand the policy assignment. If the policy is assigned to landing zones, the `landing-zones` archetype needs to be overwritten:
-
-```hcl
-  archetype_config_overrides = {
-    landing-zones = {
-      archetype_id = "es_landing_zones"
-      parameters = {
-        Deny-Subnet-Without-Nsg = {
-          effect = "Audit"
-        }
-        Deploy-VM-Backup = {
-          effect = "AuditIfNotExists"
-        }
-      }
-      access_control = {}
-    }
-    corp = {
-      archetype_id = "es_corp"
-      parameters = {
-        Deny-Public-Endpoints = {
-          ACRPublicIpDenyEffect = "Audit"
-        }
-      }
-      access_control = {}
-    }
-  }
-```
-
 ### Using the `default_empty` archetype definition
 
 Specifying an `archetype_id` value is mandatory for all Management Groups created by the module.
