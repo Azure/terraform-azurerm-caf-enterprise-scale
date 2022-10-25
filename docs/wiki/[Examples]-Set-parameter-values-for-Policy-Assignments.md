@@ -12,9 +12,9 @@ An example of this is the `Deploy-MDFC-Config` Policy Assignment, which takes a 
 
 Customers wanting to create additional or change existing Policy Assignment parameter values should consider the following options:
 
-1. Setting a `defaultValue` for parameters within a Policy Definition template
-1. Setting a `value` for parameters within a Policy Assignment template
-1. Setting parameter key/value pairs within an Archetype Definition template
+1. Setting a `defaultValue` for parameters within a Policy Definition template</br>[View Policy Definition templates included with the module](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib/policy_definitions)
+1. Setting a `value` for parameters within a Policy Assignment template</br>[View Policy Assignment templates included with the module](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib/policy_assignments)
+1. Setting parameter key/value pairs within an Archetype Definition template</br>[View Archetype Definition templates included with the module](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib/archetype_definitions)
 1. Setting parameter key/value pairs within the `archetype_config_overrides` or `custom_landing_zones` input variable
 
 > **NOTE:** The module will set values based on the above options in order.
