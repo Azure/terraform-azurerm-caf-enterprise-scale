@@ -1317,7 +1317,7 @@ locals {
     azure_machine_learning_workspace     = ["privatelink.api.azureml.ms", "privatelink.notebooks.azure.net"]
     azure_media_services                 = ["privatelink.media.azure.net"]
     azure_migrate                        = ["privatelink.prod.migration.windowsazure.com"]
-    azure_monitor                        = ["privatelink.monitor.azure.com", "privatelink.oms.opinsights.azure.com", "privatelink.ods.opinsights.azure.com", "privatelink.agentsvc.azure-automation.net"]
+    azure_monitor                        = ["privatelink.monitor.azure.com", "privatelink.oms.opinsights.azure.com", "privatelink.ods.opinsights.azure.com", "privatelink.agentsvc.azure-automation.net", "privatelink.blob.core.windows.net"]
     azure_purview_account                = ["privatelink.purview.azure.com"]
     azure_purview_studio                 = ["privatelink.purviewstudio.azure.com"]
     azure_relay_namespace                = ["privatelink.servicebus.windows.net"]
