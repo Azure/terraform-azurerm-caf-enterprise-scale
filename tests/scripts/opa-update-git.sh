@@ -42,8 +42,9 @@ if [ ${#GIT_DIFF[@]} -gt 0 ]; then
     echo "==> Push changes..."
     PR_USER=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepositoryOwner --jq ".headRepositoryOwner.login")
     PR_REPO=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRepository --jq ".headRepository.name")
+    PR_HEAD=$(gh pr view "$SYSTEM_PULLREQUEST_PULLREQUESTNUMBER" --json headRefName --jq ".headRefName")
     echo "Pushing changes to: $PR_USER/$PR_REPO"
-    git push "https://$GITHUB_TOKEN@github.com/$PR_USER/$PR_REPO.git"
+    git push "https://$GITHUB_TOKEN@github.com/$PR_USER/$PR_REPO.git" "HEAD:$PR_HEAD"
 
 else
     echo "No changes found."
