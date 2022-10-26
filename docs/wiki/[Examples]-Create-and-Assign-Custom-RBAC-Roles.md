@@ -19,7 +19,7 @@ The files we will use are:
 
 - [lib/role_definitions/role_definition_es_reader_support_tickets.tmpl.json](#librole_definitionsrole_definition_es_reader_support_ticketstmpljson)
 - [lib/archetype_extension_es_root.tmpl.json](#libarchetype_extension_es_roottmpljson)
-- [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zones_tmpljson)
+- [lib/archetype_extension_es_landing_zones.tmpl.json](#libarchetype_extension_es_landing_zonestmpljson)
 
 >**IMPORTANT**: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `lib`.
 
