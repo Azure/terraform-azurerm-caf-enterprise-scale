@@ -1625,10 +1625,10 @@ locals {
         for spoke_resource_id in hub_config.config.spoke_virtual_network_resource_ids :
         {
           # Resource logic attributes
-          resource_id       = "${local.virtual_network_peering_resource_id[location][spoke_resource_id]}"
+          resource_id       = local.virtual_network_peering_resource_id[location][spoke_resource_id]
           managed_by_module = local.deploy_outbound_virtual_network_peering[location]
           # Resource definition attributes
-          name                      = "${local.virtual_network_peering_name[location][spoke_resource_id]}"
+          name                      = local.virtual_network_peering_name[location][spoke_resource_id]
           resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name      = local.virtual_network_name[location]
           remote_virtual_network_id = spoke_resource_id

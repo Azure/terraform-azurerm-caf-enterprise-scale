@@ -346,7 +346,7 @@ Default: `{}`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
-[**deploy_connectivity_resources**][deploy_core_landing_zones] `bool`
+[**deploy_connectivity_resources**][deploy_connectivity_resources] `bool`
 
 If set to true, will deploy the \"Connectivity\" landing zone settings and add resources into the current Subscription context.
 

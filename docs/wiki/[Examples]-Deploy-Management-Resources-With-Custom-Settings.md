@@ -291,8 +291,6 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_examples]:                     Examples "Wiki - Examples"
 
 [configure_management_resources]: %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[deploy_management_resources]:    %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
-[subscription_id_management]:     %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
 [default_location]:               %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
 [archetype_exclusions]:           %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
 [custom_archetypes]:              %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"

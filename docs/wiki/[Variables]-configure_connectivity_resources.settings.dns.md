@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.dns**](#overview) `object({})` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.dns**](#overview) `object({})` [*see validation for detailed type*](#validation) (optional)
 
 The `configure_connectivity_resources.settings.dns` object provides configuration settings to control creation of DNS resources in the target location.
 
@@ -290,7 +290,5 @@ Set to true to link all private DNS zones to all spoke virtual networks associat
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [msdocs_private_endpoint_dns]: https://learn.microsoft.com/azure/private-link/private-endpoint-dns "Azure Private Endpoint DNS configuration"

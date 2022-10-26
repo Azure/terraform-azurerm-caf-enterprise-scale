@@ -36,7 +36,7 @@ As linting only let's you know if the code is well written (according to a pre-d
 
 To verify this, we have a set of unit tests which run additional checks against the module using a series of test deployments.
 
-To give assurance that the module works with the specified range of supported versions of Terraform and the Azure provider, we use a [matrix strategy](#multi_job_configuration_matrix_strategy)) to automatically generate parallel running jobs for each version combination.
+To give assurance that the module works with the specified range of supported versions of Terraform and the Azure provider, we use a [matrix strategy](#multi-job-configuration-matrix-strategy)) to automatically generate parallel running jobs for each version combination.
 
 The Unit Tests consist of the following tasks:
 

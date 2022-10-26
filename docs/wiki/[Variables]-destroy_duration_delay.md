@@ -36,5 +36,3 @@ In the following, we set a 30s delay after the destruction of `azurerm_policy_as
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

@@ -30,9 +30,9 @@ An example of a built-in policy that already has an assignment file included wit
 
 As the policies you will use in this example do not already have an assignment file within the module, you will need to create the below files so that you can assign them:
 
-- [lib/policy_assignments/policy_assignment_not_allowed_resource_types.json](#libpolicy_assignmentspolicy_assignment_not_allowed_resource_typesjson)
-- [lib/policy_assignments/policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json](#libpolicy_assignmentspolicy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_serverjson)
-- [lib/policy_assignments/policy_assignment_nist_sp_800_53_rev_5.json](#libpolicy_assignmentspolicy_assignment_nist_sp_800_53_rev_5json)
+- [./lib/policy_assignments/policy_assignment_not_allowed_resource_types.json](#libpolicy_assignmentspolicy_assignment_not_allowed_resource_typesjson)
+- [./lib/policy_assignments/policy_assignment_deploy_default_microsoft_IaaSAntimalware_extension_for_windows_server.json](#libpolicy_assignmentspolicy_assignment_deploy_default_microsoft_iaasantimalware_extension_for_windows_serverjson)
+- [./lib/policy_assignments/policy_assignment_nist_sp_800_53_rev_5.json](#libpolicy_assignmentspolicy_assignment_nist_sp_800_53_rev_5json)
 
 ## Create Custom Policy Assignment Files
 
@@ -44,7 +44,7 @@ You will then need to create a file named `policy_assignment_not_allowed_resourc
 
 > **NOTE:** The full file name is not important but it does need to meet the naming conventions detailed [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Archetype-Definitions#working-with-archetype-definitions-and-the-custom-library)
 
-To assign the correct policy, we need to provide the appropriate value for `policyDefinitionID` within our assignment file. You can retrieve the PolicyDefinitionID for your policy either through the Azure Portal, [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azpolicydefinition?view=azps-7.3.0) or the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/policy/definition?view=azure-cli-latest)
+To assign the correct policy, we need to provide the appropriate value for `policyDefinitionID` within our assignment file. You can retrieve the PolicyDefinitionID for your policy either through the Azure Portal, [Azure PowerShell](https://docs.microsoft.com/powershell/module/az.resources/get-azpolicydefinition?view=azps-7.3.0) or the [Azure CLI](https://docs.microsoft.com/cli/azure/policy/definition?view=azure-cli-latest)
 
 ![Policy DefinitionID](media/examples-assign-a-built-in-policy-definitionID.png)
 

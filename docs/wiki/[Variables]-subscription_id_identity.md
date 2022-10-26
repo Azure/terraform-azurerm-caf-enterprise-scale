@@ -28,5 +28,3 @@ To identify the Identity Subscription by ID, set the `subscription_id_identity` 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
