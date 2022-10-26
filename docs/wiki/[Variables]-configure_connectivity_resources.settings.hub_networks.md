@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#validation) (optional)
 
 For each configuration object added to the `configure_connectivity_resources.settings.hub_networks` list, the module will create a hub network and associated resources in the target location based on a [traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke].
 
@@ -285,7 +285,7 @@ Leaving this value as an empty string `""` will result in no VPN Gateway being c
 
 The `sku` value will automatically determine whether the VPN Gateway and dependant resources (e.g. Public IP) will be deployed across zones or not.
 
-If `sku` is set to `Basic`, [enable_bgp](#configvirtualnetworkgatewayconfigadvancedvpnsettingsenablebgp) is not supported.
+If `sku` is set to `Basic`, [enable_bgp](#configvirtual_network_gatewayconfigadvanced_vpn_settingsenable_bgp) is not supported.
 The module will automatically set this value to `null` to prevent resource creation errors.
 
 > **NOTE:** Take care to ensure you specify a `sku` supported by the location specified in the hub network configuration.
@@ -470,8 +470,6 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [virtual_network_gateway_sku]:     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
 [azfw_policy_rule_hierarchy]:      https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."

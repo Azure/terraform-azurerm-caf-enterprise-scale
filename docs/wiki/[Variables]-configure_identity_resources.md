@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_identity_resources**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_identity_resources**](#overview) [*see validation for type*](#validation) (optional)
 
 If specified, will customize the "identity" landing zone settings and resources.
 
@@ -97,7 +97,5 @@ Provides granular control over the [enforcementMode][msdocs_policy_enforcement] 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [msdocs_policy_enforcement]: https://docs.microsoft.com/azure/governance/policy/concepts/assignment-structure#enforcement-mode "Azure Policy - Enforcement Mode"

@@ -70,7 +70,7 @@ To make the code easier to maintain when extending your configuration, we recomm
 - [terraform.tf](#terraformtf)
 - [variables.tf](#variablestf)
 - [main.tf](#maintf)
-- [lib/archetype_definition_customer_online.json](#libarchetypedefinitioncustomeronlinejson)
+- [lib/archetype_definition_customer_online.json](#libarchetype_definition_customer_onlinejson)
 
 ### `terraform.tf`
 

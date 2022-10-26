@@ -30,6 +30,4 @@ Set the value to your [Azure region][msdocs_azure_geographies] of choice.
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
-[msdocs_azure_geographies]: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/ "Find the Azure geography that meets your needs"
+[msdocs_azure_geographies]: https://azure.microsoft.com/global-infrastructure/geographies/ "Find the Azure geography that meets your needs"

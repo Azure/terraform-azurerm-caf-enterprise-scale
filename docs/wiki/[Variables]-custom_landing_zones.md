@@ -74,7 +74,5 @@ The following example shows how you would add a simple Management Group `${root_
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
 [archetype_config_object]: %5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"
 [using_default_empty]:     %5BUser-Guide%5D-Archetype-Definitions#using-the-default_empty-archetype-definition "Using the `default_empty` archetype definition"

@@ -29,7 +29,4 @@ No additional resources are deployed by this module when setting this value to `
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
-[subscription_id_identity]:     %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
 [configure_identity_resources]: %5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."

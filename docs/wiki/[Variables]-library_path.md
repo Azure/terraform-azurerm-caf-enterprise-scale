@@ -26,5 +26,3 @@ Set the path to a custom directory within your root module.
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

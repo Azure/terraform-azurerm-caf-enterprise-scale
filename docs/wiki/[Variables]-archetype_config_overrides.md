@@ -110,8 +110,4 @@ This is the value you need to specify in the `access_control` object.
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
-[azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
-
 [archetype_config_object]: %5BUser-Guide%5D-Archetype-Definitions#working-with-the-archetype_config-object "Working with the archetype_config object"

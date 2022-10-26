@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.vwan_hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.vwan_hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#validation) (optional)
 
 For each configuration object added to the `configure_connectivity_resources.settings.vwan_hub_networks` list, the module will create a hub network and associated resources in the target location based on a [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan].
 
@@ -331,8 +331,6 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [msdocs_vhub_address_prefix]: https://docs.microsoft.com/azure/virtual-wan/virtual-wan-faq#what-is-the-recommended-hub-address-space-during-hub-creation "What is the recommended hub address space during hub creation?"
 [msdocs_virtual_hub_sku]:     https://docs.microsoft.com/azure/virtual-wan/virtual-wan-about#basicstandard "Virtual WAN types"
