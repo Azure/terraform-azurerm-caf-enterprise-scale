@@ -204,6 +204,8 @@ This allows you to override parameter values for as many or as few Policy Assign
 
 [TFAES-Library]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib
 
+[azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
+
 [wiki_variables_archetype_config_overrides]:        %5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
 [wiki_variables_custom_landing_zones]:              %5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
 [wiki_variables_template_file_variables]:           %5BVariables%5D-template_file_variables "Wiki - Variables - template_file_variables"

@@ -43,8 +43,6 @@ strict_subscription_association = true
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
 [subscription_id_connectivity]: %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
 [subscription_id_identity]:     %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
 [subscription_id_management]:   %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."

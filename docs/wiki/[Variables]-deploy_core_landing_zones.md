@@ -34,8 +34,6 @@ This is for advanced scenarios such as:
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
 [wiki_management_resources]:        %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:      %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_deploy_using_module_nesting]: %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
