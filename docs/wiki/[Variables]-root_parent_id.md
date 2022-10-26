@@ -37,5 +37,3 @@ The following shows how you would configure the `root_parent_id` to the core "La
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

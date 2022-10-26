@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_management_resources**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_management_resources**](#overview) [*see validation for type*](#validation) (optional)
 
 If specified, will customize the "management" landing zone settings and resources.
 
@@ -228,7 +228,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 - [SQLVulnerabilityAssessment][sql_vulnerability_assessment_overview]
 
 > **NOTE:** To work as expected, the `SQLVulnerabilityAssessment` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
-> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecurity_centerenable_defender_for_sql_servers) setting.
 
 ##### `settings.log_analytics.enable_solution_for_sql_advanced_threat_detection`
 
@@ -237,7 +237,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 - [SQLAdvancedThreatProtection][sql_advanced_threat_detection_overview]
 
 > **NOTE:** To work as expected, the `SQLAdvancedThreatProtection` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
-> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecurity_centerenable_defender_for_sql_servers) setting.
 
 ##### `settings.log_analytics.enable_solution_for_updates`
 
@@ -389,8 +389,6 @@ See [Using the Advanced Block with management resources][wiki_management_advance
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [agent_health_overview]:                  https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
 [change_tracking_overview]:               https://docs.microsoft.com/azure/automation/change-tracking/overview

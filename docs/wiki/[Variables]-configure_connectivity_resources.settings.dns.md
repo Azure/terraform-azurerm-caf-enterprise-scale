@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.dns**](#overview) `object({})` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.dns**](#overview) `object({})` [*see validation for detailed type*](#validation) (optional)
 
 The `configure_connectivity_resources.settings.dns` object provides configuration settings to control creation of DNS resources in the target location.
 
@@ -212,5 +212,3 @@ By default, leaving an empty value in the `location` field will deploy the (non-
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

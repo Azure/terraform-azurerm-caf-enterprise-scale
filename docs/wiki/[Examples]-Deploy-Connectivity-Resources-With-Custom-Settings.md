@@ -465,7 +465,6 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [azure_backup_private_endpoint]:  https://docs.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files "Configuring custom DNS or host files when using private endpoints with Azure Backup"
 
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]:               %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
 [wiki_provider_configuration_multi]:         %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment"
 [wiki_examples]:                             Examples "Wiki - Examples"
@@ -474,7 +473,5 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_configure_connectivity_resources]:     %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable"
 [wiki_default_location]:                     %5BVariables%5D-default_location "Instructions for how to use the default_location variable"
 [wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
-[wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
 [wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
 [wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"

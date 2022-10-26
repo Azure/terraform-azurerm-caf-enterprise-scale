@@ -40,8 +40,6 @@ Although we advise against this, this can be disabled by setting the input varia
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[this_page]: # "Link for the current page."
-
 [msdocs_azure_tag_support]:     https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"
 [msdocs_azure_tag_limitations]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-resources?tabs=json#limitations "Use tags to organize your Azure resources and management hierarchy #Limitations"
 

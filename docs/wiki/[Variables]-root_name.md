@@ -27,5 +27,3 @@ To set a custom Display Name value for the Enterprise-scale "root" Management Gr
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
