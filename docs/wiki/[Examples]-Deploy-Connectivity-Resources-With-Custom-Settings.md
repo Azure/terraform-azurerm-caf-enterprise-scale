@@ -264,6 +264,7 @@ locals {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering         = false
           }
         },
       ]
@@ -346,7 +347,6 @@ locals {
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
           enable_private_dns_zone_virtual_network_link_on_spokes = true
-          enable_hub_network_mesh_peering                        = false
         }
       }
     }
