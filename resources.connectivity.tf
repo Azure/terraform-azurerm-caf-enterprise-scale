@@ -194,8 +194,8 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
       dynamic "revoked_certificate" {
         for_each = try(vpn_client_configuration.value["revoked_certificate"], local.empty_list)
         content {
-          name       = root_certificate.value["name"]
-          thumbprint = root_certificate.value["thumbprint"]
+          name       = revoked_certificate.value["name"]
+          thumbprint = revoked_certificate.value["thumbprint"]
         }
       }
     }
