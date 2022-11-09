@@ -327,6 +327,7 @@ locals {
             azure_sql_database_sqlserver         = true
             azure_synapse_analytics_dev          = true
             azure_synapse_analytics_sql          = true
+            azure_synapse_analytics_sqlserver    = true
             azure_synapse_studio                 = true
             azure_web_apps_sites                 = true
             azure_web_apps_static_sites          = true
