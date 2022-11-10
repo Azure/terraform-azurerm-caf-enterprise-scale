@@ -212,9 +212,9 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-MDFC-Config       = local.deploy_security_settings
-        Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
-        Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
+        Deploy-MDFC-Config     = local.deploy_security_settings
+        Deploy-VM-Monitoring   = local.deploy_monitoring_for_vm
+        Deploy-VMSS-Monitoring = local.deploy_monitoring_for_vmss
       }
     }
     "${local.root_id}-management" = {
