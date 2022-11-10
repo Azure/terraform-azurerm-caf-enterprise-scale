@@ -164,7 +164,6 @@ locals {
         enabled = true
         config = {
           retention_in_days                                 = var.log_retention_in_days
-          enable_monitoring_for_arc                         = true
           enable_monitoring_for_vm                          = true
           enable_monitoring_for_vmss                        = true
           enable_solution_for_agent_health_assessment       = true

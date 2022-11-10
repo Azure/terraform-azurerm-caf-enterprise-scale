@@ -42,7 +42,6 @@ locals {
 # should be created by this module
 locals {
   deploy_monitoring_settings          = local.settings.log_analytics.enabled
-  deploy_monitoring_for_arc           = local.deploy_monitoring_settings && local.settings.log_analytics.config.enable_monitoring_for_arc
   deploy_monitoring_for_vm            = local.deploy_monitoring_settings && local.settings.log_analytics.config.enable_monitoring_for_vm
   deploy_monitoring_for_vmss          = local.deploy_monitoring_settings && local.settings.log_analytics.config.enable_monitoring_for_vmss
   deploy_monitoring_resources         = local.enabled && local.deploy_monitoring_settings

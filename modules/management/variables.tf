@@ -47,7 +47,6 @@ variable "settings" {
       enabled = bool
       config = object({
         retention_in_days                                 = number
-        enable_monitoring_for_arc                         = bool
         enable_monitoring_for_vm                          = bool
         enable_monitoring_for_vmss                        = bool
         enable_solution_for_agent_health_assessment       = bool
@@ -86,7 +85,6 @@ variable "settings" {
       enabled = true
       config = {
         retention_in_days                                 = 30
-        enable_monitoring_for_arc                         = true
         enable_monitoring_for_vm                          = true
         enable_monitoring_for_vmss                        = true
         enable_solution_for_agent_health_assessment       = true
