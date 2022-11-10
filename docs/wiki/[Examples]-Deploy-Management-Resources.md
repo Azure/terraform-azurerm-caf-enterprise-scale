@@ -14,8 +14,7 @@ In this example, we take the [default configuration][wiki_deploy_default_configu
 
 The module updates the `parameters` and `enforcement_mode` for a number of Policy Assignments, to enable features within Log Analytics and Sentinel including but not limited to:
 
-- Enable monitoring for devices managed through Azure Arc;
-- Enable monitoring for VMs;
+- Enable monitoring for VMs (including Arc enabled);
 - Enable monitoring for VMSS;
 - Enable Azure Defender for various supported services;
 - much more...
