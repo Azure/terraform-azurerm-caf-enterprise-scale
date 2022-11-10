@@ -199,19 +199,11 @@ locals {
           enableAscForSqlOnVm            = local.deploy_defender_for_sql_server_vms ? "DeployIfNotExists" : "Disabled"
           enableAscForStorage            = local.deploy_defender_for_storage ? "DeployIfNotExists" : "Disabled"
         }
-        Deploy-LX-Arc-Monitoring = {
-          logAnalytics = local.log_analytics_workspace_resource_id
-
-        }
         Deploy-VM-Monitoring = {
           logAnalytics_1 = local.log_analytics_workspace_resource_id
-
         }
         Deploy-VMSS-Monitoring = {
           logAnalytics_1 = local.log_analytics_workspace_resource_id
-        }
-        Deploy-WS-Arc-Monitoring = {
-          logAnalytics = local.log_analytics_workspace_resource_id
         }
         Deploy-AzActivity-Log = {
           logAnalytics = local.log_analytics_workspace_resource_id
@@ -222,10 +214,8 @@ locals {
       }
       enforcement_mode = {
         Deploy-MDFC-Config       = local.deploy_security_settings
-        Deploy-LX-Arc-Monitoring = local.deploy_monitoring_for_arc
         Deploy-VM-Monitoring     = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring   = local.deploy_monitoring_for_vmss
-        Deploy-WS-Arc-Monitoring = local.deploy_monitoring_for_arc
       }
     }
     "${local.root_id}-management" = {

@@ -219,10 +219,8 @@ Check the following Policy Assignments to see how these have been configured wit
 
 - Scope = `root`
   - `Deploy-MDFC-Config`
-  - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
-  - `Deploy-WS-Arc-Monitoring`
   - `Deploy-AzActivity-Log`
   - `Deploy-Resource-Diag`
 - Scope = `management`

@@ -1,7 +1,7 @@
 {
     "exclude_es_root": {
         "policy_assignments": [
-            "Deploy-LX-Arc-Monitoring"
+            "Deploy-VMSS-Monitoring"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],
