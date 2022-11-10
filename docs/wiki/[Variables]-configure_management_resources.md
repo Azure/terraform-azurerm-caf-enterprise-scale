@@ -17,7 +17,6 @@ If specified, will customize the "management" landing zone settings and resource
       enabled = true
       config = {
         retention_in_days                                 = 30
-        enable_monitoring_for_arc                         = true
         enable_monitoring_for_vm                          = true
         enable_monitoring_for_vmss                        = true
         enable_solution_for_agent_health_assessment       = true
@@ -72,7 +71,6 @@ object({
       enabled = bool
       config = object({
         retention_in_days                                 = number
-        enable_monitoring_for_arc                         = bool
         enable_monitoring_for_vm                          = bool
         enable_monitoring_for_vmss                        = bool
         enable_solution_for_agent_health_assessment       = bool
@@ -131,7 +129,6 @@ log_analytics = {
   enabled = true
   config = {
     retention_in_days                                 = 30
-    enable_monitoring_for_arc                         = true
     enable_monitoring_for_vm                          = true
     enable_monitoring_for_vmss                        = true
     enable_solution_for_agent_health_assessment       = true
@@ -165,13 +162,6 @@ The `config` (`object`) input allows you to set the following configuration item
 
 The number of days to retain data in the Log Analytics workspace.
 See [changing the retention period][la_retention_period] in the Log Analytics documentation.
-
-##### `settings.log_analytics.config.enable_monitoring_for_arc`
-
-Enables the following Azure Policy assignments at your intermediate root management group scope:
-
-- Configure Log Analytics extension on Azure Arc enabled Windows servers
-- Configure Log Analytics extension on Azure Arc enabled Linux servers
 
 ##### `settings.log_analytics.config.enable_monitoring_for_vm`
 

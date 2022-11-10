@@ -164,7 +164,6 @@ locals {
         enabled = true
         config = {
           retention_in_days                                 = var.log_retention_in_days
-          enable_monitoring_for_arc                         = true
           enable_monitoring_for_vm                          = true
           enable_monitoring_for_vmss                        = true
           enable_solution_for_agent_health_assessment       = true
@@ -219,10 +218,8 @@ Check the following Policy Assignments to see how these have been configured wit
 
 - Scope = `root`
   - `Deploy-MDFC-Config`
-  - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
-  - `Deploy-WS-Arc-Monitoring`
   - `Deploy-AzActivity-Log`
   - `Deploy-Resource-Diag`
 - Scope = `management`
