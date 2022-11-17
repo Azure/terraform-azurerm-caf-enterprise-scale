@@ -269,6 +269,16 @@ locals {
 
     location = null
     tags     = null
-    advanced = null
+    advanced = {
+      custom_settings_by_resource_type = {
+        azurerm_firewall_policy = {
+          connectivity = {
+            (var.primary_location) = {
+              sql_redirect_allowed = false
+            }
+          }
+        }
+      }
+    }
   }
 }

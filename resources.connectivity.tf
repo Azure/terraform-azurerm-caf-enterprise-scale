@@ -253,6 +253,7 @@ resource "azurerm_firewall_policy" "connectivity" {
   sku                      = each.value.template.sku
   tags                     = each.value.template.tags
   threat_intelligence_mode = each.value.template.threat_intelligence_mode # "Alert", "Deny" or "Off". Defaults to "Alert"
+  sql_redirect_allowed     = each.value.template.sql_redirect_allowed
 
   # Dynamic configuration blocks
   dynamic "dns" {
@@ -331,6 +332,15 @@ resource "azurerm_firewall_policy" "connectivity" {
       # Optional attributes
       fqdns        = lookup(threat_intelligence_allowlist.value, "fqdns", null)
       ip_addresses = lookup(threat_intelligence_allowlist.value, "ip_addresses", null)
+    }
+  }
+
+  dynamic "tls_certificate" {
+    for_each = each.value.template.tls_certificate
+    content {
+      # Mandatory attributes
+      key_vault_secret_id = tls_certificate.value["key_vault_secret_id"]
+      name                = tls_certificate.value["name"]
     }
   }
 
