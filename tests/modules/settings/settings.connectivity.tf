@@ -43,7 +43,7 @@ locals {
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
-                  zone_3 = true
+                  zone_3 = false
                 }
               }
             }
