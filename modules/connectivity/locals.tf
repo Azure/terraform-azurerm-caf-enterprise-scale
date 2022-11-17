@@ -774,6 +774,7 @@ locals {
 # Configuration settings for resource type:
 #  - azurerm_firewall
 # For VWAN, VPN gateway is required for Security Partner Provider integration
+# For zonal deployments, the public IP must be either single-zone, or all-zones (see #447 for more information)
 locals {
   azfw_name = {
     for location in local.hub_network_locations :
@@ -838,6 +839,18 @@ locals {
     for location in local.hub_network_locations :
     location =>
     "${local.azfw_pip_resource_id_prefix[location]}/${local.azfw_pip_name[location]}"
+  }
+  azfw_pip_zones = {
+    for location in local.hub_network_locations :
+    location =>
+    try(
+      local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].zones,
+      length(local.azfw_zones[location]) == 1 ?
+      local.azfw_zones[location] :
+      length(local.azfw_zones[location]) >= 2 ?
+      ["1", "2", "3"] :
+      null
+    )
   }
   virtual_hub_azfw_name = {
     for location in local.virtual_hub_locations :
@@ -945,10 +958,12 @@ locals {
               }
             ]
           )
-          identity            = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
-          insights            = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
-          intrusion_detection = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
-          tags                = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
+          identity             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
+          insights             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
+          intrusion_detection  = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
+          tls_certificate      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tls_certificate, local.empty_list)
+          sql_redirect_allowed = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sql_redirect_allowed, null)
+          tags                 = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
         }
         # Child resource definition attributes
         azurerm_public_ip = (
@@ -963,6 +978,7 @@ locals {
             name                    = local.azfw_pip_name[location]
             resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
             location                = location
+            zones                   = local.azfw_pip_zones[location]
             sku                     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].sku, "Standard")
             allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].allocation_method, "Static")
             ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_version, null)
@@ -972,10 +988,6 @@ locals {
             public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].public_ip_prefix_id, null)
             ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_tags, null)
             tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].tags, local.tags)
-            zones = try(
-              local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].zones,
-              local.azfw_zones[location]
-            )
           }]
         )
       }

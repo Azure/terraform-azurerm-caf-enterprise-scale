@@ -43,7 +43,7 @@ locals {
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
-                  zone_3 = true
+                  zone_3 = false
                 }
               }
             }
@@ -269,6 +269,16 @@ locals {
 
     location = null
     tags     = null
-    advanced = null
+    advanced = {
+      custom_settings_by_resource_type = {
+        azurerm_firewall_policy = {
+          connectivity = {
+            (var.primary_location) = {
+              sql_redirect_allowed = false
+            }
+          }
+        }
+      }
+    }
   }
 }
