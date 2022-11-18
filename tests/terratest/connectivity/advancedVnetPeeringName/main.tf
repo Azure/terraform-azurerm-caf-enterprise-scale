@@ -11,12 +11,6 @@ provider "azurerm" {
   skip_provider_registration = true
 }
 
-variable "test_advanced_name" {
-  type        = bool
-  default     = false
-  description = "Enables the advanced block, changing the name of the peering"
-}
-
 data "azurerm_client_config" "default" {}
 
 locals {
