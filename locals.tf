@@ -144,22 +144,20 @@ locals {
 # delays between resources to reduce transient errors
 # relating to replication delays in Azure
 locals {
-  default_create_duration_delay  = "30s"
-  default_destroy_duration_delay = "0s"
   create_duration_delay = {
-    after_azurerm_management_group      = lookup(var.create_duration_delay, "azurerm_management_group", local.default_create_duration_delay)
-    after_azurerm_policy_assignment     = lookup(var.create_duration_delay, "azurerm_policy_assignment", local.default_create_duration_delay)
-    after_azurerm_policy_definition     = lookup(var.create_duration_delay, "azurerm_policy_definition", local.default_create_duration_delay)
-    after_azurerm_policy_set_definition = lookup(var.create_duration_delay, "azurerm_policy_set_definition", local.default_create_duration_delay)
-    after_azurerm_role_assignment       = lookup(var.create_duration_delay, "azurerm_role_assignment", local.default_create_duration_delay)
-    after_azurerm_role_definition       = lookup(var.create_duration_delay, "azurerm_role_definition", local.default_create_duration_delay)
+    after_azurerm_management_group      = var.create_duration_delay["azurerm_management_group"]
+    after_azurerm_policy_assignment     = var.create_duration_delay["azurerm_policy_assignment"]
+    after_azurerm_policy_definition     = var.create_duration_delay["azurerm_policy_definition"]
+    after_azurerm_policy_set_definition = var.create_duration_delay["azurerm_policy_set_definition"]
+    after_azurerm_role_assignment       = var.create_duration_delay["azurerm_role_assignment"]
+    after_azurerm_role_definition       = var.create_duration_delay["azurerm_role_definition"]
   }
   destroy_duration_delay = {
-    after_azurerm_management_group      = lookup(var.destroy_duration_delay, "azurerm_management_group", local.default_destroy_duration_delay)
-    after_azurerm_policy_assignment     = lookup(var.destroy_duration_delay, "azurerm_policy_assignment", local.default_destroy_duration_delay)
-    after_azurerm_policy_definition     = lookup(var.destroy_duration_delay, "azurerm_policy_definition", local.default_destroy_duration_delay)
-    after_azurerm_policy_set_definition = lookup(var.destroy_duration_delay, "azurerm_policy_set_definition", local.default_destroy_duration_delay)
-    after_azurerm_role_assignment       = lookup(var.destroy_duration_delay, "azurerm_role_assignment", local.default_destroy_duration_delay)
-    after_azurerm_role_definition       = lookup(var.destroy_duration_delay, "azurerm_role_definition", local.default_destroy_duration_delay)
+    after_azurerm_management_group      = var.destroy_duration_delay["azurerm_management_group"]
+    after_azurerm_policy_assignment     = var.destroy_duration_delay["azurerm_policy_assignment"]
+    after_azurerm_policy_definition     = var.destroy_duration_delay["azurerm_policy_definition"]
+    after_azurerm_policy_set_definition = var.destroy_duration_delay["azurerm_policy_set_definition"]
+    after_azurerm_role_assignment       = var.destroy_duration_delay["azurerm_role_assignment"]
+    after_azurerm_role_definition       = var.destroy_duration_delay["azurerm_role_definition"]
   }
 }
