@@ -730,15 +730,14 @@ variable "disable_base_module_tags" {
 }
 
 variable "create_duration_delay" {
-  type = map(object({
+  type = object({
     azurerm_management_group      = optional(string, "30s")
     azurerm_policy_assignment     = optional(string, "30s")
     azurerm_policy_definition     = optional(string, "30s")
     azurerm_policy_set_definition = optional(string, "30s")
     azurerm_role_assignment       = optional(string, "0s")
     azurerm_role_definition       = optional(string, "60s")
-    })
-  )
+  })
   description = "Used to tune terraform apply when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after creation of the specified resource type."
   default = {
     azurerm_management_group      = "30s"
@@ -756,15 +755,14 @@ variable "create_duration_delay" {
 }
 
 variable "destroy_duration_delay" {
-  type = map(object({
+  type = object({
     azurerm_management_group      = optional(string, "0s")
     azurerm_policy_assignment     = optional(string, "0s")
     azurerm_policy_definition     = optional(string, "0s")
     azurerm_policy_set_definition = optional(string, "0s")
     azurerm_role_assignment       = optional(string, "0s")
     azurerm_role_definition       = optional(string, "0s")
-    })
-  )
+  })
   description = "Used to tune terraform deploy when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after destruction of the specified resource type."
   default = {
     azurerm_management_group      = "0s"
