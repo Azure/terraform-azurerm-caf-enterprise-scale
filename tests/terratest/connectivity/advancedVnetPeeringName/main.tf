@@ -12,15 +12,15 @@ provider "azurerm" {
 }
 
 variable "test_advanced_name" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Enables the advanced block, changing the name of the peering"
 }
 
 data "azurerm_client_config" "default" {}
 
 locals {
-  default_location = "northeurope"
+  default_location       = "northeurope"
   spoke_vnet_resource_id = "/subscriptions/${data.azurerm_client_config.default.subscription_id}/resourceGroups/test-advancedVnetPeeringName/providers/Microsoft.Network/virtualNetworks/spoke-vnet"
 }
 
@@ -61,7 +61,7 @@ module "test_core" {
         {
           enabled = true
           config = {
-            address_space                = ["10.100.0.0/22", ]
+            address_space = ["10.100.0.0/22", ]
             spoke_virtual_network_resource_ids = [
               local.spoke_vnet_resource_id
             ]
