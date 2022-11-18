@@ -2229,7 +2229,7 @@
               "resource_group_name": "root-id-1-connectivity",
               "scale_units": 1,
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_hub_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope"
@@ -2264,7 +2264,7 @@
               "sku_name": "AZFW_VNet",
               "sku_tier": "Standard",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "threat_intel_mode": "Alert",
               "timeouts": null,
@@ -2307,7 +2307,7 @@
               "sku_name": "AZFW_Hub",
               "sku_tier": "Standard",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_hub": [
@@ -2438,7 +2438,7 @@
               "name": "botplinks.botframework.com",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2459,7 +2459,7 @@
               "name": "bottoken.botframework.com",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2480,7 +2480,7 @@
               "name": "privatelink.azurestaticapps.net",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2501,7 +2501,7 @@
               "name": "privatelink.blob.core.windows.net",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2522,7 +2522,7 @@
               "name": "privatelink.file.core.windows.net",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2543,7 +2543,7 @@
               "name": "privatelink.ne.backup.windowsazure.com",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2564,7 +2564,7 @@
               "name": "privatelink.purview.azure.com",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2585,7 +2585,7 @@
               "name": "privatelink.queue.core.windows.net",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2606,7 +2606,7 @@
               "name": "privatelink.siterecovery.windowsazure.com",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2627,7 +2627,7 @@
               "name": "privatelink.table.core.windows.net",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2648,7 +2648,7 @@
               "name": "privatelink.web.core.windows.net",
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -2671,7 +2671,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2694,7 +2694,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2717,7 +2717,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2740,7 +2740,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2763,7 +2763,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2786,7 +2786,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2809,7 +2809,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2832,7 +2832,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2855,7 +2855,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2878,7 +2878,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2901,7 +2901,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2924,7 +2924,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2947,7 +2947,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -2970,7 +2970,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -2993,7 +2993,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -3016,7 +3016,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -3039,7 +3039,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -3062,7 +3062,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -3085,7 +3085,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -3108,7 +3108,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -3131,7 +3131,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
@@ -3154,7 +3154,7 @@
               "registration_enabled": false,
               "resource_group_name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
@@ -3186,7 +3186,7 @@
               "sku": "Standard",
               "sku_tier": "Regional",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "zones": [
@@ -3227,7 +3227,7 @@
               "sku": "Standard",
               "sku_tier": "Regional",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "zones": [
@@ -3268,7 +3268,7 @@
               "sku": "Standard",
               "sku_tier": "Regional",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "zones": [
@@ -3309,7 +3309,7 @@
               "sku": "Standard",
               "sku_tier": "Regional",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "zones": [
@@ -3350,7 +3350,7 @@
               "sku": "Basic",
               "sku_tier": "Regional",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "zones": null
@@ -3371,7 +3371,7 @@
               "location": "northeurope",
               "name": "root-id-1-connectivity-northeurope",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -3391,7 +3391,7 @@
               "location": "westeurope",
               "name": "root-id-1-connectivity-westeurope",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -3411,7 +3411,7 @@
               "location": "northeurope",
               "name": "root-id-1-dns",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -3431,7 +3431,7 @@
               "location": "northeurope",
               "name": "root-id-1-connectivity",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -3572,7 +3572,7 @@
               "route": [],
               "sku": "Standard",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_wan_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualWans/root-id-1-vwan-northeurope"
@@ -3599,7 +3599,7 @@
               "route": [],
               "sku": "Standard",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_wan_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualWans/root-id-1-vwan-northeurope"
@@ -3631,7 +3631,7 @@
               "name": "root-id-1-hub-northeurope",
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -3666,7 +3666,7 @@
               "name": "root-id-1-hub-westeurope",
               "resource_group_name": "root-id-1-connectivity-westeurope",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null
             },
@@ -3706,7 +3706,7 @@
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "sku": "ErGw1AZ",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "type": "ExpressRoute",
@@ -3758,7 +3758,7 @@
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "sku": "VpnGw2AZ",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "type": "Vpn",
@@ -3805,7 +3805,7 @@
               "resource_group_name": "root-id-1-connectivity-westeurope",
               "sku": "VpnGw1",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "type": "Vpn",
@@ -3880,7 +3880,7 @@
               "office365_local_breakout_category": "None",
               "resource_group_name": "root-id-1-connectivity",
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "type": "Standard"
@@ -3905,7 +3905,7 @@
               "routing_preference": "Microsoft Network",
               "scale_unit": 1,
               "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale"
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
               "virtual_hub_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope"
