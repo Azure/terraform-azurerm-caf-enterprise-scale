@@ -90,11 +90,13 @@ locals {
   }
   connectivity_resources_tags = merge(
     local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
-    coalesce(local.configure_connectivity_resources.tags, local.default_tags),
+    local.default_tags,
+    local.configure_connectivity_resources.tags,
   )
   management_resources_tags = merge(
     local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
-    coalesce(local.configure_management_resources.tags, local.default_tags),
+    local.default_tags,
+    local.configure_management_resources.tags,
   )
 }
 
