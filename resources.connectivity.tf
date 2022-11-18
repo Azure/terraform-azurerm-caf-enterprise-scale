@@ -55,10 +55,10 @@ resource "azurerm_subnet" "connectivity" {
   address_prefixes     = each.value.template.address_prefixes
 
   # Optional resource attributes
-  enforce_private_link_endpoint_network_policies = each.value.template.enforce_private_link_endpoint_network_policies
-  enforce_private_link_service_network_policies  = each.value.template.enforce_private_link_service_network_policies
-  service_endpoints                              = each.value.template.service_endpoints
-  service_endpoint_policy_ids                    = each.value.template.service_endpoint_policy_ids
+  private_endpoint_network_policies_enabled     = each.value.template.private_endpoint_network_policies_enabled
+  private_link_service_network_policies_enabled = each.value.template.private_link_service_network_policies_enabled
+  service_endpoints                             = each.value.template.service_endpoints
+  service_endpoint_policy_ids                   = each.value.template.service_endpoint_policy_ids
 
   # Dynamic configuration blocks
   # Subnets excluded (use azurerm_subnet resource)
@@ -194,8 +194,8 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
       dynamic "revoked_certificate" {
         for_each = try(vpn_client_configuration.value["revoked_certificate"], local.empty_list)
         content {
-          name       = root_certificate.value["name"]
-          thumbprint = root_certificate.value["thumbprint"]
+          name       = revoked_certificate.value["name"]
+          thumbprint = revoked_certificate.value["thumbprint"]
         }
       }
     }
@@ -253,6 +253,7 @@ resource "azurerm_firewall_policy" "connectivity" {
   sku                      = each.value.template.sku
   tags                     = each.value.template.tags
   threat_intelligence_mode = each.value.template.threat_intelligence_mode # "Alert", "Deny" or "Off". Defaults to "Alert"
+  sql_redirect_allowed     = each.value.template.sql_redirect_allowed
 
   # Dynamic configuration blocks
   dynamic "dns" {
@@ -331,6 +332,15 @@ resource "azurerm_firewall_policy" "connectivity" {
       # Optional attributes
       fqdns        = lookup(threat_intelligence_allowlist.value, "fqdns", null)
       ip_addresses = lookup(threat_intelligence_allowlist.value, "ip_addresses", null)
+    }
+  }
+
+  dynamic "tls_certificate" {
+    for_each = each.value.template.tls_certificate
+    content {
+      # Mandatory attributes
+      key_vault_secret_id = tls_certificate.value["key_vault_secret_id"]
+      name                = tls_certificate.value["name"]
     }
   }
 

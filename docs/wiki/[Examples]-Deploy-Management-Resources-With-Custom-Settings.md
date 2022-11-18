@@ -1,8 +1,9 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Enterprise-scale with the [Management resources][wiki_management_resources] created in the current Subscription context, using custom configuration settings.
+This page describes how to deploy your Azure landing zone with the [Management resources][wiki_management_resources] created in the current Subscription context, using custom configuration settings.
 
-The module supports customising almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
+The module supports customizing almost any part of the configuration, however each subset of resources has it's own configuration block which is designed to simplify setting specific options.
 For the Management resources, this is configured through the [`configure_management_resources`][configure_management_resources] input variable.
 
 In this example, we take the base [Deploy Management resources][wiki_deploy_management_resources] configuration and make the following changes:
@@ -15,7 +16,7 @@ In this example, we take the base [Deploy Management resources][wiki_deploy_mana
   - Set a different location for Management resources (controlled through an input variable on the root module)
   - Add custom resource tags for Management resources (controlled through an input variable on the root module)
 
-The module allows for further customisation of the Management resources through the `advanced` setting, however this is out-of-scope for this example.
+The module allows for further customization of the Management resources through the `advanced` setting, however this is out-of-scope for this example.
 
 > Use of the `advanced` setting is currently undocumented and experimental.
 Please be aware that using this setting may result in future breaking changes.
@@ -54,7 +55,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.2"
+      version = ">= 3.19.0"
     }
   }
 }
@@ -115,7 +116,7 @@ variable "management_resources_tags" {
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID and Subscription ID values from your user connection to Azure. These are used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_management` input variable.
 
-It also contains the module declaration for this module, containing a number of customisations as needed to meet the specification defined in the overview above.
+It also contains the module declaration for this module, containing a number of customizations as needed to meet the specification defined in the overview above.
 
 ```hcl
 # Get the current client configuration from the AzureRM provider.
@@ -130,7 +131,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.0"
+  version = "2.4.1"
 
   providers = {
     azurerm              = azurerm
@@ -162,19 +163,20 @@ locals {
       log_analytics = {
         enabled = true
         config = {
-          retention_in_days                           = var.log_retention_in_days
-          enable_monitoring_for_arc                   = true
-          enable_monitoring_for_vm                    = true
-          enable_monitoring_for_vmss                  = true
-          enable_sentinel                             = true
-          enable_solution_for_agent_health_assessment = true
-          enable_solution_for_anti_malware            = true
-          enable_solution_for_azure_activity          = true
-          enable_solution_for_change_tracking         = true
-          enable_solution_for_service_map             = true
-          enable_solution_for_sql_assessment          = true
-          enable_solution_for_updates                 = true
-          enable_solution_for_vm_insights             = true
+          retention_in_days                                 = var.log_retention_in_days
+          enable_monitoring_for_vm                          = true
+          enable_monitoring_for_vmss                        = true
+          enable_solution_for_agent_health_assessment       = true
+          enable_solution_for_anti_malware                  = true
+          enable_solution_for_azure_activity                = true
+          enable_solution_for_change_tracking               = true
+          enable_solution_for_service_map                   = true
+          enable_solution_for_sql_assessment                = true
+          enable_solution_for_sql_vulnerability_assessment  = true
+          enable_solution_for_sql_advanced_threat_detection = true
+          enable_solution_for_updates                       = true
+          enable_solution_for_vm_insights                   = true
+          enable_sentinel                                   = true
         }
       }
       security_center = {
@@ -188,8 +190,8 @@ locals {
           enable_defender_for_key_vault      = true
           enable_defender_for_oss_databases  = true
           enable_defender_for_servers        = true
-          enable_defender_for_sql_server_vms = true
           enable_defender_for_sql_servers    = true
+          enable_defender_for_sql_server_vms = true
           enable_defender_for_storage        = true
         }
       }
@@ -204,9 +206,9 @@ locals {
 
 ## Deployed Management Groups
 
-![Deployed resource hierarchy](./media/examples-deploy-management-custom-core.png)
+![Deployed resource hierarchy](media/examples-deploy-management-custom-core.png)
 
-You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for Enterprise-scale.
+You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
 You have also assigned the current Subscription from your provider configuration to the `management` Management Group.
 
@@ -216,10 +218,8 @@ Check the following Policy Assignments to see how these have been configured wit
 
 - Scope = `root`
   - `Deploy-MDFC-Config`
-  - `Deploy-LX-Arc-Monitoring`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
-  - `Deploy-WS-Arc-Monitoring`
   - `Deploy-AzActivity-Log`
   - `Deploy-Resource-Diag`
 - Scope = `management`
@@ -233,19 +233,19 @@ Once evaluated, the compliance state should also be updated and you can run reme
 The following shows the `Deploy-AzActivity-Log` Policy Assignment with a user-defined value set by the module for the `logAnalytics` parameter.
 You will see that this value matches the resource ID of the Log Analytics workspace deployed by this module.
 
-![Policy Assignment parameters example](./media/examples-deploy-management-custom-policy-parameters.png)
+![Policy Assignment parameters example](media/examples-deploy-management-custom-policy-parameters.png)
 
 ### Policy Assignment compliance
 
 When reviewing the Policy Assignment compliance, you will see that some Policies may need remediation.
 
-![Policy Assignment compliance](./media/examples-deploy-management-custom-policy-compliance.png)
+![Policy Assignment compliance](media/examples-deploy-management-custom-policy-compliance.png)
 
 ## Deployed Management resources
 
 You should also have the following resources deployed in your assigned Management Subscription:
 
-![Deployed Resources](./media/examples-deploy-management-custom-resources.png)
+![Deployed Resources](media/examples-deploy-management-custom-resources.png)
 
 ## Additional considerations
 
@@ -256,6 +256,7 @@ The relationship between the resources deployed and the Policy parameters is dep
 
 Take particular note of the following changes:
 
+<!-- markdownlint-disable no-inline-html -->
 - The `retentionInDays` setting is now configured to `50` days on the Log Analytics workspace.
 - The `dataRetention` parameter value is also configured to `50` days on the `Deploy-Log-Analytics` Policy Assignment.
 - The `emailSecurityContact` parameter value is set to your own email address on the `Deploy-MDFC-Config` (*Deploy Azure Security Center configuration*) Policy Assignment. Once this policy is remediated, you can also view this setting in Azure Security Center.
@@ -263,6 +264,7 @@ Take particular note of the following changes:
 
   > <sup>1</sup> - Due to a pending feature addition, Azure Defender is also `Off` for `Open-source relational databases`.
   We plan to add this feature in a future release (date TBC).
+<!-- markdownlint-enable no-inline-html -->
 
 Although not Policy Assignment related, also note the following changes:
 
@@ -272,7 +274,7 @@ Although not Policy Assignment related, also note the following changes:
 Try updating the configuration settings in the `configure_management_resources` local variable to see how this changes your configuration.
 Also try setting your own values in the input variables, and toggling the `deploy_management_resources` input variable to see which resources are created/destroyed.
 
-For more information regarding configuration of this module, please refer to the [Module Variables](./%5BUser-Guide%5D-Module-Variables) documentation.
+To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
 
 Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
@@ -280,16 +282,14 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_management_resources]:         ./%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
-[wiki_deploy_management_resources]:  ./%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources."
-[wiki_provider_configuration_multi]: ./%5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
-[wiki_examples]:                     ./Examples "Wiki - Examples"
+[wiki_management_resources]:         %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources."
+[wiki_deploy_management_resources]:  %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources."
+[wiki_provider_configuration_multi]: %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment."
+[wiki_examples]:                     Examples "Wiki - Examples"
 
-[configure_management_resources]: ./%5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[deploy_management_resources]:    ./%5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
-[subscription_id_management]:     ./%5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
-[default_location]:               ./%5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[archetype_exclusions]:           ./%5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
-[custom_archetypes]:              ./%5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
+[configure_management_resources]: %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
+[default_location]:               %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
+[archetype_exclusions]:           %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
+[custom_archetypes]:              %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
 
 [azure_tag_support]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"

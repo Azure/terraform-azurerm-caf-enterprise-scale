@@ -1,10 +1,14 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_management_resources**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_management_resources**](#overview) [*see validation for type*](#validation) (optional)
 
-If specified, will customize the "Management" landing zone settings and resources.
+If specified, will customize the "management" landing zone settings and resources.
 
 ## Default value
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 {
@@ -13,7 +17,6 @@ If specified, will customize the "Management" landing zone settings and resource
       enabled = true
       config = {
         retention_in_days                                 = 30
-        enable_monitoring_for_arc                         = true
         enable_monitoring_for_vm                          = true
         enable_monitoring_for_vmss                        = true
         enable_solution_for_agent_health_assessment       = true
@@ -40,8 +43,8 @@ If specified, will customize the "Management" landing zone settings and resource
         enable_defender_for_key_vault      = true
         enable_defender_for_oss_databases  = true
         enable_defender_for_servers        = true
-        enable_defender_for_sql_server_vms = true
         enable_defender_for_sql_servers    = true
+        enable_defender_for_sql_server_vms = true
         enable_defender_for_storage        = true
       }
     }
@@ -52,9 +55,14 @@ If specified, will customize the "Management" landing zone settings and resource
 }
 ```
 
+</details>
+
 ## Validation
 
 Validation provided by schema:
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<details><summary>Click to view code...</summary>
 
 ```hcl
 object({
@@ -63,7 +71,6 @@ object({
       enabled = bool
       config = object({
         retention_in_days                                 = number
-        enable_monitoring_for_arc                         = bool
         enable_monitoring_for_vm                          = bool
         enable_monitoring_for_vmss                        = bool
         enable_solution_for_agent_health_assessment       = bool
@@ -85,9 +92,9 @@ object({
         email_security_contact             = string
         enable_defender_for_app_services   = bool
         enable_defender_for_arm            = bool
+        enable_defender_for_containers     = bool
         enable_defender_for_dns            = bool
         enable_defender_for_key_vault      = bool
-        enable_defender_for_containers     = bool
         enable_defender_for_oss_databases  = bool
         enable_defender_for_servers        = bool
         enable_defender_for_sql_servers    = bool
@@ -102,13 +109,16 @@ object({
 })
 ```
 
+</details>
+
 ## Usage
 
-Configure resources for the `management` Landing Zone, including:
+Configure resources for the `management` landing zone.
+This is sub divided into configuration objects for the following:
 
-- Central Log Analytics workspace
-- Azure Sentinel
-- Microsoft Defender for Cloud (previously Security Center/Azure Defender)
+- [Configure Log Analytics](#configure-log-analytics)
+- [Configure Microsoft Defender for Cloud (including Azure Sentinel)](#configure-microsoft-defender-for-cloud)
+- [Additional settings](#additional-settings)
 
 ### Configure Log Analytics
 
@@ -119,10 +129,8 @@ log_analytics = {
   enabled = true
   config = {
     retention_in_days                                 = 30
-    enable_monitoring_for_arc                         = true
     enable_monitoring_for_vm                          = true
     enable_monitoring_for_vmss                        = true
-    enable_sentinel                                   = true
     enable_solution_for_agent_health_assessment       = true
     enable_solution_for_anti_malware                  = true
     enable_solution_for_azure_activity                = true
@@ -133,6 +141,7 @@ log_analytics = {
     enable_solution_for_sql_advanced_threat_detection = true
     enable_solution_for_updates                       = true
     enable_solution_for_vm_insights                   = true
+    enable_sentinel                                   = true
   }
 }
 ```
@@ -154,13 +163,6 @@ The `config` (`object`) input allows you to set the following configuration item
 The number of days to retain data in the Log Analytics workspace.
 See [changing the retention period][la_retention_period] in the Log Analytics documentation.
 
-##### `settings.log_analytics.config.enable_monitoring_for_arc`
-
-Enables the following Azure Policy assignments at your intermediate root management group scope:
-
-- Configure Log Analytics extension on Azure Arc enabled Windows servers
-- Configure Log Analytics extension on Azure Arc enabled Linux servers
-
 ##### `settings.log_analytics.config.enable_monitoring_for_vm`
 
 Enables the following Azure Policy Initiative assignments at your intermediate root management group scope:
@@ -172,15 +174,6 @@ Enables the following Azure Policy Initiative assignments at your intermediate r
 Enables the following Azure Policy Initiative assignment at your intermediate root management group scope:
 
 - Enable Azure Monitor for Virtual Machine Scale Sets
-
-##### `settings.log_analytics.enable_sentinel`
-
-Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
-
-- Security
-- SecurityInsights
-
-See the [Azure Sentinel overview page][sentinel_overview] for more information.
 
 ##### `settings.log_analytics.enable_solution_for_agent_health_assessment`
 
@@ -225,7 +218,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 - [SQLVulnerabilityAssessment][sql_vulnerability_assessment_overview]
 
 > **NOTE:** To work as expected, the `SQLVulnerabilityAssessment` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
-> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecurity_centerenable_defender_for_sql_servers) setting.
 
 ##### `settings.log_analytics.enable_solution_for_sql_advanced_threat_detection`
 
@@ -234,7 +227,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 - [SQLAdvancedThreatProtection][sql_advanced_threat_detection_overview]
 
 > **NOTE:** To work as expected, the `SQLAdvancedThreatProtection` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
-> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecurity_centerenable_defender_for_sql_servers) setting.
 
 ##### `settings.log_analytics.enable_solution_for_updates`
 
@@ -248,6 +241,15 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 
 - [VMInsights][vm_insights_overview]
 
+##### `settings.log_analytics.enable_sentinel`
+
+Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
+
+- Security
+- SecurityInsights
+
+See the [Azure Sentinel overview page][sentinel_overview] for more information.
+
 ### Configure Microsoft Defender for Cloud
 
 Deploy [Microsoft Defender for Cloud][microsoft_defender_for_cloud] pricing tiers (previously Azure Defender and Azure Security Center) through Azure Policy assignment.
@@ -257,9 +259,9 @@ security_center = {
   enabled = true
   config = {
     email_security_contact             = "security_contact@replace_me"
+    enable_defender_for_app_services   = true
     enable_defender_for_arm            = true
     enable_defender_for_containers     = true
-    enable_defender_for_app_services   = true
     enable_defender_for_dns            = true
     enable_defender_for_key_vault      = true
     enable_defender_for_oss_databases  = true
@@ -293,6 +295,11 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 Enables the the Standard pricing tier for `Arm` using the "Configure Azure Defender for Resource Manager to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
+##### `settings.security_center.enable_defender_for_containers`
+
+Enables Microsoft Defender for Cloud for all in-scope Azure Kubernetes Service clusters using the "Configure Microsoft Defender for Containers to be enabled" policy.
+This is deployed to all in-scope clusters using the `DeployIfNotExists` policy effect.
+
 ##### `settings.security_center.enable_defender_for_dns`
 
 Enables the the Standard pricing tier for `Dns` using the "Configure Azure Defender for DNS to be enabled" policy.
@@ -302,11 +309,6 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 
 Enables the the Standard pricing tier for `KeyVaults` using the "Configure Azure Defender for Key Vaults to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
-
-##### `settings.security_center.enable_defender_for_containers`
-
-Enables Microsoft Defender for Cloud for all in-scope Azure Kubernetes Service clusters using the "Configure Microsoft Defender for Containers to be enabled" policy.
-This is deployed to all in-scope clusters using the `DeployIfNotExists` policy effect.
 
 ##### `settings.security_center.enable_defender_for_oss_databases`
 
@@ -318,14 +320,14 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 Enables the the Standard pricing tier for `VirtualMachines` using the "Configure Azure Defender for servers to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-##### `settings.security_center.enable_defender_for_sql_server_vms`
-
-Enables the the Standard pricing tier for `SqlServerVirtualMachines` using the "Configure Azure Defender for SQL servers on machines to be enabled" policy.
-This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
-
 ##### `settings.security_center.enable_defender_for_sql_servers`
 
 Enables the the Standard pricing tier for `SqlServers` (Azure SQL instances) using the "Configure Azure Defender for Azure SQL database to be enabled" policy.
+This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
+
+##### `settings.security_center.enable_defender_for_sql_server_vms`
+
+Enables the the Standard pricing tier for `SqlServerVirtualMachines` using the "Configure Azure Defender for SQL servers on machines to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
 ##### `settings.security_center.enable_defender_for_storage`
@@ -333,35 +335,50 @@ This is deployed to all in-scope subscriptions using the `DeployIfNotExists` pol
 Enables the the Standard pricing tier for `StorageAccounts` using the "Configure Azure Defender for Storage to be enabled" policy.
 This is deployed to all in-scope subscriptions using the `DeployIfNotExists` policy effect.
 
-### `location`
+### Additional settings
 
-This allows the default location for all management resource to be set.
-Will override the `default_location` property set in the module.
-Can be overridden for specific resources using the `advanced` block (see below).
+The following additional settings can be used to set configuration on all management resources:
 
-### `tags`
+#### `settings.location`
 
-A mapping of tags which should be assigned to the resources.
+Set the location/region where the management resources are created.
+Changing this forces new resources to be created.
 
-e.g.
+By default, leaving an empty value in the `location` field will deploy all management resources in either the location inherited from the top-level variable `default_location`, or from a more specific `location` value if set at a lower scope.
 
-```terraform
+Location can also be overridden for individual resources using the [advanced](#settingsadvanced) input.
+
+#### `settings.tags`
+
+Set additional tags for all management resources.
+Tags are appended to those inherited from the top-level variable `default_tags`.
+
+```hcl
 tags = {
   MyTag  = "MyValue"
   MyTag2 = "MyValue2"
 }
-
 ```
 
-### `advanced`
+> **NOTE:**
+> The inherited tags will include those set by the module, unless [disable_base_module_tags][wiki_disable_base_module_tags] is set to `true`.
 
-See [Using the Advanced Block with Management Resources][wiki_management_advanced_block].
+#### `settings.advanced`
+
+The `advanced` block provides a way to manipulate almost any setting on any management resource created by the module.
+This is currently undocumented and only intended for experienced users.
+
+> :warning: **WARNING**
+>
+> Although the `advanced` block has now evolved to a stable state, we recommend that customers use this with caution as it is not officially supported.
+> The long awaited GA release of the `optional()` feature is expected in Terraform `v1.3`.
+> This is likely to be used to supplement or replace the `advanced` input in release `v3.0.0` of the module.
+
+See [Using the Advanced Block with management resources][wiki_management_advanced_block] page for more information.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [agent_health_overview]:                  https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
 [change_tracking_overview]:               https://docs.microsoft.com/azure/automation/change-tracking/overview
@@ -375,4 +392,6 @@ See [Using the Advanced Block with Management Resources][wiki_management_advance
 [vm_insights_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
 [microsoft_defender_for_cloud]:           https://docs.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction
 [microsoft_defender_for_sql]:             https://docs.microsoft.com/azure/azure-sql/database/azure-defender-for-sql
-[wiki_management_advanced_block]:         ./%5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
+
+[wiki_management_advanced_block]: %5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
+[wiki_disable_base_module_tags]:   %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."

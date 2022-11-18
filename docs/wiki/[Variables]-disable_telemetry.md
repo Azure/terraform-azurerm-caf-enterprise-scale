@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**disable_telemetry**](#overview) `bool` (optional)
@@ -12,7 +13,7 @@ The data is collected and governed by Microsoft's privacy policies, located at t
 
 For more information see the [customer usage attribution documentation](https://docs.microsoft.com/azure/marketplace/azure-partner-customer-usage-attribution)
 
-To disable this tracking, we have included a variable called `disable_telemetry` with a simple boolean flag. The default value is `false` which does not disable the telemetry.
+To disable this tracking, we have included a variable with the name `disable_telemetry` with a simple boolean flag. The default value is `false` which does not disable the telemetry.
 If you would like to disable this tracking, then simply set this value to `true` and this module will not create the telemetry tracking resources and therefore telemetry tracking will be disabled.
 
 For example, to disable telemetry tracking, you can add this variable to the module declaration:
@@ -117,4 +118,6 @@ In binary `000b` hexadecimal is represented as `0000000000001011`.
 This means that bits 1, 2 and 4 are set (we read from right to left).
 Looking in the table for the core module: bits 1, 2 and 4 are the `deploy_core_landing_zones`, `deploy_corp_landing_zones` and `deploy_sap_landing_zones` features.
 
-[this_page]: # "Link for the current page."
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"

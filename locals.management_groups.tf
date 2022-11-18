@@ -286,7 +286,7 @@ locals {
       id                         = key
       display_name               = value.display_name
       parent_management_group_id = coalesce(value.parent_management_group_id, local.root_parent_id)
-      subscription_ids           = value.subscription_ids
+      subscription_ids           = local.strict_subscription_association ? value.subscription_ids : null
       archetype_config = {
         archetype_id   = value.archetype_config.archetype_id
         access_control = value.archetype_config.access_control
@@ -299,7 +299,32 @@ locals {
       }
     }
   }
+
+  # Logic to determine which subscriptions to associate with Management Groups in relaxed mode.
+  # Empty unless strict_subscription_association is set to false.
+  mg_sub_association_list = flatten([
+    for key, value in local.es_landing_zones_merge : [
+      for sid in value.subscription_ids :
+      {
+        management_group_name = key
+        subscription_id       = sid
+      }
+    ]
+    if !local.strict_subscription_association
+  ])
+
+  # azurerm_management_group_subscription_association_enterprise_scale is used as the
+  # for_each value to create azurerm_management_group_subscription_association
+  # resources in relaxed mode.
+  # Empty unless strict_subscription_association is set to false.
+  azurerm_management_group_subscription_association_enterprise_scale = { for item in local.mg_sub_association_list :
+    "${local.provider_path.management_groups}${item.management_group_name}/subscriptions/${item.subscription_id}" => {
+      management_group_id = "${local.provider_path.management_groups}${item.management_group_name}"
+      subscription_id     = "/subscriptions/${item.subscription_id}"
+    }
+  }
 }
+
 
 # The following locals are used to build the map of Management
 # Groups to deploy at each level of the hierarchy.

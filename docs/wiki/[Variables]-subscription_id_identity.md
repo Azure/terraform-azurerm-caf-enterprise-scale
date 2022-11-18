@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**subscription_id_identity**](#overview) `string` (optional)
@@ -27,5 +28,3 @@ To identify the Identity Subscription by ID, set the `subscription_id_identity` 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

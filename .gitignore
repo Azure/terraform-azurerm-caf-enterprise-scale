@@ -38,6 +38,9 @@ override.tf.json
 # Ignore any files with .ignore. in the filename
 *.ignore.*
 
+# Ignore test_local
+tests/modules/test_local
+
 # Ignore macOS .DS_Store files which are generated automatically by Finder.
 .DS_Store
 

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**subscription_id_overrides**](#overview) `map(list(string))` (optional)
@@ -35,5 +36,3 @@ A full list of default Management Groups:
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

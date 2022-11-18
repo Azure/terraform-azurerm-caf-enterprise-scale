@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**deploy_corp_landing_zones**](#overview) `bool` (optional)
@@ -23,5 +24,3 @@ Set the value to true or false.
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

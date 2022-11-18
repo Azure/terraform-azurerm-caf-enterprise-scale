@@ -37,10 +37,11 @@ locals {
     module.identity_resources.configuration.template_file_variables,
     module.management_resources.configuration.template_file_variables,
   )
-  default_location         = var.default_location
-  default_tags             = var.default_tags
-  disable_base_module_tags = var.disable_base_module_tags
-  disable_telemetry        = var.disable_telemetry
+  default_location                = var.default_location
+  default_tags                    = var.default_tags
+  disable_base_module_tags        = var.disable_base_module_tags
+  disable_telemetry               = var.disable_telemetry
+  strict_subscription_association = var.strict_subscription_association
 }
 
 # The following locals are used to ensure non-null values

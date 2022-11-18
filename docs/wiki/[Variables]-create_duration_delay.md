@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**create_duration_delay**](#overview) `map(string)` (optional)
@@ -43,5 +44,3 @@ Change the delay period of the specified resource type.
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

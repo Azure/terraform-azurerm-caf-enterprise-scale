@@ -4,11 +4,9 @@
       "Deploy-ASC-Monitoring",
       "Deploy-MDFC-Config",
       "Deploy-AzActivity-Log",
-      "Deploy-LX-Arc-Monitoring",
       "Deploy-Resource-Diag",
       "Deploy-VM-Monitoring",
-      "Deploy-VMSS-Monitoring",
-      "Deploy-WS-Arc-Monitoring"
+      "Deploy-VMSS-Monitoring"
     ],
     "policy_definitions": [
       "Append-AppService-httpsonly",
@@ -59,6 +57,8 @@
       "Deploy-Diagnostics-ApiForFHIR",
       "Deploy-Diagnostics-APIMgmt",
       "Deploy-Diagnostics-ApplicationGateway",
+      "Deploy-Diagnostics-AVDScalingPlans",
+      "Deploy-Diagnostics-Bastion",
       "Deploy-Diagnostics-CDNEndpoints",
       "Deploy-Diagnostics-CognitiveServices",
       "Deploy-Diagnostics-CosmosDB",

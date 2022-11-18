@@ -1,10 +1,11 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 > **IMPORTANT:** The [management resources](#management-resources) section of this upgrade guide has been updated to reflect changes made in release `v2.1.0`.
 > Please carefully check the version you are upgrading to when updating these settings.
 
 The `v2.0.0` release marks another significant milestone in development of the [Azure landing zones Terraform module][terraform-registry-caf-enterprise-scale] (_formerly [Terraform Module for Cloud Adoption Framework Enterprise-scale][terraform-registry-caf-enterprise-scale]_).
-The re-branding of this module reflects adoption of `Enterprise-scale` as the recommended architecture for `Azure landing zones`.
+The re-branding of this module reflects adoption of `Enterprise-scale` as the recommended architecture for building an `Azure landing zone`.
 
 This release provides the ability to deploy and configure `Virtual WAN` resources as part of the `connectivity` capability of the module.
 We have also included a number of fixes for other issues, and extended the existing `connectivity` capabilities for customers creating `Hub and Spoke` networks.
@@ -12,7 +13,7 @@ We have also included a number of fixes for other issues, and extended the exist
 ### New features
 
 - Added support to create hub networks using Azure `Virtual WAN` in the connectivity Subscription
-- Updated the policies included within the module based on those in the upstream Enterprise-scale repository
+- Updated the policies included within the module based on those in the upstream Azure/Enterprise-Scale repository
 - Improved Wiki documentation, providing more examples and clearer guidance
 - Added module telemetry to help us better understand where to focus development efforts and improve customer experience
 - Update branding from `Enterprise-scale` to `Azure landing zones` (further work required to complete this transition)
@@ -337,7 +338,7 @@ These are all within the scope of `configure_connectivity_resources.advanced.cus
 
 ## Next steps
 
-Take a look at the latest [User Guide](./User-Guide) documentation and our [Examples](./Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
+Take a look at the latest [User Guide](User-Guide) documentation and our [Examples](Examples) to understand the latest module configuration options, and review your implementation against the changes documented on this page.
 
 ## Need help?
 

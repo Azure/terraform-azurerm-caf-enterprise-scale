@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
 [**deploy_demo_landing_zones**](#overview) `bool` (optional)
@@ -27,5 +28,3 @@ To see the effect of this change, please refer to the [Demo landing zones exampl
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
