@@ -1,6 +1,5 @@
 # Configure the minimum required providers supported by this module
 terraform {
-  experiments = [module_variable_optional_attrs]
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
