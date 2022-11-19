@@ -57,44 +57,15 @@ locals {
           config = {
             address_space                = ["10.101.0.0/22", ]
             location                     = var.secondary_location
-            link_to_ddos_protection_plan = false
-            dns_servers                  = []
-            bgp_community                = ""
-            subnets                      = []
             virtual_network_gateway = {
               enabled = true
               config = {
                 address_prefix           = "10.101.1.0/24"
-                gateway_sku_expressroute = ""
                 gateway_sku_vpn          = "VpnGw1"
-                advanced_vpn_settings = {
-                  enable_bgp                       = null
-                  active_active                    = null
-                  private_ip_address_allocation    = ""
-                  default_local_network_gateway_id = ""
-                  vpn_client_configuration         = []
-                  bgp_settings                     = []
-                  custom_route                     = []
-                }
               }
             }
             azure_firewall = {
               enabled = false
-              config = {
-                address_prefix                = "10.101.0.0/24"
-                enable_dns_proxy              = true
-                dns_servers                   = []
-                sku_tier                      = ""
-                base_policy_id                = ""
-                private_ip_ranges             = []
-                threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
-                availability_zones = {
-                  zone_1 = true
-                  zone_2 = true
-                  zone_3 = true
-                }
-              }
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = false
@@ -150,39 +121,6 @@ locals {
           config = {
             address_prefix = "10.201.0.0/22"
             location       = var.secondary_location
-            sku            = ""
-            routes         = []
-            expressroute_gateway = {
-              enabled = false
-              config = {
-                scale_unit = 1
-              }
-            }
-            vpn_gateway = {
-              enabled = false
-              config = {
-                bgp_settings       = []
-                routing_preference = ""
-                scale_unit         = 1
-              }
-            }
-            azure_firewall = {
-              enabled = false
-              config = {
-                enable_dns_proxy              = false
-                dns_servers                   = []
-                sku_tier                      = "Standard"
-                base_policy_id                = ""
-                private_ip_ranges             = []
-                threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
-                availability_zones = {
-                  zone_1 = false
-                  zone_2 = false
-                  zone_3 = false
-                }
-              }
-            }
             spoke_virtual_network_resource_ids = []
             enable_virtual_hub_connections     = true
           }
@@ -190,24 +128,17 @@ locals {
       ]
       ddos_protection_plan = {
         enabled = false
-        config = {
-          location = ""
-        }
       }
       dns = {
         enabled = true
         config = {
-          location = null
           enable_private_link_by_service = {
             azure_api_management                 = false
             azure_app_configuration_stores       = false
             azure_arc                            = false
             azure_automation_dscandhybridworker  = false
             azure_automation_webhook             = false
-            azure_backup                         = true
             azure_batch_account                  = false
-            azure_bot_service_bot                = true
-            azure_bot_service_token              = true
             azure_cache_for_redis                = false
             azure_cache_for_redis_enterprise     = false
             azure_container_registry             = false
@@ -237,26 +168,18 @@ locals {
             azure_media_services                 = false
             azure_migrate                        = false
             azure_monitor                        = false
-            azure_purview_account                = true
             azure_purview_studio                 = false
             azure_relay_namespace                = false
             azure_search_service                 = false
             azure_service_bus_namespace          = false
-            azure_site_recovery                  = true
             azure_sql_database_sqlserver         = false
             azure_synapse_analytics_dev          = false
             azure_synapse_analytics_sql          = false
             azure_synapse_studio                 = false
             azure_web_apps_sites                 = false
-            azure_web_apps_static_sites          = true
             cognitive_services_account           = false
             microsoft_power_bi                   = false
             signalr                              = false
-            storage_account_blob                 = true
-            storage_account_file                 = true
-            storage_account_queue                = true
-            storage_account_table                = true
-            storage_account_web                  = true
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []
@@ -266,9 +189,6 @@ locals {
         }
       }
     }
-
-    location = null
-    tags     = null
     advanced = {
       custom_settings_by_resource_type = {
         azurerm_firewall_policy = {
