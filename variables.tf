@@ -324,7 +324,7 @@ variable "configure_connectivity_resources" {
           config = object({
             address_prefix = string
             location       = string
-            sku            = string
+            sku            = optional(string, "")
             routes = optional(list(
               object({
                 address_prefixes    = list(string)
