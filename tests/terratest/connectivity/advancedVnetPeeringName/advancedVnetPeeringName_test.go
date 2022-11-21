@@ -27,7 +27,7 @@ func TestConnectivityAdvancedVnetPeering(t *testing.T) {
 		"/subscriptions/%s/resourceGroups/test-advancedVnetPeeringName/providers/Microsoft.Network/virtualNetworks/spoke-vnet",
 		subId,
 	)
-	peeringSuffix := uuidv5.NewSHA1(uuidv5.NameSpaceDNS, []byte(spokeId)).String()
+	peeringSuffix := uuidv5.NewSHA1(uuidv5.NameSpaceURL, []byte(spokeId)).String()
 	testCases := []testcase{
 		{
 			Name:        "StandardVnetPeeringNaming",
