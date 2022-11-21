@@ -33,6 +33,8 @@ jobs:
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
     steps:
       - template: templates/tests-common.yml
+        parameters:
+          run_type: unit
 
       - task: Bash@3
         displayName: "[terraform fmt]"
@@ -40,25 +42,13 @@ jobs:
           targetType: "inline"
           script: "make tf-fmt"
 
-      - task: GoTool@0
-        displayName: "[setup go]"
-        inputs:
-          version: '1.18'
-
       - task: Bash@3
         displayName: "[terratest]"
         inputs:
           targetType: "inline"
-          script: |
-            make terratest
+          script: "make terratest"
         env:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-
-      - task: Bash@3
-        displayName: "[conftest install]"
-        inputs:
-          targetType: "inline"
-          script: "make opa-install"
 
       - template: templates/tests-loop.yml
         parameters:
