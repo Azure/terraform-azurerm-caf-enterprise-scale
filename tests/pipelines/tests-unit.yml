@@ -41,7 +41,7 @@ jobs:
           script: "make tf-fmt"
 
       - task: GoTool@0
-        displayName: [setup go]
+        displayName: "[setup go]"
         inputs:
           version: '1.18'
 
