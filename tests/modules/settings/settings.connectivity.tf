@@ -55,13 +55,13 @@ locals {
         {
           enabled = true
           config = {
-            address_space                = ["10.101.0.0/22", ]
-            location                     = var.secondary_location
+            address_space = ["10.101.0.0/22", ]
+            location      = var.secondary_location
             virtual_network_gateway = {
               enabled = true
               config = {
-                address_prefix           = "10.101.1.0/24"
-                gateway_sku_vpn          = "VpnGw1"
+                address_prefix  = "10.101.1.0/24"
+                gateway_sku_vpn = "VpnGw1"
               }
             }
             azure_firewall = {
@@ -119,8 +119,8 @@ locals {
         {
           enabled = true
           config = {
-            address_prefix = "10.201.0.0/22"
-            location       = var.secondary_location
+            address_prefix                     = "10.201.0.0/22"
+            location                           = var.secondary_location
             spoke_virtual_network_resource_ids = []
             enable_virtual_hub_connections     = true
           }
