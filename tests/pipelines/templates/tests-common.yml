@@ -11,14 +11,6 @@ steps:
       targetType: "inline"
       script: "make tf-install"
 
-  - task: Bash@3
-    displayName: "Prepare Terraform Environment"
-    inputs:
-      targetType: "inline"
-      script: "make tf-prepare"
-    env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-
   - task: GoTool@0
     displayName: "Install Go"
     inputs:
@@ -31,3 +23,11 @@ steps:
       targetType: "inline"
       script: "make opa-install"
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
+
+  - task: Bash@3
+    displayName: "Prepare Terraform Environment"
+    inputs:
+      targetType: "inline"
+      script: "make tf-prepare"
+    env:
+      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
