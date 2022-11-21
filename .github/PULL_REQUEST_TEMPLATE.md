@@ -27,4 +27,4 @@ Please provide any testing evidence to show that your Pull Request works/fixes a
 - [ ] Ensured my code/branch is up-to-date with the latest changes in the `main` [branch](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main)
 - [ ] Performed testing and provided evidence.
 - [ ] Updated relevant and associated documentation.
-- [ ] Updated the ["What's New?"](https://github.com/Azure/Enterprise-Scale/wiki/Whats-new) wiki page (located in the [Enterprise-Scale repo](https://github.com/Azure/Enterprise-Scale) in the directory: `/docs/wiki/whats-new.md`)
+- [ ] Updated the ["RELEASE"](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues) page with details needed for when this code change is released.
