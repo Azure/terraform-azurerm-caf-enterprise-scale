@@ -9,6 +9,8 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	uuidv5 "github.com/google/uuid"
 )
 
 type testcase struct {
@@ -20,10 +22,16 @@ type testcase struct {
 // TestAdvancedVnetPeeringName tests the standard vnet peering naming functionality
 func TestConnectivityAdvancedVnetPeering(t *testing.T) {
 	require.NotEmptyf(t, os.Getenv("ARM_SUBSCRIPTION_ID"), "env var ARM_SUBSCRIPTION_ID is required")
+	subId := os.Getenv("ARM_SUBSCRIPTION_ID")
+	spokeId := fmt.Sprintf(
+		"/subscriptions/%s/resourceGroups/test-advancedVnetPeeringName/providers/Microsoft.Network/virtualNetworks/spoke-vnet",
+		subId,
+	)
+	peeringSuffix := uuidv5.NewSHA1(uuidv5.NameSpaceDNS, []byte(spokeId)).String()
 	testCases := []testcase{
 		{
 			Name:        "StandardVnetPeeringNaming",
-			PeeringName: "peering-134dd88d-86f2-5006-9401-698a1f46852e",
+			PeeringName: fmt.Sprintf("peering-%s", peeringSuffix),
 			TFVars:      map[string]interface{}{},
 		},
 		{
