@@ -20,7 +20,7 @@ steps:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
 
   - task: GoTool@0
-    displayName: "Install Go]"
+    displayName: "Install Go"
     inputs:
       version: '1.18'
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
