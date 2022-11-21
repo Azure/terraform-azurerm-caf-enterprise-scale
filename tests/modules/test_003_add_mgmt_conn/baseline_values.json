@@ -2271,8 +2271,7 @@
               "virtual_hub": [],
               "zones": [
                 "1",
-                "2",
-                "3"
+                "2"
               ]
             },
             "sensitive_values": {
@@ -2283,7 +2282,6 @@
               "tags": {},
               "virtual_hub": [],
               "zones": [
-                false,
                 false,
                 false
               ]
@@ -2362,6 +2360,7 @@
               "private_ip_ranges": null,
               "resource_group_name": "root-id-1-connectivity-northeurope",
               "sku": "Standard",
+              "sql_redirect_allowed": false,
               "tags": null,
               "threat_intelligence_allowlist": [],
               "threat_intelligence_mode": "Alert",
@@ -2406,6 +2405,7 @@
               "private_ip_ranges": null,
               "resource_group_name": "root-id-1-connectivity",
               "sku": "Standard",
+              "sql_redirect_allowed": null,
               "tags": null,
               "threat_intelligence_allowlist": [],
               "threat_intelligence_mode": "Alert",
@@ -10494,6 +10494,7 @@
             "schema_version": 0,
             "values": {
               "identity": [],
+              "local_authentication_enabled": true,
               "location": "northeurope",
               "name": "root-id-1-automation",
               "public_network_access_enabled": true,
@@ -10505,7 +10506,9 @@
               "timeouts": null
             },
             "sensitive_values": {
+              "encryption": [],
               "identity": [],
+              "private_endpoint_connection": [],
               "tags": {}
             }
           },
@@ -10799,6 +10802,7 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 2,
             "values": {
+              "cmk_for_query_forced": null,
               "daily_quota_gb": -1,
               "internet_ingestion_enabled": true,
               "internet_query_enabled": true,
