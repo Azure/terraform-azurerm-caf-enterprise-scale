@@ -46,6 +46,7 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_event_hubs_namespace           = true
       azure_file_sync                      = true
       azure_hdinsights                     = true
+      azure_iot_dps                        = true
       azure_iot_hub                        = true
       azure_key_vault                      = true
       azure_key_vault_managed_hsm          = true
@@ -130,6 +131,7 @@ object({
       azure_event_hubs_namespace           = bool
       azure_file_sync                      = bool
       azure_hdinsights                     = bool
+      azure_iot_dps                        = bool
       azure_iot_hub                        = bool
       azure_key_vault                      = bool
       azure_key_vault_managed_hsm          = bool
@@ -227,6 +229,7 @@ The following services are currently supported by the module:
 - `azure_event_hubs_namespace`
 - `azure_file_sync`
 - `azure_hdinsights`
+- `azure_iot_dps`
 - `azure_iot_hub`
 - `azure_key_vault`
 - `azure_key_vault_managed_hsm`
@@ -250,6 +253,7 @@ The following services are currently supported by the module:
 - `cognitive_services_account`
 - `microsoft_power_bi`
 - `signalr`
+- `signalr_webpubsub`
 - `storage_account_blob`
 - `storage_account_file`
 - `storage_account_queue`

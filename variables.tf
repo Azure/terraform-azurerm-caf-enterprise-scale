@@ -423,6 +423,7 @@ variable "configure_connectivity_resources" {
             azure_event_hubs_namespace           = optional(bool, true)
             azure_file_sync                      = optional(bool, true)
             azure_hdinsights                     = optional(bool, true)
+            azure_iot_dps                        = optional(bool, true)
             azure_iot_hub                        = optional(bool, true)
             azure_key_vault                      = optional(bool, true)
             azure_key_vault_managed_hsm          = optional(bool, true)
@@ -604,6 +605,7 @@ variable "configure_connectivity_resources" {
             azure_event_hubs_namespace           = true
             azure_file_sync                      = true
             azure_hdinsights                     = true
+            azure_iot_dps                        = true
             azure_iot_hub                        = true
             azure_key_vault                      = true
             azure_key_vault_managed_hsm          = true

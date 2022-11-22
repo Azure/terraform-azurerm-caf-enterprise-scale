@@ -173,6 +173,7 @@ The following changes were made to the `configure_connectivity_resources.setting
 - `azure_data_explorer` added
 - `azure_digital_twins` added
 - `azure_hdinsights` added
+- `azure_iot_dps` added
 - `azure_key_vault_managed_hsm` added
 - `azure_media_services` added
 - `azure_migrate` added

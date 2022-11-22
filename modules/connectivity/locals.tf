@@ -1323,6 +1323,7 @@ locals {
     azure_event_hubs_namespace           = ["privatelink.servicebus.windows.net"]
     azure_file_sync                      = ["privatelink.afs.azure.net"]
     azure_hdinsights                     = ["privatelink.azurehdinsight.net"]
+    azure_iot_dps                        = ["privatelink.azure-devices-provisioning.net"]
     azure_iot_hub                        = ["privatelink.azure-devices.net", "privatelink.servicebus.windows.net"]
     azure_key_vault                      = ["privatelink.vaultcore.azure.net"]
     azure_key_vault_managed_hsm          = ["privatelink.managedhsm.azure.net"]
@@ -1398,6 +1399,7 @@ locals {
     azure_event_hubs_namespace           = local.empty_string
     azure_file_sync                      = local.empty_string
     azure_hdinsights                     = local.empty_string
+    azure_iot_dps                        = local.empty_string
     azure_iot_hub                        = local.empty_string
     azure_key_vault                      = "vault"
     azure_key_vault_managed_hsm          = local.empty_string

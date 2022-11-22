@@ -182,6 +182,7 @@ module "enterprise_scale" {
             azure_event_hubs_namespace           = true
             azure_file_sync                      = true
             azure_hdinsights                     = true
+            azure_iot_dps                        = true
             azure_iot_hub                        = true
             azure_key_vault                      = true
             azure_key_vault_managed_hsm          = true

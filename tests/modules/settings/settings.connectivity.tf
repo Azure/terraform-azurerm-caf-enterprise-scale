@@ -160,6 +160,7 @@ locals {
             azure_event_hubs_namespace           = false
             azure_file_sync                      = false
             azure_hdinsights                     = false
+            azure_iot_dps                        = false
             azure_iot_hub                        = false
             azure_key_vault                      = false
             azure_key_vault_managed_hsm          = false
