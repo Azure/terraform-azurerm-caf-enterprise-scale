@@ -180,6 +180,7 @@ locals {
             cognitive_services_account           = false
             microsoft_power_bi                   = false
             signalr                              = false
+            signalr_webpubsub                    = false
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []

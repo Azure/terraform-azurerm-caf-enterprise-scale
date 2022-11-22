@@ -183,6 +183,7 @@ The following changes were made to the `configure_connectivity_resources.setting
 - `azure_synapse_studio` added
 - `azure_web_apps_static_sites` added
 - `microsoft_power_bi` added
+- `signalr_webpubsub` added
 
 > **NOTE:** Due to the introduction of `optional()` types, this will not require a code change unless you want to disable creation of the newly added private DNS zones controlled by these inputs.
 

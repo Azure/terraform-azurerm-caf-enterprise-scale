@@ -205,6 +205,7 @@ module "enterprise_scale" {
             cognitive_services_account           = true
             microsoft_power_bi                   = true
             signalr                              = true
+            signalr_webpubsub                    = true
             storage_account_blob                 = true
             storage_account_file                 = true
             storage_account_queue                = true

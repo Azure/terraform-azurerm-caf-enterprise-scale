@@ -1345,6 +1345,7 @@ locals {
     cognitive_services_account           = ["privatelink.cognitiveservices.azure.com"]
     microsoft_power_bi                   = ["privatelink.analysis.windows.net", "privatelink.pbidedicated.windows.net", "privatelink.tip1.powerquery.microsoft.com"]
     signalr                              = ["privatelink.service.signalr.net"]
+    signalr_webpubsub                    = ["privatelink.webpubsub.azure.com"]
     storage_account_blob                 = ["privatelink.blob.core.windows.net"]
     storage_account_file                 = ["privatelink.file.core.windows.net"]
     storage_account_queue                = ["privatelink.queue.core.windows.net"]
@@ -1420,6 +1421,7 @@ locals {
     cognitive_services_account           = local.empty_string
     microsoft_power_bi                   = local.empty_string
     signalr                              = local.empty_string
+    signalr_webpubsub                    = local.empty_string
     storage_account_blob                 = "blob"
     storage_account_file                 = "file"
     storage_account_queue                = "queue"

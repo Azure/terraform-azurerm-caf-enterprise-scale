@@ -267,6 +267,7 @@ variable "settings" {
           cognitive_services_account           = bool
           microsoft_power_bi                   = bool
           signalr                              = bool
+          signalr_webpubsub                    = bool
           storage_account_blob                 = bool
           storage_account_file                 = bool
           storage_account_queue                = bool
@@ -349,6 +350,7 @@ variable "settings" {
           cognitive_services_account           = true
           microsoft_power_bi                   = true
           signalr                              = true
+          signalr_webpubsub                    = true
           storage_account_blob                 = true
           storage_account_file                 = true
           storage_account_queue                = true
