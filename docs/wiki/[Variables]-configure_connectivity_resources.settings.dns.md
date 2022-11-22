@@ -96,79 +96,79 @@ Validation provided by schema:
 <details><summary>Click to view code...</summary>
 
 ```hcl
-object({
-  enabled = bool
-  config = object({
-    location = string
-    enable_private_link_by_service = object({
-      azure_api_management                 = bool
-      azure_app_configuration_stores       = bool
-      azure_arc                            = bool
-      azure_automation_dscandhybridworker  = bool
-      azure_automation_webhook             = bool
-      azure_backup                         = bool
-      azure_batch_account                  = bool
-      azure_bot_service_bot                = bool
-      azure_bot_service_token              = bool
-      azure_cache_for_redis                = bool
-      azure_cache_for_redis_enterprise     = bool
-      azure_container_registry             = bool
-      azure_cosmos_db_cassandra            = bool
-      azure_cosmos_db_gremlin              = bool
-      azure_cosmos_db_mongodb              = bool
-      azure_cosmos_db_sql                  = bool
-      azure_cosmos_db_table                = bool
-      azure_data_explorer                  = bool
-      azure_data_factory                   = bool
-      azure_data_factory_portal            = bool
-      azure_data_lake_file_system_gen2     = bool
-      azure_database_for_mariadb_server    = bool
-      azure_database_for_mysql_server      = bool
-      azure_database_for_postgresql_server = bool
-      azure_digital_twins                  = bool
-      azure_event_grid_domain              = bool
-      azure_event_grid_topic               = bool
-      azure_event_hubs_namespace           = bool
-      azure_file_sync                      = bool
-      azure_hdinsights                     = bool
-      azure_iot_dps                        = bool
-      azure_iot_hub                        = bool
-      azure_key_vault                      = bool
-      azure_key_vault_managed_hsm          = bool
-      azure_kubernetes_service_management  = bool
-      azure_machine_learning_workspace     = bool
-      azure_media_services                 = bool
-      azure_migrate                        = bool
-      azure_monitor                        = bool
-      azure_purview_account                = bool
-      azure_purview_studio                 = bool
-      azure_relay_namespace                = bool
-      azure_search_service                 = bool
-      azure_service_bus_namespace          = bool
-      azure_site_recovery                  = bool
-      azure_sql_database_sqlserver         = bool
-      azure_synapse_analytics_dev          = bool
-      azure_synapse_analytics_sql          = bool
-      azure_synapse_studio                 = bool
-      azure_web_apps_sites                 = bool
-      azure_web_apps_static_sites          = bool
-      cognitive_services_account           = bool
-      microsoft_power_bi                   = bool
-      signalr                              = bool
-      signalr_webpubsub                    = bool
-      storage_account_blob                 = bool
-      storage_account_file                 = bool
-      storage_account_queue                = bool
-      storage_account_table                = bool
-      storage_account_web                  = bool
-    })
-    private_link_locations                                 = list(string)
-    public_dns_zones                                       = list(string)
-    private_dns_zones                                      = list(string)
-    enable_private_dns_zone_virtual_network_link_on_hubs   = bool
-    enable_private_dns_zone_virtual_network_link_on_spokes = bool
-  })
-})
+optional(object({
+  enabled = optional(bool, true)
+  config = optional(object({
+    location = optional(string, "")
+    enable_private_link_by_service = optional(object({
+      azure_api_management                 = optional(bool, true)
+      azure_app_configuration_stores       = optional(bool, true)
+      azure_arc                            = optional(bool, true)
+      azure_automation_dscandhybridworker  = optional(bool, true)
+      azure_automation_webhook             = optional(bool, true)
+      azure_backup                         = optional(bool, true)
+      azure_batch_account                  = optional(bool, true)
+      azure_bot_service_bot                = optional(bool, true)
+      azure_bot_service_token              = optional(bool, true)
+      azure_cache_for_redis                = optional(bool, true)
+      azure_cache_for_redis_enterprise     = optional(bool, true)
+      azure_container_registry             = optional(bool, true)
+      azure_cosmos_db_cassandra            = optional(bool, true)
+      azure_cosmos_db_gremlin              = optional(bool, true)
+      azure_cosmos_db_mongodb              = optional(bool, true)
+      azure_cosmos_db_sql                  = optional(bool, true)
+      azure_cosmos_db_table                = optional(bool, true)
+      azure_data_explorer                  = optional(bool, true)
+      azure_data_factory                   = optional(bool, true)
+      azure_data_factory_portal            = optional(bool, true)
+      azure_data_lake_file_system_gen2     = optional(bool, true)
+      azure_database_for_mariadb_server    = optional(bool, true)
+      azure_database_for_mysql_server      = optional(bool, true)
+      azure_database_for_postgresql_server = optional(bool, true)
+      azure_digital_twins                  = optional(bool, true)
+      azure_event_grid_domain              = optional(bool, true)
+      azure_event_grid_topic               = optional(bool, true)
+      azure_event_hubs_namespace           = optional(bool, true)
+      azure_file_sync                      = optional(bool, true)
+      azure_hdinsights                     = optional(bool, true)
+      azure_iot_dps                        = optional(bool, true)
+      azure_iot_hub                        = optional(bool, true)
+      azure_key_vault                      = optional(bool, true)
+      azure_key_vault_managed_hsm          = optional(bool, true)
+      azure_kubernetes_service_management  = optional(bool, true)
+      azure_machine_learning_workspace     = optional(bool, true)
+      azure_media_services                 = optional(bool, true)
+      azure_migrate                        = optional(bool, true)
+      azure_monitor                        = optional(bool, true)
+      azure_purview_account                = optional(bool, true)
+      azure_purview_studio                 = optional(bool, true)
+      azure_relay_namespace                = optional(bool, true)
+      azure_search_service                 = optional(bool, true)
+      azure_service_bus_namespace          = optional(bool, true)
+      azure_site_recovery                  = optional(bool, true)
+      azure_sql_database_sqlserver         = optional(bool, true)
+      azure_synapse_analytics_dev          = optional(bool, true)
+      azure_synapse_analytics_sql          = optional(bool, true)
+      azure_synapse_studio                 = optional(bool, true)
+      azure_web_apps_sites                 = optional(bool, true)
+      azure_web_apps_static_sites          = optional(bool, true)
+      cognitive_services_account           = optional(bool, true)
+      microsoft_power_bi                   = optional(bool, true)
+      signalr                              = optional(bool, true)
+      signalr_webpubsub                    = optional(bool, true)
+      storage_account_blob                 = optional(bool, true)
+      storage_account_file                 = optional(bool, true)
+      storage_account_queue                = optional(bool, true)
+      storage_account_table                = optional(bool, true)
+      storage_account_web                  = optional(bool, true)
+    }), {})
+    private_link_locations                                 = optional(list(string), [])
+    public_dns_zones                                       = optional(list(string), [])
+    private_dns_zones                                      = optional(list(string), [])
+    enable_private_dns_zone_virtual_network_link_on_hubs   = optional(bool, true)
+    enable_private_dns_zone_virtual_network_link_on_spokes = optional(bool, true)
+  }), {})
+}), {})
 ```
 
 </details>

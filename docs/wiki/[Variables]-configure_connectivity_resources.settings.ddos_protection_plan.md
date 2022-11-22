@@ -21,12 +21,12 @@ ddos_protection_plan = {
 Validation provided by schema:
 
 ```hcl
-object({
-  enabled = bool
-  config = object({
-    location = string
-  })
-})
+optional(object({
+  enabled = optional(bool, false)
+  config = optional(object({
+    location = optional(string, "")
+  }), {})
+}), {})
 ```
 
 ## Usage
