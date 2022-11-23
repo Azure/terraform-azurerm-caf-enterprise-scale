@@ -6,7 +6,7 @@ The `v3.0.0` release marks an important update to the module, aimed primarily at
 Previously, any change to the schema of input variables with complex object types would result in a breaking change if not updated in the customer code.
 This has been made possible with the GA release of `optional()` types in Terraform v1.3.0.
 
-As a result of this change, we have increased the minimum supported Terraform version to `v1.3.0`.
+As a result of this change and the required fix for [issue #31844](https://github.com/hashicorp/terraform/issues/31844), we have increased the minimum supported Terraform version to `v1.3.1`.
 
 To support other changes (as listed below), we have also bumped the minimum supported `azurerm` provider version to `v3.19.0`.
 
