@@ -8,7 +8,7 @@
     "displayName": "Configure Azure PaaS services to use private DNS zones",
     "description": "This policy initiative is a group of policies that ensures private endpoints to Azure PaaS services are integrated with Azure Private DNS zones",
     "metadata": {
-      "version": "1.0.1",
+      "version": "1.1.0",
       "category": "Network",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -18,6 +18,7 @@
     "parameters": {
       "azureFilePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureFilePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -26,6 +27,7 @@
       },
       "azureAutomationWebhookPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureAutomationWebhookPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -34,6 +36,7 @@
       },
       "azureAutomationDSCHybridPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureAutomationDSCHybridPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -42,6 +45,7 @@
       },
       "azureCosmosSQLPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCosmosSQLPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -50,6 +54,7 @@
       },
       "azureCosmosMongoPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCosmosMongoPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -58,6 +63,7 @@
       },
       "azureCosmosCassandraPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCosmosCassandraPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -66,6 +72,7 @@
       },
       "azureCosmosGremlinPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCosmosGremlinPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -74,6 +81,7 @@
       },
       "azureCosmosTablePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCosmosTablePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -82,6 +90,7 @@
       },
       "azureDataFactoryPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureDataFactoryPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -90,6 +99,7 @@
       },
       "azureDataFactoryPortalPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureDataFactoryPortalPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -98,6 +108,7 @@
       },
       "azureHDInsightPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureHDInsightPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -106,6 +117,7 @@
       },
       "azureMigratePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMigratePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -114,6 +126,7 @@
       },
       "azureStorageBlobPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageBlobPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -122,6 +135,7 @@
       },
       "azureStorageBlobSecPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageBlobSecPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -130,6 +144,7 @@
       },
       "azureStorageQueuePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageQueuePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -138,6 +153,7 @@
       },
       "azureStorageQueueSecPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageQueueSecPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -146,6 +162,7 @@
       },
       "azureStorageFilePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageFilePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -154,6 +171,7 @@
       },
       "azureStorageStaticWebPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageStaticWebPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -162,6 +180,7 @@
       },
       "azureStorageStaticWebSecPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageStaticWebSecPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -170,6 +189,7 @@
       },
       "azureStorageDFSPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageDFSPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -178,6 +198,7 @@
       },
       "azureStorageDFSSecPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureStorageDFSSecPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -186,6 +207,7 @@
       },
       "azureSynapseSQLPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureSynapseSQLPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -194,6 +216,7 @@
       },
       "azureSynapseSQLODPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureSynapseSQLODPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -202,6 +225,7 @@
       },
       "azureSynapseDevPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureSynapseDevPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -210,6 +234,7 @@
       },
       "azureMediaServicesKeyPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMediaServicesKeyPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -218,6 +243,7 @@
       },
       "azureMediaServicesLivePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMediaServicesLivePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -226,6 +252,7 @@
       },
       "azureMediaServicesStreamPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMediaServicesStreamPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -234,6 +261,7 @@
       },
       "azureMonitorPrivateDnsZoneId1": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMonitorPrivateDnsZoneId1",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -242,6 +270,7 @@
       },
       "azureMonitorPrivateDnsZoneId2": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMonitorPrivateDnsZoneId2",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -250,6 +279,7 @@
       },
       "azureMonitorPrivateDnsZoneId3": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMonitorPrivateDnsZoneId3",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -258,6 +288,7 @@
       },
       "azureMonitorPrivateDnsZoneId4": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMonitorPrivateDnsZoneId4",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -266,6 +297,7 @@
       },
       "azureMonitorPrivateDnsZoneId5": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMonitorPrivateDnsZoneId5",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -274,6 +306,7 @@
       },
       "azureWebPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureWebPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -282,6 +315,7 @@
       },
       "azureBatchPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureBatchPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -290,6 +324,7 @@
       },
       "azureAppPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureAppPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -298,6 +333,7 @@
       },
       "azureAsrPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureAsrPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -306,6 +342,7 @@
       },
       "azureIotPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureIotPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -314,6 +351,7 @@
       },
       "azureKeyVaultPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureKeyVaultPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -322,6 +360,7 @@
       },
       "azureSignalRPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureSignalRPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -330,6 +369,7 @@
       },
       "azureAppServicesPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureAppServicesPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -338,6 +378,7 @@
       },
       "azureEventGridTopicsPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureEventGridTopicsPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -346,6 +387,7 @@
       },
       "azureDiskAccessPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureDiskAccessPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -354,6 +396,7 @@
       },
       "azureCognitiveServicesPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCognitiveServicesPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -362,6 +405,7 @@
       },
       "azureIotHubsPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureIotHubsPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -370,6 +414,7 @@
       },
       "azureEventGridDomainsPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureEventGridDomainsPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -378,6 +423,7 @@
       },
       "azureRedisCachePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureRedisCachePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -386,6 +432,7 @@
       },
       "azureAcrPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureAcrPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -394,6 +441,7 @@
       },
       "azureEventHubNamespacePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureEventHubNamespacePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -402,6 +450,7 @@
       },
       "azureMachineLearningWorkspacePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureMachineLearningWorkspacePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -410,6 +459,7 @@
       },
       "azureServiceBusNamespacePrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureServiceBusNamespacePrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
@@ -418,6 +468,7 @@
       },
       "azureCognitiveSearchPrivateDnsZoneId": {
         "type": "string",
+        "defaultValue": "",
         "metadata": {
           "displayName": "azureCognitiveSearchPrivateDnsZoneId",
           "strongType": "Microsoft.Network/privateDnsZones",
