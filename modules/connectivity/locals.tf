@@ -1323,6 +1323,7 @@ locals {
     azure_event_hubs_namespace           = ["privatelink.servicebus.windows.net"]
     azure_file_sync                      = ["privatelink.afs.azure.net"]
     azure_hdinsights                     = ["privatelink.azurehdinsight.net"]
+    azure_iot_dps                        = ["privatelink.azure-devices-provisioning.net"]
     azure_iot_hub                        = ["privatelink.azure-devices.net", "privatelink.servicebus.windows.net"]
     azure_key_vault                      = ["privatelink.vaultcore.azure.net"]
     azure_key_vault_managed_hsm          = ["privatelink.managedhsm.azure.net"]
@@ -1345,6 +1346,7 @@ locals {
     cognitive_services_account           = ["privatelink.cognitiveservices.azure.com"]
     microsoft_power_bi                   = ["privatelink.analysis.windows.net", "privatelink.pbidedicated.windows.net", "privatelink.tip1.powerquery.microsoft.com"]
     signalr                              = ["privatelink.service.signalr.net"]
+    signalr_webpubsub                    = ["privatelink.webpubsub.azure.com"]
     storage_account_blob                 = ["privatelink.blob.core.windows.net"]
     storage_account_file                 = ["privatelink.file.core.windows.net"]
     storage_account_queue                = ["privatelink.queue.core.windows.net"]
@@ -1397,6 +1399,7 @@ locals {
     azure_event_hubs_namespace           = local.empty_string
     azure_file_sync                      = local.empty_string
     azure_hdinsights                     = local.empty_string
+    azure_iot_dps                        = local.empty_string
     azure_iot_hub                        = local.empty_string
     azure_key_vault                      = "vault"
     azure_key_vault_managed_hsm          = local.empty_string
@@ -1420,6 +1423,7 @@ locals {
     cognitive_services_account           = local.empty_string
     microsoft_power_bi                   = local.empty_string
     signalr                              = local.empty_string
+    signalr_webpubsub                    = local.empty_string
     storage_account_blob                 = "blob"
     storage_account_file                 = "file"
     storage_account_queue                = "queue"

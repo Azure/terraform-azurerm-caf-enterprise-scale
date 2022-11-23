@@ -66,27 +66,27 @@ Validation provided by schema:
 
 ```hcl
 object({
-  enabled = bool
+  enabled = optional(bool, true)
   config = object({
     address_prefix = string
     location       = string
-    sku            = string
-    routes = list(
+    sku            = optional(string, "")
+    routes = optional(list(
       object({
         address_prefixes    = list(string)
         next_hop_ip_address = string
       })
-    )
-    expressroute_gateway = object({
-      enabled = bool
-      config = object({
-        scale_unit = number
-      })
-    })
-    vpn_gateway = object({
-      enabled = bool
-      config = object({
-        bgp_settings = list(
+    ), [])
+    expressroute_gateway = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        scale_unit = optional(number, 1)
+      }), {})
+    }), {})
+    vpn_gateway = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        bgp_settings = optional(list(
           object({
             asn         = number
             peer_weight = number
@@ -101,30 +101,30 @@ object({
               })
             )
           })
-        )
-        routing_preference = string
-        scale_unit         = number
-      })
-    })
-    azure_firewall = object({
-      enabled = bool
-      config = object({
-        enable_dns_proxy              = bool
-        dns_servers                   = list(string)
-        sku_tier                      = string
-        base_policy_id                = string
-        private_ip_ranges             = list(string)
-        threat_intelligence_mode      = string
-        threat_intelligence_allowlist = list(string)
-        availability_zones = object({
-          zone_1 = bool
-          zone_2 = bool
-          zone_3 = bool
-        })
-      })
-    })
-    spoke_virtual_network_resource_ids = list(string)
-    enable_virtual_hub_connections     = bool
+        ), [])
+        routing_preference = optional(string, "Microsoft Network")
+        scale_unit         = optional(number, 1)
+      }), {})
+    }), {})
+    azure_firewall = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        enable_dns_proxy              = optional(bool, true)
+        dns_servers                   = optional(list(string), [])
+        sku_tier                      = optional(string, "")
+        base_policy_id                = optional(string, "")
+        private_ip_ranges             = optional(list(string), [])
+        threat_intelligence_mode      = optional(string, "")
+        threat_intelligence_allowlist = optional(list(string), [])
+        availability_zones = optional(object({
+          zone_1 = optional(bool, true)
+          zone_2 = optional(bool, true)
+          zone_3 = optional(bool, true)
+        }), {})
+      }), {})
+    }), {})
+    spoke_virtual_network_resource_ids = optional(list(string), [])
+    enable_virtual_hub_connections     = optional(bool, false)
   })
 })
 ```

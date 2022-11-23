@@ -139,7 +139,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.4.1"
+  version = "3.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -310,6 +310,7 @@ locals {
             azure_event_hubs_namespace           = true
             azure_file_sync                      = true
             azure_hdinsights                     = true
+            azure_iot_dps                        = true
             azure_iot_hub                        = true
             azure_key_vault                      = true
             azure_key_vault_managed_hsm          = true
@@ -333,6 +334,7 @@ locals {
             cognitive_services_account           = true
             microsoft_power_bi                   = true
             signalr                              = true
+            signalr_webpubsub                    = true
             storage_account_blob                 = true
             storage_account_file                 = true
             storage_account_queue                = true

@@ -21,15 +21,16 @@ variable "root_id" {
 
 variable "settings" {
   type = object({
-    identity = object({
-      enabled = bool
-      config = object({
-        enable_deny_public_ip             = bool
-        enable_deny_rdp_from_internet     = bool
-        enable_deny_subnet_without_nsg    = bool
-        enable_deploy_azure_backup_on_vms = bool
-      })
-    })
+    identity = optional(object({
+      enabled = optional(bool, true)
+      config = optional(object({
+        enable_deny_public_ip             = optional(bool, true)
+        enable_deny_rdp_from_internet     = optional(bool, true)
+        enable_deny_subnet_without_nsg    = optional(bool, true)
+        enable_deploy_azure_backup_on_vms = optional(bool, true)
+      }), {})
+    }), {})
   })
   description = "Configuration settings for the \"Identity\" landing zone resources."
+  default     = {}
 }

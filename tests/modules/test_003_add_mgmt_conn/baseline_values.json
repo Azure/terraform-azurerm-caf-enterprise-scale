@@ -9489,7 +9489,7 @@
             "provider_name": "registry.terraform.io/hashicorp/time",
             "schema_version": 0,
             "values": {
-              "create_duration": "30s",
+              "create_duration": "0s",
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_role_assignment_enterprise_scale": "[]",
@@ -9508,7 +9508,7 @@
             "provider_name": "registry.terraform.io/hashicorp/time",
             "schema_version": 0,
             "values": {
-              "create_duration": "30s",
+              "create_duration": "60s",
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_role_definition_enterprise_scale": "[\"/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2\",\"/providers/Microsoft.Authorization/roleDefinitions/3b569e18-4af0-5c97-932c-0447cae64922\",\"/providers/Microsoft.Authorization/roleDefinitions/61e44ab2-d16b-5ea5-8692-f9b97be416fa\",\"/providers/Microsoft.Authorization/roleDefinitions/6a8ddaca-120a-579a-a375-1abe30d29f6d\",\"/providers/Microsoft.Authorization/roleDefinitions/8fed4ea0-34b3-55af-93e0-fbaa8f3ed158\"]"
@@ -10457,7 +10457,7 @@
             "provider_name": "registry.terraform.io/hashicorp/time",
             "schema_version": 0,
             "values": {
-              "create_duration": "30s",
+              "create_duration": "0s",
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_role_assignment_enterprise_scale": "[]",
@@ -10476,7 +10476,7 @@
             "provider_name": "registry.terraform.io/hashicorp/time",
             "schema_version": 0,
             "values": {
-              "create_duration": "30s",
+              "create_duration": "60s",
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_role_definition_enterprise_scale": "[]"
