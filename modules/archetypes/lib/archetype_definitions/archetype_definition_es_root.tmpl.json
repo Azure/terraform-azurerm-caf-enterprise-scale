@@ -76,6 +76,7 @@
       "Deploy-Diagnostics-HDInsight",
       "Deploy-Diagnostics-iotHub",
       "Deploy-Diagnostics-LoadBalancer",
+      "Deploy-Diagnostics-LogAnalytics",
       "Deploy-Diagnostics-LogicAppsISE",
       "Deploy-Diagnostics-MariaDB",
       "Deploy-Diagnostics-MediaService",
