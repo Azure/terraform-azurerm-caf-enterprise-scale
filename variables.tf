@@ -154,9 +154,6 @@ variable "configure_management_resources" {
         }
       }
     }
-    location = null
-    tags     = null
-    advanced = null
   }
 }
 
