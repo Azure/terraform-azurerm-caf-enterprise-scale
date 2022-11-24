@@ -6,8 +6,17 @@
     "description": "This policy denies creation of Public IPs under the assigned scope.",
     "displayName": "Deny the creation of public IP",
     "notScopes": [],
-    "parameters": {},
-    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-PublicIP",
+    "parameters": {
+      "listOfResourceTypesNotAllowed": {
+        "value": [
+          "Microsoft.Network/publicIPAddresses"
+        ]
+      },
+      "effect": {
+        "value": "Deny"
+      }
+    },
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
     "scope": "${current_scope_resource_id}",
     "enforcementMode": "Default"
   },

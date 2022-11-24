@@ -22,6 +22,7 @@ To support other changes (as listed below), we have also bumped the minimum supp
 - Updated policies with the latest fixes from the upstream [Azure/Enterprise-Scale](https://github.com/Azure/Enterprise-Scale) repository
 - Updated tag evaluation for connectivity and management resources, so `default_tags` are now merged with scope-specific tags
 - Updated the module upgrade guidance
+- Updated `Deny-Public-IP` policy assignment to use the built-in policy for `Not allowed resource types`
 
 ### Fixed issues
 
@@ -37,6 +38,7 @@ To support other changes (as listed below), we have also bumped the minimum supp
 
 - :warning: Updated the minimum supported Terraform version to `0.15.1`
 - :warning: Updated the minimum supported `azurerm` provider version to `3.0.2`
+- :warning: Terraform will replace the `Deny-Public-IP` policy assignment, resulting in loss of compliance history
 
 > **IMPORTANT:** Please also carefully review the planned changes following an upgrade, as the introduction of `optional()` settings may result in unexpected changes from your current configuration where recommended new features are enabled by default.
 
