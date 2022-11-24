@@ -21,6 +21,7 @@ To support other changes (as listed below), we have also bumped the minimum supp
 - Added support for `optional()` types in input variables
 - Updated policies with the latest fixes from the upstream [Azure/Enterprise-Scale](https://github.com/Azure/Enterprise-Scale) repository
 - Updated tag evaluation for connectivity and management resources, so `default_tags` are now merged with scope-specific tags
+- Updated the module upgrade guidance
 - Updated `Deny-Public-IP` policy assignment to use the built-in policy for `Not allowed resource types`
 
 ### Fixed issues

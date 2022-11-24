@@ -47,49 +47,17 @@ Patch versions are typically used when one or more of the following is true:
 - A bugfix is being released to fix incorrect behavior in the module without the need for updates to customer code
 - Updates to policies which do not impact Policy Assignments (no loss of compliance history)
 
-## Staying up to date (Evergreen)
+## Next steps
 
-Deploying the latest version of the module is the recommended approach for staying up to date with the latest architectural changes to Azure landing zones.
-Looking at it from a governance perspective, this also ensures you have the latest recommended policies applied to your environment for improved compliance.
-
-With each release of the module, it's possible that your environment will change.
-We will do our best to ensure any changes are clearly documented in the release notes, or upgrade guides when publishing a new major version.
-To avoid unexpected or unwanted changes we recommend that you configure your [version constraints][version_constraints] to pin to a specific module version.
-
-To do this, you would use the following version constraint syntax:
-
-```terraform
-module "enterprise_scale" {
-  source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
-
-  # Insert provider block and input variables here
-}
-```
-
-> **NOTE:** This is the format we use in all of our documentation.
-
-To allow automatic upgrades to the latest patch release, use the following version constraint syntax:
-
-```terraform
-module "enterprise_scale" {
-  source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "~> 3.0.0"
-
-  # Insert provider block and input variables here
-}
-```
-
-This should ensure you receive the latest fixes for the module, reducing the risk of unexpected behavior.
-
-> **NOTE:** To reduce the risk of failed plans, we do not recommend using a less restrictive version constraint when deploying using CI/CD pipelines.
+Review our [Module upgrade guidance][wiki_module_upgrade_guidance] for more information on how to stay up to date.
 
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[module_versions]:     https://www.terraform.io/language/modules/syntax#version "Terraform - Module Versions"
-[version_constraints]: https://www.terraform.io/language/modules/syntax#version "Terraform - Version Constraints"
-[sem_ver_2]:           https://semver.org/ "Overview of Semantic Versioning 2.0.0"
-[release_v2_0_0]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v2.0.0 "Release notes for v2.0.0 of the Azure landing zones Terraform module"
-[release_v2_1_0]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v2.1.0 "Release notes for v2.1.0 of the Azure landing zones Terraform module"
+[module_versions]: https://www.terraform.io/language/modules/syntax#version "Terraform - Module Versions"
+[sem_ver_2]:       https://semver.org/ "Overview of Semantic Versioning 2.0.0"
+[release_v2_0_0]:  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v2.0.0 "Release notes for v2.0.0 of the Azure landing zones Terraform module"
+[release_v2_1_0]:  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases/tag/v2.1.0 "Release notes for v2.1.0 of the Azure landing zones Terraform module"
+
+[wiki_module_upgrade_guidance]: %5BUser-Guide%5D-Module-upgrade-guidance "Wiki - Module upgrade guidance"
