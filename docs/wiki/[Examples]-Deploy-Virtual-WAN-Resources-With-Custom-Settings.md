@@ -284,6 +284,7 @@ locals {
             azure_data_explorer                  = true
             azure_data_factory                   = true
             azure_data_factory_portal            = true
+            azure_data_health_data_services      = true
             azure_data_lake_file_system_gen2     = true
             azure_database_for_mariadb_server    = true
             azure_database_for_mysql_server      = true

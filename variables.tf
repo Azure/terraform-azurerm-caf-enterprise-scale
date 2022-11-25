@@ -410,6 +410,7 @@ variable "configure_connectivity_resources" {
             azure_data_explorer                  = optional(bool, true)
             azure_data_factory                   = optional(bool, true)
             azure_data_factory_portal            = optional(bool, true)
+            azure_data_health_data_services      = optional(bool, true)
             azure_data_lake_file_system_gen2     = optional(bool, true)
             azure_database_for_mariadb_server    = optional(bool, true)
             azure_database_for_mysql_server      = optional(bool, true)
@@ -592,6 +593,7 @@ variable "configure_connectivity_resources" {
             azure_data_explorer                  = true
             azure_data_factory                   = true
             azure_data_factory_portal            = true
+            azure_data_health_data_services      = true
             azure_data_lake_file_system_gen2     = true
             azure_database_for_mariadb_server    = true
             azure_database_for_mysql_server      = true

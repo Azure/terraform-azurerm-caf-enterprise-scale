@@ -150,6 +150,7 @@ locals {
             azure_data_explorer                  = false
             azure_data_factory                   = false
             azure_data_factory_portal            = false
+            azure_data_health_data_services      = false
             azure_data_lake_file_system_gen2     = false
             azure_database_for_mariadb_server    = false
             azure_database_for_mysql_server      = false
