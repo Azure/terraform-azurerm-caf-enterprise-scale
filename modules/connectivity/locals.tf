@@ -521,7 +521,7 @@ locals {
           }
         ]
       )
-      vpn_type                         = "RouteBased"
+      vpn_type                         = try(local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].vpn_type, "RouteBased")
       enable_bgp                       = null             # Not applicable to ExpressRoute SKUs
       active_active                    = null             # Not applicable to ExpressRoute SKUs
       private_ip_address_enabled       = null             # Not applicable to ExpressRoute SKUs
