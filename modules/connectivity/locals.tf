@@ -1313,6 +1313,7 @@ locals {
     azure_cosmos_db_table                = ["privatelink.table.cosmos.azure.com"]
     azure_data_factory                   = ["privatelink.datafactory.azure.net"]
     azure_data_factory_portal            = ["privatelink.adf.azure.com"]
+    azure_data_health_data_services      = ["privatelink.azurehealthcareapis.com", "privatelink.dicom.azurehealthcareapis.com"]
     azure_data_lake_file_system_gen2     = ["privatelink.dfs.core.windows.net"]
     azure_database_for_mariadb_server    = ["privatelink.mariadb.database.azure.com"]
     azure_database_for_mysql_server      = ["privatelink.mysql.database.azure.com"]

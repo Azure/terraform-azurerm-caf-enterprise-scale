@@ -234,6 +234,7 @@ variable "settings" {
           azure_data_explorer                  = optional(bool, true)
           azure_data_factory                   = optional(bool, true)
           azure_data_factory_portal            = optional(bool, true)
+          azure_data_health_data_services      = optional(bool, true)
           azure_data_lake_file_system_gen2     = optional(bool, true)
           azure_database_for_mariadb_server    = optional(bool, true)
           azure_database_for_mysql_server      = optional(bool, true)
