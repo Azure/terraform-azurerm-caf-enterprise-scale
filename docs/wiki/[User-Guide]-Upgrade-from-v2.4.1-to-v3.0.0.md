@@ -32,6 +32,8 @@ To support other changes (as listed below), we have also bumped the minimum supp
 - Fix [#508](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/508) (Bug Report: Advanced VPN revoke_certifcate fails to apply)
 - Fix [#513](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/513) (Feature Request: Azure Firewall: Specify TLS Certificate Location in Azure Keyvault)
 - Fix [#447](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/447) (Azure Firewall - Availability Zones)
+- Fix [#524](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/524) (Missing private DNS zone for private endpoint - Azure Data Health Data Services)
+- Fix [#521](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/521) (Feature Request - ExpressRoute Gateway VPN_Type is Hardcoded, parameterise.)
 
 ### Breaking changes
 
