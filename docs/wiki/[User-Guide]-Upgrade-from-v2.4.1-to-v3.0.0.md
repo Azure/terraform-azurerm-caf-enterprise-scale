@@ -175,6 +175,7 @@ The following changes were made to the `configure_connectivity_resources.setting
 - `azure_bot_service_token` added
 - `azure_cache_for_redis_enterprise` added
 - `azure_data_explorer` added
+- `azure_data_health_data_services` added
 - `azure_digital_twins` added
 - `azure_hdinsights` added
 - `azure_iot_dps` added

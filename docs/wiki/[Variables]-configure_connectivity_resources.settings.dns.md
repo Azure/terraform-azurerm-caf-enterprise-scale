@@ -36,6 +36,7 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_data_explorer                  = true
       azure_data_factory                   = true
       azure_data_factory_portal            = true
+      azure_data_health_data_services      = true
       azure_data_lake_file_system_gen2     = true
       azure_database_for_mariadb_server    = true
       azure_database_for_mysql_server      = true
@@ -121,6 +122,7 @@ optional(object({
       azure_data_explorer                  = optional(bool, true)
       azure_data_factory                   = optional(bool, true)
       azure_data_factory_portal            = optional(bool, true)
+      azure_data_health_data_services      = optional(bool, true)
       azure_data_lake_file_system_gen2     = optional(bool, true)
       azure_database_for_mariadb_server    = optional(bool, true)
       azure_database_for_mysql_server      = optional(bool, true)
@@ -219,6 +221,7 @@ The following services are currently supported by the module:
 - `azure_data_explorer`
 - `azure_data_factory`
 - `azure_data_factory_portal`
+- `azure_data_health_data_services`
 - `azure_data_lake_file_system_gen2`
 - `azure_database_for_mariadb_server`
 - `azure_database_for_mysql_server`
