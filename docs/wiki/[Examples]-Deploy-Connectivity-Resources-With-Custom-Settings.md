@@ -18,12 +18,12 @@ In this example, we take the base [Deploy Connectivity Resources (Hub and Spoke)
 <!-- markdownlint-disable no-inline-html -->
 - Add input variable on the root module for enabling/disabling connectivity resources
 - Add a local variable for `configure_connectivity_resources` and set custom values for the following:
-  - Deploy a shared DDoS Protection Standard plan in the `northeurope` region
+  - Deploy a shared DDoS Network Protection plan in the `northeurope` region
   - Deploy hub virtual networks to `northeurope` and `westeurope`
   - Deploy an ExpressRoute gateway and Azure Firewall to the hub virtual network in `northeurope`
   - Deploy a VPN gateway to the hub virtual network in `westeurope`
   - Remove the `AzureFirewallSubnet` subnet from the hub virtual network in `westeurope`
-  - Link the hub virtual network in `northeurope` and `westeurope` to the central DDoS Protection Standard plan
+  - Link the hub virtual network in `northeurope` and `westeurope` to the central DDoS Network Protection plan
   - Ensure private DNS zones for private endpoints are enabled for `northeurope` and `westeurope` regions <sup>1</sup>
   - Set a different default location for connectivity resources (*controlled through an input variable on the root module*)
   - Add custom resource tags for connectivity resources (*controlled through an input variable on the root module*)
@@ -411,7 +411,7 @@ The resource group `myorg-connectivity-northeurope` should be created and contai
 
 When you explore the configuration, note that `myorg-hub-northeurope` is pre-configured with subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
 These are now used by the created ExpressRoute gateway and Azure Firewall resources.
-DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
+DDoS Network Protection should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-connectivity-westeurope`
 
@@ -421,7 +421,7 @@ The resource group `myorg-connectivity-westeurope` should be created and contain
 
 When you explore the configuration, note that `myorg-hub-westeurope` is pre-configured with a Subnet for `GatewaySubnet` only. The `AzureFirewallSubnet` is no longer deployed as we removed the `azure_firewall.config.address_prefix` value for the this hub network.
 This now used by the created VPN gateway resource.
-DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
+DDoS Network Protection should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-ddos`
 

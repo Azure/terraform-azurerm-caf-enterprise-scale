@@ -268,7 +268,7 @@ There will also be a hidden virtual hub resource with the name `myorg-vhub-eastu
 ![Deployed Resources](media/examples-deploy-virtual-wan-rsg.png)
 
 When you explore the configuration, note that no connectivity settings have been configured.
-DDoS Protection Standard should also be disabled to reduce costs, although we recommend you **enable this for production environments**.
+DDoS Network Protection should also be disabled to reduce costs, although we recommend you **enable this for production environments**.
 The location of both the resource group and virtual WAN resources is created in the region specified via the `default_location` input variable, which uses the default value of `eastus` in this example.
 These settings can all be changed if needed!
 
