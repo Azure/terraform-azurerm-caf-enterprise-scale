@@ -34,7 +34,7 @@ The module provides a consistent approach for deploying and managing resources r
     - Virtual WAN network topology (Microsoft-managed)
   - Secure network design
     - Azure Firewall
-    - DDoS Protection Standard
+    - DDoS Network Protection
   - Hybrid connectivity
     - Azure Virtual Network Gateway
     - Azure ExpressRoute Gateway

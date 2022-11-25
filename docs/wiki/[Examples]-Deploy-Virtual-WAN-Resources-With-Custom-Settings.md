@@ -18,7 +18,7 @@ In this example, we take the base [Deploy Connectivity Resources (Virtual WAN)][
 <!-- markdownlint-disable no-inline-html -->
 - Add input variable on the root module for enabling/disabling connectivity resources
 - Add a local variable for `configure_connectivity_resources` and set custom values for the following:
-  - Deploy a shared DDoS Protection Standard plan in the `northeurope` region
+  - Deploy a shared DDoS Network Protection plan in the `northeurope` region
   - Deploy virtual hubs to `northeurope` and `westeurope`
   - Deploy an ExpressRoute gateway and Azure Firewall to the virtual hub in `northeurope`
   - Deploy a VPN gateway to the virtual hub in `westeurope`
@@ -395,7 +395,7 @@ The resource group `myorg-connectivity` should be created and contain the follow
 > As some of these resources are hidden by default, ensure you select `Show hidden types`.
 
 These are now used by the created ExpressRoute gateway and Azure Firewall resources.
-DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
+DDoS Network Protection should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-ddos`
 
