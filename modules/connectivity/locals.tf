@@ -1297,7 +1297,7 @@ locals {
   lookup_private_link_dns_zone_by_service = {
     azure_api_management                 = ["privatelink.azure-api.net", "privatelink.developer.azure-api.net"]
     azure_app_configuration_stores       = ["privatelink.azconfig.io"]
-    azure_arc                            = ["privatelink.his.arc.azure.com", "privatelink.guestconfiguration.azure.com"]
+    azure_arc                            = ["privatelink.his.arc.azure.com", "privatelink.guestconfiguration.azure.com", "privatelink.kubernetesconfiguration.azure.com"]
     azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]
     azure_automation_webhook             = ["privatelink.azure-automation.net"]
     azure_batch_account                  = ["privatelink.batch.azure.com"]
