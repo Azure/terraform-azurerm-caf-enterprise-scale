@@ -6,7 +6,7 @@ The `v3.1.0` release includes a number of minor updates as listed below.
 
 ### New features
 
-- Added `privatelink.kubernetesconfiguration.azure.com` to list of private DNS zones for ``
+- Added `privatelink.kubernetesconfiguration.azure.com` to list of private DNS zones for `azure_arc` private endpoints
 
 ### Fixed issues
 
