@@ -36,6 +36,16 @@ variable "root_name" {
   }
 }
 
+variable "mg_suffix" {
+  type        = string
+  description = "If specified, will set a custom Display Name suffix value for the default Management Groups."
+  default     = ""
+  validation {
+    condition     = can(regex("^[A-Za-z0-9- ._]{0,20}[A-Za-z0-9]?$", var.mg_suffix))
+    error_message = "Value must be between 0 to 20 characters long, end with a letter or number, and can only contain space, hyphen, underscore or period characters."
+  }
+}
+
 variable "deploy_core_landing_zones" {
   type        = bool
   description = "If set to true, module will deploy the core Enterprise-scale Management Group hierarchy, including \"out of the box\" policies and roles."

@@ -171,43 +171,43 @@ locals {
       archetype_config           = local.es_archetype_config_map[local.root_id]
     }
     "${local.root_id}-decommissioned" = {
-      display_name               = "Decommissioned"
+      display_name               = "Decommissioned${local.mg_suffix}"
       parent_management_group_id = local.root_id
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-decommissioned"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-decommissioned"]
     }
     "${local.root_id}-sandboxes" = {
-      display_name               = "Sandboxes"
+      display_name               = "Sandboxes${local.mg_suffix}"
       parent_management_group_id = local.root_id
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-sandboxes"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-sandboxes"]
     }
     "${local.root_id}-landing-zones" = {
-      display_name               = "Landing Zones"
+      display_name               = "Landing Zones${local.mg_suffix}"
       parent_management_group_id = local.root_id
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-landing-zones"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-landing-zones"]
     }
     "${local.root_id}-platform" = {
-      display_name               = "Platform"
+      display_name               = "Platform${local.mg_suffix}"
       parent_management_group_id = local.root_id
       subscription_ids           = local.es_subscription_ids_map["${local.root_id}-platform"]
       archetype_config           = local.es_archetype_config_map["${local.root_id}-platform"]
     }
     "${local.root_id}-connectivity" = {
-      display_name               = "Connectivity"
+      display_name               = "Connectivity${local.mg_suffix}"
       parent_management_group_id = "${local.root_id}-platform"
       subscription_ids           = local.subscription_ids_connectivity
       archetype_config           = local.es_archetype_config_map["${local.root_id}-connectivity"]
     }
     "${local.root_id}-management" = {
-      display_name               = "Management"
+      display_name               = "Management${local.mg_suffix}"
       parent_management_group_id = "${local.root_id}-platform"
       subscription_ids           = local.subscription_ids_management
       archetype_config           = local.es_archetype_config_map["${local.root_id}-management"]
     }
     "${local.root_id}-identity" = {
-      display_name               = "Identity"
+      display_name               = "Identity${local.mg_suffix}"
       parent_management_group_id = "${local.root_id}-platform"
       subscription_ids           = local.subscription_ids_identity
       archetype_config           = local.es_archetype_config_map["${local.root_id}-identity"]

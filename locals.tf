@@ -12,6 +12,7 @@ locals {
   root_id                          = var.root_id
   root_name                        = var.root_name
   root_parent_id                   = var.root_parent_id
+  mg_suffix                        = var.mg_suffix
   deploy_core_landing_zones        = var.deploy_core_landing_zones
   deploy_corp_landing_zones        = var.deploy_corp_landing_zones
   deploy_online_landing_zones      = var.deploy_online_landing_zones
