@@ -5313,8 +5313,8 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Enable Monitoring in Azure Security Center.",
-              "display_name": "Enable Monitoring in Azure Security Center",
+              "description": "Microsoft Cloud Security Benchmark policy initiative.",
+              "display_name": "Microsoft Cloud Security Benchmark",
               "enforce": true,
               "identity": [],
               "location": "northeurope",
@@ -5322,7 +5322,7 @@
               "name": "Deploy-ASC-Monitoring",
               "non_compliance_message": [],
               "not_scopes": [],
-              "parameters": "{\"aadAuthenticationInSqlServerMonitoringEffect\":{\"value\":\"Disabled\"},\"diskEncryptionMonitoringEffect\":{\"value\":\"Disabled\"},\"encryptionOfAutomationAccountMonitoringEffect\":{\"value\":\"Disabled\"},\"identityDesignateLessThanOwnersMonitoringEffect\":{\"value\":\"Disabled\"},\"identityDesignateMoreThanOneOwnerMonitoringEffect\":{\"value\":\"Disabled\"},\"identityEnableMFAForWritePermissionsMonitoringEffect\":{\"value\":\"Disabled\"},\"identityRemoveDeprecatedAccountMonitoringEffect\":{\"value\":\"Disabled\"},\"identityRemoveDeprecatedAccountWithOwnerPermissionsMonitoringEffect\":{\"value\":\"Disabled\"},\"identityRemoveExternalAccountWithOwnerPermissionsMonitoringEffect\":{\"value\":\"Disabled\"},\"identityRemoveExternalAccountWithReadPermissionsMonitoringEffect\":{\"value\":\"Disabled\"},\"identityRemoveExternalAccountWithWritePermissionsMonitoringEffect\":{\"value\":\"Disabled\"},\"jitNetworkAccessMonitoringEffect\":{\"value\":\"Disabled\"},\"networkSecurityGroupsOnSubnetsMonitoringEffect\":{\"value\":\"AuditIfNotExists\"},\"sqlDbEncryptionMonitoringEffect\":{\"value\":\"Disabled\"},\"sqlManagedInstanceAdvancedDataSecurityEmailAdminsMonitoringEffect\":{\"value\":\"Disabled\"},\"sqlManagedInstanceAdvancedDataSecurityEmailsMonitoringEffect\":{\"value\":\"Disabled\"},\"sqlServerAdvancedDataSecurityEmailAdminsMonitoringEffect\":{\"value\":\"Disabled\"},\"sqlServerAdvancedDataSecurityMonitoringEffect\":{\"value\":\"Disabled\"},\"systemUpdatesMonitoringEffect\":{\"value\":\"Disabled\"},\"useRbacRulesMonitoringEffect\":{\"value\":\"Disabled\"},\"vmssSystemUpdatesMonitoringEffect\":{\"value\":\"Disabled\"},\"windowsDefenderExploitGuardMonitoringEffect\":{\"value\":\"Disabled\"}}",
+              "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
               "timeouts": null
             },
