@@ -1,12 +1,10 @@
 ---
 name: Update Library Templates
 
-# on:
-#   schedule:
-#     - cron: '0 12 1 * *'
-
 # yamllint disable-line rule:truthy
 on:
+  schedule:
+    - cron: "0 8 * * 1-5"
   workflow_dispatch: {}
 
 env:
