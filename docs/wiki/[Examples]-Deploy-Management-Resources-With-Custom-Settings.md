@@ -168,7 +168,6 @@ locals {
           enable_monitoring_for_vmss                        = true
           enable_solution_for_agent_health_assessment       = true
           enable_solution_for_anti_malware                  = true
-          enable_solution_for_azure_activity                = true
           enable_solution_for_change_tracking               = true
           enable_solution_for_service_map                   = true
           enable_solution_for_sql_assessment                = true

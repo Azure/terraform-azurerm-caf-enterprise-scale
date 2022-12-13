@@ -21,7 +21,6 @@ If specified, will customize the "management" landing zone settings and resource
         enable_monitoring_for_vmss                        = true
         enable_solution_for_agent_health_assessment       = true
         enable_solution_for_anti_malware                  = true
-        enable_solution_for_azure_activity                = true
         enable_solution_for_change_tracking               = true
         enable_solution_for_service_map                   = true
         enable_solution_for_sql_assessment                = true
@@ -75,7 +74,6 @@ object({
         enable_monitoring_for_vmss                        = optional(bool, true)
         enable_solution_for_agent_health_assessment       = optional(bool, true)
         enable_solution_for_anti_malware                  = optional(bool, true)
-        enable_solution_for_azure_activity                = optional(bool, true)
         enable_solution_for_change_tracking               = optional(bool, true)
         enable_solution_for_service_map                   = optional(bool, true)
         enable_solution_for_sql_assessment                = optional(bool, true)
@@ -133,7 +131,6 @@ log_analytics = {
     enable_monitoring_for_vmss                        = true
     enable_solution_for_agent_health_assessment       = true
     enable_solution_for_anti_malware                  = true
-    enable_solution_for_azure_activity                = true
     enable_solution_for_change_tracking               = true
     enable_solution_for_service_map                   = true
     enable_solution_for_sql_assessment                = true
@@ -186,12 +183,6 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
 
 - AntiMalware
-
-##### `settings.log_analytics.enable_solution_for_azure_activity`
-
-Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
-
-- AzureActivity
 
 ##### `settings.log_analytics.enable_solution_for_change_tracking`
 
