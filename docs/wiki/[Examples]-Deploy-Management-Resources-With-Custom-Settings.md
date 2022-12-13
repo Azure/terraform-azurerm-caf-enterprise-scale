@@ -15,6 +15,7 @@ In this example, we take the base [Deploy Management resources][wiki_deploy_mana
   - Disable Azure Defender for Azure Kubernetes Service (AKS)
   - Set a different location for Management resources (controlled through an input variable on the root module)
   - Add custom resource tags for Management resources (controlled through an input variable on the root module)
+  - Set the local `configure_management_resources` input variable in the  `settings.management.tf` file for a custom deployment of the management resources solutions. If set to false the solution will not be deployed.   
 
 The module allows for further customization of the Management resources through the `advanced` setting, however this is out-of-scope for this example.
 
@@ -101,7 +102,7 @@ variable "security_alerts_email_address" {
 
 variable "management_resources_location" {
   type    = string
-  default = "uksouth"
+  default = "eastus"
 }
 
 variable "management_resources_tags" {
@@ -169,10 +170,10 @@ locals {
           enable_solution_for_agent_health_assessment       = true
           enable_solution_for_anti_malware                  = true
           enable_solution_for_change_tracking               = true
-          enable_solution_for_service_map                   = true
-          enable_solution_for_sql_assessment                = true
-          enable_solution_for_sql_vulnerability_assessment  = true
-          enable_solution_for_sql_advanced_threat_detection = true
+          enable_solution_for_service_map                   = false
+          enable_solution_for_sql_assessment                = false
+          enable_solution_for_sql_vulnerability_assessment  = false
+          enable_solution_for_sql_advanced_threat_detection = false
           enable_solution_for_updates                       = true
           enable_solution_for_vm_insights                   = true
           enable_sentinel                                   = true
