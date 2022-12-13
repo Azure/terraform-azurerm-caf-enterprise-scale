@@ -15,7 +15,7 @@ In this example, we take the base [Deploy Management resources][wiki_deploy_mana
   - Disable Azure Defender for Azure Kubernetes Service (AKS)
   - Set a different location for Management resources (controlled through an input variable on the root module)
   - Add custom resource tags for Management resources (controlled through an input variable on the root module)
-  - Set the local `configure_management_resources` input variable in the  `settings.management.tf` file for a custom deployment of the management resources solutions. If set to false the solution will not be deployed.   
+  - Set the local `configure_management_resources` input variable in the  `settings.management.tf` file for a custom deployment of the management resources solutions. If set to false the solution will not be deployed.
 
 The module allows for further customization of the Management resources through the `advanced` setting, however this is out-of-scope for this example.
 
