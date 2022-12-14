@@ -1329,6 +1329,7 @@ locals {
     azure_key_vault                      = ["privatelink.vaultcore.azure.net"]
     azure_key_vault_managed_hsm          = ["privatelink.managedhsm.azure.net"]
     azure_machine_learning_workspace     = ["privatelink.api.azureml.ms", "privatelink.notebooks.azure.net"]
+    azure_managed_disks                  = ["privatelink.blob.core.windows.net"]
     azure_media_services                 = ["privatelink.media.azure.net"]
     azure_migrate                        = ["privatelink.prod.migration.windowsazure.com"]
     azure_monitor                        = ["privatelink.monitor.azure.com", "privatelink.oms.opinsights.azure.com", "privatelink.ods.opinsights.azure.com", "privatelink.agentsvc.azure-automation.net", "privatelink.blob.core.windows.net"]
@@ -1406,6 +1407,7 @@ locals {
     azure_key_vault_managed_hsm          = local.empty_string
     azure_kubernetes_service_management  = local.empty_string
     azure_machine_learning_workspace     = local.empty_string
+    azure_managed_disks                  = "disks"
     azure_media_services                 = local.empty_string
     azure_migrate                        = local.empty_string
     azure_monitor                        = local.empty_string

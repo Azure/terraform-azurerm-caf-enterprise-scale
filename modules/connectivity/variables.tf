@@ -251,6 +251,7 @@ variable "settings" {
           azure_key_vault_managed_hsm          = optional(bool, true)
           azure_kubernetes_service_management  = optional(bool, true)
           azure_machine_learning_workspace     = optional(bool, true)
+          azure_managed_disks                  = optional(bool, true)
           azure_media_services                 = optional(bool, true)
           azure_migrate                        = optional(bool, true)
           azure_monitor                        = optional(bool, true)

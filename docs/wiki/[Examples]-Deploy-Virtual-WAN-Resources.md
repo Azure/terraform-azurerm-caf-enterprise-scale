@@ -189,6 +189,7 @@ module "enterprise_scale" {
             azure_key_vault_managed_hsm          = true
             azure_kubernetes_service_management  = true
             azure_machine_learning_workspace     = true
+            azure_managed_disks                  = true
             azure_media_services                 = true
             azure_migrate                        = true
             azure_monitor                        = true
