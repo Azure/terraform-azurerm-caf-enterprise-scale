@@ -1537,12 +1537,22 @@ locals {
       ]
     ]
   ])
+  additional_virtual_networks_for_dns = [
+    for spoke_resource_id in local.settings.dns.config.virtual_network_resource_ids_to_link :
+    {
+      resource_id       = spoke_resource_id
+      name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
+      managed_by_module = local.deploy_dns
+    }
+  ]
+
   # Distinct is used to allow for situations where
   # the same spoke is associated with multiple hub
   # networks for peering.
   virtual_networks_for_dns = distinct(concat(
     local.hub_virtual_networks_for_dns,
     local.spoke_virtual_networks_for_dns,
+    local.additional_virtual_networks_for_dns,
   ))
   azurerm_private_dns_zone_virtual_network_link = flatten(
     [

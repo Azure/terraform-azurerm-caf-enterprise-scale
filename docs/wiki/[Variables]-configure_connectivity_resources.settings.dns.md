@@ -84,6 +84,7 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
     private_dns_zones                                      = []
     enable_private_dns_zone_virtual_network_link_on_hubs   = true
     enable_private_dns_zone_virtual_network_link_on_spokes = true
+    virtual_network_resource_ids_to_link                   = []
   }
 }
 ```
@@ -171,6 +172,7 @@ optional(object({
     private_dns_zones                                      = optional(list(string), [])
     enable_private_dns_zone_virtual_network_link_on_hubs   = optional(bool, true)
     enable_private_dns_zone_virtual_network_link_on_spokes = optional(bool, true)
+    virtual_network_resource_ids_to_link                   = optional(list(string), [])
   }), {})
 }), {})
 ```
@@ -305,6 +307,10 @@ Set to true to link all private DNS zones to all hub virtual networks created by
 #### `config.enable_private_dns_zone_virtual_network_link_on_spokes`
 
 Set to true to link all private DNS zones to all spoke virtual networks associated to hub virtual networks created by the module.
+
+#### `config.virtual_network_resource_ids_to_link`
+
+Specify a list of additional virtual network IDs to link to all private DNS zones which are not already associated with hub_networks or virtual_hub_networks through the `config.spoke_virtual_network_resource_ids` inputs.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

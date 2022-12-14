@@ -187,6 +187,7 @@ If specified, will customize the "connectivity" landing zone settings and resour
         private_dns_zones                                      = []
         enable_private_dns_zone_virtual_network_link_on_hubs   = true
         enable_private_dns_zone_virtual_network_link_on_spokes = true
+        virtual_network_resource_ids_to_link                   = []
       }
     }
   }
@@ -444,6 +445,7 @@ object({
         private_dns_zones                                      = optional(list(string), [])
         enable_private_dns_zone_virtual_network_link_on_hubs   = optional(bool, true)
         enable_private_dns_zone_virtual_network_link_on_spokes = optional(bool, true)
+        virtual_network_resource_ids_to_link                   = optional(list(string), [])
       }), {})
     }), {})
   }), {})
