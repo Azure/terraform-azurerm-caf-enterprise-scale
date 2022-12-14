@@ -83,16 +83,9 @@ output "azurerm_resource_group" {
 # Includes logic to remove sensitive values.
 output "azurerm_log_analytics_workspace" {
   value = {
-    management = {
-      for rk, rv in azurerm_log_analytics_workspace.management :
-      rk => {
-        for ak, av in rv :
-        ak => av
-        if contains(local.sensitive_attributes["azurerm_log_analytics_workspace"], ak) != true
-      }
-    }
+    management = azurerm_log_analytics_workspace.management
   }
-  description = "Returns the configuration data for all Log Analytics workspaces created by this module. Excludes sensitive values."
+  description = "Returns the configuration data for all Log Analytics workspaces created by this module."
 }
 
 # The following output is used to ensure all Log Analytics
