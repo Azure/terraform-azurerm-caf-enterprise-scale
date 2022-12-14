@@ -1622,7 +1622,7 @@ locals {
         {
           # Resource logic attributes
           resource_id       = peerconfig.virtual_network_peering_resource_id
-          managed_by_module = local.deploy_hub_virtual_network_mesh_peering[location_src]
+          managed_by_module = local.deploy_hub_virtual_network_mesh_peering[location_src] && local.deploy_hub_virtual_network_mesh_peering[location_dst]
           # Resource definition attributes
           name                      = peerconfig.virtual_network_peering_name
           resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location_src]
