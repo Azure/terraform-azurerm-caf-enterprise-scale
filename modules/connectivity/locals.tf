@@ -1510,7 +1510,7 @@ locals {
     {
       resource_id       = hub_config.resource_id
       name              = "${split("/", hub_config.resource_id)[2]}-${uuidv5("url", hub_config.resource_id)}"
-      managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
+      managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs && local.deploy_hub_network[hub_config.location]
     }
   ]
   spoke_virtual_networks_for_dns = flatten([
@@ -1521,7 +1521,7 @@ locals {
         {
           resource_id       = spoke_resource_id
           name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
-          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes && hub_config.enabled
         }
       ]
     ],
@@ -1532,7 +1532,7 @@ locals {
         {
           resource_id       = spoke_resource_id
           name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
-          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes && virtual_hub_config.enabled
         }
       ]
     ]
