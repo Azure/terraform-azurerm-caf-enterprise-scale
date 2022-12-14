@@ -72,6 +72,20 @@ locals {
             enable_hub_network_mesh_peering         = true
           }
         },
+        # The following hub_network entry is used to ensure
+        # correct operation of logic for creating virtual network
+        # peerings and DNS links when in a disabled state.
+        # Should not create any resources.
+        {
+          enabled = false
+          config = {
+            address_space                           = ["10.102.0.0/22", ]
+            location                                = "fake_location"
+            spoke_virtual_network_resource_ids      = ["/subscriptions/subId/fake_spoke_virtual_network_resource_id"]
+            enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering         = true
+          }
+        },
       ]
       vwan_hub_networks = [
         {
@@ -122,6 +136,19 @@ locals {
             address_prefix                     = "10.201.0.0/22"
             location                           = var.secondary_location
             spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections     = true
+          }
+        },
+        # The following virtual_hub_network entry is used to ensure
+        # correct operation of logic for creating virtual hub
+        # connections and DNS links when in a disabled state.
+        # Should not create any resources.
+        {
+          enabled = false
+          config = {
+            address_prefix                     = "10.202.0.0/22"
+            location                           = "fake_location"
+            spoke_virtual_network_resource_ids = ["/subscriptions/subId/fake_spoke_virtual_network_resource_id"]
             enable_virtual_hub_connections     = true
           }
         },
