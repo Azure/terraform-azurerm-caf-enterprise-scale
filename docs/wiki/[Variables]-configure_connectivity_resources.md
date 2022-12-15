@@ -103,8 +103,9 @@ If specified, will customize the "connectivity" landing zone settings and resour
               }
             }
           }
-          spoke_virtual_network_resource_ids = []
-          enable_virtual_hub_connections     = false
+          spoke_virtual_network_resource_ids        = []
+          secure_spoke_virtual_network_resource_ids = []
+          enable_virtual_hub_connections            = false
         }
       },
     ]
@@ -361,8 +362,9 @@ object({
               }), {})
             }), {})
           }), {})
-          spoke_virtual_network_resource_ids = optional(list(string), [])
-          enable_virtual_hub_connections     = optional(bool, false)
+          spoke_virtual_network_resource_ids        = optional(list(string), [])
+          secure_spoke_virtual_network_resource_ids = optional(list(string), [])
+          enable_virtual_hub_connections            = optional(bool, false)
         })
       })
     ), [])

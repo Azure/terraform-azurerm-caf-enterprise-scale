@@ -206,8 +206,9 @@ locals {
                 }
               }
             }
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = false
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = false
           }
         },
         {
@@ -248,8 +249,9 @@ locals {
                 }
               }
             }
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = false
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = false
           }
         },
       ]

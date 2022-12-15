@@ -1683,7 +1683,7 @@ locals {
     [
       for location, virtual_hub_config in local.virtual_hubs_by_location :
       [
-        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        for spoke_resource_id in distinct(concat(virtual_hub_config.config.spoke_virtual_network_resource_ids, virtual_hub_config.config.secure_spoke_virtual_network_resource_ids)) :
         {
           # Resource logic attributes
           resource_id       = "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
@@ -1693,7 +1693,7 @@ locals {
           virtual_hub_id            = local.virtual_hub_resource_id[location]
           remote_virtual_network_id = spoke_resource_id
           # Optional definition attributes
-          internet_security_enabled = false
+          internet_security_enabled = contains(virtual_hub_config.config.secure_spoke_virtual_network_resource_ids, spoke_resource_id)
           routing                   = local.empty_list
         }
       ]

@@ -126,17 +126,19 @@ locals {
                 }
               }
             }
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = true
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = true
           }
         },
         {
           enabled = true
           config = {
-            address_prefix                     = "10.201.0.0/22"
-            location                           = var.secondary_location
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = true
+            address_prefix                            = "10.201.0.0/22"
+            location                                  = var.secondary_location
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = true
           }
         },
         # The following virtual_hub_network entry is used to ensure
@@ -146,10 +148,11 @@ locals {
         {
           enabled = false
           config = {
-            address_prefix                     = "10.202.0.0/22"
-            location                           = "fake_location"
-            spoke_virtual_network_resource_ids = ["/subscriptions/subId/fake_spoke_virtual_network_resource_id"]
-            enable_virtual_hub_connections     = true
+            address_prefix                            = "10.202.0.0/22"
+            location                                  = "fake_location"
+            spoke_virtual_network_resource_ids        = ["/subscriptions/subId/fake_spoke_virtual_network_resource_id"]
+            secure_spoke_virtual_network_resource_ids = ["/subscriptions/subId/fake_secure_spoke_virtual_network_resource_id"]
+            enable_virtual_hub_connections            = true
           }
         },
       ]
