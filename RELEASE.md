@@ -16,6 +16,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Updated logic for DNS zone virtual network links to prevent disabled hubs from being included
 - Updated logic for hub virtual network mesh peering to prevent disabled hubs from being included
 - Removed the deprecated `ActivityLog` Azure Monitor solution
+- Removed sensitive value filtering for Log Analytics workspace resources
 
 ### Fixed issues
 
@@ -26,6 +27,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Fix [#549](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/549) (Feature Request: Deploy private dns zones and link them to an existing vnet #549)
 - Fix [#553](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/553) (Remove Activity Log solution from Terraform RI #553)
 - Fix [#544](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/544) (Missing assignment parameter values for "Configure Azure PaaS services to use private DNS zones" #544)
+- Close [#499](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/499) (Bug Report Terraform plan fails due to sensitive values in azurerm_automation_account output #499)
 
 ### Breaking changes
 
