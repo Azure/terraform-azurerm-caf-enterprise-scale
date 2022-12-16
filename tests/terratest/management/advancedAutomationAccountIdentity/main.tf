@@ -44,7 +44,6 @@ module "test_core" {
           enable_monitoring_for_vmss                        = false
           enable_solution_for_agent_health_assessment       = false
           enable_solution_for_anti_malware                  = false
-          enable_solution_for_azure_activity                = false
           enable_solution_for_change_tracking               = false
           enable_solution_for_service_map                   = false
           enable_solution_for_sql_assessment                = false

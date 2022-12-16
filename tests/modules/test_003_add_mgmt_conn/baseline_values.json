@@ -1356,7 +1356,6 @@
                       "string",
                       "string",
                       "string",
-                      "string",
                       "string"
                     ]
                   ]
@@ -2287,7 +2286,6 @@
           "azurerm_log_analytics_solution": {
             "management": [
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/AgentHealthAssessment(root-id-1-la)",
-              "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/AzureActivity(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/ChangeTracking(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/SQLAdvancedThreatProtection(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/SQLVulnerabilityAssessment(root-id-1-la)",
@@ -12774,39 +12772,6 @@
               ],
               "resource_group_name": "root-id-1-mgmt",
               "solution_name": "AgentHealthAssessment",
-              "tags": {
-                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework/management"
-              },
-              "timeouts": null,
-              "workspace_name": "root-id-1-la",
-              "workspace_resource_id": "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la"
-            },
-            "sensitive_values": {
-              "plan": [
-                {}
-              ],
-              "tags": {}
-            }
-          },
-          {
-            "address": "module.test_management.azurerm_log_analytics_solution.management[\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/AzureActivity(root-id-1-la)\"]",
-            "mode": "managed",
-            "type": "azurerm_log_analytics_solution",
-            "name": "management",
-            "index": "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/AzureActivity(root-id-1-la)",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "location": "northeurope",
-              "plan": [
-                {
-                  "product": "OMSGallery/AzureActivity",
-                  "promotion_code": null,
-                  "publisher": "Microsoft"
-                }
-              ],
-              "resource_group_name": "root-id-1-mgmt",
-              "solution_name": "AzureActivity",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework/management"
               },

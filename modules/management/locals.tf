@@ -52,7 +52,6 @@ locals {
   deploy_azure_monitor_solutions = {
     AgentHealthAssessment       = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
     AntiMalware                 = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_anti_malware
-    AzureActivity               = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_azure_activity
     ChangeTracking              = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_change_tracking
     Security                    = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
     SecurityInsights            = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel

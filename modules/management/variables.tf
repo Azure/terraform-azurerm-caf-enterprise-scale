@@ -51,7 +51,6 @@ variable "settings" {
         enable_monitoring_for_vmss                        = optional(bool, true)
         enable_solution_for_agent_health_assessment       = optional(bool, true)
         enable_solution_for_anti_malware                  = optional(bool, true)
-        enable_solution_for_azure_activity                = optional(bool, true)
         enable_solution_for_change_tracking               = optional(bool, true)
         enable_solution_for_service_map                   = optional(bool, true)
         enable_solution_for_sql_assessment                = optional(bool, true)
