@@ -17,6 +17,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Updated logic for hub virtual network mesh peering to prevent disabled hubs from being included
 - Removed the deprecated `ActivityLog` Azure Monitor solution
 - Removed sensitive value filtering for Log Analytics workspace resources
+- Removed location from `azureBatchPrivateDnsZoneId` parameter for `Deploy-Private-DNS-Zones` policy assignment
 
 ### Fixed issues
 
