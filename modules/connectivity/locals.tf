@@ -1723,7 +1723,7 @@ locals {
           azureAsrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.siterecovery.windowsazure.com"
           azureAutomationDSCHybridPrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.azure-automation.net"
           azureAutomationWebhookPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.azure-automation.net"
-          azureBatchPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.${local.location}.batch.azure.com"
+          azureBatchPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.batch.azure.com"
           azureCognitiveSearchPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.search.windows.net"
           azureCognitiveServicesPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.cognitiveservices.azure.com"
           azureCosmosCassandraPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.cassandra.cosmos.azure.com"
