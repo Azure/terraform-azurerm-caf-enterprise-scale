@@ -10,6 +10,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Added option to enable private DNS zone `privatelink.blob.core.windows.net` for Azure Managed Disks
 - Added option to enable `internet_security_enabled` on `azurerm_virtual_hub_connection` resources for secure virtual hubs
 - Added option to specify a list of virtual networks for linking to private DNS zones without association to a hub
+- Added option to specify existing resource group (by name) for creation of Virtual WAN resources
 - Updated `Deploy-Diagnostics-LogAnalytics` policy set definition to use the latest built-in policy definitions for Azure Storage
 - Updated parameters for the `Deploy-ASC-Monitoring` Policy Assignment
 - Updated managed parameters set for the `Deploy-Private-DNS-Zones` Policy Assignment
@@ -26,6 +27,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Fix [#528](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/528) (Validate parameters for Azure Security Benchmark in TF deployment #528)
 - Fix [#542](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/542) (Bug Report - enable_private_dns_zone_virtual_network_link_on_hubs = true failing on disabled hub #542)
 - Fix [#549](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/549) (Feature Request: Deploy private dns zones and link them to an existing vnet #549)
+- Fix [#552](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/552) (Feature Request: Multiple Hub scenario, 2 VWANS are getting deployed #552)
 - Fix [#553](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/553) (Remove Activity Log solution from Terraform RI #553)
 - Fix [#544](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/544) (Missing assignment parameter values for "Configure Azure PaaS services to use private DNS zones" #544)
 - Close [#499](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/499) (Bug Report Terraform plan fails due to sensitive values in azurerm_automation_account output #499)
@@ -41,6 +43,7 @@ The following non-breaking changes have been made to the input variables. Althou
 - Added `configure_connectivity_resources.settings.dns.config.enable_private_link_by_service.azure_managed_disks`
 - Added `configure_connectivity_resources.settings.dns.config.virtual_network_resource_ids_to_link`
 - Added `configure_connectivity_resources.settings.vwan_hub_networks.*.config.secure_spoke_virtual_network_resource_ids`
+- Added `configure_connectivity_resources.advanced.existing_virtual_wan_resource_group_name`
 - Removed `configure_management_resources.settings.log_analytics.config.enable_solution_for_azure_activity`
 
 ## For more information
