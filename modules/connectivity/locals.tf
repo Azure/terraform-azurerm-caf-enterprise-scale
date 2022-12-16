@@ -1329,6 +1329,7 @@ locals {
     azure_key_vault                      = ["privatelink.vaultcore.azure.net"]
     azure_key_vault_managed_hsm          = ["privatelink.managedhsm.azure.net"]
     azure_machine_learning_workspace     = ["privatelink.api.azureml.ms", "privatelink.notebooks.azure.net"]
+    azure_managed_disks                  = ["privatelink.blob.core.windows.net"]
     azure_media_services                 = ["privatelink.media.azure.net"]
     azure_migrate                        = ["privatelink.prod.migration.windowsazure.com"]
     azure_monitor                        = ["privatelink.monitor.azure.com", "privatelink.oms.opinsights.azure.com", "privatelink.ods.opinsights.azure.com", "privatelink.agentsvc.azure-automation.net", "privatelink.blob.core.windows.net"]
@@ -1406,6 +1407,7 @@ locals {
     azure_key_vault_managed_hsm          = local.empty_string
     azure_kubernetes_service_management  = local.empty_string
     azure_machine_learning_workspace     = local.empty_string
+    azure_managed_disks                  = "disks"
     azure_media_services                 = local.empty_string
     azure_migrate                        = local.empty_string
     azure_monitor                        = local.empty_string
@@ -1508,7 +1510,7 @@ locals {
     {
       resource_id       = hub_config.resource_id
       name              = "${split("/", hub_config.resource_id)[2]}-${uuidv5("url", hub_config.resource_id)}"
-      managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs
+      managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_hubs && local.deploy_hub_network[hub_config.location]
     }
   ]
   spoke_virtual_networks_for_dns = flatten([
@@ -1519,7 +1521,7 @@ locals {
         {
           resource_id       = spoke_resource_id
           name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
-          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes && hub_config.enabled
         }
       ]
     ],
@@ -1530,17 +1532,27 @@ locals {
         {
           resource_id       = spoke_resource_id
           name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
-          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes
+          managed_by_module = local.deploy_private_dns_zone_virtual_network_link_on_spokes && virtual_hub_config.enabled
         }
       ]
     ]
   ])
+  additional_virtual_networks_for_dns = [
+    for spoke_resource_id in local.settings.dns.config.virtual_network_resource_ids_to_link :
+    {
+      resource_id       = spoke_resource_id
+      name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
+      managed_by_module = local.deploy_dns
+    }
+  ]
+
   # Distinct is used to allow for situations where
   # the same spoke is associated with multiple hub
   # networks for peering.
   virtual_networks_for_dns = distinct(concat(
     local.hub_virtual_networks_for_dns,
     local.spoke_virtual_networks_for_dns,
+    local.additional_virtual_networks_for_dns,
   ))
   azurerm_private_dns_zone_virtual_network_link = flatten(
     [
@@ -1620,7 +1632,7 @@ locals {
         {
           # Resource logic attributes
           resource_id       = peerconfig.virtual_network_peering_resource_id
-          managed_by_module = local.deploy_hub_virtual_network_mesh_peering[location_src]
+          managed_by_module = local.deploy_hub_virtual_network_mesh_peering[location_src] && local.deploy_hub_virtual_network_mesh_peering[location_dst]
           # Resource definition attributes
           name                      = peerconfig.virtual_network_peering_name
           resource_group_name       = local.resource_group_names_by_scope_and_location["connectivity"][location_src]
@@ -1671,7 +1683,7 @@ locals {
     [
       for location, virtual_hub_config in local.virtual_hubs_by_location :
       [
-        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        for spoke_resource_id in distinct(concat(virtual_hub_config.config.spoke_virtual_network_resource_ids, virtual_hub_config.config.secure_spoke_virtual_network_resource_ids)) :
         {
           # Resource logic attributes
           resource_id       = "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
@@ -1681,7 +1693,7 @@ locals {
           virtual_hub_id            = local.virtual_hub_resource_id[location]
           remote_virtual_network_id = spoke_resource_id
           # Optional definition attributes
-          internet_security_enabled = false
+          internet_security_enabled = contains(virtual_hub_config.config.secure_spoke_virtual_network_resource_ids, spoke_resource_id)
           routing                   = local.empty_list
         }
       ]

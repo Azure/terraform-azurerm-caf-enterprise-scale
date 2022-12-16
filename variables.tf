@@ -372,8 +372,9 @@ variable "configure_connectivity_resources" {
                 }), {})
               }), {})
             }), {})
-            spoke_virtual_network_resource_ids = optional(list(string), [])
-            enable_virtual_hub_connections     = optional(bool, false)
+            spoke_virtual_network_resource_ids        = optional(list(string), [])
+            secure_spoke_virtual_network_resource_ids = optional(list(string), [])
+            enable_virtual_hub_connections            = optional(bool, false)
           })
         })
       ), [])
@@ -425,6 +426,7 @@ variable "configure_connectivity_resources" {
             azure_key_vault_managed_hsm          = optional(bool, true)
             azure_kubernetes_service_management  = optional(bool, true)
             azure_machine_learning_workspace     = optional(bool, true)
+            azure_managed_disks                  = optional(bool, true)
             azure_media_services                 = optional(bool, true)
             azure_migrate                        = optional(bool, true)
             azure_monitor                        = optional(bool, true)
@@ -455,6 +457,7 @@ variable "configure_connectivity_resources" {
           private_dns_zones                                      = optional(list(string), [])
           enable_private_dns_zone_virtual_network_link_on_hubs   = optional(bool, true)
           enable_private_dns_zone_virtual_network_link_on_spokes = optional(bool, true)
+          virtual_network_resource_ids_to_link                   = optional(list(string), [])
         }), {})
       }), {})
     }), {})
@@ -555,8 +558,9 @@ variable "configure_connectivity_resources" {
                 }
               }
             }
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = false
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = false
           }
         },
       ]
@@ -608,6 +612,7 @@ variable "configure_connectivity_resources" {
             azure_key_vault_managed_hsm          = true
             azure_kubernetes_service_management  = true
             azure_machine_learning_workspace     = true
+            azure_managed_disks                  = true
             azure_media_services                 = true
             azure_migrate                        = true
             azure_monitor                        = true
@@ -638,6 +643,7 @@ variable "configure_connectivity_resources" {
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
           enable_private_dns_zone_virtual_network_link_on_spokes = true
+          virtual_network_resource_ids_to_link                   = []
         }
       }
     }

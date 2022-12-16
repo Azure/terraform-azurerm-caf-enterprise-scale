@@ -53,6 +53,7 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
       azure_key_vault_managed_hsm          = true
       azure_kubernetes_service_management  = true
       azure_machine_learning_workspace     = true
+      azure_managed_disks                  = true
       azure_media_services                 = true
       azure_migrate                        = true
       azure_monitor                        = true
@@ -83,6 +84,7 @@ The `configure_connectivity_resources.settings.dns` object provides configuratio
     private_dns_zones                                      = []
     enable_private_dns_zone_virtual_network_link_on_hubs   = true
     enable_private_dns_zone_virtual_network_link_on_spokes = true
+    virtual_network_resource_ids_to_link                   = []
   }
 }
 ```
@@ -139,6 +141,7 @@ optional(object({
       azure_key_vault_managed_hsm          = optional(bool, true)
       azure_kubernetes_service_management  = optional(bool, true)
       azure_machine_learning_workspace     = optional(bool, true)
+      azure_managed_disks                  = optional(bool, true)
       azure_media_services                 = optional(bool, true)
       azure_migrate                        = optional(bool, true)
       azure_monitor                        = optional(bool, true)
@@ -169,6 +172,7 @@ optional(object({
     private_dns_zones                                      = optional(list(string), [])
     enable_private_dns_zone_virtual_network_link_on_hubs   = optional(bool, true)
     enable_private_dns_zone_virtual_network_link_on_spokes = optional(bool, true)
+    virtual_network_resource_ids_to_link                   = optional(list(string), [])
   }), {})
 }), {})
 ```
@@ -238,6 +242,7 @@ The following services are currently supported by the module:
 - `azure_key_vault_managed_hsm`
 - `azure_kubernetes_service_management`
 - `azure_machine_learning_workspace`
+- `azure_managed_disks`
 - `azure_media_services`
 - `azure_migrate`
 - `azure_monitor`
@@ -263,6 +268,11 @@ The following services are currently supported by the module:
 - `storage_account_table`
 - `storage_account_web`
 
+> **NOTE:** Some services use the same underlying DNS namespace.
+> The module will automatically remove duplicate namespaces, but you may find certain setting combination changes result in no-changes to the created private DNS zones.
+> The longer term intent is to have these "per-service" controls hooked into the corresponding policy assignments, ensuring only the enabled service types are targeted.
+
+<!-- markdownlint-disable-next-line no-blanks-blockquote -->
 > If you need to enable private link for `Azure SQL Managed Instance (Microsoft.Sql/managedInstances)` resources using the `privatelink.{dnsPrefix}.database.windows.net` namespace, please add these using the [config.private_dns_zones](#configprivate_dns_zones) attribute so you can specify the required `dnsPrefix` value(s).
 
 <!-- markdownlint-disable-next-line no-blanks-blockquote -->
@@ -297,6 +307,10 @@ Set to true to link all private DNS zones to all hub virtual networks created by
 #### `config.enable_private_dns_zone_virtual_network_link_on_spokes`
 
 Set to true to link all private DNS zones to all spoke virtual networks associated to hub virtual networks created by the module.
+
+#### `config.virtual_network_resource_ids_to_link`
+
+Specify a list of additional virtual network IDs to link to all private DNS zones which are not already associated with hub_networks or virtual_hub_networks through the `config.spoke_virtual_network_resource_ids` inputs.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

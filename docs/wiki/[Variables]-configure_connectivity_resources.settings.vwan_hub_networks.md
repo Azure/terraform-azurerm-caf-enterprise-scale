@@ -49,8 +49,9 @@ For each configuration object added to the `configure_connectivity_resources.set
         }
       }
     }
-    spoke_virtual_network_resource_ids = []
-    enable_virtual_hub_connections     = false
+    spoke_virtual_network_resource_ids        = []
+    secure_spoke_virtual_network_resource_ids = []
+    enable_virtual_hub_connections            = false
   }
 }
 ```
@@ -123,8 +124,9 @@ object({
         }), {})
       }), {})
     }), {})
-    spoke_virtual_network_resource_ids = optional(list(string), [])
-    enable_virtual_hub_connections     = optional(bool, false)
+    spoke_virtual_network_resource_ids        = optional(list(string), [])
+    secure_spoke_virtual_network_resource_ids = optional(list(string), [])
+    enable_virtual_hub_connections            = optional(bool, false)
   })
 })
 ```
@@ -319,7 +321,17 @@ availability_zones = {
 
 #### `config.spoke_virtual_network_resource_ids`
 
+List of Azure Resource IDs used to identify spoke virtual networks associated with the hub network.
+
+Virtual networks added to this list will be configured with [`internet_security_enabled = false`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection#internet_security_enabled), allowing unsecured access to the Internet.
+
+#### `config.secure_spoke_virtual_network_resource_ids`
+
 List of Azure Resource IDs used to identify spoke Virtual Networks associated with the hub network.
+
+Virtual networks added to this list will be configured with [`internet_security_enabled = true`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection#internet_security_enabled), ensuring access to the Internet is secured by Azure Firewall in the associated secured virtual hub.
+
+> **NOTE:** To avoid conflicting route configurations, ensure virtual networks are only added to this list once per virtual hub.
 
 #### `config.enable_virtual_hub_connections`
 
