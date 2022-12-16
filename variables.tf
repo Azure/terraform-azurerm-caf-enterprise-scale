@@ -83,7 +83,6 @@ variable "configure_management_resources" {
           enable_monitoring_for_vmss                        = optional(bool, true)
           enable_solution_for_agent_health_assessment       = optional(bool, true)
           enable_solution_for_anti_malware                  = optional(bool, true)
-          enable_solution_for_azure_activity                = optional(bool, true)
           enable_solution_for_change_tracking               = optional(bool, true)
           enable_solution_for_service_map                   = optional(bool, true)
           enable_solution_for_sql_assessment                = optional(bool, true)
@@ -126,7 +125,6 @@ variable "configure_management_resources" {
           enable_monitoring_for_vmss                        = true
           enable_solution_for_agent_health_assessment       = true
           enable_solution_for_anti_malware                  = true
-          enable_solution_for_azure_activity                = true
           enable_solution_for_change_tracking               = true
           enable_solution_for_service_map                   = true
           enable_solution_for_sql_assessment                = true
