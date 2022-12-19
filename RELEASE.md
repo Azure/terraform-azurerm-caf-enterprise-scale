@@ -10,7 +10,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Added option to enable private DNS zone `privatelink.blob.core.windows.net` for Azure Managed Disks
 - Added option to enable `internet_security_enabled` on `azurerm_virtual_hub_connection` resources for secure virtual hubs
 - Added option to specify a list of virtual networks for linking to private DNS zones without association to a hub
-- Added option to specify existing resource group (by name) for creation of Virtual WAN resources
+- Added advanced option to specify existing resource group (by name) for Virtual WAN resources[^1]
 - Updated `Deploy-Diagnostics-LogAnalytics` policy set definition to use the latest built-in policy definitions for Azure Storage
 - Updated parameters for the `Deploy-ASC-Monitoring` Policy Assignment
 - Updated managed parameters set for the `Deploy-Private-DNS-Zones` Policy Assignment
@@ -19,6 +19,8 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Removed the deprecated `ActivityLog` Azure Monitor solution
 - Removed sensitive value filtering for Log Analytics workspace resources
 - Removed location from `azureBatchPrivateDnsZoneId` parameter for `Deploy-Private-DNS-Zones` policy assignment
+
+[^1]: The ability to specify an existing resource group (by name) for Virtual WAN resources is to satisfy the preference of some customers to place all Virtual WAN resources in a single resource group, consistent with the Portal experience where [this is a limitation](https://learn.microsoft.com/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-groups-in-virtual-wan).
 
 ### Fixed issues
 
