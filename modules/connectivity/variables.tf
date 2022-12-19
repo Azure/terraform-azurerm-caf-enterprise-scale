@@ -326,6 +326,12 @@ variable "existing_virtual_wan_resource_id" {
   default     = ""
 }
 
+variable "existing_virtual_wan_resource_group_name" {
+  type        = string
+  description = "If specified, module will skip creation of the Virtual WAN resource group and use existing. All Virtual Hubs created by the module will be created in the specified Virtual WAN resource group."
+  default     = ""
+}
+
 variable "resource_group_per_virtual_hub_location" {
   type        = bool
   description = "If set to true, module will place each Virtual Hub (and associated resources) in a location-specific Resource Group. Default behaviour is to colocate Virtual Hub resources in the same Resource Group as the Virtual WAN resource."

@@ -10,6 +10,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Added option to enable private DNS zone `privatelink.blob.core.windows.net` for Azure Managed Disks
 - Added option to enable `internet_security_enabled` on `azurerm_virtual_hub_connection` resources for secure virtual hubs
 - Added option to specify a list of virtual networks for linking to private DNS zones without association to a hub
+- Added advanced option to specify existing resource group (by name) for Virtual WAN resources[^1]
 - Updated `Deploy-Diagnostics-LogAnalytics` policy set definition to use the latest built-in policy definitions for Azure Storage
 - Updated parameters for the `Deploy-ASC-Monitoring` Policy Assignment
 - Updated managed parameters set for the `Deploy-Private-DNS-Zones` Policy Assignment
@@ -20,6 +21,8 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Removed sensitive value filtering for Log Analytics workspace resources
 - Removed location from `azureBatchPrivateDnsZoneId` parameter for `Deploy-Private-DNS-Zones` policy assignment
 
+[^1]: The ability to specify an existing resource group (by name) for Virtual WAN resources is to satisfy the preference of some customers to place all Virtual WAN resources in a single resource group, consistent with the Portal experience where [this is a limitation](https://learn.microsoft.com/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-groups-in-virtual-wan).
+
 ### Fixed issues
 
 - Fix [#482](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/445) (Review and update private DNS zones for private endpoint #482)
@@ -27,6 +30,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Fix [#528](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/528) (Validate parameters for Azure Security Benchmark in TF deployment #528)
 - Fix [#542](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/542) (Bug Report - enable_private_dns_zone_virtual_network_link_on_hubs = true failing on disabled hub #542)
 - Fix [#549](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/549) (Feature Request: Deploy private dns zones and link them to an existing vnet #549)
+- Fix [#552](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/552) (Feature Request: Multiple Hub scenario, 2 VWANS are getting deployed #552)
 - Fix [#553](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/553) (Remove Activity Log solution from Terraform RI #553)
 - Fix [#544](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/544) (Missing assignment parameter values for "Configure Azure PaaS services to use private DNS zones" #544)
 - Fix [#556](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/556) (Unexpected behaviour: Radius IP required when using AAD for VPN gateway #556)
@@ -43,6 +47,7 @@ The following non-breaking changes have been made to the input variables. Althou
 - Added `configure_connectivity_resources.settings.dns.config.enable_private_link_by_service.azure_managed_disks`
 - Added `configure_connectivity_resources.settings.dns.config.virtual_network_resource_ids_to_link`
 - Added `configure_connectivity_resources.settings.vwan_hub_networks.*.config.secure_spoke_virtual_network_resource_ids`
+- Added `configure_connectivity_resources.advanced.existing_virtual_wan_resource_group_name`
 - Removed `configure_management_resources.settings.log_analytics.config.enable_solution_for_azure_activity`
 
 ## For more information
