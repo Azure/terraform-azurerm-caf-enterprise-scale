@@ -102,9 +102,9 @@ object({
           vpn_client_configuration = optional(list(
             object({
               address_space = list(string)
-              aad_tenant    = optional(string, "")
-              aad_audience  = optional(string, "")
-              aad_issuer    = optional(string, "")
+              aad_tenant    = optional(string, null)
+              aad_audience  = optional(string, null)
+              aad_issuer    = optional(string, null)
               root_certificate = optional(list(
                 object({
                   name             = string
@@ -117,27 +117,27 @@ object({
                   public_cert_data = string
                 })
               ), [])
-              radius_server_address = optional(string, "")
-              radius_server_secret  = optional(string, "")
+              radius_server_address = optional(string, null)
+              radius_server_secret  = optional(string, null)
               vpn_client_protocols  = optional(list(string), [])
               vpn_auth_types        = optional(list(string), [])
             })
           ), [])
           bgp_settings = optional(list(
             object({
-              asn         = number
-              peer_weight = number
-              peering_addresses = list(
+              asn         = optional(number, null)
+              peer_weight = optional(number, null)
+              peering_addresses = optional(list(
                 object({
-                  ip_configuration_name = string
-                  apipa_addresses       = list(string)
+                  ip_configuration_name = optional(string, null)
+                  apipa_addresses       = optional(list(string), [])
                 })
-              )
+              ), [])
             })
           ), [])
           custom_route = optional(list(
             object({
-              address_prefixes = list(string)
+              address_prefixes = optional(list(string), [])
             })
           ), [])
         }), {})
@@ -152,7 +152,7 @@ object({
         sku_tier                      = optional(string, "Standard")
         base_policy_id                = optional(string, "")
         private_ip_ranges             = optional(list(string), [])
-        threat_intelligence_mode      = optional(string, "")
+        threat_intelligence_mode      = optional(string, "Alert")
         threat_intelligence_allowlist = optional(list(string), [])
         availability_zones = optional(object({
           zone_1 = optional(bool, true)
