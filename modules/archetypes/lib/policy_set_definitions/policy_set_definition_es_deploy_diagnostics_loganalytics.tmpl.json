@@ -8,8 +8,12 @@
     "displayName": "Deploy Diagnostic Settings to Azure Services",
     "description": "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included ",
     "metadata": {
-      "version": "1.0.0",
-      "category": "Monitoring"
+      "version": "2.0.0",
+      "category": "Monitoring",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ]
     },
     "parameters": {
       "logAnalytics": {
@@ -122,6 +126,18 @@
         "metadata": {
           "displayName": "Deploy Diagnostic Settings for Automation to Log Analytics workspace",
           "description": "Deploys the diagnostic settings for Automation to stream to a Log Analytics workspace when any Automation which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
+        }
+      },
+      "BastionLogAnalyticsEffect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy Diagnostic Settings for Azure Bastion to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for Azure Bastion to stream to a Log Analytics workspace when any Bastion which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
         }
       },
       "BatchLogAnalyticsEffect": {
@@ -374,6 +390,18 @@
         "metadata": {
           "displayName": "Deploy Diagnostic Settings for Load Balancer to Log Analytics workspace",
           "description": "Deploys the diagnostic settings for Load Balancer to stream to a Log Analytics workspace when any Load Balancer which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
+        }
+      },
+      "LogAnalyticsLogAnalyticsEffect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy Diagnostic Settings for Log Analytics to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for Log Analytics to stream to a Log Analytics workspace when any Log Analytics workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category Audit enabled"
         }
       },
       "LogicAppsISELogAnalyticsEffect": {
@@ -712,6 +740,18 @@
           "description": "Deploys the diagnostic settings for Web App to stream to a Log Analytics workspace when any Web App which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
         }
       },
+      "AVDScalingPlansLogAnalyticsEffect": {
+        "type": "String",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "displayName": "Deploy Diagnostic Settings for AVD Scaling Plans to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for AVD Scaling Plans to stream to a Log Analytics workspace when any application groups which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
+        }
+      },
       "WVDAppGroupsLogAnalyticsEffect": {
         "type": "String",
         "defaultValue": "DeployIfNotExists",
@@ -720,8 +760,8 @@
           "Disabled"
         ],
         "metadata": {
-          "displayName": "Deploy Diagnostic Settings for WVD Application Groups to Log Analytics workspace",
-          "description": "Deploys the diagnostic settings for WVD Application groups to stream to a Log Analytics workspace when any application groups which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
+          "displayName": "Deploy Diagnostic Settings for AVD Application Groups to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for AVD Application groups to stream to a Log Analytics workspace when any application groups which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
         }
       },
       "WVDWorkspaceLogAnalyticsEffect": {
@@ -732,8 +772,8 @@
           "Disabled"
         ],
         "metadata": {
-          "displayName": "Deploy Diagnostic Settings for WVD Workspace to Log Analytics workspace",
-          "description": "Deploys the diagnostic settings for WVD Workspace to stream to a Log Analytics workspace when any Workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
+          "displayName": "Deploy Diagnostic Settings for AVD Workspace to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for AVD Workspace to stream to a Log Analytics workspace when any Workspace which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
         }
       },
       "WVDHostPoolsLogAnalyticsEffect": {
@@ -744,8 +784,8 @@
           "Disabled"
         ],
         "metadata": {
-          "displayName": "Deploy Diagnostic Settings for WVD Host pools to Log Analytics workspace",
-          "description": "Deploys the diagnostic settings for WVD Host pools to stream to a Log Analytics workspace when any host pool which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
+          "displayName": "Deploy Diagnostic Settings for AVD Host pools to Log Analytics workspace",
+          "description": "Deploys the diagnostic settings for AVD Host pools to stream to a Log Analytics workspace when any host pool which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled"
         }
       },
       "StorageAccountsLogAnalyticsEffect": {
@@ -764,13 +804,96 @@
     "policyDefinitions": [
       {
         "policyDefinitionReferenceId": "StorageAccountDeployDiagnosticLogDeployLogAnalytics",
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6f8f98a4-f108-47cb-8e98-91a0d85cd474",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/59759c62-9a22-4cdf-ae64-074495983fef",
         "parameters": {
           "logAnalytics": {
             "value": "[parameters('logAnalytics')]"
           },
           "effect": {
             "value": "[parameters('StorageAccountsLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "StorageAccountBlobServicesDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b4fe1a3b-0715-4c6c-a5ea-ffc33cf823cb",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('StorageAccountsLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "StorageAccountFileServicesDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/25a70cc8-2bd4-47f1-90b6-1478e4662c96",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('StorageAccountsLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "StorageAccountQueueServicesDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/7bd000e3-37c7-4928-9f31-86c4b77c5c45",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('StorageAccountsLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "StorageAccountTableServicesDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2fb86bf3-d221-43d1-96d1-2434af34eaa0",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('StorageAccountsLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "AVDScalingPlansDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-AVDScalingPlans",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('AVDScalingPlansLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
           }
         },
         "groupNames": []
@@ -944,6 +1067,22 @@
           },
           "effect": {
             "value": "[parameters('AutomationLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "BastionDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-Bastion",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('BastionLogAnalyticsEffect')]"
           },
           "profileName": {
             "value": "[parameters('profileName')]"
@@ -1280,6 +1419,22 @@
           },
           "effect": {
             "value": "[parameters('LoadBalancerLogAnalyticsEffect')]"
+          },
+          "profileName": {
+            "value": "[parameters('profileName')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "LogAnalyticsDeployDiagnosticLogDeployLogAnalytics",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Diagnostics-LogAnalytics",
+        "parameters": {
+          "logAnalytics": {
+            "value": "[parameters('logAnalytics')]"
+          },
+          "effect": {
+            "value": "[parameters('LogAnalyticsLogAnalyticsEffect')]"
           },
           "profileName": {
             "value": "[parameters('profileName')]"

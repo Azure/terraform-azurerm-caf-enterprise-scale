@@ -13,6 +13,19 @@ Used to tune terraform deploy when faced with errors caused by API caching or ev
 
 ## Validation
 
+Validation provided by schema:
+
+```hcl
+object({
+  azurerm_management_group      = optional(string, "0s")
+  azurerm_policy_assignment     = optional(string, "0s")
+  azurerm_policy_definition     = optional(string, "0s")
+  azurerm_policy_set_definition = optional(string, "0s")
+  azurerm_role_assignment       = optional(string, "0s")
+  azurerm_role_definition       = optional(string, "0s")
+})
+```
+
 The `destroy_duration_delay` values must be a string containing the duration in numbers (1-6 digits) followed by the measure of time represented by s (seconds), m (minutes), or h (hours), matching the following RegEx:
 
 `[0-9]{1,6}(s|m|h)$`
@@ -36,5 +49,3 @@ In the following, we set a 30s delay after the destruction of `azurerm_policy_as
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

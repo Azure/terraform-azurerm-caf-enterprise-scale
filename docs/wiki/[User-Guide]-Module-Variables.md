@@ -42,7 +42,7 @@ Default: `{}`
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
-[**configure_connectivity_resources**][configure_connectivity_resources] `object({ settings = object({ hub_networks = list( object({ enabled = bool config = object({ address_space = list(string) location = string link_to_ddos_protection_plan = bool dns_servers = list(string) bgp_community = string subnets = list( object({ name = string address_prefixes = list(string) network_security_group_id = string route_table_id = string }) ) virtual_network_gateway = object({ enabled = bool config = object({ address_prefix = string gateway_sku_expressroute = string gateway_sku_vpn = string advanced_vpn_settings = object({ enable_bgp = bool active_active = bool private_ip_address_allocation = string default_local_network_gateway_id = string vpn_client_configuration = list( object({ address_space = list(string) aad_tenant = string aad_audience = string aad_issuer = string root_certificate = list( object({ name = string public_cert_data = string }) ) revoked_certificate = list( object({ name = string public_cert_data = string }) ) radius_server_address = string radius_server_secret = string vpn_client_protocols = list(string) vpn_auth_types = list(string) }) ) bgp_settings = list( object({ asn = number peer_weight = number peering_addresses = list( object({ ip_configuration_name = string apipa_addresses = list(string) }) ) }) ) custom_route = list( object({ address_prefixes = list(string) }) ) }) }) }) azure_firewall = object({ enabled = bool config = object({ address_prefix = string enable_dns_proxy = bool dns_servers = list(string) sku_tier = string base_policy_id = string private_ip_ranges = list(string) threat_intelligence_mode = string threat_intelligence_allowlist = list(string) availability_zones = object({ zone_1 = bool zone_2 = bool zone_3 = bool }) }) }) spoke_virtual_network_resource_ids = list(string) enable_outbound_virtual_network_peering = bool }) }) ) vwan_hub_networks = list( object({ enabled = bool config = object({ address_prefix = string location = string sku = string routes = list( object({ address_prefixes = list(string) next_hop_ip_address = string }) ) expressroute_gateway = object({ enabled = bool config = object({ scale_unit = number }) }) vpn_gateway = object({ enabled = bool config = object({ bgp_settings = list( object({ asn = number peer_weight = number instance_0_bgp_peering_address = list( object({ custom_ips = list(string) }) ) instance_1_bgp_peering_address = list( object({ custom_ips = list(string) }) ) }) ) routing_preference = string scale_unit = number }) }) azure_firewall = object({ enabled = bool config = object({ enable_dns_proxy = bool dns_servers = list(string) sku_tier = string base_policy_id = string private_ip_ranges = list(string) threat_intelligence_mode = string threat_intelligence_allowlist = list(string) availability_zones = object({ zone_1 = bool zone_2 = bool zone_3 = bool }) }) }) spoke_virtual_network_resource_ids = list(string) enable_virtual_hub_connections = bool }) }) ) ddos_protection_plan = object({ enabled = bool config = object({ location = string }) }) dns = object({ enabled = bool config = object({ location = string enable_private_link_by_service = object({ azure_automation_webhook = bool azure_automation_dscandhybridworker = bool azure_sql_database_sqlserver = bool azure_synapse_analytics_sqlserver = bool azure_synapse_analytics_sql = bool storage_account_blob = bool storage_account_table = bool storage_account_queue = bool storage_account_file = bool storage_account_web = bool azure_data_lake_file_system_gen2 = bool azure_cosmos_db_sql = bool azure_cosmos_db_mongodb = bool azure_cosmos_db_cassandra = bool azure_cosmos_db_gremlin = bool azure_cosmos_db_table = bool azure_database_for_postgresql_server = bool azure_database_for_mysql_server = bool azure_database_for_mariadb_server = bool azure_key_vault = bool azure_kubernetes_service_management = bool azure_search_service = bool azure_container_registry = bool azure_app_configuration_stores = bool azure_backup = bool azure_site_recovery = bool azure_event_hubs_namespace = bool azure_service_bus_namespace = bool azure_iot_hub = bool azure_relay_namespace = bool azure_event_grid_topic = bool azure_event_grid_domain = bool azure_web_apps_sites = bool azure_machine_learning_workspace = bool signalr = bool azure_monitor = bool cognitive_services_account = bool azure_file_sync = bool azure_data_factory = bool azure_data_factory_portal = bool azure_cache_for_redis = bool }) private_link_locations = list(string) public_dns_zones = list(string) private_dns_zones = list(string) enable_private_dns_zone_virtual_network_link_on_hubs = bool enable_private_dns_zone_virtual_network_link_on_spokes = bool }) }) }) location = any tags = any advanced = any })`
+[**configure_connectivity_resources**][configure_connectivity_resources] `object({ settings = object({ hub_networks = list( object({ enabled = bool config = object({ address_space = list(string) location = string link_to_ddos_protection_plan = bool dns_servers = list(string) bgp_community = string subnets = list( object({ name = string address_prefixes = list(string) network_security_group_id = string route_table_id = string }) ) virtual_network_gateway = object({ enabled = bool config = object({ address_prefix = string gateway_sku_expressroute = string gateway_sku_vpn = string advanced_vpn_settings = object({ enable_bgp = bool active_active = bool private_ip_address_allocation = string default_local_network_gateway_id = string vpn_client_configuration = list( object({ address_space = list(string) aad_tenant = string aad_audience = string aad_issuer = string root_certificate = list( object({ name = string public_cert_data = string }) ) revoked_certificate = list( object({ name = string public_cert_data = string }) ) radius_server_address = string radius_server_secret = string vpn_client_protocols = list(string) vpn_auth_types = list(string) }) ) bgp_settings = list( object({ asn = number peer_weight = number peering_addresses = list( object({ ip_configuration_name = string apipa_addresses = list(string) }) ) }) ) custom_route = list( object({ address_prefixes = list(string) }) ) }) }) }) azure_firewall = object({ enabled = bool config = object({ address_prefix = string enable_dns_proxy = bool dns_servers = list(string) sku_tier = string base_policy_id = string private_ip_ranges = list(string) threat_intelligence_mode = string threat_intelligence_allowlist = list(string) availability_zones = object({ zone_1 = bool zone_2 = bool zone_3 = bool }) }) }) spoke_virtual_network_resource_ids = list(string) enable_outbound_virtual_network_peering = bool enable_hub_network_mesh_peering = bool }) }) ) vwan_hub_networks = list( object({ enabled = bool config = object({ address_prefix = string location = string sku = string routes = list( object({ address_prefixes = list(string) next_hop_ip_address = string }) ) expressroute_gateway = object({ enabled = bool config = object({ scale_unit = number }) }) vpn_gateway = object({ enabled = bool config = object({ bgp_settings = list( object({ asn = number peer_weight = number instance_0_bgp_peering_address = list( object({ custom_ips = list(string) }) ) instance_1_bgp_peering_address = list( object({ custom_ips = list(string) }) ) }) ) routing_preference = string scale_unit = number }) }) azure_firewall = object({ enabled = bool config = object({ enable_dns_proxy = bool dns_servers = list(string) sku_tier = string base_policy_id = string private_ip_ranges = list(string) threat_intelligence_mode = string threat_intelligence_allowlist = list(string) availability_zones = object({ zone_1 = bool zone_2 = bool zone_3 = bool }) }) }) spoke_virtual_network_resource_ids = list(string) secure_spoke_virtual_network_resource_ids = list(string) enable_virtual_hub_connections = bool }) }) ) ddos_protection_plan = object({ enabled = bool config = object({ location = string }) }) dns = object({ enabled = bool config = object({ location = string enable_private_link_by_service = object({ azure_api_management = bool azure_app_configuration_stores = bool azure_arc = bool azure_automation_dscandhybridworker = bool azure_automation_webhook = bool azure_backup = bool azure_batch_account = bool azure_bot_service_bot = bool azure_bot_service_token = bool azure_cache_for_redis = bool azure_cache_for_redis_enterprise = bool azure_container_registry = bool azure_cosmos_db_cassandra = bool azure_cosmos_db_gremlin = bool azure_cosmos_db_mongodb = bool azure_cosmos_db_sql = bool azure_cosmos_db_table = bool azure_data_explorer = bool azure_data_factory = bool azure_data_factory_portal = bool azure_data_health_data_services = bool azure_data_lake_file_system_gen2 = bool azure_database_for_mariadb_server = bool azure_database_for_mysql_server = bool azure_database_for_postgresql_server = bool azure_digital_twins = bool azure_event_grid_domain = bool azure_event_grid_topic = bool azure_event_hubs_namespace = bool azure_file_sync = bool azure_hdinsights = bool azure_iot_dps = bool azure_iot_hub = bool azure_key_vault = bool azure_key_vault_managed_hsm = bool azure_kubernetes_service_management = bool azure_machine_learning_workspace = bool azure_managed_disks = true azure_media_services = bool azure_migrate = bool azure_monitor = bool azure_purview_account = bool azure_purview_studio = bool azure_relay_namespace = bool azure_search_service = bool azure_service_bus_namespace = bool azure_site_recovery = bool azure_sql_database_sqlserver = bool azure_synapse_analytics_dev = bool azure_synapse_analytics_sql = bool azure_synapse_studio = bool azure_web_apps_sites = bool azure_web_apps_static_sites = bool cognitive_services_account = bool microsoft_power_bi = bool signalr = bool signalr_webpubsub = bool storage_account_blob = bool storage_account_file = bool storage_account_queue = bool storage_account_table = bool storage_account_web = bool }) private_link_locations = list(string) public_dns_zones = list(string) private_dns_zones = list(string) enable_private_dns_zone_virtual_network_link_on_hubs = bool enable_private_dns_zone_virtual_network_link_on_spokes = bool virtual_network_resource_ids_to_link = list(string) }) }) }) location = any tags = any advanced = any })`
 
 If specified, will customize the \"Connectivity\" landing zone settings and resources.
 
@@ -116,53 +116,75 @@ Default:
       config = {
         location = ""
         enable_private_link_by_service = {
-          azure_automation_webhook             = true
+          azure_api_management                 = true
+          azure_app_configuration_stores       = true
+          azure_arc                            = true
           azure_automation_dscandhybridworker  = true
-          azure_sql_database_sqlserver         = true
-          azure_synapse_analytics_sqlserver    = true
-          azure_synapse_analytics_sql          = true
-          storage_account_blob                 = true
-          storage_account_table                = true
-          storage_account_queue                = true
-          storage_account_file                 = true
-          storage_account_web                  = true
-          azure_data_lake_file_system_gen2     = true
-          azure_cosmos_db_sql                  = true
-          azure_cosmos_db_mongodb              = true
+          azure_automation_webhook             = true
+          azure_backup                         = true
+          azure_batch_account                  = true
+          azure_bot_service_bot                = true
+          azure_bot_service_token              = true
+          azure_cache_for_redis                = true
+          azure_cache_for_redis_enterprise     = true
+          azure_container_registry             = true
           azure_cosmos_db_cassandra            = true
           azure_cosmos_db_gremlin              = true
+          azure_cosmos_db_mongodb              = true
+          azure_cosmos_db_sql                  = true
           azure_cosmos_db_table                = true
-          azure_database_for_postgresql_server = true
-          azure_database_for_mysql_server      = true
-          azure_database_for_mariadb_server    = true
-          azure_key_vault                      = true
-          azure_kubernetes_service_management  = true
-          azure_search_service                 = true
-          azure_container_registry             = true
-          azure_app_configuration_stores       = true
-          azure_backup                         = true
-          azure_site_recovery                  = true
-          azure_event_hubs_namespace           = true
-          azure_service_bus_namespace          = true
-          azure_iot_hub                        = true
-          azure_relay_namespace                = true
-          azure_event_grid_topic               = true
-          azure_event_grid_domain              = true
-          azure_web_apps_sites                 = true
-          azure_machine_learning_workspace     = true
-          signalr                              = true
-          azure_monitor                        = true
-          cognitive_services_account           = true
-          azure_file_sync                      = true
+          azure_data_explorer                  = true
           azure_data_factory                   = true
           azure_data_factory_portal            = true
-          azure_cache_for_redis                = true
+          azure_data_health_data_services      = true
+          azure_data_lake_file_system_gen2     = true
+          azure_database_for_mariadb_server    = true
+          azure_database_for_mysql_server      = true
+          azure_database_for_postgresql_server = true
+          azure_digital_twins                  = true
+          azure_event_grid_domain              = true
+          azure_event_grid_topic               = true
+          azure_event_hubs_namespace           = true
+          azure_file_sync                      = true
+          azure_hdinsights                     = true
+          azure_iot_dps                        = true
+          azure_iot_hub                        = true
+          azure_key_vault                      = true
+          azure_key_vault_managed_hsm          = true
+          azure_kubernetes_service_management  = true
+          azure_machine_learning_workspace     = true
+          azure_managed_disks                  = true
+          azure_media_services                 = true
+          azure_migrate                        = true
+          azure_monitor                        = true
+          azure_purview_account                = true
+          azure_purview_studio                 = true
+          azure_relay_namespace                = true
+          azure_search_service                 = true
+          azure_service_bus_namespace          = true
+          azure_site_recovery                  = true
+          azure_sql_database_sqlserver         = true
+          azure_synapse_analytics_dev          = true
+          azure_synapse_analytics_sql          = true
+          azure_synapse_studio                 = true
+          azure_web_apps_sites                 = true
+          azure_web_apps_static_sites          = true
+          cognitive_services_account           = true
+          microsoft_power_bi                   = true
+          signalr                              = true
+          signalr_webpubsub                    = true
+          storage_account_blob                 = true
+          storage_account_file                 = true
+          storage_account_queue                = true
+          storage_account_table                = true
+          storage_account_web                  = true
         }
         private_link_locations                                 = []
         public_dns_zones                                       = []
         private_dns_zones                                      = []
         enable_private_dns_zone_virtual_network_link_on_hubs   = true
         enable_private_dns_zone_virtual_network_link_on_spokes = true
+        virtual_network_resource_ids_to_link                   = []
       }
     }
   }
@@ -208,7 +230,7 @@ Default:
 <br>
 
 <!-- markdownlint-disable-next-line MD013 -->
-[**configure_management_resources**][configure_management_resources] `object({ settings = object({ log_analytics = object({ enabled = bool config = object({ retention_in_days = number enable_monitoring_for_arc = bool enable_monitoring_for_vm = bool enable_monitoring_for_vmss = bool enable_solution_for_agent_health_assessment = bool enable_solution_for_anti_malware = bool enable_solution_for_azure_activity = bool enable_solution_for_change_tracking = bool enable_solution_for_service_map = bool enable_solution_for_sql_assessment = bool enable_solution_for_sql_vulnerability_assessment = bool enable_solution_for_sql_advanced_threat_detection = bool enable_solution_for_updates = bool enable_solution_for_vm_insights = bool enable_sentinel = bool }) }) security_center = object({ enabled = bool config = object({ email_security_contact = string enable_defender_for_app_services = bool enable_defender_for_arm = bool enable_defender_for_containers = bool enable_defender_for_dns = bool enable_defender_for_key_vault = bool enable_defender_for_oss_databases = bool enable_defender_for_servers = bool enable_defender_for_sql_servers = bool enable_defender_for_sql_server_vms = bool enable_defender_for_storage = bool }) }) }) location = any tags = any advanced = any })`
+[**configure_management_resources**][configure_management_resources] `object({ settings = object({ log_analytics = object({ enabled = bool config = object({ retention_in_days = number enable_monitoring_for_vm = bool enable_monitoring_for_vmss = bool enable_solution_for_agent_health_assessment = bool enable_solution_for_anti_malware = bool enable_solution_for_change_tracking = bool enable_solution_for_service_map = bool enable_solution_for_sql_assessment = bool enable_solution_for_sql_vulnerability_assessment = bool enable_solution_for_sql_advanced_threat_detection = bool enable_solution_for_updates = bool enable_solution_for_vm_insights = bool enable_sentinel = bool }) }) security_center = object({ enabled = bool config = object({ email_security_contact = string enable_defender_for_app_services = bool enable_defender_for_arm = bool enable_defender_for_containers = bool enable_defender_for_dns = bool enable_defender_for_key_vault = bool enable_defender_for_oss_databases = bool enable_defender_for_servers = bool enable_defender_for_sql_servers = bool enable_defender_for_sql_server_vms = bool enable_defender_for_storage = bool }) }) }) location = any tags = any advanced = any })`
 
 If specified, will customize the \"Management\" landing zone settings and resources.
 
@@ -224,12 +246,10 @@ Default:
       enabled = true
       config = {
         retention_in_days                                 = 30
-        enable_monitoring_for_arc                         = true
         enable_monitoring_for_vm                          = true
         enable_monitoring_for_vmss                        = true
         enable_solution_for_agent_health_assessment       = true
         enable_solution_for_anti_malware                  = true
-        enable_solution_for_azure_activity                = true
         enable_solution_for_change_tracking               = true
         enable_solution_for_service_map                   = true
         enable_solution_for_sql_assessment                = true
@@ -329,7 +349,7 @@ Default: `{}`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
-[**deploy_connectivity_resources**][deploy_core_landing_zones] `bool`
+[**deploy_connectivity_resources**][deploy_connectivity_resources] `bool`
 
 If set to true, will deploy the \"Connectivity\" landing zone settings and add resources into the current Subscription context.
 
@@ -472,6 +492,13 @@ Default: `"Enterprise-Scale"`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
+[**strict_subscription_association**][strict_subscription_association] `bool`
+
+If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed.
+If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed.
+
+Default: `true`
+
 [**subscription_id_connectivity**][subscription_id_connectivity] `string`
 
 If specified, identifies the Platform subscription for \"Connectivity\" for resource deployment and correct placement in the Management Group hierarchy.
@@ -532,32 +559,33 @@ Now you understand how to customize your deployment using the input variables, c
 [local_values]:    https://www.terraform.io/docs/language/values/locals.html "Local Values"
 [input_variables]: https://www.terraform.io/docs/language/values/variables.html "Input Variables"
 
-[root_parent_id]:                   %5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
-[archetype_config_overrides]:       %5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
-[configure_connectivity_resources]: %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
-[configure_identity_resources]:     %5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."
-[configure_management_resources]:   %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
-[create_duration_delay]:            %5BVariables%5D-create_duration_delay "Instructions for how to use the create_duration_delay variable."
-[custom_landing_zones]:             %5BVariables%5D-custom_landing_zones "Instructions for how to use the custom_landing_zones variable."
-[custom_policy_roles]:              %5BVariables%5D-custom_policy_roles "Instructions for how to use the custom_policy_roles variable."
-[default_location]:                 %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
-[default_tags]:                     %5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
-[deploy_core_landing_zones]:        %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
-[deploy_corp_landing_zones]:        %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
-[deploy_demo_landing_zones]:        %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
-[deploy_connectivity_resources]:    %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
-[deploy_identity_resources]:        %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
-[deploy_management_resources]:      %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
-[deploy_online_landing_zones]:      %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
-[deploy_sap_landing_zones]:         %5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
-[destroy_duration_delay]:           %5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
-[disable_base_module_tags]:         %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
-[disable_tememetry]:                %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
-[library_path]:                     %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
-[root_id]:                          %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
-[root_name]:                        %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
-[subscription_id_connectivity]:     %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
-[subscription_id_identity]:         %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
-[subscription_id_management]:       %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
-[subscription_id_overrides]:        %5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
-[template_file_variables]:          %5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."
+[root_parent_id]:                                    %5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."
+[archetype_config_overrides]:                        %5BVariables%5D-archetype_config_overrides "Instructions for how to use the archetype_config_overrides variable."
+[configure_connectivity_resources]:                  %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable."
+[configure_identity_resources]:                      %5BVariables%5D-configure_identity_resources "Instructions for how to use the configure_identity_resources variable."
+[configure_management_resources]:                    %5BVariables%5D-configure_management_resources "Instructions for how to use the configure_management_resources variable."
+[create_duration_delay]:                             %5BVariables%5D-create_duration_delay "Instructions for how to use the create_duration_delay variable."
+[custom_landing_zones]:                              %5BVariables%5D-custom_landing_zones "Instructions for how to use the custom_landing_zones variable."
+[custom_policy_roles]:                               %5BVariables%5D-custom_policy_roles "Instructions for how to use the custom_policy_roles variable."
+[default_location]:                                  %5BVariables%5D-default_location "Instructions for how to use the default_location variable."
+[default_tags]:                                      %5BVariables%5D-default_tags "Instructions for how to use the default_tags variable."
+[deploy_core_landing_zones]:                         %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
+[deploy_corp_landing_zones]:                         %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
+[deploy_demo_landing_zones]:                         %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
+[deploy_connectivity_resources]:                     %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
+[deploy_identity_resources]:                         %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
+[deploy_management_resources]:                       %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
+[deploy_online_landing_zones]:                       %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
+[deploy_sap_landing_zones]:                          %5BVariables%5D-deploy_sap_landing_zones "Instructions for how to use the deploy_sap_landing_zones variable."
+[destroy_duration_delay]:                            %5BVariables%5D-destroy_duration_delay "Instructions for how to use the destroy_duration_delay variable."
+[disable_base_module_tags]:                          %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
+[disable_tememetry]:                                 %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
+[library_path]:                                      %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
+[root_id]:                                           %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
+[root_name]:                                         %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
+[strict_subscription_association]:                   %5BVariables%5D-strict_subscription_association "Instructions for how to use the strict_subscription_association variable."
+[subscription_id_connectivity]:                      %5BVariables%5D-subscription_id_connectivity "Instructions for how to use the subscription_id_connectivity variable."
+[subscription_id_identity]:                          %5BVariables%5D-subscription_id_identity "Instructions for how to use the subscription_id_identity variable."
+[subscription_id_management]:                        %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
+[subscription_id_overrides]:                         %5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
+[template_file_variables]:                           %5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."

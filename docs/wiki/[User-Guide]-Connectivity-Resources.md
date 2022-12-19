@@ -65,7 +65,7 @@ For more information about how to use this capability, see the [Deploy Virtual W
 
 ### DDoS Protection plan
 
-The module can optionally deploy [DDoS Protection Standard][about_ddos_protection_standard], and link Virtual Networks to the plan if needed.
+The module can optionally deploy [DDoS Network Protection][about_ddos_network_protection], and link Virtual Networks to the plan if needed.
 
 > **NOTE:**
 > Due to platform limitations, DDoS protection plans can only be enabled for traditional virtual networks. Virtual Hub support is not currently available.
@@ -73,7 +73,7 @@ The module can optionally deploy [DDoS Protection Standard][about_ddos_protectio
 <!-- comment added to prevent linting error #MD028-no-blanks-blockquote-->
 
 > **IMPORTANT:**
-> The Azure landing zones guidance recommends enabling DDoS Protection Standard to increase protection of your Azure platform. To prevent unexpected costs in non-production and MVP deployments, this capability is disabled in the Azure landing zones Terraform module due to the cost associated with this resource.
+> The Azure landing zones guidance recommends enabling DDoS Network Protection to increase protection of your Azure platform. To prevent unexpected costs in non-production and MVP deployments, this capability is disabled in the Azure landing zones Terraform module due to the cost associated with this resource.
 >
 > For production environments, we strongly recommend enabling this capability.
 
@@ -128,7 +128,7 @@ Please refer to the following for examples showing how to use this capability:
 
 [alz_connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
 
-[about_ddos_protection_standard]: https://docs.microsoft.com/azure/ddos-protection/ddos-protection-overview
+[about_ddos_network_protection]:  https://docs.microsoft.com/azure/ddos-protection/ddos-protection-overview
 [about_dns_for_private_endpoint]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration
 
 [arm_resource_group]:                        https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups

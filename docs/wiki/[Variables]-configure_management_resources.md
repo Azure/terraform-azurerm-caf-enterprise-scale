@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_management_resources**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_management_resources**](#overview) [*see validation for type*](#validation) (optional)
 
 If specified, will customize the "management" landing zone settings and resources.
 
@@ -17,12 +17,10 @@ If specified, will customize the "management" landing zone settings and resource
       enabled = true
       config = {
         retention_in_days                                 = 30
-        enable_monitoring_for_arc                         = true
         enable_monitoring_for_vm                          = true
         enable_monitoring_for_vmss                        = true
         enable_solution_for_agent_health_assessment       = true
         enable_solution_for_anti_malware                  = true
-        enable_solution_for_azure_activity                = true
         enable_solution_for_change_tracking               = true
         enable_solution_for_service_map                   = true
         enable_solution_for_sql_assessment                = true
@@ -67,47 +65,45 @@ Validation provided by schema:
 
 ```hcl
 object({
-  settings = object({
-    log_analytics = object({
-      enabled = bool
-      config = object({
-        retention_in_days                                 = number
-        enable_monitoring_for_arc                         = bool
-        enable_monitoring_for_vm                          = bool
-        enable_monitoring_for_vmss                        = bool
-        enable_solution_for_agent_health_assessment       = bool
-        enable_solution_for_anti_malware                  = bool
-        enable_solution_for_azure_activity                = bool
-        enable_solution_for_change_tracking               = bool
-        enable_solution_for_service_map                   = bool
-        enable_solution_for_sql_assessment                = bool
-        enable_solution_for_sql_vulnerability_assessment  = bool
-        enable_solution_for_sql_advanced_threat_detection = bool
-        enable_solution_for_updates                       = bool
-        enable_solution_for_vm_insights                   = bool
-        enable_sentinel                                   = bool
-      })
-    })
-    security_center = object({
-      enabled = bool
-      config = object({
-        email_security_contact             = string
-        enable_defender_for_app_services   = bool
-        enable_defender_for_arm            = bool
-        enable_defender_for_containers     = bool
-        enable_defender_for_dns            = bool
-        enable_defender_for_key_vault      = bool
-        enable_defender_for_oss_databases  = bool
-        enable_defender_for_servers        = bool
-        enable_defender_for_sql_servers    = bool
-        enable_defender_for_sql_server_vms = bool
-        enable_defender_for_storage        = bool
-      })
-    })
-  })
-  location = any
-  tags     = any
-  advanced = any
+  settings = optional(object({
+    log_analytics = optional(object({
+      enabled = optional(bool, true)
+      config = optional(object({
+        retention_in_days                                 = optional(number, 30)
+        enable_monitoring_for_vm                          = optional(bool, true)
+        enable_monitoring_for_vmss                        = optional(bool, true)
+        enable_solution_for_agent_health_assessment       = optional(bool, true)
+        enable_solution_for_anti_malware                  = optional(bool, true)
+        enable_solution_for_change_tracking               = optional(bool, true)
+        enable_solution_for_service_map                   = optional(bool, true)
+        enable_solution_for_sql_assessment                = optional(bool, true)
+        enable_solution_for_sql_vulnerability_assessment  = optional(bool, true)
+        enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
+        enable_solution_for_updates                       = optional(bool, true)
+        enable_solution_for_vm_insights                   = optional(bool, true)
+        enable_sentinel                                   = optional(bool, true)
+      }), {})
+    }), {})
+    security_center = optional(object({
+      enabled = optional(bool, true)
+      config = optional(object({
+        email_security_contact             = optional(string, "security_contact@replace_me")
+        enable_defender_for_app_services   = optional(bool, true)
+        enable_defender_for_arm            = optional(bool, true)
+        enable_defender_for_containers     = optional(bool, true)
+        enable_defender_for_dns            = optional(bool, true)
+        enable_defender_for_key_vault      = optional(bool, true)
+        enable_defender_for_oss_databases  = optional(bool, true)
+        enable_defender_for_servers        = optional(bool, true)
+        enable_defender_for_sql_servers    = optional(bool, true)
+        enable_defender_for_sql_server_vms = optional(bool, true)
+        enable_defender_for_storage        = optional(bool, true)
+      }), {})
+    }), {})
+  }), {})
+  location = optional(string, "")
+  tags     = optional(any, {})
+  advanced = optional(any, {})
 })
 ```
 
@@ -131,12 +127,10 @@ log_analytics = {
   enabled = true
   config = {
     retention_in_days                                 = 30
-    enable_monitoring_for_arc                         = true
     enable_monitoring_for_vm                          = true
     enable_monitoring_for_vmss                        = true
     enable_solution_for_agent_health_assessment       = true
     enable_solution_for_anti_malware                  = true
-    enable_solution_for_azure_activity                = true
     enable_solution_for_change_tracking               = true
     enable_solution_for_service_map                   = true
     enable_solution_for_sql_assessment                = true
@@ -166,13 +160,6 @@ The `config` (`object`) input allows you to set the following configuration item
 The number of days to retain data in the Log Analytics workspace.
 See [changing the retention period][la_retention_period] in the Log Analytics documentation.
 
-##### `settings.log_analytics.config.enable_monitoring_for_arc`
-
-Enables the following Azure Policy assignments at your intermediate root management group scope:
-
-- Configure Log Analytics extension on Azure Arc enabled Windows servers
-- Configure Log Analytics extension on Azure Arc enabled Linux servers
-
 ##### `settings.log_analytics.config.enable_monitoring_for_vm`
 
 Enables the following Azure Policy Initiative assignments at your intermediate root management group scope:
@@ -196,12 +183,6 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
 
 - AntiMalware
-
-##### `settings.log_analytics.enable_solution_for_azure_activity`
-
-Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_log_analytics_workspace`:
-
-- AzureActivity
 
 ##### `settings.log_analytics.enable_solution_for_change_tracking`
 
@@ -228,7 +209,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 - [SQLVulnerabilityAssessment][sql_vulnerability_assessment_overview]
 
 > **NOTE:** To work as expected, the `SQLVulnerabilityAssessment` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
-> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecurity_centerenable_defender_for_sql_servers) setting.
 
 ##### `settings.log_analytics.enable_solution_for_sql_advanced_threat_detection`
 
@@ -237,7 +218,7 @@ Deploys the following `azurerm_log_analytics_solution` to the deployed `azurerm_
 - [SQLAdvancedThreatProtection][sql_advanced_threat_detection_overview]
 
 > **NOTE:** To work as expected, the `SQLAdvancedThreatProtection` solution relies on data from [Microsoft Defender for SQL][microsoft_defender_for_sql].
-> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecuritycenterenabledefenderforsqlservers) setting.
+> To enabled this, please refer to the [enable_defender_for_sql_servers](#settingssecurity_centerenable_defender_for_sql_servers) setting.
 
 ##### `settings.log_analytics.enable_solution_for_updates`
 
@@ -389,8 +370,6 @@ See [Using the Advanced Block with management resources][wiki_management_advance
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [agent_health_overview]:                  https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
 [change_tracking_overview]:               https://docs.microsoft.com/azure/automation/change-tracking/overview

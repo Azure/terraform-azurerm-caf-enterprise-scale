@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#validation) (optional)
 
 For each configuration object added to the `configure_connectivity_resources.settings.hub_networks` list, the module will create a hub network and associated resources in the target location based on a [traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke].
 
@@ -57,6 +57,7 @@ For each configuration object added to the `configure_connectivity_resources.set
     }
     spoke_virtual_network_resource_ids      = []
     enable_outbound_virtual_network_peering = false
+    enable_hub_network_mesh_peering         = false
   }
 }
 ```
@@ -72,96 +73,97 @@ Validation provided by schema:
 
 ```hcl
 object({
-  enabled = bool
+  enabled = optional(bool, true)
   config = object({
     address_space                = list(string)
-    location                     = string
-    link_to_ddos_protection_plan = bool
-    dns_servers                  = list(string)
-    bgp_community                = string
-    subnets = list(
+    location                     = optional(string, "")
+    link_to_ddos_protection_plan = optional(bool, false)
+    dns_servers                  = optional(list(string), [])
+    bgp_community                = optional(string, "")
+    subnets = optional(list(
       object({
         name                      = string
         address_prefixes          = list(string)
-        network_security_group_id = string
-        route_table_id            = string
+        network_security_group_id = optional(string, "")
+        route_table_id            = optional(string, "")
       })
-    )
-    virtual_network_gateway = object({
-      enabled = bool
-      config = object({
-        address_prefix           = string
-        gateway_sku_expressroute = string
-        gateway_sku_vpn          = string
-        advanced_vpn_settings = object({
-          enable_bgp                       = bool
-          active_active                    = bool
-          private_ip_address_allocation    = string
-          default_local_network_gateway_id = string
-          vpn_client_configuration = list(
+    ), [])
+    virtual_network_gateway = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        address_prefix           = optional(string, "")
+        gateway_sku_expressroute = optional(string, "")
+        gateway_sku_vpn          = optional(string, "")
+        advanced_vpn_settings = optional(object({
+          enable_bgp                       = optional(bool, null)
+          active_active                    = optional(bool, null)
+          private_ip_address_allocation    = optional(string, "")
+          default_local_network_gateway_id = optional(string, "")
+          vpn_client_configuration = optional(list(
             object({
               address_space = list(string)
-              aad_tenant    = string
-              aad_audience  = string
-              aad_issuer    = string
-              root_certificate = list(
+              aad_tenant    = optional(string, null)
+              aad_audience  = optional(string, null)
+              aad_issuer    = optional(string, null)
+              root_certificate = optional(list(
                 object({
                   name             = string
                   public_cert_data = string
                 })
-              )
-              revoked_certificate = list(
+              ), [])
+              revoked_certificate = optional(list(
                 object({
                   name             = string
                   public_cert_data = string
                 })
-              )
-              radius_server_address = string
-              radius_server_secret  = string
-              vpn_client_protocols  = list(string)
-              vpn_auth_types        = list(string)
+              ), [])
+              radius_server_address = optional(string, null)
+              radius_server_secret  = optional(string, null)
+              vpn_client_protocols  = optional(list(string), [])
+              vpn_auth_types        = optional(list(string), [])
             })
-          )
-          bgp_settings = list(
+          ), [])
+          bgp_settings = optional(list(
             object({
-              asn         = number
-              peer_weight = number
-              peering_addresses = list(
+              asn         = optional(number, null)
+              peer_weight = optional(number, null)
+              peering_addresses = optional(list(
                 object({
-                  ip_configuration_name = string
-                  apipa_addresses       = list(string)
+                  ip_configuration_name = optional(string, null)
+                  apipa_addresses       = optional(list(string), [])
                 })
-              )
+              ), [])
             })
-          )
-          custom_route = list(
+          ), [])
+          custom_route = optional(list(
             object({
-              address_prefixes = list(string)
+              address_prefixes = optional(list(string), [])
             })
-          )
-        })
-      })
-    })
-    azure_firewall = object({
-      enabled = bool
-      config = object({
-        address_prefix                = string
-        enable_dns_proxy              = bool
-        dns_servers                   = list(string)
-        sku_tier                      = string
-        base_policy_id                = string
-        private_ip_ranges             = list(string)
-        threat_intelligence_mode      = string
-        threat_intelligence_allowlist = list(string)
-        availability_zones = object({
-          zone_1 = bool
-          zone_2 = bool
-          zone_3 = bool
-        })
-      })
-    })
-    spoke_virtual_network_resource_ids      = list(string)
-    enable_outbound_virtual_network_peering = bool
+          ), [])
+        }), {})
+      }), {})
+    }), {})
+    azure_firewall = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        address_prefix                = optional(string, "")
+        enable_dns_proxy              = optional(bool, true)
+        dns_servers                   = optional(list(string), [])
+        sku_tier                      = optional(string, "Standard")
+        base_policy_id                = optional(string, "")
+        private_ip_ranges             = optional(list(string), [])
+        threat_intelligence_mode      = optional(string, "Alert")
+        threat_intelligence_allowlist = optional(list(string), [])
+        availability_zones = optional(object({
+          zone_1 = optional(bool, true)
+          zone_2 = optional(bool, true)
+          zone_3 = optional(bool, true)
+        }), {})
+      }), {})
+    }), {})
+    spoke_virtual_network_resource_ids      = optional(list(string), [])
+    enable_outbound_virtual_network_peering = optional(bool, false)
+    enable_hub_network_mesh_peering         = optional(bool, false)
   })
 })
 ```
@@ -283,7 +285,7 @@ Leaving this value as an empty string `""` will result in no VPN Gateway being c
 
 The `sku` value will automatically determine whether the VPN Gateway and dependant resources (e.g. Public IP) will be deployed across zones or not.
 
-If `sku` is set to `Basic`, [enable_bgp](#configvirtualnetworkgatewayconfigadvancedvpnsettingsenablebgp) is not supported.
+If `sku` is set to `Basic`, [enable_bgp](#configvirtual_network_gatewayconfigadvanced_vpn_settingsenable_bgp) is not supported.
 The module will automatically set this value to `null` to prevent resource creation errors.
 
 > **NOTE:** Take care to ensure you specify a `sku` supported by the location specified in the hub network configuration.
@@ -461,11 +463,13 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 >
 > We are working on a solution for this using the recently released [AzAPI provider][tf_reg_azapi] which allows a single provider to deploy resources into multiple subscriptions using a [parent_id][tf_reg_azapi_parent_id] input.
 
+#### `config.enable_hub_network_mesh_peering`
+
+`bool` input to control whether the module will create fully meshed Virtual Network peerings between the hub networks that have this setting enabled.
+
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [virtual_network_gateway_sku]:     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
 [azfw_policy_rule_hierarchy]:      https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."

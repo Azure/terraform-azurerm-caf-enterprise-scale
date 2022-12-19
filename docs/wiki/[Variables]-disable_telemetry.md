@@ -118,4 +118,6 @@ In binary `000b` hexadecimal is represented as `0000000000001011`.
 This means that bits 1, 2 and 4 are set (we read from right to left).
 Looking in the table for the core module: bits 1, 2 and 4 are the `deploy_core_landing_zones`, `deploy_corp_landing_zones` and `deploy_sap_landing_zones` features.
 
-[this_page]: # "Link for the current page."
+[//]: # "************************"
+[//]: # "INSERT LINK LABELS BELOW"
+[//]: # "************************"

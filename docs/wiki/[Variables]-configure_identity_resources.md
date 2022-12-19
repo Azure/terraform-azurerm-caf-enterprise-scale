@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_identity_resources**](#overview) [*see validation for type*](#Validation) (optional)
+[**configure_identity_resources**](#overview) [*see validation for type*](#validation) (optional)
 
 If specified, will customize the "identity" landing zone settings and resources.
 
@@ -37,17 +37,17 @@ Validation provided by schema:
 
 ```hcl
 object({
-  settings = object({
-    identity = object({
-      enabled = bool
-      config = object({
-        enable_deny_public_ip             = bool
-        enable_deny_rdp_from_internet     = bool
-        enable_deny_subnet_without_nsg    = bool
-        enable_deploy_azure_backup_on_vms = bool
-      })
-    })
-  })
+  settings = optional(object({
+    identity = optional(object({
+      enabled = optional(bool, true)
+      config = optional(object({
+        enable_deny_public_ip             = optional(bool, true)
+        enable_deny_rdp_from_internet     = optional(bool, true)
+        enable_deny_subnet_without_nsg    = optional(bool, true)
+        enable_deploy_azure_backup_on_vms = optional(bool, true)
+      }), {})
+    }), {})
+  }), {})
 })
 ```
 
@@ -97,7 +97,5 @@ Provides granular control over the [enforcementMode][msdocs_policy_enforcement] 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [msdocs_policy_enforcement]: https://docs.microsoft.com/azure/governance/policy/concepts/assignment-structure#enforcement-mode "Azure Policy - Enforcement Mode"

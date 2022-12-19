@@ -44,7 +44,6 @@ module "test_core" {
   deploy_connectivity_resources    = false
   configure_connectivity_resources = module.settings.connectivity.configure_connectivity_resources
   subscription_id_connectivity     = data.azurerm_client_config.connectivity.subscription_id
-
 }
 
 module "test_core_nested" {

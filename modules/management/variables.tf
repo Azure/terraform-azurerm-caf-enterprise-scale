@@ -43,82 +43,43 @@ variable "tags" {
 
 variable "settings" {
   type = object({
-    log_analytics = object({
-      enabled = bool
-      config = object({
-        retention_in_days                                 = number
-        enable_monitoring_for_arc                         = bool
-        enable_monitoring_for_vm                          = bool
-        enable_monitoring_for_vmss                        = bool
-        enable_solution_for_agent_health_assessment       = bool
-        enable_solution_for_anti_malware                  = bool
-        enable_solution_for_azure_activity                = bool
-        enable_solution_for_change_tracking               = bool
-        enable_solution_for_service_map                   = bool
-        enable_solution_for_sql_assessment                = bool
-        enable_solution_for_sql_vulnerability_assessment  = bool
-        enable_solution_for_sql_advanced_threat_detection = bool
-        enable_solution_for_updates                       = bool
-        enable_solution_for_vm_insights                   = bool
-        enable_sentinel                                   = bool
-      })
-    })
-    security_center = object({
-      enabled = bool
-      config = object({
-        email_security_contact             = string
-        enable_defender_for_app_services   = bool
-        enable_defender_for_arm            = bool
-        enable_defender_for_containers     = bool
-        enable_defender_for_dns            = bool
-        enable_defender_for_key_vault      = bool
-        enable_defender_for_oss_databases  = bool
-        enable_defender_for_servers        = bool
-        enable_defender_for_sql_servers    = bool
-        enable_defender_for_sql_server_vms = bool
-        enable_defender_for_storage        = bool
-      })
-    })
+    log_analytics = optional(object({
+      enabled = optional(bool, true)
+      config = optional(object({
+        retention_in_days                                 = optional(number, 30)
+        enable_monitoring_for_vm                          = optional(bool, true)
+        enable_monitoring_for_vmss                        = optional(bool, true)
+        enable_solution_for_agent_health_assessment       = optional(bool, true)
+        enable_solution_for_anti_malware                  = optional(bool, true)
+        enable_solution_for_change_tracking               = optional(bool, true)
+        enable_solution_for_service_map                   = optional(bool, true)
+        enable_solution_for_sql_assessment                = optional(bool, true)
+        enable_solution_for_sql_vulnerability_assessment  = optional(bool, true)
+        enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
+        enable_solution_for_updates                       = optional(bool, true)
+        enable_solution_for_vm_insights                   = optional(bool, true)
+        enable_sentinel                                   = optional(bool, true)
+      }), {})
+    }), {})
+    security_center = optional(object({
+      enabled = optional(bool, true)
+      config = optional(object({
+        email_security_contact             = optional(string, "security_contact@replace_me")
+        enable_defender_for_app_services   = optional(bool, true)
+        enable_defender_for_arm            = optional(bool, true)
+        enable_defender_for_containers     = optional(bool, true)
+        enable_defender_for_dns            = optional(bool, true)
+        enable_defender_for_key_vault      = optional(bool, true)
+        enable_defender_for_oss_databases  = optional(bool, true)
+        enable_defender_for_servers        = optional(bool, true)
+        enable_defender_for_sql_servers    = optional(bool, true)
+        enable_defender_for_sql_server_vms = optional(bool, true)
+        enable_defender_for_storage        = optional(bool, true)
+      }), {})
+    }), {})
   })
   description = "Configuration settings for the \"Management\" landing zone resources."
-  default = {
-    log_analytics = {
-      enabled = true
-      config = {
-        retention_in_days                                 = 30
-        enable_monitoring_for_arc                         = true
-        enable_monitoring_for_vm                          = true
-        enable_monitoring_for_vmss                        = true
-        enable_solution_for_agent_health_assessment       = true
-        enable_solution_for_anti_malware                  = true
-        enable_solution_for_azure_activity                = true
-        enable_solution_for_change_tracking               = true
-        enable_solution_for_service_map                   = true
-        enable_solution_for_sql_assessment                = true
-        enable_solution_for_sql_vulnerability_assessment  = true
-        enable_solution_for_sql_advanced_threat_detection = true
-        enable_solution_for_updates                       = true
-        enable_solution_for_vm_insights                   = true
-        enable_sentinel                                   = true
-      }
-    }
-    security_center = {
-      enabled = true
-      config = {
-        email_security_contact             = "security_contact@replace_me"
-        enable_defender_for_app_services   = true
-        enable_defender_for_arm            = true
-        enable_defender_for_containers     = true
-        enable_defender_for_dns            = true
-        enable_defender_for_key_vault      = true
-        enable_defender_for_oss_databases  = true
-        enable_defender_for_servers        = true
-        enable_defender_for_sql_servers    = true
-        enable_defender_for_sql_server_vms = true
-        enable_defender_for_storage        = true
-      }
-    }
-  }
+  default     = {}
 }
 
 variable "resource_prefix" {

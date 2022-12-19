@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.vwan_hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.vwan_hub_networks**](#overview) `list(object({}))` [*see validation for detailed type*](#validation) (optional)
 
 For each configuration object added to the `configure_connectivity_resources.settings.vwan_hub_networks` list, the module will create a hub network and associated resources in the target location based on a [Virtual WAN network topology (Microsoft-managed)][wiki_connectivity_resources_virtual_wan].
 
@@ -49,8 +49,9 @@ For each configuration object added to the `configure_connectivity_resources.set
         }
       }
     }
-    spoke_virtual_network_resource_ids = []
-    enable_virtual_hub_connections     = false
+    spoke_virtual_network_resource_ids        = []
+    secure_spoke_virtual_network_resource_ids = []
+    enable_virtual_hub_connections            = false
   }
 }
 ```
@@ -66,65 +67,66 @@ Validation provided by schema:
 
 ```hcl
 object({
-  enabled = bool
+  enabled = optional(bool, true)
   config = object({
     address_prefix = string
     location       = string
-    sku            = string
-    routes = list(
+    sku            = optional(string, "")
+    routes = optional(list(
       object({
         address_prefixes    = list(string)
         next_hop_ip_address = string
       })
-    )
-    expressroute_gateway = object({
-      enabled = bool
-      config = object({
-        scale_unit = number
-      })
-    })
-    vpn_gateway = object({
-      enabled = bool
-      config = object({
-        bgp_settings = list(
+    ), [])
+    expressroute_gateway = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        scale_unit = optional(number, 1)
+      }), {})
+    }), {})
+    vpn_gateway = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        bgp_settings = optional(list(
           object({
             asn         = number
             peer_weight = number
-            instance_0_bgp_peering_address = list(
+            instance_0_bgp_peering_address = optional(list(
               object({
                 custom_ips = list(string)
               })
-            )
-            instance_1_bgp_peering_address = list(
+            ), [])
+            instance_1_bgp_peering_address = optional(list(
               object({
                 custom_ips = list(string)
               })
-            )
+            ), [])
           })
-        )
-        routing_preference = string
-        scale_unit         = number
-      })
-    })
-    azure_firewall = object({
-      enabled = bool
-      config = object({
-        enable_dns_proxy              = bool
-        dns_servers                   = list(string)
-        sku_tier                      = string
-        base_policy_id                = string
-        private_ip_ranges             = list(string)
-        threat_intelligence_mode      = string
-        threat_intelligence_allowlist = list(string)
-        availability_zones = object({
-          zone_1 = bool
-          zone_2 = bool
-          zone_3 = bool
-        })
-      })
-    })
-    spoke_virtual_network_resource_ids = list(string)
-    enable_virtual_hub_connections     = bool
+        ), [])
+        routing_preference = optional(string, "Microsoft Network")
+        scale_unit         = optional(number, 1)
+      }), {})
+    }), {})
+    azure_firewall = optional(object({
+      enabled = optional(bool, false)
+      config = optional(object({
+        enable_dns_proxy              = optional(bool, true)
+        dns_servers                   = optional(list(string), [])
+        sku_tier                      = optional(string, "Standard")
+        base_policy_id                = optional(string, "")
+        private_ip_ranges             = optional(list(string), [])
+        threat_intelligence_mode      = optional(string, "Alert")
+        threat_intelligence_allowlist = optional(list(string), [])
+        availability_zones = optional(object({
+          zone_1 = optional(bool, true)
+          zone_2 = optional(bool, true)
+          zone_3 = optional(bool, true)
+        }), {})
+      }), {})
+    }), {})
+    spoke_virtual_network_resource_ids        = optional(list(string), [])
+    secure_spoke_virtual_network_resource_ids = optional(list(string), [])
+    enable_virtual_hub_connections            = optional(bool, false)
   })
 })
 ```
@@ -319,7 +321,17 @@ availability_zones = {
 
 #### `config.spoke_virtual_network_resource_ids`
 
+List of Azure Resource IDs used to identify spoke virtual networks associated with the hub network.
+
+Virtual networks added to this list will be configured with [`internet_security_enabled = false`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection#internet_security_enabled), allowing unsecured access to the Internet.
+
+#### `config.secure_spoke_virtual_network_resource_ids`
+
 List of Azure Resource IDs used to identify spoke Virtual Networks associated with the hub network.
+
+Virtual networks added to this list will be configured with [`internet_security_enabled = true`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection#internet_security_enabled), ensuring access to the Internet is secured by Azure Firewall in the associated secured virtual hub.
+
+> **NOTE:** To avoid conflicting route configurations, ensure virtual networks are only added to this list once per virtual hub.
 
 #### `config.enable_virtual_hub_connections`
 
@@ -331,8 +343,6 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [msdocs_vhub_address_prefix]: https://docs.microsoft.com/azure/virtual-wan/virtual-wan-faq#what-is-the-recommended-hub-address-space-during-hub-creation "What is the recommended hub address space during hub creation?"
 [msdocs_virtual_hub_sku]:     https://docs.microsoft.com/azure/virtual-wan/virtual-wan-about#basicstandard "Virtual WAN types"

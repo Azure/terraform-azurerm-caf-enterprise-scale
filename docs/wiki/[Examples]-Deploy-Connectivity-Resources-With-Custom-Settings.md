@@ -18,12 +18,12 @@ In this example, we take the base [Deploy Connectivity Resources (Hub and Spoke)
 <!-- markdownlint-disable no-inline-html -->
 - Add input variable on the root module for enabling/disabling connectivity resources
 - Add a local variable for `configure_connectivity_resources` and set custom values for the following:
-  - Deploy a shared DDoS Protection Standard plan in the `northeurope` region
+  - Deploy a shared DDoS Network Protection plan in the `northeurope` region
   - Deploy hub virtual networks to `northeurope` and `westeurope`
   - Deploy an ExpressRoute gateway and Azure Firewall to the hub virtual network in `northeurope`
   - Deploy a VPN gateway to the hub virtual network in `westeurope`
   - Remove the `AzureFirewallSubnet` subnet from the hub virtual network in `westeurope`
-  - Link the hub virtual network in `northeurope` and `westeurope` to the central DDoS Protection Standard plan
+  - Link the hub virtual network in `northeurope` and `westeurope` to the central DDoS Network Protection plan
   - Ensure private DNS zones for private endpoints are enabled for `northeurope` and `westeurope` regions <sup>1</sup>
   - Set a different default location for connectivity resources (*controlled through an input variable on the root module*)
   - Add custom resource tags for connectivity resources (*controlled through an input variable on the root module*)
@@ -73,7 +73,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.2"
+      version = ">= 3.19.0"
     }
   }
 }
@@ -139,7 +139,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.2"
+  version = "3.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -215,6 +215,7 @@ locals {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering         = false
           }
         },
         {
@@ -263,6 +264,7 @@ locals {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering         = false
           }
         },
       ]
@@ -278,47 +280,68 @@ locals {
         config = {
           location = null
           enable_private_link_by_service = {
-            azure_automation_webhook             = true
+            azure_api_management                 = true
+            azure_app_configuration_stores       = true
+            azure_arc                            = true
             azure_automation_dscandhybridworker  = true
-            azure_sql_database_sqlserver         = true
-            azure_synapse_analytics_sqlserver    = true
-            azure_synapse_analytics_sql          = true
-            storage_account_blob                 = true
-            storage_account_table                = true
-            storage_account_queue                = true
-            storage_account_file                 = true
-            storage_account_web                  = true
-            azure_data_lake_file_system_gen2     = true
-            azure_cosmos_db_sql                  = true
-            azure_cosmos_db_mongodb              = true
+            azure_automation_webhook             = true
+            azure_backup                         = true
+            azure_batch_account                  = true
+            azure_bot_service_bot                = true
+            azure_bot_service_token              = true
+            azure_cache_for_redis                = true
+            azure_cache_for_redis_enterprise     = true
+            azure_container_registry             = true
             azure_cosmos_db_cassandra            = true
             azure_cosmos_db_gremlin              = true
+            azure_cosmos_db_mongodb              = true
+            azure_cosmos_db_sql                  = true
             azure_cosmos_db_table                = true
-            azure_database_for_postgresql_server = true
-            azure_database_for_mysql_server      = true
-            azure_database_for_mariadb_server    = true
-            azure_key_vault                      = true
-            azure_kubernetes_service_management  = true
-            azure_search_service                 = true
-            azure_container_registry             = true
-            azure_app_configuration_stores       = true
-            azure_backup                         = true
-            azure_site_recovery                  = true
-            azure_event_hubs_namespace           = true
-            azure_service_bus_namespace          = true
-            azure_iot_hub                        = true
-            azure_relay_namespace                = true
-            azure_event_grid_topic               = true
-            azure_event_grid_domain              = true
-            azure_web_apps_sites                 = true
-            azure_machine_learning_workspace     = true
-            signalr                              = true
-            azure_monitor                        = true
-            cognitive_services_account           = true
-            azure_file_sync                      = true
+            azure_data_explorer                  = true
             azure_data_factory                   = true
             azure_data_factory_portal            = true
-            azure_cache_for_redis                = true
+            azure_data_health_data_services      = true
+            azure_data_lake_file_system_gen2     = true
+            azure_database_for_mariadb_server    = true
+            azure_database_for_mysql_server      = true
+            azure_database_for_postgresql_server = true
+            azure_digital_twins                  = true
+            azure_event_grid_domain              = true
+            azure_event_grid_topic               = true
+            azure_event_hubs_namespace           = true
+            azure_file_sync                      = true
+            azure_hdinsights                     = true
+            azure_iot_dps                        = true
+            azure_iot_hub                        = true
+            azure_key_vault                      = true
+            azure_key_vault_managed_hsm          = true
+            azure_kubernetes_service_management  = true
+            azure_machine_learning_workspace     = true
+            azure_managed_disks                  = true
+            azure_media_services                 = true
+            azure_migrate                        = true
+            azure_monitor                        = true
+            azure_purview_account                = true
+            azure_purview_studio                 = true
+            azure_relay_namespace                = true
+            azure_search_service                 = true
+            azure_service_bus_namespace          = true
+            azure_site_recovery                  = true
+            azure_sql_database_sqlserver         = true
+            azure_synapse_analytics_dev          = true
+            azure_synapse_analytics_sql          = true
+            azure_synapse_studio                 = true
+            azure_web_apps_sites                 = true
+            azure_web_apps_static_sites          = true
+            cognitive_services_account           = true
+            microsoft_power_bi                   = true
+            signalr                              = true
+            signalr_webpubsub                    = true
+            storage_account_blob                 = true
+            storage_account_file                 = true
+            storage_account_queue                = true
+            storage_account_table                = true
+            storage_account_web                  = true
           }
           private_link_locations = [
             "northeurope",
@@ -328,6 +351,7 @@ locals {
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
           enable_private_dns_zone_virtual_network_link_on_spokes = true
+          virtual_network_resource_ids_to_link                   = []
         }
       }
     }
@@ -389,7 +413,7 @@ The resource group `myorg-connectivity-northeurope` should be created and contai
 
 When you explore the configuration, note that `myorg-hub-northeurope` is pre-configured with subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
 These are now used by the created ExpressRoute gateway and Azure Firewall resources.
-DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
+DDoS Network Protection should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-connectivity-westeurope`
 
@@ -399,7 +423,7 @@ The resource group `myorg-connectivity-westeurope` should be created and contain
 
 When you explore the configuration, note that `myorg-hub-westeurope` is pre-configured with a Subnet for `GatewaySubnet` only. The `AzureFirewallSubnet` is no longer deployed as we removed the `azure_firewall.config.address_prefix` value for the this hub network.
 This now used by the created VPN gateway resource.
-DDoS Protection Standard should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
+DDoS Network Protection should also be set to `Enable` and connected to the DDoS protection plan `myorg-ddos-northeurope`.
 
 ### Resource Group `myorg-ddos`
 
@@ -463,7 +487,6 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [azure_backup_private_endpoint]:  https://docs.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files "Configuring custom DNS or host files when using private endpoints with Azure Backup"
 
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki_connectivity_resources]:               %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
 [wiki_provider_configuration_multi]:         %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi-Subscription deployment"
 [wiki_examples]:                             Examples "Wiki - Examples"
@@ -472,7 +495,5 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_configure_connectivity_resources]:     %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable"
 [wiki_default_location]:                     %5BVariables%5D-default_location "Instructions for how to use the default_location variable"
 [wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
-[wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
 [wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
 [wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"

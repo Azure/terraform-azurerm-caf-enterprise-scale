@@ -43,60 +43,47 @@ locals {
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
-                  zone_3 = true
+                  zone_3 = false
                 }
               }
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = false
+            enable_hub_network_mesh_peering         = true
           }
         },
         {
           enabled = true
           config = {
-            address_space                = ["10.101.0.0/22", ]
-            location                     = var.secondary_location
-            link_to_ddos_protection_plan = false
-            dns_servers                  = []
-            bgp_community                = ""
-            subnets                      = []
+            address_space = ["10.101.0.0/22", ]
+            location      = var.secondary_location
             virtual_network_gateway = {
               enabled = true
               config = {
-                address_prefix           = "10.101.1.0/24"
-                gateway_sku_expressroute = ""
-                gateway_sku_vpn          = "VpnGw1"
-                advanced_vpn_settings = {
-                  enable_bgp                       = null
-                  active_active                    = null
-                  private_ip_address_allocation    = ""
-                  default_local_network_gateway_id = ""
-                  vpn_client_configuration         = []
-                  bgp_settings                     = []
-                  custom_route                     = []
-                }
+                address_prefix  = "10.101.1.0/24"
+                gateway_sku_vpn = "VpnGw1"
               }
             }
             azure_firewall = {
               enabled = false
-              config = {
-                address_prefix                = "10.101.0.0/24"
-                enable_dns_proxy              = true
-                dns_servers                   = []
-                sku_tier                      = ""
-                base_policy_id                = ""
-                private_ip_ranges             = []
-                threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
-                availability_zones = {
-                  zone_1 = true
-                  zone_2 = true
-                  zone_3 = true
-                }
-              }
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = false
+            enable_hub_network_mesh_peering         = true
+          }
+        },
+        # The following hub_network entry is used to ensure
+        # correct operation of logic for creating virtual network
+        # peerings and DNS links when in a disabled state.
+        # Should not create any resources.
+        {
+          enabled = false
+          config = {
+            address_space                           = ["10.102.0.0/22", ]
+            location                                = "fake_location"
+            spoke_virtual_network_resource_ids      = ["/subscriptions/subId/fake_spoke_virtual_network_resource_id"]
+            enable_outbound_virtual_network_peering = true
+            enable_hub_network_mesh_peering         = true
           }
         },
       ]
@@ -139,117 +126,90 @@ locals {
                 }
               }
             }
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = true
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = true
           }
         },
         {
           enabled = true
           config = {
-            address_prefix = "10.201.0.0/22"
-            location       = var.secondary_location
-            sku            = ""
-            routes         = []
-            expressroute_gateway = {
-              enabled = false
-              config = {
-                scale_unit = 1
-              }
-            }
-            vpn_gateway = {
-              enabled = false
-              config = {
-                bgp_settings       = []
-                routing_preference = ""
-                scale_unit         = 1
-              }
-            }
-            azure_firewall = {
-              enabled = false
-              config = {
-                enable_dns_proxy              = false
-                dns_servers                   = []
-                sku_tier                      = "Standard"
-                base_policy_id                = ""
-                private_ip_ranges             = []
-                threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
-                availability_zones = {
-                  zone_1 = false
-                  zone_2 = false
-                  zone_3 = false
-                }
-              }
-            }
-            spoke_virtual_network_resource_ids = []
-            enable_virtual_hub_connections     = true
+            address_prefix                            = "10.201.0.0/22"
+            location                                  = var.secondary_location
+            spoke_virtual_network_resource_ids        = []
+            secure_spoke_virtual_network_resource_ids = []
+            enable_virtual_hub_connections            = true
+          }
+        },
+        # The following virtual_hub_network entry is used to ensure
+        # correct operation of logic for creating virtual hub
+        # connections and DNS links when in a disabled state.
+        # Should not create any resources.
+        {
+          enabled = false
+          config = {
+            address_prefix                            = "10.202.0.0/22"
+            location                                  = "fake_location"
+            spoke_virtual_network_resource_ids        = ["/subscriptions/subId/fake_spoke_virtual_network_resource_id"]
+            secure_spoke_virtual_network_resource_ids = ["/subscriptions/subId/fake_secure_spoke_virtual_network_resource_id"]
+            enable_virtual_hub_connections            = true
           }
         },
       ]
       ddos_protection_plan = {
         enabled = false
-        config = {
-          location = ""
-        }
       }
       dns = {
         enabled = true
         config = {
-          location = null
           enable_private_link_by_service = {
-            azure_automation_webhook             = false
-            azure_automation_dscandhybridworker  = false
-            azure_sql_database_sqlserver         = false
-            azure_synapse_analytics_sqlserver    = false
-            azure_synapse_analytics_sql          = false
-            storage_account_blob                 = true
-            storage_account_table                = true
-            storage_account_queue                = true
-            storage_account_file                 = true
-            storage_account_web                  = true
+            # The following DNS zones are disabled in the test suite to test
+            # functionality but also because these do not currently have
+            # corresponding built-in policy definitions.
+            azure_api_management                 = false
+            azure_arc                            = false
+            azure_backup                         = false
+            azure_bot_service_bot                = false
+            azure_bot_service_token              = false
+            azure_cache_for_redis_enterprise     = false
+            azure_data_explorer                  = false
+            azure_data_health_data_services      = false
             azure_data_lake_file_system_gen2     = false
-            azure_cosmos_db_sql                  = false
-            azure_cosmos_db_mongodb              = false
-            azure_cosmos_db_cassandra            = false
-            azure_cosmos_db_gremlin              = false
-            azure_cosmos_db_table                = false
-            azure_database_for_postgresql_server = false
-            azure_database_for_mysql_server      = false
             azure_database_for_mariadb_server    = false
-            azure_key_vault                      = false
+            azure_database_for_mysql_server      = false
+            azure_database_for_postgresql_server = false
+            azure_digital_twins                  = false
+            azure_key_vault_managed_hsm          = false
             azure_kubernetes_service_management  = false
-            azure_search_service                 = false
-            azure_container_registry             = false
-            azure_app_configuration_stores       = false
-            azure_backup                         = true
-            azure_site_recovery                  = true
-            azure_event_hubs_namespace           = false
-            azure_service_bus_namespace          = false
-            azure_iot_hub                        = false
+            azure_purview_account                = false
+            azure_purview_studio                 = false
             azure_relay_namespace                = false
-            azure_event_grid_topic               = false
-            azure_event_grid_domain              = false
-            azure_web_apps_sites                 = false
-            azure_machine_learning_workspace     = false
-            signalr                              = false
-            azure_monitor                        = false
-            cognitive_services_account           = false
-            azure_file_sync                      = false
-            azure_data_factory                   = false
-            azure_data_factory_portal            = false
-            azure_cache_for_redis                = false
+            azure_sql_database_sqlserver         = false
+            azure_synapse_analytics_dev          = false
+            azure_synapse_analytics_sql          = false
+            azure_synapse_studio                 = false
+            azure_web_apps_static_sites          = false
+            microsoft_power_bi                   = false
           }
           private_link_locations                                 = []
           public_dns_zones                                       = []
           private_dns_zones                                      = []
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
           enable_private_dns_zone_virtual_network_link_on_spokes = true
+          virtual_network_resource_ids_to_link                   = []
         }
       }
     }
-
-    location = null
-    tags     = null
-    advanced = null
+    advanced = {
+      custom_settings_by_resource_type = {
+        azurerm_firewall_policy = {
+          connectivity = {
+            (var.primary_location) = {
+              sql_redirect_allowed = false
+            }
+          }
+        }
+      }
+    }
   }
 }

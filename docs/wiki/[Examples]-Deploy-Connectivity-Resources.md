@@ -51,7 +51,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.2"
+      version = ">= 3.19.0"
     }
   }
 }
@@ -70,7 +70,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.2"
+  version = "3.0.0"
 
   providers = {
     azurerm              = azurerm
@@ -125,7 +125,7 @@ The Resource Group `myorg-connectivity-eastus` should be created, and will initi
 ![Deployed Resources](media/examples-deploy-connectivity-rsg.png)
 
 When you explore the configuration, note that `myorg-hub-eastus` is pre-configured with subnets for `GatewaySubnet` and `AzureFirewallSubnet`.
-DDoS Protection Standard should also be disabled to reduce costs, although we recommend you **enable this for production environments**.
+DDoS Network Protection should also be disabled to reduce costs, although we recommend you **enable this for production environments**.
 The location of both the resource group and virtual network is created in the region specified via the `default_location` input variable, which uses the default value of `eastus` in this example.
 These settings can all be changed if needed!
 

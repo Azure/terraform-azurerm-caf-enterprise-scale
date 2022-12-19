@@ -6,12 +6,10 @@ locals {
         enabled = true
         config = {
           retention_in_days                                 = 60
-          enable_monitoring_for_arc                         = false
           enable_monitoring_for_vm                          = true
           enable_monitoring_for_vmss                        = true
           enable_solution_for_agent_health_assessment       = true
           enable_solution_for_anti_malware                  = false
-          enable_solution_for_azure_activity                = true
           enable_solution_for_change_tracking               = true
           enable_solution_for_service_map                   = true
           enable_solution_for_sql_assessment                = false

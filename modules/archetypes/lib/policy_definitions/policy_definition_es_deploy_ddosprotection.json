@@ -6,11 +6,17 @@
   "properties": {
     "policyType": "Custom",
     "mode": "All",
-    "displayName": "Deploy an Azure DDoS Protection Standard plan",
-    "description": "Deploys an Azure DDoS Protection Standard plan",
+    "displayName": "Deploy an Azure DDoS Network Protection",
+    "description": "Deploys an Azure DDoS Network Protection",
     "metadata": {
-      "version": "1.0.0",
-      "category": "Network"
+      "version": "1.0.1",
+      "category": "Network",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
     },
     "parameters": {
       "ddosName": {

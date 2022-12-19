@@ -34,18 +34,16 @@ function Get-RandomId {
 
 ########################################
 # Terraform Versions
-# - Base Version: "0.15.1"
+# - Base Version: "1.3.1"
 # - Latest Versions:
-#     1.0.*  (latest 1)
-#     1.1.*  (latest 1)
+#     1.3.*  (latest 1)
 ########################################
 
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
-$terraformVersions = @("0.15.1")
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.0.\d{1,2}(?!-)" } | Select-Object -First 1
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.1.\d{1,2}(?!-)" } | Select-Object -First 1
+$terraformVersions = @("1.3.1")
+$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1.3.\d{1,2}(?!-)" } | Select-Object -First 1
 
 $terraformVersions = $terraformVersions | Sort-Object
 
@@ -53,11 +51,11 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (3.0.2)
+# - Base Version: (3.19.0)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "3.0.2"
+$azurermProviderVersionBase = "3.19.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################

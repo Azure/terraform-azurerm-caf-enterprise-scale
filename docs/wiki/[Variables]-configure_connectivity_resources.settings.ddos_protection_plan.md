@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**configure_connectivity_resources.settings.ddos_protection_plan**](#overview) `object({})` [*see validation for detailed type*](#Validation) (optional)
+[**configure_connectivity_resources.settings.ddos_protection_plan**](#overview) `object({})` [*see validation for detailed type*](#validation) (optional)
 
 The `configure_connectivity_resources.settings.ddos_protection_plan` object provides configuration settings to control creation of DDoS resources in the target location.
 
@@ -21,12 +21,12 @@ ddos_protection_plan = {
 Validation provided by schema:
 
 ```hcl
-object({
-  enabled = bool
-  config = object({
-    location = string
-  })
-})
+optional(object({
+  enabled = optional(bool, false)
+  config = optional(object({
+    location = optional(string, "")
+  }), {})
+}), {})
 ```
 
 ## Usage
@@ -55,7 +55,5 @@ By default, leaving an empty value in the `location` field will deploy the DDoS 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."
 
 [wiki_hub_networks_link_to_ddos_protection_plan]: %5BVariables%5D-configure_connectivity_resources.settings.hub_networks#configlinktoddosprotectionplan "Wiki - configure_connectivity_resources settings hub_networks config link_to_ddos_protection_plan"

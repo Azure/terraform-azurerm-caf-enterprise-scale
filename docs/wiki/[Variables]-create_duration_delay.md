@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**create_duration_delay**](#overview) `map(string)` (optional)
+[**create_duration_delay**](#overview) [*see validation for type*](#validation) (optional)
 
 Sets a custom delay period after creation of the specified resource type. Used to tune `terraform apply` when faced with errors caused by API caching or eventual consistency.
 
@@ -19,6 +19,19 @@ Sets a custom delay period after creation of the specified resource type. Used t
 ```
 
 ## Validation
+
+Validation provided by schema:
+
+```hcl
+object({
+  azurerm_management_group      = optional(string, "30s")
+  azurerm_policy_assignment     = optional(string, "30s")
+  azurerm_policy_definition     = optional(string, "30s")
+  azurerm_policy_set_definition = optional(string, "30s")
+  azurerm_role_assignment       = optional(string, "0s")
+  azurerm_role_definition       = optional(string, "60s")
+})
+```
 
 Each `create_duration_delay` value must be a string containing the duration in numbers (1-6 digits) followed by the measure of time represented by s (seconds), m (minutes), or h (hours), matching the following RegEx:
 
@@ -44,5 +57,3 @@ Change the delay period of the specified resource type.
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
-
-[this_page]: # "Link for the current page."

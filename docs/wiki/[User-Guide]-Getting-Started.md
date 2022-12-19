@@ -3,9 +3,9 @@
 
 Before getting started with this module, please take note of the following considerations:
 
-1. This module requires a minimum `azurerm` provider version of `3.0.2`.
+1. This module requires a minimum `azurerm` provider version of `3.19.0`.
 
-1. This module requires a minimum Terraform version `0.15.1`.
+1. This module requires a minimum Terraform version `1.3.1`.
 
     > **NOTE:** New releases of the module may contain features which require the minimum supported versions to be increased, but changes will be clearly documented in the release notes, user guide, and readme.
 
@@ -73,7 +73,7 @@ Copy and paste the following 'module' block into your Terraform configuration, i
 ```hcl
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "2.1.2"
+  version = "3.0.0"
 
   providers = {
     azurerm              = azurerm
