@@ -934,7 +934,7 @@ locals {
         dns_servers                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
         private_ip_ranges           = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_list)
-        threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, "Alert")
+        threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, coalesce(hub_network.config.azure_firewall.config.threat_intelligence_mode, "Alert"))
         virtual_hub                 = local.empty_list
         zones                       = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
         tags                        = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
