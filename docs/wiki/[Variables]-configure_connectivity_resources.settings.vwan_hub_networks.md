@@ -91,16 +91,16 @@ object({
           object({
             asn         = number
             peer_weight = number
-            instance_0_bgp_peering_address = list(
+            instance_0_bgp_peering_address = optional(list(
               object({
                 custom_ips = list(string)
               })
-            )
-            instance_1_bgp_peering_address = list(
+            ), [])
+            instance_1_bgp_peering_address = optional(list(
               object({
                 custom_ips = list(string)
               })
-            )
+            ), [])
           })
         ), [])
         routing_preference = optional(string, "Microsoft Network")
@@ -112,10 +112,10 @@ object({
       config = optional(object({
         enable_dns_proxy              = optional(bool, true)
         dns_servers                   = optional(list(string), [])
-        sku_tier                      = optional(string, "")
+        sku_tier                      = optional(string, "Standard")
         base_policy_id                = optional(string, "")
         private_ip_ranges             = optional(list(string), [])
-        threat_intelligence_mode      = optional(string, "")
+        threat_intelligence_mode      = optional(string, "Alert")
         threat_intelligence_allowlist = optional(list(string), [])
         availability_zones = optional(object({
           zone_1 = optional(bool, true)
