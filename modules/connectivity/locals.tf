@@ -22,6 +22,7 @@ locals {
   resource_suffix                           = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
   existing_ddos_protection_plan_resource_id = var.existing_ddos_protection_plan_resource_id
   existing_virtual_wan_resource_id          = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
+  existing_virtual_wan_resource_group_name  = var.existing_virtual_wan_resource_group_name != null ? var.existing_virtual_wan_resource_group_name : local.empty_string
   resource_group_per_virtual_hub_location   = var.resource_group_per_virtual_hub_location
   custom_azure_backup_geo_codes             = var.custom_azure_backup_geo_codes
   custom_settings                           = var.custom_settings_by_resource_type
@@ -129,6 +130,7 @@ locals {
       for location in local.virtual_wan_locations :
       location =>
       local.enabled &&
+      local.existing_virtual_wan_resource_group_name == local.empty_string &&
       anytrue(concat(
         values(local.virtual_hubs_by_location_for_managed_virtual_wan).*.enabled,
         values(local.virtual_hubs_by_location_for_shared_resource_group).*.enabled,
@@ -280,8 +282,11 @@ locals {
     virtual_wan = {
       for location in local.virtual_wan_locations :
       location =>
-      try(local.custom_settings.azurerm_resource_group["virtual_wan"][location].name,
-      "${local.resource_prefix}-connectivity${local.resource_suffix}")
+      coalesce(
+        try(local.custom_settings.azurerm_resource_group["virtual_wan"][location].name, null),
+        local.existing_virtual_wan_resource_group_name,
+        "${local.resource_prefix}-connectivity${local.resource_suffix}"
+      )
     }
     ddos = {
       (local.ddos_location) = try(local.custom_settings.azurerm_resource_group["ddos"][local.ddos_location].name,
