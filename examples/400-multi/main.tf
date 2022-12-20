@@ -39,7 +39,6 @@ module "connectivity" {
   enable_ddos_protection       = var.enable_ddos_protection
   primary_location             = var.primary_location
   root_id                      = var.root_id
-  root_name                    = var.root_name
   secondary_location           = var.secondary_location
   subscription_id_connectivity = local.subscription_id_connectivity
 }
@@ -52,7 +51,6 @@ module "management" {
   management_resources_tags  = var.management_resources_tags
   primary_location           = var.primary_location
   root_id                    = var.root_id
-  root_name                  = var.root_name
   secondary_location         = var.secondary_location
   subscription_id_management = local.subscription_id_management
 }
