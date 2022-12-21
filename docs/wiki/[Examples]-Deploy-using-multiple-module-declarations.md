@@ -643,6 +643,16 @@ variable "subscription_id_management" {
   description = "Subscription ID to use for \"management\" resources."
 }
 
+variable "configure_connectivity_resources" {
+  type        = any
+  description = "Configuration settings for \"connectivity\" resources."
+}
+
+variable "configure_management_resources" {
+  type        = any
+  description = "Configuration settings for \"management\" resources."
+}
+
 ```
 
 ### `modules/management/main.tf`
