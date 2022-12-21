@@ -1,107 +1,143 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy your Azure landing zone using multiple declarations of the module.
+This page provides an example of how you could deploy your Azure landing zone using multiple declarations of the module.
 This covers scenarios such as:
 
 | Scenario | Description |
 | :--- | :--- |
-| Delegate responsibility using GitOps | Where an organization wants to use features such as CODEOWNERS to control who can approve changes to code for resources by type. |
+| Delegate responsibility using GitOps | Where an organization wants to use features such as CODEOWNERS to control who can approve changes to code for resources by category. |
 | Split across multiple state files | Due to the number of resources needed to deploy an Azure landing zone, some customers may want to split deployment across multiple state files. |
-| Simplify maintenance | Using multiple files to control the configuration of resources by scope makes it easier to see 
+| Simplify maintenance | Using multiple files to control the configuration of resources by scope makes it easier to understand the relationship to resources being managed by that code. |
 
 > **NOTE:**
 > This approach is very similar to the strategy described in [Deploy Using Module Nesting][wiki_deploy_using_module_nesting].
 
-This example is building on top of existing examples, including:
+This example builds on top of existing examples, including:
 
 - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
 - [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
 - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 ## Example root module
 
-For this example, we recommend splitting the code across the following files (grouped by capability):
+For this example, we recommend splitting the code across the following files (grouped by folder):
 
-- Common
-  - [terraform.tf](#terraformtf)
+- root_module/
+  - [main.tf](#maintf)
   - [variables.tf](#variablestf)
-  - [clients.tf](#clientstf)
-- Core
-  - [main.core.tf](#maincoretf)
-  - [variables.core.tf](#variablescoretf)
-  - [settings.core.tf](#settingscoretf)
-- Connectivity
-  - [main.connectivity.tf](#mainconnectivitytf)
-  - [variables.connectivity.tf](#variablesconnectivitytf)
-  - [settings.connectivity.tf](#settingsconnectivitytf)
-- Management
-  - [main.management.tf](#mainmanagementtf)
-  - [variables.management.tf](#variablesmanagementtf)
-  - [settings.management.tf](#settingsmanagementtf)
+  - modules/
+    - connectivity/
+      - [main.tf](#modulesconnectivitymaintf)
+      - [settings.connectivity.tf](#modulesconnectivitysettingsconnectivitytf)
+      - [variables.tf](#modulesconnectivityvariablestf)
+    - core/
+      - [main.tf](#modulescoremaintf)
+      - [settings.core.tf](#modulescoresettingscoretf)
+      - [settings.core.tf](#modulescoresettingsidentitytf)
+      - [variables.tf](#modulescorevariablestf)
+    - management/
+      - [main.tf](#modulesmanagementmaintf)
+      - [settings.management.tf](#modulesmanagementsettingsmanagementtf)
+      - [variables.tf](#modulesmanagementvariablestf)
 
-In this example we will deploy everything using a single root module.
-This will group all resources into a single Terraform configuration, using a single backend and state.
-To deploy across multiple root modules, simply copy the `Common` files into each root module along with the required capability-specific files.
+> **NOTE:** You can find a copy of the code used in this example in the [examples/400-multi](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/examples/400-multi) folder of the module repository.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 300 resources to be created by the module for this example.
+For simplicity and to show the important concepts, this example will deploy everything using a single root module.
+We have also simplified some of the files used to make the modules easier to understand.
 
-### `terraform.tf`
+The root module acts as an orchestration module, and will group all ALZ module instances into a single Terraform workspace.
+To deploy across multiple Terraform workspaces, simply copy the individual `modules/*` folders and refactor using your preferred approach for linking outputs between Terraform workspaces.
+Be careful to ensure you use consistent inputs across the module instances, as demonstrated in this example.
 
-The `terraform.tf` file is used to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider. For production use, we recommend pinning to a specific version, and not using ranges.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect around 425 resources to be created by this example.
 
-This example is bootstrapped to enable deployment to dedicated subscriptions for connectivity and management resources.
+### `main.tf`
+
+The `main.tf` file is used as an orchestration module, defining references to multiple instances of the Azure landing zones Terraform module for connectivity, management and core resources.
+To simplify the example, it also includes code to set the provider configuration, including pinning to a specific version (or range of versions) for the AzureRM Provider.
+For production use, we recommend pinning to a specific version, and not using ranges.
+
+This example includes logic allowing use of either a single or multiple platform Subscriptions for connectivity and management resources.
+If an identity Subscription is specified, this will be moved to the identity management group but no resources will be deployed to this Subscription.
+
 For more information about using the module with multiple providers, please refer to our guide for [multi-subscription deployments][wiki_provider_configuration_multi].
 
 ```hcl
 # Configure Terraform to set the required AzureRM provider
-# version and features{} block.
+# version and features{} block
 
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.18.0"
+      version = ">= 3.19.0"
     }
   }
 }
 
+# Define the provider configuration
+
 provider "azurerm" {
   features {}
 }
 
-provider "azurerm" {
-  features {}
+# Get the current client configuration from the AzureRM provider
 
-  alias = "connectivity"
-  subscription_id = coalesce(
-    var.subscription_id_connectivity,
-    data.azurerm_client_config.core.subscription_id,
-  )
+data "azurerm_client_config" "current" {}
+
+# Logic to handle 1-3 platform subscriptions as available
+
+locals {
+  subscription_id_connectivity = coalesce(var.subscription_id_connectivity, local.subscription_id_management)
+  subscription_id_identity     = coalesce(var.subscription_id_identity, local.subscription_id_management)
+  subscription_id_management   = coalesce(var.subscription_id_management, data.azurerm_client_config.current.subscription_id)
 }
 
-provider "azurerm" {
-  features {}
+# The following module declarations act to orchestrate the
+# independently defined module instances for core,
+# connectivity and management resources
 
-  alias = "management"
-  subscription_id = coalesce(
-    var.subscription_id_management,
-    data.azurerm_client_config.core.subscription_id,
-  )
+module "connectivity" {
+  source = "./modules/connectivity"
+
+  connectivity_resources_tags  = var.connectivity_resources_tags
+  enable_ddos_protection       = var.enable_ddos_protection
+  primary_location             = var.primary_location
+  root_id                      = var.root_id
+  secondary_location           = var.secondary_location
+  subscription_id_connectivity = local.subscription_id_connectivity
 }
 
-# Get the client configuration from the default AzureRM provider.
-# This is used to populate the root_parent_id variable with the
-# current Tenant ID, used as the ID for the "Tenant Root Group"
-# Management Group.
-# This also acts as a fallback value for the "connectivity" and
-# "management" aliased providers.
+module "management" {
+  source = "./modules/management"
 
-data "azurerm_client_config" "core" {}
+  email_security_contact     = var.email_security_contact
+  log_retention_in_days      = var.log_retention_in_days
+  management_resources_tags  = var.management_resources_tags
+  primary_location           = var.primary_location
+  root_id                    = var.root_id
+  secondary_location         = var.secondary_location
+  subscription_id_management = local.subscription_id_management
+}
+
+module "core" {
+  source = "./modules/core"
+
+  configure_connectivity_resources = module.connectivity.configuration
+  configure_management_resources   = module.management.configuration
+  primary_location                 = var.primary_location
+  root_id                          = var.root_id
+  root_name                        = var.root_name
+  secondary_location               = var.secondary_location
+  subscription_id_connectivity     = local.subscription_id_connectivity
+  subscription_id_identity         = local.subscription_id_identity
+  subscription_id_management       = local.subscription_id_management
+}
 
 ```
 
@@ -114,131 +150,657 @@ Defaults are provided for simplicity, but these should be replaced or over-ridde
 # Use variables to customize the deployment
 
 variable "root_id" {
-  type    = string
-  default = "myorg"
+  type        = string
+  description = "Sets the value used for generating unique resource naming within the module."
+  default     = "myorg"
 }
 
-variable "location" {
-  type    = string
-  default = "eastus"
+variable "root_name" {
+  type        = string
+  description = "Sets the value used for the \"intermediate root\" management group display name."
+  default     = "My Organization"
+}
+
+variable "primary_location" {
+  type        = string
+  description = "Sets the location for \"primary\" resources to be created in."
+  default     = "northeurope"
+}
+
+variable "secondary_location" {
+  type        = string
+  description = "Sets the location for \"secondary\" resources to be created in."
+  default     = "westeurope"
 }
 
 variable "subscription_id_connectivity" {
   type        = string
-  description = "If specified, will be used to configure the connectivity aliased provider and will move the specified subscription into the \"connectivity\" management group."
+  description = "Subscription ID to use for \"connectivity\" resources."
+  default     = ""
+}
+
+variable "subscription_id_identity" {
+  type        = string
+  description = "Subscription ID to use for \"identity\" resources."
   default     = ""
 }
 
 variable "subscription_id_management" {
   type        = string
-  description = "If specified, will be used to configure the management aliased provider and will move the specified subscription into the \"management\" management group."
+  description = "Subscription ID to use for \"management\" resources."
   default     = ""
 }
-```
-
-### `variables.core.tf`
-
-The `variables.core.tf` file is used to declare a couple of example variables which are used to customize deployment of this root module for the core capability.
-Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
-
-```hcl
-# Use variables to customize the deployment
-
-variable "root_name" {
-  type    = string
-  default = "My Organization"
-}
-
-```
-
-### `variables.connectivity.tf`
-
-The `variables.connectivity.tf` file is used to declare a couple of example variables which are used to customize deployment of this root module for the connectivity capability.
-Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
-
-```hcl
-# Use variables to customize the deployment
 
 variable "deploy_connectivity_resources" {
-  type    = bool
-  default = true
+  type        = bool
+  description = "Controls whether to create \"connectivity\" resources."
+  default     = true
 }
 
-variable "connectivity_resources_location" {
-  type    = string
-  default = "uksouth"
+variable "deploy_management_resources" {
+  type        = bool
+  description = "Controls whether to create \"management\" resources."
+  default     = true
+}
+
+variable "email_security_contact" {
+  type        = string
+  description = "Set a custom value for the security contact email address."
+  default     = "test.user@replace_me"
+}
+
+variable "log_retention_in_days" {
+  type        = number
+  description = "Set a custom value for how many days to store logs in the Log Analytics workspace."
+  default     = 60
+}
+
+variable "enable_ddos_protection" {
+  type        = bool
+  description = "Controls whether to create a DDoS Network Protection plan and link to hub virtual networks."
+  default     = true
 }
 
 variable "connectivity_resources_tags" {
   type = map(string)
+  description = "Specify tags to add to \"connectivity\" resources."
   default = {
-    demo_type = "deploy_connectivity_resources_custom"
+    deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
+    demo_type = "Deploy connectivity resources using multiple module declarations"
   }
-}
-
-```
-
-### `variables.management.tf`
-
-The `variables.management.tf` file is used to declare a couple of example variables which are used to customize deployment of this root module for the management capability.
-Defaults are provided for simplicity, but these should be replaced or over-ridden with values suitable for your environment.
-
-```hcl
-# Use variables to customize the deployment
-
-variable "deploy_management_resources" {
-  type    = bool
-  default = true
-}
-
-variable "log_retention_in_days" {
-  type    = number
-  default = 50
-}
-
-variable "security_alerts_email_address" {
-  type    = string
-  default = "my_valid_security_contact@replace_me" # Replace this value with your own email address.
-}
-
-variable "management_resources_location" {
-  type    = string
-  default = "uksouth"
 }
 
 variable "management_resources_tags" {
   type = map(string)
+  description = "Specify tags to add to \"management\" resources."
   default = {
-    demo_type = "deploy_management_resources_custom"
+    deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
+    demo_type = "Deploy management resources using multiple module declarations"
   }
 }
 
 ```
+
+### `modules/connectivity/main.tf`
+
+The `modules/connectivity/main.tf` file contains a customized module declaration to create two hub networks and DNS resources in your connectivity Subscription.
+
+It also includes the necessary Terraform and provider configuration, and an `azurerm_client_config` resource which is used to determine the Tenant ID and Subscription ID values for the context being used to create these resources.
+This is used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_connectivity` input variable.
+
+```hcl
+# Configure Terraform to set the required AzureRM provider
+# version and features{} block
+
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.19.0"
+    }
+  }
+}
+
+# Define the provider configuration
+
+provider "azurerm" {
+  features {}
+
+  subscription_id = var.subscription_id_connectivity
+}
+
+# Get the current client configuration from the AzureRM provider
+
+data "azurerm_client_config" "current" {}
+
+# Declare the Azure landing zones Terraform module
+# and provide the connectivity configuration
+
+module "alz" {
+  source  = "Azure/caf-enterprise-scale/azurerm"
+  version = "3.0.0"
+
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  # Base module configuration settings
+  root_parent_id = data.azurerm_client_config.current.tenant_id
+  root_id        = var.root_id
+
+  # Disable creation of the core management group hierarchy
+  # as this is being created by the core module instance
+  deploy_core_landing_zones = false
+
+  # Configuration settings for connectivity resources
+  deploy_connectivity_resources    = true
+  configure_connectivity_resources = local.configure_connectivity_resources
+  subscription_id_connectivity     = var.subscription_id_connectivity
+
+}
+
+# Output a copy of configure_connectivity_resources for use
+# by the core module instance
+
+output "configuration" {
+  description = "Configuration settings for the \"connectivity\" resources."
+  value       = local.configure_connectivity_resources
+}
+
+```
+
+> **NOTE:** The `configuration` output is an important part of this example, as this is used to ensure the same values used to configure the connectivity resources is shared with the core module instance.
+> This ensures that managed parameters for policies deployed by the core module instance are configured with values correctly reflecting the resources deployed by this module instance.
+
+### `modules/connectivity/settings.connectivity.tf`
+
+The `modules/connectivity/settings.connectivity.tf` file is used to specify the configuration used for creating the required connectivity resources.
+
+This is used as an input to the connectivity module instance, but is also shared with the core module instance to ensure consistent configuration between resources and policies.
+
+```hcl
+# Configure custom connectivity resources settings
+locals {
+  configure_connectivity_resources = {
+    settings = {
+      # Create two hub networks with hub mesh peering enabled
+      # and link to DDoS protection plan if created
+      hub_networks = [
+        {
+          config = {
+            address_space                   = ["10.100.0.0/22", ]
+            location                        = var.primary_location
+            link_to_ddos_protection_plan    = var.enable_ddos_protection
+            enable_hub_network_mesh_peering = true
+          }
+        },
+        {
+          config = {
+            address_space                   = ["10.101.0.0/22", ]
+            location                        = var.secondary_location
+            link_to_ddos_protection_plan    = var.enable_ddos_protection
+            enable_hub_network_mesh_peering = true
+          }
+        },
+      ]
+      # Do not create an Virtual WAN resources
+      vwan_hub_networks = []
+      # Enable DDoS protection plan in the primary location
+      ddos_protection_plan = {
+        enabled = var.enable_ddos_protection
+      }
+      # DNS will be deployed with default settings
+      dns = {}
+    }
+    # Set the default location
+    location = var.primary_location
+    # Create a custom tags input
+    tags = var.connectivity_resources_tags
+  }
+}
+
+```
+
+### `modules/connectivity/variables.tf`
+
+The `modules/connectivity/variables.tf` file is used to declare a number of variables needed to configure this module.
+These are populated from the orchestration module, so no default values are specified.
+
+> **NOTE:** If using these modules without the orchestration module, you must either add a `defaultValue` for each variable, or specify each of these when running `terraform plan`.
+
+```hcl
+variable "root_id" {
+  type = string
+}
+
+variable "primary_location" {
+  type = string
+}
+
+variable "secondary_location" {
+  type = string
+}
+
+variable "subscription_id_connectivity" {
+  type = string
+}
+
+variable "enable_ddos_protection" {
+  type = bool
+}
+
+variable "connectivity_resources_tags" {
+  type = map(string)
+}
+
+```
+
+### `modules/core/lib/archetype_definition_customer_online.json`
+
+The `modules/core/lib/archetype_definition_customer_online.json` file is used to .
+
+```json
+{
+  "customer_online": {
+    "policy_assignments": [
+      "Deny-Resource-Locations",
+      "Deny-RSG-Locations"
+    ],
+    "policy_definitions": [],
+    "policy_set_definitions": [],
+    "role_definitions": [],
+    "archetype_config": {
+      "parameters": {
+        "Deny-Resource-Locations": {
+          "listOfAllowedLocations": [
+            "eastus",
+            "eastus2",
+            "westus",
+            "northcentralus",
+            "southcentralus"
+          ]
+        },
+        "Deny-RSG-Locations": {
+          "listOfAllowedLocations": [
+            "eastus",
+            "eastus2",
+            "westus",
+            "northcentralus",
+            "southcentralus"
+          ]
+        }
+      },
+      "access_control": {}
+    }
+  }
+}
+```
+
+### `modules/core/main.tf`
+
+The `modules/core/main.tf` file contains a customized module declaration to create the management group hierarchy and associated policies.
+
+It also includes the necessary Terraform and provider configuration, and an `azurerm_client_config` resource which is used to determine the Tenant ID and Subscription ID values for the context being used to create these resources.
+This is used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_xxxxx` input variables.
+
+```hcl
+# Configure Terraform to set the required AzureRM provider
+# version and features{} block.
+
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.19.0"
+    }
+  }
+}
+
+# Define the provider configuration
+
+provider "azurerm" {
+  features {}
+}
+
+# Get the current client configuration from the AzureRM provider.
+
+data "azurerm_client_config" "current" {}
+
+# Declare the Azure landing zones Terraform module
+# and provide the core configuration.
+
+module "alz" {
+  source  = "Azure/caf-enterprise-scale/azurerm"
+  version = "3.0.0"
+
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  # Base module configuration settings
+  root_parent_id = data.azurerm_client_config.current.tenant_id
+  root_id        = var.root_id
+  root_name      = var.root_name
+  library_path   = "${path.module}/lib"
+
+  # Enable creation of the core management group hierarchy
+  # and additional custom_landing_zones
+  deploy_core_landing_zones = true
+  custom_landing_zones      = local.custom_landing_zones
+
+  # Configuration settings for identity resources is
+  # bundled with core as no resources are actually created
+  # for the identity subscription
+  deploy_identity_resources    = true
+  configure_identity_resources = local.configure_identity_resources
+  subscription_id_identity     = var.subscription_id_identity
+
+  # The following inputs ensure that managed parameters are
+  # configured correctly for policies relating to connectivity
+  # resources created by the connectivity module instance and
+  # to map the subscription to the correct management group,
+  # but no resources are created by this module instance
+  deploy_connectivity_resources    = false
+  configure_connectivity_resources = var.configure_connectivity_resources
+  subscription_id_connectivity     = var.subscription_id_connectivity
+
+  # The following inputs ensure that managed parameters are
+  # configured correctly for policies relating to management
+  # resources created by the management module instance and
+  # to map the subscription to the correct management group,
+  # but no resources are created by this module instance
+  deploy_management_resources    = false
+  configure_management_resources = var.configure_management_resources
+  subscription_id_management     = var.subscription_id_management
+
+}
+
+```
+
+### `modules/core/settings.core.tf`
+
+The `modules/core/settings.core.tf` file is used to specify the configuration used for creating the required core resources.
+
+This is used as an input to the core module instance only, defining which additional management groups to create and to demonstrate some simple custom archetype configuration options.
+
+```hcl
+# Configure the custom landing zones to deploy in
+# addition to the core resource hierarchy
+locals {
+  custom_landing_zones = {
+    "${var.root_id}-online-example-1" = {
+      display_name               = "${upper(var.root_id)} Online Example 1"
+      parent_management_group_id = "${var.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "customer_online"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    "${var.root_id}-online-example-2" = {
+      display_name               = "${upper(var.root_id)} Online Example 2"
+      parent_management_group_id = "${var.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id = "customer_online"
+        parameters = {
+          Deny-Resource-Locations = {
+            listOfAllowedLocations = [
+              var.primary_location,
+              var.secondary_location,
+            ]
+          }
+          Deny-RSG-Locations = {
+            listOfAllowedLocations = [
+              var.primary_location,
+              var.secondary_location,
+            ]
+          }
+        }
+        access_control = {}
+      }
+    }
+  }
+}
+
+```
+
+### `modules/core/settings.identity.tf`
+
+The `modules/core/settings.identity.tf` file is used to specify the configuration used for configuring policies relating to the identity resources.
+
+In this example we are setting the `Deny-Subnet-Without-Nsg` policy assignment `enforcementMode` to `DoNotEnforce`.
+
+```hcl
+# Configure custom identity resources settings
+locals {
+  configure_identity_resources = {
+    settings = {
+      identity = {
+        config = {
+          # Disable this policy as can conflict with Terraform
+          enable_deny_subnet_without_nsg = false
+        }
+      }
+    }
+  }
+}
+
+```
+
+### `modules/core/variables.tf`
+
+The `modules/core/variables.tf` file is used to declare a number of variables needed to configure this module.
+These are populated from the orchestration module, so no default values are specified.
+
+> **NOTE:** If using these modules without the orchestration module, you must either add a `defaultValue` for each variable, or specify each of these when running `terraform plan`.
+
+```hcl
+variable "root_id" {
+  type = string
+}
+
+variable "root_name" {
+  type = string
+}
+
+variable "primary_location" {
+  type = string
+}
+
+variable "secondary_location" {
+  type = string
+}
+
+variable "subscription_id_connectivity" {
+  type = string
+}
+
+variable "subscription_id_identity" {
+  type = string
+}
+
+variable "subscription_id_management" {
+  type = string
+}
+
+variable "configure_connectivity_resources" {
+  type = any
+}
+
+variable "configure_management_resources" {
+  type = any
+}
+
+```
+
+### `modules/management/main.tf`
+
+The `modules/management/main.tf` file contains a customized module declaration to the Log Analytics workspace, Automation Account and Azure Monitor solutions in your management Subscription.
+
+It also includes the necessary Terraform and provider configuration, and an `azurerm_client_config` resource which is used to determine the Tenant ID and Subscription ID values for the context being used to create these resources.
+This is used to ensure the deployment will target your `Tenant Root Group` by default, and to populate the `subscription_id_management` input variable.
+
+```hcl
+# Configure Terraform to set the required AzureRM provider
+# version and features{} block
+
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.19.0"
+    }
+  }
+}
+
+# Define the provider configuration
+
+provider "azurerm" {
+  features {}
+
+  subscription_id = var.subscription_id_management
+}
+
+# Get the current client configuration from the AzureRM provider
+
+data "azurerm_client_config" "current" {}
+
+# Declare the Azure landing zones Terraform module
+# and provide the connectivity configuration.
+
+module "alz" {
+  source  = "Azure/caf-enterprise-scale/azurerm"
+  version = "3.0.0"
+
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  # Base module configuration settings
+  root_parent_id = data.azurerm_client_config.current.tenant_id
+  root_id        = var.root_id
+
+  # Disable creation of the core management group hierarchy
+  # as this is being created by the core module instance
+  deploy_core_landing_zones = false
+
+  # Configuration settings for management resources
+  deploy_management_resources    = true
+  configure_management_resources = local.configure_management_resources
+  subscription_id_management     = var.subscription_id_management
+
+}
+
+# Output a copy of configure_management_resources for use
+# by the core module instance
+
+output "configuration" {
+  description = "Configuration settings for the \"management\" resources."
+  value       = local.configure_management_resources
+}
+
+```
+
+> **NOTE:** The `configuration` output is an important part of this example, as this is used to ensure the same values used to configure the management resources is shared with the core module instance.
+> This ensures that managed parameters for policies deployed by the core module instance are configured with values correctly reflecting the resources deployed by this module instance.
+
+### `modules/management/settings.management.tf`
+
+The `modules/management/settings.management.tf` file is used to specify the configuration used for creating the required management resources.
+
+This is used as an input to the management module instance, but is also shared with the core module instance to ensure consistent configuration between resources and policies.
+
+```hcl
+# Configure custom management resources settings
+locals {
+  configure_management_resources = {
+    settings = {
+      log_analytics = {
+        config = {
+          # Set a custom number of days to retain logs
+          retention_in_days = var.log_retention_in_days
+        }
+      }
+      security_center = {
+        config = {
+          # Configure a valid security contact email address
+          email_security_contact = var.email_security_contact
+        }
+      }
+    }
+    # Set the default location
+    location = var.primary_location
+    # Create a custom tags input
+    tags = var.management_resources_tags
+  }
+}
+
+```
+
+### `modules/management/variables.tf`
+
+The `modules/management/variables.tf` file is used to declare a number of variables needed to configure this module.
+These are populated from the orchestration module, so no default values are specified.
+
+> **NOTE:** If using these modules without the orchestration module, you must either add a `defaultValue` for each variable, or specify each of these when running `terraform plan`.
+
+```hcl
+variable "root_id" {
+  type = string
+}
+
+variable "primary_location" {
+  type = string
+}
+
+variable "secondary_location" {
+  type = string
+}
+
+variable "subscription_id_management" {
+  type = string
+}
+
+variable "email_security_contact" {
+  type = string
+}
+
+variable "log_retention_in_days" {
+  type = number
+}
+
+variable "management_resources_tags" {
+  type = map(string)
+}
+
+```
+
+## Next steps
+
+Consider how else you might further sub-divide your deployment.
+For example, it's actually possible to implement a single hub per instance and still integrate them for peering.
+You can also deploy DNS resources independently, whilst maintaining the ability to link the DNS zones to the hub virtual networks (and spokes).
+
+To learn more about module configuration using input variables, please refer to the [Module Variables][wiki_module_variables] documentation.
+
+Looking for further inspiration? Why not try some of our other [examples][wiki_examples]?
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_provider_configuration]:                             %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
-[wiki_provider_configuration_multi]:                       %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi Subscription Deployment"
-[wiki_archetype_definitions]:                              %5BUser-Guide%5D-Archetype-Definitions "Wiki - Archetype Definitions"
-[wiki_core_resources]:                                     %5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
-
-[wiki_examples]:                                           Examples "Wiki - Examples"
-[wiki_deploy_default_configuration]:                       %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
-[wiki_deploy_demo_landing_zone_archetypes]:                %5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy Demo Landing Zone Archetypes"
-[wiki_deploy_custom_landing_zone_archetypes]:              %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
-[wiki_deploy_management_resources]:                        %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
-[wiki_deploy_management_resources_custom]:                 %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
-[wiki_deploy_connectivity_resources]:                      %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]:               %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
-[wiki_deploy_virtual_wan_resources]:                       %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
-[wiki_deploy_virtual_wan_resources_custom]:                %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
-[wiki_deploy_identity_resources]:                          %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
-[wiki_deploy_identity_resources_custom]:                   %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
-[wiki_deploy_using_module_nesting]:                        %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
-[wiki_expand_built_in_archetype_definitions]:              %5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
-[wiki_override_module_role_assignments]:                   %5BExamples%5D-Override-Module-Role-Assignments "Wiki - Override Module Role Assignments"
-[wiki_create_custom_policies_policy_sets_and_assignments]: %5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
-[wiki_assign_a_built_in_policy]:                           %5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a Built-in Policy"
-[wiki_create_and_assign_custom_rbac_roles]:                %5BExamples%5D-Create-and-Assign-Custom-RBAC-Roles "Wiki - Create and Assign Custom RBAC Roles"
+[wiki_deploy_connectivity_resources_custom]:  %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
+[wiki_deploy_custom_landing_zone_archetypes]: %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
+[wiki_deploy_management_resources_custom]:    %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
+[wiki_deploy_using_module_nesting]:           %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
+[wiki_examples]:                              Examples "Wiki - Examples"
+[wiki_module_variables]:                      %5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
+[wiki_provider_configuration_multi]:          %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi Subscription Deployment"
