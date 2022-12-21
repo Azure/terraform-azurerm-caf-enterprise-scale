@@ -10,11 +10,6 @@ variable "primary_location" {
   description = "Sets the location for \"primary\" resources to be created in."
 }
 
-variable "secondary_location" {
-  type        = string
-  description = "Sets the location for \"secondary\" resources to be created in."
-}
-
 variable "subscription_id_management" {
   type        = string
   description = "Subscription ID to use for \"management\" resources."
