@@ -38,6 +38,8 @@
     - [Create custom policies, initiatives and assignments][wiki_create_custom_policies_policy_sets_and_assignments]
     - [Override module role assignments][wiki_override_module_role_assignments]
     - [Deploy using module nesting][wiki_deploy_using_module_nesting]
+  - [Level 400][wiki_examples_level_400]
+    - [Deploy Using Multiple Module Declarations][wiki_deploy_using_multiple_module_declarations]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
 - [Contributing][wiki_contributing]
@@ -64,9 +66,10 @@
 [wiki_connectivity_resources]:                             %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity resources"
 [wiki_identity_resources]:                                 %5BUser-Guide%5D-Identity-Resources "Wiki - Identity resources"
 [wiki_examples]:                                           Examples "Wiki - Examples"
-[wiki_examples_level_100]:                                 Examples#basic-level-100 "Wiki - Examples"
-[wiki_examples_level_200]:                                 Examples#intermediate-level-200 "Wiki - Examples"
-[wiki_examples_level_300]:                                 Examples#advanced-level-300 "Wiki - Examples"
+[wiki_examples_level_100]:                                 Examples#basic-level-100 "Wiki - Examples - Basic (Level 100)"
+[wiki_examples_level_200]:                                 Examples#intermediate-level-200 "Wiki - Examples - Intermediate (Level 200)"
+[wiki_examples_level_300]:                                 Examples#advanced-level-300 "Wiki - Examples - Advanced (Level 300)"
+[wiki_examples_level_400]:                                 Examples#advanced-level-400 "Wiki - Examples - Expert (Level 400)"
 [wiki_deploy_default_configuration]:                       %5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy default configuration"
 [wiki_deploy_demo_landing_zone_archetypes]:                %5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy demo landing zone archetypes"
 [wiki_deploy_custom_landing_zone_archetypes]:              %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy custom landing zone archetypes"
@@ -79,6 +82,7 @@
 [wiki_deploy_identity_resources]:                          %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy identity resources"
 [wiki_deploy_identity_resources_custom]:                   %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy identity resources with custom settings"
 [wiki_deploy_using_module_nesting]:                        %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy using module nesting"
+[wiki_deploy_using_multiple_module_declarations]:          %5BExamples%5D-Deploy-Using-Multiple-Module-Declarations "Wiki - Deploy Using Multiple Module Declarations"
 [wiki_frequently_asked_questions]:                         Frequently-Asked-Questions "Wiki - Frequently Asked Questions"
 [wiki_troubleshooting]:                                    Troubleshooting "Wiki - Troubleshooting"
 [wiki_contributing]:                                       Contributing "Wiki - Contributing"
