@@ -822,6 +822,8 @@ variable "management_resources_tags" {
 
 ## Next steps
 
+Review the deployed resources to see how this compares to the examples we based this on as (listed [above](#overview)).
+
 Consider how else you might further sub-divide your deployment.
 For example, it's actually possible to implement a single hub per instance and still integrate them for peering.
 You can also deploy DNS resources independently, whilst maintaining the ability to link the DNS zones to the hub virtual networks (and spokes).
