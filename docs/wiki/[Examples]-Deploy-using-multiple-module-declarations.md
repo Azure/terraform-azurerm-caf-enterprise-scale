@@ -16,7 +16,7 @@ This covers scenarios such as:
 This example builds on top of existing examples, including:
 
 - [Deploy Custom Landing Zone Archetypes][wiki_deploy_custom_landing_zone_archetypes]
-- [Deploy Connectivity Resources With Custom Settings][wiki_deploy_connectivity_resources_custom]
+- [Deploy connectivity resources with custom settings][wiki_deploy_connectivity_resources_custom]
 - [Deploy Management Resources With Custom Settings][wiki_deploy_management_resources_custom]
 
 > **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
@@ -797,10 +797,10 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[wiki_deploy_connectivity_resources_custom]:  %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
-[wiki_deploy_custom_landing_zone_archetypes]: %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
-[wiki_deploy_management_resources_custom]:    %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
-[wiki_deploy_using_module_nesting]:           %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy Using Module Nesting"
+[wiki_deploy_connectivity_resources_custom]:  %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Hub and Spoke)"
+[wiki_deploy_custom_landing_zone_archetypes]: %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom landing zone archetypes"
+[wiki_deploy_management_resources_custom]:    %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy management resources with custom settings"
+[wiki_deploy_using_module_nesting]:           %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy using module nesting"
 [wiki_examples]:                              Examples "Wiki - Examples"
-[wiki_module_variables]:                      %5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
-[wiki_provider_configuration_multi]:          %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider Configuration - Multi Subscription Deployment"
+[wiki_module_variables]:                      %5BUser-Guide%5D-Module-Variables "Wiki - Module variables"
+[wiki_provider_configuration_multi]:          %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider configuration - Multi subscription deployment"

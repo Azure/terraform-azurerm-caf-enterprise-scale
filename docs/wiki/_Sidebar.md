@@ -39,7 +39,7 @@
     - [Override module role assignments][wiki_override_module_role_assignments]
     - [Deploy using module nesting][wiki_deploy_using_module_nesting]
   - [Level 400][wiki_examples_level_400]
-    - [Deploy Using Multiple Module Declarations][wiki_deploy_using_multiple_module_declarations]
+    - [Deploy using multiple module declarations][wiki_deploy_using_multiple_module_declarations]
 - [Frequently Asked Questions][wiki_frequently_asked_questions]
 - [Troubleshooting][wiki_troubleshooting]
 - [Contributing][wiki_contributing]
@@ -82,7 +82,7 @@
 [wiki_deploy_identity_resources]:                          %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy identity resources"
 [wiki_deploy_identity_resources_custom]:                   %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy identity resources with custom settings"
 [wiki_deploy_using_module_nesting]:                        %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy using module nesting"
-[wiki_deploy_using_multiple_module_declarations]:          %5BExamples%5D-Deploy-Using-Multiple-Module-Declarations "Wiki - Deploy Using Multiple Module Declarations"
+[wiki_deploy_using_multiple_module_declarations]:          %5BExamples%5D-Deploy-Using-Multiple-Module-Declarations "Wiki - Deploy using multiple module declarations"
 [wiki_frequently_asked_questions]:                         Frequently-Asked-Questions "Wiki - Frequently Asked Questions"
 [wiki_troubleshooting]:                                    Troubleshooting "Wiki - Troubleshooting"
 [wiki_contributing]:                                       Contributing "Wiki - Contributing"
