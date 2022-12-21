@@ -25,6 +25,8 @@ This example builds on top of existing examples, including:
 
 ## Example root module
 
+![Example root module composition](./media/400-multi-module-composition.png)
+
 For this example, we recommend splitting the code across the following files (grouped by folder):
 
 - root_module/
