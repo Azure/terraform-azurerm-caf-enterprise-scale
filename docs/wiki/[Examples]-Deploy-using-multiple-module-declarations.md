@@ -25,9 +25,11 @@ This example builds on top of existing examples, including:
 
 ## Example root module
 
+This example consists of the following modules:
+
 ![Example root module composition](./media/400-multi-module-composition.png)
 
-For this example, we recommend splitting the code across the following files (grouped by folder):
+For this example, we recommend splitting the code across the following files (_grouped by folder for each child module_):
 
 - root_module/
   - [main.tf](#maintf)
@@ -52,7 +54,7 @@ For this example, we recommend splitting the code across the following files (gr
 > **NOTE:** You can find a copy of the code used in this example in the [examples/400-multi](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/examples/400-multi) folder of the module repository.
 
 For simplicity and to show the important concepts, this example will deploy everything using a single root module.
-We have also simplified some of the files used to make the modules easier to understand.
+We have also reduced the number of files used in each module to make the modules easier to understand.
 
 The root module acts as an orchestration module, and will group all ALZ module instances into a single Terraform workspace.
 To deploy across multiple Terraform workspaces, simply copy the individual `modules/*` folders and refactor using your preferred approach for linking outputs between Terraform workspaces.
