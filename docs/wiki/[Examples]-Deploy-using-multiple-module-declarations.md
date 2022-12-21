@@ -56,6 +56,12 @@ The root module acts as an orchestration module, and will group all ALZ module i
 To deploy across multiple Terraform workspaces, simply copy the individual `modules/*` folders and refactor using your preferred approach for linking outputs between Terraform workspaces.
 Be careful to ensure you use consistent inputs across the module instances, as demonstrated in this example.
 
+For more information on linking modules through remote state, see the following resources:
+
+- [remote_state][terraform_remote_state]
+- [The terraform_remote_state Data Source][terraform_remote_state_data_store]
+- [tfe_outputs][terraform_tfe_outputs] (If using Terraform Cloud or Terraform Enterprise)
+
 > **TIP:** The exact number of resources created depends on the module configuration, but you can expect around 425 resources to be created by this example.
 
 ### `main.tf`
@@ -828,6 +834,10 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
+
+[terraform_remote_state]:            https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state "Terraform documentation - remote_state data source"
+[terraform_remote_state_data_store]: https://developer.hashicorp.com/terraform/language/state/remote-state-data "The terraform_remote_state Data Source"
+[terraform_tfe_outputs]:             https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/outputs "Terraform documentation - tfe_outputs data source"
 
 [wiki_deploy_connectivity_resources_custom]:  %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Hub and Spoke)"
 [wiki_deploy_custom_landing_zone_archetypes]: %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom landing zone archetypes"
