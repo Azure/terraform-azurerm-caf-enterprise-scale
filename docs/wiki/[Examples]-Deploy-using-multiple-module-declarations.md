@@ -133,7 +133,6 @@ module "management" {
   management_resources_tags  = var.management_resources_tags
   primary_location           = var.primary_location
   root_id                    = var.root_id
-  secondary_location         = var.secondary_location
   subscription_id_management = local.subscription_id_management
 }
 
