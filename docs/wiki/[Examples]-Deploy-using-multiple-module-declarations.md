@@ -38,7 +38,7 @@ For this example, we recommend splitting the code across the following files (gr
     - core/
       - [main.tf](#modulescoremaintf)
       - [settings.core.tf](#modulescoresettingscoretf)
-      - [settings.core.tf](#modulescoresettingsidentitytf)
+      - [settings.identity.tf](#modulescoresettingsidentitytf)
       - [variables.tf](#modulescorevariablestf)
     - management/
       - [main.tf](#modulesmanagementmaintf)
