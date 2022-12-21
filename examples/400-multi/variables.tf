@@ -42,18 +42,6 @@ variable "subscription_id_management" {
   default     = ""
 }
 
-variable "deploy_connectivity_resources" {
-  type        = bool
-  description = "Controls whether to create \"connectivity\" resources."
-  default     = true
-}
-
-variable "deploy_management_resources" {
-  type        = bool
-  description = "Controls whether to create \"management\" resources."
-  default     = true
-}
-
 variable "email_security_contact" {
   type        = string
   description = "Set a custom value for the security contact email address."
@@ -73,19 +61,19 @@ variable "enable_ddos_protection" {
 }
 
 variable "connectivity_resources_tags" {
-  type = map(string)
+  type        = map(string)
   description = "Specify tags to add to \"connectivity\" resources."
   default = {
     deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
-    demo_type = "Deploy connectivity resources using multiple module declarations"
+    demo_type  = "Deploy connectivity resources using multiple module declarations"
   }
 }
 
 variable "management_resources_tags" {
-  type = map(string)
+  type        = map(string)
   description = "Specify tags to add to \"management\" resources."
   default = {
     deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
-    demo_type = "Deploy management resources using multiple module declarations"
+    demo_type  = "Deploy management resources using multiple module declarations"
   }
 }

@@ -33,6 +33,7 @@ For this example, we recommend splitting the code across the following files (gr
   - modules/
     - connectivity/
       - [main.tf](#modulesconnectivitymaintf)
+      - [outputs.tf](#modulesconnectivityoutputstf)
       - [settings.connectivity.tf](#modulesconnectivitysettingsconnectivitytf)
       - [variables.tf](#modulesconnectivityvariablestf)
     - core/
@@ -42,6 +43,7 @@ For this example, we recommend splitting the code across the following files (gr
       - [variables.tf](#modulescorevariablestf)
     - management/
       - [main.tf](#modulesmanagementmaintf)
+      - [outputs.tf](#modulesmanagementoutputstf)
       - [settings.management.tf](#modulesmanagementsettingsmanagementtf)
       - [variables.tf](#modulesmanagementvariablestf)
 
@@ -191,18 +193,6 @@ variable "subscription_id_management" {
   default     = ""
 }
 
-variable "deploy_connectivity_resources" {
-  type        = bool
-  description = "Controls whether to create \"connectivity\" resources."
-  default     = true
-}
-
-variable "deploy_management_resources" {
-  type        = bool
-  description = "Controls whether to create \"management\" resources."
-  default     = true
-}
-
 variable "email_security_contact" {
   type        = string
   description = "Set a custom value for the security contact email address."
@@ -222,20 +212,20 @@ variable "enable_ddos_protection" {
 }
 
 variable "connectivity_resources_tags" {
-  type = map(string)
+  type        = map(string)
   description = "Specify tags to add to \"connectivity\" resources."
   default = {
     deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
-    demo_type = "Deploy connectivity resources using multiple module declarations"
+    demo_type  = "Deploy connectivity resources using multiple module declarations"
   }
 }
 
 variable "management_resources_tags" {
-  type = map(string)
+  type        = map(string)
   description = "Specify tags to add to \"management\" resources."
   default = {
     deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
-    demo_type = "Deploy management resources using multiple module declarations"
+    demo_type  = "Deploy management resources using multiple module declarations"
   }
 }
 
@@ -301,6 +291,16 @@ module "alz" {
 
 }
 
+```
+
+### `modules/connectivity/outputs.tf`
+
+The `modules/connectivity/outputs.tf` file contains modules outputs used when connecting the module instances together.
+
+The `configuration` output is an important part of this example, as this is used to ensure the same values used to configure the connectivity resources is shared with the core module instance.
+This ensures that managed parameters for policies deployed by the core module instance are configured with values correctly reflecting the resources deployed by this module instance.
+
+```hcl
 # Output a copy of configure_connectivity_resources for use
 # by the core module instance
 
@@ -310,9 +310,6 @@ output "configuration" {
 }
 
 ```
-
-> **NOTE:** The `configuration` output is an important part of this example, as this is used to ensure the same values used to configure the connectivity resources is shared with the core module instance.
-> This ensures that managed parameters for policies deployed by the core module instance are configured with values correctly reflecting the resources deployed by this module instance.
 
 ### `modules/connectivity/settings.connectivity.tf`
 
@@ -371,28 +368,36 @@ These are populated from the orchestration module, so no default values are spec
 > **NOTE:** If using these modules without the orchestration module, you must either add a `defaultValue` for each variable, or specify each of these when running `terraform plan`.
 
 ```hcl
+# Use variables to customize the deployment
+
 variable "root_id" {
-  type = string
+  type        = string
+  description = "Sets the value used for generating unique resource naming within the module."
 }
 
 variable "primary_location" {
-  type = string
+  type        = string
+  description = "Sets the location for \"primary\" resources to be created in."
 }
 
 variable "secondary_location" {
-  type = string
+  type        = string
+  description = "Sets the location for \"secondary\" resources to be created in."
 }
 
 variable "subscription_id_connectivity" {
-  type = string
+  type        = string
+  description = "Subscription ID to use for \"connectivity\" resources."
 }
 
 variable "enable_ddos_protection" {
-  type = bool
+  type        = bool
+  description = "Controls whether to create a DDoS Network Protection plan and link to hub virtual networks."
 }
 
 variable "connectivity_resources_tags" {
-  type = map(string)
+  type        = map(string)
+  description = "Specify tags to add to \"connectivity\" resources."
 }
 
 ```
@@ -601,40 +606,41 @@ These are populated from the orchestration module, so no default values are spec
 > **NOTE:** If using these modules without the orchestration module, you must either add a `defaultValue` for each variable, or specify each of these when running `terraform plan`.
 
 ```hcl
+# Use variables to customize the deployment
+
 variable "root_id" {
-  type = string
+  type        = string
+  description = "Sets the value used for generating unique resource naming within the module."
 }
 
 variable "root_name" {
-  type = string
+  type        = string
+  description = "Sets the value used for the \"intermediate root\" management group display name."
 }
 
 variable "primary_location" {
-  type = string
+  type        = string
+  description = "Sets the location for \"primary\" resources to be created in."
 }
 
 variable "secondary_location" {
-  type = string
+  type        = string
+  description = "Sets the location for \"secondary\" resources to be created in."
 }
 
 variable "subscription_id_connectivity" {
-  type = string
+  type        = string
+  description = "Subscription ID to use for \"connectivity\" resources."
 }
 
 variable "subscription_id_identity" {
-  type = string
+  type        = string
+  description = "Subscription ID to use for \"identity\" resources."
 }
 
 variable "subscription_id_management" {
-  type = string
-}
-
-variable "configure_connectivity_resources" {
-  type = any
-}
-
-variable "configure_management_resources" {
-  type = any
+  type        = string
+  description = "Subscription ID to use for \"management\" resources."
 }
 
 ```
@@ -699,6 +705,16 @@ module "alz" {
 
 }
 
+```
+
+### `modules/management/outputs.tf`
+
+The `modules/management/outputs.tf` file contains modules outputs used when connecting the module instances together.
+
+The `configuration` output is an important part of this example, as this is used to ensure the same values used to configure the management resources is shared with the core module instance.
+This ensures that managed parameters for policies deployed by the core module instance are configured with values correctly reflecting the resources deployed by this module instance.
+
+```hcl
 # Output a copy of configure_management_resources for use
 # by the core module instance
 
@@ -708,9 +724,6 @@ output "configuration" {
 }
 
 ```
-
-> **NOTE:** The `configuration` output is an important part of this example, as this is used to ensure the same values used to configure the management resources is shared with the core module instance.
-> This ensures that managed parameters for policies deployed by the core module instance are configured with values correctly reflecting the resources deployed by this module instance.
 
 ### `modules/management/settings.management.tf`
 
@@ -753,32 +766,41 @@ These are populated from the orchestration module, so no default values are spec
 > **NOTE:** If using these modules without the orchestration module, you must either add a `defaultValue` for each variable, or specify each of these when running `terraform plan`.
 
 ```hcl
+# Use variables to customize the deployment
+
 variable "root_id" {
-  type = string
+  type        = string
+  description = "Sets the value used for generating unique resource naming within the module."
 }
 
 variable "primary_location" {
-  type = string
+  type        = string
+  description = "Sets the location for \"primary\" resources to be created in."
 }
 
 variable "secondary_location" {
-  type = string
+  type        = string
+  description = "Sets the location for \"secondary\" resources to be created in."
 }
 
 variable "subscription_id_management" {
-  type = string
+  type        = string
+  description = "Subscription ID to use for \"management\" resources."
 }
 
 variable "email_security_contact" {
-  type = string
+  type        = string
+  description = "Set a custom value for the security contact email address."
 }
 
 variable "log_retention_in_days" {
-  type = number
+  type        = number
+  description = "Set a custom value for how many days to store logs in the Log Analytics workspace."
 }
 
 variable "management_resources_tags" {
-  type = map(string)
+  type        = map(string)
+  description = "Specify tags to add to \"management\" resources."
 }
 
 ```
