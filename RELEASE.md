@@ -11,6 +11,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Added option to enable `internet_security_enabled` on `azurerm_virtual_hub_connection` resources for secure virtual hubs
 - Added option to specify a list of virtual networks for linking to private DNS zones without association to a hub
 - Added advanced option to specify existing resource group (by name) for Virtual WAN resources[^1]
+- Added Wiki documentation and a working example showing how to segregate deployment of an Azure landing zone across multiple module instances for connectivity, management and core resources
 - Updated `Deploy-Diagnostics-LogAnalytics` policy set definition to use the latest built-in policy definitions for Azure Storage
 - Updated parameters for the `Deploy-ASC-Monitoring` Policy Assignment
 - Updated managed parameters set for the `Deploy-Private-DNS-Zones` Policy Assignment
@@ -34,6 +35,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Fix [#553](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/553) (Remove Activity Log solution from Terraform RI #553)
 - Fix [#544](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/544) (Missing assignment parameter values for "Configure Azure PaaS services to use private DNS zones" #544)
 - Fix [#556](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/556) (Unexpected behaviour: Radius IP required when using AAD for VPN gateway #556)
+- Close [#392](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/392) (Add documentation for deploying across multiple Terraform workspaces (Terraform state file segregation) #392)
 - Close [#499](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/499) (Bug Report Terraform plan fails due to sensitive values in azurerm_automation_account output #499)
 
 ### Breaking changes
