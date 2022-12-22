@@ -1,7 +1,10 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page provides an example of how you could deploy your Azure landing zone using multiple declarations of the module.
+This page provides an example of how you could deploy your Azure landing zone using multiple declarations of the module with an orchestration module to manage deployment within a single Terraform workspace.
+
+If you want to use multiple Terraform workspaces, see our [Deploy using multiple module declarations with remote state][wiki_deploy_using_multiple_module_declarations_with_remote_state] example.
+
 This covers scenarios such as:
 
 | Scenario | Description |
@@ -23,13 +26,13 @@ This example builds on top of existing examples, including:
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-## Example root module
+## Module composition
 
-This example consists of the following modules:
+This example is composed of the following modules in a nested structure:
 
-![Example root module composition](./media/400-multi-module-composition.png)
+![Example root module composition](./media/400-multi-module-orchestration-composition.png)
 
-For this example, we recommend splitting the code across the following files (_grouped by folder for each child module_):
+We recommend splitting the code across the following files (_grouped by folder for each child module_):
 
 - root_module/
   - [main.tf](#maintf)
@@ -51,22 +54,15 @@ For this example, we recommend splitting the code across the following files (_g
       - [settings.management.tf](#modulesmanagementsettingsmanagementtf)
       - [variables.tf](#modulesmanagementvariablestf)
 
-> **NOTE:** You can find a copy of the code used in this example in the [examples/400-multi](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/examples/400-multi) folder of the module repository.
+> **NOTE:** You can find a copy of the code used in this example in the [examples/400-multi-with-orchestration](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/examples/400-multi-with-orchestration) folder of the module repository.
 
-For simplicity and to show the important concepts, this example will deploy everything using a single root module.
+This example will deploy everything using a single root module.
+The root module acts as an orchestration module, and will group all ALZ module instances into a single Terraform workspace.
 We have also reduced the number of files used in each module to make the modules easier to understand.
 
-The root module acts as an orchestration module, and will group all ALZ module instances into a single Terraform workspace.
-To deploy across multiple Terraform workspaces, simply copy the individual `modules/*` folders and refactor using your preferred approach for linking outputs between Terraform workspaces.
-Be careful to ensure you use consistent inputs across the module instances, as demonstrated in this example.
-
-For more information on linking modules through remote state, see the following resources:
-
-- [remote_state][terraform_remote_state]
-- [The terraform_remote_state Data Source][terraform_remote_state_data_store]
-- [tfe_outputs][terraform_tfe_outputs] (If using Terraform Cloud or Terraform Enterprise)
-
 > **TIP:** The exact number of resources created depends on the module configuration, but you can expect around 425 resources to be created by this example.
+
+## Example root module
 
 ### `main.tf`
 
@@ -240,6 +236,8 @@ variable "management_resources_tags" {
 
 ```
 
+## Example connectivity module
+
 ### `modules/connectivity/main.tf`
 
 The `modules/connectivity/main.tf` file contains a customized module declaration to create two hub networks and DNS resources in your connectivity Subscription.
@@ -410,6 +408,8 @@ variable "connectivity_resources_tags" {
 }
 
 ```
+
+## Example core module
 
 ### `modules/core/lib/archetype_definition_customer_online.json`
 
@@ -664,6 +664,8 @@ variable "configure_management_resources" {
 
 ```
 
+## Example management module
+
 ### `modules/management/main.tf`
 
 The `modules/management/main.tf` file contains a customized module declaration to the Log Analytics workspace, Automation Account and Azure Monitor solutions in your management Subscription.
@@ -819,6 +821,19 @@ variable "management_resources_tags" {
 
 ```
 
+## Deploy resources
+
+To simplify deployment, this example is deployed through a single root module.
+
+From the root_module directory, simply run the following commands:
+
+1. Ensure you have a connection correctly configured with permissions to Azure as per the [Module permissions][wiki_module_permissions] documentation
+1. Initialize the Terraform workspace with the command `terraform init`
+1. Generate a plan with the command `terraform plan -out=tfplan`
+1. Review the output of the plan (use the command `terraform show -json ./tfplan` if you want to review the plan as a JSON file)
+1. Start the deployment using the command `terraform apply ./tfplan` and follow the prompts
+1. Once deployment is complete, review the created resources
+
 ## Next steps
 
 Review the deployed resources to see how this compares to the examples we based this on as (listed [above](#overview)).
@@ -835,14 +850,12 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[terraform_remote_state]:            https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state "Terraform documentation - remote_state data source"
-[terraform_remote_state_data_store]: https://developer.hashicorp.com/terraform/language/state/remote-state-data "The terraform_remote_state Data Source"
-[terraform_tfe_outputs]:             https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/outputs "Terraform documentation - tfe_outputs data source"
-
-[wiki_deploy_connectivity_resources_custom]:  %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Hub and Spoke)"
-[wiki_deploy_custom_landing_zone_archetypes]: %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom landing zone archetypes"
-[wiki_deploy_management_resources_custom]:    %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy management resources with custom settings"
-[wiki_deploy_using_module_nesting]:           %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy using module nesting"
-[wiki_examples]:                              Examples "Wiki - Examples"
-[wiki_module_variables]:                      %5BUser-Guide%5D-Module-Variables "Wiki - Module variables"
-[wiki_provider_configuration_multi]:          %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider configuration - Multi subscription deployment"
+[wiki_deploy_connectivity_resources_custom]:                        %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Hub and Spoke)"
+[wiki_deploy_custom_landing_zone_archetypes]:                       %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom landing zone archetypes"
+[wiki_deploy_management_resources_custom]:                          %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy management resources with custom settings"
+[wiki_deploy_using_module_nesting]:                                 %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy using module nesting"
+[wiki_deploy_using_multiple_module_declarations_with_remote_state]: %5BExamples%5D-Deploy-using-module-declarations-with-remote-state "Wiki - Deploy using multiple module declarations with remote state"
+[wiki_examples]:                                                    Examples "Wiki - Examples"
+[wiki_module_permissions]:                                          %5BUser-Guide%5D-Module-Permissions "Wiki - Module permissions"
+[wiki_module_variables]:                                            %5BUser-Guide%5D-Module-Variables "Wiki - Module variables"
+[wiki_provider_configuration_multi]:                                %5BUser-Guide%5D-Provider-Configuration#multi-subscription-deployment "Wiki - Provider configuration - Multi subscription deployment"
