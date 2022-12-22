@@ -13,6 +13,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Added advanced option to specify existing resource group (by name) for Virtual WAN resources[^1]
 - Added Wiki documentation and a working example showing how to segregate deployment of an Azure landing zone across multiple module instances for connectivity, management and core resources
 - Added Wiki documentation for the `custom_policy_roles` input variable
+- Added Wiki documentation for video guides relating to the module
 - Updated `Deploy-Diagnostics-LogAnalytics` policy set definition to use the latest built-in policy definitions for Azure Storage
 - Updated parameters for the `Deploy-ASC-Monitoring` Policy Assignment
 - Updated managed parameters set for the `Deploy-Private-DNS-Zones` Policy Assignment
@@ -39,6 +40,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Close [#176](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/176) (Create Wiki docs page - [Variables] custom_policy_roles #176)
 - Close [#392](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/392) (Add documentation for deploying across multiple Terraform workspaces (Terraform state file segregation) #392)
 - Close [#499](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/499) (Bug Report Terraform plan fails due to sensitive values in azurerm_automation_account output #499)
+- Close [#567](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/567) (Feature Request - Videos to Assist Written Documentation #567)
 
 ### Breaking changes
 
