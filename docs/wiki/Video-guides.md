@@ -1,5 +1,7 @@
-<!-- markdownlint-disable first-line-h1 no-inline-html -->
+<!-- markdownlint-disable first-line-h1 -->
 ## Videos
+
+In addition to the documentation within this guide, please refer to the following videos for further guidance:
 
 - [Azure Enablement Show](#azure-enablement-show)
   - [Introduction to the Azure landing zones Terraform module](#introduction-to-the-azure-landing-zones-terraform-module)
@@ -10,12 +12,12 @@
 
 #### Introduction to the Azure landing zones Terraform module
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PqfIeth62Yg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Introduction to the Azure landing zones Terraform module](http://img.youtube.com/vi/PqfIeth62Yg/0.jpg)](http://www.youtube.com/watch?v=PqfIeth62Yg "Introduction to the Azure landing zones Terraform module")
 
 #### Start to customize the Azure landing zones Terraform module
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vFO_cyolUW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Start to customize the Azure landing zones Terraform module](http://img.youtube.com/vi/vFO_cyolUW0/0.jpg)](http://www.youtube.com/watch?v=vFO_cyolUW0 "Start to customize the Azure landing zones Terraform module")
 
 #### Advanced customization of the Azure landing zones Terraform module
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ct2KHaA7ekI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Advanced customization of the Azure landing zones Terraform module](http://img.youtube.com/vi/ct2KHaA7ekI/0.jpg)](http://www.youtube.com/watch?v=ct2KHaA7ekI "Advanced customization of the Azure landing zones Terraform module")
