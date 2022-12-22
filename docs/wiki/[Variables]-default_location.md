@@ -14,7 +14,7 @@ Please see: [https://azure.microsoft.com/en-gb/global-infrastructure/geographies
 
 None
 
-> Important: The default location must be a valid Azure region.
+> **IMPORTANT:** The default location must be a valid Azure region.
 
 ## Usage
 
@@ -24,7 +24,7 @@ Set the value to your [Azure region][msdocs_azure_geographies] of choice.
   default_location = "uksouth"
 ```
 
-> Tip: Changing this value will cause all location bound resources to be recreated
+> **TIP:** Changing this value will cause all location bound resources to be recreated
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

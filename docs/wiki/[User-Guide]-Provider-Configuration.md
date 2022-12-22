@@ -5,7 +5,7 @@ The [Azure landing zones Terraform module][terraform-registry-caf-enterprise-sca
 
 This change is intended to simplify deployments using a single pipeline to create all resources, as it is no longer necessary to share the configuration inputs across multiple instances of the module to achieve consistency between the resources created, and associated policies.
 
-The module utilises 3 providers in total:
+The module utilizes 3 providers in total:
 
 | Resource category | Provider |
 | ----------------- | -------- |
