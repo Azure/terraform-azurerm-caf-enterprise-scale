@@ -836,7 +836,7 @@ From the root_module directory, simply run the following commands:
 
 ## Next steps
 
-Review the deployed resources to see how this compares to the examples we based this on as (listed [above](#overview)).
+Review the deployed resources to see how this compares to the examples we based this on (as listed [above](#overview)).
 
 Consider how else you might further sub-divide your deployment.
 For example, it's actually possible to implement a single hub per instance and still integrate them for peering.
