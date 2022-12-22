@@ -16,6 +16,7 @@
   - [Management resources][wiki_management_resources]
   - [Connectivity resources][wiki_connectivity_resources]
   - [Identity resources][wiki_identity_resources]
+- [Video guides][wiki_video_guides]
 - [Examples][wiki_examples]
   - [Level 100][wiki_examples_level_100]
     - [Deploy default configuration][wiki_deploy_default_configuration]
@@ -66,6 +67,7 @@
 [wiki_management_resources]:                                         %5BUser-Guide%5D-Management-Resources "Wiki - Management resources"
 [wiki_connectivity_resources]:                                       %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity resources"
 [wiki_identity_resources]:                                           %5BUser-Guide%5D-Identity-Resources "Wiki - Identity resources"
+[wiki_video_guides]:                                                 Video-guides "Wiki - Video guides"
 [wiki_examples]:                                                     Examples "Wiki - Examples"
 [wiki_examples_level_100]:                                           Examples#basic-level-100 "Wiki - Examples - Basic (Level 100)"
 [wiki_examples_level_200]:                                           Examples#intermediate-level-200 "Wiki - Examples - Intermediate (Level 200)"
