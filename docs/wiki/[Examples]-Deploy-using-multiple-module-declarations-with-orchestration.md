@@ -3,6 +3,13 @@
 
 This page provides an example of how you could deploy your Azure landing zone using multiple declarations of the module with an orchestration module to manage deployment within a single Terraform workspace.
 
+When segregating a deployment across multiple module instances, it's important to understand how the module works and what inputs are needed.
+All resources are created based on a data model which uses the configuration inputs to determine certain values.
+These values are then shared across the different child modules to determine which resources to create, and how to configure policies.
+Feature flags such as `deploy_connectivity_resources` are then used to control whether the module actually creates the resources, or just builds the data model for policy.
+As such, it's important to keep consistent inputs across each module instance when separating capabilities across different module instances.
+This is demonstrated in this example by the root (orchestration) module which ensure that the `core` module instance is populated with the same configuration data (by scope) as the `management` and `connectivity` modules instances.
+
 If you want to use multiple Terraform workspaces, see our [Deploy using multiple module declarations with remote state][wiki_deploy_using_multiple_module_declarations_with_remote_state] example.
 
 This covers scenarios such as:
