@@ -14,6 +14,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 - Added Wiki documentation and a working example showing how to segregate deployment of an Azure landing zone across multiple module instances for connectivity, management and core resources
 - Added Wiki documentation for the `custom_policy_roles` input variable
 - Added Wiki documentation for video guides relating to the module
+- Added new settings for `azurerm_log_analytics_workspace` and `azurerm_automation_account` resources (via `advanced` input)
 - Updated `Deploy-Diagnostics-LogAnalytics` policy set definition to use the latest built-in policy definitions for Azure Storage
 - Updated parameters for the `Deploy-ASC-Monitoring` Policy Assignment
 - Updated managed parameters set for the `Deploy-Private-DNS-Zones` Policy Assignment
@@ -30,6 +31,7 @@ The `v3.1.0` release includes a number of updates as listed below. These focus p
 
 - Fix [#482](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/445) (Review and update private DNS zones for private endpoint #482)
 - Fix [#491](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/491) (Feature Request - vwan hub connections - Internet_Security_Enabled should be a variable. #491)
+- Fix [#492](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/492) (Feature Request - configure automation account in management subscription #492)
 - Fix [#528](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/528) (Validate parameters for Azure Security Benchmark in TF deployment #528)
 - Fix [#542](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/542) (Bug Report - enable_private_dns_zone_virtual_network_link_on_hubs = true failing on disabled hub #542)
 - Fix [#549](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/549) (Feature Request: Deploy private dns zones and link them to an existing vnet #549)
