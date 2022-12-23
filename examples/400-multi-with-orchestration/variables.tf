@@ -57,7 +57,7 @@ variable "log_retention_in_days" {
 variable "enable_ddos_protection" {
   type        = bool
   description = "Controls whether to create a DDoS Network Protection plan and link to hub virtual networks."
-  default     = true
+  default     = false
 }
 
 variable "connectivity_resources_tags" {
