@@ -30,7 +30,7 @@ data "azurerm_client_config" "current" {}
 
 module "alz" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
