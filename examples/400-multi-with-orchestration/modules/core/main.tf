@@ -24,8 +24,12 @@ data "azurerm_client_config" "current" {}
 # and provide the core configuration.
 
 module "alz" {
-  source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  # To enable correct testing of our examples, we must source this
+  # module locally. Please remove the local `source = "../../../../"`
+  # and uncomment the remote `source` and `version` below.
+  source = "../../../../"
+  # source  = "Azure/caf-enterprise-scale/azurerm"
+  # version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
