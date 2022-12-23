@@ -20,18 +20,16 @@ resource "azurerm_log_analytics_workspace" "management" {
   resource_group_name = each.value.template.resource_group_name
 
   # Optional resource attributes
-  sku                        = each.value.template.sku
-  retention_in_days          = each.value.template.retention_in_days
-  daily_quota_gb             = each.value.template.daily_quota_gb
-  internet_ingestion_enabled = each.value.template.internet_ingestion_enabled
-  internet_query_enabled     = each.value.template.internet_query_enabled
-  tags                       = each.value.template.tags
+  sku                                = each.value.template.sku
+  retention_in_days                  = each.value.template.retention_in_days
+  daily_quota_gb                     = each.value.template.daily_quota_gb
+  cmk_for_query_forced               = each.value.template.cmk_for_query_forced
+  internet_ingestion_enabled         = each.value.template.internet_ingestion_enabled
+  internet_query_enabled             = each.value.template.internet_query_enabled
+  reservation_capacity_in_gb_per_day = each.value.template.reservation_capacity_in_gb_per_day
+  tags                               = each.value.template.tags
 
-  # Optional resource attributes (removed for backward
-  # compatibility with older azurerm provider versions,
-  # as not currently used by Enterprise-scale)/
-  # Requires version = "~> 2.48.0"
-  # reservation_capcity_in_gb_per_day = each.value.template.reservation_capcity_in_gb_per_day
+  # allow_resource_only_permissions = each.value.template.allow_resource_only_permissions # Available only in v3.36.0 onwards
 
   # Set explicit dependency on Resource Group deployment
   depends_on = [
@@ -84,17 +82,30 @@ resource "azurerm_automation_account" "management" {
   resource_group_name = each.value.template.resource_group_name
 
   # Optional resource attributes
-  sku_name = each.value.template.sku_name
-  tags     = each.value.template.tags
+  sku_name                      = each.value.template.sku_name
+  public_network_access_enabled = each.value.template.public_network_access_enabled
+  local_authentication_enabled  = each.value.template.local_authentication_enabled
+  tags                          = each.value.template.tags
 
   # Dynamic configuration blocks
-  # Identity block
   dynamic "identity" {
     for_each = each.value.template.identity
     content {
+      # Mandatory attributes
       type = identity.value.type
       # Optional attributes
       identity_ids = lookup(identity.value, "identity_ids", null)
+    }
+  }
+
+  dynamic "encryption" {
+    for_each = each.value.template.encryption
+    content {
+      # Mandatory attributes
+      key_vault_key_id = encryption.value["key_vault_key_id"]
+      # Optional attributes
+      user_assigned_identity_id = lookup(encryption.value, "user_assigned_identity_id", null)
+      key_source                = lookup(encryption.value, "key_source", null)
     }
   }
 
