@@ -282,7 +282,7 @@ data "azurerm_client_config" "current" {}
 
 module "alz" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.0"
+  version = "3.1.1"
 
   providers = {
     azurerm              = azurerm
@@ -494,7 +494,7 @@ data "azurerm_client_config" "current" {}
 
 module "alz" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.0"
+  version = "3.1.1"
 
   providers = {
     azurerm              = azurerm
@@ -710,7 +710,7 @@ data "azurerm_client_config" "current" {}
 
 module "alz" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.0"
+  version = "3.1.1"
 
   providers = {
     azurerm              = azurerm
