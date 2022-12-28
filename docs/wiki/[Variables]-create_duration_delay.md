@@ -52,7 +52,7 @@ Change the delay period of the specified resource type.
 }
 ```
 
-> Important: Only supported for the resource type listed in the example above
+> **IMPORTANT:** Only supported for the resource type listed in the example above
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

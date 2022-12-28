@@ -28,7 +28,7 @@ This is for advanced scenarios such as:
   deploy_core_landing_zones = false
 ```
 
-> Important: If changed to _false_ after initial deployment, terraform will destroy all core Enterprise-scale Management Groups and Management Group scoped resources.
+> **IMPORTANT:** If changed to _false_ after initial deployment, terraform will destroy all core Enterprise-scale Management Groups and Management Group scoped resources.
 
 [//]: # "************************"
 [//]: # "INSERT LINK LABELS BELOW"

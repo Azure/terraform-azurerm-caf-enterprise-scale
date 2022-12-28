@@ -25,7 +25,7 @@ We will update the built-in configuration following these steps:
 
 - Enable the role assignment override with `custom_policy_roles`
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -103,7 +103,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -222,7 +222,7 @@ In the subdirectory `policy_assignments` create a `policy_assignment_dsa_policy_
 }
 ```
 
-> IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
+> **IMPORTANT:** Please ensure you create this file in the `/lib` directory within your root module.
 
 ### `lib/archetype_definitions/archetype_definition_customer_online.json`
 

@@ -6,13 +6,13 @@ You can then start to customize your deployment once you've got this up and runn
 
 This is a good starting point when first discovering what resources are created by this module.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
 ## Example root module
 
-> TIP: Although only `root_parent_id` is required, we recommend setting `root_id` and `root_name` to something more meaningful. Changing `root_id` will result in the entire deployment to be re-provisioned.
+> **TIP:** Although only `root_parent_id` is required, we recommend setting `root_id` and `root_name` to something more meaningful. Changing `root_id` will result in the entire deployment to be re-provisioned.
 
 To keep things simple, the root module for this example is based on a single file:
 
@@ -45,7 +45,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -66,7 +66,7 @@ module "enterprise_scale" {
 
 You have successfully created the default Management Group resource hierarchy, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
 
 ## Next steps
 

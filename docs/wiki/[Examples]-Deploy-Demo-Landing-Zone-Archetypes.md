@@ -9,11 +9,11 @@ This page describes how to deploy your Azure landing zone with a starter configu
 
 These demo Landing Zone archetypes provides a good way to learn about archetypes within the Azure landing zone conceptual architecture but should not be used for production workloads.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
-> TIP: What is an archetype?
+> **TIP:** What is an archetype?
 > An archetype defines which Azure Policy and Access control (IAM) settings are needed to secure and configure the Landing Zones with everything needed for safe handover to the Landing Zone owner.
 > The archetype is what fundamentally transforms Management Groups and Subscriptions into Landing Zones.
 
@@ -52,7 +52,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -75,7 +75,7 @@ module "enterprise_scale" {
 
 You have successfully created the default Management Group resource hierarchy including additional Management Groups for demonstrating Landing Zone archetypes, along with the recommended Azure Policy and Access control (IAM) settings for your Azure landing zone.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
 
 ## Next steps
 

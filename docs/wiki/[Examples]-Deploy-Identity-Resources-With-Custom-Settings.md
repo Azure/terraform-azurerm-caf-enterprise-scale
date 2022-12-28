@@ -20,7 +20,7 @@ Unfortunately this is a product limitation, but should have minimal impact due t
 
 If you've already deployed the [Identity resources using default settings][wiki_deploy_identity_resources], you will be able to see the changes made when moving to this configuration.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init -upgrade` if upgrading to a later version of the module.
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init -upgrade` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -33,7 +33,7 @@ To make the code easier to maintain when extending your configuration, we recomm
 - [main.tf](#maintf)
 - [settings.identity.tf](#settingsidentitytf)
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 180 resources to be created by the module for this example.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect upwards of 180 resources to be created by the module for this example.
 
 ### `terraform.tf`
 
@@ -101,7 +101,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm

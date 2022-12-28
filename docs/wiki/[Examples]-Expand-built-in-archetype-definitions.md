@@ -43,7 +43,7 @@ We will update the built-in configuration by adding 2 new settings:
 
 - Create an exclusion `exclude_es_landing_zones` which will **remove** a set of Policy Assignments `Deny-Priv-Escalation-AKS`, `Deny-Priv-Containers-AKS` and `Deny-http-Ingress-AKS`.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module..
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -97,7 +97,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
@@ -120,7 +120,7 @@ module "enterprise_scale" {
 
 - In the file `**/archetype_extension_*.json` add the `extend_` prefix to the name of the desired built-in archetype definition and your custom settings.
 
-> IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
+> **IMPORTANT:** Please ensure you create this file in the `/lib` directory within your root module.
 
 ### `lib/archetype_extension_es_landing_zones.tmpl.json`
 
@@ -159,7 +159,7 @@ In this example, we want to add the policy assignment `"Deny-Resource-Locations"
 
 - In the file `**/archetype_exclusion_*.json` add the `exclude_` prefix to the name of the desired built-in archetype definition and your custom settings.
 
-> IMPORTANT: Please ensure you create this file in the `/lib` directory within your root module.
+> **IMPORTANT:** Please ensure you create this file in the `/lib` directory within your root module.
 
 ### `lib/archetype_exclusion_es_landing_zones.tmpl.json`
 
@@ -196,4 +196,4 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 
 You have successfully expanded the archetype(s) by adding or removing configuration settings from the built-in archetype definitions for your Azure landing zone.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect upwards of 200 resources to be created by this module for a default installation.

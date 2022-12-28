@@ -19,7 +19,7 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 - Enable Azure Defender for various supported services;
 - much more...
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -27,7 +27,7 @@ The module updates the `parameters` and `enforcement_mode` for a number of Polic
 
 To create the Management resources, `deploy_management_resources` must be set to `true`, and the `subscription_id_management` is also required.
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 
 To keep this example simple, the root module for this example is based on a single file:
 
@@ -60,7 +60,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm

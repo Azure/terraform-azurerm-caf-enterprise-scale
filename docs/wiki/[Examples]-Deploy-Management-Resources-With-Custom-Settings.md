@@ -29,7 +29,7 @@ Unfortunately this is a product limitation, but should have minimal impact due t
 
 If location is not specified, the resources will default to the same location set by [`default_location`][default_location] input variable.
 
-> IMPORTANT: Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
+> **IMPORTANT:** Ensure the module version is set to the latest, and don't forget to run `terraform init` if upgrading to a later version of the module.
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 
@@ -42,7 +42,7 @@ To make the code easier to maintain when extending your configuration, we recomm
 - [main.tf](#maintf)
 - [settings.management.tf](#settingsmanagementtf)
 
-> TIP: The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
+> **TIP:** The exact number of resources created depends on the module configuration, but you can expect upwards of 190 resources to be created by the module for this example.
 
 ### `terraform.tf`
 
@@ -132,7 +132,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.0.0"
+  version = "3.1.0"
 
   providers = {
     azurerm              = azurerm
