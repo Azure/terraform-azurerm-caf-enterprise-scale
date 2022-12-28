@@ -13,7 +13,7 @@ The extra code needed to extend your configuration, is the following:
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.0"
+  version = "3.1.1"
 
   providers = {
     azurerm              = azurerm
@@ -135,7 +135,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.0"
+  version = "3.1.1"
 
   providers = {
     azurerm              = azurerm
@@ -184,7 +184,7 @@ module "enterprise_scale" {
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.0"
+  version = "3.1.1"
 
   providers = {
     azurerm              = azurerm
