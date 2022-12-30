@@ -255,8 +255,8 @@ object({
                     ), [])
                     radius_server_address = optional(string, null)
                     radius_server_secret  = optional(string, null)
-                    vpn_client_protocols  = optional(list(string), [])
-                    vpn_auth_types        = optional(list(string), [])
+                    vpn_client_protocols  = optional(list(string), null)
+                    vpn_auth_types        = optional(list(string), null)
                   })
                 ), [])
                 bgp_settings = optional(list(
