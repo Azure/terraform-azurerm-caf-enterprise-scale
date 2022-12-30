@@ -265,8 +265,8 @@ variable "configure_connectivity_resources" {
                       ), [])
                       radius_server_address = optional(string, null)
                       radius_server_secret  = optional(string, null)
-                      vpn_client_protocols  = optional(list(string), [])
-                      vpn_auth_types        = optional(list(string), [])
+                      vpn_client_protocols  = optional(list(string), null)
+                      vpn_auth_types        = optional(list(string), null)
                     })
                   ), [])
                   bgp_settings = optional(list(
@@ -276,7 +276,7 @@ variable "configure_connectivity_resources" {
                       peering_addresses = optional(list(
                         object({
                           ip_configuration_name = optional(string, null)
-                          apipa_addresses       = optional(list(string), [])
+                          apipa_addresses       = optional(list(string), null)
                         })
                       ), [])
                     })

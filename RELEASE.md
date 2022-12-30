@@ -1,16 +1,19 @@
-# [v3.1.1] HOTFIX: Add missing parameter to `Deploy-ASC-SecurityContacts`
+# [v3.1.2] HOTFIX: Update VPN gateway defaults, and DNS logic
 
 ## Overview
 
-The `v3.1.1` release includes an important update to the `Deploy-ASC-SecurityContacts` Policy Definition to enable successful remediation.
+The `v3.1.2` release includes an important update to the default values for `azurerm_virtual_network_gateway` resources.
 
 ### New features
 
-- Added missing `minimalSeverity` parameter to `Deploy-ASC-SecurityContacts` Policy Definition (with `"defaultValue" = "high"`)
+- Added logic to safely handle duplicate DNS zone values provided via the `configure_connectivity_resources.settings.dns.config.public_dns_zones` and `configure_connectivity_resources.settings.dns.config.private_dns_zones` inputs
+- Updated default value for `configure_connectivity_resources.settings.hub_networks.*.config.virtual_network_gateway.config.advanced_vpn_settings.vpn_client_configuration.*.vpn_client_protocols` setting to `null`
+- Updated default value for `configure_connectivity_resources.settings.hub_networks.*.config.virtual_network_gateway.config.advanced_vpn_settings.vpn_client_configuration.*.vpn_auth_types` setting to `null`
+- Updated default value for `configure_connectivity_resources.settings.hub_networks.*.config.virtual_network_gateway.config.advanced_vpn_settings.bgp_settings.*.peering_addresses.*.apipa_addresses` setting to `null`
 
 ### Fixed issues
 
-- External issue [Azure/Enterprise-Scale/issues/1162](https://github.com/Azure/Enterprise-Scale/issues/1162) (Policy definition Deploy-ASC-SecurityContacts missing parameter minimalSeverity in template definition #1162)
+- Fix [577](https://github.com/Azure/Enterprise-Scale/issues/577) (duplicate key on private dns zones when upgrading Bug Report #577)
 
 ### Breaking changes
 
@@ -22,4 +25,4 @@ none
 
 ## For more information
 
-**Full Changelog**: [v3.1.0...v3.1.1](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/compare/v3.1.0...v3.1.1)
+**Full Changelog**: [v3.1.1...v3.1.2](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/compare/v3.1.1...v3.1.2)
