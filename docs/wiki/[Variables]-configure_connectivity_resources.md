@@ -266,7 +266,7 @@ object({
                     peering_addresses = optional(list(
                       object({
                         ip_configuration_name = optional(string, null)
-                        apipa_addresses       = optional(list(string), [])
+                        apipa_addresses       = optional(list(string), null)
                       })
                     ), [])
                   })
