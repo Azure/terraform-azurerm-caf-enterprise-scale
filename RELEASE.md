@@ -1,19 +1,16 @@
-# [v3.1.2] HOTFIX: Update VPN gateway defaults, and DNS logic
+# [v3.2.0] Title TBC
 
 ## Overview
 
-The `v3.1.2` release includes an important update to the default values for `azurerm_virtual_network_gateway` resources.
+The `v3.2.0` release includes ...
 
 ### New features
 
-- Added logic to safely handle duplicate DNS zone values provided via the `configure_connectivity_resources.settings.dns.config.public_dns_zones` and `configure_connectivity_resources.settings.dns.config.private_dns_zones` inputs
-- Updated default value for `configure_connectivity_resources.settings.hub_networks.*.config.virtual_network_gateway.config.advanced_vpn_settings.vpn_client_configuration.*.vpn_client_protocols` setting to `null`
-- Updated default value for `configure_connectivity_resources.settings.hub_networks.*.config.virtual_network_gateway.config.advanced_vpn_settings.vpn_client_configuration.*.vpn_auth_types` setting to `null`
-- Updated default value for `configure_connectivity_resources.settings.hub_networks.*.config.virtual_network_gateway.config.advanced_vpn_settings.bgp_settings.*.peering_addresses.*.apipa_addresses` setting to `null`
+- Updated the `description` field for the `vulnerabilityAssessmentsEmail` parameter on the `Deploy-Sql-vulnerabilityAssessments` policy definition to provide clearer guidance on how to specify multiple email addresses.
 
 ### Fixed issues
 
-- Fix [577](https://github.com/Azure/Enterprise-Scale/issues/577) (duplicate key on private dns zones when upgrading Bug Report #577)
+- Fix [130](https://github.com/Azure/Enterprise-Scale/issues/130) (Deploy-Sql-vulnerabilityAssessments definition vulnerabilityAssessmentsEmail parameter type should be a list #130)
 
 ### Breaking changes
 
@@ -25,4 +22,4 @@ none
 
 ## For more information
 
-**Full Changelog**: [v3.1.1...v3.1.2](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/compare/v3.1.1...v3.1.2)
+**Full Changelog**: [v3.1.2...v3.2.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/compare/v3.1.2...v3.2.0)
