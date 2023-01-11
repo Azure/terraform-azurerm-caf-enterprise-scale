@@ -110,9 +110,10 @@ variable "configure_management_resources" {
         }), {})
       }), {})
     }), {})
-    location = optional(string, "")
-    tags     = optional(any, {})
-    advanced = optional(any, {})
+    location           = optional(string, "")
+    tags               = optional(any, {})
+    diagSettingsforMGs = optional(bool, true)
+    advanced           = optional(any, {})
   })
   description = "If specified, will customize the \"Management\" landing zone settings and resources."
   default = {
@@ -687,7 +688,7 @@ variable "subscription_id_identity" {
 variable "subscription_id_management" {
   type        = string
   description = "If specified, identifies the Platform subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy."
-  default     = ""
+  default     = "de31e3d6-45ca-427d-aeb1-f45398ddff8a"
 
   validation {
     condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_management)) || var.subscription_id_management == ""
