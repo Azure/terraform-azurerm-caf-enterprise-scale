@@ -3,7 +3,7 @@
 
 [**archetype_config_overrides**](#overview) `any` (optional)
 
-If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups.
+If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom_landing_zones' input variable.
 
 ## Default value
 
