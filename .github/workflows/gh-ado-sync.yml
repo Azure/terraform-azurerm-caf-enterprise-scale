@@ -9,7 +9,7 @@ on:
     types: [created]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number }}
+  group: "${{ github.workflow }} [${{ github.event.issue.number || github.event.pull_request.number }}]"
   cancel-in-progress: false
 
 jobs:
@@ -19,6 +19,9 @@ jobs:
     if: github.repository == 'Azure/terraform-azurerm-caf-enterprise-scale'
 
     steps:
+      - name: Show concurrency group
+        run: echo "${{ github.workflow }} [${{ github.event.issue.number || github.event.pull_request.number }}]"
+
       - name: Checkout code
         uses: actions/checkout@v3
         with:
