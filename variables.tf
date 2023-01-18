@@ -652,7 +652,7 @@ variable "configure_connectivity_resources" {
 
 variable "archetype_config_overrides" {
   type        = any
-  description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups."
+  description = "If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom_landing_zones' input variable."
   default     = {}
 }
 
