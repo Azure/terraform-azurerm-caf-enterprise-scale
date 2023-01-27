@@ -76,9 +76,10 @@ resource "azurerm_management_group" "level_6" {
 
 }
 
+# This will deploy Diagnostic Settings for the Management Groups
+# when the input variable deploy_diagnostics_for_mg is true 
 resource "azapi_resource" "diagSettings" {
-  #for_each  = local.azurerm_management_group_level_1
-  for_each  = local.es_landing_zones_map
+  for_each  = toset(local.azapi_diagnostics)
   type      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
   name      = "toLA"
   parent_id = each.key
@@ -98,9 +99,17 @@ resource "azapi_resource" "diagSettings" {
       workspaceId = local.template_file_variables.log_analytics_workspace_resource_id
     }
   })
-  depends_on = [azurerm_management_group.level_6]
-  #depends_on = [time_sleep.after_azurerm_management_group]
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    azurerm_management_group.level_1,
+    azurerm_management_group.level_2,
+    azurerm_management_group.level_3,
+    azurerm_management_group.level_4,
+    azurerm_management_group.level_5,
+    azurerm_management_group.level_6,
+  ]
 }
+
 # This is used when strict_subscription_association is set to true
 resource "azurerm_management_group_subscription_association" "enterprise_scale" {
   for_each = local.azurerm_management_group_subscription_association_enterprise_scale

@@ -71,6 +71,11 @@ variable "deploy_management_resources" {
   description = "If set to true, will enable the \"Management\" landing zone settings and add \"Management\" resources into the current Subscription context."
   default     = false
 }
+variable "deploy_diagnostics_for_mg" {
+  type        = bool
+  description = "If set to true, will deploy  Diagnostic Settings for management groups"
+  default     = true
+}
 
 variable "configure_management_resources" {
   type = object({
@@ -110,10 +115,9 @@ variable "configure_management_resources" {
         }), {})
       }), {})
     }), {})
-    location           = optional(string, "")
-    tags               = optional(any, {})
-    diagSettingsforMGs = optional(bool, true)
-    advanced           = optional(any, {})
+    location = optional(string, "")
+    tags     = optional(any, {})
+    advanced = optional(any, {})
   })
   description = "If specified, will customize the \"Management\" landing zone settings and resources."
   default = {

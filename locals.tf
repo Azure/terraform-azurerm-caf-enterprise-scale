@@ -20,6 +20,7 @@ locals {
   deploy_management_resources      = var.deploy_management_resources
   deploy_identity_resources        = var.deploy_identity_resources
   deploy_connectivity_resources    = var.deploy_connectivity_resources
+  deploy_diagnostics_for_mg        = var.deploy_diagnostics_for_mg
   configure_management_resources   = var.configure_management_resources
   configure_identity_resources     = var.configure_identity_resources
   configure_connectivity_resources = var.configure_connectivity_resources
