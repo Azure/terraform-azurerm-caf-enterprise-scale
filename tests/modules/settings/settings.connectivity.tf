@@ -191,9 +191,11 @@ locals {
             azure_web_apps_static_sites          = false
             microsoft_power_bi                   = false
           }
-          private_link_locations                                 = []
-          public_dns_zones                                       = []
-          private_dns_zones                                      = []
+          private_link_locations = []
+          public_dns_zones       = []
+          private_dns_zones = [
+            "privatelink.blob.core.windows.net", # To test de-duplication of custom specified DNS zones as per issue #577
+          ]
           enable_private_dns_zone_virtual_network_link_on_hubs   = true
           enable_private_dns_zone_virtual_network_link_on_spokes = true
           virtual_network_resource_ids_to_link                   = []

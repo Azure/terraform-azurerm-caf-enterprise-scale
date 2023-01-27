@@ -1466,7 +1466,7 @@ locals {
       }
     ],
     [
-      for fqdn in local.settings.dns.config.private_dns_zones :
+      for fqdn in toset(local.settings.dns.config.private_dns_zones) :
       {
         # Resource logic attributes
         resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/${fqdn}"
@@ -1481,6 +1481,7 @@ locals {
         soa_record = try(local.custom_settings.azurerm_private_dns_zone["connectivity"][fqdn]["global"].soa_record, local.empty_list)
         tags       = try(local.custom_settings.azurerm_private_dns_zone["connectivity"][fqdn]["global"].tags, local.tags)
       }
+      if !(contains(keys(local.services_by_private_link_dns_zone), fqdn))
     ],
   )
 }
@@ -1489,7 +1490,7 @@ locals {
 #  - azurerm_dns_zone
 locals {
   azurerm_dns_zone = [
-    for fqdn in local.settings.dns.config.public_dns_zones :
+    for fqdn in toset(local.settings.dns.config.public_dns_zones) :
     {
       # Resource logic attributes
       resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/dnszones/${fqdn}"

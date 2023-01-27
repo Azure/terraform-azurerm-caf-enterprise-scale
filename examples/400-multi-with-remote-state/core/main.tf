@@ -32,7 +32,7 @@ module "alz" {
   # and uncomment the remote `source` and `version` below.
   source = "../../../"
   # source  = "Azure/caf-enterprise-scale/azurerm"
-  # version = "3.1.0"
+  # version = "3.1.2"
 
   providers = {
     azurerm              = azurerm

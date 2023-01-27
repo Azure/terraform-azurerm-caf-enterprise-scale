@@ -270,8 +270,8 @@ variable "configure_connectivity_resources" {
                       ), [])
                       radius_server_address = optional(string, null)
                       radius_server_secret  = optional(string, null)
-                      vpn_client_protocols  = optional(list(string), [])
-                      vpn_auth_types        = optional(list(string), [])
+                      vpn_client_protocols  = optional(list(string), null)
+                      vpn_auth_types        = optional(list(string), null)
                     })
                   ), [])
                   bgp_settings = optional(list(
@@ -281,7 +281,7 @@ variable "configure_connectivity_resources" {
                       peering_addresses = optional(list(
                         object({
                           ip_configuration_name = optional(string, null)
-                          apipa_addresses       = optional(list(string), [])
+                          apipa_addresses       = optional(list(string), null)
                         })
                       ), [])
                     })
@@ -657,7 +657,7 @@ variable "configure_connectivity_resources" {
 
 variable "archetype_config_overrides" {
   type        = any
-  description = "If specified, will set custom Archetype configurations to the default Enterprise-scale Management Groups."
+  description = "If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom_landing_zones' input variable."
   default     = {}
 }
 
