@@ -1,3 +1,5 @@
+
+
 resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   for_each = local.azurerm_management_group_policy_assignment_enterprise_scale
 
@@ -29,6 +31,15 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
     }
     content {
       type = "SystemAssigned"
+    }
+  }
+
+  # Non-compliance messages
+  dynamic "non_compliance_message" {
+    for_each = try(each.value.template.properties.nonComplianceMessages, local.empty_list)
+    content {
+      content = try(non_compliance_message.value.content, local.default_non_complince_message)
+      policy_definition_reference_id = try(non_compliance_message.value.content, null)
     }
   }
 

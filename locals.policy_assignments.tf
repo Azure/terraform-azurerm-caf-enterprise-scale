@@ -227,3 +227,8 @@ locals {
     policy_assignment_id => lookup(local.policy_roles, policy_id, local.empty_list)
   }
 }
+
+
+locals {
+  default_non_complince_message = "This resource is not compliant with the policy definition."
+}
