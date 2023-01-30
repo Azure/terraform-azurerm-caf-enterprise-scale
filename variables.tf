@@ -807,7 +807,7 @@ variable "strict_subscription_association" {
 variable "policy_compliance_message_default" {
   type = string
   description = "If set overrides the default compliance message used for policy assignments."
-  default = "This resource is not compliant with the assigned policy."
+  default = "This resource {enforcementMode} be compliant with the assigned policy."
 }
 
 variable "policy_compliance_message_enforcement_placeholder" {

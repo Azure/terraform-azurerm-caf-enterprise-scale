@@ -65,6 +65,11 @@ To assign the correct policy, we need to provide the appropriate value for `poli
             }
         },
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+        "nonComplianceMessages": [
+          {
+            "message": "Resources {enforcementMode} not be in the specified types."
+          }
+        ],
         "scope": "${current_scope_resource_id}",
         "enforcementMode": null
     },
@@ -95,6 +100,11 @@ Now create a file named `policy_assignment_deploy_default_microsoft_IaaSAntimalw
         "parameters": {
         },
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2835b622-407b-4114-9198-6f7064cbe0dc",
+        "nonComplianceMessages": [
+          {
+            "message": "Microsoft IaaSAntimalware extension {enforcementMode} be deployed when a VM is not configured with antimalware."
+          }
+        ],
         "scope": "${current_scope_resource_id}",
         "enforcementMode": null
     },
@@ -121,6 +131,11 @@ Finally, create an assignment file for the policy set named `policy_assignment_n
         "parameters": {
         },
         "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/179d1daa-458f-4e47-8086-2a68d0d6c38f",
+        "nonComplianceMessages": [
+          {
+            "message": "NIST SP 800-53 Rev. 5 controls {enforcementMode} be enforced"
+          }
+        ],
         "scope": "${current_scope_resource_id}",
         "enforcementMode": null
     },

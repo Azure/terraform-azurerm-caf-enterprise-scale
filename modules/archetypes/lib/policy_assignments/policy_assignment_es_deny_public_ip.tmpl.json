@@ -17,6 +17,11 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+    "nonComplianceMessages": [
+      {
+        "message": "Public IPs {enforcementMode} not be created in this scope."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": "Default"
   },

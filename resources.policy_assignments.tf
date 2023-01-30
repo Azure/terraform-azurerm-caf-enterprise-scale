@@ -38,13 +38,13 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   # The mesage will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
   # The language can the altered or localised using the variables
   dynamic "non_compliance_message" {
-    for_each = try(each.value.template.properties.nonComplianceMessages, local.empty_list)
+    for_each = lookup(each.value.template.properties, "nonComplianceMessages", local.empty_list)
     content {
       content = replace(
-          try(non_compliance_message.value.content, local.default_non_complince_message), 
+          lookup(non_compliance_message.value, "message", local.default_non_compliance_message), 
           local.compliance_message_enforcement_mode_placeholder, 
           each.value.enforcement_mode ? local.compliance_message_enforcement_mode_replacements.default : local.compliance_message_enforcement_mode_replacements.donotenforce)
-      policy_definition_reference_id = try(non_compliance_message.value.content, null)
+      policy_definition_reference_id = lookup(non_compliance_message.value, "policyDefinitionReferenceId", null)
     }
   }
 
@@ -54,7 +54,6 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
     time_sleep.after_azurerm_policy_definition,
     time_sleep.after_azurerm_policy_set_definition,
   ]
-
 }
 
 resource "time_sleep" "after_azurerm_policy_assignment" {

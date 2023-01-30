@@ -324,6 +324,11 @@ You will then need to create a file named `policy_assignment_es_enforce_rg_tags.
         "parameters": {
         } ,
         "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-RG-Tags",
+        "nonComplianceMessages": [
+          {
+            "message": "Mandatory tags {enforcementMode} be applied to Resource Groups."
+          }
+        ],
         "scope": "${current_scope_resource_id}",
         "enforcementMode": null,
         "nonComplianceMessages": [
@@ -355,6 +360,11 @@ Now create a file named `policy_assignment_es_enforce_resource_tags.json` within
         "parameters": {
         } ,
         "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Enforce-Resource-Tags",
+        "nonComplianceMessages": [
+          {
+            "message": "Mandatory tags {enforcementMode} be applied to resources."
+          }
+        ],
         "scope": "${current_scope_resource_id}",
         "enforcementMode": null,
         "nonComplianceMessages": [
@@ -385,6 +395,11 @@ Next create a file named `policy_assignment_es_deny_nic_nsg.json` within the `po
       "notScopes": [],
       "parameters": {} ,
       "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-NIC-NSG",
+      "nonComplianceMessages": [
+          {
+            "message": "NSGs {enforcementMode} not be applied to network interface cards."
+          }
+        ],
       "scope": "${current_scope_resource_id}",
       "enforcementMode": null,
       "nonComplianceMessages": [
@@ -429,6 +444,11 @@ Finally, create a file named `policy_assignment_es_enforce_mandatory_tagging.jso
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Mandatory-Tags",
+    "nonComplianceMessages": [
+      {
+        "message": "Mandatory tags {enforcementMode} be applied to Resources and Resource Groups."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

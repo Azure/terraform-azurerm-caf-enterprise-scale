@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
+    "nonComplianceMessages": [
+      {
+        "message": "Secure transfer {enforcementMode} be enabled for storage accounts."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },
