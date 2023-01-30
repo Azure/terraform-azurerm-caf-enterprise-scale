@@ -14,7 +14,7 @@
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-Sku",
     "nonComplianceMessages": [
       {
-        "message": "Premium Databricks workspaces must be used to ensure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for AAD."
+        "message": "Premium Databricks workspaces {enforcementMode} be used to ensure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for AAD."
       }
     ],
     "scope": "${current_scope_resource_id}",

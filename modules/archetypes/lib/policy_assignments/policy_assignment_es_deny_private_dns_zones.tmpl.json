@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Private-DNS-Zones",
+    "nonComplianceMessages": [
+      {
+        "message": "Private DNS {enforcementMode} be created centrally in the connectivity subscription."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

@@ -228,7 +228,17 @@ locals {
   }
 }
 
-
+# Compliance message default when none is provided
 locals {
-  default_non_complince_message = "This resource is not compliant with the policy definition."
+  default_non_complince_message = var.policy_compliance_message_default
+}
+
+# Compliance message replacements based on enforcement mode
+# If the policy assignment is enforced the message with include 'must', if not it will say 'should'
+locals {
+  compliance_message_enforcement_mode_replacements = {
+    default = var.policy_compliance_message_enforced_replacement
+    donotenforce = var.policy_compliance_message_not_enforced_replacement
+  }
+  compliance_message_enforcement_mode_placeholder = var.policy_compliance_message_enforcement_placeholder
 }

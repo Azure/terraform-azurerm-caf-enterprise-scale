@@ -14,7 +14,7 @@
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
     "nonComplianceMessages": [
       {
-        "message": "Kubernetes clusters can only be accessed over HTTPS."
+        "message": "Kubernetes clusters {enforcementMode} only be accessed over HTTPS."
       }
     ],
     "scope": "${current_scope_resource_id}",
