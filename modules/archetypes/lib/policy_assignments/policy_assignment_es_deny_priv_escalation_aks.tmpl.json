@@ -12,11 +12,6 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1c6e92c9-99f0-4e55-9cf2-0c234dc48f99",
-    "nonComplianceMessages": [
-      {
-        "message": "Kubernetes clusters {enforcementMode} not allow container privilege escalation to root."
-      }
-    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

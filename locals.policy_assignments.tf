@@ -251,3 +251,8 @@ locals {
   }
   compliance_message_enforcement_mode_placeholder = var.policy_compliance_message_enforcement_placeholder
 }
+
+# A list of policy definitions to exlude from having a default compliance message as they don't support compliance messages.
+locals {
+  compliance_message_not_supported_definitions = var.policy_compliance_message_not_supported_definitions
+}

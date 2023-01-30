@@ -98,6 +98,8 @@ If you need guidance when upgrading between major releases, please refer to the 
 [wiki_module_variables_disable_base_module_tags]:                           %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
 [wiki_module_variables_disable_telemetry]:                                  %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
 [wiki_module_variables_library_path]:                                       %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
+[wiki_module_variables_policy_compliance_message_default_enabled]:          %5BVariables%5D-policy_compliance_message_default_enabled "Instructions for how to use the policy_compliance_message_default_enabled variable."
+[wiki_policy_compliance_message_not_supported_definitions]:                 %5BVariables%5D-policy_compliance_message_not_supported_definitions "Instructions for how to use the policy_compliance_message_not_supported_definitions variable."
 [wiki_module_variables_policy_compliance_message_default]:                  %5BVariables%5D-policy_compliance_message_default "Instructions for how to use the policy_compliance_message_default variable."
 [wiki_module_variables_policy_compliance_message_enforced_replacement]:     %5BVariables%5D-policy_compliance_message_enforced_replacement "Instructions for how to use the policy_compliance_message_enforced_replacement variable."
 [wiki_module_variables_policy_compliance_message_enforcement_placeholder]:  %5BVariables%5D-policy_compliance_message_enforcement_placeholder "Instructions for how to use the policy_compliance_message_enforcement_placeholder variable."
