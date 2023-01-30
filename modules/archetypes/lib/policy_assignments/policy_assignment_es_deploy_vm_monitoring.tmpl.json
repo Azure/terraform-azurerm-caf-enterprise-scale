@@ -12,6 +12,11 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
+    "nonComplianceMessages": [
+      {
+        "message": "Azure Monitor {enforcementMode} be enabled for VMs."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a8eff44f-8c92-45c3-a3fb-9880802d67a7",
+    "nonComplianceMessages": [
+      {
+        "message": "Azure Policy Add-on {enforcementMode} be deployed to Azure Kubernetes Service clusters."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

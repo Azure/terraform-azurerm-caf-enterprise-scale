@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit",
+    "nonComplianceMessages": [
+      {
+        "message": "TLS requirements and SSL enforcement {enforcementMode} be configured on all resources that support it."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

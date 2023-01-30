@@ -12,6 +12,11 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
+    "nonComplianceMessages": [
+      {
+        "message": "Activity log Diagnostic Settings {enforcementMode} be set for Log Analytics workspaces."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },
