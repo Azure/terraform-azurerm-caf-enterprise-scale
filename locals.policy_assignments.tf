@@ -230,16 +230,16 @@ locals {
 
 # Compliance message default when none is provided
 locals {
-  default_non_complince_message = var.policy_compliance_message_default
+  default_non_compliance_message = var.policy_compliance_message_default
 }
 
 # Default Compliance message list when none is provided
 locals {
   default_non_compliance_message_list = var.policy_compliance_message_default_enabled ? [
     {
-      message = local.default_non_complince_message
+      message = local.default_non_compliance_message
     }
-  ] : var.empty_list
+  ] : local.empty_list
 }
 
 # Compliance message replacements based on enforcement mode
