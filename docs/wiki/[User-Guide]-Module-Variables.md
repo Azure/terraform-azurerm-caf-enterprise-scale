@@ -572,6 +572,7 @@ Now you understand how to customize your deployment using the input variables, c
 [deploy_core_landing_zones]:                         %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
 [deploy_corp_landing_zones]:                         %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
 [deploy_demo_landing_zones]:                         %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
+[deploy_diagnostics_for_mg]:                         %5BVariables%5D-deploy_diagnostics_for_mg "Instructions for how to use the deploy_diagnostics_for_mg variable."
 [deploy_connectivity_resources]:                     %5BVariables%5D-deploy_connectivity_resources "Instructions for how to use the deploy_connectivity_resources variable."
 [deploy_identity_resources]:                         %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
 [deploy_management_resources]:                       %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."

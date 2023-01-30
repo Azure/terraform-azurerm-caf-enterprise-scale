@@ -73,7 +73,7 @@ variable "deploy_management_resources" {
 }
 variable "deploy_diagnostics_for_mg" {
   type        = bool
-  description = "If set to true, will deploy  Diagnostic Settings for management groups"
+  description = "If set to true, will deploy Diagnostic Settings for management groups"
   default     = true
 }
 

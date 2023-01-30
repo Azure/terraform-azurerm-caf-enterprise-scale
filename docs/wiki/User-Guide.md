@@ -19,6 +19,7 @@ Please refer to the following to learn about the module:
   - [deploy_core_landing_zones][wiki_module_variables_deploy_core_landing_zones]
   - [deploy_corp_landing_zones][wiki_module_variables_deploy_corp_landing_zones]
   - [deploy_demo_landing_zones][wiki_module_variables_deploy_demo_landing_zones]
+  - [deploy_diagnostics_for_mg][wiki_module_variables_deploy_diagnostics_for_mg]
   - [deploy_identity_resources][wiki_module_variables_deploy_identity_resources]
   - [deploy_management_resources][wiki_module_variables_deploy_management_resources]
   - [deploy_online_landing_zones][wiki_module_variables_deploy_online_landing_zones]
