@@ -805,25 +805,25 @@ variable "strict_subscription_association" {
 }
 
 variable "policy_compliance_message_default" {
-  type = string
+  type        = string
   description = "If set overrides the default compliance message used for policy assignments."
-  default = "This resource {enforcementMode} be compliant with the assigned policy."
+  default     = "This resource {enforcementMode} be compliant with the assigned policy."
 }
 
 variable "policy_compliance_message_enforcement_placeholder" {
-  type = string
+  type        = string
   description = "If set overrides the compliance message placeholder used in message templates."
-  default = "{enforcementMode}"
+  default     = "{enforcementMode}"
 }
 
 variable "policy_compliance_message_enforced_replacement" {
-  type = string
+  type        = string
   description = "If set overrides the compliance replacement used for enforced policy assignments."
-  default = "must"
+  default     = "must"
 }
 
 variable "policy_compliance_message_not_enforced_replacement" {
-  type = string
+  type        = string
   description = "If set overrides the compliance replacement used for unenforced policy assignments."
-  default = "should"
+  default     = "should"
 }

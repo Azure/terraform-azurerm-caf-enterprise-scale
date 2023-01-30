@@ -237,7 +237,7 @@ locals {
 # If the policy assignment is enforced the message with include 'must', if not it will say 'should'
 locals {
   compliance_message_enforcement_mode_replacements = {
-    default = var.policy_compliance_message_enforced_replacement
+    default      = var.policy_compliance_message_enforced_replacement
     donotenforce = var.policy_compliance_message_not_enforced_replacement
   }
   compliance_message_enforcement_mode_placeholder = var.policy_compliance_message_enforcement_placeholder

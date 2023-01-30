@@ -40,10 +40,7 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   dynamic "non_compliance_message" {
     for_each = lookup(each.value.template.properties, "nonComplianceMessages", local.empty_list)
     content {
-      content = replace(
-          lookup(non_compliance_message.value, "message", local.default_non_compliance_message), 
-          local.compliance_message_enforcement_mode_placeholder, 
-          each.value.enforcement_mode ? local.compliance_message_enforcement_mode_replacements.default : local.compliance_message_enforcement_mode_replacements.donotenforce)
+      content                        = replace(lookup(non_compliance_message.value, "message", local.default_non_compliance_message), local.compliance_message_enforcement_mode_placeholder, each.value.enforcement_mode ? local.compliance_message_enforcement_mode_replacements.default : local.compliance_message_enforcement_mode_replacements.donotenforce)
       policy_definition_reference_id = lookup(non_compliance_message.value, "policyDefinitionReferenceId", null)
     }
   }
