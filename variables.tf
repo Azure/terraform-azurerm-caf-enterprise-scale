@@ -74,7 +74,7 @@ variable "deploy_management_resources" {
 variable "deploy_diagnostics_for_mg" {
   type        = bool
   description = "If set to true, will deploy Diagnostic Settings for management groups"
-  default     = true
+  default     = false
 }
 
 variable "configure_management_resources" {
@@ -692,7 +692,7 @@ variable "subscription_id_identity" {
 variable "subscription_id_management" {
   type        = string
   description = "If specified, identifies the Platform subscription for \"Management\" for resource deployment and correct placement in the Management Group hierarchy."
-  default     = "de31e3d6-45ca-427d-aeb1-f45398ddff8a"
+  default     = ""
 
   validation {
     condition     = can(regex("^[a-z0-9-]{36}$", var.subscription_id_management)) || var.subscription_id_management == ""
