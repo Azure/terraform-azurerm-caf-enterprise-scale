@@ -394,7 +394,6 @@ Default: `false`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
-
 [**deploy_identity_resources**][deploy_identity_resources] `bool`
 
 If set to true, will deploy the \"Identity\" landing zone settings.
