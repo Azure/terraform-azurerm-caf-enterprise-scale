@@ -78,7 +78,7 @@ resource "azurerm_management_group" "level_6" {
 
 # This will deploy Diagnostic Settings for the Management Groups
 # when the input variable deploy_diagnostics_for_mg is true 
-resource "azapi_resource" "diagSettings" {
+resource "azapi_resource" "diag_settings" {
   for_each  = toset(local.azapi_diagnostics)
   type      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
   name      = "toLA"
