@@ -385,6 +385,16 @@ Default: `false`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
+[**deploy_diagnostics_for_mg**][deploy_diagnostics_for_mg] `bool`
+
+If set to true, will deploy Diagnostic Settings for all Management Groups.
+
+Default: `false`
+
+<!-- markdownlint-disable-next-line no-inline-html -->
+<br>
+
+
 [**deploy_identity_resources**][deploy_identity_resources] `bool`
 
 If set to true, will deploy the \"Identity\" landing zone settings.
