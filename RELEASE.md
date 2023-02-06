@@ -7,7 +7,8 @@ The `v3.2.0` release includes ...
 ### New features
 
 - Updated the `description` field for the `vulnerabilityAssessmentsEmail` parameter on the `Deploy-Sql-vulnerabilityAssessments` policy definition to provide clearer guidance on how to specify multiple email addresses.
-- Updated description for `archetype_config_overrides` input variable
+- Updated description for `archetype_config_overrides` input variable.
+- Updated the `displayName` field for the `Deny-MachineLearning-PublicAccessWhenBehindVnet` policy definition (to correct spelling mistake).
 
 ### Fixed issues
 
