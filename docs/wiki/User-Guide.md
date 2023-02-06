@@ -87,6 +87,7 @@ If you need guidance when upgrading between major releases, please refer to the 
 [wiki_module_variables_deploy_core_landing_zones]:        %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
 [wiki_module_variables_deploy_corp_landing_zones]:        %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
 [wiki_module_variables_deploy_demo_landing_zones]:        %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
+[wiki_module_variables_deploy_diagnostics_for_mg]:        %5BVariables%5D-deploy_diagnostics_for_mg "Instructions for how to use the deploy_diagnostics_for_mg variable."
 [wiki_module_variables_deploy_identity_resources]:        %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
 [wiki_module_variables_deploy_management_resources]:      %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
 [wiki_module_variables_deploy_online_landing_zones]:      %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
