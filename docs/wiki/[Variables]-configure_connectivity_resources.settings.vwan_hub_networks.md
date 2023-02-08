@@ -344,10 +344,10 @@ Virtual networks added to this list will be configured with [`internet_security_
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[msdocs_vhub_address_prefix]: https://docs.microsoft.com/azure/virtual-wan/virtual-wan-faq#what-is-the-recommended-hub-address-space-during-hub-creation "What is the recommended hub address space during hub creation?"
-[msdocs_virtual_hub_sku]:     https://docs.microsoft.com/azure/virtual-wan/virtual-wan-about#basicstandard "Virtual WAN types"
-[msdocs_vwan_s2s_gateway]:    https://docs.microsoft.com/azure/virtual-wan/virtual-wan-site-to-site-portal#gateway "Configure a site-to-site gateway"
-[azfw_policy_rule_hierarchy]: https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
+[msdocs_vhub_address_prefix]: https://learn.microsoft.com/azure/virtual-wan/virtual-wan-faq#what-is-the-recommended-hub-address-space-during-hub-creation "What is the recommended hub address space during hub creation?"
+[msdocs_virtual_hub_sku]:     https://learn.microsoft.com/azure/virtual-wan/virtual-wan-about#basicstandard "Virtual WAN types"
+[msdocs_vwan_s2s_gateway]:    https://learn.microsoft.com/azure/virtual-wan/virtual-wan-site-to-site-portal#gateway "Configure a site-to-site gateway"
+[azfw_policy_rule_hierarchy]: https://learn.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
 
 [wiki_connectivity_resources_virtual_wan]: %5BUser-Guide%5D-Connectivity-Resources#virtual-wan-network-topology-microsoft-managed "Wiki - Connectivity Resources - Virtual WAN network topology (Microsoft-managed)"
 

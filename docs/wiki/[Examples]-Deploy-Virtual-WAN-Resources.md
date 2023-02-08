@@ -309,11 +309,11 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[alz_connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
+[alz_connectivity]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
 
-[azure_private_endpoint_support]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
+[azure_private_endpoint_support]: https://learn.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration "Azure services DNS zone configuration"
 
-[about_vwan_single_rsg]: https://docs.microsoft.com/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-group-in-virtual-wan
+[about_vwan_single_rsg]: https://learn.microsoft.com/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-group-in-virtual-wan
 
 [wiki_module_variables]:                     %5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
 [wiki_provider_configuration]:               %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"

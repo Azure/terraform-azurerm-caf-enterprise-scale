@@ -133,13 +133,13 @@ This should be run before the `Unit Tests` Azure Pipeline, and the generated `gi
 ## Why Azure Pipelines?
 
 The Unit Tests, E2E Tests, and Update Test Baseline workflows need valid Azure credentials to authenticate with the Azure platform for Terraform to work.
-These tests are run on Azure Pipelines as a security measure, allowing contributed code from forked repositories to be reviewed before tests are manually triggered by a repository contributor using [comment triggers](https://docs.microsoft.com/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#comment-triggers).
+These tests are run on Azure Pipelines as a security measure, allowing contributed code from forked repositories to be reviewed before tests are manually triggered by a repository contributor using [comment triggers](https://learn.microsoft.com/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#comment-triggers).
 Although GitHub Actions could technically run these jobs, GitHub prevents access to secrets for jobs triggered from forks as s security measure.
 Using this approach ensures a repository Admin or Maintainer is always in control of code changes being run against our test environment.
 
 ## Multi-job configuration (`matrix` strategy)
 
-Azure Pipelines provides the option to define a [multi-job configuration](https://docs.microsoft.com/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml#multi-job-configuration).
+Azure Pipelines provides the option to define a [multi-job configuration](https://learn.microsoft.com/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml#multi-job-configuration).
 This enables multi-configuration testing to be implemented from a common set of tasks, with the benefit of running multiple jobs on multiple agents in parallel.
 
 Our implementation uses a programmatically generated `matrix` strategy to ensure we can meet our testing requirements.
@@ -160,6 +160,6 @@ This negates the need to update the code or pipeline to ensure the latest versio
 
 With the frequency at which we run tests these combinations give reasonable assurance that the module will work with all version combinations up to the latest versions, not withstanding any  which temporarily introduce bugs.
 
-The `matrix` strategy also uses the [Microsoft.Subscription/aliases@2021-10-01](https://docs.microsoft.com/rest/api/subscription/2020-09-01/alias) API to map Subscriptions to each job within the Matrix.
+The `matrix` strategy also uses the [Microsoft.Subscription/aliases@2021-10-01](https://learn.microsoft.com/rest/api/subscription/2020-09-01/alias) API to map Subscriptions to each job within the Matrix.
 This ensures that each job has dedicated Subscriptions to deploy resources into, and place within the Management Group hierarchy.
 In combination with the dedicated SPN per job, this also increases the API rate limits available to the pipeline.
