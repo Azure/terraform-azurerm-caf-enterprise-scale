@@ -12,7 +12,7 @@ This article answers frequently asked questions relating to the Azure landing zo
 
 ### Questions about the architecture
 
-Questions relating to the architecture can be found in the [Azure landing zone frequently asked questions (FAQ)](https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/faq) page on the Cloud Adoption Framework site.
+Questions relating to the architecture can be found in the [Azure landing zone frequently asked questions (FAQ)](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/faq) page on the Cloud Adoption Framework site.
 
 ### Questions about the module
 
