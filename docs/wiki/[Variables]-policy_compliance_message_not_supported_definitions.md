@@ -7,7 +7,7 @@ If specified, provides a list of built in policy definitions that do not support
 
 ## Default value
 
-```
+```hcl
 [
     "/providers/Microsoft.Authorization/policyDefinitions/1c6e92c9-99f0-4e55-9cf2-0c234dc48f99",
     "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
