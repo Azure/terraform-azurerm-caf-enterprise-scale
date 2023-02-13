@@ -259,7 +259,8 @@ locals {
 
 # A list of policy modes that support non-compliance messages. A special setting is included for Policy Sets as they do not have a mode.
 locals {
-  non_compliance_message_supported_policy_modes = [ "All", "Indexed", "PolicySet" ]
+  policy_set_mode = "PolicySet"
+  non_compliance_message_supported_policy_modes = [ "All", "Indexed", local.policy_set_mode ]
 }
 
 # Maps of external and internal policy assignment definition ids
