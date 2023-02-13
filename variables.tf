@@ -807,7 +807,7 @@ variable "strict_subscription_association" {
 variable "policy_compliance_message_not_supported_definitions" {
   type        = list(string)
   description = "If set, overrides the list of built-in policy definition that do not support compliance messages."
-  default     = [
+  default = [
     "/providers/Microsoft.Authorization/policyDefinitions/1c6e92c9-99f0-4e55-9cf2-0c234dc48f99",
     "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
     "/providers/Microsoft.Authorization/policyDefinitions/95edb821-ddaf-4404-9732-666045e056b4"

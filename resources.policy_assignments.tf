@@ -31,7 +31,7 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
       type = "SystemAssigned"
     }
   }
-  
+
   # Optional Non-compliance messages
   # The mesage will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
   # The language can the altered or localised using the variables

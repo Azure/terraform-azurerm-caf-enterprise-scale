@@ -259,22 +259,22 @@ locals {
 
 # A list of policy modes that support non-compliance messages. A special setting is included for Policy Sets as they do not have a mode.
 locals {
-  policy_set_mode = "PolicySet"
-  non_compliance_message_supported_policy_modes = [ "All", "Indexed", local.policy_set_mode ]
+  policy_set_mode                               = "PolicySet"
+  non_compliance_message_supported_policy_modes = ["All", "Indexed", local.policy_set_mode]
 }
 
 # Maps of external and internal policy assignment definition ids
 locals {
-  external_policies_from_local_assignments = [ 
+  external_policies_from_local_assignments = [
     for assignment in local.es_policy_assignments :
-    assignment.template.properties.policyDefinitionId 
+    assignment.template.properties.policyDefinitionId
     if length(regexall(local.resource_types.policy_definition, assignment.template.properties.policyDefinitionId)) > 0
     && contains(local.internal_policy_definition_ids, assignment.template.properties.policyDefinitionId) != true
   ]
 
-  internal_policies_from_local_assignments = [ 
+  internal_policies_from_local_assignments = [
     for assignment in local.es_policy_assignments :
-    assignment.template.properties.policyDefinitionId 
+    assignment.template.properties.policyDefinitionId
     if length(regexall(local.resource_types.policy_definition, assignment.template.properties.policyDefinitionId)) > 0
     && contains(local.internal_policy_definition_ids, assignment.template.properties.policyDefinitionId) == true
   ]
@@ -307,7 +307,7 @@ locals {
   }
   internal_policy_modes = {
     for policy_definition_id in distinct(local.internal_policies_from_local_assignments) :
-    policy_definition_id => local.es_policy_definitions[index(local.es_policy_definitions.*.template.name, basename(policy_definition_id))].template.properties.mode 
+    policy_definition_id => local.es_policy_definitions[index(local.es_policy_definitions.*.template.name, basename(policy_definition_id))].template.properties.mode
   }
   all_policy_modes = merge(
     local.internal_policy_modes,
