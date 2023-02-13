@@ -256,3 +256,60 @@ locals {
 locals {
   compliance_message_not_supported_definitions = var.policy_compliance_message_not_supported_definitions
 }
+
+# A list of policy modes that support non-compliance messages. A special setting is included for Policy Sets as they do not have a mode.
+locals {
+  non_compliance_message_supported_policy_modes = [ "All", "Indexed", "PolicySet" ]
+}
+
+# Maps of external and internal policy assignment definition ids
+locals {
+  external_policies_from_local_assignments = [ 
+    for assignment in local.es_policy_assignments :
+    assignment.template.properties.policyDefinitionId 
+    if length(regexall(local.resource_types.policy_definition, assignment.template.properties.policyDefinitionId)) > 0
+    && contains(local.internal_policy_definition_ids, assignment.template.properties.policyDefinitionId) != true
+  ]
+
+  internal_policies_from_local_assignments = [ 
+    for assignment in local.es_policy_assignments :
+    assignment.template.properties.policyDefinitionId 
+    if length(regexall(local.resource_types.policy_definition, assignment.template.properties.policyDefinitionId)) > 0
+    && contains(local.internal_policy_definition_ids, assignment.template.properties.policyDefinitionId) == true
+  ]
+}
+
+# Maps of external policy assignment definition names and managagement group ids for use in the data source lookup
+locals {
+  azurerm_policy_definition_external_lookup_all = {
+    for policy_definition_id in distinct(local.external_policies_from_local_assignments) :
+    policy_definition_id => {
+      name                = basename(policy_definition_id)
+      management_group_id = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
+    }
+  }
+}
+
+# Perform a lookup of the Policy Set Definitions not deployed by this module.
+data "azurerm_policy_definition" "external_lookup_all" {
+  for_each = local.azurerm_policy_definition_external_lookup_all
+
+  name                  = each.value.name
+  management_group_name = each.value.management_group_id
+}
+
+# Get the mode of the policy definitions for both internal and external policy definitions. Replacing with a fall back for older azurerm providers that don't support `mode` on the data source
+locals {
+  external_policy_modes = {
+    for policy_definition in data.azurerm_policy_definition.external_lookup_all :
+    policy_definition.id => lookup(policy_definition, "mode", contains(local.compliance_message_not_supported_definitions, policy_definition.id) ? "NotSupported" : "All")
+  }
+  internal_policy_modes = {
+    for policy_definition_id in distinct(local.internal_policies_from_local_assignments) :
+    policy_definition_id => local.es_policy_definitions[index(local.es_policy_definitions.*.template.name, basename(policy_definition_id))].template.properties.mode 
+  }
+  all_policy_modes = merge(
+    local.internal_policy_modes,
+    local.external_policy_modes
+  )
+}

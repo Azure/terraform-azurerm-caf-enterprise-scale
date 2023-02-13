@@ -1,5 +1,3 @@
-
-
 resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   for_each = local.azurerm_management_group_policy_assignment_enterprise_scale
 
@@ -33,12 +31,12 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
       type = "SystemAssigned"
     }
   }
-
+  
   # Optional Non-compliance messages
   # The mesage will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
   # The language can the altered or localised using the variables
   dynamic "non_compliance_message" {
-    for_each = contains(local.compliance_message_not_supported_definitions, each.value.template.properties.policyDefinitionId) ? local.empty_list : lookup(each.value.template.properties, "nonComplianceMessages", local.default_non_compliance_message_list)
+    for_each = contains(local.non_compliance_message_supported_policy_modes, lookup(local.all_policy_modes, each.value.template.properties.policyDefinitionId, "PolicySet")) ? lookup(each.value.template.properties, "nonComplianceMessages", local.default_non_compliance_message_list) : local.empty_list
     content {
       content                        = replace(lookup(non_compliance_message.value, "message", local.default_non_compliance_message), local.compliance_message_enforcement_mode_placeholder, each.value.enforcement_mode ? local.compliance_message_enforcement_mode_replacements.default : local.compliance_message_enforcement_mode_replacements.donotenforce)
       policy_definition_reference_id = lookup(non_compliance_message.value, "policyDefinitionReferenceId", null)
