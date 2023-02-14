@@ -2400,7 +2400,7 @@
               "name": "Deploy-HITRUST-HIPAA",
               "non_compliance_message": [],
               "not_scopes": [],
-              "parameters": "{\"CertificateThumbprints\":{\"value\":\"\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsrgName\":{\"value\":\"root-id-1-rg\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix\":{\"value\":\"root-id-1\"},\"installedApplicationsOnWindowsVM\":{\"value\":\"\"},\"listOfLocations\":{\"value\":[\"eastus\"]}}",
+              "parameters": "{\"CertificateThumbprints\":{\"value\":\"\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsrgName\":{\"value\":\"root-id-1-rg\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix\":{\"value\":\"root-id-1\"},\"installedApplicationsOnWindowsVM\":{\"value\":\"\"},\"listOfLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
               "timeouts": null
             },
@@ -2470,7 +2470,7 @@
               "name": "Deploy-Resource-Diag",
               "non_compliance_message": [],
               "not_scopes": [],
-              "parameters": "{\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
+              "parameters": "{\"AKSLogAnalyticsEffect\":{\"value\":\"Disabled\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics",
               "timeouts": null
             },
