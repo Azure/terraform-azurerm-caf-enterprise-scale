@@ -1215,7 +1215,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
               "name": "Enable-DDoS-VNET",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual networks should be protected by Azure DDoS Protection Standard.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"ddosPlan\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-ddos/providers/Microsoft.Network/ddosProtectionPlans/root-id-1-ddos-northeurope\"},\"effect\":{\"value\":\"Modify\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
@@ -1225,7 +1230,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1245,7 +1252,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
               "name": "Deny-DataB-Pip",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Databricks workspace must use the noPublicIp feature to host Databricks clusters.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-NoPublicIp",
@@ -1253,7 +1265,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1273,7 +1287,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
               "name": "Deny-DataB-Sku",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Premium Databricks workspaces must be used to ensure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for AAD.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-Sku",
@@ -1281,7 +1300,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1301,7 +1322,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
               "name": "Deny-DataB-Vnet",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Databricks workspaces must use vnet injection.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-VirtualNetwork",
@@ -1309,7 +1335,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1329,7 +1357,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
               "name": "Deny-Public-Endpoints",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Public network access must be disabled for PaaS services.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deny-PublicPaaSEndpoints",
@@ -1337,7 +1370,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1362,7 +1397,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-corp",
               "name": "Deploy-Private-DNS-Zones",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure PaaS services should use private DNS zones.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"azureAcrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io\"},\"azureAppPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io\"},\"azureAppServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net\"},\"azureAsrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com\"},\"azureAutomationDSCHybridPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureAutomationWebhookPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureBatchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com\"},\"azureCognitiveSearchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net\"},\"azureCognitiveServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com\"},\"azureCosmosCassandraPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com\"},\"azureCosmosGremlinPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com\"},\"azureCosmosMongoPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com\"},\"azureCosmosSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com\"},\"azureCosmosTablePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com\"},\"azureDataFactoryPortalPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com\"},\"azureDataFactoryPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net\"},\"azureDiskAccessPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureEventGridDomainsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventGridTopicsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventHubNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net\"},\"azureHDInsightPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net\"},\"azureIotHubsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net\"},\"azureIotPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net\"},\"azureKeyVaultPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net\"},\"azureMachineLearningWorkspacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms\"},\"azureMediaServicesKeyPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesLivePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesStreamPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMigratePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com\"},\"azureMonitorPrivateDnsZoneId1\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com\"},\"azureMonitorPrivateDnsZoneId2\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId3\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId4\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net\"},\"azureMonitorPrivateDnsZoneId5\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureRedisCachePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net\"},\"azureServiceBusNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureSignalRPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net\"},\"azureStorageBlobPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageBlobSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageDFSPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageDFSSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net\"},\"azureStorageQueuePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageQueueSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageStaticWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureStorageStaticWebSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureSynapseDevPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net\"},\"azureSynapseSQLODPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureSynapseSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Private-DNS-Zones",
@@ -1372,7 +1412,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1392,7 +1434,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-demo-corp",
               "name": "Deny-DataB-Pip",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Databricks workspace must use the noPublicIp feature to host Databricks clusters.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-NoPublicIp",
@@ -1400,7 +1447,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1420,7 +1469,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-demo-corp",
               "name": "Deny-DataB-Sku",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Premium Databricks workspaces must be used to ensure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for AAD.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-Sku",
@@ -1428,7 +1482,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1448,7 +1504,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-demo-corp",
               "name": "Deny-DataB-Vnet",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Databricks workspaces must use vnet injection.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-VirtualNetwork",
@@ -1456,7 +1517,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1476,7 +1539,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-demo-corp",
               "name": "Deny-Public-Endpoints",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Public network access must be disabled for PaaS services.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deny-PublicPaaSEndpoints",
@@ -1484,7 +1552,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1509,7 +1579,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-demo-corp",
               "name": "Deploy-Private-DNS-Zones",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure PaaS services must use private DNS zones.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"azureAcrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io\"},\"azureAppPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io\"},\"azureAppServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net\"},\"azureAsrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com\"},\"azureAutomationDSCHybridPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureAutomationWebhookPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureBatchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.northeurope.batch.azure.com\"},\"azureCognitiveSearchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net\"},\"azureCognitiveServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com\"},\"azureCosmosCassandraPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com\"},\"azureCosmosGremlinPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com\"},\"azureCosmosMongoPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com\"},\"azureCosmosSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com\"},\"azureCosmosTablePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com\"},\"azureDataFactoryPortalPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com\"},\"azureDataFactoryPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net\"},\"azureDiskAccessPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureEventGridDomainsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventGridTopicsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventHubNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net\"},\"azureHDInsightPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net\"},\"azureIotHubsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net\"},\"azureIotPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net\"},\"azureKeyVaultPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net\"},\"azureMachineLearningWorkspacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms\"},\"azureMediaServicesKeyPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesLivePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesStreamPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMigratePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com\"},\"azureMonitorPrivateDnsZoneId1\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com\"},\"azureMonitorPrivateDnsZoneId2\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId3\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId4\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net\"},\"azureMonitorPrivateDnsZoneId5\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureRedisCachePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net\"},\"azureServiceBusNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureSignalRPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net\"},\"azureStorageBlobPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageBlobSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageDFSPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageDFSSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net\"},\"azureStorageQueuePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageQueueSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageStaticWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureStorageStaticWebSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureSynapseDevPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net\"},\"azureSynapseSQLODPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureSynapseSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Private-DNS-Zones",
@@ -1519,7 +1594,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1539,7 +1616,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-Public-IP",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Public IPs must not be created in this scope.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"},\"listOfResourceTypesNotAllowed\":{\"value\":[\"Microsoft.Network/publicIPAddresses\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
@@ -1547,7 +1629,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1567,7 +1651,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-RDP-From-Internet",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "RDP access from the internet should be blocked.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",
@@ -1575,7 +1664,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1595,7 +1686,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-Subnet-Without-Nsg",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Subnets should have a Network Security Group.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
@@ -1603,7 +1699,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1628,7 +1726,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deploy-VM-Backup",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual machines without a given tag should backup to a new recovery services vault with a default policy.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"deployIfNotExists\"},\"exclusionTagName\":{\"value\":\"\"},\"exclusionTagValue\":{\"value\":[]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
@@ -1638,7 +1741,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1658,7 +1763,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-IP-Forwarding",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Network interfaces must disable IP forwarding.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/88c0b9da-ce96-4b03-9635-f29a937e2900",
@@ -1666,7 +1776,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1742,7 +1854,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-RDP-From-Internet",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "RDP access from the internet must be blocked.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",
@@ -1750,7 +1867,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1770,7 +1889,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-Storage-http",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Secure transfer must be enabled for storage accounts.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
@@ -1778,7 +1902,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1803,7 +1929,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-AKS-Policy",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure Policy Add-on must be deployed to Azure Kubernetes Service clusters.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/a8eff44f-8c92-45c3-a3fb-9880802d67a7",
@@ -1813,7 +1944,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1838,7 +1971,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-SQL-DB-Auditing",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "SQL Server Auditing must be enabled.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/a6fb4358-5bf4-4ad7-ba82-2cd2f41ce5e9",
@@ -1848,7 +1986,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1873,7 +2013,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-SQL-Threat",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "SQL Server Threat Detection must be enabled.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
@@ -1883,7 +2028,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1908,7 +2055,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-VM-Backup",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual machines without a given tag must backup to a new recovery services vault with a default policy.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
@@ -1918,7 +2070,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1943,7 +2097,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Enable-DDoS-VNET",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual networks should be protected by Azure DDoS Protection Standard.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"ddosPlan\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-ddos/providers/Microsoft.Network/ddosProtectionPlans/root-id-1-ddos-northeurope\"},\"effect\":{\"value\":\"Modify\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
@@ -1953,7 +2112,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2006,7 +2167,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Enforce-TLS-SSL",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "TLS requirements and SSL enforcement must be configured on all resources that support it.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit",
@@ -2016,7 +2182,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2041,7 +2209,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-management",
               "name": "Deploy-Log-Analytics",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Log Analytics must be deployed.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"60\"},\"effect\":{\"value\":\"DeployIfNotExists\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"sku\":{\"value\":\"pergb2018\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
@@ -2051,7 +2224,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2071,7 +2246,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-secure",
               "name": "Deny-RSG-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resource Groups must be deployed in the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
@@ -2079,7 +2259,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2099,7 +2281,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-secure",
               "name": "Deny-Resource-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resources must only be deployed to the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
@@ -2107,7 +2294,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2132,7 +2321,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-secure",
               "name": "Deploy-HITRUST-HIPAA",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "HITRUST/HIPAA controls audit and virtual machine extensions must be deployed.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"CertificateThumbprints\":{\"value\":\"\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsrgName\":{\"value\":\"root-id-1-rg\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix\":{\"value\":\"root-id-1\"},\"installedApplicationsOnWindowsVM\":{\"value\":\"\"},\"listOfLocations\":{\"value\":[\"eastus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
@@ -2142,7 +2336,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2162,7 +2358,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-web-emea",
               "name": "Deny-RSG-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resource Groups must be deployed in the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"northeurope\",\"westeurope\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
@@ -2170,7 +2371,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2190,7 +2393,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-web-emea",
               "name": "Deny-Resource-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resources must only be deployed to the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"northeurope\",\"westeurope\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
@@ -2198,7 +2406,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2218,7 +2428,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-web-us",
               "name": "Deny-RSG-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resource Groups must be deployed in the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
@@ -2226,7 +2441,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2246,7 +2463,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-web-us",
               "name": "Deny-Resource-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resources must only be deployed to the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
@@ -2254,7 +2476,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2274,7 +2498,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deny-RSG-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resource Groups must be deployed in the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
@@ -2282,7 +2511,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2302,7 +2533,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deny-Resource-Locations",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Resources must only be deployed to the allowed locations.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
@@ -2310,7 +2546,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2330,7 +2568,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-ASC-Monitoring",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Microsoft Cloud Security Benchmark must be met.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
@@ -2338,7 +2581,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2363,7 +2608,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-AzActivity-Log",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Activity log Diagnostic Settings must be set for Log Analytics workspaces.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
@@ -2373,7 +2623,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2398,7 +2650,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-HITRUST-HIPAA",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "HITRUST/HIPAA controls audit and virtual machine extensions must be deployed.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"CertificateThumbprints\":{\"value\":\"\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsrgName\":{\"value\":\"root-id-1-rg\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix\":{\"value\":\"root-id-1\"},\"installedApplicationsOnWindowsVM\":{\"value\":\"\"},\"listOfLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
@@ -2408,7 +2665,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2433,7 +2692,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-MDFC-Config",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Microsoft Defender for Cloud and Security Contacts must be deployed.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"ascExportResourceGroupLocation\":{\"value\":\"northeurope\"},\"ascExportResourceGroupName\":{\"value\":\"root-id-1-security-logs-export\"},\"emailSecurityContact\":{\"value\":\"test.user@replace_me\"},\"enableAscForAppServices\":{\"value\":\"DeployIfNotExists\"},\"enableAscForArm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForContainers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForDns\":{\"value\":\"DeployIfNotExists\"},\"enableAscForKeyVault\":{\"value\":\"DeployIfNotExists\"},\"enableAscForOssDb\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSql\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSqlOnVm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForStorage\":{\"value\":\"DeployIfNotExists\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
@@ -2443,7 +2707,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2468,7 +2734,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-Resource-Diag",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure resources must be configured to forward diagnostic logs and metrics to an Azure Log Analytics workspace.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"AKSLogAnalyticsEffect\":{\"value\":\"Disabled\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics",
@@ -2478,7 +2749,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2503,7 +2776,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-SQL-Auditing",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "SQL auditing must be configured.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"retentionDays\":{\"value\":\"10\"},\"storageAccountsResourceGroup\":{\"value\":\"\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/f4c68484-132f-41f9-9b6d-3e4b1cb55036",
@@ -2513,7 +2791,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -2538,7 +2818,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-VM-Monitoring",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure Monitor must be enabled for VMs.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"logAnalytics_1\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
@@ -2548,7 +2833,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
