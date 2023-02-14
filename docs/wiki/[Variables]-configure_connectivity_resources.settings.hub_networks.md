@@ -472,14 +472,14 @@ List of Azure Resource IDs used to identify spoke Virtual Networks associated wi
 [//]: # "************************"
 
 [virtual_network_gateway_sku]:     https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#sku "Supported SKUs for the virtual_network_gateway resource."
-[azfw_policy_rule_hierarchy]:      https://docs.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
+[azfw_policy_rule_hierarchy]:      https://learn.microsoft.com/azure/firewall-manager/rule-hierarchy "Use Azure Firewall policy to define a rule hierarchy."
 [azurerm_virtual_network_gateway]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway
 
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
 
-[msdocs_forced_tunnelling]:      https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-forced-tunneling-rm "Azure documentation on forced tunnelling"
-[msdocs_virtualNetworkPeerings]: https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings "Microsoft.Network virtualNetworks/virtualNetworkPeerings"
-[msdocs_virtualNetworks]:        https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks "Microsoft.Network virtualNetworks"
+[msdocs_forced_tunnelling]:      https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-forced-tunneling-rm "Azure documentation on forced tunnelling"
+[msdocs_virtualNetworkPeerings]: https://learn.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings "Microsoft.Network virtualNetworks/virtualNetworkPeerings"
+[msdocs_virtualNetworks]:        https://learn.microsoft.com/azure/templates/microsoft.network/virtualnetworks "Microsoft.Network virtualNetworks"
 
 [tf_reg_vpn_client_configuration]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#vpn_client_configuration "Documentation for vpn_client_configuration blocks on the Terraform Registry."
 [tf_reg_bgp_settings]:                  https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway#bgp_settings "Documentation for bgp_settings blocks on the Terraform Registry."

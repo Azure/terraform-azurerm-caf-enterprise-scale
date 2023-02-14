@@ -98,4 +98,4 @@ Provides granular control over the [enforcementMode][msdocs_policy_enforcement] 
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[msdocs_policy_enforcement]: https://docs.microsoft.com/azure/governance/policy/concepts/assignment-structure#enforcement-mode "Azure Policy - Enforcement Mode"
+[msdocs_policy_enforcement]: https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure#enforcement-mode "Azure Policy - Enforcement Mode"

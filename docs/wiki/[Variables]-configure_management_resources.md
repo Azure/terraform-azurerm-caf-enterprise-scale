@@ -371,18 +371,18 @@ See [Using the Advanced Block with management resources][wiki_management_advance
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[agent_health_overview]:                  https://docs.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
-[change_tracking_overview]:               https://docs.microsoft.com/azure/automation/change-tracking/overview
-[la_retention_period]:                    https://docs.microsoft.com/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period
-[sentinel_overview]:                      https://docs.microsoft.com/azure/sentinel/overview
-[service_map_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/service-map
-[sql_assessment_overview]:                https://docs.microsoft.com/azure/azure-monitor/insights/sql-assessment
-[sql_vulnerability_assessment_overview]:  https://docs.microsoft.com/azure/azure-sql/database/sql-vulnerability-assessment#configure-vulnerability-assessment
-[sql_advanced_threat_detection_overview]: https://docs.microsoft.com/azure/azure-sql/database/threat-detection-configure
-[updates_overview]:                       https://docs.microsoft.com/azure/automation/update-management/overview
-[vm_insights_overview]:                   https://docs.microsoft.com/azure/azure-monitor/vm/vminsights-overview
-[microsoft_defender_for_cloud]:           https://docs.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction
-[microsoft_defender_for_sql]:             https://docs.microsoft.com/azure/azure-sql/database/azure-defender-for-sql
+[agent_health_overview]:                  https://learn.microsoft.com/azure/azure-monitor/insights/solution-agenthealth
+[change_tracking_overview]:               https://learn.microsoft.com/azure/automation/change-tracking/overview
+[la_retention_period]:                    https://learn.microsoft.com/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period
+[sentinel_overview]:                      https://learn.microsoft.com/azure/sentinel/overview
+[service_map_overview]:                   https://learn.microsoft.com/azure/azure-monitor/vm/service-map
+[sql_assessment_overview]:                https://learn.microsoft.com/azure/azure-monitor/insights/sql-assessment
+[sql_vulnerability_assessment_overview]:  https://learn.microsoft.com/azure/azure-sql/database/sql-vulnerability-assessment#configure-vulnerability-assessment
+[sql_advanced_threat_detection_overview]: https://learn.microsoft.com/azure/azure-sql/database/threat-detection-configure
+[updates_overview]:                       https://learn.microsoft.com/azure/automation/update-management/overview
+[vm_insights_overview]:                   https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-overview
+[microsoft_defender_for_cloud]:           https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction
+[microsoft_defender_for_sql]:             https://learn.microsoft.com/azure/azure-sql/database/azure-defender-for-sql
 
 [wiki_management_advanced_block]: %5BVariables%5D-configure_management_resources_advanced "Using the advanced block with management resources"
 [wiki_disable_base_module_tags]:   %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."

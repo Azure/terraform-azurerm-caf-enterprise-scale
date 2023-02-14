@@ -292,4 +292,4 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [archetype_exclusions]:           %5BExamples%5D-Expand-Built-in-Archetype-Definitions#to-enable-the-exclusion-function "Wiki - Expand Built-in Archetype Definitions # To enable the exclusion function"
 [custom_archetypes]:              %5BUser-Guide%5D-Archetype-Definitions "[User Guide] Archetype Definitions"
 
-[azure_tag_support]: https://docs.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"
+[azure_tag_support]: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-support "Tag support for Azure resources"

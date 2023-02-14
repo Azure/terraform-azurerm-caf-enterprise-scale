@@ -19,6 +19,6 @@ Please refer to the [Deploy Identity Resources][wiki_deploy_identity_resources] 
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[alz_identity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
+[alz_identity]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
 
 [wiki_deploy_identity_resources]: %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"

@@ -244,7 +244,7 @@ Learn how to use the [Module Variables](%5BUser-Guide%5D-Module-Variables) to cu
 [//]: # "INSERT LINK LABELS BELOW"
 [//]: # "************************"
 
-[ESLZ-Architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Azure landing zones architecture"
+[ESLZ-Architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/architecture "Azure landing zones architecture"
 
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
 [authenticating_to_azure]:                 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure "Terraform Registry: Azure Provider (Authenticating to Azure)"

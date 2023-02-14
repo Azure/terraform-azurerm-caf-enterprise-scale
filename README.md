@@ -193,11 +193,11 @@ If you don't wish to send usage data to Microsoft, details on how to turn it off
 [msft_privacy_policy]: https://www.microsoft.com/trustcenter  "Microsoft's privacy policy"
 
 [alz_tf_registry]:  https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
-[alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture
-[alz_hierarchy]:    https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org
-[alz_management]:   https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management
-[alz_connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity
-[alz_identity]:     https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
+[alz_architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture
+[alz_hierarchy]:    https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org
+[alz_management]:   https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management
+[alz_connectivity]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity
+[alz_identity]:     https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
 [alz_license]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/LICENSE
 [repo_releases]:    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases "Release notes"
 

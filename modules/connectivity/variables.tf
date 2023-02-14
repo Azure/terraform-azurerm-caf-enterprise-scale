@@ -342,7 +342,7 @@ variable "custom_azure_backup_geo_codes" {
   type        = map(string)
   description = <<DESCRIPTION
 If specified, the custom_azure_backup_geo_codes variable will override or append Geo Codes (value) used to generate region-specific DNS zone names for Azure Backup private endpoints.
-For more information, please refer to: https://docs.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files
+For more information, please refer to: https://learn.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files
 DESCRIPTION
   default     = {}
 }

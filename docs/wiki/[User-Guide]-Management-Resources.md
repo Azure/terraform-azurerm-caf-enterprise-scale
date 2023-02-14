@@ -36,15 +36,15 @@ Please refer to [Deploy Management Resources][wiki_deploy_management_resources] 
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+[msdocs_alz_architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
-[alz_management]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management "Management and monitoring for Azure landing zones on the Cloud Adoption Framework."
+[alz_management]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management "Management and monitoring for Azure landing zones on the Cloud Adoption Framework."
 
-[arm_resource_group]:                 https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
-[arm_log_analytics_workspace]:        https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
-[arm_log_analytics_solution]:         https://docs.microsoft.com/azure/templates/microsoft.operationsmanagement/solutions
-[arm_automation_account]:             https://docs.microsoft.com/azure/templates/microsoft.automation/automationaccounts
-[arm_log_analytics_linked_service]:   https://docs.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
+[arm_resource_group]:                 https://learn.microsoft.com/azure/templates/microsoft.resources/resourcegroups
+[arm_log_analytics_workspace]:        https://learn.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces
+[arm_log_analytics_solution]:         https://learn.microsoft.com/azure/templates/microsoft.operationsmanagement/solutions
+[arm_automation_account]:             https://learn.microsoft.com/azure/templates/microsoft.automation/automationaccounts
+[arm_log_analytics_linked_service]:   https://learn.microsoft.com/azure/templates/microsoft.operationalinsights/workspaces/linkedservices
 
 [azurerm_resource_group]:               https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
 [azurerm_log_analytics_workspace]:      https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace

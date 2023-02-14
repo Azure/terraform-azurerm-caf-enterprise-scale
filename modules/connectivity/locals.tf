@@ -47,7 +47,7 @@ locals {
   # terraform will throw an error at this point.
   # By default we recommend creating all Virtual WAN
   # resources in a single Resource Group as per:
-  # https://docs.microsoft.com/en-us/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-group-in-virtual-wan
+  # https://learn.microsoft.com/en-us/azure/virtual-wan/virtual-wan-faq#can-hubs-be-created-in-different-resource-group-in-virtual-wan
   # As this is only an issue for customers using the
   # Portal to manage Virtual WAN resources, the following
   # logic is used to allow a customer to use dedicated Resource
