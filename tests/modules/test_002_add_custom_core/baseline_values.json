@@ -2323,7 +2323,7 @@
               "name": "Deploy-HITRUST-HIPAA",
               "non_compliance_message": [
                 {
-                  "content": "HITRUST/HIPAA controls audit and virtual machine extensions must be deployed.",
+                  "content": "This resource must be compliant with the assigned policy.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -2652,7 +2652,7 @@
               "name": "Deploy-HITRUST-HIPAA",
               "non_compliance_message": [
                 {
-                  "content": "HITRUST/HIPAA controls audit and virtual machine extensions must be deployed.",
+                  "content": "This resource must be compliant with the assigned policy.",
                   "policy_definition_reference_id": null
                 }
               ],

@@ -7247,7 +7247,7 @@
               "name": "Deploy-HITRUST-HIPAA",
               "non_compliance_message": [
                 {
-                  "content": "HITRUST/HIPAA controls audit and virtual machine extensions must be deployed.",
+                  "content": "This resource must be compliant with the assigned policy.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -7576,7 +7576,7 @@
               "name": "Deploy-HITRUST-HIPAA",
               "non_compliance_message": [
                 {
-                  "content": "HITRUST/HIPAA controls audit and virtual machine extensions must be deployed.",
+                  "content": "This resource must be compliant with the assigned policy.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -12825,10 +12825,10 @@
             "sensitive_values": {}
           },
           {
-            "address": "module.test_core_nested.data.azurerm_policy_definition.external_lookup_all[\"/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c\"]",
+            "address": "module.test_core_nested.data.azurerm_policy_definition.external_lookup[\"/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c\"]",
             "mode": "data",
             "type": "azurerm_policy_definition",
-            "name": "external_lookup_all",
+            "name": "external_lookup",
             "index": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
@@ -12841,10 +12841,10 @@
             }
           },
           {
-            "address": "module.test_core_nested.data.azurerm_policy_definition.external_lookup_all[\"/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988\"]",
+            "address": "module.test_core_nested.data.azurerm_policy_definition.external_lookup[\"/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988\"]",
             "mode": "data",
             "type": "azurerm_policy_definition",
-            "name": "external_lookup_all",
+            "name": "external_lookup",
             "index": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
