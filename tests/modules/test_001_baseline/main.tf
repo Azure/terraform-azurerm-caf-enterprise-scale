@@ -20,5 +20,5 @@ module "test_core" {
 
   # Test disable_telemetry
   disable_telemetry = true
-  
+
 }
