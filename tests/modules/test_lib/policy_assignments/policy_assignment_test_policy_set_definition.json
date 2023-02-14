@@ -8,16 +8,16 @@
         "notScopes": [],
         "parameters": {
             "installedApplicationsOnWindowsVM": {
-                "value": null
+                "value": ""
             },
             "DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix": {
-                "value": null
+                "value": ""
             },
             "DeployDiagnosticSettingsforNetworkSecurityGroupsrgName": {
-                "value": null
+                "value": ""
             },
             "CertificateThumbprints": {
-                "value": null
+                "value": ""
             }
         },
         "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",

@@ -78,6 +78,9 @@ locals {
     local.create_object,
     coalesce(local.configure_management_resources.advanced, local.empty_map)
   )
+  parameter_map_default = {
+    parameters = local.empty_map
+  }
 }
 
 # The following locals are used to define a set of module

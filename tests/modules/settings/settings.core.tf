@@ -127,14 +127,27 @@ locals {
             "ukwest",
           ]
         }
+        # The following policy has only a subset of mandatory parameters set using this input.
+        # This is to prove that the defaults set in the policy assignment template are correctly merged.
         Deploy-HITRUST-HIPAA = {
-          CertificateThumbprints                                        = ""
           DeployDiagnosticSettingsforNetworkSecurityGroupsrgName        = "${var.root_id}-rg"
           DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix = var.root_id
-          installedApplicationsOnWindowsVM                              = ""
           listOfLocations = [
             "eastus",
+            "eastus2",
+            "westus",
+            "northcentralus",
+            "southcentralus",
+            "northeurope",
+            "westeurope",
+            "uksouth",
+            "ukwest",
           ]
+        }
+        # The following policy has only a subset of mandatory parameters set using this input.
+        # This is to prove that the managed values set by the module are correctly merged.
+        Deploy-Resource-Diag = {
+          AKSLogAnalyticsEffect = "Disabled"
         }
       }
       access_control = {}

@@ -76,10 +76,18 @@ locals {
 # with the parameters provided using var.parameters.
 # Used to determine the parameter values for Policy Assignments.
 locals {
-  parameters_at_scope = merge(
-    local.archetype_definition.archetype_config.parameters,
-    local.parameters,
-  )
+  parameter_overrides_at_scope = {
+    # The following logic merges parameter values from the archetype definition
+    # with custom values provided through the parameters input variable.
+    for policy_name in toset(keys(merge(
+      local.archetype_definition.archetype_config.parameters,
+      local.parameters,
+    ))) :
+    policy_name => merge(
+      lookup(local.archetype_definition.archetype_config.parameters, policy_name, null),
+      lookup(local.parameters, policy_name, null),
+    )
+  }
 }
 
 # Extract the desired Policy Assignment from archetype_policy_assignments_map.
@@ -90,15 +98,12 @@ locals {
       resource_id = "${local.provider_path.policy_assignment}${policy_assignment}"
       scope_id    = local.scope_id
       template    = local.archetype_policy_assignments_map[policy_assignment]
-      # Also need to generate a set of parameters for each Policy
-      # Assignment if provided as part of the parameters
-      # variable. These come from the archetype_config object in
-      # the enterprise_scale module and are merged with the Policy
-      # Assignment template values to provide overrides.
+      # Parameter values are finally merged from the policy assignment template
+      # with the values provided through other configuration scopes.
       parameters = merge(
-        try(local.archetype_policy_assignments_map[policy_assignment].properties.parameters, local.empty_map),
+        lookup(local.archetype_policy_assignments_map, policy_assignment, local.parameter_map_default).properties.parameters,
         {
-          for parameter_key, parameter_value in try(local.parameters_at_scope[policy_assignment], local.empty_map) :
+          for parameter_key, parameter_value in lookup(local.parameter_overrides_at_scope, policy_assignment, local.empty_map) :
           parameter_key => {
             value = parameter_value
           }

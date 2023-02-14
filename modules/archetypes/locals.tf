@@ -71,6 +71,15 @@ locals {
   )
 }
 
+# The following locals are used to specify default values for the lookup() function
+locals {
+  parameter_map_default = {
+    properties = {
+      parameters = local.empty_map
+    }
+  }
+}
+
 # Generate the configuration output object for the specified archetype
 # depends_on_files = [
 #   locals.policy_assignments.tf
