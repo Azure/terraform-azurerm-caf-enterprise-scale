@@ -21,4 +21,6 @@ module "test_core" {
   # Test disable_telemetry
   disable_telemetry = true
 
+  # Disable default non-compliance messages
+  policy_compliance_message_default_enabled = false
 }
