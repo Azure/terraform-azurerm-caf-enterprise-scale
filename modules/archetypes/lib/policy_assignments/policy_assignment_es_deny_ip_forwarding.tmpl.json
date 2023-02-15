@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/88c0b9da-ce96-4b03-9635-f29a937e2900",
+    "nonComplianceMessages": [
+      {
+        "message": "Network interfaces {enforcementMode} disable IP forwarding."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

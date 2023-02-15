@@ -32,13 +32,23 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
     }
   }
 
+  # Optional Non-compliance messages
+  # The mesage will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
+  # The language can the altered or localised using the variables
+  dynamic "non_compliance_message" {
+    for_each = contains(local.non_compliance_message_supported_policy_modes, lookup(local.all_policy_modes, each.value.template.properties.policyDefinitionId, local.policy_set_mode)) ? lookup(each.value.template.properties, "nonComplianceMessages", local.default_non_compliance_message_list) : local.empty_list
+    content {
+      content                        = replace(lookup(non_compliance_message.value, "message", local.default_non_compliance_message), local.compliance_message_enforcement_mode_placeholder, each.value.enforcement_mode ? local.compliance_message_enforcement_mode_replacements.default : local.compliance_message_enforcement_mode_replacements.donotenforce)
+      policy_definition_reference_id = lookup(non_compliance_message.value, "policyDefinitionReferenceId", null)
+    }
+  }
+
   # Set explicit dependency on Management Group, Policy Definition and Policy Set Definition deployments
   depends_on = [
     time_sleep.after_azurerm_management_group,
     time_sleep.after_azurerm_policy_definition,
     time_sleep.after_azurerm_policy_set_definition,
   ]
-
 }
 
 resource "time_sleep" "after_azurerm_policy_assignment" {

@@ -12,6 +12,11 @@
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Databricks-VirtualNetwork",
+    "nonComplianceMessages": [
+      {
+        "message": "Databricks workspaces {enforcementMode} use vnet injection."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": "Default"
   },

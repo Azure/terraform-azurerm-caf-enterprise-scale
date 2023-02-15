@@ -803,3 +803,59 @@ variable "strict_subscription_association" {
   description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed."
   default     = true
 }
+
+variable "policy_compliance_message_not_supported_definitions" {
+  type        = list(string)
+  description = "If set, overrides the list of built-in policy definition that do not support compliance messages."
+  default = [
+    "/providers/Microsoft.Authorization/policyDefinitions/1c6e92c9-99f0-4e55-9cf2-0c234dc48f99",
+    "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
+    "/providers/Microsoft.Authorization/policyDefinitions/95edb821-ddaf-4404-9732-666045e056b4"
+  ]
+}
+
+variable "policy_compliance_message_default_enabled" {
+  type        = bool
+  description = "If set to true, will enable the use of the default custom compliance messages for policy assignments if they are not provided."
+  default     = true
+}
+
+variable "policy_compliance_message_default" {
+  type        = string
+  description = "If set overrides the default compliance message used for policy assignments."
+  default     = "This resource {enforcementMode} be compliant with the assigned policy."
+  validation {
+    condition     = var.policy_compliance_message_default != null && length(var.policy_compliance_message_default) > 0
+    error_message = "The policy_compliance_message_default value must not be null or empty."
+  }
+}
+
+variable "policy_compliance_message_enforcement_placeholder" {
+  type        = string
+  description = "If set overrides the compliance message placeholder used in message templates."
+  default     = "{enforcementMode}"
+  validation {
+    condition     = var.policy_compliance_message_enforcement_placeholder != null && length(var.policy_compliance_message_enforcement_placeholder) > 0
+    error_message = "The policy_compliance_message_enforcement_placeholder value must not be null or empty."
+  }
+}
+
+variable "policy_compliance_message_enforced_replacement" {
+  type        = string
+  description = "If set overrides the compliance replacement used for enforced policy assignments."
+  default     = "must"
+  validation {
+    condition     = var.policy_compliance_message_enforced_replacement != null && length(var.policy_compliance_message_enforced_replacement) > 0
+    error_message = "The policy_compliance_message_enforced_replacement value must not be null or empty."
+  }
+}
+
+variable "policy_compliance_message_not_enforced_replacement" {
+  type        = string
+  description = "If set overrides the compliance replacement used for unenforced policy assignments."
+  default     = "should"
+  validation {
+    condition     = var.policy_compliance_message_not_enforced_replacement != null && length(var.policy_compliance_message_not_enforced_replacement) > 0
+    error_message = "The policy_compliance_message_not_enforced_replacement value must not be null or empty."
+  }
+}

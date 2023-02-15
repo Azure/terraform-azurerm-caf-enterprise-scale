@@ -182,6 +182,11 @@ In the subdirectory `policy_assignments` create a `policy_assignment_dhh_policy_
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
+    "nonComplianceMessages": [
+      {
+        "message": "HITRUST/HIPAA controls audit and virtual machine extensions {enforcementMode} be deployed."
+      }
+    ],
     "scope": "${current_scope_resource_id}"
   },
   "location": "${default_location}",
@@ -213,6 +218,11 @@ In the subdirectory `policy_assignments` create a `policy_assignment_dsa_policy_
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f4c68484-132f-41f9-9b6d-3e4b1cb55036",
+    "nonComplianceMessages": [
+      {
+        "message": "SQL auditing {enforcementMode} be configured."
+      }
+    ],
     "scope": "${current_scope_resource_id}"
   },
   "location": "${default_location}",

@@ -12,6 +12,11 @@
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics",
+    "nonComplianceMessages": [
+      {
+        "message": "Azure resources {enforcementMode} be configured to forward diagnostic logs and metrics to an Azure Log Analytics workspace."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

@@ -51,6 +51,11 @@
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
+    "nonComplianceMessages": [
+      {
+        "message": "Microsoft Defender for Cloud and Security Contacts {enforcementMode} be deployed."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

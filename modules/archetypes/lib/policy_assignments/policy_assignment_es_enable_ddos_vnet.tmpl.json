@@ -15,6 +15,11 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+    "nonComplianceMessages": [
+      {
+        "message": "Virtual networks {enforcementMode} be protected by Azure DDoS Protection Standard."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

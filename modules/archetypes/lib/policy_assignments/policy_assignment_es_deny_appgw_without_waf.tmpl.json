@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-AppGW-Without-WAF",
+    "nonComplianceMessages": [
+      {
+        "message": "Application Gateway {enforcementMode} have WAF enabled."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

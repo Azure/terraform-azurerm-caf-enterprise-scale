@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
+    "nonComplianceMessages": [
+      {
+        "message": "SQL Server Threat Detection {enforcementMode} be enabled."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },
