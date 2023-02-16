@@ -235,33 +235,38 @@ locals {
   }
 }
 
-# Compliance message default when none is provided
+# Non-compliance messages enabled or disabled
 locals {
-  default_non_compliance_message = var.policy_compliance_message_default
+  non_compliance_message_enabled = var.policy_non_compliance_message_enabled
 }
 
-# Default Compliance message list when none is provided
+# Non-compliance message default when none is provided
 locals {
-  default_non_compliance_message_list = var.policy_compliance_message_default_enabled ? [
+  default_non_compliance_message = var.policy_non_compliance_message_default
+}
+
+# Default Non-compliance message list when none is provided
+locals {
+  default_non_compliance_message_list = var.policy_non_compliance_message_default_enabled ? [
     {
       message = local.default_non_compliance_message
     }
   ] : local.empty_list
 }
 
-# Compliance message replacements based on enforcement mode
+# Non-compliance message replacements based on enforcement mode
 # If the policy assignment is enforced the message with include 'must', if not it will say 'should'
 locals {
-  compliance_message_enforcement_mode_replacements = {
-    default      = var.policy_compliance_message_enforced_replacement
-    donotenforce = var.policy_compliance_message_not_enforced_replacement
+  non_compliance_message_enforcement_mode_replacements = {
+    default      = var.policy_non_compliance_message_enforced_replacement
+    donotenforce = var.policy_non_compliance_message_not_enforced_replacement
   }
-  compliance_message_enforcement_mode_placeholder = var.policy_compliance_message_enforcement_placeholder
+  non_compliance_message_enforcement_mode_placeholder = var.policy_non_compliance_message_enforcement_placeholder
 }
 
-# A list of policy definitions to exlude from having a default compliance message as they don't support compliance messages.
+# A list of policy definitions to exlude from having a default non-compliance message as they don't support compliance messages.
 locals {
-  compliance_message_not_supported_definitions = var.policy_compliance_message_not_supported_definitions
+  non_compliance_message_not_supported_definitions = var.policy_non_compliance_message_not_supported_definitions
 }
 
 # A list of policy modes that support non-compliance messages. A special setting is included for Policy Sets as they do not have a mode.
@@ -274,7 +279,7 @@ locals {
 locals {
   external_policy_modes = {
     for policy_definition in data.azurerm_policy_definition.external_lookup :
-    policy_definition.id => lookup(policy_definition, "mode", contains(local.compliance_message_not_supported_definitions, policy_definition.id) ? "NotSupported" : "All")
+    policy_definition.id => lookup(policy_definition, "mode", contains(local.non_compliance_message_not_supported_definitions, policy_definition.id) ? "NotSupported" : "All")
   }
   internal_policy_modes = {
     for policy_definition_id in distinct(local.internal_policies_from_local_assignments) :
