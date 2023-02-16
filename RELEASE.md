@@ -10,7 +10,7 @@ The `v3.2.0` release includes ...
 - Updated the `description` field for the `vulnerabilityAssessmentsEmail` parameter on the `Deploy-Sql-vulnerabilityAssessments` policy definition to provide clearer guidance on how to specify multiple email addresses.
 - Updated description for `archetype_config_overrides` input variable.
 - Updated the `displayName` field for the `Deny-MachineLearning-PublicAccessWhenBehindVnet` policy definition (to correct spelling mistake).
-- Added the ability to set custom policy compliance messages on policy assignments. There are a number of new variables to control this behaviour and allow localisation. These start with `policy_compliance_message_`. This feature is on by default. To turn this functionality off, you can specify `policy_non_compliance_message_enabled = false`.
+- Added the ability to set custom policy compliance messages on policy assignments. There are a number of new variables to control this behaviour and allow localisation. These start with `policy_non_compliance_message_`. This feature is on by default. To turn this functionality off, you can specify `policy_non_compliance_message_enabled = false`.
 
 ### Fixed issues
 
