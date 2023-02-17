@@ -235,21 +235,11 @@ locals {
   }
 }
 
-# Non-compliance messages enabled or disabled
-locals {
-  non_compliance_message_enabled = var.policy_non_compliance_message_enabled
-}
-
-# Non-compliance message default when none is provided
-locals {
-  default_non_compliance_message = var.policy_non_compliance_message_default
-}
-
 # Default Non-compliance message list when none is provided
 locals {
-  default_non_compliance_message_list = var.policy_non_compliance_message_default_enabled ? [
+  default_non_compliance_message_list = local.policy_non_compliance_message_default_enabled ? [
     {
-      message = local.default_non_compliance_message
+      message = local.policy_non_compliance_message_default
     }
   ] : local.empty_list
 }
@@ -258,15 +248,15 @@ locals {
 # If the policy assignment is enforced the message with include 'must', if not it will say 'should'
 locals {
   non_compliance_message_enforcement_mode_replacements = {
-    default      = var.policy_non_compliance_message_enforced_replacement
-    donotenforce = var.policy_non_compliance_message_not_enforced_replacement
+    default      = local.policy_non_compliance_message_enforced_replacement
+    donotenforce = local.policy_non_compliance_message_not_enforced_replacement
   }
-  non_compliance_message_enforcement_mode_placeholder = var.policy_non_compliance_message_enforcement_placeholder
+  non_compliance_message_enforcement_mode_placeholder = local.policy_non_compliance_message_enforcement_placeholder
 }
 
 # A list of policy definitions to exlude from having a default non-compliance message as they don't support compliance messages.
 locals {
-  non_compliance_message_not_supported_definitions = var.policy_non_compliance_message_not_supported_definitions
+  non_compliance_message_not_supported_definitions = local.policy_non_compliance_message_not_supported_definitions
 }
 
 # A list of policy modes that support non-compliance messages. A special setting is included for Policy Sets as they do not have a mode.
