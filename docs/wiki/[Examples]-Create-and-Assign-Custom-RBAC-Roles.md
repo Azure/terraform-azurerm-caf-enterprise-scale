@@ -127,5 +127,7 @@ If we had saved our role at the `es_landing_zones` scope then we would use a pre
 
 >**IMPORTANT**: Remember to replace the GUID in the code above with the objectID of the group you're assigning the role to in your own tenant.
 
+>**Note**: In case you would like to assign the role to an application registered in Azure AD then make sure to use the Object ID of the Service Principal related to that application in the local directory. For more details on this please see [the FAQs](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Frequently-Asked-Questions).
+
 You should now kick-off your Terraform workflow (init, plan, apply) again to apply the updated configuration. This can be done either locally or through a pipeline.
 When your workflow has finished, the `Reader-Support-Tickets` role will be assigned to the `Contoso Reader and Support Tickets` group at the Landing Zones Management Group.
