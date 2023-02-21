@@ -154,3 +154,14 @@ locals {
     after_azurerm_role_definition       = var.destroy_duration_delay["azurerm_role_definition"]
   }
 }
+
+# The follow locals are used to control non-compliance messages
+locals {
+  policy_non_compliance_message_enabled                   = var.policy_non_compliance_message_enabled
+  policy_non_compliance_message_not_supported_definitions = var.policy_non_compliance_message_not_supported_definitions
+  policy_non_compliance_message_default_enabled           = var.policy_non_compliance_message_default_enabled
+  policy_non_compliance_message_default                   = var.policy_non_compliance_message_default
+  policy_non_compliance_message_enforcement_placeholder   = var.policy_non_compliance_message_enforcement_placeholder
+  policy_non_compliance_message_enforced_replacement      = var.policy_non_compliance_message_enforced_replacement
+  policy_non_compliance_message_not_enforced_replacement  = var.policy_non_compliance_message_not_enforced_replacement
+}

@@ -1,9 +1,9 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-[**policy_compliance_message_default_enabled**](#overview) `bool` (optional)
+[**policy_non_compliance_message_default_enabled**](#overview) `bool` (optional)
 
-If specified, enables using the default policy compliance message if none is supplied.
+If specified, enables using the default policy non-compliance message if none is supplied.
 
 ## Default value
 
@@ -16,7 +16,7 @@ None
 ## Usage
 
 ```hcl
-  policy_compliance_message_default_enabled = true
+  policy_non_compliance_message_default_enabled = true
 ```
 
 [//]: # "************************"
