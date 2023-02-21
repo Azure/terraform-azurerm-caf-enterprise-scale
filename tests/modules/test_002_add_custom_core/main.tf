@@ -46,5 +46,5 @@ module "test_core" {
   subscription_id_connectivity     = data.azurerm_client_config.connectivity.subscription_id
 
   # Disable default non-compliance messages
-  policy_compliance_message_default_enabled = false
+  policy_non_compliance_message_default_enabled = false
 }

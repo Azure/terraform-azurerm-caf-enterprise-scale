@@ -27,12 +27,13 @@ Please refer to the following to learn about the module:
   - [disable_base_module_tags][wiki_module_variables_disable_base_module_tags]
   - [disable_telemetry][wiki_module_variables_disable_telemetry]
   - [library_path][wiki_module_variables_library_path]
-  - [policy_compliance_message_default][wiki_module_variables_policy_compliance_message_default]
-  - [policy_compliance_message_enabled][wiki_module_variables_policy_compliance_message_default_enabled]
-  - [policy_compliance_message_enforced_replacement][wiki_module_variables_policy_compliance_message_enforced_replacement]
-  - [policy_compliance_message_enforcement_placeholder][wiki_module_variables_policy_compliance_message_enforcement_placeholder]
-  - [policy_compliance_message_not_enforced_replacement][wiki_module_variables_policy_compliance_message_not_enforced_replacement]
-  - [policy_compliance_message_not_supported_definitions][wiki_module_variables_policy_compliance_message_not_supported_definitions]
+  - [policy_non_compliance_message_default][wiki_module_variables_policy_non_compliance_message_default]
+  - [policy_non_compliance_message_enabled][wiki_module_variables_policy_non_compliance_message_enabled]
+  - [policy_non_compliance_message_default_enabled][wiki_module_variables_policy_non_compliance_message_default_enabled]
+  - [policy_non_compliance_message_enforced_replacement][wiki_module_variables_policy_non_compliance_message_enforced_replacement]
+  - [policy_non_compliance_message_enforcement_placeholder][wiki_module_variables_policy_non_compliance_message_enforcement_placeholder]
+  - [policy_non_compliance_message_not_enforced_replacement][wiki_module_variables_policy_non_compliance_message_not_enforced_replacement]
+  - [policy_non_compliance_message_not_supported_definitions][wiki_module_variables_policy_non_compliance_message_not_supported_definitions]
   - [root_id][wiki_module_variables_root_id]
   - [root_name][wiki_module_variables_root_name]
   - [root_parent_id][wiki_module_variables_root_parent_id]
@@ -100,12 +101,13 @@ If you need guidance when upgrading between major releases, please refer to the 
 [wiki_module_variables_disable_base_module_tags]:                             %5BVariables%5D-disable_base_module_tags "Instructions for how to use the disable_base_module_tags variable."
 [wiki_module_variables_disable_telemetry]:                                    %5BVariables%5D-disable_telemetry "Instructions for how to use the disable_telemetry variable."
 [wiki_module_variables_library_path]:                                         %5BVariables%5D-library_path "Instructions for how to use the library_path variable."
-[wiki_module_variables_policy_compliance_message_default]:                    %5BVariables%5D-policy_compliance_message_default "Instructions for how to use the policy_compliance_message_default variable."
-[wiki_module_variables_policy_compliance_message_default_enabled]:            %5BVariables%5D-policy_compliance_message_default_enabled "Instructions for how to use the policy_compliance_message_default_enabled variable."
-[wiki_module_variables_policy_compliance_message_enforced_replacement]:       %5BVariables%5D-policy_compliance_message_enforced_replacement "Instructions for how to use the policy_compliance_message_enforced_replacement variable."
-[wiki_module_variables_policy_compliance_message_enforcement_placeholder]:    %5BVariables%5D-policy_compliance_message_enforcement_placeholder "Instructions for how to use the policy_compliance_message_enforcement_placeholder variable."
-[wiki_module_variables_policy_compliance_message_not_enforced_replacement]:   %5BVariables%5D-policy_compliance_message_not_enforced_replacement "Instructions for how to use the policy_compliance_message_not_enforced_replacement variable."
-[wiki_module_variables_policy_compliance_message_not_supported_definitions]:  %5BVariables%5D-policy_compliance_message_not_supported_definitions "Instructions for how to use the policy_compliance_message_not_supported_definitions variable."
+[wiki_module_variables_policy_non_compliance_message_default]:                %5BVariables%5D-policy_non_compliance_message_default "Instructions for how to use the policy_non_compliance_message_default variable."
+[wiki_module_variables_policy_non_compliance_message_enabled]:            %5BVariables%5D-policy_non_compliance_message_enabled "Instructions for how to use the policy_non_compliance_message_enabled variable."
+[wiki_module_variables_policy_non_compliance_message_default_enabled]:            %5BVariables%5D-policy_non_compliance_message_default_enabled "Instructions for how to use the policy_non_compliance_message_default_enabled variable."
+[wiki_module_variables_policy_non_compliance_message_enforced_replacement]:       %5BVariables%5D-policy_non_compliance_message_enforced_replacement "Instructions for how to use the policy_non_compliance_message_enforced_replacement variable."
+[wiki_module_variables_policy_non_compliance_message_enforcement_placeholder]:    %5BVariables%5D-policy_non_compliance_message_enforcement_placeholder "Instructions for how to use the policy_non_compliance_message_enforcement_placeholder variable."
+[wiki_module_variables_policy_non_compliance_message_not_enforced_replacement]:   %5BVariables%5D-policy_non_compliance_message_not_enforced_replacement "Instructions for how to use the policy_non_compliance_message_not_enforced_replacement variable."
+[wiki_module_variables_policy_non_compliance_message_not_supported_definitions]:  %5BVariables%5D-policy_non_compliance_message_not_supported_definitions "Instructions for how to use the policy_non_compliance_message_not_supported_definitions variable."
 [wiki_module_variables_root_id]:                                              %5BVariables%5D-root_id "Instructions for how to use the root_id variable."
 [wiki_module_variables_root_name]:                                            %5BVariables%5D-root_name "Instructions for how to use the root_name variable."
 [wiki_module_variables_root_parent_id]:                                       %5BVariables%5D-root_parent_id "Instructions for how to use the root_parent_id variable."

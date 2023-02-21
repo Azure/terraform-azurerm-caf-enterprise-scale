@@ -804,9 +804,15 @@ variable "strict_subscription_association" {
   default     = true
 }
 
-variable "policy_compliance_message_not_supported_definitions" {
+variable "policy_non_compliance_message_enabled" {
+  type        = bool
+  description = "If set to false, will disable non-compliance messages altogether."
+  default     = true
+}
+
+variable "policy_non_compliance_message_not_supported_definitions" {
   type        = list(string)
-  description = "If set, overrides the list of built-in policy definition that do not support compliance messages."
+  description = "If set, overrides the list of built-in policy definition that do not support non-compliance messages."
   default = [
     "/providers/Microsoft.Authorization/policyDefinitions/1c6e92c9-99f0-4e55-9cf2-0c234dc48f99",
     "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
@@ -814,48 +820,48 @@ variable "policy_compliance_message_not_supported_definitions" {
   ]
 }
 
-variable "policy_compliance_message_default_enabled" {
+variable "policy_non_compliance_message_default_enabled" {
   type        = bool
-  description = "If set to true, will enable the use of the default custom compliance messages for policy assignments if they are not provided."
+  description = "If set to true, will enable the use of the default custom non-compliance messages for policy assignments if they are not provided."
   default     = true
 }
 
-variable "policy_compliance_message_default" {
+variable "policy_non_compliance_message_default" {
   type        = string
-  description = "If set overrides the default compliance message used for policy assignments."
+  description = "If set overrides the default non-compliance message used for policy assignments."
   default     = "This resource {enforcementMode} be compliant with the assigned policy."
   validation {
-    condition     = var.policy_compliance_message_default != null && length(var.policy_compliance_message_default) > 0
-    error_message = "The policy_compliance_message_default value must not be null or empty."
+    condition     = var.policy_non_compliance_message_default != null && length(var.policy_non_compliance_message_default) > 0
+    error_message = "The policy_non_compliance_message_default value must not be null or empty."
   }
 }
 
-variable "policy_compliance_message_enforcement_placeholder" {
+variable "policy_non_compliance_message_enforcement_placeholder" {
   type        = string
-  description = "If set overrides the compliance message placeholder used in message templates."
+  description = "If set overrides the non-compliance message placeholder used in message templates."
   default     = "{enforcementMode}"
   validation {
-    condition     = var.policy_compliance_message_enforcement_placeholder != null && length(var.policy_compliance_message_enforcement_placeholder) > 0
-    error_message = "The policy_compliance_message_enforcement_placeholder value must not be null or empty."
+    condition     = var.policy_non_compliance_message_enforcement_placeholder != null && length(var.policy_non_compliance_message_enforcement_placeholder) > 0
+    error_message = "The policy_non_compliance_message_enforcement_placeholder value must not be null or empty."
   }
 }
 
-variable "policy_compliance_message_enforced_replacement" {
+variable "policy_non_compliance_message_enforced_replacement" {
   type        = string
-  description = "If set overrides the compliance replacement used for enforced policy assignments."
+  description = "If set overrides the non-compliance replacement used for enforced policy assignments."
   default     = "must"
   validation {
-    condition     = var.policy_compliance_message_enforced_replacement != null && length(var.policy_compliance_message_enforced_replacement) > 0
-    error_message = "The policy_compliance_message_enforced_replacement value must not be null or empty."
+    condition     = var.policy_non_compliance_message_enforced_replacement != null && length(var.policy_non_compliance_message_enforced_replacement) > 0
+    error_message = "The policy_non_compliance_message_enforced_replacement value must not be null or empty."
   }
 }
 
-variable "policy_compliance_message_not_enforced_replacement" {
+variable "policy_non_compliance_message_not_enforced_replacement" {
   type        = string
-  description = "If set overrides the compliance replacement used for unenforced policy assignments."
+  description = "If set overrides the non-compliance replacement used for unenforced policy assignments."
   default     = "should"
   validation {
-    condition     = var.policy_compliance_message_not_enforced_replacement != null && length(var.policy_compliance_message_not_enforced_replacement) > 0
-    error_message = "The policy_compliance_message_not_enforced_replacement value must not be null or empty."
+    condition     = var.policy_non_compliance_message_not_enforced_replacement != null && length(var.policy_non_compliance_message_not_enforced_replacement) > 0
+    error_message = "The policy_non_compliance_message_not_enforced_replacement value must not be null or empty."
   }
 }
