@@ -33,8 +33,8 @@ module "enterprise_scale_nested_landing_zone" {
       parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {}
+        archetype_id   = "customer_online"
+        parameters     = {}
         access_control = {}
       }
     }
@@ -84,7 +84,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+      verison = ">= 3.19.0"
     }
   }
 }
@@ -164,13 +164,13 @@ module "enterprise_scale" {
       parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id   = "customer_online"
-        parameters     = {
+        archetype_id = "customer_online"
+        parameters = {
           Deny-Resource-Locations = {
-            listOfAllowedLocations = ["eastus",]
+            listOfAllowedLocations = ["eastus", ]
           }
           Deny-RSG-Locations = {
-            listOfAllowedLocations = ["eastus",]
+            listOfAllowedLocations = ["eastus", ]
           }
         }
         access_control = {}
@@ -204,8 +204,8 @@ module "enterprise_scale_nested_landing_zone" {
       parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {}
+        archetype_id   = "customer_online"
+        parameters     = {}
         access_control = {}
       }
     }

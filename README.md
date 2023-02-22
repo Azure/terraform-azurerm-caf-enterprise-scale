@@ -66,7 +66,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+      verison = ">= 3.19.0"
     }
   }
 }
@@ -165,8 +165,6 @@ For upgrade guides from previous versions, please refer to the following links:
 The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
-
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.19.0)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
 

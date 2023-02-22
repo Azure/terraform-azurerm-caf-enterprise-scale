@@ -58,30 +58,30 @@ Parameters are grouped by Policy Assignment `name`.
 In the following example, you can see we define a custom archetype definition called `my_archetype`.
 Within this archetype definition, we create a Policy Assignment for `Deny-Resource-Locations` and set a custom value for the parameter `listOfAllowedLocations`:
 
-```hcl
+```json
 {
-    "my_archetype": {
-        "policy_assignments": [
-          "Deny-Resource-Locations"
-        ],
-        "policy_definitions": [],
-        "policy_set_definitions": [],
-        "role_definitions": [],
-        "archetype_config": {
-            "parameters": {
-                "Deny-Resource-Locations": {
-                    "listOfAllowedLocations": [
-                        "eastus",
-                        "eastus2",
-                        "westus",
-                        "northcentralus",
-                        "southcentralus"
-                    ]
-                }
-            },
-            "access_control": {}
+  "my_archetype" : {
+    "policy_assignments" : [
+      "Deny-Resource-Locations"
+    ],
+    "policy_definitions" : [],
+    "policy_set_definitions" : [],
+    "role_definitions" : [],
+    "archetype_config" : {
+      "parameters" : {
+        "Deny-Resource-Locations" : {
+          "listOfAllowedLocations" : [
+            "eastus",
+            "eastus2",
+            "westus",
+            "northcentralus",
+            "southcentralus"
+          ]
         }
+      },
+      "access_control" : {}
     }
+  }
 }
 ```
 
@@ -92,7 +92,7 @@ If you want to [expand an existing archetype](./%5BExamples%5D-Expand-Built-in-A
 
 In the following example we use the archetype extension approach to set the `effect` parameter for the `Deny-Subnet-Without-Nsg` Policy Assignment to `Audit` for the default `es_landing_zones` archetype definition:
 
-```hcl
+```json
 {
   "extend_es_landing_zones": {
     "policy_assignments": [],

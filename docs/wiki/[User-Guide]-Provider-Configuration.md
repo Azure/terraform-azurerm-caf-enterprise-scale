@@ -54,7 +54,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      ">= 3.19.0"
+      verison = ">= 3.19.0"
     }
   }
 }
@@ -111,8 +111,8 @@ The following example shows how you might configure multiple `provider` blocks a
 terraform {
   required_providers {
     azurerm = {
-      source                = "hashicorp/azurerm"
-      version               = ">= 3.19.0"
+      source  = "hashicorp/azurerm"
+      version = ">= 3.19.0"
       configuration_aliases = [
         azurerm.connectivity,
         azurerm.management,
@@ -217,17 +217,17 @@ module "enterprise_scale" {
   }
 
   # Set the required input variable `root_parent_id` using the Tenant ID from the un-aliased provider
-  root_parent_id           = data.azurerm_client_config.core.tenant_id
+  root_parent_id = data.azurerm_client_config.core.tenant_id
 
   # Enable deployment of the management resources, using the management
   # aliased provider to populate the correct Subscription ID
-  deploy_management_resources    = true
-  subscription_id_management     = data.azurerm_client_config.management.subscription_id
+  deploy_management_resources = true
+  subscription_id_management  = data.azurerm_client_config.management.subscription_id
 
   # Enable deployment of the connectivity resources, using the connectivity
   # aliased provider to populate the correct Subscription ID
-  deploy_connectivity_resources    = true
-  subscription_id_connectivity     = data.azurerm_client_config.connectivity.subscription_id
+  deploy_connectivity_resources = true
+  subscription_id_connectivity  = data.azurerm_client_config.connectivity.subscription_id
 
   # insert additional optional input variables here
 

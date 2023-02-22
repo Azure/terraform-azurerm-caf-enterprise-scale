@@ -48,6 +48,7 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       verison = ">= 3.19.0"
+    }
   }
 }
 
