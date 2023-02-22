@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+      verison = ">= 3.19.0"
     }
   }
 

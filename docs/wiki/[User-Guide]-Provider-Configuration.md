@@ -54,7 +54,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+      ">= 3.19.0"
     }
   }
 }
@@ -70,7 +70,7 @@ provider "azurerm" {
 
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm
@@ -150,7 +150,7 @@ provider "azurerm" {
 
 module "caf-enterprise-scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm
@@ -208,7 +208,7 @@ data "azurerm_client_config" "connectivity" {
 # Map each module provider to their corresponding `azurerm` provider using the providers input object
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm

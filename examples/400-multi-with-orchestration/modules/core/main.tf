@@ -5,7 +5,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+      version = "3.19.0"
     }
   }
 }
@@ -29,7 +29,7 @@ module "alz" {
   # and uncomment the remote `source` and `version` below.
   source = "../../../../"
   # source  = "Azure/caf-enterprise-scale/azurerm"
-  # version = "3.1.2"
+  # version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm
