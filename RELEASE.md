@@ -1,4 +1,4 @@
-# [v3.2.0] Policy Non-Compliance Messages & Thank You Kevin!
+# [v3.2.0] Policy Non-Compliance Messages & Thank You Kevin
 
 ## Overview
 
