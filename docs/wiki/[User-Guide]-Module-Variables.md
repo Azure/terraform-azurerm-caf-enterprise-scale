@@ -11,7 +11,9 @@ In all cases, the default values can simply be copied into your configuration an
 > This helps to improve readability of the module block, and also makes these values re-usable when using multiple instances of the module to build out your Azure landing zone.
 > Only use [Input Variables][input_variables] for simple values which need to be changed across multiple deployments (e.g. environment-specific values).
 
-
 ## Variable Documentation
 
 We have now moved to using terraform-docs to generate the variable documentation for this module. Please see the `README.md` file in the root of this repository for more details.
+
+[local_values]:    https://www.terraform.io/docs/language/values/locals.html "Local Values"
+[input_variables]: https://www.terraform.io/docs/language/values/variables.html "Input Variables"
