@@ -13,7 +13,7 @@ To do this, you would use the following version constraint syntax:
 ```terraform
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   # Insert provider block and input variables here
 }

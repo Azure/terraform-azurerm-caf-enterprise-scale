@@ -42,14 +42,6 @@ jobs:
           targetType: "inline"
           script: "make tf-fmt"
 
-      - task: Bash@3
-        displayName: "[terratest]"
-        inputs:
-          targetType: "inline"
-          script: "make terratest"
-        env:
-          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-
       - template: templates/tests-loop.yml
         parameters:
           module_path: "tests/modules/test_001_baseline"

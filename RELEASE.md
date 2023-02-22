@@ -1,8 +1,11 @@
-# [v3.2.0] Title TBC
+# [v3.2.0] Policy Non-Compliance Messages & Thank You Kevin
 
 ## Overview
 
-The `v3.2.0` release includes ...
+The `v3.2.0` release includes the ability to add policy non-compliance messages to the assignments.
+
+A special note and thank you to this module's original author and maintainer, [Kevin Rowlandson](https://github.com/krowlandson).
+He has moved onto a new and exciting role outside Microsoft, we wish him well and look forward to his continuted involment in the module from afar.
 
 ### New features
 

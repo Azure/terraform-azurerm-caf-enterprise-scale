@@ -136,18 +136,18 @@ The default library includes a `default_empty` archetype definition which is use
 You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
 
 ```hcl
-  custom_landing_zones = {
-    example-landing-zone-id = {
-      display_name               = "Example Landing Zone"
-      parent_management_group_id = "tf-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "default_empty"
-        parameters   = {}
-        access_control = {}
-      }
+custom_landing_zones = {
+  example-landing-zone-id = {
+    display_name               = "Example Landing Zone"
+    parent_management_group_id = "tf-landing-zones"
+    subscription_ids           = []
+    archetype_config = {
+      archetype_id   = "default_empty"
+      parameters     = {}
+      access_control = {}
     }
   }
+}
 ```
 
 This is equivalent to creating a standard Management Group without creating any custom Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) or Role Definitions.
@@ -163,7 +163,7 @@ The `archetype_config` object appears in a number of places and can be used to c
 Below is the required structure for the `archetype_config` object:
 
 ```hcl
-object({
+myconfig = object({
   archetype_id   = string
   parameters     = map(any)
   access_control = map(list(string))
