@@ -474,6 +474,12 @@ Default: `""`
 <!-- markdownlint-disable-next-line no-inline-html -->
 <br>
 
+[**policy_non_compliance_message_enabled**][policy_non_compliance_message_enabled] `bool`
+
+If set to false, will disable the policy non-compliance message for all policies deployed by the module.
+
+Default: `true`
+
 [**root_id**][root_id] `string`
 
 If specified, will set a custom Name (ID) value for the Enterprise-scale "root" Management Group, and append this to the ID for all core Enterprise-scale Management Groups.
