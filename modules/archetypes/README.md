@@ -1,5 +1,5 @@
 <!-- BEGIN_TF_DOCS -->
-
+# Archetypes sub-module
 
 ## Documentation
 <!-- markdownlint-disable MD033 -->
@@ -13,6 +13,7 @@ No requirements.
 No modules.
 
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
 ## Required Inputs
 
 The following input variables are required:

@@ -10,11 +10,14 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
 
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.19.0)
+
 ## Modules
 
 No modules.
 
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
 ## Required Inputs
 
 The following input variables are required:

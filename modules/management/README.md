@@ -13,6 +13,7 @@ No requirements.
 No modules.
 
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
 ## Required Inputs
 
 The following input variables are required:
