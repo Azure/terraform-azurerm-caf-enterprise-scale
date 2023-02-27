@@ -94,6 +94,7 @@ If you need guidance when upgrading between major releases, please refer to the 
 [wiki_module_variables_deploy_core_landing_zones]:                            %5BVariables%5D-deploy_core_landing_zones "Instructions for how to use the deploy_core_landing_zones variable."
 [wiki_module_variables_deploy_corp_landing_zones]:                            %5BVariables%5D-deploy_corp_landing_zones "Instructions for how to use the deploy_corp_landing_zones variable."
 [wiki_module_variables_deploy_demo_landing_zones]:                            %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_demo_landing_zones variable."
+[wiki_module_variables_deploy_diagnostics_for_mg]:                            %5BVariables%5D-deploy_demo_landing_zones "Instructions for how to use the deploy_diagnostics_for_mg variable."
 [wiki_module_variables_deploy_identity_resources]:                            %5BVariables%5D-deploy_identity_resources "Instructions for how to use the deploy_identity_resources variable."
 [wiki_module_variables_deploy_management_resources]:                          %5BVariables%5D-deploy_management_resources "Instructions for how to use the deploy_management_resources variable."
 [wiki_module_variables_deploy_online_landing_zones]:                          %5BVariables%5D-deploy_online_landing_zones "Instructions for how to use the deploy_online_landing_zones variable."
@@ -117,4 +118,3 @@ If you need guidance when upgrading between major releases, please refer to the 
 [wiki_module_variables_subscription_id_management]:                           %5BVariables%5D-subscription_id_management "Instructions for how to use the subscription_id_management variable."
 [wiki_module_variables_subscription_id_overrides]:                            %5BVariables%5D-subscription_id_overrides "Instructions for how to use the subscription_id_overrides variable."
 [wiki_module_variables_template_file_variables]:                              %5BVariables%5D-template_file_variables "Instructions for how to use the template_file_variables variable."
-
