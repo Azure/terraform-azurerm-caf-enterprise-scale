@@ -64,10 +64,10 @@ You may also need to add these permissions if running dedicated pipelines for [C
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[azure_hierarchy_require_authorization]: https://docs.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy#setting---require-authorization "Azure Hierarchy - Setting - Require authorization"
-[azure_hierarchy_set_default]:           https://docs.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy#setting---default-management-group "Setting a default Management Group"
-[azure_hierarchy_moving]:                https://docs.microsoft.com/azure/governance/management-groups/overview#moving-management-groups-and-subscriptions "Moving management groups and subscriptions"
-[azure_transition]:                      https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/transition "Transition existing Azure environments to an Azure landing zone"
+[azure_hierarchy_require_authorization]: https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy#setting---require-authorization "Azure Hierarchy - Setting - Require authorization"
+[azure_hierarchy_set_default]:           https://learn.microsoft.com/azure/governance/management-groups/how-to/protect-resource-hierarchy#setting---default-management-group "Setting a default Management Group"
+[azure_hierarchy_moving]:                https://learn.microsoft.com/azure/governance/management-groups/overview#moving-management-groups-and-subscriptions "Moving management groups and subscriptions"
+[azure_transition]:                      https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/transition "Transition existing Azure environments to an Azure landing zone"
 [azure_sentinel]:                        https://azure.microsoft.com/services/azure-sentinel/ "Azure Sentinel - Intelligent security analytics for your entire enterprise."
-[azure_network_contributor]:             https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#network-contributor "Azure built-in roles # Network Contributor"
-[azure_log_analytics_contributor]:       https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#log-analytics-contributor "Azure built-in roles # Log Analytics Contributor"
+[azure_network_contributor]:             https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#network-contributor "Azure built-in roles # Network Contributor"
+[azure_log_analytics_contributor]:       https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#log-analytics-contributor "Azure built-in roles # Log Analytics Contributor"

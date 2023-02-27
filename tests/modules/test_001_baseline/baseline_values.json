@@ -933,7 +933,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
               "name": "Enable-DDoS-VNET",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual networks should be protected by Azure DDoS Protection Standard.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"ddosPlan\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-ddos/providers/Microsoft.Network/ddosProtectionPlans/root-id-1-ddos-northeurope\"},\"effect\":{\"value\":\"Modify\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
@@ -943,7 +948,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -963,7 +970,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-Public-IP",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Public IPs must not be created in this scope.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"},\"listOfResourceTypesNotAllowed\":{\"value\":[\"Microsoft.Network/publicIPAddresses\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
@@ -971,7 +983,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -991,7 +1005,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-RDP-From-Internet",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "RDP access from the internet should be blocked.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",
@@ -999,7 +1018,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1019,7 +1040,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-Subnet-Without-Nsg",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Subnets should have a Network Security Group.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
@@ -1027,7 +1053,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1052,7 +1080,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deploy-VM-Backup",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual machines without a given tag should backup to a new recovery services vault with a default policy.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"effect\":{\"value\":\"deployIfNotExists\"},\"exclusionTagName\":{\"value\":\"\"},\"exclusionTagValue\":{\"value\":[]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
@@ -1062,7 +1095,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1082,7 +1117,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-IP-Forwarding",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Network interfaces must disable IP forwarding.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/88c0b9da-ce96-4b03-9635-f29a937e2900",
@@ -1090,7 +1130,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1166,7 +1208,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-RDP-From-Internet",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "RDP access from the internet must be blocked.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-RDP-From-Internet",
@@ -1174,7 +1221,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1194,7 +1243,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-Storage-http",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Secure transfer must be enabled for storage accounts.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
@@ -1202,7 +1256,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1222,7 +1278,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deny-Subnet-Without-Nsg",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Subnets must have a Network Security Group.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
@@ -1230,7 +1291,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1255,7 +1318,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-AKS-Policy",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure Policy Add-on must be deployed to Azure Kubernetes Service clusters.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/a8eff44f-8c92-45c3-a3fb-9880802d67a7",
@@ -1265,7 +1333,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1290,7 +1360,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-SQL-DB-Auditing",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "SQL Server Auditing must be enabled.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/a6fb4358-5bf4-4ad7-ba82-2cd2f41ce5e9",
@@ -1300,7 +1375,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1325,7 +1402,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-SQL-Threat",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "SQL Server Threat Detection must be enabled.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
@@ -1335,7 +1417,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1360,7 +1444,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Deploy-VM-Backup",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual machines without a given tag must backup to a new recovery services vault with a default policy.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
@@ -1370,7 +1459,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1395,7 +1486,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Enable-DDoS-VNET",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Virtual networks should be protected by Azure DDoS Protection Standard.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"ddosPlan\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-ddos/providers/Microsoft.Network/ddosProtectionPlans/root-id-1-ddos-northeurope\"},\"effect\":{\"value\":\"Modify\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
@@ -1405,7 +1501,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1458,7 +1556,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
               "name": "Enforce-TLS-SSL",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "TLS requirements and SSL enforcement must be configured on all resources that support it.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit",
@@ -1468,7 +1571,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1493,7 +1598,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-management",
               "name": "Deploy-Log-Analytics",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Log Analytics must be deployed.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"30\"},\"effect\":{\"value\":\"DeployIfNotExists\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"sku\":{\"value\":\"pergb2018\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
@@ -1503,7 +1613,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1523,7 +1635,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-ASC-Monitoring",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Microsoft Cloud Security Benchmark must be met.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
@@ -1531,7 +1648,9 @@
             },
             "sensitive_values": {
               "identity": [],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1556,7 +1675,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-AzActivity-Log",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Activity log Diagnostic Settings must be set for Log Analytics workspaces.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"logAnalytics\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
@@ -1566,7 +1690,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1591,7 +1717,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-MDFC-Config",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Microsoft Defender for Cloud and Security Contacts must be deployed.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"ascExportResourceGroupLocation\":{\"value\":\"northeurope\"},\"ascExportResourceGroupName\":{\"value\":\"root-id-1-asc-export\"},\"emailSecurityContact\":{\"value\":\"security_contact@replace_me\"},\"enableAscForAppServices\":{\"value\":\"DeployIfNotExists\"},\"enableAscForArm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForContainers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForDns\":{\"value\":\"DeployIfNotExists\"},\"enableAscForKeyVault\":{\"value\":\"DeployIfNotExists\"},\"enableAscForOssDb\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSql\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSqlOnVm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForStorage\":{\"value\":\"DeployIfNotExists\"},\"logAnalytics\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
@@ -1601,7 +1732,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1626,7 +1759,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-Resource-Diag",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure resources must be configured to forward diagnostic logs and metrics to an Azure Log Analytics workspace.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"logAnalytics\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics",
@@ -1636,7 +1774,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1661,7 +1801,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-VM-Monitoring",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure Monitor must be enabled for VMs.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"logAnalytics_1\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
@@ -1671,7 +1816,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -1696,7 +1843,12 @@
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "name": "Deploy-VMSS-Monitoring",
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {
+                  "content": "Azure Monitor must be enabled for Virtual Machine Scale Sets.",
+                  "policy_definition_reference_id": null
+                }
+              ],
               "not_scopes": [],
               "parameters": "{\"logAnalytics_1\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/75714362-cae7-409e-9b99-a8e5075b7fad",
@@ -1706,7 +1858,9 @@
               "identity": [
                 {}
               ],
-              "non_compliance_message": [],
+              "non_compliance_message": [
+                {}
+              ],
               "not_scopes": []
             }
           },
@@ -3592,11 +3746,11 @@
               "description": "Deploys the diagnostic settings for VPN Gateway to stream to a Log Analytics workspace when any VPN Gateway which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled.",
               "display_name": "Deploy Diagnostic Settings for VPN Gateway to Log Analytics workspace",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
-              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Monitoring\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.0\"}",
+              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Monitoring\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.1\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-VNetGW",
               "parameters": "{\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"logAnalytics\":{\"metadata\":{\"description\":\"Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.\",\"displayName\":\"Log Analytics workspace\",\"strongType\":\"omsWorkspace\"},\"type\":\"String\"},\"logsEnabled\":{\"allowedValues\":[\"True\",\"False\"],\"defaultValue\":\"True\",\"metadata\":{\"description\":\"Whether to enable logs stream to the Log Analytics workspace - True or False\",\"displayName\":\"Enable logs\"},\"type\":\"String\"},\"metricsEnabled\":{\"allowedValues\":[\"True\",\"False\"],\"defaultValue\":\"True\",\"metadata\":{\"description\":\"Whether to enable metrics stream to the Log Analytics workspace - True or False\",\"displayName\":\"Enable metrics\"},\"type\":\"String\"},\"profileName\":{\"defaultValue\":\"setbypolicy\",\"metadata\":{\"description\":\"The diagnostic settings profile name\",\"displayName\":\"Profile name\"},\"type\":\"String\"}}",
-              "policy_rule": "{\"if\":{\"equals\":\"Microsoft.Network/virtualNetworkGateways\",\"field\":\"type\"},\"then\":{\"details\":{\"deployment\":{\"properties\":{\"mode\":\"Incremental\",\"parameters\":{\"location\":{\"value\":\"[field('location')]\"},\"logAnalytics\":{\"value\":\"[parameters('logAnalytics')]\"},\"logsEnabled\":{\"value\":\"[parameters('logsEnabled')]\"},\"metricsEnabled\":{\"value\":\"[parameters('metricsEnabled')]\"},\"profileName\":{\"value\":\"[parameters('profileName')]\"},\"resourceName\":{\"value\":\"[field('name')]\"}},\"template\":{\"$schema\":\"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{},\"parameters\":{\"location\":{\"type\":\"String\"},\"logAnalytics\":{\"type\":\"String\"},\"logsEnabled\":{\"type\":\"String\"},\"metricsEnabled\":{\"type\":\"String\"},\"profileName\":{\"type\":\"String\"},\"resourceName\":{\"type\":\"String\"}},\"resources\":[{\"apiVersion\":\"2017-05-01-preview\",\"dependsOn\":[],\"location\":\"[parameters('location')]\",\"name\":\"[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]\",\"properties\":{\"logs\":[{\"category\":\"GatewayDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"IKEDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"P2SDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"RouteDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"RouteDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"TunnelDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"}],\"metrics\":[{\"category\":\"AllMetrics\",\"enabled\":\"[parameters('metricsEnabled')]\",\"retentionPolicy\":{\"days\":0,\"enabled\":false},\"timeGrain\":null}],\"workspaceId\":\"[parameters('logAnalytics')]\"},\"type\":\"Microsoft.Network/virtualNetworkGateways/providers/diagnosticSettings\"}],\"variables\":{}}}},\"existenceCondition\":{\"allOf\":[{\"equals\":\"true\",\"field\":\"Microsoft.Insights/diagnosticSettings/logs.enabled\"},{\"equals\":\"true\",\"field\":\"Microsoft.Insights/diagnosticSettings/metrics.enabled\"},{\"equals\":\"[parameters('logAnalytics')]\",\"field\":\"Microsoft.Insights/diagnosticSettings/workspaceId\"}]},\"name\":\"[parameters('profileName')]\",\"roleDefinitionIds\":[\"/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa\",\"/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293\"],\"type\":\"Microsoft.Insights/diagnosticSettings\"},\"effect\":\"[parameters('effect')]\"}}",
+              "policy_rule": "{\"if\":{\"equals\":\"Microsoft.Network/virtualNetworkGateways\",\"field\":\"type\"},\"then\":{\"details\":{\"deployment\":{\"properties\":{\"mode\":\"Incremental\",\"parameters\":{\"location\":{\"value\":\"[field('location')]\"},\"logAnalytics\":{\"value\":\"[parameters('logAnalytics')]\"},\"logsEnabled\":{\"value\":\"[parameters('logsEnabled')]\"},\"metricsEnabled\":{\"value\":\"[parameters('metricsEnabled')]\"},\"profileName\":{\"value\":\"[parameters('profileName')]\"},\"resourceName\":{\"value\":\"[field('name')]\"}},\"template\":{\"$schema\":\"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{},\"parameters\":{\"location\":{\"type\":\"String\"},\"logAnalytics\":{\"type\":\"String\"},\"logsEnabled\":{\"type\":\"String\"},\"metricsEnabled\":{\"type\":\"String\"},\"profileName\":{\"type\":\"String\"},\"resourceName\":{\"type\":\"String\"}},\"resources\":[{\"apiVersion\":\"2017-05-01-preview\",\"dependsOn\":[],\"location\":\"[parameters('location')]\",\"name\":\"[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]\",\"properties\":{\"logs\":[{\"category\":\"GatewayDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"IKEDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"P2SDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"RouteDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"TunnelDiagnosticLog\",\"enabled\":\"[parameters('logsEnabled')]\"}],\"metrics\":[{\"category\":\"AllMetrics\",\"enabled\":\"[parameters('metricsEnabled')]\",\"retentionPolicy\":{\"days\":0,\"enabled\":false},\"timeGrain\":null}],\"workspaceId\":\"[parameters('logAnalytics')]\"},\"type\":\"Microsoft.Network/virtualNetworkGateways/providers/diagnosticSettings\"}],\"variables\":{}}}},\"existenceCondition\":{\"allOf\":[{\"equals\":\"true\",\"field\":\"Microsoft.Insights/diagnosticSettings/logs.enabled\"},{\"equals\":\"true\",\"field\":\"Microsoft.Insights/diagnosticSettings/metrics.enabled\"},{\"equals\":\"[parameters('logAnalytics')]\",\"field\":\"Microsoft.Insights/diagnosticSettings/workspaceId\"}]},\"name\":\"[parameters('profileName')]\",\"roleDefinitionIds\":[\"/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa\",\"/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293\"],\"type\":\"Microsoft.Insights/diagnosticSettings\"},\"effect\":\"[parameters('effect')]\"}}",
               "policy_type": "Custom",
               "timeouts": null
             },
@@ -3724,11 +3878,11 @@
               "description": "Deploys the diagnostic settings for Web App to stream to a Log Analytics workspace when any Web App which is missing this diagnostic settings is created or updated. The Policy will set the diagnostic with all metrics and category enabled",
               "display_name": "Deploy Diagnostic Settings for App Service to Log Analytics workspace",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
-              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Monitoring\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.0\"}",
+              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Monitoring\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.2.0\"}",
               "mode": "Indexed",
               "name": "Deploy-Diagnostics-Website",
               "parameters": "{\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"logAnalytics\":{\"metadata\":{\"description\":\"Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.\",\"displayName\":\"Log Analytics workspace\",\"strongType\":\"omsWorkspace\"},\"type\":\"String\"},\"logsEnabled\":{\"allowedValues\":[\"True\",\"False\"],\"defaultValue\":\"True\",\"metadata\":{\"description\":\"Whether to enable logs stream to the Log Analytics workspace - True or False\",\"displayName\":\"Enable logs\"},\"type\":\"String\"},\"metricsEnabled\":{\"allowedValues\":[\"True\",\"False\"],\"defaultValue\":\"True\",\"metadata\":{\"description\":\"Whether to enable metrics stream to the Log Analytics workspace - True or False\",\"displayName\":\"Enable metrics\"},\"type\":\"String\"},\"profileName\":{\"defaultValue\":\"setbypolicy\",\"metadata\":{\"description\":\"The diagnostic settings profile name\",\"displayName\":\"Profile name\"},\"type\":\"String\"}}",
-              "policy_rule": "{\"if\":{\"allOf\":[{\"equals\":\"Microsoft.Web/sites\",\"field\":\"type\"},{\"notContains\":\"functionapp\",\"value\":\"[field('kind')]\"}]},\"then\":{\"details\":{\"deployment\":{\"properties\":{\"mode\":\"Incremental\",\"parameters\":{\"location\":{\"value\":\"[field('location')]\"},\"logAnalytics\":{\"value\":\"[parameters('logAnalytics')]\"},\"logsEnabled\":{\"value\":\"[parameters('logsEnabled')]\"},\"metricsEnabled\":{\"value\":\"[parameters('metricsEnabled')]\"},\"profileName\":{\"value\":\"[parameters('profileName')]\"},\"resourceName\":{\"value\":\"[field('name')]\"}},\"template\":{\"$schema\":\"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{},\"parameters\":{\"location\":{\"type\":\"String\"},\"logAnalytics\":{\"type\":\"String\"},\"logsEnabled\":{\"type\":\"String\"},\"metricsEnabled\":{\"type\":\"String\"},\"profileName\":{\"type\":\"String\"},\"resourceName\":{\"type\":\"String\"}},\"resources\":[{\"apiVersion\":\"2017-05-01-preview\",\"dependsOn\":[],\"location\":\"[parameters('location')]\",\"name\":\"[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]\",\"properties\":{\"logs\":[{\"category\":\"AppServiceAntivirusScanAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceHTTPLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceConsoleLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceAppLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceFileAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceIPSecAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServicePlatformLogs\",\"enabled\":\"[parameters('logsEnabled')]\"}],\"metrics\":[{\"category\":\"AllMetrics\",\"enabled\":\"[parameters('metricsEnabled')]\",\"retentionPolicy\":{\"days\":0,\"enabled\":false},\"timeGrain\":null}],\"workspaceId\":\"[parameters('logAnalytics')]\"},\"type\":\"Microsoft.Web/sites/providers/diagnosticSettings\"}],\"variables\":{}}}},\"existenceCondition\":{\"allOf\":[{\"equals\":\"true\",\"field\":\"Microsoft.Insights/diagnosticSettings/logs.enabled\"},{\"equals\":\"true\",\"field\":\"Microsoft.Insights/diagnosticSettings/metrics.enabled\"},{\"equals\":\"[parameters('logAnalytics')]\",\"field\":\"Microsoft.Insights/diagnosticSettings/workspaceId\"}]},\"name\":\"[parameters('profileName')]\",\"roleDefinitionIds\":[\"/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa\",\"/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293\"],\"type\":\"Microsoft.Insights/diagnosticSettings\"},\"effect\":\"[parameters('effect')]\"}}",
+              "policy_rule": "{\"if\":{\"allOf\":[{\"equals\":\"Microsoft.Web/sites\",\"field\":\"type\"},{\"notContains\":\"functionapp\",\"value\":\"[field('kind')]\"}]},\"then\":{\"details\":{\"deployment\":{\"properties\":{\"mode\":\"Incremental\",\"parameters\":{\"location\":{\"value\":\"[field('location')]\"},\"logAnalytics\":{\"value\":\"[parameters('logAnalytics')]\"},\"logsEnabled\":{\"value\":\"[parameters('logsEnabled')]\"},\"metricsEnabled\":{\"value\":\"[parameters('metricsEnabled')]\"},\"profileName\":{\"value\":\"[parameters('profileName')]\"},\"resourceName\":{\"value\":\"[field('name')]\"},\"serverFarmId\":{\"value\":\"[field('Microsoft.Web/sites/serverFarmId')]\"}},\"template\":{\"$schema\":\"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{\"policy\":{\"type\":\"string\",\"value\":\"[concat(parameters('logAnalytics'), 'configured for diagnostic logs for ', ': ', parameters('resourceName'))]\"}},\"parameters\":{\"location\":{\"type\":\"String\"},\"logAnalytics\":{\"type\":\"String\"},\"logsEnabled\":{\"type\":\"String\"},\"metricsEnabled\":{\"type\":\"String\"},\"profileName\":{\"type\":\"String\"},\"resourceName\":{\"type\":\"String\"},\"serverFarmId\":{\"type\":\"String\"}},\"resources\":[{\"apiVersion\":\"2017-05-01-preview\",\"dependsOn\":[],\"location\":\"[parameters('location')]\",\"name\":\"[concat(parameters('resourceName'), '/', 'Microsoft.Insights/', parameters('profileName'))]\",\"properties\":{\"logs\":\"[if(startsWith(reference(parameters('serverFarmId'), '2021-03-01', 'Full').sku.tier, 'Premium'), variables('logs').premiumTierLogs, variables('logs').otherTierLogs)]\",\"metrics\":[{\"category\":\"AllMetrics\",\"enabled\":\"[parameters('metricsEnabled')]\",\"retentionPolicy\":{\"days\":0,\"enabled\":false},\"timeGrain\":null}],\"workspaceId\":\"[parameters('logAnalytics')]\"},\"type\":\"Microsoft.Web/sites/providers/diagnosticSettings\"}],\"variables\":{\"logs\":{\"otherTierLogs\":[{\"category\":\"AppServiceHTTPLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceConsoleLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceAppLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceIPSecAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServicePlatformLogs\",\"enabled\":\"[parameters('logsEnabled')]\"}],\"premiumTierLogs\":[{\"category\":\"AppServiceAntivirusScanAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceHTTPLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceConsoleLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceAppLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceFileAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServiceIPSecAuditLogs\",\"enabled\":\"[parameters('logsEnabled')]\"},{\"category\":\"AppServicePlatformLogs\",\"enabled\":\"[parameters('logsEnabled')]\"}]}}}}},\"existenceCondition\":{\"allOf\":[{\"equals\":\"[parameters('logsEnabled')]\",\"field\":\"Microsoft.Insights/diagnosticSettings/logs.enabled\"},{\"equals\":\"[parameters('metricsEnabled')]\",\"field\":\"Microsoft.Insights/diagnosticSettings/metrics.enabled\"},{\"equals\":\"[parameters('logAnalytics')]\",\"field\":\"Microsoft.Insights/diagnosticSettings/workspaceId\"}]},\"name\":\"[parameters('profileName')]\",\"roleDefinitionIds\":[\"/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa\",\"/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293\"],\"type\":\"Microsoft.Insights/diagnosticSettings\"},\"effect\":\"[parameters('effect')]\"}}",
               "policy_type": "Custom",
               "timeouts": null
             },

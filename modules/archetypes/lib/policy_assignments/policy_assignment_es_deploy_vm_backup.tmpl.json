@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
+    "nonComplianceMessages": [
+      {
+        "message": "Virtual machines without a given tag {enforcementMode} backup to a new recovery services vault with a default policy."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

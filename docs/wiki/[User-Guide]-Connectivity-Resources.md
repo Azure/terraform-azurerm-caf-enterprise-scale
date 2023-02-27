@@ -122,32 +122,32 @@ Please refer to the following for examples showing how to use this capability:
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
-[msdocs_hub_and_spoke]:    https://docs.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/traditional-azure-networking-topology
-[msdocs_virtual_wan]:      https://docs.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/virtual-wan-network-topology
+[msdocs_alz_architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+[msdocs_hub_and_spoke]:    https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/traditional-azure-networking-topology
+[msdocs_virtual_wan]:      https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/virtual-wan-network-topology
 
-[alz_connectivity]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
+[alz_connectivity]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity "Network topology and connectivity for Azure landing zones on the Cloud Adoption Framework."
 
-[about_ddos_network_protection]:  https://docs.microsoft.com/azure/ddos-protection/ddos-protection-overview
-[about_dns_for_private_endpoint]: https://docs.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration
+[about_ddos_network_protection]:  https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview
+[about_dns_for_private_endpoint]: https://learn.microsoft.com/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration
 
-[arm_resource_group]:                        https://docs.microsoft.com/azure/templates/microsoft.resources/resourcegroups
-[arm_virtual_network]:                       https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks
-[arm_subnet]:                                https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/subnets
-[arm_virtual_network_gateway]:               https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworkgateways
-[arm_firewall]:                              https://docs.microsoft.com/azure/templates/microsoft.network/azurefirewalls
-[arm_public_ip]:                             https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses
-[arm_ddos_protection_plan]:                  https://docs.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
-[arm_dns_zone]:                              https://docs.microsoft.com/azure/templates/microsoft.network/dnszones
-[arm_private_dns_zone]:                      https://docs.microsoft.com/azure/templates/microsoft.network/privatednszones
-[arm_private_dns_zone_virtual_network_link]: https://docs.microsoft.com/azure/templates/microsoft.network/privatednszones/virtualnetworklinks
-[arm_virtual_network_peering]:               https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
-[arm_virtual_wan]:                           https://docs.microsoft.com/azure/templates/microsoft.network/virtualWans
-[arm_virtual_hub]:                           https://docs.microsoft.com/azure/templates/microsoft.network/virtualHubs
-[arm_express_route_gateway]:                 https://docs.microsoft.com/azure/templates/microsoft.network/expressRouteGateways
-[arm_vpn_gateway]:                           https://docs.microsoft.com/azure/templates/microsoft.network/vpnGateways
-[arm_firewall_policy]:                       https://docs.microsoft.com/azure/templates/microsoft.network/firewallPolicies
-[arm_virtual_hub_connection]:                https://docs.microsoft.com/azure/templates/microsoft.network/virtualHubs/hubVirtualNetworkConnections
+[arm_resource_group]:                        https://learn.microsoft.com/azure/templates/microsoft.resources/resourcegroups
+[arm_virtual_network]:                       https://learn.microsoft.com/azure/templates/microsoft.network/virtualnetworks
+[arm_subnet]:                                https://learn.microsoft.com/azure/templates/microsoft.network/virtualnetworks/subnets
+[arm_virtual_network_gateway]:               https://learn.microsoft.com/azure/templates/microsoft.network/virtualnetworkgateways
+[arm_firewall]:                              https://learn.microsoft.com/azure/templates/microsoft.network/azurefirewalls
+[arm_public_ip]:                             https://learn.microsoft.com/azure/templates/microsoft.network/publicipaddresses
+[arm_ddos_protection_plan]:                  https://learn.microsoft.com/azure/templates/microsoft.network/ddosprotectionplans
+[arm_dns_zone]:                              https://learn.microsoft.com/azure/templates/microsoft.network/dnszones
+[arm_private_dns_zone]:                      https://learn.microsoft.com/azure/templates/microsoft.network/privatednszones
+[arm_private_dns_zone_virtual_network_link]: https://learn.microsoft.com/azure/templates/microsoft.network/privatednszones/virtualnetworklinks
+[arm_virtual_network_peering]:               https://learn.microsoft.com/azure/templates/microsoft.network/virtualnetworks/virtualnetworkpeerings
+[arm_virtual_wan]:                           https://learn.microsoft.com/azure/templates/microsoft.network/virtualWans
+[arm_virtual_hub]:                           https://learn.microsoft.com/azure/templates/microsoft.network/virtualHubs
+[arm_express_route_gateway]:                 https://learn.microsoft.com/azure/templates/microsoft.network/expressRouteGateways
+[arm_vpn_gateway]:                           https://learn.microsoft.com/azure/templates/microsoft.network/vpnGateways
+[arm_firewall_policy]:                       https://learn.microsoft.com/azure/templates/microsoft.network/firewallPolicies
+[arm_virtual_hub_connection]:                https://learn.microsoft.com/azure/templates/microsoft.network/virtualHubs/hubVirtualNetworkConnections
 
 [azurerm_resource_group]:                        https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
 [azurerm_virtual_network]:                       https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network

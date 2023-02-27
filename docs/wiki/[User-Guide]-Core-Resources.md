@@ -38,17 +38,17 @@ Please refer to [Deploy Default Configuration][wiki_deploy_default_configuration
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[msdocs_alz_architecture]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
+[msdocs_alz_architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-conceptual-architecture "Conceptual architecture for Azure landing zones."
 
-[alz_resourceorg]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org "Resource organization for Azure landing zones on the Cloud Adoption Framework."
+[alz_resourceorg]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org "Resource organization for Azure landing zones on the Cloud Adoption Framework."
 
-[arm_management_group]:               https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups
-[arm_management_group_subscriptions]: https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups/subscriptions
-[arm_policy_assignment]:              https://docs.microsoft.com/azure/templates/microsoft.authorization/policyassignments
-[arm_policy_definition]:              https://docs.microsoft.com/azure/templates/microsoft.authorization/policydefinitions
-[arm_policy_set_definition]:          https://docs.microsoft.com/azure/templates/microsoft.authorization/policysetdefinitions
-[arm_role_assignment]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roleassignments
-[arm_role_definition]:                https://docs.microsoft.com/azure/templates/microsoft.authorization/roledefinitions
+[arm_management_group]:               https://learn.microsoft.com/azure/templates/microsoft.management/managementgroups
+[arm_management_group_subscriptions]: https://learn.microsoft.com/azure/templates/microsoft.management/managementgroups/subscriptions
+[arm_policy_assignment]:              https://learn.microsoft.com/azure/templates/microsoft.authorization/policyassignments
+[arm_policy_definition]:              https://learn.microsoft.com/azure/templates/microsoft.authorization/policydefinitions
+[arm_policy_set_definition]:          https://learn.microsoft.com/azure/templates/microsoft.authorization/policysetdefinitions
+[arm_role_assignment]:                https://learn.microsoft.com/azure/templates/microsoft.authorization/roleassignments
+[arm_role_definition]:                https://learn.microsoft.com/azure/templates/microsoft.authorization/roledefinitions
 
 [azurerm_management_group]:                          https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group
 [azurerm_management_group_subscription_association]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_subscription_association

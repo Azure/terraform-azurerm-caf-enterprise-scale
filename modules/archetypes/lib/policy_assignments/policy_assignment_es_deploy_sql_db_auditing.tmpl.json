@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a6fb4358-5bf4-4ad7-ba82-2cd2f41ce5e9",
+    "nonComplianceMessages": [
+      {
+        "message": "SQL Server Auditing {enforcementMode} be enabled."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

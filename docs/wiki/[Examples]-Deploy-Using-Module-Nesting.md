@@ -13,7 +13,7 @@ The extra code needed to extend your configuration, is the following:
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm
@@ -33,8 +33,8 @@ module "enterprise_scale_nested_landing_zone" {
       parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {}
+        archetype_id   = "customer_online"
+        parameters     = {}
         access_control = {}
       }
     }
@@ -135,7 +135,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm
@@ -164,13 +164,13 @@ module "enterprise_scale" {
       parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id   = "customer_online"
-        parameters     = {
+        archetype_id = "customer_online"
+        parameters = {
           Deny-Resource-Locations = {
-            listOfAllowedLocations = ["eastus",]
+            listOfAllowedLocations = ["eastus", ]
           }
           Deny-RSG-Locations = {
-            listOfAllowedLocations = ["eastus",]
+            listOfAllowedLocations = ["eastus", ]
           }
         }
         access_control = {}
@@ -184,7 +184,7 @@ module "enterprise_scale" {
 
 module "enterprise_scale_nested_landing_zone" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "3.1.2"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
   providers = {
     azurerm              = azurerm
@@ -204,8 +204,8 @@ module "enterprise_scale_nested_landing_zone" {
       parent_management_group_id = "${var.root_id}-landing-zones"
       subscription_ids           = []
       archetype_config = {
-        archetype_id = "customer_online"
-        parameters = {}
+        archetype_id   = "customer_online"
+        parameters     = {}
         access_control = {}
       }
     }

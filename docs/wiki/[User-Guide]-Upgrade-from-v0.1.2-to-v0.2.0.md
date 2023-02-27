@@ -80,4 +80,4 @@ Take a look at the latest [User Guide](User-Guide) documentation and our [Exampl
 [//]: # "************************"
 [terraform-registry-caf-enterprise-scale]: https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Terraform Module for Cloud Adoption Framework Enterprise-scale"
 [azure/enterprise-scale]: https://github.com/Azure/Enterprise-Scale
-[ESLZ-Management]: https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring
+[ESLZ-Management]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-and-monitoring

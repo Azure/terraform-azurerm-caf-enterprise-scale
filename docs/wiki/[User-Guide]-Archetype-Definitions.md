@@ -136,18 +136,18 @@ The default library includes a `default_empty` archetype definition which is use
 You can assign this to any Landing Zone definition, using the `archetype_config` > `archetype_id` value as per the following `custom_landing_zones` example:
 
 ```hcl
-  custom_landing_zones = {
-    example-landing-zone-id = {
-      display_name               = "Example Landing Zone"
-      parent_management_group_id = "tf-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id = "default_empty"
-        parameters   = {}
-        access_control = {}
-      }
+custom_landing_zones = {
+  example-landing-zone-id = {
+    display_name               = "Example Landing Zone"
+    parent_management_group_id = "tf-landing-zones"
+    subscription_ids           = []
+    archetype_config = {
+      archetype_id   = "default_empty"
+      parameters     = {}
+      access_control = {}
     }
   }
+}
 ```
 
 This is equivalent to creating a standard Management Group without creating any custom Policy Assignments, Policy Definitions, Policy Set Definitions (Initiatives) or Role Definitions.
@@ -163,7 +163,7 @@ The `archetype_config` object appears in a number of places and can be used to c
 Below is the required structure for the `archetype_config` object:
 
 ```hcl
-object({
+myconfig = object({
   archetype_id   = string
   parameters     = map(any)
   access_control = map(list(string))
@@ -178,8 +178,15 @@ This must reference a valid `archetype_definition` from the built-in or custom l
 - `parameters` provides the option to set parameter values for any Policy Assignment(s) specified within the chosen archetype definition.
 To target a specific Policy Assignment, create a new `map()` entry using the Policy Assignment `name` field as the `key`.
 The `value` should be an `object({})` containing `key/value` pairs for each `parameter` needed by the Policy Assignment.
+To simplify working with parameters at different scopes within the module, parameters for a given policy assignment are merged in the following order:
 
-  > **NOTE:** that parameters are specified as simple `key/value` pairs, and do not require the same structure used in native ARM templates.
+  1. Default values from within the base definition or initiative
+  1. Values defined within a policy assignment template
+  1. Values provided within the `archetype_config.parameters` object from an archetype definition template
+  1. Values managed by the module (*such as the `logAnayltics` value commonly set in many of our bundled policy assignments*)
+  1. Values provided within the `archetype_config.parameters` object from either the `archetype_config_overrides` or `custom_landing_zones` input
+
+  > **NOTE:** Parameters are specified as simple `key/value` pairs in the module, and do not require the same structure used in native ARM templates.
 
 - `access_control` provides the option to add user-specified Role Assignments which will be added to the specified Management Group.
 To avoid a direct dependency on the [Azure Active Directory Provider][azuread_provider], this module requires the input to be a list of Object IDs for each Azure AD object you want to assign the specified permission.

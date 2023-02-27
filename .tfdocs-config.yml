@@ -1,0 +1,72 @@
+### To generate the output file to partially incorporate in the README.md,
+### Execute this command in the Terraform module's code folder:
+# terraform-docs -c .tfdocs-config.yml .
+
+formatter: "markdown document" # this is required
+
+version: "0.16.0"
+
+header-from: "_README_header.md"
+footer-from: "_README_footer.md"
+
+recursive:
+  enabled: true
+  path: modules
+
+sections:
+  hide: []
+  show: []
+
+  hide-all: false # deprecated in v0.13.0, removed in v0.15.0
+  show-all: true  # deprecated in v0.13.0, removed in v0.15.0
+
+content: |-
+  {{ .Header }}
+
+  ## Documentation
+  <!-- markdownlint-disable MD033 -->
+
+  {{ .Requirements }}
+
+  {{ .Modules }}
+
+  <!-- markdownlint-disable MD013 -->
+  <!-- markdownlint-disable MD034 -->
+  {{ .Inputs }}
+
+  {{ .Resources }}
+
+  {{ .Outputs }}
+
+  <!-- markdownlint-enable -->
+  {{ .Footer }}
+
+output:
+  file: README.md
+  mode: replace
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: required
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 2
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true

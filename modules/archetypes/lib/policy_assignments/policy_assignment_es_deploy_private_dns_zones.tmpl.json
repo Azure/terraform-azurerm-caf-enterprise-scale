@@ -162,6 +162,11 @@
       }
     },
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Private-DNS-Zones",
+    "nonComplianceMessages": [
+      {
+        "message": "Azure PaaS services {enforcementMode} use private DNS zones."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

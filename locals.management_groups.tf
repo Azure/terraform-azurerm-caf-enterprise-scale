@@ -290,12 +290,25 @@ locals {
       archetype_config = {
         archetype_id   = value.archetype_config.archetype_id
         access_control = value.archetype_config.access_control
-        parameters = merge(
-          try(module.connectivity_resources.configuration.archetype_config_overrides[key].parameters, null),
-          try(module.identity_resources.configuration.archetype_config_overrides[key].parameters, null),
-          try(module.management_resources.configuration.archetype_config_overrides[key].parameters, null),
-          value.archetype_config.parameters,
-        )
+        parameters = {
+          # The following logic merges parameter values from the connectivity,
+          # identity and management sub-modules with the archetype defaults
+          # (including custom_landing_zones) and archetype_config_overrides.
+          # These values are then passed to the parameters input variable of the
+          # archetypes sub-module.
+          for policy_name in toset(keys(merge(
+            lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters,
+            lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters,
+            lookup(module.management_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters,
+            value.archetype_config.parameters,
+          ))) :
+          policy_name => merge(
+            lookup(lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters, policy_name, null),
+            lookup(lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters, policy_name, null),
+            lookup(lookup(module.management_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters, policy_name, null),
+            lookup(value.archetype_config.parameters, policy_name, null),
+          )
+        }
       }
     }
   }

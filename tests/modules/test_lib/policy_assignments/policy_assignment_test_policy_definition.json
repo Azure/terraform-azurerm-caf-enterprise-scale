@@ -15,6 +15,7 @@
             }
         },
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f4c68484-132f-41f9-9b6d-3e4b1cb55036",
+        "comment:nonComplianceMessages": "Please note that this test assignment does not have a nonComplianceMessages property by design. This is for testing of the default non-compliance message behaviour.",
         "scope": "${current_scope_resource_id}",
         "enforcementMode": "Default"
     },

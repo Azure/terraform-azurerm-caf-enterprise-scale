@@ -61,16 +61,6 @@ locals {
 # Definition or Policy Set Definition which is either built-in,
 # or deployed to Azure using a process outside of this module.
 locals {
-  # Policy Definitions
-  policy_assignments_with_managed_identity_using_external_policy_definition = {
-    for policy_assignment_id, policy_definition_id in local.policy_assignments_with_managed_identity :
-    policy_assignment_id => [
-      policy_definition_id,
-    ]
-    if length(regexall(local.resource_types.policy_definition, policy_definition_id)) > 0
-    && contains(local.internal_policy_definition_ids, policy_definition_id) != true
-    && contains(keys(local.custom_policy_roles), policy_definition_id) != true
-  }
   # Policy Set Definitions
   policy_assignments_with_managed_identity_using_external_policy_set_definition = {
     for policy_assignment_id, policy_set_definition_id in local.policy_assignments_with_managed_identity :
@@ -124,6 +114,23 @@ locals {
   )
 }
 
+# Maps of all external and internal policy assignment definition ids
+locals {
+  external_policies_from_local_assignments = [
+    for assignment in local.es_policy_assignments :
+    assignment.template.properties.policyDefinitionId
+    if length(regexall(local.resource_types.policy_definition, assignment.template.properties.policyDefinitionId)) > 0
+    && contains(local.internal_policy_definition_ids, assignment.template.properties.policyDefinitionId) != true
+  ]
+
+  internal_policies_from_local_assignments = [
+    for assignment in local.es_policy_assignments :
+    assignment.template.properties.policyDefinitionId
+    if length(regexall(local.resource_types.policy_definition, assignment.template.properties.policyDefinitionId)) > 0
+    && contains(local.internal_policy_definition_ids, assignment.template.properties.policyDefinitionId) == true
+  ]
+}
+
 # Identify all Policy Definitions which are external to this module
 locals {
   # From Policy Assignments using Policy Set Definitions
@@ -143,7 +150,7 @@ locals {
   }
   # From Policy Assignments using Policy Definitions
   external_policy_definitions_from_internal_policy_assignments = {
-    for policy_definition_id in keys(transpose(local.policy_assignments_with_managed_identity_using_external_policy_definition)) :
+    for policy_definition_id in distinct(local.external_policies_from_local_assignments) :
     policy_definition_id => {
       name                = basename(policy_definition_id)
       management_group_id = regex(local.regex_split_resource_id, policy_definition_id)[0] == "/providers/Microsoft.Management/managementGroups/" ? regex(local.regex_split_resource_id, policy_definition_id)[1] : null
@@ -152,7 +159,7 @@ locals {
   # Then create a single list containing all Policy Definitions to lookup from Azure
   azurerm_policy_definition_external_lookup = merge(
     local.external_policy_definitions_from_azurerm_policy_set_definition_external_lookup,
-    local.external_policy_definitions_from_internal_policy_assignments,
+    local.external_policy_definitions_from_internal_policy_assignments
   )
 }
 
@@ -226,4 +233,50 @@ locals {
     for policy_assignment_id, policy_id in local.policy_assignments_with_managed_identity :
     policy_assignment_id => lookup(local.policy_roles, policy_id, local.empty_list)
   }
+}
+
+# Default Non-compliance message list when none is provided
+locals {
+  default_non_compliance_message_list = local.policy_non_compliance_message_default_enabled ? [
+    {
+      message = local.policy_non_compliance_message_default
+    }
+  ] : local.empty_list
+}
+
+# Non-compliance message replacements based on enforcement mode
+# If the policy assignment is enforced the message with include 'must', if not it will say 'should'
+locals {
+  non_compliance_message_enforcement_mode_replacements = {
+    default      = local.policy_non_compliance_message_enforced_replacement
+    donotenforce = local.policy_non_compliance_message_not_enforced_replacement
+  }
+  non_compliance_message_enforcement_mode_placeholder = local.policy_non_compliance_message_enforcement_placeholder
+}
+
+# A list of policy definitions to exlude from having a default non-compliance message as they don't support compliance messages.
+locals {
+  non_compliance_message_not_supported_definitions = local.policy_non_compliance_message_not_supported_definitions
+}
+
+# A list of policy modes that support non-compliance messages. A special setting is included for Policy Sets as they do not have a mode.
+locals {
+  policy_set_mode                               = "PolicySet"
+  non_compliance_message_supported_policy_modes = ["All", "Indexed", local.policy_set_mode]
+}
+
+# Get the mode of the policy definitions for both internal and external policy definitions. Replacing with a fall back for older azurerm providers that don't support `mode` on the data source
+locals {
+  external_policy_modes = {
+    for policy_definition in data.azurerm_policy_definition.external_lookup :
+    policy_definition.id => lookup(policy_definition, "mode", contains(local.non_compliance_message_not_supported_definitions, policy_definition.id) ? "NotSupported" : "All")
+  }
+  internal_policy_modes = {
+    for policy_definition_id in distinct(local.internal_policies_from_local_assignments) :
+    policy_definition_id => local.es_policy_definitions[index(local.es_policy_definitions.*.template.name, basename(policy_definition_id))].template.properties.mode
+  }
+  all_policy_modes = merge(
+    local.internal_policy_modes,
+    local.external_policy_modes
+  )
 }

@@ -15,6 +15,11 @@
       }
     },
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+    "nonComplianceMessages": [
+      {
+        "message": "Resources {enforcementMode} only be deployed to the allowed locations."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": null
   },

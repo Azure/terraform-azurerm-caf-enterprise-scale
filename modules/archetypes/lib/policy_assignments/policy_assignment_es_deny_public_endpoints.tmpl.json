@@ -8,6 +8,11 @@
     "notScopes": [],
     "parameters": {},
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deny-PublicPaaSEndpoints",
+    "nonComplianceMessages": [
+      {
+        "message": "Public network access {enforcementMode} be disabled for PaaS services."
+      }
+    ],
     "scope": "${current_scope_resource_id}",
     "enforcementMode": "Default"
   },
