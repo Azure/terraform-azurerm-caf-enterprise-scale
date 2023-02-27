@@ -366,9 +366,9 @@ locals {
 # that will have Diagnostic Settings deployed, based on boolean varaible 
 # deploy_diagnostics_for_mg
 locals {
-  azapi_diagnostics = [
+  azapi_mg_diagnostics = {
     for mg_id in keys(local.es_landing_zones_map) :
-    mg_id
+    mg_id => ""
     if local.deploy_diagnostics_for_mg
-  ]
+  }
 }
