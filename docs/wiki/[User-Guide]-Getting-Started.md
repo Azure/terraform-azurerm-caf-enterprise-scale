@@ -70,7 +70,7 @@ However, when application teams choose to deploy resources with Terraform, the f
 
     The use of either `Append`/`DeployIfNotExists`/`Modify` policy effects and Terraform could result in a loop:
     - A resource is deployed by the application team using Terraform.
-    - Azure Policy performs an action (`Append`/`Modify`/`DeployIfNotExists`) to the resource to ensure the resource is compliant with the guardrails of the platform.
+    - Azure Policy performs an action (`Append`/`DeployIfNotExists`/`Modify`) to the resource to ensure the resource is compliant with the guardrails of the platform.
     - The application team performs an additional Terraform run where Terraform discovers that the resource has drifted away from the Terraform code and state. Terraform will try to correct the resource by either changing the property back or re-creating it.
     - Azure Policy will, depending on the type of resource, either:
       - Mark the resource as non-compliant.
@@ -86,8 +86,6 @@ However, when application teams choose to deploy resources with Terraform, the f
     An example of this is deploying Diganostic Settings to a resource, a Private DNS Zone Group to a Private Endpoint or a security rule to a Network Security Group.
     
     Create guidance for landing zone owners so that they understand the effects of these policies and can deploy resources in a compliant manner.
-
-    > Notable exceptions to this are `DeployIfNotExists` policies that do not modify the in-scope resource. For example: Policies that deploy diagnostic settings.
 
 ## Provisioning instructions
 
