@@ -57,14 +57,14 @@ However, when application teams choose to deploy resources with Terraform, the f
 
     Terraform expects to be authoritative over the resources that it manages. Any changes to the managed properties of Terraform managed resources in Azure will be rectified by Terraform during the next plan/apply cycle.
 
-    | Policy Effect | Terraform Friendly? |
+    | Policy Effect | Terraform Compatible |
     | -------- | ------- |
-    | [Append](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#append) | With Exceptions |
+    | [Append](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#append) | No (with some exceptions) |
     | [Audit](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#audit) | Yes |
     | [AuditIfNotExists](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#auditifnotexists) | Yes |
     | [Deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#deny) | Yes |
-    | [DeployIfNotExists](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#deployifnotexists) | With Exceptions |
-    | [Modify](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#modify) | No |
+    | [DeployIfNotExists](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#deployifnotexists) | Yes (with some exceptions) |
+    | [Modify](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#modify) | No (with some exceptions) |
 
     The reference architecture uses Azure policy with `DeployIfNotExists` and `Modify` effects that can modify properties of the Terraform managed resources.
 
@@ -72,13 +72,11 @@ However, when application teams choose to deploy resources with Terraform, the f
     - A resource is deployed by the application team using Terraform.
     - Azure Policy performs an action (`Append`/`DeployIfNotExists`/`Modify`) to the resource to ensure the resource is compliant with the guardrails of the platform.
     - The application team performs an additional Terraform run where Terraform discovers that the resource has drifted away from the Terraform code and state. Terraform will try to correct the resource by either changing the property back or re-creating it.
-    - Azure Policy will, depending on the type of resource, either:
-      - Mark the resource as non-compliant.
-      - In the event that Terraform re-creates the resource, remediate the resource so that it is compliant with the guadrails of the platform.
+    - Azure Policy will remediate the resource so that it is compliant with the guardrails of the platform.
 
-    An example of this can be enforcing soft-delete on Key Vaults or enforcing Transport Data Encryption (TDE) through `Append`/`Modify` policies; the properties will not be defined in Terraform but will be remediated via Azure Policy resulting in the above loop.
+    An example of this can be enforcing soft-delete on Key Vaults or enforcing Transport Data Encryption (TDE) through `Append`/`Modify` policies; the properties will not be defined in Terraform but will be remediated via Azure Policy resulting in the above loop. This is almost always problematic when managing the resource with Terraform, however there is a rare case where the modified property of the resource is not tracked in Terraform state, then there will be no issue.
 
-    An exception to the above is when the use of `Append`/`DeployIfNotExists` does not modify the in-scope resource of the Terraform deployment but instead deploys a child resource to the non-compliant resource:
+    An exception to the above is when the use of `DeployIfNotExists` does not modify the in-scope resource of the Terraform deployment but instead deploys a child resource to the non-compliant resource:
     - A resource is deployed by the application team using Terraform.
     - Azure Policy deploys a child resource to the resource to ensure the resource is compliant.
     - An additional Terraform run is performed, and there is no state-drift as Terraform does not need to modify or alter the child resource.
