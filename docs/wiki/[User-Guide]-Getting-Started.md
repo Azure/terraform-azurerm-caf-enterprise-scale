@@ -59,12 +59,12 @@ However, when application teams choose to deploy resources with Terraform, the f
 
     | Policy Effect | Terraform Friendly? |
     | -------- | ------- |
-    | Append | With Exceptions |
-    | Audit | Yes |
-    | AuditIfNotExists | Yes |
-    | Deny | Yes |
-    | DeployIfNotExists | With Exceptions |
-    | Modify | No |
+    | [Append](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#append) | With Exceptions |
+    | [Audit](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#audit) | Yes |
+    | [AuditIfNotExists](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#auditifnotexists) | Yes |
+    | [Deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#deny) | Yes |
+    | [DeployIfNotExists](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#deployifnotexists) | With Exceptions |
+    | [Modify](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects#modify) | No |
 
     The reference architecture uses Azure policy with `DeployIfNotExists` and `Modify` effects that can modify properties of the Terraform managed resources.
 
