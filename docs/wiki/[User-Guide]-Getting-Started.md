@@ -76,9 +76,9 @@ However, when application teams choose to deploy resources with Terraform, the f
 
     An example of this can be enforcing soft-delete on Key Vaults or enforcing Transport Data Encryption (TDE) through `Append`/`Modify` policies; the properties will not be defined in Terraform but will be remediated via Azure Policy resulting in the above loop. This is almost always problematic when managing the resource with Terraform, however there is a rare case where the modified property of the resource is not tracked in Terraform state, then there will be no issue.
 
-    An exception to the above is when the use of `DeployIfNotExists` does not modify the in-scope resource of the Terraform deployment but instead deploys a child resource to the non-compliant resource:
+    An exception to the above is when the use of `DeployIfNotExists` does not modify the in-scope resource of the Terraform deployment but instead deploys a child or extension resource to the non-compliant resource:
     - A resource is deployed by the application team using Terraform.
-    - Azure Policy deploys a child resource to the resource to ensure the resource is compliant.
+    - Azure Policy deploys a child or extension resource to the resource to ensure the resource is compliant.
     - An additional Terraform run is performed, and there is no state-drift as Terraform does not need to modify or alter the child resource.
     
     An example of this is deploying Diganostic Settings to a resource, a Private DNS Zone Group to a Private Endpoint or a security rule to a Network Security Group.
