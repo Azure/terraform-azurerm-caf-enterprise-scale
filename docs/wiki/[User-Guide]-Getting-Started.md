@@ -82,7 +82,7 @@ However, when application teams choose to deploy resources with Terraform, the f
     - Azure Policy deploys a child or extension resource to the resource to ensure the resource is compliant.
     - An additional Terraform run is performed, and there is no state-drift as Terraform does not need to modify or alter the child resource.
 
-    An example of this is deploying Diganostic Settings to a resource, a Private DNS Zone Group to a Private Endpoint.
+    An example of this is deploying Diganostic Settings to a resource or a Private DNS Zone Group to a Private Endpoint.
 
     Create guidance for landing zone owners so that they understand the effects of these policies and can deploy resources in a compliant manner.
 
