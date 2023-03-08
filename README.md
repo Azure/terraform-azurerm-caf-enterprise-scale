@@ -8,32 +8,32 @@
 
 Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
-- [Home][wiki\_home]
-- [User Guide][wiki\_user\_guide]
-- [Examples][wiki\_examples]
-- [Frequently Asked Questions][wiki\_frequently\_asked\_questions]
-- [Troubleshooting][wiki\_troubleshooting]
+- [Home](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Home )
+- [User Guide](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/User-Guide)
+- [Examples](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples)
+- [Frequently Asked Questions](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Frequently-Asked-Questions)
+- [Troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting)
 
 ## Overview
 
-The [Azure landing zones Terraform module][alz\_tf\_registry] is designed to accelerate deployment of platform resources based on the [Azure landing zones conceptual architecture][alz\_architecture] using Terraform.
+The [Azure landing zones Terraform module](https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest) is designed to accelerate deployment of platform resources based on the [Azure landing zones conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Terraform.
 
-![A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module.][alz\_tf\_overview]
+![A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module.](https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/alz-tf-module-overview.png)
 
 This is currently split logically into the following capabilities within the module (*links to further guidance on the Wiki*):
 
 | Module capability | Scope | Design area |
 | :--- | :--- | :--- |
-| [Core Resources][wiki\_core\_resources] | Management group and subscription organization | [Resource organization][alz\_hierarchy] |
-| [Management Resources][wiki\_management\_resources] | Management subscription | [Management][alz\_management] |
-| [Connectivity Resources][wiki\_connectivity\_resources] | Connectivity subscription | [Network topology and connectivity][alz\_connectivity] |
-| [Identity Resources][wiki\_identity\_resources] | Identity subscription | [Identity and access management][alz\_identity] |
+| [Core Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Core-Resources) | Management group and subscription organization | [Resource organization](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org) |
+| [Management Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Management-Resources) | Management subscription | [Management](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management) |
+| [Connectivity Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Connectivity-Resources) | Connectivity subscription | [Network topology and connectivity](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity) |
+| [Identity Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Identity-Resources) | Identity subscription | [Identity and access management](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access) |
 
 Using a very [simple initial configuration](#maintf), the module will deploy a management group hierarchy based on the above diagram.
 This includes the recommended governance baseline, applied using Azure Policy and Access control (IAM) resources deployed at the management group scope.
 The default configuration can be easily extended to meet differing requirements, and includes the ability to deploy platform resources in the `management` and `connectivity` subscriptions.
 
-> **NOTE:** In addition to setting input variables to control which resources are deployed, the module requires setting a [Provider Configuration][wiki\_provider\_configuration] block to enable deployment across multiple subscriptions.
+> **NOTE:** In addition to setting input variables to control which resources are deployed, the module requires setting a [Provider Configuration](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Provider-Configuration) block to enable deployment across multiple subscriptions.
 
 Although resources are logically grouped to simplify operations, the modular design of the module also allows resources to be deployed using different Terraform workspaces.
 This allows customers to address concerns around managing large state files, or assigning granular permissions to pipelines based on the principle of least privilege. (*more information coming soon in the Wiki*)
@@ -42,7 +42,7 @@ This allows customers to address concerns around managing large state files, or 
 
 This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.19.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
-If this happens, we advise upgrading to the latest version and checking our [troubleshooting][wiki\_troubleshooting] guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
+If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
 > **NOTE:** The module now requires a minimum Terraform version of `1.3.1` to support the GA release of [`optional()` Object Type Attributes](https://developer.hashicorp.com/terraform/language/expressions/type-constraints#optional-object-type-attributes) and the required fix for [issue #31844](https://github.com/hashicorp/terraform/issues/31844).
 
@@ -113,89 +113,48 @@ module "enterprise_scale" {
 }
 ```
 
-> **NOTE:** For additional guidance on how to customize your deployment using the advanced configuration options for this module, please refer to our [User Guide][wiki\_user\_guide] and the additional [examples][wiki\_examples] in our documentation.
+> **NOTE:** For additional guidance on how to customize your deployment using the advanced configuration options for this module, please refer to our [User Guide](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/User-Guide) and the additional [examples](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples) in our documentation.
 
 ## Permissions
 
-Please refer to our [Module Permissions][wiki\_module\_permissions] guide on the Wiki.
+Please refer to our [Module Permissions](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Module-Permissions) guide on the Wiki.
 
 ## Examples
 
 The following list outlines some of our most popular examples:
 
-- [Examples - Level 100][wiki\_examples\_level\_100]
-  - [Deploy Default Configuration][wiki\_deploy\_default\_configuration]
-  - [Deploy Demo Landing Zone Archetypes][wiki\_deploy\_demo\_landing\_zone\_archetypes]
-- [Examples - Level 200][wiki\_examples\_level\_200]
-  - [Deploy Custom Landing Zone Archetypes][wiki\_deploy\_custom\_landing\_zone\_archetypes]
-  - [Deploy Connectivity Resources][wiki\_deploy\_connectivity\_resources]
-  - [Deploy Identity Resources][wiki\_deploy\_identity\_resources]
-  - [Deploy Management Resources][wiki\_deploy\_management\_resources]
-  - [Assign a Built-in Policy][wiki\_assign\_a\_built\_in\_policy]
-- [Examples - Level 300][wiki\_examples\_level\_300]
-  - [Deploy Connectivity Resources With Custom Settings][wiki\_deploy\_connectivity\_resources\_custom]
-  - [Deploy Identity Resources With Custom Settings][wiki\_deploy\_identity\_resources\_custom]
-  - [Deploy Management Resources With Custom Settings][wiki\_deploy\_management\_resources\_custom]
-  - [Expand Built-in Archetype Definitions][wiki\_expand\_built\_in\_archetype\_definitions]
-  - [Create Custom Policies, Policy Sets and Assignments][wiki\_create\_custom\_policies\_policy\_sets\_and\_assignments]
+- [Examples - Level 100](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-100)
+  - [Deploy Default Configuration](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Default-Configuration)
+  - [Deploy Demo Landing Zone Archetypes](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes)
+- [Examples - Level 200](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-200)
+  - [Deploy Custom Landing Zone Archetypes](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes)
+  - [Deploy Connectivity Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Connectivity-Resources)
+  - [Deploy Identity Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Identity-Resources)
+  - [Deploy Management Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources)
+  - [Assign a Built-in Policy](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Assign-a-Built-in-Policy)
+- [Examples - Level 300](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-300)
+  - [Deploy Connectivity Resources With Custom Settings](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings)
+  - [Deploy Identity Resources With Custom Settings](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings)
+  - [Deploy Management Resources With Custom Settings](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings)
+  - [Expand Built-in Archetype Definitions](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions)
+  - [Create Custom Policies, Policy Sets and Assignments](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments)
 
-For the complete list of our latest examples, please refer to our [Examples][wiki\_examples] page on the Wiki.
+For the complete list of our latest examples, please refer to our [Examples](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples) page on the Wiki.
 
 ## Release notes
 
-Please see the [releases][repo\_releases] page for the latest module updates.
+Please see the [releases](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases) page for the latest module updates.
 
 ## Upgrade guides
 
 For upgrade guides from previous versions, please refer to the following links:
 
-- [Upgrade from v2.4.1 to v3.0.0][wiki\_upgrade\_from\_v2\_4\_1\_to\_v3\_0\_0]
-- [Upgrade from v1.1.4 to v2.0.0][wiki\_upgrade\_from\_v1\_1\_4\_to\_v2\_0\_0]
-- [Upgrade from v0.4.0 to v1.0.0][wiki\_upgrade\_from\_v0\_4\_0\_to\_v1\_0\_0]
-- [Upgrade from v0.3.3 to v0.4.0][wiki\_upgrade\_from\_v0\_3\_3\_to\_v0\_4\_0]
-- [Upgrade from v0.1.2 to v0.2.0][wiki\_upgrade\_from\_v0\_1\_2\_to\_v0\_2\_0]
-- [Upgrade from v0.0.8 to v0.1.0][wiki\_upgrade\_from\_v0\_0\_8\_to\_v0\_1\_0]
-
-[alz\_architecture]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture
-[alz\_connectivity]: https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity
-[alz\_hierarchy]:    https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org
-[alz\_identity]:     https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
-[alz\_management]:   https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management
-[alz\_tf\_overview]: https://raw.githubusercontent.com/wiki/Azure/terraform-azurerm-caf-enterprise-scale/media/alz-tf-module-overview.png "A conceptual architecture diagram highlighting the design areas covered by the Azure landing zones Terraform module."
-[alz\_tf\_registry]:  https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest "Terraform Registry: Azure landing zones Terraform module"
-[repo\_releases]:    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases "Release notes"
-[wiki\_assign\_a\_built\_in\_policy]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a Built-in Policy"
-[wiki\_connectivity\_resources]:                https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
-[wiki\_core\_resources]:                        https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Core-Resources "Wiki - Core Resources"
-[wiki\_create\_custom\_policies\_policy\_sets\_and\_assignments]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create Custom Policies, Policy Sets and Assignments"
-[wiki\_deploy\_connectivity\_resources\_custom]:  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings"
-[wiki\_deploy\_connectivity\_resources]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources"
-[wiki\_deploy\_custom\_landing\_zone\_archetypes]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom Landing Zone Archetypes"
-[wiki\_deploy\_default\_configuration]:          https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Default-Configuration "Wiki - Deploy Default Configuration"
-[wiki\_deploy\_demo\_landing\_zone\_archetypes]:   https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Demo-Landing-Zone-Archetypes "Wiki - Deploy Demo Landing Zone Archetypes"
-[wiki\_deploy\_identity\_resources\_custom]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy Identity Resources With Custom Settings"
-[wiki\_deploy\_identity\_resources]:             https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy Identity Resources"
-[wiki\_deploy\_management\_resources\_custom]:    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy Management Resources With Custom Settings"
-[wiki\_deploy\_management\_resources]:           https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy Management Resources"
-[wiki\_examples\_level\_100]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-100 "Wiki - Examples"
-[wiki\_examples\_level\_200]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-200 "Wiki - Examples"
-[wiki\_examples\_level\_300]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples#advanced-level-300 "Wiki - Examples"
-[wiki\_examples]:                              https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples "Wiki - Examples"
-[wiki\_expand\_built\_in\_archetype\_definitions]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions "Wiki - Expand Built-in Archetype Definitions"
-[wiki\_frequently\_asked\_questions]:            https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Frequently-Asked-Questions "Wiki - Frequently Asked Questions"
-[wiki\_home]:                                  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Home "Wiki - Home"
-[wiki\_identity\_resources]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
-[wiki\_management\_resources]:                  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
-[wiki\_module\_permissions]:                    https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Module-Permissions "Wiki - Module Permissions"
-[wiki\_provider\_configuration]:                https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
-[wiki\_troubleshooting]:                       https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting "Wiki - Troubleshooting"
-[wiki\_upgrade\_from\_v0\_0\_8\_to\_v0\_1\_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0 "Wiki - Upgrade from v0.0.8 to v0.1.0"
-[wiki\_upgrade\_from\_v0\_1\_2\_to\_v0\_2\_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0 "Wiki - Upgrade from v0.1.2 to v0.2.0"
-[wiki\_upgrade\_from\_v0\_3\_3\_to\_v0\_4\_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0 "Wiki - Upgrade from v0.3.3 to v0.4.0"
-[wiki\_upgrade\_from\_v0\_4\_0\_to\_v1\_0\_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0 "Wiki - Upgrade from v0.4.0 to v1.0.0"
-[wiki\_upgrade\_from\_v1\_1\_4\_to\_v2\_0\_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
-[wiki\_upgrade\_from\_v2\_4\_1\_to\_v3\_0\_0]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0 "Wiki - Upgrade from v2.4.1 to v3.0.0"
-[wiki\_user\_guide]:                            https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/User-Guide "Wiki - User Guide"
+- [Upgrade from v2.4.1 to v3.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0)
+- [Upgrade from v1.1.4 to v2.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0)
+- [Upgrade from v0.4.0 to v1.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0)
+- [Upgrade from v0.3.3 to v0.4.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.3.3-to-v0.4.0)
+- [Upgrade from v0.1.2 to v0.2.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.1.2-to-v0.2.0)
+- [Upgrade from v0.0.8 to v0.1.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.0.8-to-v0.1.0)
 
 ## Documentation
 <!-- markdownlint-disable MD033 -->
@@ -205,6 +164,8 @@ For upgrade guides from previous versions, please refer to the following links:
 The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
+
+- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.3.0)
 
 - <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.19.0)
 
@@ -945,6 +906,14 @@ Type: `bool`
 
 Default: `false`
 
+### <a name="input_deploy_diagnostics_for_mg"></a> [deploy\_diagnostics\_for\_mg](#input\_deploy\_diagnostics\_for\_mg)
+
+Description: If set to true, will deploy Diagnostic Settings for management groups
+
+Type: `bool`
+
+Default: `false`
+
 ### <a name="input_deploy_identity_resources"></a> [deploy\_identity\_resources](#input\_deploy\_identity\_resources)
 
 Description: If set to true, will enable the "Identity" landing zone settings.
@@ -1163,6 +1132,7 @@ Default: `{}`
 
 The following resources are used by this module:
 
+- [azapi_resource.diag_settings](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
 - [azurerm_automation_account.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account) (resource)
 - [azurerm_dns_zone.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone) (resource)
 - [azurerm_express_route_gateway.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/express_route_gateway) (resource)
@@ -1343,37 +1313,19 @@ Microsoft can identify the installation of said module/s with the deployed Azure
 Microsoft can correlate these resources used to support the software.
 Microsoft collects this information to provide the best experiences with their products and to operate their business.
 The telemetry is collected through customer usage attribution.
-The data is collected and governed by [Microsoft's privacy policies][msft\_privacy\_policy].
+The data is collected and governed by [Microsoft's privacy policies](https://www.microsoft.com/trustcenter).
 
-If you don't wish to send usage data to Microsoft, details on how to turn it off can be found [here][wiki\_disable\_telemetry].
+If you don't wish to send usage data to Microsoft, details on how to turn it off can be found [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-disable_telemetry).
 
 ## License
 
-- [MIT License][alz\_license]
+- [MIT License](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/LICENSE)
 
 ## Contributing
 
-- [Contributing][wiki\_contributing]
-  - [Raising an Issue][wiki\_raising\_an\_issue]
-  - [Feature Requests][wiki\_feature\_requests]
-  - [Contributing to Code][wiki\_contributing\_to\_code]
-  - [Contributing to Documentation][wiki\_contributing\_to\_documentation]
-
- [//]: # (************************)
- [//]: # (INSERT LINK LABELS BELOW)
- [//]: # (************************)
-
-[msft\_privacy\_policy]: https://www.microsoft.com/trustcenter  "Microsoft's privacy policy"
-
-<!--
-The following link references should be copied from `_sidebar.md` in the `./docs/wiki/` folder.
-Replace `./` with `https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/` when copying to here.
--->
-[alz\_license]:      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/LICENSE
-[wiki\_contributing]:                          https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing "Wiki - Contributing"
-[wiki\_raising\_an\_issue]:                      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Raising-an-Issue "Wiki - Raising an Issue"
-[wiki\_feature\_requests]:                      https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Feature-Requests "Wiki - Feature Requests"
-[wiki\_contributing\_to\_code]:                  https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Code "Wiki - Contributing to Code"
-[wiki\_contributing\_to\_documentation]:         https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Documentation "Wiki - Contributing to Documentation"
-[wiki\_disable\_telemetry]:                     https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-disable_telemetry "Wiki - Disable telemetry"
+- [Contributing](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing)
+  - [Raising an Issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Raising-an-Issue)
+  - [Feature Requests](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Feature-Requests)
+  - [Contributing to Code](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Code)
+  - [Contributing to Documentation](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Contributing-to-Documentation)
 <!-- END_TF_DOCS -->
