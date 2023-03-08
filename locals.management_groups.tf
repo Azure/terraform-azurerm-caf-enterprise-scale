@@ -313,6 +313,7 @@ locals {
     }
   }
 
+
   # Logic to determine which subscriptions to associate with Management Groups in relaxed mode.
   # Empty unless strict_subscription_association is set to false.
   mg_sub_association_list = flatten([
@@ -371,5 +372,16 @@ locals {
     for key, value in local.es_landing_zones_map :
     key => value
     if contains(keys(azurerm_management_group.level_5), try(length(value.parent_management_group_id) > 0, false) ? "${local.provider_path.management_groups}${value.parent_management_group_id}" : local.empty_string)
+  }
+}
+
+# The following local is used to build the list of Management Groups 
+# that will have Diagnostic Settings deployed, based on boolean varaible 
+# deploy_diagnostics_for_mg
+locals {
+  azapi_mg_diagnostics = {
+    for mg_id in keys(local.es_landing_zones_map) :
+    mg_id => ""
+    if local.deploy_diagnostics_for_mg
   }
 }
