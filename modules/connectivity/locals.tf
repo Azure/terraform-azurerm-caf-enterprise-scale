@@ -968,7 +968,7 @@ locals {
           intrusion_detection  = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].intrusion_detection, local.empty_list)
           tls_certificate      = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tls_certificate, local.empty_list)
           sql_redirect_allowed = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].sql_redirect_allowed, null)
-          tags                 = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, null)
+          tags                 = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].tags, local.tags)
         }
         # Child resource definition attributes
         azurerm_public_ip = (
@@ -1055,7 +1055,7 @@ locals {
           identity            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
           insights            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
           intrusion_detection = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].intrusion_detection, local.empty_list)
-          tags                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, null)
+          tags                = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].tags, local.tags)
         }
         # Child resource definition attributes
         azurerm_public_ip = local.empty_list

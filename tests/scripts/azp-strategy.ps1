@@ -55,7 +55,7 @@ $terraformVersionsCount = $terraformVersions.Count
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "3.19.0"
+$azurermProviderVersionBase = "3.35.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################
