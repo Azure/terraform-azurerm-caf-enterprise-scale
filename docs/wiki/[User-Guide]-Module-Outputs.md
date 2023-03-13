@@ -75,7 +75,6 @@ module "enterprise_scale" {
 output "azurerm_firewall_connectivity" {
   value = module.enterprise_scale.azurerm_firewall.connectivity["/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-connectivity-eastus/providers/Microsoft.Network/azureFirewalls/contoso-fw-eastus"]
 }
-}
 ```
 
 Now we can export attributes from the output containing the resource such as `location` or `sku_tier` (i.e. `outputs.azurerm_firewall_connectivity.location`, `outputs.azurerm_firewall_connectivity.sku_tier`).
