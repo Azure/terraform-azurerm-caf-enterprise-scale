@@ -27,7 +27,7 @@ In the caf-enterprise-scale module the map keys are always the `resource_id` of 
 
 ### Example 
 
-For example the following code extract will show us accessing the configuration arguments of the `Deploy-Diagnostics-LogAnalytics` policy initiative:
+The following code extract will show us accessing the configuration arguments of the `azurerm_firewall` resource:
 ```hcl 
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used.
@@ -67,14 +67,18 @@ module "enterprise_scale" {
   root_id        = "myorg"
   root_name      = "My Organization"
 
+  deploy_connectivity_resources = true
+  subscription_id_connectivity  = data.azurerm_client_config.core.subscription_id
+
 }
 
-output "azurerm_policy_set_definition_deploy_diagnostics_log_analytics" {
-  value = module.enterprise_scale.azurerm_policy_set_definition.enterprise_scale["/providers/Microsoft.Management/managementGroups/myorg/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics"]
+output "azurerm_firewall_connectivity" {
+  value = module.enterprise_scale.azurerm_firewall.connectivity["/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-connectivity-eastus/providers/Microsoft.Network/azureFirewalls/contoso-fw-eastus"]
+}
 }
 ```
 
-Now we can export attributes from the output containing the policy initiative such as `name` or `management_group_id` i.e. `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.name`, `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.management_group_id`.
+Now we can export attributes from the output containing the resource such as `location` or `sku_tier` i.e. `outputs.azurerm_firewall_connectivity.location`, `outputs.azurerm_firewall_connectivity.sku_tier`.
 
 ### General Formula
 
