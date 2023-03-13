@@ -1,13 +1,13 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Summary
 
-The caf-enterprise-scale module contains outputs with the purpose of _providing all configuration arguments for every azure resource created by the module._  This in turn allows you to dynamically utilise resource attributes from the caf-enterprise-scale module in other parts of your Terraform configuartion within the root module.  
+The caf-enterprise-scale module contains outputs with the purpose of _providing all configuration arguments for every azure resource created by the module._  This in turn allows you to dynamically utilize resource attributes from the caf-enterprise-scale module in other parts of your Terraform configuration within the root module.  
 
 This guide will list all the outputs and detail how they can be used. 
 
-## `outputs.tf` File Struture Overview
+## `outputs.tf` File Structure Overview
 
-The `outputs.tf` file within in the caf-enterprise-scale module comprises of a different output for every resource type e.g. `azurerm_management_group`, `azurerm_resource_group` etc. Then within each output, is a map of each _local name_ (instance) of the given resource type to the associated resource block. e.g. 
+The `outputs.tf` file within in the caf-enterprise-scale module comprises of a different output for every resource type (e.g. `azurerm_management_group`, `azurerm_resource_group` etc.). Then within each output is a map of each _local name_ (instance) of the given resource type to the associated resource block. e.g. 
 ```hcl
 output "azurerm_resource_group" {
   value = {
@@ -290,7 +290,7 @@ output "azurerm_virtual_hub_connection" {
 
 Most resource blocks within the caf-enterprise-scale module are responsible for creating multiple instances through the `for_each` meta-argument, and by definition, in Terraform, instances are identified by the map key from the value provided to `for_each`; the map keys are always the `resource_id` of the instance that the resource block is creating. 
 
-For example the following code extract will show us accessing the configuration arguments of the `Deploy-Diagnostics-LogAnalytics` policy iniative:
+For example the following code extract will show us accessing the configuration arguments of the `Deploy-Diagnostics-LogAnalytics` policy initiative:
 ```hcl 
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used.
@@ -339,7 +339,7 @@ output "azurerm_policy_set_definition_deploy_diagnostics_log_analytics" {
 
 Now we can export attributes from the output containing the policy initiative such as `name` or `management_group_id` i.e. `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.name`, `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.management_group_id`.
 
-The `resource_id` guarantees uniquness as a key but isn't too friendly, we can alternatively redefine the map keys to the resource configuration values (as long as the new keys are also unique). Take for example the following which maps the location of the virtual networks to the virtual network's configuration values: 
+The `resource_id` guarantees uniqueness as a key but isn't too friendly, we can alternatively redefine the map keys to the resource configuration values (as long as the new keys are also unique). Take for example the following which maps the location of the virtual networks to the virtual network's configuration values: 
 
 ```hcl 
 output "azurerm_virtual_network" {
