@@ -78,7 +78,7 @@ output "azurerm_firewall_connectivity" {
 }
 ```
 
-Now we can export attributes from the output containing the resource such as `location` or `sku_tier` i.e. `outputs.azurerm_firewall_connectivity.location`, `outputs.azurerm_firewall_connectivity.sku_tier`.
+Now we can export attributes from the output containing the resource such as `location` or `sku_tier` (i.e. `outputs.azurerm_firewall_connectivity.location`, `outputs.azurerm_firewall_connectivity.sku_tier`).
 
 ### General Formula
 
@@ -108,7 +108,7 @@ output "azurerm_virtual_network" {
     }
 }
 ```
-In this scenario, We can now export attributes from the virtual network in `eastus`, such as `name` or `address_space` i.e. `outputs.azurerm_virtual_network.eastus.name`, `outputs.azurerm_virtual_network.address_space`.
+In this scenario, We can now export attributes from the virtual network in `eastus`, such as `name` or `address_space` (i.e. `outputs.azurerm_virtual_network.eastus.name`, `outputs.azurerm_virtual_network.address_space`).
 
 > **NOTE:** The new map keys used must be unique relatively within the map.
 
@@ -383,14 +383,4 @@ output "azurerm_virtual_hub_connection" {
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[TFAES-Library]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib
-
-[azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
-
-[wiki_variables_archetype_config_overrides]:        %5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
-[wiki_variables_custom_landing_zones]:              %5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
-[wiki_variables_template_file_variables]:           %5BVariables%5D-template_file_variables "Wiki - Variables - template_file_variables"
-[wiki_set_parameter_values_for_policy_assignments]: %5BExamples%5D-Set-parameter-values-for-Policy-Assignments "Wiki - Set parameter values for Policy Assignments"
-
-[terraform_templatefile]: https://www.terraform.io/language/functions/templatefile "Terraform documentation: templatefile Function"
 [terraform_resource_instances]:  https://developer.hashicorp.com/terraform/language/meta-arguments/for_each#referring-to-instances "Terraform documentation: Reffering to instances"
