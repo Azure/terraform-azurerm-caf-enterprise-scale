@@ -90,7 +90,7 @@ output "azurerm_resource" {
 ```
 ### Re-mapping with Friendly Keys
 
-The `resource_id` guarantees uniqueness as a key but isn't too friendly, we can alternatively redefine the map keys to the resource configuration values (as long as the new keys are also unique). Take for example the following which maps the location of the virtual networks to the virtual network's configuration values: 
+The `resource_id` can be too long and complex, alternatively we can redefine the map keys to use friendly names. Take for example the following which maps the location of the virtual networks to the virtual networks' configuration values: 
 
 ```hcl 
 module "enterprise_scale" {
@@ -105,6 +105,8 @@ output "azurerm_virtual_network" {
 }
 ```
 In this scenario, We can now export attributes from the virtual network in `eastus`, such as `name` or `address_space` i.e. `outputs.azurerm_virtual_network.eastus.name`, `outputs.azurerm_virtual_network.address_space`.
+
+> **NOTE:** The new map keys used must be unique relatively within the map.
 
 ## List of Module Outputs
 ```hcl 
