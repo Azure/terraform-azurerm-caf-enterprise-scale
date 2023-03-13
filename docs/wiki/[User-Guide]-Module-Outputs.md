@@ -7,7 +7,7 @@ This guide will list all the outputs and detail how they can be used.
 
 ## `outputs.tf` File Structure Overview
 
-The `outputs.tf` file within in the caf-enterprise-scale module comprises of a different output for every resource type (e.g. `azurerm_management_group`, `azurerm_resource_group` etc.). Then within each output is a map of each _local name_ (instance) of the given resource type to the associated resource block. e.g. 
+The `outputs.tf` file within the caf-enterprise-scale module comprises of a different output for every resource type (e.g. `azurerm_management_group`, `azurerm_resource_group` etc.). Then within each output is a map of each _local name_ (instance) of the given resource type to the associated resource block. e.g. 
 ```hcl
 output "azurerm_resource_group" {
   value = {
