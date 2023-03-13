@@ -19,6 +19,93 @@ output "azurerm_resource_group" {
 }
 ```
 
+## Accessing Resource Configuration from Outputs 
+
+Most resource blocks within the caf-enterprise-scale module are responsible for creating multiple resource instances through the `for_each` meta-argument, and by definition, in Terraform, resource instances are identified by the map key from the value provided to `for_each` (See [Referring to Instances][terraform_resource_instances] for more information). 
+
+In the caf-enterprise-scale module the map keys are always the `resource_id` of the resource instance that the resource block is creating. 
+
+### Example 
+
+For example the following code extract will show us accessing the configuration arguments of the `Deploy-Diagnostics-LogAnalytics` policy initiative:
+```hcl 
+# We strongly recommend using the required_providers block to set the
+# Azure Provider source and version being used.
+
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.19.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+# You can use the azurerm_client_config data resource to dynamically
+# extract connection settings from the provider configuration.
+
+data "azurerm_client_config" "core" {}
+
+# Call the caf-enterprise-scale module directly from the Terraform Registry
+# pinning to the latest version
+
+module "enterprise_scale" {
+  source  = "Azure/caf-enterprise-scale/azurerm"
+  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+
+  providers = {
+    azurerm              = azurerm
+    azurerm.connectivity = azurerm
+    azurerm.management   = azurerm
+  }
+
+  root_parent_id = data.azurerm_client_config.core.tenant_id
+  root_id        = "myorg"
+  root_name      = "My Organization"
+
+}
+
+output "azurerm_policy_set_definition_deploy_diagnostics_log_analytics" {
+  value = module.enterprise_scale.azurerm_policy_set_definition.enterprise_scale["/providers/Microsoft.Management/managementGroups/myorg/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics"]
+}
+```
+
+Now we can export attributes from the output containing the policy initiative such as `name` or `management_group_id` i.e. `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.name`, `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.management_group_id`.
+
+### General Formula
+
+In general for any given resource we have: 
+```hcl
+module "enterprise_scale" {
+...
+}
+
+output "azurerm_resource" {
+  value = module.enterprise_scale.<RESOURCE TYPE>.<LOCAL NAME>[<RESOURCE ID>]
+}
+```
+### Re-mapping with Friendly Keys
+
+The `resource_id` guarantees uniqueness as a key but isn't too friendly, we can alternatively redefine the map keys to the resource configuration values (as long as the new keys are also unique). Take for example the following which maps the location of the virtual networks to the virtual network's configuration values: 
+
+```hcl 
+module "enterprise_scale" {
+...
+}
+
+output "azurerm_virtual_network" {
+  value = {
+    for k,v in module.enterprise_scale.azurerm_virtual_network.connectivity:
+      v.location => v
+    }
+}
+```
+In this scenario, We can now export attributes from the virtual network in `eastus`, such as `name` or `address_space` i.e. `outputs.azurerm_virtual_network.eastus.name`, `outputs.azurerm_virtual_network.address_space`.
+
 ## List of Module Outputs
 ```hcl 
 # The following output is used to ensure all Management Group
@@ -286,67 +373,18 @@ output "azurerm_virtual_hub_connection" {
 
 ```
 
-## Accessing Outputs 
+ [//]: # (************************)
+ [//]: # (INSERT LINK LABELS BELOW)
+ [//]: # (************************)
 
-Most resource blocks within the caf-enterprise-scale module are responsible for creating multiple instances through the `for_each` meta-argument, and by definition, in Terraform, instances are identified by the map key from the value provided to `for_each`; the map keys are always the `resource_id` of the instance that the resource block is creating. 
+[TFAES-Library]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib
 
-For example the following code extract will show us accessing the configuration arguments of the `Deploy-Diagnostics-LogAnalytics` policy initiative:
-```hcl 
-# We strongly recommend using the required_providers block to set the
-# Azure Provider source and version being used.
+[azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.19.0"
-    }
-  }
-}
+[wiki_variables_archetype_config_overrides]:        %5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
+[wiki_variables_custom_landing_zones]:              %5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
+[wiki_variables_template_file_variables]:           %5BVariables%5D-template_file_variables "Wiki - Variables - template_file_variables"
+[wiki_set_parameter_values_for_policy_assignments]: %5BExamples%5D-Set-parameter-values-for-Policy-Assignments "Wiki - Set parameter values for Policy Assignments"
 
-provider "azurerm" {
-  features {}
-}
-
-# You can use the azurerm_client_config data resource to dynamically
-# extract connection settings from the provider configuration.
-
-data "azurerm_client_config" "core" {}
-
-# Call the caf-enterprise-scale module directly from the Terraform Registry
-# pinning to the latest version
-
-module "enterprise_scale" {
-  source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
-
-  providers = {
-    azurerm              = azurerm
-    azurerm.connectivity = azurerm
-    azurerm.management   = azurerm
-  }
-
-  root_parent_id = data.azurerm_client_config.core.tenant_id
-  root_id        = "myorg"
-  root_name      = "My Organization"
-
-}
-
-output "azurerm_policy_set_definition_deploy_diagnostics_log_analytics" {
-  value = module.enterprise_scale.azurerm_policy_set_definition.enterprise_scale["/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics"]
-}
-```
-
-Now we can export attributes from the output containing the policy initiative such as `name` or `management_group_id` i.e. `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.name`, `outputs.azurerm_policy_set_definition_deploy_diagnostics_log_analytics.management_group_id`.
-
-The `resource_id` guarantees uniqueness as a key but isn't too friendly, we can alternatively redefine the map keys to the resource configuration values (as long as the new keys are also unique). Take for example the following which maps the location of the virtual networks to the virtual network's configuration values: 
-
-```hcl 
-output "azurerm_virtual_network" {
-  value = {
-    for k,v in module.enterprise_scale.azurerm_virtual_network.connectivity:
-      v.location => v
-    }
-}
-```
-In this scenario, We can now export attributes from the virtual network in `eastus`, such as `name` or `address_space` i.e. `outputs.azurerm_virtual_network.eastus.name`, `outputs.azurerm_virtual_network.address_space`.
+[terraform_templatefile]: https://www.terraform.io/language/functions/templatefile "Terraform documentation: templatefile Function"
+[terraform_resource_instances]:  https://developer.hashicorp.com/terraform/language/meta-arguments/for_each#referring-to-instances "Terraform documentation: Reffering to instances"
