@@ -3,11 +3,12 @@
 
 The caf-enterprise-scale module contains outputs with the purpose of _providing all configuration arguments for every azure resource created by the module._  This in turn allows you to dynamically utilize resource attributes from the caf-enterprise-scale module in other parts of your Terraform configuration within the root module.  
 
-This guide will list all the outputs and detail how they can be used. 
+This guide will list all the outputs and detail how they can be used.
 
 ## `outputs.tf` File Structure Overview
 
-The `outputs.tf` file within the caf-enterprise-scale module comprises of a different output for every resource type (e.g. `azurerm_management_group`, `azurerm_resource_group` etc.). Then within each output is a map of each _local name_ (instance) of the given resource type to the associated resource block. e.g. 
+The `outputs.tf` file within the caf-enterprise-scale module comprises of a different output for every resource type (e.g. `azurerm_management_group`, `azurerm_resource_group` etc.). Then within each output is a map of each _local name_ (instance) of the given resource type to the associated resource block. e.g.
+
 ```hcl
 output "azurerm_resource_group" {
   value = {
@@ -19,16 +20,17 @@ output "azurerm_resource_group" {
 }
 ```
 
-## Accessing Resource Configuration from Outputs 
+## Accessing Resource Configuration from Outputs
 
-Most resource blocks within the caf-enterprise-scale module are responsible for creating multiple resource instances through the `for_each` meta-argument, and by definition, in Terraform, resource instances are identified by the map key from the value provided to `for_each` (See [Referring to Instances][terraform_resource_instances] for more information). 
+Most resource blocks within the caf-enterprise-scale module are responsible for creating multiple resource instances through the `for_each` meta-argument, and by definition, in Terraform, resource instances are identified by the map key from the value provided to `for_each` (See [Referring to Instances][terraform_resource_instances] for more information).
 
-In the caf-enterprise-scale module the map keys are always the `resource_id` of the resource instance that the resource block is creating. 
+In the caf-enterprise-scale module the map keys are always the `resource_id` of the resource instance that the resource block is creating.
 
-### Example 
+### Example
 
 The following code extract will show us accessing the configuration arguments of the `azurerm_firewall` resource:
-```hcl 
+
+```hcl
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used.
 
@@ -81,7 +83,8 @@ Now we can export attributes from the output containing the resource such as `lo
 
 ### General Formula
 
-In general for any given resource we have: 
+In general for any given resource we have:
+
 ```hcl
 module "enterprise_scale" {
 ...
@@ -91,11 +94,12 @@ output "azurerm_resource" {
   value = module.enterprise_scale.<RESOURCE TYPE>.<LOCAL NAME>[<RESOURCE ID>]
 }
 ```
+
 ### Re-mapping with Friendly Keys
 
-The `resource_id` can be too long and complex, alternatively we can redefine the map keys to use friendly names. Take for example the following which maps the location of the virtual networks to the virtual networks' configuration values: 
+The `resource_id` can be too long and complex, alternatively we can redefine the map keys to use friendly names. Take for example the following which maps the location of the virtual networks to the virtual networks' configuration values:
 
-```hcl 
+```hcl
 module "enterprise_scale" {
 ...
 }
@@ -107,12 +111,14 @@ output "azurerm_virtual_network" {
     }
 }
 ```
+
 In this scenario, We can now export attributes from the virtual network in `eastus`, such as `name` or `address_space` (i.e. `outputs.azurerm_virtual_network.eastus.name`, `outputs.azurerm_virtual_network.address_space`).
 
 > **NOTE:** The new map keys used must be unique relatively within the map.
 
 ## List of Module Outputs
-```hcl 
+
+```hcl
 # The following output is used to ensure all Management Group
 # data is returned to the root module.
 output "azurerm_management_group" {
@@ -382,4 +388,4 @@ output "azurerm_virtual_hub_connection" {
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)
 
-[terraform_resource_instances]:  https://developer.hashicorp.com/terraform/language/meta-arguments/for_each#referring-to-instances "Terraform documentation: Reffering to instances"
+[terraform_resource_instances]:  https://developer.hashicorp.com/terraform/language/meta-arguments/for_each#referring-to-instances "Terraform documentation: Referring to instances"
