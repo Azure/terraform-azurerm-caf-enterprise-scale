@@ -4,7 +4,7 @@ name: Update Library Templates
 # yamllint disable-line rule:truthy
 on:
   schedule:
-    - cron: '0 8 * * 1-5'
+    - cron: "0 8 * * 1-5"
   workflow_dispatch: {}
 
 env:
@@ -33,6 +33,12 @@ jobs:
           path: ${{ env.remote_repository }}
           ref: main
 
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Configure local git
         run: |
           git config user.name github-actions
@@ -54,7 +60,7 @@ jobs:
           fi
         working-directory: ${{ github.repository }}
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Update library templates
         uses: azure/powershell@v1
@@ -107,4 +113,4 @@ jobs:
           fi
         working-directory: ${{ github.repository }}
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
