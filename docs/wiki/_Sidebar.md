@@ -6,6 +6,7 @@
 - [Home][wiki_home]
 - [User guide][wiki_user_guide]
   - [Getting started][wiki_getting_started]
+  - [Module outputs][wiki_module_outputs]
   - [Module permissions][wiki_module_permissions]
   - [Module variables][wiki_module_variables]
   - [Module releases][wiki_module_releases]
@@ -57,6 +58,7 @@
 [wiki_home]:                                                         Home "Wiki - Home"
 [wiki_user_guide]:                                                   User-Guide "Wiki - User guide"
 [wiki_getting_started]:                                              %5BUser-Guide%5D-Getting-Started "Wiki - Getting started"
+[wiki_module_outputs]:                                               %5BUser-Guide%5D-Module-Outputs "Wiki - Module outputs"
 [wiki_module_permissions]:                                           %5BUser-Guide%5D-Module-Permissions "Wiki - Module permissions"
 [wiki_module_variables]:                                             %5BUser-Guide%5D-Module-Variables "Wiki - Module variables"
 [wiki_module_releases]:                                              %5BUser-Guide%5D-Module-Releases "Wiki - Module releases"
