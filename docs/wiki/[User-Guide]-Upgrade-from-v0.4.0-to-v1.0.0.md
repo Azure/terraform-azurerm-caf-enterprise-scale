@@ -71,8 +71,8 @@ This increases reliability when running `terraform apply` or `terraform destroy`
 ```shell
 ╷
 │ Error: deleting Log Analytics Linked Service 'es-la/Automation' (Resource Group "es-mgmt"): operationalinsights.LinkedServicesClient#Delete: Failure sending request: StatusCode=0 -- Original Error: autorest/azure: Service returned an error. Status=<nil> Code="Conflict" Message="The link cannot be updated or deleted because it is linked to Update Management and/or ChangeTracking Solutions"
-│ 
-│ 
+│
+│
 ╵
 ```
 

@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Summary
 
-The caf-enterprise-scale module contains outputs with the purpose of _providing all configuration arguments for every azure resource created by the module._  This in turn allows you to dynamically utilize resource attributes from the caf-enterprise-scale module in other parts of your Terraform configuration within the root module.  
+The caf-enterprise-scale module contains outputs with the purpose of _providing all configuration arguments for every azure resource created by the module._  This in turn allows you to dynamically utilize resource attributes from the caf-enterprise-scale module in other parts of your Terraform configuration within the root module.
 
 This guide will list all the outputs and detail how they can be used.
 

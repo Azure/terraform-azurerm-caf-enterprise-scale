@@ -59,7 +59,7 @@ In the `policy_definitions` subdirectory, create a `policy_definition_es_policy_
         "policyRule": {
         "if": {
             "allOf":[
-                {            
+                {
                 "field": "type",
                 "equals": "Microsoft.Resources/subscriptions/resourceGroups"
                 },
@@ -136,7 +136,7 @@ Now create a `policy_definition_es_policy_enforce_resource_tags.json` file. This
         "then": {
             "effect": "deny"
         }
-    },    
+    },
         "parameters": {
             "Owner": {
                 "type": "String",
