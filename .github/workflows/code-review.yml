@@ -46,6 +46,7 @@ jobs:
           VALIDATE_POWERSHELL: true
           VALIDATE_TERRAFORM_TFLINT: true
           VALIDATE_YAML: true
+          VALIDATE_EDITORCONFIG: true
           # Additional settings:
           # If a shell script is not executable, the bash-exec
           # linter will report an error when set to true
