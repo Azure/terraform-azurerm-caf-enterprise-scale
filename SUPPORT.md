@@ -22,7 +22,8 @@ Following list of issues are within the scope of Microsoft support:
 
 Any issues that are deemed outside of the above list by Microsoft support and/or requires bugfix in the module or code in the repo, Microsoft support will redirect user to file the issue on GitHub.
 
-Project maintainers and community aim to get issues resolved in timely fashion as per community support policy of this repo.
+Project maintainers and community aim to get issues resolved in timely fashion as per community support 
+policy of this repo.
 
 ## Community Support Policy
 
