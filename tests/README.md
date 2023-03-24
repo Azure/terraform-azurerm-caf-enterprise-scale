@@ -152,7 +152,7 @@ The current strategy consists of running tests against the following version com
   - Minimum version supported by the module (`1.3.1`)
   - Latest `1.3.x` version
 - Azure provider for Terraform versions:
-  - Minimum version supported by the module (`v3.19.0`)
+  - Minimum version supported by the module (`v3.35.0`)
   - Latest version
 
 The latest versions are determined programmatically by querying the publisher APIs.

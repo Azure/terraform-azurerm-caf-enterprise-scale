@@ -1,6 +1,6 @@
 # Test suite for Azure landing zones Terraform module
 
-The Azure landing zones Terraform module is able to deploy different groups of resources depending on the selected options. The module also requires a minimum AzureRM provider version of `v3.19.0` and it is compatible with a selection of Terraform versions, as described in the module's official wiki page.
+The Azure landing zones Terraform module is able to deploy different groups of resources depending on the selected options. The module also requires a minimum AzureRM provider version of `v3.35.0` and it is compatible with a selection of Terraform versions, as described in the module's official wiki page.
 
 [Open Policy Agent](https://www.openpolicyagent.org/docs/latest) is an open source, general-purpose policy engine that unifies policy enforcement across the stack.
 
