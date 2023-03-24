@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "ms-azuretools.vscode-azureterraform",
     "azapi-vscode.azapi",
     "hashicorp.terraform"
   ]
