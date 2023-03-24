@@ -42,7 +42,7 @@ The following input variables are optional (have default values):
 
 ### <a name="input_custom_azure_backup_geo_codes"></a> [custom\_azure\_backup\_geo\_codes](#input\_custom\_azure\_backup\_geo\_codes)
 
-Description: If specified, the custom\_azure\_backup\_geo\_codes variable will override or append Geo Codes (value) used to generate region-specific DNS zone names for Azure Backup private endpoints.
+Description: If specified, the custom\_azure\_backup\_geo\_codes variable will override or append Geo Codes (value) used to generate region-specific DNS zone names for Azure Backup private endpoints.  
 For more information, please refer to: https://learn.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files
 
 Type: `map(string)`

@@ -167,7 +167,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.3.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.19.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.35.0)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
 
@@ -1315,7 +1315,7 @@ Microsoft collects this information to provide the best experiences with their p
 The telemetry is collected through customer usage attribution.
 The data is collected and governed by [Microsoft's privacy policies](https://www.microsoft.com/trustcenter).
 
-If you don't wish to send usage data to Microsoft, details on how to turn it off can be found [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-disable_telemetry).
+If you don't wish to send usage data to Microsoft, details on how to turn it off can be found [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale#input_disable_telemetry).
 
 ## License
 
