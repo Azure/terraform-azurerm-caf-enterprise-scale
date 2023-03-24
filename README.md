@@ -40,7 +40,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.19.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.35.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -65,7 +65,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.19.0"
+      version = ">= 3.35.0"
     }
   }
 }
@@ -167,7 +167,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.3.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.19.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.35.0)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
 
@@ -1315,7 +1315,7 @@ Microsoft collects this information to provide the best experiences with their p
 The telemetry is collected through customer usage attribution.
 The data is collected and governed by [Microsoft's privacy policies](https://www.microsoft.com/trustcenter).
 
-If you don't wish to send usage data to Microsoft, details on how to turn it off can be found [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BVariables%5D-disable_telemetry).
+If you don't wish to send usage data to Microsoft, details on how to turn it off can be found [here](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale#input_disable_telemetry).
 
 ## License
 

@@ -7,7 +7,7 @@ This has been made possible with the GA release of `optional()` types in Terrafo
 
 As a result of this change, we have increased the minimum supported Terraform version to `v1.3.1`.
 
-To support other changes (as listed below), we have also bumped the minimum supported `azurerm` provider version to `v3.19.0`.
+To support other changes (as listed below), we have also bumped the minimum supported `azurerm` provider version to `v3.35.0`.
 
 ### New features
 
