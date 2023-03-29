@@ -16,6 +16,11 @@ locals {
 
   # Bitfield bit 4: DNS configured?
   telem_connectivity_configure_dns = local.configure_connectivity_resources.settings.dns.enabled ? 8 : 0
+
+  # Bitfield bit 5: Zero Trust Network - Phase 1 configured?
+  telem_connectivity_ztn_p1 = (local.configure_connectivity_resources.settings.ddos_protection_plan.enabled &&
+    (alltrue([for sku in local.configure_connectivity_resources.settings.hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]) || alltrue([for sku in local.configure_connectivity_resources.settings.vwan_hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]))
+    ? 16 : 0)
 }
 
 # The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
@@ -25,7 +30,8 @@ locals {
     local.telem_connectivity_configure_hub_networks +
     local.telem_connectivity_configure_vwan_hub_networks +
     local.telem_connectivity_configure_ddos_protection_plan +
-    local.telem_connectivity_configure_dns
+    local.telem_connectivity_configure_dns +
+    local.telem_connectivity_ztn_p1
   )
   telem_connectivity_bitfield_hex = format("%04x", local.telem_connectivity_bitfield_denery)
 }
