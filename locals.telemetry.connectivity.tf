@@ -29,7 +29,8 @@ locals {
 
   # Bitfield bit 5: Zero Trust Network - Phase 1 configured?
   telem_connectivity_ztn_p1 = (local.configure_connectivity_resources.settings.ddos_protection_plan.enabled &&
-    (alltrue([for sku in local.configure_connectivity_resources.settings.hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]) || alltrue([for sku in local.configure_connectivity_resources.settings.vwan_hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"])) &&
+    alltrue(flatten([[for azfw in local.configure_connectivity_resources.settings.hub_networks.*.config.azure_firewall.enabled : azfw == true], [for azfw in local.configure_connectivity_resources.settings.vwan_hub_networks.*.config.azure_firewall.enabled : azfw == true]])) &&
+    alltrue(flatten([[for sku in local.configure_connectivity_resources.settings.hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"], [for sku in local.configure_connectivity_resources.settings.vwan_hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]])) &&
     local.telem_subnet_nsg_policy_assignment_exists &&
     local.telem_storage_https_policy_assignment_exists
   ? 16 : 0)
