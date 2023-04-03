@@ -3,6 +3,16 @@
 
 # This file contains telemetry for the connectivity module
 
+# The following locals are used to check for the existence of policy assignments that are made by the module that support a Zero Trust Networking configuration that is requried for telemetry triggers below
+locals {
+  telem_subnet_nsg_policy_assignment_exists = length([for k, v in local.azurerm_management_group_policy_assignment_enterprise_scale :
+    k if contains(split("/", v.template.properties.policyDefinitionId), "Deny-Subnet-Without-Nsg") && contains(split("/", k), "Deny-Subnet-Without-Nsg") && (endswith(split("/", k)[4], "-identity") || endswith(split("/", k)[4], "-landing-zones"))
+  ]) >= 2 ? true : false
+  telem_storage_https_policy_assignment_exists = length([for k, v in local.azurerm_management_group_policy_assignment_enterprise_scale :
+    k if contains(split("/", v.template.properties.policyDefinitionId), "404c3081-a854-4457-ae30-26a93ef643f9") && contains(split("/", k), "Deny-Storage-http") && (endswith(split("/", k)[4], "-landing-zones"))
+  ]) >= 1 ? true : false
+}
+
 # The following locals are used to create the bitfield data, dependent on the module configuration
 locals {
   # Bitfield bit 1 (LSB): Are hub networks configured?
@@ -19,8 +29,10 @@ locals {
 
   # Bitfield bit 5: Zero Trust Network - Phase 1 configured?
   telem_connectivity_ztn_p1 = (local.configure_connectivity_resources.settings.ddos_protection_plan.enabled &&
-    (alltrue([for sku in local.configure_connectivity_resources.settings.hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]) || alltrue([for sku in local.configure_connectivity_resources.settings.vwan_hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]))
-    ? 16 : 0)
+    (alltrue([for sku in local.configure_connectivity_resources.settings.hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"]) || alltrue([for sku in local.configure_connectivity_resources.settings.vwan_hub_networks.*.config.azure_firewall.config.sku_tier : sku == "Premium"])) &&
+    local.telem_subnet_nsg_policy_assignment_exists &&
+    local.telem_storage_https_policy_assignment_exists
+  ? 16 : 0)
 }
 
 # The following locals calculate the telemetry bit field by summiung the above locals and then representing as hexadecimal
