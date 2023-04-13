@@ -1,15 +1,15 @@
 {
-  "name": "Deny-RDP-From-Internet",
+  "name": "Deny-MgmtPorts-From-Internet",
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
   "scope": null,
   "properties": {
     "policyType": "Custom",
     "mode": "All",
-    "displayName": "[Deprecated]: RDP access from the Internet should be blocked",
-    "description": "This policy denies any network security rule that allows RDP access from Internet. This policy is superceded by new custom ALZ policy 'Deny-MgmtPorts-From-Internet'.",
+    "displayName": "Management port access from the Internet should be blocked",
+    "description": "This policy denies any network security rule that allows management port access from the Internet",
     "metadata": {
-      "version": "1.0.0-deprecated",
+      "version": "1.0.0",
       "category": "Network",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -31,6 +31,17 @@
           "Disabled"
         ],
         "defaultValue": "Deny"
+      },
+      "ports": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Ports",
+          "description": "Ports to be blocked"
+        },
+        "defaultValue": [
+          "22",
+          "3389"
+        ]
       }
     },
     "policyRule": {
@@ -58,17 +69,23 @@
                   },
                   {
                     "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange",
-                    "equals": "3389"
+                    "in": "[parameters('ports')]"
                   },
                   {
-                    "value": "[if(and(not(empty(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'))), contains(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'),'-')), and(lessOrEquals(int(first(split(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'), '-'))),3389),greaterOrEquals(int(last(split(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'), '-'))),3389)), 'false')]",
-                    "equals": "true"
+                    "count": {
+                      "value": "[parameters('ports')]",
+                      "where": {
+                        "value": "[if(and(not(empty(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'))), contains(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'),'-')), and(lessOrEquals(int(first(split(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'), '-'))),int(current())),greaterOrEquals(int(last(split(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRange'), '-'))),int(current()))), 'false')]",
+                        "equals": "true"
+                      }
+                    },
+                    "greater": 0
                   },
                   {
                     "count": {
                       "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]",
                       "where": {
-                        "value": "[if(and(not(empty(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')))), contains(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')),'-')), and(lessOrEquals(int(first(split(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')), '-'))),3389),greaterOrEquals(int(last(split(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')), '-'))),3389)) , 'false')]",
+                        "value": "[if(and(not(empty(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')))), contains(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')),'-')), and(lessOrEquals(int(first(split(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')), '-'))),parameters('ports')),greaterOrEquals(int(last(split(first(field('Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]')), '-'))),parameters('ports'))) , 'false')]",
                         "equals": "true"
                       }
                     },
@@ -83,7 +100,7 @@
                   {
                     "not": {
                       "field": "Microsoft.Network/networkSecurityGroups/securityRules/destinationPortRanges[*]",
-                      "notEquals": "3389"
+                      "notIn": "[parameters('ports')]"
                     }
                   }
                 ]
