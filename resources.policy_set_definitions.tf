@@ -32,7 +32,7 @@ dynamic "policy_definition_group" {
       description          = try(item.description, null)
       category             = try(item.category, null)
       additionalMetadataId = try(item.additionalMetadataId, null)
-    }
+    } if item.name != null && item.name != ""
   ]
   content {
     name                   = policy_definition_group.value["name"]
