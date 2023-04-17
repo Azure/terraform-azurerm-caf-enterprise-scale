@@ -997,12 +997,15 @@ locals {
           threat_intelligence_allowlist = hub_network.config.azure_firewall.config.threat_intelligence_allowlist
           dns = try(
             local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns,
-            [
-              {
-                proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
-                servers       = length(hub_network.config.azure_firewall.config.dns_servers) > 0 ? hub_network.config.azure_firewall.config.dns_servers : null
-              }
-            ]
+            (
+              hub_network.config.azure_firewall.config.sku_tier == "Basic" ? local.empty_list :
+              [
+                {
+                  proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
+                  servers       = length(hub_network.config.azure_firewall.config.dns_servers) > 0 ? hub_network.config.azure_firewall.config.dns_servers : null
+                }
+              ]
+            )
           )
           identity             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
           insights             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
@@ -1111,12 +1114,15 @@ locals {
           threat_intelligence_allowlist = virtual_hub.config.azure_firewall.config.threat_intelligence_allowlist
           dns = try(
             local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].dns,
-            [
-              {
-                proxy_enabled = virtual_hub.config.azure_firewall.config.enable_dns_proxy
-                servers       = length(virtual_hub.config.azure_firewall.config.dns_servers) > 0 ? virtual_hub.config.azure_firewall.config.dns_servers : null
-              }
-            ]
+            (
+              virtual_hub.config.azure_firewall.config.sku_tier == "Basic" ? local.empty_list :
+              [
+                {
+                  proxy_enabled = virtual_hub.config.azure_firewall.config.enable_dns_proxy
+                  servers       = length(virtual_hub.config.azure_firewall.config.dns_servers) > 0 ? virtual_hub.config.azure_firewall.config.dns_servers : null
+                }
+              ]
+            )
           )
           identity            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
           insights            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
