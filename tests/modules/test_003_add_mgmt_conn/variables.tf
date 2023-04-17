@@ -22,6 +22,12 @@ variable "secondary_location" {
   default     = "westeurope"
 }
 
+variable "tertiary_location" {
+  type        = string
+  description = "Sets the location for \"tertiary\" resources to be created in."
+  default     = "uksouth"
+}
+
 variable "subscription_id_connectivity" {
   type        = string
   description = "Sets the subscription ID to use for deploying \"connectivity\" resources."
