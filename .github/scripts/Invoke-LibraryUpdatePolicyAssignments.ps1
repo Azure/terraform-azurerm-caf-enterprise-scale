@@ -90,10 +90,10 @@ foreach($key in $parsedAssignments.Keys | Sort-Object)
         if($originalFileName -ne $targetPolicyAssignmentFileName)
         {
             Write-Host "Renaming $originalFileName to $targetPolicyAssignmentFileName"
-            cd $policyAssignmentTargetPath
+            Set-Location $policyAssignmentTargetPath
             git mv $originalAssignments[$mappedKey].file.FullName $targetPolicyAssignmentFileName
-            cd $SourcePath
-            cd ..
+            Set-Location $SourcePath
+            Set-Location ..
         }
     }
     else
