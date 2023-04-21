@@ -53,7 +53,7 @@ $temporaryNameMatches = @{
 $parsedAssignments = @{}
 foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
-    $parsedAssignment = & $parser $sourcePolicyAssignmentFile | Out-String | ConvertFrom-Json
+    $parsedAssignment = & $parser "-s $sourcePolicyAssignmentFile" | Out-String | ConvertFrom-Json
     $parsedAssignments[$parsedAssignment.name] = @{
         json = $parsedAssignment
         file = $sourcePolicyAssignmentFile
