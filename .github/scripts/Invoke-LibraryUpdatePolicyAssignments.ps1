@@ -31,11 +31,17 @@ $policyAssignmentTargetPath = "$TargetPath/modules/archetypes/lib/policy_assignm
 $sourcePolicyAssignmentFiles = Get-ChildItem -Path $policyAssignmentSourcePath -File
 $targetPolicyAssignmentFiles = Get-ChildItem -Path $policyAssignmentTargetPath -File
 
+$temporaryNameMatches = @{
+    "Deny-IP-forwarding" = "Deny-IP-Forwarding"
+    "Deny-Priv-Esc-AKS" = "Deny-Priv-Containers-AKS"
+    "Deny-Privileged-AKS" = "Deny-Priv-Escalation-AKS"
+}
+
 $parsedAssignments = @{}
 foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
     $parsedAssignment = & $parser $sourcePolicyAssignmentFile | Out-String | ConvertFrom-Json
-    Write-Host $parsedAssignment.name
+    #Write-Host $parsedAssignment.name
     $parsedAssignments[$parsedAssignment.name] = @{
         json = $parsedAssignment
         file = $sourcePolicyAssignmentFile
@@ -46,7 +52,7 @@ $originalAssignments = @{}
 foreach($targetPolicyAssignmentFile in $targetPolicyAssignmentFiles)
 {
     $originalAssignment = Get-Content $targetPolicyAssignmentFile | ConvertFrom-Json
-    Write-Host $originalAssignment.name
+    #Write-Host $originalAssignment.name
     $originalAssignments[$originalAssignment.name] = @{
         json = $originalAssignment
         file = $targetPolicyAssignmentFile
@@ -56,16 +62,31 @@ foreach($targetPolicyAssignmentFile in $targetPolicyAssignmentFiles)
 foreach($key in $parsedAssignments.Keys | Sort-Object)
 {
     $targetPolicyAssignmentFileName = "policy_assignment_es_$($key.ToLower() -replace "-", "_").tmpl.json"
-    Write-Host $targetPolicyAssignmentFileName
-    if($originalAssignments.ContainsKey($key))
+
+    $mappedKey = $key
+    if($temporaryNameMatches.ContainsKey($key))
     {
-        #Write-Host "Found match for $key $($originalAssignments[$key].file)"
+        $mappedKey = $temporaryNameMatches[$key]
+    }
+
+    $sourceFileName = $parsedAssignments[$key].file.Name
+
+    if($originalAssignments.ContainsKey($mappedKey))
+    {
+        $originalFileName = $originalAssignments[$mappedKey].file.Name
+
+        Write-Host "Found match for $mappedKey $key $originalFileName $sourceFileName $targetPolicyAssignmentFileName"
+        if($originalFileName -ne $targetPolicyAssignmentFileName)
+        {
+            Write-Host "Renaming $originalFileName to $targetPolicyAssignmentFileName"
+            Rename-Item -Path $originalAssignments[$mappedKey].file.FullName -NewName $targetPolicyAssignmentFileName
+        }
     }
     else
     {
-        #Write-Host "No match found for $key"
+        Write-Host "No match found for $mappedKey $key $sourceFileName $targetPolicyAssignmentFileName"
     }
 
     $json = $parsedAssignments[$key].json | ConvertTo-Json -Depth 10
-    # $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
+    $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
 }
