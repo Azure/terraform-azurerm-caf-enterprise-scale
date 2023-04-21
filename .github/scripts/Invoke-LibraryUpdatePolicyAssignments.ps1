@@ -34,7 +34,7 @@ $parser = "$parserPath/$parserExe"
 if(!(Test-Path $parser))
 {
     Write-Information "Downloading Template Parser." -InformationAction Continue
-    Invoke-WebRequest "https://github.com/jaredfholgate/template-parser/releases/download/0.1.13/$parserExe" -OutFile $parser
+    Invoke-WebRequest "https://github.com/jaredfholgate/template-parser/releases/download/0.1.14/$parserExe" -OutFile $parser
 }
 
 # Update the policy assignments if enabled
