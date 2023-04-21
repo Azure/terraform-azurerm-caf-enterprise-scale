@@ -22,7 +22,20 @@ $ErrorActionPreference = "Stop"
 # module.
 Import-Module $AlzToolsPath -ErrorAction Stop
 
-$parser = "$TargetPath/.github/scripts/Template.Parser.Cli.exe"
+$parserPath = "$TargetPath/.github/scripts"
+$parserExe = "Template.Parser.Cli"
+if($IsWindows)
+{
+    $parserExe += ".exe"
+}
+
+$parser = "$parserPath/$parserExe"
+
+if(!(Test-Path $parser))
+{
+    Write-Information "Downloading Template Parser." -InformationAction Continue
+    Invoke-WebRequest "https://github.com/jaredfholgate/template-parser/releases/download/0.1.13/$parserExe" -OutFile $parser
+}
 
 # Update the policy assignments if enabled
 Write-Information "Updating Policy Assignments." -InformationAction Continue
@@ -41,7 +54,6 @@ $parsedAssignments = @{}
 foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
     $parsedAssignment = & $parser $sourcePolicyAssignmentFile | Out-String | ConvertFrom-Json
-    #Write-Host $parsedAssignment.name
     $parsedAssignments[$parsedAssignment.name] = @{
         json = $parsedAssignment
         file = $sourcePolicyAssignmentFile
@@ -52,7 +64,6 @@ $originalAssignments = @{}
 foreach($targetPolicyAssignmentFile in $targetPolicyAssignmentFiles)
 {
     $originalAssignment = Get-Content $targetPolicyAssignmentFile | ConvertFrom-Json
-    #Write-Host $originalAssignment.name
     $originalAssignments[$originalAssignment.name] = @{
         json = $originalAssignment
         file = $targetPolicyAssignmentFile
@@ -87,6 +98,7 @@ foreach($key in $parsedAssignments.Keys | Sort-Object)
         Write-Host "No match found for $mappedKey $key $sourceFileName $targetPolicyAssignmentFileName"
     }
 
+    Write-Host "Writing $targetPolicyAssignmentFileName"
     $json = $parsedAssignments[$key].json | ConvertTo-Json -Depth 10
     $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
 }
