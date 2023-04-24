@@ -39,6 +39,7 @@
     - [Expand built-in archetype definitions][wiki_expand_built_in_archetype_definitions]
     - [Create custom policies, initiatives and assignments][wiki_create_custom_policies_policy_sets_and_assignments]
     - [Override module role assignments][wiki_override_module_role_assignments]
+    - [Control policy enforcement mode]([Examples]-Deploy-policies-without-enforcing-them)
   - [Level 400][wiki_examples_level_400]
     - [Deploy using module nesting][wiki_deploy_using_module_nesting]
     - [Deploy using multiple module declarations with orchestration][wiki_deploy_using_multiple_module_declarations_with_orchestration]
