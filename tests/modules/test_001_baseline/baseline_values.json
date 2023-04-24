@@ -2672,9 +2672,9 @@
             "schema_version": 0,
             "values": {
               "description": "This policy denies any network security rule that allows RDP access from Internet. This policy is superceded by new custom ALZ policy 'Deny-MgmtPorts-From-Internet'.",
-              "display_name": "[Deprecated]: RDP access from the Internet should be blocked",
+              "display_name": "[Deprecated] RDP access from the Internet should be blocked",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
-              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Network\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0-deprecated\"}",
+              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Network\",\"deprecated\":true,\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.1-deprecated\"}",
               "mode": "All",
               "name": "Deny-RDP-From-Internet",
               "parameters": "{\"effect\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"}}",
@@ -4472,9 +4472,9 @@
             "schema_version": 0,
             "values": {
               "description": "Deploy the Transparent Data Encryption when it is not enabled in the deployment. Please use this policy instead https://www.azadvertizer.net/azpolicyadvertizer/86a912f6-9a06-4e26-b447-11b16ba8659f.html",
-              "display_name": "[Deprecated]: Deploy SQL Database Transparent Data Encryption",
+              "display_name": "[Deprecated] Deploy SQL Database Transparent Data Encryption",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
-              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"SQL\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.0-deprecated\"}",
+              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"SQL\",\"deprecated\":true,\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.1-deprecated\"}",
               "mode": "Indexed",
               "name": "Deploy-Sql-Tde",
               "parameters": "{\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"excludedDatabases\":{\"defaultValue\":[\"master\",\"model\",\"tempdb\",\"msdb\",\"resource\"],\"metadata\":{\"description\":\"Array of databases that are excluded from this policy\",\"displayName\":\"Excluded Databases\"},\"type\":\"Array\"}}",
