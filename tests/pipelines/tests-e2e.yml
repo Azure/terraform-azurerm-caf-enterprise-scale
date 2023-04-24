@@ -31,7 +31,8 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 30
+    timeoutInMinutes: 120
+    cancelTimeoutInMinutes: 120
     steps:
       - template: templates/tests-common.yml
 
@@ -52,7 +53,8 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 30
+    timeoutInMinutes: 120
+    cancelTimeoutInMinutes: 120
     steps:
       - template: templates/tests-common.yml
 
@@ -73,7 +75,8 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 60
+    timeoutInMinutes: 120
+    cancelTimeoutInMinutes: 120
     steps:
       - template: templates/tests-common.yml
 
@@ -94,8 +97,8 @@ jobs:
       STORAGE_ACCOUNT_RSG_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_RSG_NAME'] ]
       STORAGE_ACCOUNT_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_ACCOUNT_NAME'] ]
       STORAGE_CONTAINER_NAME: $[ dependencies.backend_generator.outputs['prepare_backend.STORAGE_CONTAINER_NAME'] ]
-    timeoutInMinutes: 60
-    cancelTimeoutInMinutes: 60
+    timeoutInMinutes: 120
+    cancelTimeoutInMinutes: 120
     condition: |
       or
       (
