@@ -61,6 +61,7 @@ locals {
     SQLAdvancedThreatProtection = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_advanced_threat_detection
     Updates                     = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_updates
     VMInsights                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
+    ContainerInsights           = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
   }
   deploy_security_settings           = local.settings.security_center.enabled
   deploy_defender_for_app_services   = local.settings.security_center.config.enable_defender_for_app_services
