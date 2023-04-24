@@ -6965,8 +6965,8 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Enforce policies in the Decommisioned Landing Zone.",
-              "display_name": "Enforce policies in the Decommisioned Landing Zone",
+              "description": "Enforce policies in the Decommissioned Landing Zone.",
+              "display_name": "Enforce policies in the Decommissioned Landing Zone",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Decommissioned\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",
               "name": "Enforce-ALZ-Decomm",
@@ -7353,8 +7353,8 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Enforce recommendded guardrails for Azure Key Vault.",
-              "display_name": "Enforce recommendded guardrails for Azure Key Vault",
+              "description": "Enforce recommended guardrails for Azure Key Vault.",
+              "display_name": "Enforce recommended guardrails for Azure Key Vault",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Key Vault\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",
               "name": "Enforce-Guardrails-KeyVault",
