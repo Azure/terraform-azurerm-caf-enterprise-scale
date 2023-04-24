@@ -121,7 +121,7 @@ variable "configure_management_resources" {
     advanced = optional(any, {})
   })
   description = "If specified, will customize the \"Management\" landing zone settings and resources."
-  default = {}
+  default     = {}
 }
 
 variable "deploy_identity_resources" {
@@ -145,7 +145,7 @@ variable "configure_identity_resources" {
     }), {})
   })
   description = "If specified, will customize the \"Identity\" landing zone settings."
-  default = {}
+  default     = {}
 }
 
 variable "deploy_connectivity_resources" {
@@ -423,7 +423,7 @@ variable "configure_connectivity_resources" {
     advanced = optional(any, {})
   })
   description = "If specified, will customize the \"Connectivity\" landing zone settings and resources."
-  default = {}
+  default     = {}
 }
 
 variable "archetype_config_overrides" {
@@ -584,7 +584,7 @@ variable "create_duration_delay" {
     azurerm_role_definition       = optional(string, "60s")
   })
   description = "Used to tune terraform apply when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after creation of the specified resource type."
-  default = {}
+  default     = {}
 
   validation {
     condition     = can([for v in values(var.create_duration_delay) : regex("^[0-9]{1,6}(s|m|h)$", v)])
@@ -602,7 +602,7 @@ variable "destroy_duration_delay" {
     azurerm_role_definition       = optional(string, "0s")
   })
   description = "Used to tune terraform deploy when faced with errors caused by API caching or eventual consistency. Sets a custom delay period after destruction of the specified resource type."
-  default = {}
+  default     = {}
 
   validation {
     condition     = can([for v in values(var.destroy_duration_delay) : regex("^[0-9]{1,6}(s|m|h)$", v)])
