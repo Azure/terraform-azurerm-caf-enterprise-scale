@@ -1371,6 +1371,7 @@
                       "string",
                       "string",
                       "string",
+                      "string",
                       "string"
                     ]
                   ]
@@ -2317,6 +2318,7 @@
             "management": [
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/AgentHealthAssessment(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/ChangeTracking(root-id-1-la)",
+              "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/ContainerInsights(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/SQLAdvancedThreatProtection(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/SQLVulnerabilityAssessment(root-id-1-la)",
               "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/ServiceMap(root-id-1-la)",
@@ -11918,8 +11920,8 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Enforce policies in the Decommisioned Landing Zone.",
-              "display_name": "Enforce policies in the Decommisioned Landing Zone",
+              "description": "Enforce policies in the Decommissioned Landing Zone.",
+              "display_name": "Enforce policies in the Decommissioned Landing Zone",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Decommissioned\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",
               "name": "Enforce-ALZ-Decomm",
@@ -12306,8 +12308,8 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Enforce recommendded guardrails for Azure Key Vault.",
-              "display_name": "Enforce recommendded guardrails for Azure Key Vault",
+              "description": "Enforce recommended guardrails for Azure Key Vault.",
+              "display_name": "Enforce recommended guardrails for Azure Key Vault",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Key Vault\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",
               "name": "Enforce-Guardrails-KeyVault",
@@ -13963,6 +13965,39 @@
               ],
               "resource_group_name": "root-id-1-mgmt",
               "solution_name": "ChangeTracking",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework/management"
+              },
+              "timeouts": null,
+              "workspace_name": "root-id-1-la",
+              "workspace_resource_id": "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la"
+            },
+            "sensitive_values": {
+              "plan": [
+                {}
+              ],
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_management.azurerm_log_analytics_solution.management[\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/ContainerInsights(root-id-1-la)\"]",
+            "mode": "managed",
+            "type": "azurerm_log_analytics_solution",
+            "name": "management",
+            "index": "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationsManagement/solutions/ContainerInsights(root-id-1-la)",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "location": "northeurope",
+              "plan": [
+                {
+                  "product": "OMSGallery/ContainerInsights",
+                  "promotion_code": null,
+                  "publisher": "Microsoft"
+                }
+              ],
+              "resource_group_name": "root-id-1-mgmt",
+              "solution_name": "ContainerInsights",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework/management"
               },
