@@ -466,6 +466,7 @@ e.g.
       archetype_id = "root"
       enforcement_mode = {
         "Example-Policy-Assignment" = true,
+
       }
       parameters = {
         Example-Policy-Assignment = {
