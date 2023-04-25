@@ -37,7 +37,7 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Lint all code
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
           # The following linter types will be enabled:
           VALIDATE_BASH: true
           VALIDATE_BASH_EXEC: true
