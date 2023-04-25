@@ -118,7 +118,7 @@
         "value": "${private_dns_zone_prefix}privatelink.webpubsub.azure.com"
       },
       "azureBatchPrivateDnsZoneId": {
-        "value": "${private_dns_zone_prefix}privatelink.batch.azure.com"
+        "value": "${private_dns_zone_prefix}privatelink.${connectivity_location}.batch.azure.com"
       },
       "azureAppPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.azconfig.io"

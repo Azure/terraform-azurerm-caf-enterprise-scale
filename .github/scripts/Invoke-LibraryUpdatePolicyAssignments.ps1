@@ -109,9 +109,9 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
         if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/"))
         {
             $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/", "`${private_dns_zone_prefix}")
+            $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("privatelink.batch.azure.com", "privatelink.`${connectivity_location}.batch.azure.com")
         }
     }
-
 }
 
 $originalAssignments = @{}
