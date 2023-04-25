@@ -49,14 +49,69 @@ $temporaryNameMatches = @{
     "Deny-Privileged-AKS" = "Deny-Priv-Escalation-AKS"
 }
 
+$defaultParameterValues =@(
+    "-p nonComplianceMessagePlaceholder={donotchange}"
+    "-p logAnalyticsWorkspaceName=`${root_scope_id}-la",
+    "-p automationAccountName=`${root_scope_id}-automation",
+    "-p workspaceRegion=`${default_location}",
+    "-p automationRegion=`${default_location}",
+    "-p retentionInDays=30",
+    "-p rgName=`${root_scope_id}-mgmt",
+    "-p logAnalyticsResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/`${root_scope_id}-la",
+    "-p topLevelManagementGroupPrefix=`${temp}",
+    "-p dnsZoneResourceGroupId=`${private_dns_zone_prefix}",
+    "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos"
+)
+
 $parsedAssignments = @{}
 foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
-    $parsedAssignment = & $parser "-s $sourcePolicyAssignmentFile" "-p nonComplianceMessagePlaceholder={donotchange}" | Out-String | ConvertFrom-Json
+    $parsedAssignment = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues | Out-String | ConvertFrom-Json
     $parsedAssignments[$parsedAssignment.name] = @{
         json = $parsedAssignment
         file = $sourcePolicyAssignmentFile
     }
+    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "scope" -MemberType Properties))
+    {
+        $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "scope" -Value "`${current_scope_resource_id}"
+    }
+
+    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "notScopes" -MemberType Properties))
+    {
+        $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "notScopes" -Value @()
+    }
+
+    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "parameters" -MemberType Properties))
+    {
+        $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "parameters" -Value @{}
+    }
+
+    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json -Name "location" -MemberType Properties))
+    {
+        $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "location" -Value "`${default_location}"
+    }
+
+    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json -Name "identity" -MemberType Properties))
+    {
+        $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
+    }
+
+    $parsedAssignments[$parsedAssignment.name].json.properties.enforcementMode = $null
+
+    if($parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
+    {
+        $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId = $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")
+    }
+
+    foreach($property in Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties.parameters -MemberType NoteProperty)
+    {
+        $propertyName = $property.Name
+        if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/"))
+        {
+            $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/", "`${private_dns_zone_prefix}")
+        }
+    }
+
 }
 
 $originalAssignments = @{}
