@@ -11,7 +11,7 @@ param (
     [Parameter()][String]$TargetPath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourcePath = "$PWD/enterprise-scale",
     [Parameter()][String]$LineEnding = "unix",
-    [Parameter()][Switch]$ParserToolUrl = "https://github.com/jaredfholgate/template-parser/releases/download/0.1.14"
+    [Parameter()][String]$ParserToolUrl = "https://github.com/jaredfholgate/template-parser/releases/download/0.1.14"
 )
 
 $ErrorActionPreference = "Stop"
@@ -33,7 +33,7 @@ $parser = "$parserPath/$parserExe"
 if(!(Test-Path $parser))
 {
     Write-Information "Downloading Template Parser." -InformationAction Continue
-    Invoke-WebRequest "$parserToolUrl/$parserExe" -OutFile $parser
+    Invoke-WebRequest "$ParserToolUrl/$parserExe" -OutFile $parser
 }
 
 # Update the policy assignments if enabled
