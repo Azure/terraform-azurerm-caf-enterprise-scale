@@ -459,6 +459,27 @@ locals {
           delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].delegation, local.empty_list)
         }
       ] : local.empty_list,
+      # Conditionally add Azure Firewall Management Subnet
+      local.deploy_azure_firewall[location] && local.hub_networks_by_location[location].config.azure_firewall.config.sku_tier == "Basic" ? [
+        {
+          # Resource logic attributes
+          resource_id               = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallManagementSubnet"
+          location                  = location
+          network_security_group_id = null
+          route_table_id            = null
+          # Resource definition attributes
+          name                                          = "AzureFirewallManagementSubnet"
+          address_prefixes                              = [hub_network.config.azure_firewall.config.address_management_prefix, ]
+          resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
+          virtual_network_name                          = local.virtual_network_name[location]
+          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].private_endpoint_network_policies_enabled, null)
+          private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].private_link_service_network_policies_enabled, null)
+          service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoints, null)
+          service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoint_policy_ids, null)
+          delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].delegation, local.empty_list)
+        }
+      ] : local.empty_list,
+
     )
   }
   azurerm_subnet = flatten([
@@ -835,6 +856,12 @@ locals {
     try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].name,
     "${local.azfw_name[location]}-pip")
   }
+  azfw_mgmt_pip_name = {
+    for location in local.hub_network_locations :
+    location =>
+    try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].name,
+    "${local.azfw_name[location]}-mgmt-pip")
+  }
   azfw_pip_resource_id_prefix = {
     for location in local.hub_network_locations :
     location =>
@@ -844,6 +871,11 @@ locals {
     for location in local.hub_network_locations :
     location =>
     "${local.azfw_pip_resource_id_prefix[location]}/${local.azfw_pip_name[location]}"
+  }
+  azfw_mgmt_pip_resource_id = {
+    for location in local.hub_network_locations :
+    location =>
+    "${local.azfw_pip_resource_id_prefix[location]}/${local.azfw_mgmt_pip_name[location]}"
   }
   azfw_pip_zones = {
     for location in local.hub_network_locations :
@@ -930,14 +962,23 @@ locals {
           hub_network.config.azure_firewall.config.sku_tier,
           "Standard"
         )
-        firewall_policy_id          = try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, local.azfw_policy_resource_id[location])
-        dns_servers                 = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
-        private_ip_ranges           = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
-        management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_list)
-        threat_intel_mode           = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, coalesce(hub_network.config.azure_firewall.config.threat_intelligence_mode, "Alert"))
-        virtual_hub                 = local.empty_list
-        zones                       = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
-        tags                        = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
+        firewall_policy_id = try(local.custom_settings.azurerm_firewall["connectivity"][location].firewall_policy_id, local.azfw_policy_resource_id[location])
+        dns_servers        = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
+        private_ip_ranges  = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
+        management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration,
+          hub_network.config.azure_firewall.config.sku_tier == "Basic" ?
+          [
+            {
+              name                 = local.azfw_mgmt_pip_name[location]
+              public_ip_address_id = local.azfw_mgmt_pip_resource_id[location]
+              subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallManagementSubnet"
+            }
+          ] : local.empty_list
+        )
+        threat_intel_mode = try(local.custom_settings.azurerm_firewall["connectivity"][location].threat_intel_mode, coalesce(hub_network.config.azure_firewall.config.threat_intelligence_mode, "Alert"))
+        virtual_hub       = local.empty_list
+        zones             = try(local.custom_settings.azurerm_firewall["connectivity"][location].zones, local.azfw_zones[location])
+        tags              = try(local.custom_settings.azurerm_firewall["connectivity"][location].tags, local.tags)
         # Associated resource definition attributes
         azurerm_firewall_policy = {
           # Resource logic attributes
@@ -956,12 +997,15 @@ locals {
           threat_intelligence_allowlist = hub_network.config.azure_firewall.config.threat_intelligence_allowlist
           dns = try(
             local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns,
-            [
-              {
-                proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
-                servers       = length(hub_network.config.azure_firewall.config.dns_servers) > 0 ? hub_network.config.azure_firewall.config.dns_servers : null
-              }
-            ]
+            (
+              hub_network.config.azure_firewall.config.sku_tier == "Basic" ? local.empty_list :
+              [
+                {
+                  proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
+                  servers       = length(hub_network.config.azure_firewall.config.dns_servers) > 0 ? hub_network.config.azure_firewall.config.dns_servers : null
+                }
+              ]
+            )
           )
           identity             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].identity, local.empty_list)
           insights             = try(local.custom_settings.azurerm_firewall_policy["connectivity"][location].insights, local.empty_list)
@@ -972,28 +1016,53 @@ locals {
         }
         # Child resource definition attributes
         azurerm_public_ip = (
-          # The following logic ensures that no `azurerm_public_ip` is created by the module if a custom `ip_configuration` is provided
-          length(try(local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration, local.empty_map)) > 0
-          ? local.empty_list
-          : [{
-            # Resource logic attributes
-            resource_id       = local.azfw_pip_resource_id[location]
-            managed_by_module = local.deploy_azure_firewall[location]
-            # Resource definition attributes
-            name                    = local.azfw_pip_name[location]
-            resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
-            location                = location
-            zones                   = local.azfw_pip_zones[location]
-            sku                     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].sku, "Standard")
-            allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].allocation_method, "Static")
-            ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_version, null)
-            idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].idle_timeout_in_minutes, null)
-            domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].domain_name_label, null)
-            reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].reverse_fqdn, null)
-            public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].public_ip_prefix_id, null)
-            ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_tags, null)
-            tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].tags, local.tags)
-          }]
+          # The following logic ensures that no `azurerm_public_ip` is created by the module if a custom `ip_configuration` or `management_ip_configuration` is provided.
+          concat(
+            length(try(local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration, local.empty_map)) > 0
+            ? local.empty_list
+            : [{
+              # Resource logic attributes
+              resource_id       = local.azfw_pip_resource_id[location]
+              managed_by_module = local.deploy_azure_firewall[location]
+              # Resource definition attributes
+              name                    = local.azfw_pip_name[location]
+              resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
+              location                = location
+              zones                   = local.azfw_pip_zones[location]
+              sku                     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].sku, "Standard")
+              allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].allocation_method, "Static")
+              ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_version, null)
+              idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].idle_timeout_in_minutes, null)
+              domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].domain_name_label, null)
+              reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].reverse_fqdn, null)
+              public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].public_ip_prefix_id, null)
+              ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_tags, null)
+              tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].tags, local.tags)
+            }],
+            (
+              length(try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration, local.empty_map)) > 0
+              ? local.empty_list
+              : [{
+                # Resource logic attributes
+                resource_id       = local.azfw_mgmt_pip_resource_id[location]
+                managed_by_module = local.deploy_azure_firewall[location] && local.hub_networks_by_location[location].config.azure_firewall.config.sku_tier == "Basic"
+                # Resource definition attributes
+                name                    = local.azfw_mgmt_pip_name[location]
+                resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
+                location                = location
+                zones                   = local.azfw_pip_zones[location]
+                sku                     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].sku, "Standard")
+                allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].allocation_method, "Static")
+                ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_version, null)
+                idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].idle_timeout_in_minutes, null)
+                domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].domain_name_label, null)
+                reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].reverse_fqdn, null)
+                public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].public_ip_prefix_id, null)
+                ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_tags, null)
+                tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].tags, local.tags)
+              }]
+            )
+          )
         )
       }
     ],
@@ -1045,12 +1114,15 @@ locals {
           threat_intelligence_allowlist = virtual_hub.config.azure_firewall.config.threat_intelligence_allowlist
           dns = try(
             local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].dns,
-            [
-              {
-                proxy_enabled = virtual_hub.config.azure_firewall.config.enable_dns_proxy
-                servers       = length(virtual_hub.config.azure_firewall.config.dns_servers) > 0 ? virtual_hub.config.azure_firewall.config.dns_servers : null
-              }
-            ]
+            (
+              virtual_hub.config.azure_firewall.config.sku_tier == "Basic" ? local.empty_list :
+              [
+                {
+                  proxy_enabled = virtual_hub.config.azure_firewall.config.enable_dns_proxy
+                  servers       = length(virtual_hub.config.azure_firewall.config.dns_servers) > 0 ? virtual_hub.config.azure_firewall.config.dns_servers : null
+                }
+              ]
+            )
           )
           identity            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].identity, local.empty_list)
           insights            = try(local.custom_settings.azurerm_firewall_policy["virtual_wan"][location].insights, local.empty_list)
