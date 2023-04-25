@@ -7,12 +7,9 @@ This scenario is commonly referred to as "What If" and aligns to safe deployment
 
 Setting the `enforcementMode` property to false can be useful in browncase scenarios, so that existing workloads can be changed before enforcing the policies.
 
-
 This page describes how to deploy your Azure landing zone with a custom configuration for the enforcementMode.
 
-
-> **NOTE:** This feature is available from version 3.4.0.
-
+> **NOTE:** This feature is available from version 4.0.0.
 
 First, it is important to understand on which archetype policies are applied. For the default configuration, the policy assignments are [here](../../modules/archetypes/lib/archetype_definitions/).
 
@@ -49,10 +46,7 @@ Currently, this file looks like this. You can see that a couple of policies are 
 }
 ```
 
-
-
 ## Override the enforcementMode of policy assignments
-
 
 ### `terraform.tf`
 
@@ -92,7 +86,6 @@ variable "root_name" {
 }
 ```
 
-
 ### `main.tf`
 
 The `main.tf` file contains the `azurerm_client_config` resource, which is used to determine the Tenant ID from your user connection to Azure. This is used to ensure the deployment will target your `Tenant Root Group` by default.
@@ -100,7 +93,6 @@ The `main.tf` file contains the `azurerm_client_config` resource, which is used 
 To overwrite the `enforcementMode` property for some of those policies, we need to pass a valid configuration for the parameter `archetype_config_overrides` when we call the module.
 
 > **NOTE:** To learn more about module configuration using input variables, please refer to the [Module Variables](%5BUser-Guide%5D-Module-Variables) documentation.
-
 
 ```hcl
 # You can use the azurerm_client_config data resource to dynamically
