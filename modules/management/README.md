@@ -135,6 +135,7 @@ object({
         enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
         enable_solution_for_updates                       = optional(bool, true)
         enable_solution_for_vm_insights                   = optional(bool, true)
+        enable_solution_for_container_insights            = optional(bool, true)
         enable_sentinel                                   = optional(bool, true)
       }), {})
     }), {})
