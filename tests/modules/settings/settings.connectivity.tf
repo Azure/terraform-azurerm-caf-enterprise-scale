@@ -72,6 +72,39 @@ locals {
             enable_hub_network_mesh_peering         = true
           }
         },
+        {
+          enabled = true
+          config = {
+            address_space                = ["10.102.0.0/22", ]
+            location                     = var.tertiary_location
+            link_to_ddos_protection_plan = false
+            dns_servers                  = []
+            bgp_community                = ""
+            subnets                      = []
+            azure_firewall = {
+              enabled = true
+              config = {
+                address_prefix                = "10.102.0.0/24"
+                address_management_prefix     = "10.102.1.0/24"
+                enable_dns_proxy              = true
+                dns_servers                   = []
+                sku_tier                      = "Basic"
+                base_policy_id                = ""
+                private_ip_ranges             = []
+                threat_intelligence_mode      = ""
+                threat_intelligence_allowlist = []
+                availability_zones = {
+                  zone_1 = true
+                  zone_2 = true
+                  zone_3 = false
+                }
+              }
+            }
+            spoke_virtual_network_resource_ids      = []
+            enable_outbound_virtual_network_peering = false
+            enable_hub_network_mesh_peering         = true
+          }
+        },
         # The following hub_network entry is used to ensure
         # correct operation of logic for creating virtual network
         # peerings and DNS links when in a disabled state.
