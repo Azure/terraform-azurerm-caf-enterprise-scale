@@ -16,6 +16,12 @@ variable "secondary_location" {
   default     = "westeurope"
 }
 
+variable "tertiary_location" {
+  type        = string
+  description = "Sets the location for \"tertiary\" resources to be created in."
+  default     = "uksouth"
+}
+
 variable "email_security_contact" {
   type        = string
   description = "Set a custom value for the security contact email address."

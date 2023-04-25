@@ -300,6 +300,7 @@ variable "configure_connectivity_resources" {
               enabled = optional(bool, false)
               config = optional(object({
                 address_prefix                = optional(string, "")
+                address_management_prefix     = optional(string, "")
                 enable_dns_proxy              = optional(bool, true)
                 dns_servers                   = optional(list(string), [])
                 sku_tier                      = optional(string, "Standard")
@@ -506,6 +507,7 @@ variable "configure_connectivity_resources" {
               enabled = false
               config = {
                 address_prefix                = "10.100.0.0/24"
+                address_management_prefix     = ""
                 enable_dns_proxy              = true
                 dns_servers                   = []
                 sku_tier                      = ""

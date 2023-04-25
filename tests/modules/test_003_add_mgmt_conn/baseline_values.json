@@ -43,6 +43,7 @@
                   "connectivity": [
                     "tuple",
                     [
+                      "string",
                       "string"
                     ]
                   ],
@@ -60,6 +61,7 @@
                   "connectivity": [
                     "tuple",
                     [
+                      "string",
                       "string"
                     ]
                   ],
@@ -301,6 +303,44 @@
                       "string",
                       "string",
                       "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
+                      "string",
                       "string"
                     ]
                   ]
@@ -316,6 +356,8 @@
                       "string",
                       "string",
                       "string",
+                      "string",
+                      "string",
                       "string"
                     ]
                   ]
@@ -327,6 +369,7 @@
                   "connectivity": [
                     "tuple",
                     [
+                      "string",
                       "string",
                       "string",
                       "string"
@@ -374,6 +417,8 @@
                     [
                       "string",
                       "string",
+                      "string",
+                      "string",
                       "string"
                     ]
                   ]
@@ -407,6 +452,7 @@
                     "tuple",
                     [
                       "string",
+                      "string",
                       "string"
                     ]
                   ]
@@ -431,6 +477,10 @@
                   "connectivity": [
                     "tuple",
                     [
+                      "string",
+                      "string",
+                      "string",
+                      "string",
                       "string",
                       "string"
                     ]
@@ -1621,7 +1671,8 @@
           },
           "azurerm_firewall": {
             "connectivity": [
-              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-northeurope"
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-northeurope",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-uksouth"
             ],
             "virtual_wan": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-hub-northeurope"
@@ -1629,7 +1680,8 @@
           },
           "azurerm_firewall_policy": {
             "connectivity": [
-              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-northeurope-policy"
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-northeurope-policy",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-uksouth-policy"
             ],
             "virtual_wan": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-hub-northeurope-policy"
@@ -1712,80 +1764,118 @@
           "azurerm_private_dns_zone_virtual_network_link": {
             "connectivity": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0"
             ]
           },
@@ -1795,12 +1885,15 @@
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-northeurope-pip",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-northeurope-pip2",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-mgmt-pip",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-pip",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-westeurope-pip"
             ]
           },
           "azurerm_resource_group": {
             "connectivity": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns"
             ],
@@ -1820,6 +1913,8 @@
             "connectivity": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/subnets/AzureFirewallSubnet",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/subnets/GatewaySubnet",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallManagementSubnet",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallSubnet",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/subnets/GatewaySubnet"
             ]
           },
@@ -1835,6 +1930,7 @@
           "azurerm_virtual_network": {
             "connectivity": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             ]
           },
@@ -1848,6 +1944,10 @@
           "azurerm_virtual_network_peering": {
             "connectivity": [
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
+              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
               "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0"
             ]
           },
@@ -2482,6 +2582,63 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_firewall.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-uksouth\"]",
+            "mode": "managed",
+            "type": "azurerm_firewall",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-uksouth",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "dns_servers": null,
+              "firewall_policy_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-uksouth-policy",
+              "ip_configuration": [
+                {
+                  "name": "root-id-1-fw-uksouth-pip",
+                  "public_ip_address_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-pip",
+                  "subnet_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallSubnet"
+                }
+              ],
+              "location": "uksouth",
+              "management_ip_configuration": [
+                {
+                  "name": "root-id-1-fw-uksouth-mgmt-pip",
+                  "public_ip_address_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-mgmt-pip",
+                  "subnet_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallManagementSubnet"
+                }
+              ],
+              "name": "root-id-1-fw-uksouth",
+              "private_ip_ranges": null,
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "sku_name": "AZFW_VNet",
+              "sku_tier": "Basic",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "threat_intel_mode": "Alert",
+              "timeouts": null,
+              "virtual_hub": [],
+              "zones": [
+                "1",
+                "2"
+              ]
+            },
+            "sensitive_values": {
+              "ip_configuration": [
+                {}
+              ],
+              "management_ip_configuration": [
+                {}
+              ],
+              "tags": {},
+              "virtual_hub": [],
+              "zones": [
+                false,
+                false
+              ]
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_firewall.virtual_wan[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-hub-northeurope\"]",
             "mode": "managed",
             "type": "azurerm_firewall",
@@ -2570,6 +2727,50 @@
               "dns": [
                 {}
               ],
+              "explicit_proxy": [],
+              "firewalls": [],
+              "identity": [],
+              "insights": [],
+              "intrusion_detection": [],
+              "rule_collection_groups": [],
+              "tags": {},
+              "threat_intelligence_allowlist": [],
+              "tls_certificate": []
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_firewall_policy.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-uksouth-policy\"]",
+            "mode": "managed",
+            "type": "azurerm_firewall_policy",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/firewallPolicies/root-id-1-fw-uksouth-policy",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "auto_learn_private_ranges_enabled": null,
+              "base_policy_id": null,
+              "dns": [],
+              "explicit_proxy": [],
+              "identity": [],
+              "insights": [],
+              "intrusion_detection": [],
+              "location": "uksouth",
+              "name": "root-id-1-fw-uksouth-policy",
+              "private_ip_ranges": null,
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "sku": "Basic",
+              "sql_redirect_allowed": null,
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "threat_intelligence_allowlist": [],
+              "threat_intelligence_mode": "Alert",
+              "timeouts": null,
+              "tls_certificate": []
+            },
+            "sensitive_values": {
+              "child_policies": [],
+              "dns": [],
               "explicit_proxy": [],
               "firewalls": [],
               "identity": [],
@@ -3454,6 +3655,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.adf.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -3494,6 +3718,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.afs.azure.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -3546,6 +3793,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.agentsvc.azure-automation.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -3586,6 +3856,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.api.azureml.ms",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -3638,6 +3931,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azconfig.io",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -3678,6 +3994,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azure-automation.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -3730,6 +4069,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azure-devices-provisioning.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -3770,6 +4132,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azure-devices.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -3822,6 +4207,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azurecr.io",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -3862,6 +4270,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azurehdinsight.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -3914,6 +4345,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.azurewebsites.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -3954,6 +4408,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.batch.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4006,6 +4483,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.blob.core.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4046,6 +4546,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.cassandra.cosmos.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4098,6 +4621,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.cognitiveservices.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4138,6 +4684,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.datafactory.azure.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4190,6 +4759,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.documents.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4230,6 +4822,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.eventgrid.azure.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4282,6 +4897,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.file.core.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4322,6 +4960,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.gremlin.cosmos.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4374,6 +5035,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.media.azure.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4414,6 +5098,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.mongo.cosmos.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4466,6 +5173,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.monitor.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4506,6 +5236,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.notebooks.azure.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4558,6 +5311,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.ods.opinsights.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4598,6 +5374,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.oms.opinsights.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4650,6 +5449,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.prod.migration.windowsazure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4690,6 +5512,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.queue.core.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4742,6 +5587,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.redis.cache.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4782,6 +5650,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.search.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4834,6 +5725,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.service.signalr.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4874,6 +5788,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.servicebus.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -4926,6 +5863,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.siterecovery.windowsazure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -4966,6 +5926,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.table.core.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -5018,6 +6001,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.table.cosmos.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -5058,6 +6064,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.vaultcore.azure.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -5110,6 +6139,29 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.web.core.windows.net",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
             "mode": "managed",
             "type": "azurerm_private_dns_zone_virtual_network_link",
@@ -5150,6 +6202,29 @@
               },
               "timeouts": null,
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_private_dns_zone_virtual_network_link.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_private_dns_zone_virtual_network_link",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com/virtualNetworkLinks/fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "name": "fa2fa118-a60d-4700-9ef1-fa02beeaaea5-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "private_dns_zone_name": "privatelink.webpubsub.azure.com",
+              "registration_enabled": false,
+              "resource_group_name": "root-id-1-dns",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "tags": {}
@@ -5351,6 +6426,92 @@
             }
           },
           {
+            "address": "module.test_connectivity.azurerm_public_ip.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-mgmt-pip\"]",
+            "mode": "managed",
+            "type": "azurerm_public_ip",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-mgmt-pip",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allocation_method": "Static",
+              "ddos_protection_mode": "VirtualNetworkInherited",
+              "ddos_protection_plan_id": null,
+              "domain_name_label": null,
+              "edge_zone": null,
+              "idle_timeout_in_minutes": 4,
+              "ip_tags": null,
+              "ip_version": "IPv4",
+              "location": "uksouth",
+              "name": "root-id-1-fw-uksouth-mgmt-pip",
+              "public_ip_prefix_id": null,
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "reverse_fqdn": null,
+              "sku": "Standard",
+              "sku_tier": "Regional",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            "sensitive_values": {
+              "tags": {},
+              "zones": [
+                false,
+                false,
+                false
+              ]
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_public_ip.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-pip\"]",
+            "mode": "managed",
+            "type": "azurerm_public_ip",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/publicIPAddresses/root-id-1-fw-uksouth-pip",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allocation_method": "Static",
+              "ddos_protection_mode": "VirtualNetworkInherited",
+              "ddos_protection_plan_id": null,
+              "domain_name_label": null,
+              "edge_zone": null,
+              "idle_timeout_in_minutes": 4,
+              "ip_tags": null,
+              "ip_version": "IPv4",
+              "location": "uksouth",
+              "name": "root-id-1-fw-uksouth-pip",
+              "public_ip_prefix_id": null,
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "reverse_fqdn": null,
+              "sku": "Standard",
+              "sku_tier": "Regional",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null,
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            "sensitive_values": {
+              "tags": {},
+              "zones": [
+                false,
+                false,
+                false
+              ]
+            }
+          },
+          {
             "address": "module.test_connectivity.azurerm_public_ip.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/publicIPAddresses/root-id-1-vpngw-westeurope-pip\"]",
             "mode": "managed",
             "type": "azurerm_public_ip",
@@ -5395,6 +6556,26 @@
             "values": {
               "location": "northeurope",
               "name": "root-id-1-connectivity-northeurope",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_resource_group.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth\"]",
+            "mode": "managed",
+            "type": "azurerm_resource_group",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "location": "uksouth",
+              "name": "root-id-1-connectivity-uksouth",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
@@ -5510,6 +6691,60 @@
               "service_endpoints": null,
               "timeouts": null,
               "virtual_network_name": "root-id-1-hub-northeurope"
+            },
+            "sensitive_values": {
+              "address_prefixes": [
+                false
+              ],
+              "delegation": []
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_subnet.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallManagementSubnet\"]",
+            "mode": "managed",
+            "type": "azurerm_subnet",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallManagementSubnet",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "address_prefixes": [
+                "10.102.1.0/24"
+              ],
+              "delegation": [],
+              "name": "AzureFirewallManagementSubnet",
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "service_endpoint_policy_ids": null,
+              "service_endpoints": null,
+              "timeouts": null,
+              "virtual_network_name": "root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {
+              "address_prefixes": [
+                false
+              ],
+              "delegation": []
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_subnet.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallSubnet\"]",
+            "mode": "managed",
+            "type": "azurerm_subnet",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/subnets/AzureFirewallSubnet",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "address_prefixes": [
+                "10.102.0.0/24"
+              ],
+              "delegation": [],
+              "name": "AzureFirewallSubnet",
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "service_endpoint_policy_ids": null,
+              "service_endpoints": null,
+              "timeouts": null,
+              "virtual_network_name": "root-id-1-hub-uksouth"
             },
             "sensitive_values": {
               "address_prefixes": [
@@ -5655,6 +6890,41 @@
               "location": "northeurope",
               "name": "root-id-1-hub-northeurope",
               "resource_group_name": "root-id-1-connectivity-northeurope",
+              "tags": {
+                "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
+              },
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "address_space": [
+                false
+              ],
+              "ddos_protection_plan": [],
+              "dns_servers": [],
+              "subnet": [],
+              "tags": {}
+            }
+          },
+          {
+            "address": "module.test_connectivity.azurerm_virtual_network.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "address_space": [
+                "10.102.0.0/22"
+              ],
+              "bgp_community": null,
+              "ddos_protection_plan": [],
+              "dns_servers": [],
+              "edge_zone": null,
+              "flow_timeout_in_minutes": null,
+              "location": "uksouth",
+              "name": "root-id-1-hub-uksouth",
+              "resource_group_name": "root-id-1-connectivity-uksouth",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
@@ -5865,6 +7135,90 @@
               "timeouts": null,
               "use_remote_gateways": false,
               "virtual_network_name": "root-id-1-hub-northeurope"
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_connectivity.azurerm_virtual_network_peering.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network_peering",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope/virtualNetworkPeerings/peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allow_forwarded_traffic": true,
+              "allow_gateway_transit": true,
+              "allow_virtual_network_access": true,
+              "name": "peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "remote_virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth",
+              "resource_group_name": "root-id-1-connectivity-northeurope",
+              "timeouts": null,
+              "use_remote_gateways": false,
+              "virtual_network_name": "root-id-1-hub-northeurope"
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_connectivity.azurerm_virtual_network_peering.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network_peering",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/virtualNetworkPeerings/peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allow_forwarded_traffic": true,
+              "allow_gateway_transit": true,
+              "allow_virtual_network_access": true,
+              "name": "peering-32e4fb6d-8d44-5cd6-a7b6-aa17ca11b626",
+              "remote_virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope",
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "timeouts": null,
+              "use_remote_gateways": false,
+              "virtual_network_name": "root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_connectivity.azurerm_virtual_network_peering.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network_peering",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth/virtualNetworkPeerings/peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allow_forwarded_traffic": true,
+              "allow_gateway_transit": true,
+              "allow_virtual_network_access": true,
+              "name": "peering-f8bddac9-6d62-5e41-9c52-1bf7a4263cc0",
+              "remote_virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope",
+              "resource_group_name": "root-id-1-connectivity-uksouth",
+              "timeouts": null,
+              "use_remote_gateways": false,
+              "virtual_network_name": "root-id-1-hub-uksouth"
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_connectivity.azurerm_virtual_network_peering.connectivity[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea\"]",
+            "mode": "managed",
+            "type": "azurerm_virtual_network_peering",
+            "name": "connectivity",
+            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope/virtualNetworkPeerings/peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "allow_forwarded_traffic": true,
+              "allow_gateway_transit": true,
+              "allow_virtual_network_access": true,
+              "name": "peering-7cc7e26d-5e16-5672-8dc0-e48b94f1beea",
+              "remote_virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth",
+              "resource_group_name": "root-id-1-connectivity-westeurope",
+              "timeouts": null,
+              "use_remote_gateways": false,
+              "virtual_network_name": "root-id-1-hub-westeurope"
             },
             "sensitive_values": {}
           },
