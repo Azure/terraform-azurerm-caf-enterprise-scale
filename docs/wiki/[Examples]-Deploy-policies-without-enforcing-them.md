@@ -125,7 +125,7 @@ module "enterprise_scale" {
 }
 ```
 
-### `archetype_config_overrides.tf`
+### `archetype_config_overrides.tf` for landing zones archetype
 
 Examplary, to change the enforcementMode for the landing zone archetype, we could use the following configuration. Note how the `root_id` specified when calling the module in `main.tf` is used to identify the archetype.
 
@@ -159,7 +159,7 @@ You have successfully overridden the `enforcementMode` for the landing zone arch
 
 If you want to move your workloads quickly into the corp landing zone, it might be useful to also set the `enforcementMode` for the corp archetype. 
 
-### `archetype_config_overrides.tf`
+### `archetype_config_overrides.tf` for brownfield
 
 ```hcl
 locals {
