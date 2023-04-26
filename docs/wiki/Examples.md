@@ -27,6 +27,7 @@ Use the links below to explore these examples in more detail.
 - [Expand built-in archetype definitions][wiki_expand_built_in_archetype_definitions]
 - [Create custom policies, policy sets and assignments][wiki_create_custom_policies_policy_sets_and_assignments]
 - [Override module role assignments][wiki_override_module_role_assignments]
+- [Deploy policies without enforcing them]([Examples]-Deploy-policies-without-enforcing-them)
 
 ### Expert (Level 400)
 
