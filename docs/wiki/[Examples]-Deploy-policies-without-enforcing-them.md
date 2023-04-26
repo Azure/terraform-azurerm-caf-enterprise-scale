@@ -157,7 +157,7 @@ You have successfully overridden the `enforcementMode` for the landing zone arch
 
 ## Brownfield deployment for corp landing zone
 
-If you want to move your workloads quickly into the corp landing zone, it might be useful to also set the `enforcementMode` for the corp archetype. 
+If you want to move your workloads quickly into the corp landing zone, it might be useful to also set the `enforcementMode` for the corp archetype.
 
 ### `archetype_config_overrides.tf` for brownfield
 
