@@ -66,12 +66,24 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            Write-Information "==> Running script..." -InformationAction Continue
-            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
+            Write-Information "==> Running policy definitions script..." -InformationAction Continue
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyDefinitions.ps1 `
               -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
               -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}" `
               -Reset
+
+            Write-Information "==> Running policy assignments script..." -InformationAction Continue
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignments.ps1 `
+              -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
+              -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
+              -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
+
+            Write-Information "==> Running archetypes script..." -InformationAction Continue
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignmentsArchetypes.ps1 `
+              -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
+              -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
+              -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
           azPSVersion: "latest"
 
       - name: Check for changes
