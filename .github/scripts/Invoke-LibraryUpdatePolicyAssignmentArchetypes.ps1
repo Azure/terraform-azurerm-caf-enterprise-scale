@@ -53,7 +53,7 @@ foreach($resource in $eslzArm)
     $scope = $resource.scope
     $policyAssignment = $resource.properties.templateLink.uri
 
-    if($policyAssignment -ne $null -and $policyAssignment.StartsWith("https://deploymenturi/managementGroupTemplates/policyAssignments/"))
+    if($null -ne $policyAssignment -and $policyAssignment.StartsWith("https://deploymenturi/managementGroupTemplates/policyAssignments/"))
     {
         $managementGroup = $scope.Split("/")[-1]
         $policyAssignmentFileName = $policyAssignment.Split("/")[-1]
