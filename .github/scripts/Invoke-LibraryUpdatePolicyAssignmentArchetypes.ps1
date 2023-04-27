@@ -55,7 +55,6 @@ foreach($resource in $eslzArm)
 
     if($policyAssignment -ne $null -and $policyAssignment.StartsWith("https://deploymenturi/managementGroupTemplates/policyAssignments/"))
     {
-        Write-Host "$scope - $policyAssignment"
         $managementGroup = $scope.Split("/")[-1]
         $policyAssignmentFileName = $policyAssignment.Split("/")[-1]
 
@@ -75,9 +74,23 @@ foreach($resource in $eslzArm)
     }
 }
 
+$managementGroupMapping = @{
+    "testPortal" = "root"
+    "management" = "management"
+    "connectivity" = "connectivity"
+    "corp" = "corp"
+    "landingzones" = "landing_zones"
+    "decommissioned" = "decommissioned"
+    "sandboxes" = "sandboxes"
+    "identity" = "identity"
+    "platform" = "platform"
+}
+
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
 
 $policyAssignmentSourcePath = "$SourcePath/eslzArm/managementGroupTemplates/policyAssignments"
+
+
 
 foreach($managementGroup in $policyAssignments.Keys)
 {
@@ -86,15 +99,34 @@ foreach($managementGroup in $policyAssignments.Keys)
         $parsedAssignment = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" | Out-String | ConvertFrom-Json
         $policyAssignmentName = $parsedAssignment.name
 
-        if(!($finalPolicyAssignments.ContainsKey($managementGroup)))
+        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("testPortal-", "")]
+
+        Write-Host "Got final data for $managementGroupNameFinal and $policyAssignmentName"
+
+        if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
         {
             $values = New-Object 'System.Collections.Generic.List[string]'
             $values.Add($policyAssignmentName)
-            $finalPolicyAssignments.Add($managementGroup, $values)
+            $finalPolicyAssignments.Add($managementGroupNameFinal, $values)
         }
         else
         {
-            $finalPolicyAssignments[$managementGroup].Add($policyAssignmentName)
+            $finalPolicyAssignments[$managementGroupNameFinal].Add($policyAssignmentName)
         }
     }
 }
+
+$policyAssignmentTargetPath = "$TargetPath/modules/archetypes/lib/archetype_definitions"
+
+foreach($managementGroup in $finalPolicyAssignments.Keys)
+{
+    $archetypeFilePath = "$policyAssignmentTargetPath/archetype_definition_es_$managementGroup.tmpl.json"
+    $archetypeJson = Get-Content $archetypeFilePath | ConvertFrom-Json
+
+    $archetypeJson.("es_$managementGroup").policy_assignments = @($finalPolicyAssignments[$managementGroup] | Sort-Object)
+
+    Write-Host "Writing $archetypeFilePath"
+    $json = $archetypeJson | ConvertTo-Json -Depth 10
+    $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$archetypeFilePath" -Force
+}
+
