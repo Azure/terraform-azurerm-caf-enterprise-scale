@@ -140,10 +140,10 @@ foreach($key in $parsedAssignments.Keys | Sort-Object)
     {
         $originalFileName = $originalAssignments[$mappedKey].file.Name
 
-        Write-Host "Found match for $mappedKey $key $originalFileName $sourceFileName $targetPolicyAssignmentFileName"
+        Write-Information "Found match for $mappedKey $key $originalFileName $sourceFileName $targetPolicyAssignmentFileName" -InformationAction Continue
         if($originalFileName -ne $targetPolicyAssignmentFileName)
         {
-            Write-Host "Renaming $originalFileName to $targetPolicyAssignmentFileName"
+            Write-Information "Renaming $originalFileName to $targetPolicyAssignmentFileName" -InformationAction Continue
             Set-Location $policyAssignmentTargetPath
             git mv $originalAssignments[$mappedKey].file.FullName $targetPolicyAssignmentFileName
             Set-Location $SourcePath
@@ -152,10 +152,10 @@ foreach($key in $parsedAssignments.Keys | Sort-Object)
     }
     else
     {
-        Write-Host "No match found for $mappedKey $key $sourceFileName $targetPolicyAssignmentFileName"
+        Write-Information "No match found for $mappedKey $key $sourceFileName $targetPolicyAssignmentFileName" -InformationAction Continue
     }
 
-    Write-Host "Writing $targetPolicyAssignmentFileName"
+    Write-Information "Writing $targetPolicyAssignmentFileName" -InformationAction Continue
     $json = $parsedAssignments[$key].json | ConvertTo-Json -Depth 10
     $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
 }

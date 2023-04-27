@@ -101,7 +101,7 @@ foreach($managementGroup in $policyAssignments.Keys)
 
         $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("testPortal-", "")]
 
-        Write-Host "Got final data for $managementGroupNameFinal and $policyAssignmentName"
+        Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
 
         if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
         {
@@ -125,7 +125,7 @@ foreach($managementGroup in $finalPolicyAssignments.Keys)
 
     $archetypeJson.("es_$managementGroup").policy_assignments = @($finalPolicyAssignments[$managementGroup] | Sort-Object)
 
-    Write-Host "Writing $archetypeFilePath"
+    Write-Information "Writing $archetypeFilePath" -InformationAction Continue
     $json = $archetypeJson | ConvertTo-Json -Depth 10
     $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$archetypeFilePath" -Force
 }
