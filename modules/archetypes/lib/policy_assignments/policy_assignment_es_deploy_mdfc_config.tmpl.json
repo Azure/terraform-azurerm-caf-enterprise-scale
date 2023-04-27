@@ -25,7 +25,7 @@
         "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
       },
       "ascExportResourceGroupName": {
-        "value": "${temp}-asc-export"
+        "value": "${root_scope_id}-asc-export"
       },
       "ascExportResourceGroupLocation": {
         "value": "${default_location}"
