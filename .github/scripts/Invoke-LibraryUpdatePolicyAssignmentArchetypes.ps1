@@ -44,8 +44,6 @@ $eslzArmParametersSourcePath = "$SourcePath/eslzArm/eslzArm.test.param.json"
 
 $eslzArm = & $parser "-s $eslzArmSourcePath" "-f $eslzArmParametersSourcePath" "-a" | Out-String | ConvertFrom-Json
 
-#Out-File -FilePath "C:\Users\jaredholgate\OneDrive - Microsoft\Desktop\temp.json" -InputObject $eslzArm -Encoding UTF8 -Force
-
 $policyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
 
 foreach($resource in $eslzArm)
