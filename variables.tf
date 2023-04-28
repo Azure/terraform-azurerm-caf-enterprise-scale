@@ -538,6 +538,7 @@ variable "subscription_id_management" {
 variable "custom_landing_zones" {
   type        = any
   description = <<DESCRIPTION
+If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
 Although the object type for this input variable is set to `any`, the expected object is based on the following structure:
 
 ```hcl
