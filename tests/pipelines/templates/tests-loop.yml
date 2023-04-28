@@ -14,7 +14,6 @@ steps:
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
-      TEST_MODULE_RUN_TYPE: "${{ parameters.run_type }}"
     condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit', 'e2e', 'destroy'))
 
   - task: Bash@3

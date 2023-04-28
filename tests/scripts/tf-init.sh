@@ -28,7 +28,7 @@ terraform {
     resource_group_name  = "$STORAGE_ACCOUNT_RSG_NAME"
     storage_account_name = "$STORAGE_ACCOUNT_NAME"
     container_name       = "$STORAGE_CONTAINER_NAME"
-    key                  = "terraform-$TEST_MODULE_RUN_TYPE-$TF_JOB_ID-$TF_VERSION-$TF_AZ_VERSION.tfstate"
+    key                  = "terraform-$PIPELINE_RUN_TYPE-$TF_JOB_ID-$TF_VERSION-$TF_AZ_VERSION.tfstate"
   }
 }
 TFCONFIG
