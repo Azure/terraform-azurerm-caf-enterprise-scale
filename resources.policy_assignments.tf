@@ -25,7 +25,7 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
       dynamic "selectors" {
         for_each = try({ for i, selector in overrides.value.selectors : i => selector }, local.empty_map)
         content {
-          in = try(selectors.in, local.empty_list)
+          in     = try(selectors.in, local.empty_list)
           not_in = try(selectors.not_in, local.empty_list)
         }
       }
