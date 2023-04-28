@@ -8,9 +8,7 @@ pool:
 
 variables:
   - group: csu-tf-environment
-
-env:
-  PIPELINE_RUN_TYPE: unit
+  - PIPELINE_RUN_TYPE: unit
 
 jobs:
   - job: matrix_generator
