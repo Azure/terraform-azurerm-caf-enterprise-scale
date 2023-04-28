@@ -1297,8 +1297,10 @@
               "name": "Enable-DDoS-VNET",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"ddosPlan\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-ddos/providers/Microsoft.Network/ddosProtectionPlans/root-id-1-ddos-northeurope\"},\"effect\":{\"value\":\"Modify\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1306,7 +1308,9 @@
                 {}
               ],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1332,8 +1336,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Audit\"},\"privateLinkDnsZones\":{\"value\":[\"privatelink.adf.azure.com\",\"privatelink.afs.azure.net\",\"privatelink.agentsvc.azure-automation.net\",\"privatelink.analysis.windows.net\",\"privatelink.api.azureml.ms\",\"privatelink.azconfig.io\",\"privatelink.azure-api.net\",\"privatelink.azure-automation.net\",\"privatelink.azurecr.io\",\"privatelink.azure-devices.net\",\"privatelink.azure-devices-provisioning.net\",\"privatelink.azurehdinsight.net\",\"privatelink.azurehealthcareapis.com\",\"privatelink.azurestaticapps.net\",\"privatelink.azuresynapse.net\",\"privatelink.azurewebsites.net\",\"privatelink.northeurope.batch.azure.com\",\"privatelink.blob.core.windows.net\",\"privatelink.cassandra.cosmos.azure.com\",\"privatelink.cognitiveservices.azure.com\",\"privatelink.database.windows.net\",\"privatelink.datafactory.azure.net\",\"privatelink.dev.azuresynapse.net\",\"privatelink.dfs.core.windows.net\",\"privatelink.dicom.azurehealthcareapis.com\",\"privatelink.digitaltwins.azure.net\",\"privatelink.directline.botframework.com\",\"privatelink.documents.azure.com\",\"privatelink.eventgrid.azure.net\",\"privatelink.file.core.windows.net\",\"privatelink.gremlin.cosmos.azure.com\",\"privatelink.guestconfiguration.azure.com\",\"privatelink.his.arc.azure.com\",\"privatelink.kubernetesconfiguration.azure.com\",\"privatelink.managedhsm.azure.net\",\"privatelink.mariadb.database.azure.com\",\"privatelink.media.azure.net\",\"privatelink.mongo.cosmos.azure.com\",\"privatelink.monitor.azure.com\",\"privatelink.mysql.database.azure.com\",\"privatelink.notebooks.azure.net\",\"privatelink.ods.opinsights.azure.com\",\"privatelink.oms.opinsights.azure.com\",\"privatelink.pbidedicated.windows.net\",\"privatelink.postgres.database.azure.com\",\"privatelink.prod.migration.windowsazure.com\",\"privatelink.purview.azure.com\",\"privatelink.purviewstudio.azure.com\",\"privatelink.queue.core.windows.net\",\"privatelink.redis.cache.windows.net\",\"privatelink.redisenterprise.cache.azure.net\",\"privatelink.search.windows.net\",\"privatelink.service.signalr.net\",\"privatelink.servicebus.windows.net\",\"privatelink.siterecovery.windowsazure.com\",\"privatelink.sql.azuresynapse.net\",\"privatelink.table.core.windows.net\",\"privatelink.table.cosmos.azure.com\",\"privatelink.tip1.powerquery.microsoft.com\",\"privatelink.token.botframework.com\",\"privatelink.vaultcore.azure.net\",\"privatelink.web.core.windows.net\",\"privatelink.webpubsub.azure.com\"]}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Audit-PrivateLinkDnsZones",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1341,7 +1347,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1367,8 +1375,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"},\"listOfResourceTypesNotAllowed\":{\"value\":[\"microsoft.network/expressroutecircuits\",\"microsoft.network/expressroutegateways\",\"microsoft.network/expressrouteports\",\"microsoft.network/virtualwans\",\"microsoft.network/vpngateways\",\"microsoft.network/p2svpngateways\",\"microsoft.network/vpnsites\",\"microsoft.network/virtualnetworkgateways\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1376,7 +1386,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1402,8 +1414,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deny-PublicPaaSEndpoints",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1411,7 +1425,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1437,8 +1453,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/83a86a26-fd1f-447c-b59d-e51f44264114",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1446,7 +1464,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1477,8 +1497,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"azureAcrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io\"},\"azureAppPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io\"},\"azureAppServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net\"},\"azureAsrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com\"},\"azureAutomationDSCHybridPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureAutomationWebhookPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureBatchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com\"},\"azureCognitiveSearchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net\"},\"azureCognitiveServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com\"},\"azureCosmosCassandraPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com\"},\"azureCosmosGremlinPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com\"},\"azureCosmosMongoPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com\"},\"azureCosmosSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com\"},\"azureCosmosTablePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com\"},\"azureDataFactoryPortalPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com\"},\"azureDataFactoryPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net\"},\"azureDiskAccessPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureEventGridDomainsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventGridTopicsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventHubNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net\"},\"azureHDInsightPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net\"},\"azureIoTPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net\"},\"azureIotHubsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net\"},\"azureIotPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net\"},\"azureKeyVaultPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net\"},\"azureMachineLearningWorkspacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms\"},\"azureMediaServicesKeyPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesLivePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesStreamPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMigratePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com\"},\"azureMonitorPrivateDnsZoneId1\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com\"},\"azureMonitorPrivateDnsZoneId2\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId3\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId4\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net\"},\"azureMonitorPrivateDnsZoneId5\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureRedisCachePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net\"},\"azureServiceBusNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureSignalRPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net\"},\"azureStorageBlobPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageBlobSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageDFSPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageDFSSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net\"},\"azureStorageQueuePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageQueueSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageStaticWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureStorageStaticWebSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureSynapseDevPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net\"},\"azureSynapseSQLODPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureSynapseSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Private-DNS-Zones",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1488,7 +1510,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1514,8 +1538,10 @@
               "name": "Enforce-ALZ-Decomm",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfResourceTypesAllowed\":{\"value\":[\"microsoft.consumption/tags\",\"microsoft.authorization/roleassignments\",\"microsoft.authorization/roledefinitions\",\"microsoft.authorization/policyassignments\",\"microsoft.authorization/locks\",\"microsoft.authorization/policydefinitions\",\"microsoft.authorization/policysetdefinitions\",\"microsoft.resources/tags\",\"microsoft.authorization/roleeligibilityschedules\",\"microsoft.authorization/roleeligibilityscheduleinstances\",\"microsoft.authorization/roleassignmentschedules\",\"microsoft.authorization/roleassignmentscheduleinstances\"]}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-ALZ-Decomm",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1523,7 +1549,9 @@
                 {}
               ],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1549,8 +1577,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Audit\"},\"privateLinkDnsZones\":{\"value\":[\"privatelink.adf.azure.com\",\"privatelink.afs.azure.net\",\"privatelink.agentsvc.azure-automation.net\",\"privatelink.analysis.windows.net\",\"privatelink.api.azureml.ms\",\"privatelink.azconfig.io\",\"privatelink.azure-api.net\",\"privatelink.azure-automation.net\",\"privatelink.azurecr.io\",\"privatelink.azure-devices.net\",\"privatelink.azure-devices-provisioning.net\",\"privatelink.azurehdinsight.net\",\"privatelink.azurehealthcareapis.com\",\"privatelink.azurestaticapps.net\",\"privatelink.azuresynapse.net\",\"privatelink.azurewebsites.net\",\"privatelink.northeurope.batch.azure.com\",\"privatelink.blob.core.windows.net\",\"privatelink.cassandra.cosmos.azure.com\",\"privatelink.cognitiveservices.azure.com\",\"privatelink.database.windows.net\",\"privatelink.datafactory.azure.net\",\"privatelink.dev.azuresynapse.net\",\"privatelink.dfs.core.windows.net\",\"privatelink.dicom.azurehealthcareapis.com\",\"privatelink.digitaltwins.azure.net\",\"privatelink.directline.botframework.com\",\"privatelink.documents.azure.com\",\"privatelink.eventgrid.azure.net\",\"privatelink.file.core.windows.net\",\"privatelink.gremlin.cosmos.azure.com\",\"privatelink.guestconfiguration.azure.com\",\"privatelink.his.arc.azure.com\",\"privatelink.kubernetesconfiguration.azure.com\",\"privatelink.managedhsm.azure.net\",\"privatelink.mariadb.database.azure.com\",\"privatelink.media.azure.net\",\"privatelink.mongo.cosmos.azure.com\",\"privatelink.monitor.azure.com\",\"privatelink.mysql.database.azure.com\",\"privatelink.notebooks.azure.net\",\"privatelink.ods.opinsights.azure.com\",\"privatelink.oms.opinsights.azure.com\",\"privatelink.pbidedicated.windows.net\",\"privatelink.postgres.database.azure.com\",\"privatelink.prod.migration.windowsazure.com\",\"privatelink.purview.azure.com\",\"privatelink.purviewstudio.azure.com\",\"privatelink.queue.core.windows.net\",\"privatelink.redis.cache.windows.net\",\"privatelink.redisenterprise.cache.azure.net\",\"privatelink.search.windows.net\",\"privatelink.service.signalr.net\",\"privatelink.servicebus.windows.net\",\"privatelink.siterecovery.windowsazure.com\",\"privatelink.sql.azuresynapse.net\",\"privatelink.table.core.windows.net\",\"privatelink.table.cosmos.azure.com\",\"privatelink.tip1.powerquery.microsoft.com\",\"privatelink.token.botframework.com\",\"privatelink.vaultcore.azure.net\",\"privatelink.web.core.windows.net\",\"privatelink.webpubsub.azure.com\"]}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Audit-PrivateLinkDnsZones",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1558,7 +1588,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1584,8 +1616,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"},\"listOfResourceTypesNotAllowed\":{\"value\":[\"microsoft.network/expressroutecircuits\",\"microsoft.network/expressroutegateways\",\"microsoft.network/expressrouteports\",\"microsoft.network/virtualwans\",\"microsoft.network/vpngateways\",\"microsoft.network/p2svpngateways\",\"microsoft.network/vpnsites\",\"microsoft.network/virtualnetworkgateways\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1593,7 +1627,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1619,8 +1655,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deny-PublicPaaSEndpoints",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1628,7 +1666,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1654,8 +1694,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/83a86a26-fd1f-447c-b59d-e51f44264114",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1663,7 +1705,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1694,8 +1738,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"azureAcrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io\"},\"azureAppPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io\"},\"azureAppServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net\"},\"azureAsrPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com\"},\"azureAutomationDSCHybridPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureAutomationWebhookPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net\"},\"azureBatchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.northeurope.batch.azure.com\"},\"azureCognitiveSearchPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net\"},\"azureCognitiveServicesPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com\"},\"azureCosmosCassandraPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com\"},\"azureCosmosGremlinPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com\"},\"azureCosmosMongoPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com\"},\"azureCosmosSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com\"},\"azureCosmosTablePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com\"},\"azureDataFactoryPortalPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com\"},\"azureDataFactoryPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net\"},\"azureDiskAccessPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureEventGridDomainsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventGridTopicsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net\"},\"azureEventHubNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net\"},\"azureHDInsightPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net\"},\"azureIoTPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net\"},\"azureIotHubsPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net\"},\"azureKeyVaultPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net\"},\"azureMachineLearningWorkspacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms\"},\"azureMediaServicesKeyPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesLivePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMediaServicesStreamPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net\"},\"azureMigratePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com\"},\"azureMonitorPrivateDnsZoneId1\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com\"},\"azureMonitorPrivateDnsZoneId2\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId3\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com\"},\"azureMonitorPrivateDnsZoneId4\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net\"},\"azureMonitorPrivateDnsZoneId5\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureRedisCachePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net\"},\"azureServiceBusNamespacePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net\"},\"azureSignalRPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net\"},\"azureStorageBlobPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageBlobSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net\"},\"azureStorageDFSPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageDFSSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net\"},\"azureStorageFilePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net\"},\"azureStorageQueuePrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageQueueSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net\"},\"azureStorageStaticWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureStorageStaticWebSecPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net\"},\"azureSynapseDevPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net\"},\"azureSynapseSQLODPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureSynapseSQLPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net\"},\"azureWebPrivateDnsZoneId\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-dns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Private-DNS-Zones",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1705,7 +1751,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1731,8 +1779,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-MgmtPorts-From-Internet",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1740,7 +1790,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1766,8 +1818,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"},\"listOfResourceTypesNotAllowed\":{\"value\":[\"Microsoft.Network/publicIPAddresses\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1775,7 +1829,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1801,8 +1857,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1810,7 +1868,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1841,8 +1901,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"deployIfNotExists\"},\"exclusionTagName\":{\"value\":\"\"},\"exclusionTagValue\":{\"value\":[]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1852,7 +1914,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1878,8 +1942,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Audit\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/564feb30-bf6a-4854-b4bb-0d2d2d1e6c66",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1887,7 +1953,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1913,8 +1981,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/88c0b9da-ce96-4b03-9635-f29a937e2900",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1922,7 +1992,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1948,8 +2020,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-MgmtPorts-From-Internet",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -1957,7 +2031,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -1978,14 +2054,18 @@
               "name": "Deny-Priv-Esc-AKS",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/1c6e92c9-99f0-4e55-9cf2-0c234dc48f99",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
               "identity": [],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2006,14 +2086,18 @@
               "name": "Deny-Privileged-AKS",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/95edb821-ddaf-4404-9732-666045e056b4",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
               "identity": [],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2039,8 +2123,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2048,7 +2134,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2074,8 +2162,10 @@
               "name": "Deploy-AKS-Policy",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/a8eff44f-8c92-45c3-a3fb-9880802d67a7",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2083,7 +2173,9 @@
                 {}
               ],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2114,8 +2206,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"logAnalyticsWorkspaceId\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/25da7dfb-0666-4a15-a8f5-402127efd8bb",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2125,7 +2219,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2156,8 +2252,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2167,7 +2265,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2198,8 +2298,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2209,7 +2311,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2235,8 +2339,10 @@
               "name": "Enable-DDoS-VNET",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"ddosPlan\":{\"value\":\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-ddos/providers/Microsoft.Network/ddosProtectionPlans/root-id-1-ddos-northeurope\"},\"effect\":{\"value\":\"Modify\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2244,7 +2350,9 @@
                 {}
               ],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2265,14 +2373,18 @@
               "name": "Enforce-AKS-HTTPS",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"deny\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
               "identity": [],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2293,14 +2405,18 @@
               "name": "Enforce-GR-KeyVault",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-KeyVault",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
               "identity": [],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2331,8 +2447,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2342,7 +2460,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2373,8 +2493,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"60\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"sku\":{\"value\":\"pergb2018\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2384,7 +2506,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2410,8 +2534,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-MgmtPorts-From-Internet",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2419,7 +2545,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2445,8 +2573,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2454,7 +2584,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2485,8 +2617,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"30\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2496,7 +2630,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2527,8 +2663,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2538,7 +2676,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2559,14 +2699,18 @@
               "name": "Enforce-ALZ-Sandbox",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfResourceTypesNotAllowed\":{\"value\":[\"microsoft.network/expressroutecircuits\",\"microsoft.network/expressroutegateways\",\"microsoft.network/virtualwans\",\"microsoft.network/virtualhubs\",\"microsoft.network/vpngateways\",\"microsoft.network/vpnsites\"]}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-ALZ-Sandbox",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
               "identity": [],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2592,8 +2736,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2601,7 +2747,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2627,8 +2775,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2636,7 +2786,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2667,8 +2819,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"CertificateThumbprints\":{\"value\":\"\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsrgName\":{\"value\":\"root-id-1-rg\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix\":{\"value\":\"root-id-1\"},\"installedApplicationsOnWindowsVM\":{\"value\":\"\"},\"listOfLocations\":{\"value\":[\"eastus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2678,7 +2832,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2704,8 +2860,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"northeurope\",\"westeurope\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2713,7 +2871,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2739,8 +2899,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"northeurope\",\"westeurope\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2748,7 +2910,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2774,8 +2938,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2783,7 +2949,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2809,8 +2977,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"westus\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2818,7 +2988,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2844,8 +3016,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"EffectDisks\":{\"value\":\"Audit\"},\"EffectPublicIpAddresses\":{\"value\":\"Audit\"},\"EffectServerFarms\":{\"value\":\"Audit\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Audit-UnusedResourcesCostOptimization",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2853,7 +3027,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2879,8 +3055,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"effect\":{\"value\":\"Deny\"},\"listOfResourceTypesNotAllowed\":{\"value\":[\"Microsoft.ClassicCompute/capabilities\",\"Microsoft.ClassicCompute/checkDomainNameAvailability\",\"Microsoft.ClassicCompute/domainNames\",\"Microsoft.ClassicCompute/domainNames/capabilities\",\"Microsoft.ClassicCompute/domainNames/internalLoadBalancers\",\"Microsoft.ClassicCompute/domainNames/serviceCertificates\",\"Microsoft.ClassicCompute/domainNames/slots\",\"Microsoft.ClassicCompute/domainNames/slots/roles\",\"Microsoft.ClassicCompute/domainNames/slots/roles/metricDefinitions\",\"Microsoft.ClassicCompute/domainNames/slots/roles/metrics\",\"Microsoft.ClassicCompute/moveSubscriptionResources\",\"Microsoft.ClassicCompute/operatingSystemFamilies\",\"Microsoft.ClassicCompute/operatingSystems\",\"Microsoft.ClassicCompute/operations\",\"Microsoft.ClassicCompute/operationStatuses\",\"Microsoft.ClassicCompute/quotas\",\"Microsoft.ClassicCompute/resourceTypes\",\"Microsoft.ClassicCompute/validateSubscriptionMoveAvailability\",\"Microsoft.ClassicCompute/virtualMachines\",\"Microsoft.ClassicCompute/virtualMachines/diagnosticSettings\",\"Microsoft.ClassicCompute/virtualMachines/metricDefinitions\",\"Microsoft.ClassicCompute/virtualMachines/metrics\",\"Microsoft.ClassicInfrastructureMigrate/classicInfrastructureResources\",\"Microsoft.ClassicNetwork/capabilities\",\"Microsoft.ClassicNetwork/expressRouteCrossConnections\",\"Microsoft.ClassicNetwork/expressRouteCrossConnections/peerings\",\"Microsoft.ClassicNetwork/gatewaySupportedDevices\",\"Microsoft.ClassicNetwork/networkSecurityGroups\",\"Microsoft.ClassicNetwork/operations\",\"Microsoft.ClassicNetwork/quotas\",\"Microsoft.ClassicNetwork/reservedIps\",\"Microsoft.ClassicNetwork/virtualNetworks\",\"Microsoft.ClassicNetwork/virtualNetworks/remoteVirtualNetworkPeeringProxies\",\"Microsoft.ClassicNetwork/virtualNetworks/virtualNetworkPeerings\",\"Microsoft.ClassicStorage/capabilities\",\"Microsoft.ClassicStorage/checkStorageAccountAvailability\",\"Microsoft.ClassicStorage/disks\",\"Microsoft.ClassicStorage/images\",\"Microsoft.ClassicStorage/operations\",\"Microsoft.ClassicStorage/osImages\",\"Microsoft.ClassicStorage/osPlatformImages\",\"Microsoft.ClassicStorage/publicImages\",\"Microsoft.ClassicStorage/quotas\",\"Microsoft.ClassicStorage/storageAccounts\",\"Microsoft.ClassicStorage/storageAccounts/blobServices\",\"Microsoft.ClassicStorage/storageAccounts/fileServices\",\"Microsoft.ClassicStorage/storageAccounts/metricDefinitions\",\"Microsoft.ClassicStorage/storageAccounts/metrics\",\"Microsoft.ClassicStorage/storageAccounts/queueServices\",\"Microsoft.ClassicStorage/storageAccounts/services\",\"Microsoft.ClassicStorage/storageAccounts/services/diagnosticSettings\",\"Microsoft.ClassicStorage/storageAccounts/services/metricDefinitions\",\"Microsoft.ClassicStorage/storageAccounts/services/metrics\",\"Microsoft.ClassicStorage/storageAccounts/tableServices\",\"Microsoft.ClassicStorage/storageAccounts/vmImages\",\"Microsoft.ClassicStorage/vmImages\",\"Microsoft.ClassicSubscription/operations\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2888,7 +3066,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2914,8 +3094,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2923,7 +3105,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2949,8 +3133,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"listOfAllowedLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2958,7 +3144,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -2984,8 +3172,15 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [
+                {
+                  "selectors": [],
+                  "value": "Deny"
+                }
+              ],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/06a78e20-9358-41c9-923c-fb736d382a4d",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -2993,7 +3188,13 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [
+                {
+                  "selectors": []
+                }
+              ],
+              "resource_selectors": []
             }
           },
           {
@@ -3024,8 +3225,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3035,7 +3238,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3066,8 +3271,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"},\"logsEnabled\":{\"value\":\"True\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3077,7 +3284,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3108,8 +3317,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"CertificateThumbprints\":{\"value\":\"\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsrgName\":{\"value\":\"root-id-1-rg\"},\"DeployDiagnosticSettingsforNetworkSecurityGroupsstoragePrefix\":{\"value\":\"root-id-1\"},\"installedApplicationsOnWindowsVM\":{\"value\":\"\"},\"listOfLocations\":{\"value\":[\"eastus\",\"eastus2\",\"westus\",\"northcentralus\",\"southcentralus\",\"northeurope\",\"westeurope\",\"uksouth\",\"ukwest\"]}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3119,7 +3330,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3150,8 +3363,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"microsoftDefenderForEndpointLinuxArcAgentDeployEffect\":{\"value\":\"DeployIfNotExists\"},\"microsoftDefenderForEndpointLinuxVmAgentDeployEffect\":{\"value\":\"DeployIfNotExists\"},\"microsoftDefenderForEndpointWindowsArcAgentDeployEffect\":{\"value\":\"DeployIfNotExists\"},\"microsoftDefenderForEndpointWindowsVmAgentDeployEffect\":{\"value\":\"DeployIfNotExists\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/e20d08c5-6d64-656d-6465-ce9e37fd0ebc",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3161,7 +3376,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3192,8 +3409,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"ascExportResourceGroupLocation\":{\"value\":\"northeurope\"},\"ascExportResourceGroupName\":{\"value\":\"root-id-1-security-logs-export\"},\"emailSecurityContact\":{\"value\":\"test.user@replace_me\"},\"enableAscForApis\":{\"value\":\"Disabled\"},\"enableAscForAppServices\":{\"value\":\"DeployIfNotExists\"},\"enableAscForArm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForContainers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForCosmosDbs\":{\"value\":\"Disabled\"},\"enableAscForCspm\":{\"value\":\"Disabled\"},\"enableAscForDns\":{\"value\":\"DeployIfNotExists\"},\"enableAscForKeyVault\":{\"value\":\"DeployIfNotExists\"},\"enableAscForOssDb\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServersVulnerabilityAssessments\":{\"value\":\"Disabled\"},\"enableAscForSql\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSqlOnVm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForStorage\":{\"value\":\"DeployIfNotExists\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"},\"vulnerabilityAssessmentProvider\":{\"value\":\"default\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3203,7 +3422,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3234,8 +3455,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/e77fc0b3-f7e9-4c58-bc13-cb753ed8e46e",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3245,7 +3468,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3276,8 +3501,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3287,7 +3514,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3318,8 +3547,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"AKSLogAnalyticsEffect\":{\"value\":\"Disabled\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Diagnostics-LogAnalytics",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3329,7 +3560,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3355,8 +3588,10 @@
               "name": "Deploy-SQL-Auditing",
               "non_compliance_message": [],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"retentionDays\":{\"value\":\"10\"},\"storageAccountsResourceGroup\":{\"value\":\"\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/f4c68484-132f-41f9-9b6d-3e4b1cb55036",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3364,7 +3599,9 @@
                 {}
               ],
               "non_compliance_message": [],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3395,8 +3632,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": "{\"logAnalytics_1\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3406,7 +3645,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -3437,8 +3678,10 @@
                 }
               ],
               "not_scopes": [],
+              "overrides": [],
               "parameters": null,
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Enforce-ACSB",
+              "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
@@ -3448,7 +3691,9 @@
               "non_compliance_message": [
                 {}
               ],
-              "not_scopes": []
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
             }
           },
           {
@@ -7559,7 +7804,7 @@
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Decommissioned\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",
               "name": "Enforce-ALZ-Decomm",
-              "parameters": "{\"listOfResourceTypesAllowed\":{\"defaultValue\":null,\"metadata\":{\"description\":\"Allowed resource types in the Decommissioned landing zone, default is none.\",\"displayName\":\"Allowed resource types in the Decommissioned landing zone\",\"strongType\":\"resourceTypes\"},\"type\":\"Array\"}}",
+              "parameters": "{\"listOfResourceTypesAllowed\":{\"defaultValue\":[],\"metadata\":{\"description\":\"Allowed resource types in the Decommissioned landing zone, default is none.\",\"displayName\":\"Allowed resource types in the Decommissioned landing zone\",\"strongType\":\"resourceTypes\"},\"type\":\"Array\"}}",
               "policy_definition_group": [],
               "policy_definition_reference": [
                 {
@@ -7600,7 +7845,7 @@
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Sandbox\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",
               "name": "Enforce-ALZ-Sandbox",
-              "parameters": "{\"effectDenyVnetPeering\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"effectNotAllowedResources\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"listOfResourceTypesNotAllowed\":{\"defaultValue\":null,\"metadata\":{\"description\":\"Not allowed resource types in the Sandbox landing zone, default is none.\",\"displayName\":\"Not allowed resource types in the Sandbox landing zone\",\"strongType\":\"resourceTypes\"},\"type\":\"Array\"}}",
+              "parameters": "{\"effectDenyVnetPeering\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"effectNotAllowedResources\":{\"allowedValues\":[\"Audit\",\"Deny\",\"Disabled\"],\"defaultValue\":\"Deny\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"listOfResourceTypesNotAllowed\":{\"defaultValue\":[],\"metadata\":{\"description\":\"Not allowed resource types in the Sandbox landing zone, default is none.\",\"displayName\":\"Not allowed resource types in the Sandbox landing zone\",\"strongType\":\"resourceTypes\"},\"type\":\"Array\"}}",
               "policy_definition_group": [],
               "policy_definition_reference": [
                 {
