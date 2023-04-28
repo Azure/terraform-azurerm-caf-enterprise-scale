@@ -40,7 +40,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.35.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.54.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -65,7 +65,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.35.0"
+      version = ">= 3.54.0"
     }
   }
 }
@@ -167,7 +167,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.3.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.35.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.54.0)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
 
@@ -225,9 +225,9 @@ The following input variables are optional (have default values):
 
 ### <a name="input_archetype_config_overrides"></a> [archetype\_config\_overrides](#input\_archetype\_config\_overrides)
 
-Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom\_landing\_zones' input variable.  
-To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.  
-To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.  
+Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom\_landing\_zones' input variable.
+To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.
+To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:
 
 - root
