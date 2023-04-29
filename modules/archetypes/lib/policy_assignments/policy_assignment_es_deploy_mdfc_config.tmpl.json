@@ -19,7 +19,7 @@
     ],
     "parameters": {
       "emailSecurityContact": {
-        "value": "defaultString4"
+        "value": "security_contact@replace_me"
       },
       "logAnalytics": {
         "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
