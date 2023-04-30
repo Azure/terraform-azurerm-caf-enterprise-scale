@@ -15,7 +15,7 @@ cd "$TF_WORKSPACE"
 
 echo "==> Applying infrastructure..."
 TF_APPLY_ATTEMPTS=1
-while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 1 ]]; do
+while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 0 ]]; do
   echo "==> Attempt $TF_APPLY_ATTEMPTS"
   terraform apply \
     -auto-approve \
