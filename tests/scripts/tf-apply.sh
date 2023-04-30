@@ -20,8 +20,7 @@ while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 1 ]]; do
   terraform apply \
     -auto-approve \
     -parallelism="$PARALLELISM" \
-    -state="$TF_STATE" \
-    "$TF_PLAN_OUT"
+    -state="$TF_STATE"
 
   TF_APPLY_ATTEMPTS=$((TF_APPLY_ATTEMPTS + 1))
 done
