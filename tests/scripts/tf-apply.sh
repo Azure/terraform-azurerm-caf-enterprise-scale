@@ -18,14 +18,14 @@ TF_APPLY_ATTEMPTS=1
 TF_EXIT_CODE=1
 while [[ $TF_APPLY_ATTEMPTS -lt 6 && $TF_EXIT_CODE -ne 0 ]]; do
   echo "==> Attempt $TF_APPLY_ATTEMPTS"
-  terraform apply \
+  (terraform apply \
     -auto-approve \
     -parallelism="$PARALLELISM" \
     -var "root_id=$TF_ROOT_ID" \
     -var "root_name=ES-$TF_VERSION-$TF_AZ_VERSION" \
     -var "primary_location=$PRIMARY_LOCATION" \
     -var "secondary_location=$SECONDARY_LOCATION" \
-    -state="$TF_STATE"
+    -state="$TF_STATE")
 
   TF_EXIT_CODE=$?
   TF_APPLY_ATTEMPTS=$((TF_APPLY_ATTEMPTS + 1))
