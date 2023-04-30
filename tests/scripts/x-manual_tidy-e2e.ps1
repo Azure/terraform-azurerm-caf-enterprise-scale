@@ -1,20 +1,26 @@
 # This script is to clean up after failed E2E tests. It will delete all management groups and resource groups that start with the specified prefix.
 
+# This filter is for safety, replace with the start of the ID for the runs you want to delete without impacting other runs
 $filters = @(
-    "3pc71ie8", # This is for safety, replace with the start of the ID for the runs you want to delete without impacting other runs
-    "128i3qut",
-    "1szak3cq",
-    "ry4ewok1"
+    "fh53exgk",
+    "q75lop0n",
+    "r4uz0pbg",
+    "oc5xis40"
 )
+
+Write-Information "Deleting Management Groups" -InformationAction Continue
 
 foreach($filter in $filters)
 {
+    Write-Information "Finding management groups for $filter" -InformationAction Continue
     $entities = az account management-group entities list | ConvertFrom-Json
     $managementGroups = $entities | Where-Object { $_.type -eq "Microsoft.Management/managementGroups" -and $_.name.StartsWith($filter) }
 
+    Write-Information "Found $($managementGroups.Length) management groups for $filter" -InformationAction Continue
+
     while($managementGroups.Count -gt 0)
     {
-        foreach($managementGroup in $managementGroups | Where-Object { $_.numberOfChildGroups -eq 0 })
+        foreach( $managementGroup in $managementGroups | Where-Object { $_.numberOfChildGroups -eq 0 })
         {
             if($managementGroup.displayName -ne "Tenant Root Group")
             {
@@ -22,12 +28,12 @@ foreach($filter in $filters)
                 {
                     foreach($child in $entities | Where-Object { $_.parent.id -eq $managementGroup.id })
                     {
-                        Write-Information "Moving Subscription $($child.displayName)"
+                        Write-Information "Moving Subscription $($child.displayName)" -InformationAction Continue
                         az account management-group subscription remove --name $managementGroup.name  --subscription $child.name
                     }
                 }
 
-                Write-Information "Deleting management group $($managementGroup.displayName)"
+                Write-Information "Deleting management group $($managementGroup.displayName)" -InformationAction Continue
                 az account management-group delete --name $managementGroup.name
             }
         }
@@ -35,7 +41,10 @@ foreach($filter in $filters)
         $entities = az account management-group entities list | ConvertFrom-Json
         $managementGroups = $entities | Where-Object { $_.type -eq "Microsoft.Management/managementGroups" -and $_.name.StartsWith($filter) }
     }
+}
 
+foreach($filter in $filters)
+{
     $subscriptions = @(
         "csu-tf-connectivity-1",
         "csu-tf-connectivity-2",
@@ -54,7 +63,7 @@ foreach($filter in $filters)
 
         foreach($rg in $rgs)
         {
-            Write-Information "Deleting resource group $($rg.name) from subscription $sub"
+            Write-Information "Deleting resource group $($rg.name) from subscription $sub" -InformationAction Continue
             az group delete --resource-group $rg.name --yes --no-wait
         }
     }
