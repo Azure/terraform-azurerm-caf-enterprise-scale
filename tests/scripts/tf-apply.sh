@@ -14,8 +14,15 @@ echo "==> Switching directories..."
 cd "$TF_WORKSPACE"
 
 echo "==> Applying infrastructure..."
-terraform apply \
+TF_APPLY_ATTEMPTS=1
+while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 1 ]]; do
+  echo "==> Attempt $TF_APPLY_ATTEMPTS"
+  terraform apply \
     -auto-approve \
     -parallelism="$PARALLELISM" \
     -state="$TF_STATE" \
     "$TF_PLAN_OUT"
+
+  TF_APPLY_ATTEMPTS=$((TF_APPLY_ATTEMPTS + 1))
+done
+

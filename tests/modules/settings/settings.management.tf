@@ -44,7 +44,6 @@ locals {
     }
     advanced = {
       asc_export_resource_group_name = "${var.root_id}-security-logs-export"
-      existing_resource_group_name   = "${var.root_name}-mgmt"
     }
   }
 }
