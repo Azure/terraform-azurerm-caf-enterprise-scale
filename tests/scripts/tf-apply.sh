@@ -27,7 +27,8 @@ while [[ $TF_APPLY_ATTEMPTS -lt 6 && $TF_EXIT_CODE -ne 0 ]]; do
     -var "secondary_location=$SECONDARY_LOCATION" \
     -state="$TF_STATE"
 
-  $TF_EXIT_CODE=$?
+  TF_EXIT_CODE=$?
   TF_APPLY_ATTEMPTS=$((TF_APPLY_ATTEMPTS + 1))
+  echo "==> Terraform apply exit code: $TF_EXIT_CODE. Attempt $TF_APPLY_ATTEMPTS"
 done
 
