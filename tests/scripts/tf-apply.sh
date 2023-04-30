@@ -20,6 +20,10 @@ while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 1 ]]; do
   terraform apply \
     -auto-approve \
     -parallelism="$PARALLELISM" \
+    -var "root_id=$TF_ROOT_ID" \
+    -var "root_name=ES-$TF_VERSION-$TF_AZ_VERSION" \
+    -var "primary_location=$PRIMARY_LOCATION" \
+    -var "secondary_location=$SECONDARY_LOCATION" \
     -state="$TF_STATE"
 
   TF_APPLY_ATTEMPTS=$((TF_APPLY_ATTEMPTS + 1))
