@@ -2,10 +2,10 @@
 
 # This filter is for safety, replace with the start of the ID for the runs you want to delete without impacting other runs
 $filters = @(
-    "tmka7efj",
-    "qx0itraw",
-    "btgc3x5r",
-    "dwyrglp4"
+    "463u20kp",
+    "8zdf1q2o",
+    "9mpgz7qk",
+    "pxrhm8ks"
 )
 
 Write-Information "Deleting Management Groups" -InformationAction Continue

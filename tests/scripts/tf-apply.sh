@@ -15,7 +15,8 @@ cd "$TF_WORKSPACE"
 
 echo "==> Applying infrastructure..."
 TF_APPLY_ATTEMPTS=1
-while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 0 ]]; do
+TF_EXIT_CODE=1
+while [[ $TF_APPLY_ATTEMPTS -lt 6 && $TF_EXIT_CODE -ne 0 ]]; do
   echo "==> Attempt $TF_APPLY_ATTEMPTS"
   terraform apply \
     -auto-approve \
@@ -26,6 +27,7 @@ while [[ TF_APPLY_ATTEMPTS -lt 6 && $? -ne 0 ]]; do
     -var "secondary_location=$SECONDARY_LOCATION" \
     -state="$TF_STATE"
 
+  $TF_EXIT_CODE=$?
   TF_APPLY_ATTEMPTS=$((TF_APPLY_ATTEMPTS + 1))
 done
 
