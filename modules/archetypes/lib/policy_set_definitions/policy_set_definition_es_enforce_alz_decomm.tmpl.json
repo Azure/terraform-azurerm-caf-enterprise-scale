@@ -20,7 +20,7 @@
     "parameters": {
       "listOfResourceTypesAllowed": {
         "type": "Array",
-        "defaultValue": null,
+        "defaultValue": [],
         "metadata": {
           "displayName": "Allowed resource types in the Decommissioned landing zone",
           "description": "Allowed resource types in the Decommissioned landing zone, default is none.",
