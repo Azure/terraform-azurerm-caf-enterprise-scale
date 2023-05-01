@@ -6,11 +6,10 @@
 #
 
 TF_WORKSPACE="$PIPELINE_WORKSPACE/s/$TEST_MODULE_PATH"
-TF_PLAN_OUT="$TF_WORKSPACE/terraform-plan-$TF_VERSION-$TF_AZ_VERSION"
 TF_STATE="../tfstate/terraform-$TF_VERSION-$TF_AZ_VERSION.tfstate"
 
 echo "==> Switching directories..."
-cd "$TF_WORKSPACE"
+cd "$TF_WORKSPACE" || exit
 
 echo "==> Applying infrastructure..."
 TF_APPLY_ATTEMPTS=1
