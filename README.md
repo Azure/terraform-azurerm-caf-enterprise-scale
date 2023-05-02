@@ -213,6 +213,12 @@ Version:
 
 The following input variables are required:
 
+### <a name="input_default_location"></a> [default\_location](#input\_default\_location)
+
+Description: Must be specified, e.g `eastus`. Will set the Azure region in which region bound resources will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/
+
+Type: `string`
+
 ### <a name="input_root_parent_id"></a> [root\_parent\_id](#input\_root\_parent\_id)
 
 Description: The root\_parent\_id is used to specify where to set the root for all Landing Zone deployments. Usually the Tenant ID when deploying the core Enterprise-scale Landing Zones.
@@ -376,6 +382,7 @@ object({
               enabled = optional(bool, false)
               config = optional(object({
                 address_prefix                = optional(string, "")
+                address_management_prefix     = optional(string, "")
                 enable_dns_proxy              = optional(bool, true)
                 dns_servers                   = optional(list(string), [])
                 sku_tier                      = optional(string, "Standard")
@@ -650,7 +657,59 @@ Default: `{}`
 
 ### <a name="input_custom_landing_zones"></a> [custom\_landing\_zones](#input\_custom\_landing\_zones)
 
-Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
+Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.  
+Although the object type for this input variable is set to `any`, the expected object is based on the following structure:
+
+```terraform
+variable "custom_landing_zones" {
+  type = map(
+    object({
+      display_name               = string
+      parent_management_group_id = string
+      subscription_ids           = list(string)
+      archetype_config = object({
+        archetype_id   = string
+        parameters     = map(any)
+        access_control = map(list(string))
+      })
+    })
+  )
+```
+
+The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.  
+This was necessary to allow the `parameters` value to be correctly interpreted.  
+Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
+
+The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.  
+The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
+
+- `display_name` is the name assigned to the Management Group.
+
+- `parent_management_group_id` is the name of the parent Management Group and must be a valid Management Group ID.
+
+- `subscription_ids` is an object containing a list of Subscription IDs to assign to the current Management Group.
+
+- `archetype_config` is used to configure the configuration applied to each Management Group. This object must contain valid entries for the `archetype_id` `parameters`, and `access_control` attributes.
+
+The following example shows how you would add a simple Management Group under the `myorg-landing-zones` Management Group, where `root_id = "myorg"` and using the default\_empty archetype definition.
+
+```terraform
+  custom_landing_zones = {
+    myorg-customer-corp = {
+      display_name               = "MyOrg Customer Corp"
+      parent_management_group_id = "myorg-landing-zones"
+      subscription_ids           = [
+        "00000000-0000-0000-0000-000000000000",
+        "11111111-1111-1111-1111-111111111111",
+      ]
+      archetype_config = {
+        archetype_id   = "default_empty"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+  }
+```
 
 Type: `any`
 
@@ -663,14 +722,6 @@ Description: If specified, the custom\_policy\_roles variable overrides which Ro
 Type: `map(list(string))`
 
 Default: `{}`
-
-### <a name="input_default_location"></a> [default\_location](#input\_default\_location)
-
-Description: If specified, will set the Azure region in which region bound resources will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/
-
-Type: `string`
-
-Default: `"eastus"`
 
 ### <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags)
 
