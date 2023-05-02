@@ -1,9 +1,7 @@
 locals {
   policy_mitigated = flatten([
     for k, v in local.azurerm_management_group_policy_assignment_enterprise_scale : [
-      # reverse(split("/", v.scope_id))[0] # archetype_id
       for overwrite in
-      # lookup archetype_id --> policy_exemption --> policy_name --> this gives a list of all the exemption from this policy
       lookup(lookup(lookup(var.archetype_config_overrides, reverse(split("/", v.scope_id))[0], {}), "policy_exemption", {}), v.template.name, [])
       : [
         {
@@ -21,9 +19,7 @@ locals {
   )
   initiative_mitigated = flatten([
     for k, v in local.azurerm_management_group_policy_assignment_enterprise_scale : [
-      # reverse(split("/", v.scope_id))[0] # archetype_id
       for overwrite_key, overwrite_value in
-      # lookup archetype_id --> policy_exemption --> policy_name --> this gives a list of all the exemption from this policy
       lookup(lookup(lookup(var.archetype_config_overrides, reverse(split("/", v.scope_id))[0], {}), "initiative_exemption", {}), v.template.name, []) : [
         for overwrite in overwrite_value : [
           {
