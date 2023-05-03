@@ -155,7 +155,7 @@ Please see the [releases](https://github.com/Azure/terraform-azurerm-caf-enterpr
 
 For upgrade guides from previous versions, please refer to the following links:
 
-- [Upgrade from v3.3.0 to v3.4.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v3.4.0)
+- [Upgrade from v3.3.0 to v4.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v4.0.0)
 - [Upgrade from v2.4.1 to v3.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0)
 - [Upgrade from v1.1.4 to v2.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0)
 - [Upgrade from v0.4.0 to v1.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v0.4.0-to-v1.0.0)
@@ -238,10 +238,10 @@ The following input variables are optional (have default values):
 
 ### <a name="input_archetype_config_overrides"></a> [archetype\_config\_overrides](#input\_archetype\_config\_overrides)
 
-Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.  
-Does not work for management groups specified by the 'custom\_landing\_zones' input variable.  
-To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.  
-To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.  
+Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.
+Does not work for management groups specified by the 'custom\_landing\_zones' input variable.
+To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.
+To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:
 
 - root
@@ -665,7 +665,7 @@ Default: `{}`
 
 ### <a name="input_custom_landing_zones"></a> [custom\_landing\_zones](#input\_custom\_landing\_zones)
 
-Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.  
+Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
 Although the object type for this input variable is set to `any`, the expected object is based on the following structure:
 
 ```terraform
@@ -684,11 +684,11 @@ variable "custom_landing_zones" {
   )
 ```
 
-The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.  
-This was necessary to allow the `parameters` value to be correctly interpreted.  
+The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.
+This was necessary to allow the `parameters` value to be correctly interpreted.
 Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
 
-The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.  
+The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.
 The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
 
 - `display_name` is the name assigned to the Management Group.
