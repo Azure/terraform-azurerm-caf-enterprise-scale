@@ -197,6 +197,7 @@ object({
             enabled = optional(bool, false)
             config = optional(object({
               address_prefix                = optional(string, "")
+              address_management_prefix     = optional(string, "")
               enable_dns_proxy              = optional(bool, true)
               dns_servers                   = optional(list(string), [])
               sku_tier                      = optional(string, "Standard")
