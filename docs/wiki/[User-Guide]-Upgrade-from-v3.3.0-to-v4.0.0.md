@@ -11,6 +11,19 @@ The `v4.0.0` release is predominantly a policy refresh release that brings the l
 - Azure Firewall Basic
 - Policy Enforcement Mode control for built-in archetypes
 
+### Breaking Policy Changes
+
+The policy initiative `Enforce-EncryptTransit` has reduced some parameters and will therefore need to be either manually deleted (with any assignments), or the resource (and any assignments) will need to be tainted to force a redeployment with the new module version.
+To taint the resources, run the following commands:
+
+```bash
+# Taint the definintion
+terraform taint 'module.alz.azurerm_policy_set_definition.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_ROOT_MG>/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit"]'
+
+# Taint the assignment
+terraform taint 'module.alz.azurerm_management_group_policy_assignment.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_LANDING_ZONES_MG>/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL"]'
+```
+
 #### How to Retain the Previous Set of Policies
 
 If you want to use the v3.3.0 version of policies, you can add the following files as per [these docs](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Expand-Built-in-Archetype-Definitions):
