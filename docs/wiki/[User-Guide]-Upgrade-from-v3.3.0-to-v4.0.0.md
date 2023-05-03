@@ -241,7 +241,7 @@ There are no bug fixes in this release, it is just a policy refresh release.
 
 ## For more information
 
-**Full Changelog**: [v3.3.0...v3.4.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/compare/v3.3.0...v3.4.0)
+**Full Changelog**: [v3.3.0...v4.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/compare/v3.3.0...v4.0.0)
 
 ## Next steps
 

@@ -103,6 +103,8 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
+  default_location = "<YOUR_LOCATION>"
+
   providers = {
     azurerm              = azurerm
     azurerm.connectivity = azurerm
@@ -116,7 +118,6 @@ module "enterprise_scale" {
   deploy_identity_resources    = var.deploy_identity_resources
   subscription_id_identity     = data.azurerm_client_config.core.subscription_id
   configure_identity_resources = local.configure_identity_resources
-
 }
 ```
 

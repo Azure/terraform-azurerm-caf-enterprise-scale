@@ -430,7 +430,8 @@ variable "configure_connectivity_resources" {
 variable "archetype_config_overrides" {
   type        = any
   description = <<DESCRIPTION
-If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom_landing_zones' input variable.
+If specified, will set custom Archetype configurations for the core ALZ Management Groups.
+Does not work for management groups specified by the 'custom_landing_zones' input variable.
 To override the default configuration settings for any of the core Management Groups, add an entry to the archetype_config_overrides variable for each Management Group you want to customize.
 To create a valid archetype_config_overrides entry, you must provide the required values in the archetype_config_overrides object for the Management Group you wish to re-configure.
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:

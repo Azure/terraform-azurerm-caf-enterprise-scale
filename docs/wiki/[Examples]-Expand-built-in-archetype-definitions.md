@@ -109,7 +109,6 @@ module "enterprise_scale" {
   root_id        = "myorg"
   root_name      = "My Organization"
   library_path   = "${path.root}/lib"
-
 }
 
 ```
