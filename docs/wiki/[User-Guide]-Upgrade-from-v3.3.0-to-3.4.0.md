@@ -1,13 +1,15 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-The `v3.4.0` release is predominantly a policy refresh release that brings the latest policy changes from the upstream reference.
+The `v4.0.0` release is predominantly a policy refresh release that brings the latest policy changes from the upstream reference.
 
 ### New features
 
 - Support for version 3.54.0 of the `azurerm` provider. This is a breaking change and will require updates to your calling module.
 - Upstream policy definition and assignment updates have now been included in this module. Full details of the policy updates can be found [here](https://github.com/Azure/Enterprise-Scale/wiki/Whats-new#april-2023).
 - Support for policy assignment overrides as per [these docs](https://learn.microsoft.com/en-gb/azure/governance/policy/concepts/assignment-structure#overrides-preview).
+- Azure Firewall Basic
+- Policy Enforcement Mode control for built-in archetypes
 
 #### How to Retain the Previous Set of Policies
 
