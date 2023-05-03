@@ -92,6 +92,10 @@ variable "root_name" {
   default = "Enterprise-Scale"
 }
 
+variable "default_location" {
+  type    = string
+}
+
 # Declare the Azure landing zones Terraform module
 # and provide a base configuration.
 
@@ -99,6 +103,7 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
+  default_location = var.default_location
 
   providers = {
     azurerm              = azurerm

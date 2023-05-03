@@ -54,6 +54,8 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
+  default_location = "<YOUR_LOCATION>"
+
   providers = {
     azurerm              = azurerm
     azurerm.connectivity = azurerm
@@ -65,7 +67,6 @@ module "enterprise_scale" {
   root_name      = "My Organization"
 
   deploy_demo_landing_zones = true
-
 }
 ```
 

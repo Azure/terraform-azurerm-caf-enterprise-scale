@@ -93,12 +93,18 @@ variable "root_name" {
   default = "Enterprise-Scale"
 }
 
+variable "default_location" {
+  type    = string
+}
+
 # Declare the Azure landing zones Terraform module
 # and provide a base configuration.
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+
+  default_location = var.default_location
 
   providers = {
     azurerm              = azurerm
@@ -232,9 +238,10 @@ The following input variables are optional (have default values):
 
 ### <a name="input_archetype_config_overrides"></a> [archetype\_config\_overrides](#input\_archetype\_config\_overrides)
 
-Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups. Does not work for management groups specified by the 'custom\_landing\_zones' input variable.
-To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.
-To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.
+Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.  
+Does not work for management groups specified by the 'custom\_landing\_zones' input variable.  
+To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.  
+To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.  
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:
 
 - root

@@ -107,6 +107,8 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints, should be at least 3.4.0
 
+  default_location = "<YOUR_LOCATION>"
+
   providers = {
     azurerm              = azurerm
     azurerm.connectivity = azurerm
@@ -116,7 +118,7 @@ module "enterprise_scale" {
   root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = "myorg"
   root_name      = "My Organization"
-  
+
   deploy_corp_landing_zones   = true
   deploy_online_landing_zones = true
   deploy_identity_resources   = true
