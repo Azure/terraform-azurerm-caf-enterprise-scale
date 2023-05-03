@@ -1,12 +1,17 @@
 {
-    "es_platform": {
-        "policy_assignments": [],
-        "policy_definitions": [],
-        "policy_set_definitions": [],
-        "role_definitions": [],
-        "archetype_config": {
-            "parameters": {},
-            "access_control": {}
-        }
+  "es_platform": {
+    "policy_assignments": [
+      "Deny-MgmtPorts-Internet",
+      "Deny-Subnet-Without-Nsg",
+      "Deploy-Log-Analytics",
+      "Deploy-VM-Backup"
+    ],
+    "policy_definitions": [],
+    "policy_set_definitions": [],
+    "role_definitions": [],
+    "archetype_config": {
+      "parameters": {},
+      "access_control": {}
     }
+  }
 }

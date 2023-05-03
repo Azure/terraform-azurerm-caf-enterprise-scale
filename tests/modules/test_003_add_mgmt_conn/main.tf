@@ -110,7 +110,6 @@ module "test_management" {
   deploy_management_resources    = true
   configure_management_resources = module.settings.management.configure_management_resources
   subscription_id_management     = data.azurerm_client_config.management.subscription_id
-
 }
 
 module "test_connectivity" {

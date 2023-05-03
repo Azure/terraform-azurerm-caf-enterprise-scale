@@ -1,27 +1,28 @@
 {
-  "name": "Deploy-VM-Monitoring",
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-VM-Monitoring",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
   "properties": {
     "description": "Enable Azure Monitor for the virtual machines (VMs) in the specified scope (management group, subscription or resource group). Takes Log Analytics workspace as parameter.",
     "displayName": "Enable Azure Monitor for VMs",
-    "notScopes": [],
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
+    "enforcementMode": null,
+    "nonComplianceMessages": [
+      {
+        "message": "Azure Monitor {enforcementMode} be enabled for Virtual Machines."
+      }
+    ],
     "parameters": {
       "logAnalytics_1": {
         "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
       }
     },
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/55f3eceb-5573-4f18-9695-226972c6d74a",
-    "nonComplianceMessages": [
-      {
-        "message": "Azure Monitor {enforcementMode} be enabled for VMs."
-      }
-    ],
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": null
-  },
-  "location": "${default_location}",
-  "identity": {
-    "type": "SystemAssigned"
+    "notScopes": []
   }
 }

@@ -16,6 +16,22 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   not_scopes   = try(each.value.template.properties.notScopes, local.empty_list)
   enforce      = each.value.enforcement_mode
 
+  # Dynamic configuration blocks for overrides
+  # More details can be found here: https://learn.microsoft.com/en-gb/azure/governance/policy/concepts/assignment-structure#overrides-preview
+  dynamic "overrides" {
+    for_each = try({ for i, override in each.value.template.properties.overrides : i => override }, local.empty_map)
+    content {
+      value = overrides.value.value
+      dynamic "selectors" {
+        for_each = try({ for i, selector in overrides.value.selectors : i => selector }, local.empty_map)
+        content {
+          in     = try(selectors.in, local.empty_list)
+          not_in = try(selectors.not_in, local.empty_list)
+        }
+      }
+    }
+  }
+
   # Dynamic configuration blocks
   # The identity block only supports a single value
   # for type = "SystemAssigned" so the following logic
