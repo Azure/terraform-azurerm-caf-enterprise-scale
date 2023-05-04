@@ -126,7 +126,7 @@
       "azureAsrPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.siterecovery.windowsazure.com"
       },
-      "azureIoTPrivateDnsZoneId": {
+      "azureIotPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.azure-devices-provisioning.net"
       },
       "azureKeyVaultPrivateDnsZoneId": {
