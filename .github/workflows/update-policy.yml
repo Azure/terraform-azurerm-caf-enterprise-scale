@@ -80,7 +80,7 @@ jobs:
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
 
             Write-Information "==> Running archetypes script..." -InformationAction Continue
-            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignmentsArchetypes.ps1 `
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignmentArchetypes.ps1 `
               -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
               -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
