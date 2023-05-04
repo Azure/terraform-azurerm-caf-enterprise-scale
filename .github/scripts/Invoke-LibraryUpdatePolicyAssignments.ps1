@@ -34,6 +34,10 @@ if(!(Test-Path $parser))
 {
     Write-Information "Downloading Template Parser." -InformationAction Continue
     Invoke-WebRequest "$ParserToolUrl/$parserExe" -OutFile $parser
+    if($IsLinux)
+    {
+        chmod +x $parser
+    }
 }
 
 # Update the policy assignments if enabled
