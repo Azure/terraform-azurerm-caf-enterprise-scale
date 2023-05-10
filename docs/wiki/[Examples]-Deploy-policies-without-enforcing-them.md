@@ -21,20 +21,20 @@ Currently, this file looks like this. You can see that a couple of policies are 
 {
     "es_landing_zones": {
         "policy_assignments": [
-          Audit-AppGW-WAF = false
-          Deny-IP-forwarding = false
-          Deny-MgmtPorts-Internet = false
-          Deny-Priv-Esc-AKS = false
-          Deny-Privileged-AKS = false
-          Deny-Storage-http = false
-          Deny-Subnet-Without-Nsg = false
-          Deploy-AKS-Policy = false
-          Deploy-AzSqlDb-Auditing = false
-          Deploy-SQL-Threat = false
-          Deploy-VM-Backup = false
-          Enable-DDoS-VNET = false
-          Enforce-AKS-HTTPS = false
-          Enforce-GR-KeyVault = false
+          "Audit-AppGW-WAF",
+          "Deny-IP-forwarding",
+          "Deny-MgmtPorts-Internet",
+          "Deny-Priv-Esc-AKS",
+          "Deny-Privileged-AKS",
+          "Deny-Storage-http",
+          "Deny-Subnet-Without-Nsg",
+          "Deploy-AKS-Policy",
+          "Deploy-AzSqlDb-Auditing",
+          "Deploy-SQL-Threat",
+          "Deploy-VM-Backup",
+          "Enable-DDoS-VNET",
+          "Enforce-AKS-HTTPS",
+          "Enforce-GR-KeyVault",
           "Enforce-TLS-SSL"
         ],
         "policy_definitions": [],
