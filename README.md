@@ -238,10 +238,10 @@ The following input variables are optional (have default values):
 
 ### <a name="input_archetype_config_overrides"></a> [archetype\_config\_overrides](#input\_archetype\_config\_overrides)
 
-Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.
-Does not work for management groups specified by the 'custom\_landing\_zones' input variable.
-To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.
-To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.
+Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.  
+Does not work for management groups specified by the 'custom\_landing\_zones' input variable.  
+To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.  
+To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.  
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:
 
 - root
@@ -307,7 +307,20 @@ Default: `{}`
 
 ### <a name="input_configure_connectivity_resources"></a> [configure\_connectivity\_resources](#input\_configure\_connectivity\_resources)
 
-Description: If specified, will customize the "Connectivity" landing zone settings and resources.
+Description: If specified, will customize the \"Connectivity\" landing zone settings and resources.
+
+Notes for the `configure_connectivity_resources` variable:
+
+- `settings.hub_network_virtual_network_gateway.config.address_prefix`
+  - Only support adding a single address prefix for GatewaySubnet subnet
+- `settings.hub_network_virtual_network_gateway.config.gateway_sku_expressroute`
+  - If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
+- `settings.hub_network_virtual_network_gateway.config.gateway_sku_vpn`
+  - If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+- `settings.hub_network_virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation`
+  - Valid options are `""`, `"Static"` or `"Dynamic"`. Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+- `settings.azure_firewall.config.address_prefix`
+  - Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
 
 Type:
 
@@ -622,17 +635,21 @@ object({
       security_center = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
-          email_security_contact             = optional(string, "security_contact@replace_me")
-          enable_defender_for_app_services   = optional(bool, true)
-          enable_defender_for_arm            = optional(bool, true)
-          enable_defender_for_containers     = optional(bool, true)
-          enable_defender_for_dns            = optional(bool, true)
-          enable_defender_for_key_vault      = optional(bool, true)
-          enable_defender_for_oss_databases  = optional(bool, true)
-          enable_defender_for_servers        = optional(bool, true)
-          enable_defender_for_sql_servers    = optional(bool, true)
-          enable_defender_for_sql_server_vms = optional(bool, true)
-          enable_defender_for_storage        = optional(bool, true)
+          email_security_contact                                = optional(string, "security_contact@replace_me")
+          enable_defender_for_apis                              = optional(bool, true)
+          enable_defender_for_app_services                      = optional(bool, true)
+          enable_defender_for_arm                               = optional(bool, true)
+          enable_defender_for_containers                        = optional(bool, true)
+          enable_defender_for_cosmosdbs                         = optional(bool, true)
+          enable_defender_for_cspm                              = optional(bool, true)
+          enable_defender_for_dns                               = optional(bool, true)
+          enable_defender_for_key_vault                         = optional(bool, true)
+          enable_defender_for_oss_databases                     = optional(bool, true)
+          enable_defender_for_servers                           = optional(bool, true)
+          enable_defender_for_servers_vulnerability_assessments = optional(bool, true)
+          enable_defender_for_sql_servers                       = optional(bool, true)
+          enable_defender_for_sql_server_vms                    = optional(bool, true)
+          enable_defender_for_storage                           = optional(bool, true)
         }), {})
       }), {})
     }), {})
@@ -665,7 +682,7 @@ Default: `{}`
 
 ### <a name="input_custom_landing_zones"></a> [custom\_landing\_zones](#input\_custom\_landing\_zones)
 
-Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
+Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.  
 Although the object type for this input variable is set to `any`, the expected object is based on the following structure:
 
 ```terraform
@@ -684,11 +701,11 @@ variable "custom_landing_zones" {
   )
 ```
 
-The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.
-This was necessary to allow the `parameters` value to be correctly interpreted.
+The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.  
+This was necessary to allow the `parameters` value to be correctly interpreted.  
 Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
 
-The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.
+The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.  
 The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
 
 - `display_name` is the name assigned to the Management Group.
