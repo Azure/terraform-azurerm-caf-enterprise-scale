@@ -63,17 +63,21 @@ locals {
     VMInsights                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
     ContainerInsights           = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
   }
-  deploy_security_settings           = local.settings.security_center.enabled
-  deploy_defender_for_app_services   = local.settings.security_center.config.enable_defender_for_app_services
-  deploy_defender_for_arm            = local.settings.security_center.config.enable_defender_for_arm
-  deploy_defender_for_containers     = local.settings.security_center.config.enable_defender_for_containers
-  deploy_defender_for_dns            = local.settings.security_center.config.enable_defender_for_dns
-  deploy_defender_for_key_vault      = local.settings.security_center.config.enable_defender_for_key_vault
-  deploy_defender_for_oss_databases  = local.settings.security_center.config.enable_defender_for_oss_databases
-  deploy_defender_for_servers        = local.settings.security_center.config.enable_defender_for_servers
-  deploy_defender_for_sql_servers    = local.settings.security_center.config.enable_defender_for_sql_servers
-  deploy_defender_for_sql_server_vms = local.settings.security_center.config.enable_defender_for_sql_server_vms
-  deploy_defender_for_storage        = local.settings.security_center.config.enable_defender_for_storage
+  deploy_security_settings                              = local.settings.security_center.enabled
+  deploy_defender_for_apis                              = local.settings.security_center.config.enable_defender_for_apis
+  deploy_defender_for_app_services                      = local.settings.security_center.config.enable_defender_for_app_services
+  deploy_defender_for_arm                               = local.settings.security_center.config.enable_defender_for_arm
+  deploy_defender_for_containers                        = local.settings.security_center.config.enable_defender_for_containers
+  deploy_defender_for_cosmosdbs                         = local.settings.security_center.config.enable_defender_for_cosmosdbs
+  deploy_defender_for_cspm                              = local.settings.security_center.config.enable_defender_for_cspm
+  deploy_defender_for_dns                               = local.settings.security_center.config.enable_defender_for_dns
+  deploy_defender_for_key_vault                         = local.settings.security_center.config.enable_defender_for_key_vault
+  deploy_defender_for_oss_databases                     = local.settings.security_center.config.enable_defender_for_oss_databases
+  deploy_defender_for_servers                           = local.settings.security_center.config.enable_defender_for_servers
+  deploy_defender_for_servers_vulnerability_assessments = local.settings.security_center.config.enable_defender_for_servers_vulnerability_assessments
+  deploy_defender_for_sql_servers                       = local.settings.security_center.config.enable_defender_for_sql_servers
+  deploy_defender_for_sql_server_vms                    = local.settings.security_center.config.enable_defender_for_sql_server_vms
+  deploy_defender_for_storage                           = local.settings.security_center.config.enable_defender_for_storage
 }
 
 # Configuration settings for resource type:
