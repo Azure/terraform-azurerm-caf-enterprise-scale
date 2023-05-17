@@ -169,10 +169,6 @@
                       "string",
                       "string",
                       "string",
-                      "string",
-                      "string",
-                      "string",
-                      "string",
                       "string"
                     ]
                   ]
@@ -425,9 +421,6 @@
                       "string",
                       "string",
                       "string",
-                      "string",
-                      "string",
-                      "string",
                       "string"
                     ]
                   ]
@@ -595,10 +588,6 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-GR-KeyVault",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL",
               "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup",
               "/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Sandbox",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Audit-UnusedResources",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Classic-Resources",
@@ -786,9 +775,6 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ee60d5ba-80b7-58dc-b6c6-1e0ceaaaf879",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/ef4aaac1-624f-57fb-8444-3d2fdd091a35",
               "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/roleAssignments/8f7e20b7-7a5d-551d-b4fd-047861c4bc93",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/0d0c6b8a-9b91-5c3a-bef7-37b5c5f8e3d0",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/76966c3c-7c51-5b97-8c6f-8919fa2d10ca",
-              "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/9d62645f-5cd1-5c6e-bac7-8e2ee9b0e172",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/11a25eeb-1f4e-513b-a393-4fac399cc28b",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/14538d97-4a28-5d98-889f-4466a399396f",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/3d3e8314-e2b2-5209-a43a-7e53ddabe248",
@@ -1884,176 +1870,6 @@
               "overrides": [],
               "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"30\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"sku\":{\"value\":\"pergb2018\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
-              "resource_selectors": [],
-              "timeouts": null
-            },
-            "sensitive_values": {
-              "identity": [
-                {}
-              ],
-              "non_compliance_message": [
-                {}
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "resource_selectors": []
-            }
-          },
-          {
-            "address": "module.test_core.azurerm_management_group_policy_assignment.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\"]",
-            "mode": "managed",
-            "type": "azurerm_management_group_policy_assignment",
-            "name": "enterprise_scale",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "description": "This policy denies any network security rule that allows management port access from the Internet",
-              "display_name": "Management port access from the Internet should be blocked",
-              "enforce": true,
-              "identity": [],
-              "location": "northeurope",
-              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-              "name": "Deny-MgmtPorts-Internet",
-              "non_compliance_message": [
-                {
-                  "content": "Management port access from the Internet must be blocked.",
-                  "policy_definition_reference_id": null
-                }
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "parameters": null,
-              "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-MgmtPorts-From-Internet",
-              "resource_selectors": [],
-              "timeouts": null
-            },
-            "sensitive_values": {
-              "identity": [],
-              "non_compliance_message": [
-                {}
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "resource_selectors": []
-            }
-          },
-          {
-            "address": "module.test_core.azurerm_management_group_policy_assignment.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\"]",
-            "mode": "managed",
-            "type": "azurerm_management_group_policy_assignment",
-            "name": "enterprise_scale",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "description": "This policy denies the creation of a subnet without a Network Security Group to protect traffic across subnets.",
-              "display_name": "Subnets should have a Network Security Group",
-              "enforce": true,
-              "identity": [],
-              "location": "northeurope",
-              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-              "name": "Deny-Subnet-Without-Nsg",
-              "non_compliance_message": [
-                {
-                  "content": "Subnets must have a Network Security Group.",
-                  "policy_definition_reference_id": null
-                }
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "parameters": null,
-              "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
-              "resource_selectors": [],
-              "timeouts": null
-            },
-            "sensitive_values": {
-              "identity": [],
-              "non_compliance_message": [
-                {}
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "resource_selectors": []
-            }
-          },
-          {
-            "address": "module.test_core.azurerm_management_group_policy_assignment.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"]",
-            "mode": "managed",
-            "type": "azurerm_management_group_policy_assignment",
-            "name": "enterprise_scale",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "description": "Deploy resource group containing Log Analytics workspace and linked automation account to centralize logs and monitoring. The automation account is aprerequisite for solutions like Updates and Change Tracking.",
-              "display_name": "Configure Log Analytics workspace and automation account to centralize logs and monitoring",
-              "enforce": true,
-              "identity": [
-                {
-                  "identity_ids": null,
-                  "type": "SystemAssigned"
-                }
-              ],
-              "location": "northeurope",
-              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-              "name": "Deploy-Log-Analytics",
-              "non_compliance_message": [
-                {
-                  "content": "Log Analytics workspace and automation account must be configured to centralize logs and monitoring.",
-                  "policy_definition_reference_id": null
-                }
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"30\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
-              "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
-              "resource_selectors": [],
-              "timeouts": null
-            },
-            "sensitive_values": {
-              "identity": [
-                {}
-              ],
-              "non_compliance_message": [
-                {}
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "resource_selectors": []
-            }
-          },
-          {
-            "address": "module.test_core.azurerm_management_group_policy_assignment.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"]",
-            "mode": "managed",
-            "type": "azurerm_management_group_policy_assignment",
-            "name": "enterprise_scale",
-            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "description": "Enforce backup for all virtual machines by deploying a recovery services vault in the same location and resource group as the virtual machine. Doing this is useful when different application teams in your organization are allocated separate resource groups and need to manage their own backups and restores. You can optionally exclude virtual machines containing a specified tag to control the scope of assignment. See https://aka.ms/AzureVMAppCentricBackupExcludeTag.",
-              "display_name": "Configure backup on virtual machines without a given tag to a new recovery services vault with a default policy",
-              "enforce": true,
-              "identity": [
-                {
-                  "identity_ids": null,
-                  "type": "SystemAssigned"
-                }
-              ],
-              "location": "northeurope",
-              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-              "name": "Deploy-VM-Backup",
-              "non_compliance_message": [
-                {
-                  "content": "Backup on virtual machines without a given tag must be configured to a new recovery services vault with a default policy.",
-                  "policy_definition_reference_id": null
-                }
-              ],
-              "not_scopes": [],
-              "overrides": [],
-              "parameters": null,
-              "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/98d0b9f8-fd90-49c9-88e2-d3baf3b0dd86",
               "resource_selectors": [],
               "timeouts": null
             },
@@ -7567,7 +7383,7 @@
               "create_duration": "30s",
               "destroy_duration": "0s",
               "triggers": {
-                "azurerm_management_group_policy_assignment_enterprise_scale": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Public-IP\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Audit-AppGW-WAF\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-IP-forwarding\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Esc-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Privileged-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-GR-KeyVault\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Sandbox\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Audit-UnusedResources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Classic-Resources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-UnmanagedDisk\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
+                "azurerm_management_group_policy_assignment_enterprise_scale": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Public-IP\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Audit-AppGW-WAF\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-IP-forwarding\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Esc-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Privileged-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-GR-KeyVault\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Sandbox\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Audit-UnusedResources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Classic-Resources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-UnmanagedDisk\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
               }
             },
             "sensitive_values": {
@@ -7622,7 +7438,7 @@
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_role_assignment_enterprise_scale": "[]",
-                "module_role_assignments_for_policy": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
+                "module_role_assignments_for_policy": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
               }
             },
             "sensitive_values": {
@@ -7979,76 +7795,6 @@
               }
             ],
             "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/0d0c6b8a-9b91-5c3a-bef7-37b5c5f8e3d0\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/0d0c6b8a-9b91-5c3a-bef7-37b5c5f8e3d0",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "0d0c6b8a-9b91-5c3a-bef7-37b5c5f8e3d0",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"]"
-          },
-          {
-            "resources": [
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/76966c3c-7c51-5b97-8c6f-8919fa2d10ca\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/76966c3c-7c51-5b97-8c6f-8919fa2d10ca",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "76966c3c-7c51-5b97-8c6f-8919fa2d10ca",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/5e467623-bb1f-42f4-a55d-6e525e11384b",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              },
-              {
-                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/9d62645f-5cd1-5c6e-bac7-8e2ee9b0e172\"]",
-                "mode": "managed",
-                "type": "azurerm_role_assignment",
-                "name": "for_policy",
-                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/roleAssignments/9d62645f-5cd1-5c6e-bac7-8e2ee9b0e172",
-                "provider_name": "registry.terraform.io/hashicorp/azurerm",
-                "schema_version": 0,
-                "values": {
-                  "condition": null,
-                  "condition_version": null,
-                  "delegated_managed_identity_resource_id": null,
-                  "description": null,
-                  "name": "9d62645f-5cd1-5c6e-bac7-8e2ee9b0e172",
-                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
-                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-                  "timeouts": null
-                },
-                "sensitive_values": {}
-              }
-            ],
-            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-platform/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\"]"
           },
           {
             "resources": [
