@@ -228,6 +228,7 @@ locals {
           logAnalyticsWorkspaceId = local.log_analytics_workspace_resource_id
         }
       }
+      enforcement_mode = {}
     }
     "${local.root_id}-management" = {
       parameters = {
