@@ -222,6 +222,13 @@ locals {
         Deploy-VMSS-Monitoring = local.deploy_monitoring_for_vmss
       }
     }
+    "${local.root_id}-landing_zones" = {
+      parameters = {
+        Deploy-AzSqlDb-Auditing = {
+          logAnalyticsWorkspaceId = local.log_analytics_workspace_resource_id
+        }
+      }
+    }
     "${local.root_id}-management" = {
       parameters = {
         Deploy-Log-Analytics = {
