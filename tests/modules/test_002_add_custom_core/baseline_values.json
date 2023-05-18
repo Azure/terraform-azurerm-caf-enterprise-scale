@@ -2193,7 +2193,7 @@
               ],
               "not_scopes": [],
               "overrides": [],
-              "parameters": "{\"logAnalyticsWorkspaceId\":{\"value\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
+              "parameters": "{\"logAnalyticsWorkspaceId\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/25da7dfb-0666-4a15-a8f5-402127efd8bb",
               "resource_selectors": [],
               "timeouts": null
@@ -3226,7 +3226,7 @@
               ],
               "not_scopes": [],
               "overrides": [],
-              "parameters": "{\"ascExportResourceGroupLocation\":{\"value\":\"northeurope\"},\"ascExportResourceGroupName\":{\"value\":\"root-id-1-security-logs-export\"},\"emailSecurityContact\":{\"value\":\"test.user@replace_me\"},\"enableAscForApis\":{\"value\":\"Disabled\"},\"enableAscForAppServices\":{\"value\":\"DeployIfNotExists\"},\"enableAscForArm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForContainers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForCosmosDbs\":{\"value\":\"Disabled\"},\"enableAscForCspm\":{\"value\":\"Disabled\"},\"enableAscForDns\":{\"value\":\"DeployIfNotExists\"},\"enableAscForKeyVault\":{\"value\":\"DeployIfNotExists\"},\"enableAscForOssDb\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServersVulnerabilityAssessments\":{\"value\":\"Disabled\"},\"enableAscForSql\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSqlOnVm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForStorage\":{\"value\":\"DeployIfNotExists\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"},\"vulnerabilityAssessmentProvider\":{\"value\":\"default\"}}",
+              "parameters": "{\"ascExportResourceGroupLocation\":{\"value\":\"northeurope\"},\"ascExportResourceGroupName\":{\"value\":\"root-id-1-security-logs-export\"},\"emailSecurityContact\":{\"value\":\"test.user@replace_me\"},\"enableAscForApis\":{\"value\":\"DeployIfNotExists\"},\"enableAscForAppServices\":{\"value\":\"DeployIfNotExists\"},\"enableAscForArm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForContainers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForCosmosDbs\":{\"value\":\"DeployIfNotExists\"},\"enableAscForCspm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForDns\":{\"value\":\"DeployIfNotExists\"},\"enableAscForKeyVault\":{\"value\":\"DeployIfNotExists\"},\"enableAscForOssDb\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServers\":{\"value\":\"DeployIfNotExists\"},\"enableAscForServersVulnerabilityAssessments\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSql\":{\"value\":\"DeployIfNotExists\"},\"enableAscForSqlOnVm\":{\"value\":\"DeployIfNotExists\"},\"enableAscForStorage\":{\"value\":\"DeployIfNotExists\"},\"logAnalytics\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"},\"vulnerabilityAssessmentProvider\":{\"value\":\"default\"}}",
               "policy_definition_id": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
               "resource_selectors": [],
               "timeouts": null
@@ -3431,7 +3431,7 @@
             "values": {
               "description": "Enable Azure Monitor for the virtual machines (VMs) in the specified scope (management group, subscription or resource group). Takes Log Analytics workspace as parameter.",
               "display_name": "Enable Azure Monitor for VMs",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -3443,7 +3443,7 @@
               "name": "Deploy-VM-Monitoring",
               "non_compliance_message": [
                 {
-                  "content": "Azure Monitor must be enabled for Virtual Machines.",
+                  "content": "Azure Monitor should be enabled for Virtual Machines.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -7052,7 +7052,7 @@
                   "reference_id": "azurePolicyForKubernetes"
                 },
                 {
-                  "parameter_values": "{\"Effect\":{\"value\":\"[parameters('enableAscForKeyVault')]\"}}",
+                  "parameter_values": "{\"effect\":{\"value\":\"[parameters('enableAscForKeyVault')]\"}}",
                   "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/1f725891-01c0-420a-9059-4fa46cb770b7",
                   "policy_group_names": null,
                   "reference_id": "defenderForKeyVaults"
