@@ -561,6 +561,8 @@ The decision not to hard code the structure in the input variable `type` is by d
 This was necessary to allow the `parameters` value to be correctly interpreted.
 Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
 
+> Note the id of the custom landing zone will be appended to `var.root_id`. The maximum length of the resulting name must be less than 90 characters.
+
 The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.
 The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
 
@@ -595,8 +597,8 @@ DESCRIPTION
   default     = {}
 
   validation {
-    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-]{2,36}$", k)]) || length(keys(var.custom_landing_zones)) == 0
-    error_message = "The custom_landing_zones keys must be between 2 to 36 characters long and can only contain lowercase letters, numbers and hyphens."
+    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-]{2,89}$", k)]) || length(keys(var.custom_landing_zones)) == 0
+    error_message = "The custom_landing_zones keys must be between 2 to 89 characters long and can only contain lowercase letters, numbers and hyphens."
   }
 }
 
