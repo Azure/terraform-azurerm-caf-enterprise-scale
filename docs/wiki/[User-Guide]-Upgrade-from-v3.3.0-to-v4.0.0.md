@@ -18,10 +18,10 @@ To taint the resources, run the following commands:
 
 ```bash
 # Taint the definintion
-terraform taint 'module.alz.azurerm_policy_set_definition.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_ROOT_MG>/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit"]'
+terraform taint 'module.<MODULE_REFERENCE>.azurerm_policy_set_definition.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_ROOT_MG>/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit"]'
 
 # Taint the assignment
-terraform taint 'module.alz.azurerm_management_group_policy_assignment.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_LANDING_ZONES_MG>/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL"]'
+terraform taint 'module.<MODULE_REFERENCE>.azurerm_management_group_policy_assignment.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_LANDING_ZONES_MG>/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL"]'
 ```
 
 #### How to Retain the Previous Set of Policies
