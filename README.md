@@ -307,7 +307,20 @@ Default: `{}`
 
 ### <a name="input_configure_connectivity_resources"></a> [configure\_connectivity\_resources](#input\_configure\_connectivity\_resources)
 
-Description: If specified, will customize the "Connectivity" landing zone settings and resources.
+Description: If specified, will customize the \"Connectivity\" landing zone settings and resources.
+
+Notes for the `configure_connectivity_resources` variable:
+
+- `settings.hub_network_virtual_network_gateway.config.address_prefix`
+  - Only support adding a single address prefix for GatewaySubnet subnet
+- `settings.hub_network_virtual_network_gateway.config.gateway_sku_expressroute`
+  - If specified, will deploy the ExpressRoute gateway into the GatewaySubnet subnet
+- `settings.hub_network_virtual_network_gateway.config.gateway_sku_vpn`
+  - If specified, will deploy the VPN gateway into the GatewaySubnet subnet
+- `settings.hub_network_virtual_network_gateway.config.advanced_vpn_settings.private_ip_address_allocation`
+  - Valid options are `""`, `"Static"` or `"Dynamic"`. Will set `private_ip_address_enabled` and `private_ip_address_allocation` as needed.
+- `settings.azure_firewall.config.address_prefix`
+  - Only support adding a single address prefix for AzureFirewallManagementSubnet subnet
 
 Type:
 
@@ -622,17 +635,21 @@ object({
       security_center = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
-          email_security_contact             = optional(string, "security_contact@replace_me")
-          enable_defender_for_app_services   = optional(bool, true)
-          enable_defender_for_arm            = optional(bool, true)
-          enable_defender_for_containers     = optional(bool, true)
-          enable_defender_for_dns            = optional(bool, true)
-          enable_defender_for_key_vault      = optional(bool, true)
-          enable_defender_for_oss_databases  = optional(bool, true)
-          enable_defender_for_servers        = optional(bool, true)
-          enable_defender_for_sql_servers    = optional(bool, true)
-          enable_defender_for_sql_server_vms = optional(bool, true)
-          enable_defender_for_storage        = optional(bool, true)
+          email_security_contact                                = optional(string, "security_contact@replace_me")
+          enable_defender_for_apis                              = optional(bool, true)
+          enable_defender_for_app_services                      = optional(bool, true)
+          enable_defender_for_arm                               = optional(bool, true)
+          enable_defender_for_containers                        = optional(bool, true)
+          enable_defender_for_cosmosdbs                         = optional(bool, true)
+          enable_defender_for_cspm                              = optional(bool, true)
+          enable_defender_for_dns                               = optional(bool, true)
+          enable_defender_for_key_vault                         = optional(bool, true)
+          enable_defender_for_oss_databases                     = optional(bool, true)
+          enable_defender_for_servers                           = optional(bool, true)
+          enable_defender_for_servers_vulnerability_assessments = optional(bool, true)
+          enable_defender_for_sql_servers                       = optional(bool, true)
+          enable_defender_for_sql_server_vms                    = optional(bool, true)
+          enable_defender_for_storage                           = optional(bool, true)
         }), {})
       }), {})
     }), {})

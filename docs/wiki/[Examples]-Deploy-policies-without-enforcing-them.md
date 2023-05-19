@@ -21,19 +21,21 @@ Currently, this file looks like this. You can see that a couple of policies are 
 {
     "es_landing_zones": {
         "policy_assignments": [
-            "Deny-IP-Forwarding",
-            "Deny-RDP-From-Internet",
-            "Deny-Storage-http",
-            "Deny-Subnet-Without-Nsg",
-            "Deploy-AKS-Policy",
-            "Deploy-SQL-DB-Auditing",
-            "Deploy-SQL-Threat",
-            "Deploy-VM-Backup",
-            "Deny-Priv-Escalation-AKS",
-            "Deny-Priv-Containers-AKS",
-            "Enable-DDoS-VNET",
-            "Enforce-AKS-HTTPS",
-            "Enforce-TLS-SSL"
+          "Audit-AppGW-WAF",
+          "Deny-IP-forwarding",
+          "Deny-MgmtPorts-Internet",
+          "Deny-Priv-Esc-AKS",
+          "Deny-Privileged-AKS",
+          "Deny-Storage-http",
+          "Deny-Subnet-Without-Nsg",
+          "Deploy-AKS-Policy",
+          "Deploy-AzSqlDb-Auditing",
+          "Deploy-SQL-Threat",
+          "Deploy-VM-Backup",
+          "Enable-DDoS-VNET",
+          "Enforce-AKS-HTTPS",
+          "Enforce-GR-KeyVault",
+          "Enforce-TLS-SSL"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],
@@ -136,19 +138,21 @@ locals {
   archetype_config_overrides = {
     myorg-landing-zones = {
       enforcement_mode = {
-        Deny-IP-Forwarding       = false
-        Deny-RDP-From-Internet   = false
-        Deny-Storage-http        = false
-        Deny-Subnet-Without-Nsg  = false
-        Deploy-AKS-Policy        = false
-        Deploy-SQL-DB-Auditing   = false
-        Deploy-SQL-Threat        = false
-        Deploy-VM-Backup         = false
-        Deny-Priv-Escalation-AKS = false
-        Deny-Priv-Containers-AKS = false
-        Enable-DDoS-VNET         = false
-        Enforce-AKS-HTTPS        = false
-        Enforce-TLS-SSL          = false
+        Audit-AppGW-WAF         = false
+        Deny-IP-forwarding      = false
+        Deny-MgmtPorts-Internet = false
+        Deny-Priv-Esc-AKS       = false
+        Deny-Privileged-AKS     = false
+        Deny-Storage-http       = false
+        Deny-Subnet-Without-Nsg = false
+        Deploy-AKS-Policy       = false
+        Deploy-AzSqlDb-Auditing = false
+        Deploy-SQL-Threat       = false
+        Deploy-VM-Backup        = false
+        Enable-DDoS-VNET        = false
+        Enforce-AKS-HTTPS       = false
+        Enforce-GR-KeyVault     = false
+        Enforce-TLS-SSL         = false
       }
     }
   }
@@ -168,28 +172,30 @@ locals {
   archetype_config_overrides = {
     myorg-corp = {
       enforcement_mode = {
-        Deny-DataB-Pip           = false
-        Deny-DataB-Sku           = false
-        Deny-DataB-Vnet          = false
+        Audit-PeDnsZones         = false
+        Deny-HybridNetworking    = false
         Deny-Public-Endpoints    = false
+        Deny-Public-IP-On-NIC    = false
         Deploy-Private-DNS-Zones = false
       }
     }
     myorg-landing-zones = {
       enforcement_mode = {
-        Deny-IP-Forwarding       = false
-        Deny-RDP-From-Internet   = false
-        Deny-Storage-http        = false
-        Deny-Subnet-Without-Nsg  = false
-        Deploy-AKS-Policy        = false
-        Deploy-SQL-DB-Auditing   = false
-        Deploy-SQL-Threat        = false
-        Deploy-VM-Backup         = false
-        Deny-Priv-Escalation-AKS = false
-        Deny-Priv-Containers-AKS = false
-        Enable-DDoS-VNET         = false
-        Enforce-AKS-HTTPS        = false
-        Enforce-TLS-SSL          = false
+        Audit-AppGW-WAF         = false
+        Deny-IP-forwarding      = false
+        Deny-MgmtPorts-Internet = false
+        Deny-Priv-Esc-AKS       = false
+        Deny-Privileged-AKS     = false
+        Deny-Storage-http       = false
+        Deny-Subnet-Without-Nsg = false
+        Deploy-AKS-Policy       = false
+        Deploy-AzSqlDb-Auditing = false
+        Deploy-SQL-Threat       = false
+        Deploy-VM-Backup        = false
+        Enable-DDoS-VNET        = false
+        Enforce-AKS-HTTPS       = false
+        Enforce-GR-KeyVault     = false
+        Enforce-TLS-SSL         = false
       }
     }
   }

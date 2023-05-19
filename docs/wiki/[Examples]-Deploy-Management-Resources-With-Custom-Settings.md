@@ -177,6 +177,7 @@ locals {
           enable_solution_for_sql_advanced_threat_detection = false
           enable_solution_for_updates                       = true
           enable_solution_for_vm_insights                   = true
+          enable_solution_for_container_insights            = true
           enable_sentinel                                   = true
         }
       }
@@ -184,16 +185,20 @@ locals {
         enabled = true
         config = {
           email_security_contact             = var.security_alerts_email_address
-          enable_defender_for_app_services   = true
-          enable_defender_for_arm            = true
-          enable_defender_for_containers     = true
-          enable_defender_for_dns            = true
-          enable_defender_for_key_vault      = true
-          enable_defender_for_oss_databases  = true
-          enable_defender_for_servers        = true
-          enable_defender_for_sql_servers    = true
-          enable_defender_for_sql_server_vms = true
-          enable_defender_for_storage        = true
+          enable_defender_for_apis                              = true
+          enable_defender_for_app_services                      = true
+          enable_defender_for_arm                               = true
+          enable_defender_for_containers                        = true
+          enable_defender_for_cosmosdbs                         = true
+          enable_defender_for_cspm                              = true
+          enable_defender_for_dns                               = true
+          enable_defender_for_key_vault                         = true
+          enable_defender_for_oss_databases                     = true
+          enable_defender_for_servers                           = true
+          enable_defender_for_servers_vulnerability_assessments = true
+          enable_defender_for_sql_servers                       = true
+          enable_defender_for_sql_server_vms                    = true
+          enable_defender_for_storage                           = true
         }
       }
     }
@@ -218,11 +223,19 @@ You have also assigned the current Subscription from your provider configuration
 Check the following Policy Assignments to see how these have been configured with settings matching your Management resources configuration set by `configure_management_resources`:
 
 - Scope = `root`
+  - `Audit-UnusedResources`
+  - `Deny-Classic-Resources`
+  - `Deny-UnmanagedDisk`
+  - `Deploy-ASC-Monitoring`
+  - `Deploy-AzActivity-Log`
+  - `Deploy-MDEndpoints`
   - `Deploy-MDFC-Config`
+  - `Deploy-MDFC-OssDb`
+  - `Deploy-MDFC-SqlAtp`
+  - `Deploy-Resource-Diag`
   - `Deploy-VM-Monitoring`
   - `Deploy-VMSS-Monitoring`
-  - `Deploy-AzActivity-Log`
-  - `Deploy-Resource-Diag`
+  - `Enforce-ACSB`
 - Scope = `management`
   - `Deploy-Log-Analytics`
 

@@ -63,17 +63,21 @@ locals {
     VMInsights                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
     ContainerInsights           = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
   }
-  deploy_security_settings           = local.settings.security_center.enabled
-  deploy_defender_for_app_services   = local.settings.security_center.config.enable_defender_for_app_services
-  deploy_defender_for_arm            = local.settings.security_center.config.enable_defender_for_arm
-  deploy_defender_for_containers     = local.settings.security_center.config.enable_defender_for_containers
-  deploy_defender_for_dns            = local.settings.security_center.config.enable_defender_for_dns
-  deploy_defender_for_key_vault      = local.settings.security_center.config.enable_defender_for_key_vault
-  deploy_defender_for_oss_databases  = local.settings.security_center.config.enable_defender_for_oss_databases
-  deploy_defender_for_servers        = local.settings.security_center.config.enable_defender_for_servers
-  deploy_defender_for_sql_servers    = local.settings.security_center.config.enable_defender_for_sql_servers
-  deploy_defender_for_sql_server_vms = local.settings.security_center.config.enable_defender_for_sql_server_vms
-  deploy_defender_for_storage        = local.settings.security_center.config.enable_defender_for_storage
+  deploy_security_settings                              = local.settings.security_center.enabled
+  deploy_defender_for_apis                              = local.settings.security_center.config.enable_defender_for_apis
+  deploy_defender_for_app_services                      = local.settings.security_center.config.enable_defender_for_app_services
+  deploy_defender_for_arm                               = local.settings.security_center.config.enable_defender_for_arm
+  deploy_defender_for_containers                        = local.settings.security_center.config.enable_defender_for_containers
+  deploy_defender_for_cosmosdbs                         = local.settings.security_center.config.enable_defender_for_cosmosdbs
+  deploy_defender_for_cspm                              = local.settings.security_center.config.enable_defender_for_cspm
+  deploy_defender_for_dns                               = local.settings.security_center.config.enable_defender_for_dns
+  deploy_defender_for_key_vault                         = local.settings.security_center.config.enable_defender_for_key_vault
+  deploy_defender_for_oss_databases                     = local.settings.security_center.config.enable_defender_for_oss_databases
+  deploy_defender_for_servers                           = local.settings.security_center.config.enable_defender_for_servers
+  deploy_defender_for_servers_vulnerability_assessments = local.settings.security_center.config.enable_defender_for_servers_vulnerability_assessments
+  deploy_defender_for_sql_servers                       = local.settings.security_center.config.enable_defender_for_sql_servers
+  deploy_defender_for_sql_server_vms                    = local.settings.security_center.config.enable_defender_for_sql_server_vms
+  deploy_defender_for_storage                           = local.settings.security_center.config.enable_defender_for_storage
 }
 
 # Configuration settings for resource type:
@@ -188,20 +192,24 @@ locals {
     (local.root_id) = {
       parameters = {
         Deploy-MDFC-Config = {
-          emailSecurityContact           = local.settings.security_center.config.email_security_contact
-          logAnalytics                   = local.log_analytics_workspace_resource_id
-          ascExportResourceGroupName     = local.asc_export_resource_group_name
-          ascExportResourceGroupLocation = local.location
-          enableAscForAppServices        = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
-          enableAscForArm                = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
-          enableAscForContainers         = local.deploy_defender_for_containers ? "DeployIfNotExists" : "Disabled"
-          enableAscForDns                = local.deploy_defender_for_dns ? "DeployIfNotExists" : "Disabled"
-          enableAscForKeyVault           = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
-          enableAscForOssDb              = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
-          enableAscForServers            = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
-          enableAscForSql                = local.deploy_defender_for_sql_servers ? "DeployIfNotExists" : "Disabled"
-          enableAscForSqlOnVm            = local.deploy_defender_for_sql_server_vms ? "DeployIfNotExists" : "Disabled"
-          enableAscForStorage            = local.deploy_defender_for_storage ? "DeployIfNotExists" : "Disabled"
+          emailSecurityContact                        = local.settings.security_center.config.email_security_contact
+          logAnalytics                                = local.log_analytics_workspace_resource_id
+          ascExportResourceGroupName                  = local.asc_export_resource_group_name
+          ascExportResourceGroupLocation              = local.location
+          enableAscForApis                            = local.deploy_defender_for_apis ? "DeployIfNotExists" : "Disabled"
+          enableAscForAppServices                     = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
+          enableAscForArm                             = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
+          enableAscForContainers                      = local.deploy_defender_for_containers ? "DeployIfNotExists" : "Disabled"
+          enableAscForCosmosDbs                       = local.deploy_defender_for_cosmosdbs ? "DeployIfNotExists" : "Disabled"
+          enableAscForCspm                            = local.deploy_defender_for_cspm ? "DeployIfNotExists" : "Disabled"
+          enableAscForDns                             = local.deploy_defender_for_dns ? "DeployIfNotExists" : "Disabled"
+          enableAscForKeyVault                        = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
+          enableAscForOssDb                           = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
+          enableAscForServers                         = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
+          enableAscForServersVulnerabilityAssessments = local.deploy_defender_for_servers_vulnerability_assessments ? "DeployIfNotExists" : "Disabled"
+          enableAscForSql                             = local.deploy_defender_for_sql_servers ? "DeployIfNotExists" : "Disabled"
+          enableAscForSqlOnVm                         = local.deploy_defender_for_sql_server_vms ? "DeployIfNotExists" : "Disabled"
+          enableAscForStorage                         = local.deploy_defender_for_storage ? "DeployIfNotExists" : "Disabled"
         }
         Deploy-VM-Monitoring = {
           logAnalytics_1 = local.log_analytics_workspace_resource_id
