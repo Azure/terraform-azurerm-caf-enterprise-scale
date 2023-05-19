@@ -48,6 +48,25 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
     }
   }
 
+  # Optional Resource selectors block
+  # Only one of "in" or "not_in" should be used
+  # Each kind can be used only once
+
+  dynamic "resource_selectors" {
+    for_each = try({ for i, resourceSelector in each.value.template.properties.resourceSelectors : i => resourceSelector }, local.empty_map)
+    content {
+      name = resource_selectors.value.name
+      dynamic "selectors" {
+        for_each = try({ for i, selector in resource_selectors.value.selectors : i => selector }, local.empty_map)
+        content {
+          in     = try(selectors.value.in, local.empty_list)
+          kind   = try(selectors.value.kind)
+          not_in = try(selectors.value.not_in, local.empty_list)
+        }
+      }
+    }
+  }
+
   # Optional Non-compliance messages
   # The mesage will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
   # The language can the altered or localised using the variables
