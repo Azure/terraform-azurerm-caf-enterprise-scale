@@ -60,7 +60,7 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
         for_each = try({ for i, selector in resource_selectors.value.selectors : i => selector }, local.empty_map)
         content {
           in     = try(selectors.value.in, local.empty_list)
-          kind   = try(selectors.value.kind)
+          kind   = selectors.value.kind
           not_in = try(selectors.value.not_in, local.empty_list)
         }
       }
