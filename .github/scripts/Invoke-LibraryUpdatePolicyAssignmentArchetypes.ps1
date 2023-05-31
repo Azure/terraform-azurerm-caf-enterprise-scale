@@ -44,7 +44,7 @@ if(!(Test-Path $parser))
 Write-Information "Updating Policy Assignment Archetypes." -InformationAction Continue
 
 $eslzArmSourcePath = "$SourcePath/eslzArm/eslzArm.json"
-$eslzArmParametersSourcePath = "$SourcePath/eslzArm/eslzArm.test.param.json"
+$eslzArmParametersSourcePath = "$SourcePath/eslzArm/eslzArm.terraform-sync.param.json"
 
 $eslzArm = & $parser "-s $eslzArmSourcePath" "-f $eslzArmParametersSourcePath" "-a" | Out-String | ConvertFrom-Json
 
@@ -55,7 +55,7 @@ foreach($resource in $eslzArm)
     $scope = $resource.scope
     $policyAssignment = $resource.properties.templateLink.uri
 
-    if($null -ne $policyAssignment -and $policyAssignment.StartsWith("https://deploymenturi/managementGroupTemplates/policyAssignments/"))
+    if($null -ne $policyAssignment -and $policyAssignment.StartsWith("https://deploymenturi/managementGroupTemplates/policyAssignments/") -and $resource.condition)
     {
         $managementGroup = $scope.Split("/")[-1]
         $policyAssignmentFileName = $policyAssignment.Split("/")[-1]
@@ -77,7 +77,7 @@ foreach($resource in $eslzArm)
 }
 
 $managementGroupMapping = @{
-    "testPortal" = "root"
+    "default" = "root"
     "management" = "management"
     "connectivity" = "connectivity"
     "corp" = "corp"
@@ -101,7 +101,7 @@ foreach($managementGroup in $policyAssignments.Keys)
         $parsedAssignment = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" | Out-String | ConvertFrom-Json
         $policyAssignmentName = $parsedAssignment.name
 
-        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("testPortal-", "")]
+        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("default-", "")]
 
         Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
 
@@ -131,4 +131,3 @@ foreach($managementGroup in $finalPolicyAssignments.Keys)
     $json = $archetypeJson | ConvertTo-Json -Depth 10
     $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$archetypeFilePath" -Force
 }
-
