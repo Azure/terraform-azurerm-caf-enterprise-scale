@@ -77,7 +77,7 @@ foreach($resource in $eslzArm)
 }
 
 $managementGroupMapping = @{
-    "default" = "root"
+    "defaults" = "root"
     "management" = "management"
     "connectivity" = "connectivity"
     "corp" = "corp"
@@ -101,7 +101,7 @@ foreach($managementGroup in $policyAssignments.Keys)
         $parsedAssignment = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" | Out-String | ConvertFrom-Json
         $policyAssignmentName = $parsedAssignment.name
 
-        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("default-", "")]
+        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
 
         Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
 
