@@ -12,7 +12,6 @@
       "Deploy-AzSqlDb-Auditing",
       "Deploy-SQL-Threat",
       "Deploy-VM-Backup",
-      "Enable-DDoS-VNET",
       "Enforce-AKS-HTTPS",
       "Enforce-GR-KeyVault",
       "Enforce-TLS-SSL"
