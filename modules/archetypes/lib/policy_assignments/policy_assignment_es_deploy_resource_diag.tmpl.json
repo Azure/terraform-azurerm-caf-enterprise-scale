@@ -14,7 +14,7 @@
     "enforcementMode": null,
     "nonComplianceMessages": [
       {
-        "message": "Diagnostic settings {enforcementMode} deployed to Azure services."
+        "message": "Diagnostic settings {enforcementMode} be deployed to Azure services."
       }
     ],
     "parameters": {
