@@ -2462,7 +2462,7 @@
             "values": {
               "description": "Deploy resource group containing Log Analytics workspace and linked automation account to centralize logs and monitoring. The automation account is aprerequisite for solutions like Updates and Change Tracking.",
               "display_name": "Configure Log Analytics workspace and automation account to centralize logs and monitoring",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -2474,7 +2474,7 @@
               "name": "Deploy-Log-Analytics",
               "non_compliance_message": [
                 {
-                  "content": "Log Analytics workspace and automation account must be configured to centralize logs and monitoring.",
+                  "content": "Log Analytics workspace and automation account should be configured to centralize logs and monitoring.",
                   "policy_definition_reference_id": null
                 }
               ],
