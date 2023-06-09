@@ -11,7 +11,7 @@
     "description": "Deploy resource group containing Log Analytics workspace and linked automation account to centralize logs and monitoring. The automation account is aprerequisite for solutions like Updates and Change Tracking.",
     "displayName": "Configure Log Analytics workspace and automation account to centralize logs and monitoring",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
-    "enforcementMode": null,
+    "enforcementMode": "Disabled",
     "nonComplianceMessages": [
       {
         "message": "Log Analytics workspace and automation account {enforcementMode} be configured to centralize logs and monitoring."
