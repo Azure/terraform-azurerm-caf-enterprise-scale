@@ -1,8 +1,10 @@
 # Azure landing zone Terraform deployment with Zero Trust network principles (Hub and Spoke)
 
-This guide will review how to deploy the Azure landing zone Terraform accelerator with a jump start on Zero Trust Networking Principles for Azure landing zones. For more information on Zero Trust security model and principles visit [Embrace proactive security with Zero Trust](/security/business/zero-trust). Let's review the [Zero Trust aligned networking](/security/zero-trust/deploy/networks) configurations in the [Azure landing zone portal accelerator](/azure/cloud-adoption-framework/ready/landing-zone/#azure-landing-zone-portal-accelerator).
+This guide will review how to deploy the Azure landing zone Terraform accelerator with a jump start on Zero Trust Networking Principles for Azure landing zones.
 
-Deploy Zero Trust network principles with the Terraform deployment will involve setting certain module variables to a value.  Some of these are already the default values, and do not need to be changed.  Others will need to be changed from their default values.  These variables reside in the [variables.tf](../../variables.tf) file and can be provided at run time, or replaced/overridden for your deployment.
+For more information on Zero Trust security model and principles visit [Embrace proactive security with Zero Trust](/security/business/zero-trust).
+
+Deploying Zero Trust network principles with the Terraform deployment will involve setting certain module variables to a value.  Some of these are already the default values, and do not need to be changed.  Others will need to be changed from their default values.  These variables reside in the [variables.tf](../../variables.tf) file and can be provided at run time, or replaced/overridden for your deployment.
 
 ## Configure Connectivity resources
 
