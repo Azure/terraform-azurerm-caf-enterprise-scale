@@ -34,6 +34,7 @@
   - [Level 300][wiki_examples_level_300]
     - [Deploy connectivity resources with custom settings (Hub and Spoke)][wiki_deploy_connectivity_resources_custom]
     - [Deploy connectivity resources with custom settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom]
+    - [Deploy with Zero Trust network principles (Hub and Spoke)][wiki_deploy_ZT_network]
     - [Deploy identity resources with custom settings][wiki_deploy_identity_resources_custom]
     - [Deploy management resources with custom settings][wiki_deploy_management_resources_custom]
     - [Expand built-in archetype definitions][wiki_expand_built_in_archetype_definitions]
@@ -103,3 +104,4 @@
 [wiki_create_custom_policies_policy_sets_and_assignments]:           %5BExamples%5D-Create-Custom-Policies-Policy-Sets-and-Assignments "Wiki - Create custom policies, initiatives and assignments"
 [wiki_assign_a_built_in_policy]:                                     %5BExamples%5D-Assign-a-Built-in-Policy "Wiki - Assign a built-in policy"
 [wiki_create_and_assign_custom_rbac_roles]:                          %5BExamples%5D-Create-and-Assign-Custom-RBAC-Roles "Wiki - Create and assign custom RBAC roles"
+[wiki_deploy_ZT_network]:                                                    %5BExamples%5D-Deploy-ZT-Network "Wiki - Deploy with Zero Trust network principles (Hub and Spoke)"

@@ -105,7 +105,7 @@ In order to assign the `Reader-Support-Tickets` role to the group, you need to u
 
 Instead of group, if you would like to assign the role to a SPN in the form of application registered in Azure AD then make sure to use the Object ID of the Service Principal related to that application which you can find from the "Enterprise applications" blade of Azure AD Portal. For more details on the relation between application and service principal objects please see [this article](https://learn.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals).
 
->**IMPORTANT**: Due to how the module works, you must prefix your group name with the location at which it has been saved. In our example this would be `"[CONTOSO]"`.
+>**IMPORTANT**: Due to how the module works, you must prefix your role name with the location at which it has been saved. In our example this would be `"[CONTOSO]"`.
 If we had saved our role at the `es_landing_zones` scope then we would use a prefix of `"[CONTOSO-LANDING-ZONES]"`
 
 ### `lib/archetype_extension_es_landing_zones.tmpl.json`
