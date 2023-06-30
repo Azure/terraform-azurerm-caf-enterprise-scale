@@ -20,8 +20,8 @@ variable "root_id" {
   default     = "es"
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))
-    error_message = "Value must be between 2 to 10 characters long, consisting of alphanumeric characters and hyphens."
+    condition     = can(regex("[a-zA-Z0-9-]", var.root_id))
+    error_message = "Value must consist of alphanumeric characters and hyphens."
   }
 }
 
