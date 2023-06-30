@@ -9,8 +9,8 @@ variable "root_id" {
   description = "Specifies the ID of the Enterprise-scale root Management Group where Policy Definitions are created by default."
 
   validation {
-    condition     = can(regex("[a-zA-Z0-9-]", var.root_id))
-    error_message = "Value must consist of alphanumeric characters and hyphens."
+    condition     = can(regex("^/providers/Microsoft.Management/managementGroups/[a-zA-Z0-9-_\\(\\)\\.]{1,89}$", var.root_id))
+    error_message = "Value must be a valid Management Group ID."
   }
 }
 
