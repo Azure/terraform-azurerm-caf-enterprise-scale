@@ -132,6 +132,7 @@
       "Deploy-SQL-minTLS",
       "Deploy-Sql-SecurityAlertPolicies",
       "Deploy-Sql-Tde",
+      "Deploy-Sql-vulnerabilityAssessments_20230706",
       "Deploy-Sql-vulnerabilityAssessments",
       "Deploy-SqlMi-minTLS",
       "Deploy-Storage-sslEnforcement",
