@@ -2193,7 +2193,7 @@
               ],
               "not_scopes": [],
               "overrides": [],
-              "parameters": "{\"logAnalyticsWorkspaceId\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-1-la\"}}",
+              "parameters": "{\"logAnalyticsWorkspaceId\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourceGroups/root-id-1-mgmt/providers/microsoft.operationalinsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/25da7dfb-0666-4a15-a8f5-402127efd8bb",
               "resource_selectors": [],
               "timeouts": null

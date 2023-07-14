@@ -19,7 +19,7 @@
     ],
     "parameters": {
       "logAnalyticsWorkspaceId": {
-        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
+        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/microsoft.operationalinsights/workspaces/${root_scope_id}-la"
       }
     },
     "scope": "${current_scope_resource_id}",
