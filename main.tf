@@ -16,12 +16,7 @@ module "management_group_archetypes" {
   library_path            = local.library_path
   template_file_variables = local.template_file_variables
   default_location        = local.default_location
-  enforcement_mode = lookup(merge(
-    module.connectivity_resources.configuration.archetype_config_overrides,
-    module.identity_resources.configuration.archetype_config_overrides,
-    module.management_resources.configuration.archetype_config_overrides,
-    local.archetype_config_overrides_map,
-  ), each.value.archetype_config.archetype_id == "root" ? local.root_id : "${local.root_id}-${each.value.archetype_config.archetype_id}", local.enforcement_mode_default).enforcement_mode
+  enforcement_mode        = each.value.archetype_config.enforcement_mode
 }
 
 # The following module is used to generate the configuration
