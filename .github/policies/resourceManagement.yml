@@ -1,0 +1,163 @@
+id:
+name: GitOps.PullRequestIssueManagement
+description: GitOps.PullRequestIssueManagement primitive
+owner:
+resource: repository
+disabled: false
+where:
+configuration:
+  resourceManagementConfiguration:
+    scheduledSearches:
+      - description:
+        frequencies:
+          - hourly:
+              hour: 6
+        filters:
+          - isIssue
+          - isOpen
+          - hasLabel:
+              label: "Needs: Author Feedback"
+          - hasLabel:
+              label: "Status: No Recent Activity"
+          - noActivitySince:
+              days: 7
+        actions:
+          - closeIssue
+      - description:
+        frequencies:
+          - hourly:
+              hour: 6
+        filters:
+          - isIssue
+          - isOpen
+          - hasLabel:
+              label: "Needs: Author Feedback"
+          - noActivitySince:
+              days: 7
+          - isNotLabeledWith:
+              label: "Status: No Recent Activity"
+          - isNotInAnyMilestone
+        actions:
+          - addLabel:
+              label: "Status: No Recent Activity"
+          - addReply:
+              reply: This issue has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **7 days**. It will be closed if no further activity occurs **within 7 days of this comment**.
+      - description:
+        frequencies:
+          - hourly:
+              hour: 6
+        filters:
+          - isIssue
+          - isOpen
+          - hasLabel:
+              label: "Resolution: Duplicate"
+          - noActivitySince:
+              days: 1
+        actions:
+          - addReply:
+              reply: This issue has been marked as duplicate and has not had any activity for **1 day**. It will be closed for housekeeping purposes.
+          - closeIssue
+      - description:
+        frequencies:
+          - hourly:
+              hour: 6
+        filters:
+          - isOpen
+          - hasLabel:
+              label: "Resolution: wontfix"
+          - noActivitySince:
+              days: 1
+          - isIssue
+        actions:
+          - addReply:
+              reply: This issue has been marked as wontfix and has not had any activity for **1 day**. It will be closed for housekeeping purposes.
+          - closeIssue
+      - description:
+        frequencies:
+          - hourly:
+              hour: 6
+        filters:
+          - isOpen
+          - hasLabel:
+              label: PR-merged
+          - noActivitySince:
+              days: 3
+        actions:
+          - addReply:
+              reply: This PR has been merged and the issue has not had any activity for **3 days**. It will be closed for housekeeping purposes.
+          - closeIssue
+    eventResponderTasks:
+      - if:
+          - payloadType: Issue_Comment
+          - isAction:
+              action: Created
+          - isActivitySender:
+              issueAuthor: True
+          - hasLabel:
+              label: "Needs: Author Feedback"
+          - isOpen
+        then:
+          - addLabel:
+              label: "Needs: Attention :wave:"
+          - removeLabel:
+              label: "Needs: Author Feedback"
+        description:
+      - if:
+          - payloadType: Issues
+          - not:
+              isAction:
+                action: Closed
+          - hasLabel:
+              label: "Status: No Recent Activity"
+        then:
+          - removeLabel:
+              label: "Status: No Recent Activity"
+        description:
+      - if:
+          - payloadType: Issue_Comment
+          - hasLabel:
+              label: "Status: No Recent Activity"
+        then:
+          - removeLabel:
+              label: "Status: No Recent Activity"
+        description:
+      - if:
+          - payloadType: Pull_Request
+        then:
+          - inPrLabel:
+              label: PR-referenced
+        description:
+      - if:
+          - payloadType: Issues
+          - labelAdded:
+              label: enhancement
+          - isOpen
+        then:
+          - removeLabel:
+              label: "Needs: Triage :mag:"
+        description:
+      - if:
+          - payloadType: Issues
+          - isAssignedToSomeone
+          - hasLabel:
+              label: "Needs: Triage :mag:"
+        then:
+          - removeLabel:
+              label: "Needs: Triage :mag:"
+        description:
+      - if:
+          - payloadType: Issue_Comment
+          - isOpen
+          - hasLabel:
+              label: "Needs: Attention :wave:"
+          - or:
+              - activitySenderHasPermission:
+                  permission: Write
+              - activitySenderHasPermission:
+                  permission: Admin
+        then:
+          - removeLabel:
+              label: "Needs: Attention :wave:"
+        description:
+onFailure:
+onSuccess:
