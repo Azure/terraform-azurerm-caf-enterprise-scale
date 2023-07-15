@@ -36,7 +36,7 @@ variable "parameters" {
 }
 
 variable "enforcement_mode" {
-  type        = map(string)
+  type        = map(bool)
   description = "If specified, will use the specified enforcement_mode values to override defaults for Policy Assignments."
   default     = {}
 }

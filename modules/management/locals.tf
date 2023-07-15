@@ -254,7 +254,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-Log-Analytics = "DoNotEnforce"
+        Deploy-Log-Analytics = false
       }
     }
   }
