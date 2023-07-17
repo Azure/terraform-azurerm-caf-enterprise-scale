@@ -859,7 +859,7 @@ locals {
   azfw_mgmt_pip_name = {
     for location in local.hub_network_locations :
     location =>
-    try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].name,
+    try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_name,
     "${local.azfw_name[location]}-mgmt-pip")
   }
   azfw_pip_resource_id_prefix = {
@@ -882,6 +882,18 @@ locals {
     location =>
     try(
       local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].zones,
+      length(local.azfw_zones[location]) == 1 ?
+      local.azfw_zones[location] :
+      length(local.azfw_zones[location]) >= 2 ?
+      ["1", "2", "3"] :
+      null
+    )
+  }
+  azfw_mgmt_pip_zones = {
+    for location in local.hub_network_locations :
+    location =>
+    try(
+      local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_zones,
       length(local.azfw_zones[location]) == 1 ?
       local.azfw_zones[location] :
       length(local.azfw_zones[location]) >= 2 ?
@@ -1050,16 +1062,16 @@ locals {
                 name                    = local.azfw_mgmt_pip_name[location]
                 resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
                 location                = location
-                zones                   = local.azfw_pip_zones[location]
-                sku                     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].sku, "Standard")
-                allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].allocation_method, "Static")
-                ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_version, null)
-                idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].idle_timeout_in_minutes, null)
-                domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].domain_name_label, null)
-                reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].reverse_fqdn, null)
-                public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].public_ip_prefix_id, null)
-                ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].ip_tags, null)
-                tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].tags, local.tags)
+                zones                   = local.azfw_mgmt_pip_zones[location]
+                sku                     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_sku, "Standard")
+                allocation_method       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_allocation_method, "Static")
+                ip_version              = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_ip_version, null)
+                idle_timeout_in_minutes = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_idle_timeout_in_minutes, null)
+                domain_name_label       = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_domain_name_label, null)
+                reverse_fqdn            = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_reverse_fqdn, null)
+                public_ip_prefix_id     = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_public_ip_prefix_id, null)
+                ip_tags                 = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_ip_tags, null)
+                tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_firewall"][location].mgmt_tags, local.tags)
               }]
             )
           )
