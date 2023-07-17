@@ -889,7 +889,7 @@ locals {
       null
     )
   }
-    azfw_mgmt_pip_zones = {
+  azfw_mgmt_pip_zones = {
     for location in local.hub_network_locations :
     location =>
     try(
