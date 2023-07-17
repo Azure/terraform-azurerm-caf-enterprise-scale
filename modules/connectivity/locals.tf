@@ -1235,7 +1235,7 @@ locals {
       resource_group_name = local.virtual_hub_resource_group_name[location]
       location            = location
       # Optional definition attributes
-      sku            = virtual_hub.config.sku == null ? null : virtual_hub.config.sku == "" ? null : "Standard"
+      sku            = virtual_hub.config.sku == "" ? null : "Standard"
       address_prefix = virtual_hub.config.address_prefix
       virtual_wan_id = length(local.existing_virtual_wan_resource_id) > 0 ? local.existing_virtual_wan_resource_id : (
         length(local.virtual_wan_locations) > 0 ?
