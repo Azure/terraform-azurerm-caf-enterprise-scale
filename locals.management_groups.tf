@@ -93,7 +93,7 @@ locals {
       archetype_id     = coalesce(try(local.archetype_config_overrides_map[key].archetype_id, ""), local.es_archetype_config_defaults[key].archetype_id)
       parameters       = merge(try(local.archetype_config_overrides_map[key].parameters, {}), local.es_archetype_config_defaults[key].parameters)
       access_control   = merge(try(local.archetype_config_overrides_map[key].access_control, {}), local.es_archetype_config_defaults[key].access_control)
-      enforcement_mode = try(local.archetype_config_overrides_map[key].enforcement_mode, null)
+      enforcement_mode = try(local.archetype_config_overrides_map[key].enforcement_mode, local.empty_map)
     }
     //local.es_archetype_config_defaults,
     //local.archetype_config_overrides_map,
@@ -316,18 +316,11 @@ locals {
             lookup(value.archetype_config.parameters, policy_name, null),
           )
         }
-        enforcement_mode = {
-          for policy_name in toset(keys(merge(
-            lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
-            lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
-            lookup(module.management_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
-            value.archetype_config.parameters,
-          ))) :
-          policy_name => merge(
-            lookup(lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode, policy_name, null),
-            lookup(lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode, policy_name, null),
-            lookup(lookup(module.management_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode, policy_name, null),
-            lookup(value.archetype_config.parameters, policy_name, null),
+        enforcement_mode = merge(
+            module.connectivity_resources.configuration.archetype_config_overrides.enforcement_mode,
+            module.identity_resources.configuration.archetype_config_overrides.enforcement_mode,
+            module.management_resources.configuration.archetype_config_overrides.enforcement_mode,
+            value.archetype_config.parameters.enforcement_mode,
           )
         }
       }
