@@ -317,16 +317,14 @@ locals {
           )
         }
         enforcement_mode = merge(
-            module.connectivity_resources.configuration.archetype_config_overrides.enforcement_mode,
-            module.identity_resources.configuration.archetype_config_overrides.enforcement_mode,
-            module.management_resources.configuration.archetype_config_overrides.enforcement_mode,
-            value.archetype_config.parameters.enforcement_mode,
-          )
-        }
+          module.connectivity_resources.configuration.archetype_config_overrides.enforcement_mode,
+          module.identity_resources.configuration.archetype_config_overrides.enforcement_mode,
+          module.management_resources.configuration.archetype_config_overrides.enforcement_mode,
+          value.archetype_config.parameters.enforcement_mode,
+        )
       }
     }
   }
-
 
   # Logic to determine which subscriptions to associate with Management Groups in relaxed mode.
   # Empty unless strict_subscription_association is set to false.
