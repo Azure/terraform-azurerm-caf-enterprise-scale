@@ -95,8 +95,6 @@ locals {
       access_control   = merge(try(local.archetype_config_overrides_map[key].access_control, {}), local.es_archetype_config_defaults[key].access_control)
       enforcement_mode = try(local.archetype_config_overrides_map[key].enforcement_mode, local.empty_map)
     }
-    //local.es_archetype_config_defaults,
-    //local.archetype_config_overrides_map,
   }
 }
 
