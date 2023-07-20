@@ -317,10 +317,10 @@ locals {
           )
         }
         enforcement_mode = merge(
-          module.connectivity_resources.configuration.archetype_config_overrides.enforcement_mode,
-          module.identity_resources.configuration.archetype_config_overrides.enforcement_mode,
-          module.management_resources.configuration.archetype_config_overrides.enforcement_mode,
-          value.archetype_config.parameters.enforcement_mode,
+          lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(module.management_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          value.archetype_config.enforcement_mode,
         )
       }
     }
@@ -388,7 +388,7 @@ locals {
 }
 
 # The following local is used to build the list of Management Groups
-# that will have Diagnostic Settings deployed, based on boolean varaible
+# that will have Diagnostic Settings deployed, based on boolean variable
 # deploy_diagnostics_for_mg
 locals {
   azapi_mg_diagnostics = {
