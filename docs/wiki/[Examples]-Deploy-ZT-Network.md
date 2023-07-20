@@ -6,7 +6,7 @@ For more information on Zero Trust security model and principles visit [Secure n
 
 Deploying Zero Trust network principles with the Terraform deployment will involve setting certain module variables to a value.  Some of these are already the default values, and do not need to be changed.  Others will need to be changed from their default values.
 
-These variables reside in the [variables.tf](../../variables.tf) file and can be provided at run time, or replaced/overridden for your deployment.
+These variables reside in the [variables.tf](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/blob/main/variables.tf) file and can be provided at run time, or replaced/overridden for your deployment.
 
 ## Configure Connectivity resources
 
