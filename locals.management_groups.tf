@@ -318,7 +318,7 @@ locals {
           lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
           lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
           lookup(module.management_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
-          value.archetype_config.enforcement_mode,
+          lookup(value.archetype_config, "enforcement_mode", local.empty_map)
         )
       }
     }
