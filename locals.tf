@@ -61,7 +61,7 @@ locals {
 # https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/227#issuecomment-1097623677
 locals {
   enforcement_mode_default = {
-    enforcement_mode = null
+    enforcement_mode = {}
   }
   create_object = {
     # Technically only needs two object types to work.
