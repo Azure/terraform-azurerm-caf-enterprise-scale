@@ -7,7 +7,7 @@
     "description": "This policy denies any network security rule that allows management port access from the Internet",
     "displayName": "Management port access from the Internet should be blocked",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-MgmtPorts-From-Internet",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Management port access from the Internet {enforcementMode} be blocked."

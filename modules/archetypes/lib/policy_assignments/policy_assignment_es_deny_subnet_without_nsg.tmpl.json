@@ -7,7 +7,7 @@
     "description": "This policy denies the creation of a subnet without a Network Security Group to protect traffic across subnets.",
     "displayName": "Subnets should have a Network Security Group",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Nsg",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Subnets {enforcementMode} have a Network Security Group."
