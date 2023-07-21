@@ -61,7 +61,7 @@ $defaultParameterValues =@(
     "-p automationRegion=`${default_location}",
     "-p retentionInDays=30",
     "-p rgName=`${root_scope_id}-mgmt",
-    "-p logAnalyticsResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/microsoft.operationalinsights/workspaces/`${root_scope_id}-la",
+    "-p logAnalyticsResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/`${root_scope_id}-la",
     "-p topLevelManagementGroupPrefix=`${temp}",
     "-p dnsZoneResourceGroupId=`${private_dns_zone_prefix}",
     "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos",
@@ -100,8 +100,6 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
     {
         $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
     }
-
-    $parsedAssignments[$parsedAssignment.name].json.properties.enforcementMode = $null
 
     if($parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
     {

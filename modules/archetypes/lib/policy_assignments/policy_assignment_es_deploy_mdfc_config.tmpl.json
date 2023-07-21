@@ -11,7 +11,7 @@
     "description": "Deploy Microsoft Defender for Cloud and Security Contacts",
     "displayName": "Deploy Microsoft Defender for Cloud configuration",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Microsoft Defender for Cloud and Security Contacts {enforcementMode} be deployed."

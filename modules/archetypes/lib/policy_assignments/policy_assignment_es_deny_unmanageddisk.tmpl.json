@@ -7,7 +7,7 @@
     "description": "Deny virtual machines that do not use managed disk. It checks the managed disk property on virtual machine OS Disk fields.",
     "displayName": "Deny virtual machines and virtual machine scale sets that do not use managed disk",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/06a78e20-9358-41c9-923c-fb736d382a4d",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Virtual machines and virtual machine scales sets {enforcementMode} use a managed disk."

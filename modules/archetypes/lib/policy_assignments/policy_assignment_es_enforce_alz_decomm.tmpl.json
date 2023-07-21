@@ -11,7 +11,7 @@
     "description": "This initiative will help enforce and govern subscriptions that are placed within the decommissioned Management Group as part of your Subscription decommissioning process. See https://aka.ms/alz/policies for more information.",
     "displayName": "Enforce ALZ Decommissioned Guardrails",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-ALZ-Decomm",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "parameters": {
       "listOfResourceTypesAllowed": {
         "value": [

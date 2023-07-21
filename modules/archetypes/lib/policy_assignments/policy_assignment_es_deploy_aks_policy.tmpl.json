@@ -11,7 +11,7 @@
     "description": "Use Azure Policy Add-on to manage and report on the compliance state of your Azure Kubernetes Service (AKS) clusters. For more information, see https://aka.ms/akspolicydoc.",
     "displayName": "Deploy Azure Policy Add-on to Azure Kubernetes Service clusters",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a8eff44f-8c92-45c3-a3fb-9880802d67a7",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "scope": "${current_scope_resource_id}",
     "notScopes": [],
     "parameters": {}
