@@ -7752,7 +7752,7 @@
             "values": {
               "description": "Protect your virtual networks against volumetric and protocol attacks with Azure DDoS Network Protection. For more information, visit https://aka.ms/ddosprotectiondocs.",
               "display_name": "Virtual networks should be protected by Azure DDoS Network Protection",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -7764,7 +7764,7 @@
               "name": "Enable-DDoS-VNET",
               "non_compliance_message": [
                 {
-                  "content": "This resource must be compliant with the assigned policy.",
+                  "content": "This resource should be compliant with the assigned policy.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -7954,7 +7954,7 @@
             "values": {
               "description": "This policy initiative is a group of policies that ensures private endpoints to Azure PaaS services are integrated with Azure Private DNS zones",
               "display_name": "Configure Azure PaaS services to use private DNS zones",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -7966,7 +7966,7 @@
               "name": "Deploy-Private-DNS-Zones",
               "non_compliance_message": [
                 {
-                  "content": "Azure PaaS services must use private DNS zones.",
+                  "content": "Azure PaaS services should use private DNS zones.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -8085,14 +8085,14 @@
             "values": {
               "description": "This policy denies creation of Public IPs under the assigned scope.",
               "display_name": "Deny the creation of public IP",
-              "enforce": true,
+              "enforce": false,
               "identity": [],
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-Public-IP",
               "non_compliance_message": [
                 {
-                  "content": "Public IPs must not be created under this scope.",
+                  "content": "Public IPs should not be created under this scope.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -8124,14 +8124,14 @@
             "values": {
               "description": "This policy denies the creation of a subnet without a Network Security Group to protect traffic across subnets.",
               "display_name": "Subnets should have a Network Security Group",
-              "enforce": true,
+              "enforce": false,
               "identity": [],
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-identity",
               "name": "Deny-Subnet-Without-Nsg",
               "non_compliance_message": [
                 {
-                  "content": "Subnets must have a Network Security Group.",
+                  "content": "Subnets should have a Network Security Group.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -8163,7 +8163,7 @@
             "values": {
               "description": "Enforce backup for all virtual machines by deploying a recovery services vault in the same location and resource group as the virtual machine. Doing this is useful when different application teams in your organization are allocated separate resource groups and need to manage their own backups and restores. You can optionally exclude virtual machines containing a specified tag to control the scope of assignment. See https://aka.ms/AzureVMAppCentricBackupExcludeTag.",
               "display_name": "Configure backup on virtual machines without a given tag to a new recovery services vault with a default policy",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -8175,7 +8175,7 @@
               "name": "Deploy-VM-Backup",
               "non_compliance_message": [
                 {
-                  "content": "Backup on virtual machines without a given tag must be configured to a new recovery services vault with a default policy.",
+                  "content": "Backup on virtual machines without a given tag should be configured to a new recovery services vault with a default policy.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -8613,7 +8613,7 @@
             "values": {
               "description": "Protect your virtual networks against volumetric and protocol attacks with Azure DDoS Network Protection. For more information, visit https://aka.ms/ddosprotectiondocs.",
               "display_name": "Virtual networks should be protected by Azure DDoS Network Protection",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -8625,7 +8625,7 @@
               "name": "Enable-DDoS-VNET",
               "non_compliance_message": [
                 {
-                  "content": "This resource must be compliant with the assigned policy.",
+                  "content": "This resource should be compliant with the assigned policy.",
                   "policy_definition_reference_id": null
                 }
               ],
@@ -9759,7 +9759,7 @@
             "values": {
               "description": "Enable Azure Monitor for the virtual machines (VMs) in the specified scope (management group, subscription or resource group). Takes Log Analytics workspace as parameter.",
               "display_name": "Enable Azure Monitor for VMs",
-              "enforce": true,
+              "enforce": false,
               "identity": [
                 {
                   "identity_ids": null,
@@ -9771,7 +9771,7 @@
               "name": "Deploy-VM-Monitoring",
               "non_compliance_message": [
                 {
-                  "content": "Azure Monitor must be enabled for Virtual Machines.",
+                  "content": "Azure Monitor should be enabled for Virtual Machines.",
                   "policy_definition_reference_id": null
                 }
               ],
