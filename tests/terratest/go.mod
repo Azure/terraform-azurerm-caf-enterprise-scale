@@ -1,4 +1,4 @@
-module cafenterprisescale
+module terratest
 
 go 1.20
 

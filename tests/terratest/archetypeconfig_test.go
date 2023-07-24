@@ -1,7 +1,7 @@
-package cafenterprisescale_test
+package terratest_test
 
 import (
-	"cafenterprisescale"
+	"terratest"
 	"testing"
 
 	"github.com/Azure/terratest-terraform-fluent/check"
@@ -14,7 +14,9 @@ const (
 )
 
 func TestArchetypeConfigOverrideEnforcementMode(t *testing.T) {
-	test, err := setuptest.Dirs(moduleDir, "").WithVars(varsTestArchetypeConfigOverrideEnforcementMode()).InitPlanShowWithPrepFunc(t, cafenterprisescale.AzureRm)
+	test, err := setuptest.Dirs(moduleDir, "").
+		WithVars(varsTestArchetypeConfigOverrideEnforcementMode()).
+		InitPlanShowWithPrepFunc(t, terratest.AzureRm)
 	defer test.Cleanup()
 	require.NoError(t, err)
 
@@ -46,5 +48,15 @@ func varsTestArchetypeConfigOverrideEnforcementMode() map[string]any {
 				},
 			},
 		},
+	}
+}
+
+func varsTestArchetypeConfigDefaults() map[string]any {
+	return map[string]any{
+		"root_parent_id":    "00000000-0000-0000-0000-000000000000",
+		"root_name":         "test",
+		"root_id":           "test",
+		"default_location":  "eastus",
+		"disable_telemetry": true,
 	}
 }

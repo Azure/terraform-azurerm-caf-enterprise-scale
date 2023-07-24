@@ -1,4 +1,4 @@
-package cafenterprisescale
+package terratest
 
 import (
 	"fmt"
