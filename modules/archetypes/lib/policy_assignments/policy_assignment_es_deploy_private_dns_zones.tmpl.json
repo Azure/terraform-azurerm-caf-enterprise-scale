@@ -11,7 +11,7 @@
     "description": "This policy initiative is a group of policies that ensures private endpoints to Azure PaaS services are integrated with Azure Private DNS zones",
     "displayName": "Configure Azure PaaS services to use private DNS zones",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-Private-DNS-Zones",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Azure PaaS services {enforcementMode} use private DNS zones."

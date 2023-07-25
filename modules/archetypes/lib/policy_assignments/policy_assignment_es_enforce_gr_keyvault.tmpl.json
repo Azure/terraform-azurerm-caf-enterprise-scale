@@ -7,7 +7,7 @@
     "description": "This initiative assignment enables recommended ALZ guardrails for Azure Key Vault.",
     "displayName": "Enforce recommended guardrails for Azure Key Vault",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-KeyVault",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "scope": "${current_scope_resource_id}",
     "notScopes": [],
     "parameters": {}

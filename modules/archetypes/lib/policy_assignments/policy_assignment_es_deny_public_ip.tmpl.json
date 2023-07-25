@@ -7,7 +7,7 @@
     "description": "This policy denies creation of Public IPs under the assigned scope.",
     "displayName": "Deny the creation of public IP",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Public IPs {enforcementMode} not be created under this scope."

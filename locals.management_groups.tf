@@ -87,10 +87,15 @@ locals {
     for key, value in local.archetype_config_overrides :
     key == "root" ? local.root_id : "${local.root_id}-${key}" => value
   }
-  es_archetype_config_map = merge(
-    local.es_archetype_config_defaults,
-    local.archetype_config_overrides_map,
-  )
+  es_archetype_config_map = {
+    for key, value in local.es_archetype_config_defaults :
+    key => {
+      archetype_id     = coalesce(try(local.archetype_config_overrides_map[key].archetype_id, ""), local.es_archetype_config_defaults[key].archetype_id)
+      parameters       = merge(try(local.archetype_config_overrides_map[key].parameters, {}), local.es_archetype_config_defaults[key].parameters)
+      access_control   = merge(try(local.archetype_config_overrides_map[key].access_control, {}), local.es_archetype_config_defaults[key].access_control)
+      enforcement_mode = try(local.archetype_config_overrides_map[key].enforcement_mode, local.empty_map)
+    }
+  }
 }
 
 # The following locals are used to determine which subscription_ids
@@ -309,10 +314,15 @@ locals {
             lookup(value.archetype_config.parameters, policy_name, null),
           )
         }
+        enforcement_mode = merge(
+          lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(module.management_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(value.archetype_config, "enforcement_mode", local.empty_map)
+        )
       }
     }
   }
-
 
   # Logic to determine which subscriptions to associate with Management Groups in relaxed mode.
   # Empty unless strict_subscription_association is set to false.
@@ -375,8 +385,8 @@ locals {
   }
 }
 
-# The following local is used to build the list of Management Groups 
-# that will have Diagnostic Settings deployed, based on boolean varaible 
+# The following local is used to build the list of Management Groups
+# that will have Diagnostic Settings deployed, based on boolean variable
 # deploy_diagnostics_for_mg
 locals {
   azapi_mg_diagnostics = {
