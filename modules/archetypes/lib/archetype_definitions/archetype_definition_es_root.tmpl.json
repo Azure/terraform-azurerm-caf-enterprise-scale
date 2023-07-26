@@ -21,6 +21,7 @@
       "Append-KV-SoftDelete",
       "Append-Redis-disableNonSslPort",
       "Append-Redis-sslEnforcement",
+      "Audit-AzureHybridBenefit",
       "Audit-Disks-UnusedResourcesCostOptimization",
       "Audit-MachineLearning-PrivateEndpointId",
       "Audit-PrivateLinkDnsZones",
