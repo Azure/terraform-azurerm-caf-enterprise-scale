@@ -450,6 +450,12 @@ resource "azurerm_private_dns_zone" "connectivity" {
     azurerm_resource_group.connectivity,
   ]
 
+  timeouts {
+    create = "120m"
+    update = "120m"
+    read   = "120m"
+  }
+
 }
 
 resource "azurerm_dns_zone" "connectivity" {
@@ -510,6 +516,12 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
     azurerm_virtual_network.connectivity,
     azurerm_private_dns_zone.connectivity,
   ]
+
+  timeouts {
+    create = "120m"
+    update = "120m"
+    read   = "120m"
+  }
 
 }
 
