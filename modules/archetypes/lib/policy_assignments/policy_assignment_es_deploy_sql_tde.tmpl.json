@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-SQL-TDE",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "This policy ensures that Transparent Data Encryption is enabled on SQL Servers.",
+    "displayName": "Deploy TDE on SQL servers",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/86a912f6-9a06-4e26-b447-11b16ba8659f",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "TDE {enforcementMode} be deployed on SQL servers."
+      }
+    ],
+    "scope": "${current_scope_resource_id}",
+    "notScopes": [],
+    "parameters": {}
+  }
+}
