@@ -454,6 +454,7 @@ resource "azurerm_private_dns_zone" "connectivity" {
     create = var.resource_custom_timeouts.azurerm_private_dns_zone.create
     update = var.resource_custom_timeouts.azurerm_private_dns_zone.update
     read   = var.resource_custom_timeouts.azurerm_private_dns_zone.read
+    delete = var.resource_custom_timeouts.azurerm_private_dns_zone.delete
   }
 
 }
@@ -521,6 +522,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
     create = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.create
     update = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.update
     read   = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.read
+    delete = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.delete
   }
 
 }
