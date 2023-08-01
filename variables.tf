@@ -751,6 +751,11 @@ variable "resource_custom_timeouts" {
       update = optional(string, null)
       delete = optional(string, null)
     }), {})
+    azurerm_private_dns_zone_virtual_network_link = optional(object({
+      create = optional(string, null)
+      update = optional(string, null)
+      delete = optional(string, null)
+    }), {})
   })
   description = <<DESCRIPTION
 Optional - Used to tune terraform deploy when faced with errors caused by API limits.
