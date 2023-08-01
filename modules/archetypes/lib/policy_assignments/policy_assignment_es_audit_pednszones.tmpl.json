@@ -7,7 +7,7 @@
     "description": "Audits the deployment of Private Link Private DNS Zone resources in the Corp landing zone.",
     "displayName": "Audit Private Link Private DNS Zone resources",
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Audit-PrivateLinkDnsZones",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "Private Link Private DNS Zone resources {enforcementMode} be deployed in the Corp landing zone."

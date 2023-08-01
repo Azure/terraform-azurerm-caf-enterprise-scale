@@ -14,8 +14,8 @@ variable "root_id" {
   description = "Specifies the ID of the Enterprise-scale root Management Group, used as a prefix for resources created by this module."
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))
-    error_message = "Value must be between 2 to 10 characters long, consisting of alphanumeric characters and hyphens."
+    condition     = can(regex("[a-zA-Z0-9-_\\(\\)\\.]", var.root_id))
+    error_message = "Value must consist of alphanumeric characters and hyphens."
   }
 }
 

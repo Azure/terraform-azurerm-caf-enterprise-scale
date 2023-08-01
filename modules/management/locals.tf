@@ -233,7 +233,7 @@ locals {
     "${local.root_id}-landing-zones" = {
       parameters = {
         Deploy-AzSqlDb-Auditing = {
-          logAnalyticsWorkspaceId = local.log_analytics_workspace_resource_id
+          logAnalyticsWorkspaceId = lower(local.log_analytics_workspace_resource_id)
         }
       }
       enforcement_mode = {}
@@ -254,7 +254,7 @@ locals {
         }
       }
       enforcement_mode = {
-        Deploy-Log-Analytics = local.deploy_monitoring_settings
+        Deploy-Log-Analytics = false
       }
     }
   }

@@ -101,8 +101,6 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
         $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
     }
 
-    $parsedAssignments[$parsedAssignment.name].json.properties.enforcementMode = $null
-
     if($parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
     {
         $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId = $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")

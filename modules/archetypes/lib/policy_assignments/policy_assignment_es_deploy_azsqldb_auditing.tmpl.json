@@ -11,7 +11,7 @@
     "description": "To ensure the operations performed against your SQL assets are captured, SQL servers should have auditing enabled. If auditing is not enabled, this policy will configure auditing events to flow to the specified Log Analytics workspace.",
     "displayName": "Configure SQL servers to have auditing enabled to Log Analytics workspace",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/25da7dfb-0666-4a15-a8f5-402127efd8bb",
-    "enforcementMode": null,
+    "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
         "message": "SQL servers {enforcementMode} have auditing enabled to Log Analytics workspace."
