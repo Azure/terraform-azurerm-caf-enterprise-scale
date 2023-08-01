@@ -58,7 +58,7 @@ Default: `{}`
 
 Description: If specified, will use the specified enforcement\_mode values to override defaults for Policy Assignments.
 
-Type: `map(string)`
+Type: `map(bool)`
 
 Default: `{}`
 

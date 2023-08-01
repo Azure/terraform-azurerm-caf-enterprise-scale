@@ -937,6 +937,45 @@ Default:
 ]
 ```
 
+### <a name="input_resource_custom_timeouts"></a> [resource\_custom\_timeouts](#input\_resource\_custom\_timeouts)
+
+Description: Optional - Used to tune terraform deploy when faced with errors caused by API limits.
+
+For each supported resource type, there is a child object that specifies the create, update, and delete timeouts.  
+Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, "10s" for ten seconds, or "2h" for two hours.  
+If a timeout is not specified, the default value for the resource will be used.
+
+e.g.
+
+```hcl
+resource_custom_timeouts = {
+  azurerm_private_dns_zone = {
+    create = "30m"
+    update = "1h30m"
+    delete = "30s"
+  }
+}
+```
+
+Type:
+
+```hcl
+object({
+    azurerm_private_dns_zone = optional(object({
+      create = optional(string, null)
+      update = optional(string, null)
+      delete = optional(string, null)
+    }), {})
+    azurerm_private_dns_zone_virtual_network_link = optional(object({
+      create = optional(string, null)
+      update = optional(string, null)
+      delete = optional(string, null)
+    }), {})
+  })
+```
+
+Default: `{}`
+
 ### <a name="input_root_id"></a> [root\_id](#input\_root\_id)
 
 Description: If specified, will set a custom Name (ID) value for the Enterprise-scale "root" Management Group, and append this to the ID for all core Enterprise-scale Management Groups.
