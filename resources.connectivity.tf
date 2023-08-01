@@ -451,9 +451,9 @@ resource "azurerm_private_dns_zone" "connectivity" {
   ]
 
   timeouts {
-    create = "120m"
-    update = "120m"
-    read   = "120m"
+    create = var.resource_custom_timeouts.azurerm_private_dns_zone.create
+    update = var.resource_custom_timeouts.azurerm_private_dns_zone.update
+    read   = var.resource_custom_timeouts.azurerm_private_dns_zone.read
   }
 
 }
