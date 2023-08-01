@@ -950,9 +950,10 @@ e.g.
 ```hcl
 resource_custom_timeouts = {
   azurerm_private_dns_zone = {
-    create = "30m"
+    create = "1h"
     update = "1h30m"
-    delete = "30s"
+    delete = "30m"
+    read   = "30s"
   }
 }
 ```
@@ -964,11 +965,13 @@ object({
     azurerm_private_dns_zone = optional(object({
       create = optional(string, null)
       update = optional(string, null)
+      read   = optional(string, null)
       delete = optional(string, null)
     }), {})
     azurerm_private_dns_zone_virtual_network_link = optional(object({
       create = optional(string, null)
       update = optional(string, null)
+      read   = optional(string, null)
       delete = optional(string, null)
     }), {})
   })
