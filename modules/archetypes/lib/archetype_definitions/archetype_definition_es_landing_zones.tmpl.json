@@ -10,6 +10,7 @@
       "Deny-Subnet-Without-Nsg",
       "Deploy-AKS-Policy",
       "Deploy-AzSqlDb-Auditing",
+      "Deploy-SQL-TDE",
       "Deploy-SQL-Threat",
       "Deploy-VM-Backup",
       "Enable-DDoS-VNET",
