@@ -2947,7 +2947,7 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Enforces the use of Premium Databricks workspaces to make sure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for AAD.",
+              "description": "Enforces the use of Premium Databricks workspaces to make sure appropriate security features are available including Databricks Access Controls, Credential Passthrough and SCIM provisioning for Microsoft Entra ID.",
               "display_name": "Deny non-premium Databricks sku",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\"],\"category\":\"Databricks\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.0.0\"}",

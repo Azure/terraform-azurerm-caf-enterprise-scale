@@ -109,7 +109,7 @@ We have documented some examples showing how to [set parameter values for Policy
             "access_control": {
               // Map of Role Assignments to create, grouped by Role Definition name
               // Key should match the "name" of the Role Definition to assign
-              // Value should be a list of strings, specifying the Object Id(s) (from Azure AD) of all identities to assign to the role
+              // Value should be a list of strings, specifying the Object Id(s) (from Microsoft Entra ID) of all identities to assign to the role
               "Reader": [
                 "00000000-0000-0000-0000-000000000000",
                 "11111111-1111-1111-1111-111111111111",
@@ -189,8 +189,8 @@ To simplify working with parameters at different scopes within the module, param
   > **NOTE:** Parameters are specified as simple `key/value` pairs in the module, and do not require the same structure used in native ARM templates.
 
 - `access_control` provides the option to add user-specified Role Assignments which will be added to the specified Management Group.
-To avoid a direct dependency on the [Azure Active Directory Provider][azuread_provider], this module requires the input to be a list of Object IDs for each Azure AD object you want to assign the specified permission.
-To add your own Role Assignments, specify the `name` of the Role Definition you want to assign as the `key`, and provide a list of Azure Active Directory Object IDs to assign to this role as the `value`.
+To avoid a direct dependency on the [Microsoft Entra ID Provider][azuread_provider], this module requires the input to be a list of Object IDs for each Microsoft Entra object you want to assign the specified permission.
+To add your own Role Assignments, specify the `name` of the Role Definition you want to assign as the `key`, and provide a list of Microsoft Entra Object IDs to assign to this role as the `value`.
 
 You will find the `archetype_config` object in the following places:
 
@@ -211,7 +211,7 @@ This allows you to override parameter values for as many or as few Policy Assign
 
 [TFAES-Library]: https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/tree/main/modules/archetypes/lib
 
-[azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Azure Active Directory Provider"
+[azuread_provider]: https://registry.terraform.io/providers/hashicorp/azuread/latest/docs "Microsoft Entra ID Provider"
 
 [wiki_variables_archetype_config_overrides]:        %5BVariables%5D-archetype_config_overrides "Wiki - Variables - archetype_config_overrides"
 [wiki_variables_custom_landing_zones]:              %5BVariables%5D-custom_landing_zones "Wiki - Variables - custom_landing_zones"
