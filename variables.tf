@@ -482,8 +482,8 @@ e.g.
       }
       access_control = {
         Example-Role-Definition = [
-          "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Azure AD
-          "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Azure AD
+          "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Microsoft Entra ID
+          "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Microsoft Entra ID
         ]
       }
     }

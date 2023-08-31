@@ -101,9 +101,10 @@ This code will save your new `Reader-Support-Tickets` role at this scope and all
 
 If you don't already have an `archetype_extension_es_landing_zones.tmpl.json` file within your custom `lib` directory, create one and copy the below code in to the file.
 This code will assign your new `Reader-Support-Tickets` role to a group named `Contoso Reader and Support Tickets`.
-In order to assign the `Reader-Support-Tickets` role to the group, you need to use the groups objectID which can be located in Azure Active Directory.
+In order to assign the `Reader-Support-Tickets` role to the group, you need to use the groups objectID which can be located in Microsoft Entra ID.
 
-Instead of group, if you would like to assign the role to a SPN in the form of application registered in Azure AD then make sure to use the Object ID of the Service Principal related to that application which you can find from the "Enterprise applications" blade of Azure AD Portal. For more details on the relation between application and service principal objects please see [this article](https://learn.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals).
+Instead of group, if you would like to assign the role to a SPN in the form of application registered in Microsoft Entra ID then make sure to use the Object ID of the Service Principal related to that application which you can find from the "Enterprise applications" blade of Microsoft Entra ID Portal.
+For more details on the relation between application and service principal objects please see [this article](https://learn.microsoft.com/azure/active-directory/develop/app-objects-and-service-principals).
 
 >**IMPORTANT**: Due to how the module works, you must prefix your role name with the location at which it has been saved. In our example this would be `"[CONTOSO]"`.
 If we had saved our role at the `es_landing_zones` scope then we would use a prefix of `"[CONTOSO-LANDING-ZONES]"`

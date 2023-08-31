@@ -238,10 +238,10 @@ The following input variables are optional (have default values):
 
 ### <a name="input_archetype_config_overrides"></a> [archetype\_config\_overrides](#input\_archetype\_config\_overrides)
 
-Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.  
-Does not work for management groups specified by the 'custom\_landing\_zones' input variable.  
-To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.  
-To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.  
+Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.
+Does not work for management groups specified by the 'custom\_landing\_zones' input variable.
+To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.
+To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:
 
 - root
@@ -293,8 +293,8 @@ e.g.
       }
       access_control = {
         Example-Role-Definition = [
-          "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Azure AD
-          "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Azure AD
+          "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Microsoft Entra ID
+          "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Microsoft Entra ID
         ]
       }
     }
@@ -682,7 +682,7 @@ Default: `{}`
 
 ### <a name="input_custom_landing_zones"></a> [custom\_landing\_zones](#input\_custom\_landing\_zones)
 
-Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.  
+Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
 Although the object type for this input variable is set to `any`, the expected object is based on the following structure:
 
 ```terraform
@@ -701,13 +701,13 @@ variable "custom_landing_zones" {
   )
 ```
 
-The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.  
-This was necessary to allow the `parameters` value to be correctly interpreted.  
+The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.
+This was necessary to allow the `parameters` value to be correctly interpreted.
 Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
 
 > Note the id of the custom landing zone will be appended to `var.root_id`. The maximum length of the resulting name must be less than 90 characters.
 
-The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.  
+The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.
 The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
 
 - `display_name` is the name assigned to the Management Group.
@@ -941,8 +941,8 @@ Default:
 
 Description: Optional - Used to tune terraform deploy when faced with errors caused by API limits.
 
-For each supported resource type, there is a child object that specifies the create, update, and delete timeouts.  
-Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, "10s" for ten seconds, or "2h" for two hours.  
+For each supported resource type, there is a child object that specifies the create, update, and delete timeouts.
+Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, "10s" for ten seconds, or "2h" for two hours.
 If a timeout is not specified, the default value for the resource will be used.
 
 e.g.
