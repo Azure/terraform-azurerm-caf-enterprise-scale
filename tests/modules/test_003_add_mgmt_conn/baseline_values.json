@@ -697,6 +697,7 @@
                       "string",
                       "string",
                       "string",
+                      "string",
                       "string"
                     ]
                   ]
@@ -930,6 +931,8 @@
                   "policy_assignment": [
                     "tuple",
                     [
+                      "string",
+                      "string",
                       "string",
                       "string",
                       "string",
@@ -2059,6 +2062,7 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET",
@@ -2267,6 +2271,7 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/roleAssignments/10acbd2f-bfdd-5c38-bf46-3a67cafdeaf3",
               "/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/roleAssignments/1358ccb0-1ad3-5974-ae44-7f5728c09678",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/1c659f37-1ad5-5577-bc68-922ba20d7523",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/3017df2e-5df0-5373-bb0c-c255e0127c77",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/533932d3-0f16-59eb-84b8-893805c84e9c",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/62d19ca1-fb31-5489-859f-f43578c5e409",
               "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/8319f760-6d83-59bf-a986-d057d5d91f7b",
@@ -2282,6 +2287,7 @@
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/roleAssignments/817e9088-7487-507a-bc2b-d6f0d6fefca1",
               "/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/roleAssignments/e5b17f2f-f8a9-5645-ae80-2e639d5cc71f",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/14538d97-4a28-5d98-889f-4466a399396f",
+              "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/22ff9bc8-ce29-51d8-b952-886206aa9339",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/3d3e8314-e2b2-5209-a43a-7e53ddabe248",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/48b3e1cf-ed37-5c12-b92e-ffe2a7a7e5f7",
               "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/4ccc8330-f622-59c1-8f88-161a33aaf4a6",
@@ -2892,11 +2898,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -2913,11 +2925,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -2934,11 +2952,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -2955,11 +2979,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -2976,11 +3006,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -2997,11 +3033,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3018,11 +3060,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3039,11 +3087,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3060,11 +3114,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3081,11 +3141,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3102,11 +3168,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3123,11 +3195,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3144,11 +3222,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3165,11 +3249,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3186,11 +3276,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3207,11 +3303,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3228,11 +3330,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3249,11 +3357,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3270,11 +3384,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3291,11 +3411,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3312,11 +3438,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3333,11 +3465,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3354,11 +3492,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3375,11 +3519,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3396,11 +3546,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3417,11 +3573,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3438,11 +3600,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3459,11 +3627,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3480,11 +3654,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3501,11 +3681,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3522,11 +3708,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3543,11 +3735,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3564,11 +3762,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3585,11 +3789,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3606,11 +3816,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3627,11 +3843,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3648,11 +3870,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3669,11 +3897,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              }
             },
             "sensitive_values": {
               "soa_record": [],
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3692,11 +3926,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3715,11 +3955,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3738,11 +3984,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3761,11 +4013,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3784,11 +4042,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3807,11 +4071,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3830,11 +4100,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3853,11 +4129,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3876,11 +4158,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3899,11 +4187,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3922,11 +4216,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3945,11 +4245,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3968,11 +4274,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -3991,11 +4303,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4014,11 +4332,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4037,11 +4361,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4060,11 +4390,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4083,11 +4419,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4106,11 +4448,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4129,11 +4477,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4152,11 +4506,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4175,11 +4535,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4198,11 +4564,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4221,11 +4593,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4244,11 +4622,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4267,11 +4651,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4290,11 +4680,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4313,11 +4709,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4336,11 +4738,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4359,11 +4767,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4382,11 +4796,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4405,11 +4825,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4428,11 +4854,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4451,11 +4883,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4474,11 +4912,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4497,11 +4941,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4520,11 +4970,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4543,11 +4999,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4566,11 +5028,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4589,11 +5057,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4612,11 +5086,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4635,11 +5115,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4658,11 +5144,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4681,11 +5173,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4704,11 +5202,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4727,11 +5231,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4750,11 +5260,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4773,11 +5289,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4796,11 +5318,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4819,11 +5347,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4842,11 +5376,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4865,11 +5405,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4888,11 +5434,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4911,11 +5463,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4934,11 +5492,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4957,11 +5521,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -4980,11 +5550,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5003,11 +5579,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5026,11 +5608,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5049,11 +5637,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5072,11 +5666,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5095,11 +5695,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5118,11 +5724,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5141,11 +5753,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5164,11 +5782,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5187,11 +5811,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5210,11 +5840,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5233,11 +5869,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5256,11 +5898,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5279,11 +5927,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5302,11 +5956,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5325,11 +5985,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5348,11 +6014,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5371,11 +6043,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5394,11 +6072,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5417,11 +6101,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5440,11 +6130,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5463,11 +6159,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5486,11 +6188,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5509,11 +6217,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5532,11 +6246,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5555,11 +6275,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5578,11 +6304,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5601,11 +6333,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5624,11 +6362,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5647,11 +6391,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5670,11 +6420,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5693,11 +6449,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5716,11 +6478,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5739,11 +6507,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5762,11 +6536,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5785,11 +6565,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5808,11 +6594,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5831,11 +6623,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5854,11 +6652,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5877,11 +6681,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5900,11 +6710,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5923,11 +6739,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5946,11 +6768,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5969,11 +6797,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -5992,11 +6826,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6015,11 +6855,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6038,11 +6884,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6061,11 +6913,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6084,11 +6942,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6107,11 +6971,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6130,11 +7000,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6153,11 +7029,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6176,11 +7058,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6199,11 +7087,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6222,11 +7116,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6245,11 +7145,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-westeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-westeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6268,11 +7174,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-uksouth/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-uksouth"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -6291,11 +7203,17 @@
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
-              "timeouts": null,
+              "timeouts": {
+                "create": null,
+                "delete": null,
+                "read": null,
+                "update": null
+              },
               "virtual_network_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity-northeurope/providers/Microsoft.Network/virtualNetworks/root-id-1-hub-northeurope"
             },
             "sensitive_values": {
-              "tags": {}
+              "tags": {},
+              "timeouts": {}
             }
           },
           {
@@ -8515,6 +9433,52 @@
               "overrides": [],
               "parameters": "{\"logAnalyticsWorkspaceId\":{\"value\":\"/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e/resourcegroups/root-id-1-mgmt/providers/microsoft.operationalinsights/workspaces/root-id-1-la\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/25da7dfb-0666-4a15-a8f5-402127efd8bb",
+              "resource_selectors": [],
+              "timeouts": null
+            },
+            "sensitive_values": {
+              "identity": [
+                {}
+              ],
+              "non_compliance_message": [
+                {}
+              ],
+              "not_scopes": [],
+              "overrides": [],
+              "resource_selectors": []
+            }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group_policy_assignment.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group_policy_assignment",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "description": "This policy ensures that Transparent Data Encryption is enabled on SQL Servers.",
+              "display_name": "Deploy TDE on SQL servers",
+              "enforce": true,
+              "identity": [
+                {
+                  "identity_ids": null,
+                  "type": "SystemAssigned"
+                }
+              ],
+              "location": "northeurope",
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+              "name": "Deploy-SQL-TDE",
+              "non_compliance_message": [
+                {
+                  "content": "TDE must be deployed on SQL servers.",
+                  "policy_definition_reference_id": null
+                }
+              ],
+              "not_scopes": [],
+              "overrides": [],
+              "parameters": null,
+              "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/86a912f6-9a06-4e26-b447-11b16ba8659f",
               "resource_selectors": [],
               "timeouts": null
             },
@@ -12533,13 +13497,13 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "[Deprecated] Deprecated by built-in policy. Deploys NSG flow logs and traffic analytics to Log Analytics with a specfied retention period.",
+              "description": "[Deprecated] Deprecated by built-in policy. Deploys NSG flow logs and traffic analytics to Log Analytics with a specified retention period.",
               "display_name": "[Deprecated] Deploys NSG flow logs and traffic analytics to Log Analytics",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
               "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"],\"category\":\"Monitoring\",\"deprecated\":true,\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.0-deprecated\"}",
               "mode": "Indexed",
               "name": "Deploy-Nsg-FlowLogs-to-LA",
-              "parameters": "{\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"interval\":{\"defaultValue\":60,\"metadata\":{\"displayName\":\"Traffic Analytics processing interval mins (10/60)\"},\"type\":\"Integer\"},\"retention\":{\"defaultValue\":5,\"metadata\":{\"displayName\":\"Retention\"},\"type\":\"Integer\"},\"workspace\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.\",\"displayName\":\"Resource ID of Log Analytics workspace\",\"strongType\":\"omsWorkspace\"},\"type\":\"String\"}}",
+              "parameters": "{\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"String\"},\"interval\":{\"defaultValue\":60,\"metadata\":{\"displayName\":\"Traffic Analytics processing interval mins (10/60)\"},\"type\":\"Integer\"},\"retention\":{\"defaultValue\":5,\"metadata\":{\"displayName\":\"Retention\"},\"type\":\"Integer\"},\"workspace\":{\"defaultValue\":\"\\u003cworkspace resource ID\\u003e\",\"metadata\":{\"description\":\"Select Log Analytics workspace from dropdown list. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.\",\"displayName\":\"Resource ID of Log Analytics workspace\",\"strongType\":\"omsWorkspace\"},\"type\":\"String\"}}",
               "policy_rule": "{\"if\":{\"allOf\":[{\"equals\":\"Microsoft.Network/networkSecurityGroups\",\"field\":\"type\"}]},\"then\":{\"details\":{\"deployment\":{\"location\":\"northeurope\",\"properties\":{\"mode\":\"Incremental\",\"parameters\":{\"interval\":{\"value\":\"[parameters('interval')]\"},\"location\":{\"value\":\"[field('location')]\"},\"networkSecurityGroup\":{\"value\":\"[field('id')]\"},\"retention\":{\"value\":\"[parameters('retention')]\"},\"workspace\":{\"value\":\"[parameters('workspace')]\"}},\"template\":{\"$schema\":\"https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"outputs\":{},\"parameters\":{\"interval\":{\"type\":\"int\"},\"location\":{\"type\":\"String\"},\"networkSecurityGroup\":{\"type\":\"String\"},\"retention\":{\"type\":\"int\"},\"time\":{\"defaultValue\":\"[utcNow()]\",\"type\":\"String\"},\"workspace\":{\"type\":\"String\"}},\"resources\":[{\"apiVersion\":\"2019-10-01\",\"name\":\"[concat(variables('resourceGroupName'), '.', variables('securityGroupName'))]\",\"properties\":{\"mode\":\"Incremental\",\"template\":{\"$schema\":\"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"resources\":[{\"apiVersion\":\"2019-06-01\",\"kind\":\"StorageV2\",\"location\":\"[parameters('location')]\",\"name\":\"[variables('storageAccountName')]\",\"properties\":{},\"sku\":{\"name\":\"Standard_LRS\",\"tier\":\"Standard\"},\"type\":\"Microsoft.Storage/storageAccounts\"}]}},\"resourceGroup\":\"[variables('resourceGroupName')]\",\"type\":\"Microsoft.Resources/deployments\"},{\"apiVersion\":\"2019-10-01\",\"dependsOn\":[\"[concat(variables('resourceGroupName'), '.', variables('securityGroupName'))]\"],\"name\":\"[concat('NetworkWatcherRG', '.', variables('securityGroupName'))]\",\"properties\":{\"mode\":\"Incremental\",\"template\":{\"$schema\":\"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#\",\"contentVersion\":\"1.0.0.0\",\"resources\":[{\"apiVersion\":\"2020-05-01\",\"location\":\"[parameters('location')]\",\"name\":\"[concat('NetworkWatcher_', toLower(parameters('location')))]\",\"properties\":{},\"resources\":[{\"apiVersion\":\"2019-11-01\",\"dependsOn\":[\"[concat('NetworkWatcher_', toLower(parameters('location')))]\"],\"location\":\"[parameters('location')]\",\"name\":\"[concat(variables('securityGroupName'), '-Network-flowlog')]\",\"properties\":{\"enabled\":true,\"flowAnalyticsConfiguration\":{\"networkWatcherFlowAnalyticsConfiguration\":{\"enabled\":true,\"trafficAnalyticsInterval\":\"[parameters('interval')]\",\"workspaceResourceId\":\"[parameters('workspace')]\"}},\"format\":{\"type\":\"JSON\",\"version\":2},\"retentionPolicy\":{\"days\":\"[parameters('retention')]\",\"enabled\":true},\"storageId\":\"[concat(subscription().id, '/resourceGroups/', variables('resourceGroupName'), '/providers/Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]\",\"targetResourceId\":\"[parameters('networkSecurityGroup')]\"},\"type\":\"flowLogs\"}],\"type\":\"Microsoft.Network/networkWatchers\"}]}},\"resourceGroup\":\"NetworkWatcherRG\",\"type\":\"Microsoft.Resources/deployments\"}],\"variables\":{\"resourceGroupName\":\"[split(parameters('networkSecurityGroup'), '/')[4]]\",\"securityGroupName\":\"[split(parameters('networkSecurityGroup'), '/')[8]]\",\"storageAccountName\":\"[concat('es', uniqueString(variables('securityGroupName'), parameters('time')))]\"}}}},\"deploymentScope\":\"subscription\",\"existenceCondition\":{\"allOf\":[{\"equals\":\"true\",\"field\":\"Microsoft.Network/networkWatchers/flowLogs/enabled\"}]},\"existenceScope\":\"resourceGroup\",\"name\":\"[if(empty(coalesce(field('Microsoft.Network/networkSecurityGroups/flowLogs[*].id'))), 'null/null', concat(split(first(field('Microsoft.Network/networkSecurityGroups/flowLogs[*].id')), '/')[8], '/', split(first(field('Microsoft.Network/networkSecurityGroups/flowLogs[*].id')), '/')[10]))]\",\"resourceGroupName\":\"[if(empty(coalesce(field('Microsoft.Network/networkSecurityGroups/flowLogs'))), 'NetworkWatcherRG', split(first(field('Microsoft.Network/networkSecurityGroups/flowLogs[*].id')), '/')[4])]\",\"roleDefinitionIds\":[\"/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7\",\"/providers/Microsoft.Authorization/roleDefinitions/81a9662b-bebf-436f-a333-f67b29880f12\",\"/providers/Microsoft.Authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293\",\"/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab\",\"/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c\"],\"type\":\"Microsoft.Network/networkWatchers/flowlogs\"},\"effect\":\"[parameters('effect')]\"}}",
               "policy_type": "Custom",
               "timeouts": null
@@ -13740,13 +14704,13 @@
               "description": "This policy initiative is a group of policies that ensures private endpoints to Azure PaaS services are integrated with Azure Private DNS zones",
               "display_name": "Configure Azure PaaS services to use private DNS zones",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1",
-              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\"],\"category\":\"Network\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.0\"}",
+              "metadata": "{\"alzCloudEnvironments\":[\"AzureCloud\"],\"category\":\"Network\",\"source\":\"https://github.com/Azure/Enterprise-Scale/\",\"version\":\"1.1.1\"}",
               "name": "Deploy-Private-DNS-Zones",
               "parameters": "{\"azureAcrPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAcrPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAppPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAppPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAppServicesPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAppServicesPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAsrPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAsrPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAutomationDSCHybridPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAutomationDSCHybridPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureAutomationWebhookPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureAutomationWebhookPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureBatchPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureBatchPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCognitiveSearchPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCognitiveSearchPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCognitiveServicesPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCognitiveServicesPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCosmosCassandraPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCosmosCassandraPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCosmosGremlinPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCosmosGremlinPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCosmosMongoPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCosmosMongoPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCosmosSQLPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCosmosSQLPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureCosmosTablePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureCosmosTablePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureDataFactoryPortalPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureDataFactoryPortalPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureDataFactoryPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureDataFactoryPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureDiskAccessPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureDiskAccessPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureEventGridDomainsPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureEventGridDomainsPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureEventGridTopicsPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureEventGridTopicsPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureEventHubNamespacePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureEventHubNamespacePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureFilePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureFilePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureHDInsightPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureHDInsightPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureIotHubsPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureIotHubsPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureIotPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureIotPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureKeyVaultPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureKeyVaultPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMachineLearningWorkspacePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMachineLearningWorkspacePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMediaServicesKeyPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMediaServicesKeyPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMediaServicesLivePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMediaServicesLivePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMediaServicesStreamPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMediaServicesStreamPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMigratePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMigratePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMonitorPrivateDnsZoneId1\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMonitorPrivateDnsZoneId1\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMonitorPrivateDnsZoneId2\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMonitorPrivateDnsZoneId2\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMonitorPrivateDnsZoneId3\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMonitorPrivateDnsZoneId3\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMonitorPrivateDnsZoneId4\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMonitorPrivateDnsZoneId4\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureMonitorPrivateDnsZoneId5\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureMonitorPrivateDnsZoneId5\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureRedisCachePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureRedisCachePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureServiceBusNamespacePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureServiceBusNamespacePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureSignalRPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureSignalRPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageBlobPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageBlobPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageBlobSecPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageBlobSecPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageDFSPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageDFSPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageDFSSecPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageDFSSecPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageFilePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageFilePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageQueuePrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageQueuePrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageQueueSecPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageQueueSecPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageStaticWebPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageStaticWebPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureStorageStaticWebSecPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureStorageStaticWebSecPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureSynapseDevPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureSynapseDevPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureSynapseSQLODPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureSynapseSQLODPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureSynapseSQLPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureSynapseSQLPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"azureWebPrivateDnsZoneId\":{\"defaultValue\":\"\",\"metadata\":{\"description\":\"Private DNS Zone Identifier\",\"displayName\":\"azureWebPrivateDnsZoneId\",\"strongType\":\"Microsoft.Network/privateDnsZones\"},\"type\":\"string\"},\"effect\":{\"allowedValues\":[\"DeployIfNotExists\",\"Disabled\"],\"defaultValue\":\"DeployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"string\"},\"effect1\":{\"allowedValues\":[\"deployIfNotExists\",\"Disabled\"],\"defaultValue\":\"deployIfNotExists\",\"metadata\":{\"description\":\"Enable or disable the execution of the policy\",\"displayName\":\"Effect\"},\"type\":\"string\"}}",
               "policy_definition_group": [],
               "policy_definition_reference": [
                 {
-                  "parameter_values": "{\"effect\":{\"value\":\"[parameters('effect')]\"},\"privateDnsZoneId\":{\"value\":\"[parameters('azureFileprivateDnsZoneId')]\"}}",
+                  "parameter_values": "{\"effect\":{\"value\":\"[parameters('effect')]\"},\"privateDnsZoneId\":{\"value\":\"[parameters('azureFilePrivateDnsZoneId')]\"}}",
                   "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/06695360-db88-47f6-b976-7500d4297475",
                   "policy_group_names": null,
                   "reference_id": "DINE-Private-DNS-Azure-File-Sync"
@@ -15013,7 +15977,7 @@
               "create_duration": "30s",
               "destroy_duration": "0s",
               "triggers": {
-                "azurerm_management_group_policy_assignment_enterprise_scale": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Audit-PeDnsZones\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deny-HybridNetworking\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deny-Public-Endpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deny-Public-IP-On-NIC\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deploy-Private-DNS-Zones\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Public-IP\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Audit-AppGW-WAF\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-IP-forwarding\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Esc-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Privileged-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-GR-KeyVault\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Sandbox\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-emea/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-emea/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-us/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-us/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Audit-UnusedResources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Classic-Resources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-UnmanagedDisk\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
+                "azurerm_management_group_policy_assignment_enterprise_scale": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Audit-PeDnsZones\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deny-HybridNetworking\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deny-Public-Endpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deny-Public-IP-On-NIC\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deploy-Private-DNS-Zones\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Public-IP\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deny-Subnet-Without-Nsg\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Audit-AppGW-WAF\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-IP-forwarding\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-MgmtPorts-Internet\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Priv-Esc-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Privileged-AKS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deny-Storage-http\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-AKS-HTTPS\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-GR-KeyVault\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-sandboxes/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Sandbox\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-emea/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-emea/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-us/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1-web-us/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Audit-UnusedResources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Classic-Resources\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-RSG-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-Resource-Locations\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deny-UnmanagedDisk\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
               }
             },
             "sensitive_values": {
@@ -15068,7 +16032,7 @@
               "destroy_duration": "0s",
               "triggers": {
                 "azurerm_role_assignment_enterprise_scale": "[]",
-                "module_role_assignments_for_policy": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deploy-Private-DNS-Zones\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
+                "module_role_assignments_for_policy": "[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deploy-Private-DNS-Zones\",\"/providers/Microsoft.Management/managementGroups/root-id-1-decommissioned/providers/Microsoft.Authorization/policyAssignments/Enforce-ALZ-Decomm\",\"/providers/Microsoft.Management/managementGroups/root-id-1-identity/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AKS-Policy\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Threat\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Backup\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enable-DDoS-VNET\",\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Enforce-TLS-SSL\",\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\",\"/providers/Microsoft.Management/managementGroups/root-id-1-secure/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-ASC-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-AzActivity-Log\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-HITRUST-HIPAA\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDEndpoints\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-OssDb\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-SqlAtp\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-Resource-Diag\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-Auditing\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-VM-Monitoring\",\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Enforce-ACSB\"]"
               }
             },
             "sensitive_values": {
@@ -15345,6 +16309,31 @@
               }
             ],
             "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-AzSqlDb-Auditing\"]"
+          },
+          {
+            "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/3017df2e-5df0-5373-bb0c-c255e0127c77\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/roleAssignments/3017df2e-5df0-5373-bb0c-c255e0127c77",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "3017df2e-5df0-5373-bb0c-c255e0127c77",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/9b7fa17d-e63e-47b0-bb0a-15c516ac86ec",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              }
+            ],
+            "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1-landing-zones/providers/Microsoft.Authorization/policyAssignments/Deploy-SQL-TDE\"]"
           },
           {
             "resources": [
@@ -15773,6 +16762,26 @@
           },
           {
             "resources": [
+              {
+                "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/22ff9bc8-ce29-51d8-b952-886206aa9339\"]",
+                "mode": "managed",
+                "type": "azurerm_role_assignment",
+                "name": "for_policy",
+                "index": "/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/22ff9bc8-ce29-51d8-b952-886206aa9339",
+                "provider_name": "registry.terraform.io/hashicorp/azurerm",
+                "schema_version": 0,
+                "values": {
+                  "condition": null,
+                  "condition_version": null,
+                  "delegated_managed_identity_resource_id": null,
+                  "description": null,
+                  "name": "22ff9bc8-ce29-51d8-b952-886206aa9339",
+                  "role_definition_id": "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+                  "scope": "/providers/Microsoft.Management/managementGroups/root-id-1",
+                  "timeouts": null
+                },
+                "sensitive_values": {}
+              },
               {
                 "address": "module.test_core.module.role_assignments_for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyAssignments/Deploy-MDFC-Config\"].azurerm_role_assignment.for_policy[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/roleAssignments/9ce4af18-ce8a-5ff5-b9d3-5b2718531aa3\"]",
                 "mode": "managed",
