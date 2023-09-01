@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to use the module to configure an Azure Policy Assignment with the user managed identity. Azure policies who implement a deploy if not exist require an identity to have the right permission to deploy the missing resources. 
+This page describes how to use the module to configure an Azure Policy Assignment with the user managed identity. Azure policies who implement a deploy if not exist require an identity to have the right permission to deploy the missing resources.
 
 By leveraging the user managed identities, customers can reduce the number of system identities created by the assignments by using a user managed identity. The other benefit of using a user managed identity is the decouple the role assignment from the policy.
 
