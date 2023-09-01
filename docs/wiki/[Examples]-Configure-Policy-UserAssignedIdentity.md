@@ -1,12 +1,13 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to use the module to configure an Azure Policy Assignment with the user managed identity. Azure policies who implement a deploy if not exist require an identity to have the right permission to deploy the missing resources. By leveraging the user managed identities, customers can reduce the number of system identities created by the assignments by using a user managed identity. The other benefit of using a user managed identity is the decouple the role assignment from the policy.
+This page describes how to use the module to configure an Azure Policy Assignment with the user managed identity. Azure policies who implement a deploy if not exist require an identity to have the right permission to deploy the missing resources. 
+
+By leveraging the user managed identities, customers can reduce the number of system identities created by the assignments by using a user managed identity. The other benefit of using a user managed identity is the decouple the role assignment from the policy.
 
 You can also review a working existing example located in examples/400-multi-with-orchestration
 
 In this page, we will create a policy assignment template to override an existing policy assignment currently using a SystemIdentity. We will then assign an existing user managed identity to that policy assignment.
-
 
 >**IMPORTANT**: To allow the declaration of custom or expanded templates, you must create a custom library folder within the root module and include the path to this folder using the `library_path` variable within the module configuration. In our example, the directory is `lib`.
 
@@ -63,7 +64,6 @@ ${jsonencode(
 
 Pay attention to the following identity section. It has been modified to process a variable that will come from the ***template_file_variables***
 
-
 ```json
 "identity": {
   "type": "UserAssigned",
@@ -73,7 +73,7 @@ Pay attention to the following identity section. It has been modified to process
 },
 ```
 
-This template will read 
+This template will read
 
 ```hcl
 var.template_file_variables.userAssignedIdentities["Deploy-VMSS-Monitoring"]
@@ -111,7 +111,7 @@ variable "template_file_variables" {
 }
 ```
 
-```
+```hcl
 module "alz" {
   # To enable correct testing of our examples, we must source this
   # module locally. Please remove the local `source = "../../../../"`
@@ -170,8 +170,7 @@ module "alz" {
 
 Another way to pass the user managed indentity is using the inline approach (partial script)
 
-```
-
+```hcl
 module "alz" {
   # To enable correct testing of our examples, we must source this
   # module locally. Please remove the local `source = "../../../../"`
@@ -211,7 +210,6 @@ resource "azurerm_user_assigned_identity" "msi1" {
 
 You should now kick-off your Terraform workflow (init, plan, apply) again to apply the updated configuration. This can be done either locally or through a pipeline.
 When your workflow has finished, the `Deploy-VMSS-Monitoring` policy assignment will be assigned at the Landing Zones Management Group.
-
 
 ```hcl
 # module.core.module.alz.data.azapi_resource.user_msi["/providers/Microsoft.Management/managementGroups/myorg/providers/Microsoft.Authorization/policyAssignments/Deploy-VMSS-Monitoring"] will be read during apply
