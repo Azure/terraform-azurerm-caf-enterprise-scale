@@ -161,7 +161,7 @@ locals {
 
 Note that the key `landing-zones` in this example refers to the name of the default core management group as specified in the archetype file name. The supported management group names are:
 
-- `root` - Note that if you specifiy `root`, it will map to the name of your root landing zone (as in the `root_id` you specifiy).
+- `root`
 - `decommissioned`
 - `sandboxes`
 - `landing-zones`
@@ -173,7 +173,7 @@ Note that the key `landing-zones` in this example refers to the name of the defa
 - `online`
 - `sap`
 
-You can see the default policy assignments for each management group in th corresponding template file in the [archetype_definitions](../../modules/archetypes/lib/archetype_definitions) folder.
+You can see the default policy assignments for each management group in the corresponding template file in the [archetype_definitions](../../modules/archetypes/lib/archetype_definitions) folder.
 
 You have successfully overridden the `enforcementMode` for the landing zone archetype.
 
