@@ -131,12 +131,12 @@ module "enterprise_scale" {
 
 ### `archetype_config_overrides.tf` for landing zones archetype
 
-Examplary, to change the enforcementMode for the landing zone archetype, we could use the following configuration. Note how the `root_id` specified when calling the module in `main.tf` is used to identify the archetype.
+Examplary, to change the enforcementMode for the landing zone archetype, we could use the following configuration.
 
 ```hcl
 locals {
   archetype_config_overrides = {
-    myorg-landing-zones = {
+    landing-zones = {
       enforcement_mode = {
         Audit-AppGW-WAF         = false
         Deny-IP-forwarding      = false
@@ -159,6 +159,22 @@ locals {
 }
 ```
 
+Note that the key `landing-zones` in this example refers to the name of the default core management group as specified in the archetype file name. The supported management group names are:
+
+- `root`
+- `decommissioned`
+- `sandboxes`
+- `landing-zones`
+- `platform`
+- `connectivity`
+- `management`
+- `identity`
+- `corp`
+- `online`
+- `sap`
+
+You can see the default policy assignments for each management group in the corresponding template file in the [archetype_definitions](../../modules/archetypes/lib/archetype_definitions) folder.
+
 You have successfully overridden the `enforcementMode` for the landing zone archetype.
 
 ## Brownfield deployment for corp landing zone
@@ -170,7 +186,7 @@ If you want to move your workloads quickly into the corp landing zone, it might 
 ```hcl
 locals {
   archetype_config_overrides = {
-    myorg-corp = {
+    corp = {
       enforcement_mode = {
         Audit-PeDnsZones         = false
         Deny-HybridNetworking    = false
@@ -179,7 +195,7 @@ locals {
         Deploy-Private-DNS-Zones = false
       }
     }
-    myorg-landing-zones = {
+    landing-zones = {
       enforcement_mode = {
         Audit-AppGW-WAF         = false
         Deny-IP-forwarding      = false
