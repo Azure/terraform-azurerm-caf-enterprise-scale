@@ -375,4 +375,12 @@ resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
       next_hop     = routing_policy.value.next_hop
     }
   }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_resource_group.connectivity,
+    azurerm_resource_group.virtual_wan,
+    azurerm_virtual_wan.virtual_wan,
+    azurerm_virtual_hub.virtual_wan,
+  ]
 }
