@@ -360,3 +360,19 @@ resource "azurerm_virtual_hub_connection" "virtual_wan" {
   ]
 
 }
+
+resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
+  for_each = local.azurerm_virtual_hub_routing_intent
+
+  name           = each.value.template.name
+  virtual_hub_id = each.value.template.virtual_hub_id
+
+  dynamic "routing_policy" {
+    for_each = each.value.template.routing_policy
+    content {
+      name         = routing_policy.value.name
+      destinations = routing_policy.value.destinations
+      next_hop     = routing_policy.value.next_hop
+    }
+  }
+}

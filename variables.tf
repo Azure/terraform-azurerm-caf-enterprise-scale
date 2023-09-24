@@ -266,6 +266,15 @@ variable "configure_connectivity_resources" {
                 next_hop_ip_address = string
               })
             ), [])
+            routing_intent = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                routing_policies = optional(list(object({
+                  name         = string
+                  destinations = list(string)
+                })), [])
+              }), {})
+            }), {})
             expressroute_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
