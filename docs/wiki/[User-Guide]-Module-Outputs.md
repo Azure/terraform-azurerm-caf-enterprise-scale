@@ -38,7 +38,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.54.0"
+      version = ">= 3.74.0"
     }
   }
 }
@@ -353,6 +353,15 @@ output "azurerm_virtual_hub" {
     virtual_wan = azurerm_virtual_hub.virtual_wan
   }
   description = "Returns the configuration data for all Virtual Hubs created by this module."
+}
+
+# The following output is used to ensure all Virtual Hub routing intent
+# data is returned to the root module.
+output "azurerm_virtual_hub_routing_intent" {
+  value = {
+    virtual_wan = azurerm_virtual_hub_routing_intent.virtual_wan
+  }
+  description = "Returns the configuration data for all Virtual Hub Routing Intents created by this module."
 }
 
 # The following output is used to ensure all ExpressRoute

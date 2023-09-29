@@ -235,6 +235,14 @@ locals {
     local.enabled &&
     virtual_hub.enabled
   }
+
+  deploy_virtual_hub_routing_intent = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.routing_intent.enabled
+  }
+
   deploy_virtual_hub_express_route_gateway = {
     for location, virtual_hub in local.virtual_hubs_by_location :
     location =>
@@ -1266,6 +1274,44 @@ locals {
   ]
 }
 
+locals {
+  virtual_hub_routing_intent_name = {
+    for location in local.virtual_hub_locations :
+    location =>
+    try(local.custom_settings.azurerm_routing_intent["virtual_wan"][location].name,
+    "${local.resource_prefix}-routingintent-${location}${local.resource_suffix}")
+  }
+  virtual_hub_routing_intent_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/virtualHubs/${local.virtual_hub_name[location]}"
+  }
+  virtual_hub_routing_intent_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_routing_intent_resource_id_prefix[location]}/${local.virtual_hub_routing_intent_name[location]}"
+  }
+  azurerm_virtual_hub_routing_intent = [
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    {
+      resource_id       = local.virtual_hub_routing_intent_resource_id[location]
+      managed_by_module = local.deploy_virtual_hub_routing_intent[location]
+      name              = local.virtual_hub_routing_intent_name[location]
+      virtual_hub_id    = local.virtual_hub_resource_id[location]
+      routing_policy = try(local.custom_settings.azurerm_virtual_hub_routing_intent["virtual_wan"][location].routing_policy,
+        [
+          for routing_policy in virtual_hub.config.routing_intent.config.routing_policies :
+          {
+            name         = routing_policy.name
+            destinations = routing_policy.destinations
+            next_hop     = local.virtual_hub_azfw_resource_id[location]
+          }
+        ]
+      )
+    }
+  ]
+}
+
 # Configuration settings for resource type:
 #  - azurerm_express_route_gateway
 locals {
@@ -2026,6 +2072,21 @@ locals {
     ]
     azurerm_virtual_hub = [
       for resource in local.azurerm_virtual_hub :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_virtual_hub_routing_intent = [
+      for resource in local.azurerm_virtual_hub_routing_intent :
       {
         resource_id   = resource.resource_id
         resource_name = resource.name

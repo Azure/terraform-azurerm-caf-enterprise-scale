@@ -80,3 +80,11 @@ locals {
     if resource.managed_by_module
   }
 }
+
+locals {
+  azurerm_virtual_hub_routing_intent = {
+    for resource in module.connectivity_resources.configuration.azurerm_virtual_hub_routing_intent :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
