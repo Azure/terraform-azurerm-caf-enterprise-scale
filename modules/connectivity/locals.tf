@@ -1423,7 +1423,7 @@ locals {
 #  - azurerm_private_dns_zone
 locals {
   enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
-  lowered_private_link_locations = [ for location in local.settings.dns.config.private_link_locations : lower(location) ]
+  lowered_private_link_locations = [for location in local.settings.dns.config.private_link_locations : lower(location)]
   private_link_locations         = coalescelist(local.lowered_private_link_locations, [local.location])
   private_dns_zone_prefix        = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
 
