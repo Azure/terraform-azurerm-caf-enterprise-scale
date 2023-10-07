@@ -77,3 +77,9 @@ variable "management_resources_tags" {
     demo_type  = "Deploy management resources using multiple module declarations"
   }
 }
+
+variable "template_file_variables" {
+  type        = any
+  description = "If specified, provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path."
+  default     = {}
+}
