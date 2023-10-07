@@ -5,7 +5,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.74.0"
+      version = ">= 3.74.0"
     }
   }
 }
@@ -73,5 +73,7 @@ module "alz" {
   deploy_management_resources    = false
   configure_management_resources = var.configure_management_resources
   subscription_id_management     = var.subscription_id_management
+
+  template_file_variables = var.template_file_variables
 
 }
