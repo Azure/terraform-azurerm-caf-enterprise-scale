@@ -16,7 +16,7 @@ locals {
   root_id                                   = var.root_id
   subscription_id                           = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
   settings                                  = var.settings
-  location                                  = var.location
+  location                                  = lower(var.location)
   tags                                      = var.tags
   resource_prefix                           = coalesce(var.resource_prefix, local.root_id)
   resource_suffix                           = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
@@ -37,7 +37,7 @@ locals {
   # terraform will throw an error at this point.
   hub_networks_by_location = {
     for hub_network in local.hub_networks :
-    coalesce(hub_network.config.location, local.location) => hub_network
+    coalesce(lower(hub_network.config.location), local.location) => hub_network
   }
   hub_network_locations = keys(local.hub_networks_by_location)
   virtual_hubs          = local.settings.vwan_hub_networks
@@ -54,16 +54,16 @@ locals {
   # Groups per location if preferred.
   virtual_hubs_by_location = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
   }
   virtual_hubs_by_location_for_resource_group_per_location = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if local.resource_group_per_virtual_hub_location
   }
   virtual_hubs_by_location_for_shared_resource_group = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if !local.resource_group_per_virtual_hub_location
   }
   # The following objects are used to identify azurerm_virtual_hub
@@ -71,12 +71,12 @@ locals {
   # azurerm_virtual_wan resource
   virtual_hubs_by_location_for_managed_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if local.existing_virtual_wan_resource_id == local.empty_string
   }
   virtual_hubs_by_location_for_existing_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if local.existing_virtual_wan_resource_id != local.empty_string
   }
   # Need to know the full list of virtual_hub_locations
@@ -89,9 +89,9 @@ locals {
       length(local.virtual_hubs_by_location_for_managed_virtual_wan) > 0,
       length(local.virtual_hubs_by_location_for_shared_resource_group) > 0,
     ]
-  ) ? [local.location, ] : local.empty_list
-  ddos_location = coalesce(local.settings.ddos_protection_plan.config.location, local.location)
-  dns_location  = coalesce(local.settings.dns.config.location, local.location)
+  ) ? [local.location] : local.empty_list
+  ddos_location = coalesce(lower(local.settings.ddos_protection_plan.config.location), local.location)
+  dns_location  = coalesce(lower(local.settings.dns.config.location), local.location)
   connectivity_locations = distinct(concat(
     local.hub_network_locations,
     keys(local.virtual_hubs_by_location_for_resource_group_per_location),
@@ -1423,10 +1423,14 @@ locals {
 #  - azurerm_private_dns_zone
 locals {
   enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
-  private_link_locations         = coalescelist(local.settings.dns.config.private_link_locations, [local.location])
+  lowered_private_link_locations = [for location in local.settings.dns.config.private_link_locations : lower(location)]
+  private_link_locations         = coalescelist(local.lowered_private_link_locations, [local.location])
   private_dns_zone_prefix        = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
+
+  lowered_builtin_azure_backup_geo_codes = { for key, value in local.builtin_azure_backup_geo_codes : lower(key) => lower(value) }
+
   lookup_azure_backup_geo_codes = merge(
-    local.builtin_azure_backup_geo_codes,
+    local.lowered_builtin_azure_backup_geo_codes,
     local.custom_azure_backup_geo_codes,
   )
   lookup_private_link_dns_zone_by_service = {
