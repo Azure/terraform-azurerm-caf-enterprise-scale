@@ -527,15 +527,6 @@
                   ]
                 }
               ],
-              "azurerm_virtual_hub_routing_intent": [
-                "object",
-                {
-                  "virtual_wan": [
-                    "tuple",
-                    []
-                  ]
-                }
-              ],
               "azurerm_virtual_network": [
                 "object",
                 {
@@ -936,9 +927,6 @@
             "virtual_wan": []
           },
           "azurerm_virtual_hub_connection": {
-            "virtual_wan": []
-          },
-          "azurerm_virtual_hub_routing_intent": {
             "virtual_wan": []
           },
           "azurerm_virtual_network": {

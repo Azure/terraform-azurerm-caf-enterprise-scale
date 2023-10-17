@@ -445,17 +445,6 @@
                   ]
                 }
               ],
-              "azurerm_virtual_hub_routing_intent": [
-                "object",
-                {
-                  "virtual_wan": [
-                    "tuple",
-                    [
-                      "string"
-                    ]
-                  ]
-                }
-              ],
               "azurerm_virtual_network": [
                 "object",
                 {
@@ -1033,15 +1022,6 @@
                   ]
                 }
               ],
-              "azurerm_virtual_hub_routing_intent": [
-                "object",
-                {
-                  "virtual_wan": [
-                    "tuple",
-                    []
-                  ]
-                }
-              ],
               "azurerm_virtual_network": [
                 "object",
                 {
@@ -1336,15 +1316,6 @@
                 }
               ],
               "azurerm_virtual_hub_connection": [
-                "object",
-                {
-                  "virtual_wan": [
-                    "tuple",
-                    []
-                  ]
-                }
-              ],
-              "azurerm_virtual_hub_routing_intent": [
                 "object",
                 {
                   "virtual_wan": [
@@ -1653,15 +1624,6 @@
                 }
               ],
               "azurerm_virtual_hub_connection": [
-                "object",
-                {
-                  "virtual_wan": [
-                    "tuple",
-                    []
-                  ]
-                }
-              ],
-              "azurerm_virtual_hub_routing_intent": [
                 "object",
                 {
                   "virtual_wan": [
@@ -1989,11 +1951,6 @@
           },
           "azurerm_virtual_hub_connection": {
             "virtual_wan": []
-          },
-          "azurerm_virtual_hub_routing_intent": {
-            "virtual_wan": [
-              "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope/root-id-1-routingintent-northeurope"
-            ]
           },
           "azurerm_virtual_network": {
             "connectivity": [
@@ -2371,9 +2328,6 @@
           "azurerm_virtual_hub_connection": {
             "virtual_wan": []
           },
-          "azurerm_virtual_hub_routing_intent": {
-            "virtual_wan": []
-          },
           "azurerm_virtual_network": {
             "connectivity": []
           },
@@ -2473,9 +2427,6 @@
             "virtual_wan": []
           },
           "azurerm_virtual_hub_connection": {
-            "virtual_wan": []
-          },
-          "azurerm_virtual_hub_routing_intent": {
             "virtual_wan": []
           },
           "azurerm_virtual_network": {
@@ -2583,9 +2534,6 @@
             "virtual_wan": []
           },
           "azurerm_virtual_hub_connection": {
-            "virtual_wan": []
-          },
-          "azurerm_virtual_hub_routing_intent": {
             "virtual_wan": []
           },
           "azurerm_virtual_network": {
@@ -7570,7 +7518,6 @@
             "schema_version": 0,
             "values": {
               "location": "northeurope",
-              "managed_by": null,
               "name": "root-id-1-connectivity-northeurope",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
@@ -7591,7 +7538,6 @@
             "schema_version": 0,
             "values": {
               "location": "uksouth",
-              "managed_by": null,
               "name": "root-id-1-connectivity-uksouth",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
@@ -7612,7 +7558,6 @@
             "schema_version": 0,
             "values": {
               "location": "westeurope",
-              "managed_by": null,
               "name": "root-id-1-connectivity-westeurope",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
@@ -7633,7 +7578,6 @@
             "schema_version": 0,
             "values": {
               "location": "northeurope",
-              "managed_by": null,
               "name": "root-id-1-dns",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
@@ -7654,7 +7598,6 @@
             "schema_version": 0,
             "values": {
               "location": "northeurope",
-              "managed_by": null,
               "name": "root-id-1-connectivity",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
@@ -7856,7 +7799,6 @@
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
-              "virtual_router_auto_scale_min_capacity": 2,
               "virtual_wan_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualWans/root-id-1-vwan-northeurope"
             },
             "sensitive_values": {
@@ -7885,45 +7827,12 @@
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework"
               },
               "timeouts": null,
-              "virtual_router_auto_scale_min_capacity": 2,
               "virtual_wan_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualWans/root-id-1-vwan-northeurope"
             },
             "sensitive_values": {
               "route": [],
               "tags": {},
               "virtual_router_ips": []
-            }
-          },
-          {
-            "address": "module.test_connectivity.azurerm_virtual_hub_routing_intent.virtual_wan[\"/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope/root-id-1-routingintent-northeurope\"]",
-            "mode": "managed",
-            "type": "azurerm_virtual_hub_routing_intent",
-            "name": "virtual_wan",
-            "index": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope/root-id-1-routingintent-northeurope",
-            "provider_name": "registry.terraform.io/hashicorp/azurerm",
-            "schema_version": 0,
-            "values": {
-              "name": "root-id-1-routingintent-northeurope",
-              "routing_policy": [
-                {
-                  "destinations": [
-                    "Internet"
-                  ],
-                  "name": "InternetTrafficPolicy",
-                  "next_hop": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/azureFirewalls/root-id-1-fw-hub-northeurope"
-                }
-              ],
-              "timeouts": null,
-              "virtual_hub_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5/resourceGroups/root-id-1-connectivity/providers/Microsoft.Network/virtualHubs/root-id-1-hub-northeurope"
-            },
-            "sensitive_values": {
-              "routing_policy": [
-                {
-                  "destinations": [
-                    false
-                  ]
-                }
-              ]
             }
           },
           {
@@ -7942,7 +7851,6 @@
               "ddos_protection_plan": [],
               "dns_servers": [],
               "edge_zone": null,
-              "encryption": [],
               "flow_timeout_in_minutes": null,
               "location": "northeurope",
               "name": "root-id-1-hub-northeurope",
@@ -7958,7 +7866,6 @@
               ],
               "ddos_protection_plan": [],
               "dns_servers": [],
-              "encryption": [],
               "subnet": [],
               "tags": {}
             }
@@ -7979,7 +7886,6 @@
               "ddos_protection_plan": [],
               "dns_servers": [],
               "edge_zone": null,
-              "encryption": [],
               "flow_timeout_in_minutes": null,
               "location": "uksouth",
               "name": "root-id-1-hub-uksouth",
@@ -7995,7 +7901,6 @@
               ],
               "ddos_protection_plan": [],
               "dns_servers": [],
-              "encryption": [],
               "subnet": [],
               "tags": {}
             }
@@ -8016,7 +7921,6 @@
               "ddos_protection_plan": [],
               "dns_servers": [],
               "edge_zone": null,
-              "encryption": [],
               "flow_timeout_in_minutes": null,
               "location": "westeurope",
               "name": "root-id-1-hub-westeurope",
@@ -8032,7 +7936,6 @@
               ],
               "ddos_protection_plan": [],
               "dns_servers": [],
-              "encryption": [],
               "subnet": [],
               "tags": {}
             }
@@ -17571,7 +17474,6 @@
               "local_authentication_disabled": false,
               "location": "northeurope",
               "name": "root-id-1-la",
-              "reservation_capacity_in_gb_per_day": null,
               "resource_group_name": "root-id-1-mgmt",
               "retention_in_days": 60,
               "sku": "PerGB2018",
@@ -17594,7 +17496,6 @@
             "schema_version": 0,
             "values": {
               "location": "northeurope",
-              "managed_by": null,
               "name": "root-id-1-mgmt",
               "tags": {
                 "deployedBy": "terraform/azure/caf-enterprise-scale/test_framework/management"
