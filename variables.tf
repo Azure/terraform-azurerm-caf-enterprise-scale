@@ -687,8 +687,8 @@ variable "disable_telemetry" {
 
 variable "strict_subscription_association" {
   type        = bool
-  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed."
-  default     = true
+  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed. Default is false as this works better with subscription vending."
+  default     = false
 }
 
 variable "policy_non_compliance_message_enabled" {
