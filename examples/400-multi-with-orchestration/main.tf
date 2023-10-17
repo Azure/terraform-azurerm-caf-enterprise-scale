@@ -66,5 +66,4 @@ module "core" {
   subscription_id_connectivity     = local.subscription_id_connectivity
   subscription_id_identity         = local.subscription_id_identity
   subscription_id_management       = local.subscription_id_management
-  template_file_variables          = var.template_file_variables
 }
