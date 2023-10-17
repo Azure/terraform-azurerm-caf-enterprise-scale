@@ -32,12 +32,8 @@ module "role_assignments_for_policy" {
   # Mandatory resource attributes
   policy_assignment_id = each.key
   scope_id             = azurerm_management_group_policy_assignment.enterprise_scale[each.key].management_group_id
-  principal_id = (
-    lookup(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0], "type") == "UserAssigned"
-    ? jsondecode(data.azapi_resource.user_msi[each.key].output).properties.principalId # workarround as azurerm_management_group_policy_assignment does not export the principal_id when using UserAssigned identity
-    : azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].principal_id
-  )
-  role_definition_ids = each.value
+  principal_id         = azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].principal_id
+  role_definition_ids  = each.value
 
   # Optional resource attributes
   additional_scope_ids = local.empty_list
@@ -51,21 +47,6 @@ module "role_assignments_for_policy" {
     azurerm_role_assignment.policy_assignment,
   ]
 
-}
-
-# The data source will retrieve the principalId of a user msi
-# used for the policy assignment
-# 
-data "azapi_resource" "user_msi" {
-  for_each = {
-    for ik, iv in local.es_role_assignments_by_policy_assignment : ik => iv
-    if one(azurerm_management_group_policy_assignment.enterprise_scale[ik].identity[0].identity_ids) != null
-  }
-
-  resource_id = one(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].identity_ids)
-  type        = "Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31"
-
-  response_export_values = ["properties.principalId"]
 }
 
 # The following resource is left to help manage the

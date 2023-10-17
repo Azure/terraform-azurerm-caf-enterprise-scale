@@ -53,7 +53,7 @@ locals {
   policy_assignments_with_managed_identity = {
     for assignment in local.es_policy_assignments :
     assignment.resource_id => assignment.template.properties.policyDefinitionId
-    if assignment.template.identity.type == "SystemAssigned" || assignment.template.identity.type == "UserAssigned"
+    if assignment.template.identity.type == "SystemAssigned"
   }
 }
 
