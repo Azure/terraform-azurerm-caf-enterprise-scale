@@ -986,7 +986,7 @@ locals {
         dns_servers        = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
         private_ip_ranges  = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration,
-          hub_network.config.azure_firewall.config.sku_tier == "Basic" ?
+          hub_network.config.azure_firewall.config.address_management_prefix != "" ?
           [
             {
               name                 = local.azfw_mgmt_pip_name[location]
@@ -1018,7 +1018,7 @@ locals {
           dns = try(
             local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns,
             (
-              hub_network.config.azure_firewall.config.sku_tier == "Basic" ? local.empty_list :
+              hub_network.config.azure_firewall.config.address_management_prefix != "" ? local.empty_list :
               [
                 {
                   proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
