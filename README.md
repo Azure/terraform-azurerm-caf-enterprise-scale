@@ -369,8 +369,8 @@ object({
                       ), [])
                       revoked_certificate = optional(list(
                         object({
-                          name             = string
-                          public_cert_data = string
+                          name       = string
+                          thumbprint = string
                         })
                       ), [])
                       radius_server_address = optional(string, null)
@@ -1006,11 +1006,11 @@ Default: `"Enterprise-Scale"`
 
 ### <a name="input_strict_subscription_association"></a> [strict\_subscription\_association](#input\_strict\_subscription\_association)
 
-Description: If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed.
+Description: If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed. Default is false as this works better with subscription vending.
 
 Type: `bool`
 
-Default: `true`
+Default: `false`
 
 ### <a name="input_subscription_id_connectivity"></a> [subscription\_id\_connectivity](#input\_subscription\_id\_connectivity)
 
