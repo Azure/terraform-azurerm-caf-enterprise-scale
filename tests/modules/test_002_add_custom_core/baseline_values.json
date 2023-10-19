@@ -210,7 +210,10 @@
                 {
                   "enterprise_scale": [
                     "tuple",
-                    []
+                    [
+                      "string",
+                      "string"
+                    ]
                   ]
                 }
               ],
@@ -527,6 +530,15 @@
                   ]
                 }
               ],
+              "azurerm_virtual_hub_routing_intent": [
+                "object",
+                {
+                  "virtual_wan": [
+                    "tuple",
+                    []
+                  ]
+                }
+              ],
               "azurerm_virtual_network": [
                 "object",
                 {
@@ -695,7 +707,10 @@
             ]
           },
           "azurerm_management_group_subscription_association": {
-            "enterprise_scale": []
+            "enterprise_scale": [
+              "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5",
+              "/providers/Microsoft.Management/managementGroups/root-id-1-management/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e"
+            ]
           },
           "azurerm_network_ddos_protection_plan": {
             "connectivity": []
@@ -929,6 +944,9 @@
           "azurerm_virtual_hub_connection": {
             "virtual_wan": []
           },
+          "azurerm_virtual_hub_routing_intent": {
+            "virtual_wan": []
+          },
           "azurerm_virtual_network": {
             "connectivity": []
           },
@@ -1054,15 +1072,10 @@
               "display_name": "Connectivity",
               "name": "root-id-1-connectivity",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-              "subscription_ids": [
-                "fa2fa118-a60d-4700-9ef1-fa02beeaaea5"
-              ],
               "timeouts": null
             },
             "sensitive_values": {
-              "subscription_ids": [
-                false
-              ]
+              "subscription_ids": []
             }
           },
           {
@@ -1167,15 +1180,10 @@
               "display_name": "Management",
               "name": "root-id-1-management",
               "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-platform",
-              "subscription_ids": [
-                "a9d8bda7-a341-4fe2-bfbf-61145868379e"
-              ],
               "timeouts": null
             },
             "sensitive_values": {
-              "subscription_ids": [
-                false
-              ]
+              "subscription_ids": []
             }
           },
           {
@@ -3590,6 +3598,36 @@
               "overrides": [],
               "resource_selectors": []
             }
+          },
+          {
+            "address": "module.test_core.azurerm_management_group_subscription_association.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group_subscription_association",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
+              "subscription_id": "/subscriptions/fa2fa118-a60d-4700-9ef1-fa02beeaaea5",
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.test_core.azurerm_management_group_subscription_association.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e\"]",
+            "mode": "managed",
+            "type": "azurerm_management_group_subscription_association",
+            "name": "enterprise_scale",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-management/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-management",
+              "subscription_id": "/subscriptions/a9d8bda7-a341-4fe2-bfbf-61145868379e",
+              "timeouts": null
+            },
+            "sensitive_values": {}
           },
           {
             "address": "module.test_core.azurerm_policy_definition.enterprise_scale[\"/providers/Microsoft.Management/managementGroups/root-id-1/providers/Microsoft.Authorization/policyDefinitions/Append-AppService-httpsonly\"]",

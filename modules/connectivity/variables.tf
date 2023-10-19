@@ -85,8 +85,8 @@ variable "settings" {
                     ), [])
                     revoked_certificate = optional(list(
                       object({
-                        name             = string
-                        public_cert_data = string
+                        name       = string
+                        thumbprint = string
                       })
                     ), [])
                     radius_server_address = optional(string, null)
@@ -153,6 +153,15 @@ variable "settings" {
               next_hop_ip_address = string
             })
           ), [])
+          routing_intent = optional(object({
+            enabled = optional(bool, false)
+            config = optional(object({
+              routing_policies = optional(list(object({
+                name         = string
+                destinations = list(string)
+              })), [])
+            }), {})
+          }), {})
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
