@@ -1,6 +1,8 @@
 {
   "es_platform": {
-    "policy_assignments": [],
+    "policy_assignments": [
+      "Enforce-GR-KeyVault"
+    ],
     "policy_definitions": [],
     "policy_set_definitions": [],
     "role_definitions": [],
