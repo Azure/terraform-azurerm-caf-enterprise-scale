@@ -198,8 +198,8 @@ variable "configure_connectivity_resources" {
                       ), [])
                       revoked_certificate = optional(list(
                         object({
-                          name             = string
-                          thumbprint       = string
+                          name       = string
+                          thumbprint = string
                         })
                       ), [])
                       radius_server_address = optional(string, null)
