@@ -38,7 +38,7 @@ locals {
     module.identity_resources.configuration.template_file_variables,
     module.management_resources.configuration.template_file_variables,
   )
-  default_location                = var.default_location
+  default_location                = lower(var.default_location)
   default_tags                    = var.default_tags
   disable_base_module_tags        = var.disable_base_module_tags
   disable_telemetry               = var.disable_telemetry

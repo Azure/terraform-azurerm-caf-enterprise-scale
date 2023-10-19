@@ -198,8 +198,8 @@ variable "configure_connectivity_resources" {
                       ), [])
                       revoked_certificate = optional(list(
                         object({
-                          name             = string
-                          public_cert_data = string
+                          name       = string
+                          thumbprint = string
                         })
                       ), [])
                       radius_server_address = optional(string, null)
@@ -266,6 +266,15 @@ variable "configure_connectivity_resources" {
                 next_hop_ip_address = string
               })
             ), [])
+            routing_intent = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                routing_policies = optional(list(object({
+                  name         = string
+                  destinations = list(string)
+                })), [])
+              }), {})
+            }), {})
             expressroute_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
@@ -482,8 +491,8 @@ e.g.
       }
       access_control = {
         Example-Role-Definition = [
-          "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Azure AD
-          "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Azure AD
+          "00000000-0000-0000-0000-000000000000", # Object ID of user/group/spn/mi from Microsoft Entra ID
+          "11111111-1111-1111-1111-111111111111", # Object ID of user/group/spn/mi from Microsoft Entra ID
         ]
       }
     }
@@ -678,8 +687,8 @@ variable "disable_telemetry" {
 
 variable "strict_subscription_association" {
   type        = bool
-  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed."
-  default     = true
+  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed. Default is false as this works better with subscription vending."
+  default     = false
 }
 
 variable "policy_non_compliance_message_enabled" {
@@ -742,4 +751,42 @@ variable "policy_non_compliance_message_not_enforced_replacement" {
     condition     = var.policy_non_compliance_message_not_enforced_replacement != null && length(var.policy_non_compliance_message_not_enforced_replacement) > 0
     error_message = "The policy_non_compliance_message_not_enforced_replacement value must not be null or empty."
   }
+}
+
+variable "resource_custom_timeouts" {
+  type = object({
+    azurerm_private_dns_zone = optional(object({
+      create = optional(string, null)
+      update = optional(string, null)
+      read   = optional(string, null)
+      delete = optional(string, null)
+    }), {})
+    azurerm_private_dns_zone_virtual_network_link = optional(object({
+      create = optional(string, null)
+      update = optional(string, null)
+      read   = optional(string, null)
+      delete = optional(string, null)
+    }), {})
+  })
+  description = <<DESCRIPTION
+Optional - Used to tune terraform deploy when faced with errors caused by API limits.
+
+For each supported resource type, there is a child object that specifies the create, update, and delete timeouts.
+Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, "10s" for ten seconds, or "2h" for two hours.
+If a timeout is not specified, the default value for the resource will be used.
+
+e.g.
+
+```hcl
+resource_custom_timeouts = {
+  azurerm_private_dns_zone = {
+    create = "1h"
+    update = "1h30m"
+    delete = "30m"
+    read   = "30s"
+  }
+}
+```
+DESCRIPTION
+  default     = {}
 }

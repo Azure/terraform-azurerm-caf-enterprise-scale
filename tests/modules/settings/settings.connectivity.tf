@@ -128,6 +128,17 @@ locals {
             location       = var.primary_location
             sku            = ""
             routes         = []
+            routing_intent = {
+              enabled = true
+              config = {
+                routing_policies = [
+                  {
+                    name         = "InternetTrafficPolicy"
+                    destinations = ["Internet"]
+                  }
+                ]
+              }
+            }
             expressroute_gateway = {
               enabled = true
               config = {

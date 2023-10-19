@@ -16,7 +16,7 @@ locals {
   root_id                                      = var.root_id
   subscription_id                              = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
   settings                                     = var.settings
-  location                                     = var.location
+  location                                     = lower(var.location)
   tags                                         = var.tags
   resource_prefix                              = coalesce(var.resource_prefix, local.root_id)
   resource_suffix                              = length(var.resource_suffix) > 0 ? "-${var.resource_suffix}" : local.empty_string

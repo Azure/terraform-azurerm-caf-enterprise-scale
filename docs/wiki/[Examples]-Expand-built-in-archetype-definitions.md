@@ -14,17 +14,21 @@ The built-in definition contains the following settings:
 {
   "es_landing_zones": {
     "policy_assignments": [
-      "Deny-IP-Forwarding",
-      "Deny-RDP-From-Internet",
+      "Audit-AppGW-WAF",
+      "Deny-IP-forwarding",
+      "Deny-MgmtPorts-Internet",
+      "Deny-Priv-Esc-AKS",
+      "Deny-Privileged-AKS",
       "Deny-Storage-http",
       "Deny-Subnet-Without-Nsg",
       "Deploy-AKS-Policy",
-      "Deploy-SQL-DB-Auditing",
+      "Deploy-AzSqlDb-Auditing",
+      "Deploy-SQL-Threat",
       "Deploy-VM-Backup",
-      "Deploy-SQL-Security",
-      "Deny-Priv-Escalation-AKS",
-      "Deny-Priv-Containers-AKS",
-      "Deny-http-Ingress-AKS"
+      "Enable-DDoS-VNET",
+      "Enforce-AKS-HTTPS",
+      "Enforce-GR-KeyVault",
+      "Enforce-TLS-SSL"
     ],
     "policy_definitions": [],
     "policy_set_definitions": [],
@@ -78,7 +82,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.54.0"
+      version = ">= 3.74.0"
     }
   }
 }
@@ -162,7 +166,7 @@ In this example, we want to add the policy assignment `"Deny-Resource-Locations"
 
 ### `lib/archetype_exclusion_es_landing_zones.tmpl.json`
 
-In this example, we want to remove the policy assignments `"Deny-Priv-Escalation-AKS"`, `Deny-Priv-Containers-AKS` and `Deny-http-Ingress-AKS` from the built-in archetype `es_landing_zones`
+In this example, we want to remove the policy assignments `"Deny-Priv-Esc-AKS"`, `Deny-Privileged-AKS` and `Deny-Storage-http` from the built-in archetype `es_landing_zones`
 
 - In the `/lib` directory create an `archetype_exclusion_es_landing_zones.tmpl.json` file.
 
@@ -172,9 +176,9 @@ In this example, we want to remove the policy assignments `"Deny-Priv-Escalation
 {
   "exclude_es_landing_zones": {
     "policy_assignments": [
-      "Deny-Priv-Escalation-AKS",
-      "Deny-Priv-Containers-AKS",
-      "Deny-http-Ingress-AKS"
+      "Deny-Priv-Esc-AKS",
+      "Deny-Privileged-AKS",
+      "Deny-Storage-http"
     ],
     "policy_definitions": [],
     "policy_set_definitions": [],
