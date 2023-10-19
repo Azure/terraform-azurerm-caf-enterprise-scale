@@ -67,6 +67,8 @@
       "Deny-VNET-Peer-Cross-Sub",
       "Deny-VNET-Peering-To-Non-Approved-VNETs",
       "Deny-VNet-Peering",
+      "DenyAction-ActivityLogs",
+      "DenyAction-DiagnosticLogs",
       "Deploy-ASC-SecurityContacts",
       "Deploy-Budget",
       "Deploy-Custom-Route-Table",
@@ -144,6 +146,7 @@
     "policy_set_definitions": [
       "Audit-UnusedResourcesCostOptimization",
       "Deny-PublicPaaSEndpoints",
+      "DenyAction-DeleteProtection",
       "Deploy-Diagnostics-LogAnalytics",
       "Deploy-MDFC-Config",
       "Deploy-Private-DNS-Zones",
