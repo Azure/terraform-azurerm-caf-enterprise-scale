@@ -163,8 +163,8 @@ object({
                     ), [])
                     revoked_certificate = optional(list(
                       object({
-                        name             = string
-                        public_cert_data = string
+                        name       = string
+                        thumbprint = string
                       })
                     ), [])
                     radius_server_address = optional(string, null)

@@ -1,4 +1,4 @@
-<!-- markdownlint-disable first-line-h1 -->
+<!-- markdownlint-disable-next-line first-line-h1 -->
 ## Table of Contents
 
 Please refer to the following to learn about the module:
@@ -16,6 +16,7 @@ Please refer to the following to learn about the module:
 
 If you need guidance when upgrading between major releases, please refer to the following:
 
+- [Upgrade from v4.2.0 to v5.0.0][wiki_upgrade_from_v4_2_0_to_v5_0_0]
 - [Upgrade from v3.3.0 to v4.0.0][wiki_upgrade_from_v3_3_0_to_v4_0_0]
 - [Upgrade from v2.4.1 to v3.0.0][wiki_upgrade_from_v2_4_1_to_v3_0_0]
 - [Upgrade from v1.1.4 to v2.0.0][wiki_upgrade_from_v1_1_4_to_v2_0_0]
@@ -38,6 +39,7 @@ If you need guidance when upgrading between major releases, please refer to the 
 [wiki_management_resources]:          %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
 [wiki_connectivity_resources]:        %5BUser-Guide%5D-Connectivity-Resources "Wiki - Connectivity Resources"
 [wiki_identity_resources]:            %5BUser-Guide%5D-Identity-Resources "Wiki - Identity Resources"
+[wiki_upgrade_from_v4_2_0_to_v5_0_0]: %5BUser-Guide%5D-Upgrade-from-v4.2.0-to-v5.0.0 "Wiki - Upgrade from v4.2.0 to v5.0.0"
 [wiki_upgrade_from_v3_3_0_to_v4_0_0]: %5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v4.0.0 "Wiki - Upgrade from v3.3.0 to v4.0.0"
 [wiki_upgrade_from_v2_4_1_to_v3_0_0]: %5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0 "Wiki - Upgrade from v2.4.1 to v3.0.0"
 [wiki_upgrade_from_v1_1_4_to_v2_0_0]: %5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0 "Wiki - Upgrade from v1.1.4 to v2.0.0"
