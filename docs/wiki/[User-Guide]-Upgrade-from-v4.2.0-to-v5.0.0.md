@@ -41,9 +41,9 @@ terraform import module.<YOUR_MODULE_REFERENCE>.azurerm_management_group_subscri
 - Add Italy North and avoid casing issues by @jaredfholgate in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/834>
 - Add support for user managed identity for policy assignments by @LaurentLesle in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/806>
 - fix: revert user-assigned managed identity by @matt-FFFFFF in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/844>
-- feat: strict subs no longer default by @gogondi1 in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/836>
+- feat: strict subs no longer default by @matt-FFFFFF in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/836>
 - Update dynamic overrides section for in and not_in by @MISO-mgriffin in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/840>
-- fix: bug-vpn_client_config by @matt-FFFFFF in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/835>
+- fix: bug-vpn_client_config by @gogondi1 in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/835>
 - Update Library Templates (automated) by @cae-pr-creator in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/827>
 - Remove Basic SKU requirement on AzureFirewallManagementSubnet by @ryan-royals in <https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/845>
 
