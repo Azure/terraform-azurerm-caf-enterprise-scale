@@ -26,7 +26,7 @@ If you want to migrate from `true` (the old defaut) to `false` (the new default)
 - Run terraform import for all the subscriptions associations managed by the module:
 
 ```bash
-terraform import module.<YOUR_MODULE_REFERENCE>.azurerm_management_group_subscription_association.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_MG>/subscriptions/<YOUR_SUBSCRIPTION_ID>"] /providers/Microsoft.Management/managementGroups/<YOUR_MG>/subscriptions/<YOUR_SUBSCRIPTION_ID>
+terraform import 'module.<YOUR_MODULE_REFERENCE>.azurerm_management_group_subscription_association.enterprise_scale["/providers/Microsoft.Management/managementGroups/<YOUR_MG>/subscriptions/<YOUR_SUBSCRIPTION_ID>"]' '/providers/Microsoft.Management/managementGroups/<YOUR_MG>/subscriptions/<YOUR_SUBSCRIPTION_ID>'
 ```
 
 ### Full list of changes
