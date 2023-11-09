@@ -603,8 +603,8 @@ DESCRIPTION
   default     = {}
 
   validation {
-    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-]{2,89}$", k)]) || length(keys(var.custom_landing_zones)) == 0
-    error_message = "The custom_landing_zones keys must be between 2 to 89 characters long and can only contain lowercase letters, numbers and hyphens."
+    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-.]{2,89}$", k)]) || length(keys(var.custom_landing_zones)) == 0
+    error_message = "The custom_landing_zones keys must be between 2 to 89 characters long and can only contain lowercase letters, numbers, periods, and hyphens."
   }
 }
 
