@@ -1018,7 +1018,7 @@ locals {
           dns = try(
             local.custom_settings.azurerm_firewall_policy["connectivity"][location].dns,
             (
-              hub_network.config.azure_firewall.config.address_management_prefix == "" ? local.empty_list :
+              hub_network.config.azure_firewall.config.sku_tier == "Basic" ? local.empty_list :
               [
                 {
                   proxy_enabled = hub_network.config.azure_firewall.config.enable_dns_proxy
