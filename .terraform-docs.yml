@@ -1,6 +1,6 @@
 ### To generate the output file to partially incorporate in the README.md,
 ### Execute this command in the Terraform module's code folder:
-# terraform-docs -c .tfdocs-config.yml .
+# terraform-docs -c .terraform-docs.yml .
 
 formatter: "markdown document" # this is required
 
@@ -18,7 +18,7 @@ sections:
   show: []
 
   hide-all: false # deprecated in v0.13.0, removed in v0.15.0
-  show-all: true  # deprecated in v0.13.0, removed in v0.15.0
+  show-all: true # deprecated in v0.13.0, removed in v0.15.0
 
 content: |-
   {{ .Header }}
