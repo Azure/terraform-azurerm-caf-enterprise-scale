@@ -45,7 +45,7 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
     )
     content {
       type         = identity.value.type
-      identity_ids = try(keys(identity.value.userAssignedIdentities), null)
+      identity_ids = can(identity.value.userAssignedIdentities) ? identity.value.userAssignedIdentities : null
     }
   }
 
