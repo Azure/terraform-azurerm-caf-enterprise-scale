@@ -1829,17 +1829,12 @@ locals {
       )
     }
   }
-  virtual_hub_connection_resource_id_prefix = {
-    for location, virtual_hub_config in local.virtual_hubs_by_location :
-    location =>
-    "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections"
-  }
   virtual_hub_connection_resource_id = {
     for location, virtual_hub_config in local.virtual_hubs_by_location :
     location => {
       for spoke_resource_id, hub_connection_name in local.virtual_hub_connection_name[location] :
       spoke_resource_id =>
-      "${local.virtual_hub_connection_resource_id_prefix[location]}/${hub_connection_name}"
+      "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/${hub_connection_name}"
     }
   }
   azurerm_virtual_hub_connection = flatten(
@@ -1849,10 +1844,10 @@ locals {
         for spoke_resource_id in distinct(concat(virtual_hub_config.config.spoke_virtual_network_resource_ids, virtual_hub_config.config.secure_spoke_virtual_network_resource_ids)) :
         {
           # Resource logic attributes
-          resource_id       = "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
+          resource_id       = local.virtual_hub_connection_resource_id[location][spoke_resource_id]
           managed_by_module = local.deploy_virtual_hub_connection[location]
           # Resource definition attributes
-          name                      = "peering-${uuidv5("url", spoke_resource_id)}"
+          name                      = local.virtual_hub_connection_name[location][spoke_resource_id]
           virtual_hub_id            = local.virtual_hub_resource_id[location]
           remote_virtual_network_id = spoke_resource_id
           # Optional definition attributes
