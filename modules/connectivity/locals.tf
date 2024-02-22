@@ -1457,6 +1457,7 @@ locals {
     azure_database_for_mariadb_server    = ["privatelink.mariadb.database.azure.com"]
     azure_database_for_mysql_server      = ["privatelink.mysql.database.azure.com"]
     azure_database_for_postgresql_server = ["privatelink.postgres.database.azure.com"]
+    azure_databricks                     = ["privatelink.azuredatabricks.net"]
     azure_digital_twins                  = ["privatelink.digitaltwins.azure.net"]
     azure_event_grid_domain              = ["privatelink.eventgrid.azure.net"]
     azure_event_grid_topic               = ["privatelink.eventgrid.azure.net"]
@@ -1534,6 +1535,7 @@ locals {
     azure_database_for_mariadb_server    = local.empty_string
     azure_database_for_mysql_server      = local.empty_string
     azure_database_for_postgresql_server = local.empty_string
+    azure_databricks                     = local.empty_string
     azure_digital_twins                  = local.empty_string
     azure_event_grid_domain              = local.empty_string
     azure_event_grid_topic               = local.empty_string

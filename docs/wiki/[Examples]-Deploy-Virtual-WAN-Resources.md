@@ -180,6 +180,7 @@ module "enterprise_scale" {
             azure_database_for_mariadb_server    = true
             azure_database_for_mysql_server      = true
             azure_database_for_postgresql_server = true
+            azure_databricks                     = true
             azure_digital_twins                  = true
             azure_event_grid_domain              = true
             azure_event_grid_topic               = true

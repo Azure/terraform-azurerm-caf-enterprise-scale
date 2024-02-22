@@ -328,6 +328,7 @@ object({
           azure_database_for_mariadb_server    = optional(bool, true)
           azure_database_for_mysql_server      = optional(bool, true)
           azure_database_for_postgresql_server = optional(bool, true)
+          azure_databricks                     = optional(bool, true)
           azure_digital_twins                  = optional(bool, true)
           azure_event_grid_domain              = optional(bool, true)
           azure_event_grid_topic               = optional(bool, true)
