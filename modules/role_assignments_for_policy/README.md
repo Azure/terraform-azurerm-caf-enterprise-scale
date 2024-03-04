@@ -75,5 +75,4 @@ The following outputs are exported:
 Description: Returns the configuration data for all Role Assignments created by this module.
 
 <!-- markdownlint-enable -->
-
 <!-- END_TF_DOCS -->

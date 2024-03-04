@@ -410,7 +410,7 @@ object({
                 base_policy_id                = optional(string, "")
                 private_ip_ranges             = optional(list(string), [])
                 threat_intelligence_mode      = optional(string, "Alert")
-                threat_intelligence_allowlist = optional(list(string), [])
+                threat_intelligence_allowlist = optional(map(list(string)), {})
                 availability_zones = optional(object({
                   zone_1 = optional(bool, true)
                   zone_2 = optional(bool, true)
@@ -484,7 +484,7 @@ object({
                 base_policy_id                = optional(string, "")
                 private_ip_ranges             = optional(list(string), [])
                 threat_intelligence_mode      = optional(string, "Alert")
-                threat_intelligence_allowlist = optional(list(string), [])
+                threat_intelligence_allowlist = optional(map(list(string)), {})
                 availability_zones = optional(object({
                   zone_1 = optional(bool, true)
                   zone_2 = optional(bool, true)
