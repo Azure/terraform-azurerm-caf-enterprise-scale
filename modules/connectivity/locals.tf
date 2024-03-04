@@ -1627,7 +1627,7 @@ locals {
     for fqdn in toset(local.settings.dns.config.public_dns_zones) :
     {
       # Resource logic attributes
-      resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/dnszones/${fqdn}"
+      resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/dnsZones/${fqdn}"
       managed_by_module = local.deploy_dns
       # Resource definition attributes
       name = fqdn
