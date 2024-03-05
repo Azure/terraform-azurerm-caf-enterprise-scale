@@ -232,13 +232,16 @@ resource "azurerm_firewall_policy" "virtual_wan" {
   }
 
   dynamic "threat_intelligence_allowlist" {
-    for_each = each.value.template.threat_intelligence_allowlist
+    # Ensure that the dynamic block is created only if the allowlist is defined
+    for_each = length(keys(each.value.template.threat_intelligence_allowlist)) > 0 ? [each.value.template.threat_intelligence_allowlist] : []
+
     content {
       # Optional attributes
       fqdns        = lookup(threat_intelligence_allowlist.value, "fqdns", null)
       ip_addresses = lookup(threat_intelligence_allowlist.value, "ip_addresses", null)
     }
   }
+
 
   # Set explicit dependencies
   depends_on = [
