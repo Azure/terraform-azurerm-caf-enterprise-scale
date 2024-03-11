@@ -4,7 +4,7 @@
 
 formatter: "markdown document" # this is required
 
-version: "0.16.0"
+version: "0.17.0"
 
 header-from: "_README_header.md"
 footer-from: "_README_footer.md"
