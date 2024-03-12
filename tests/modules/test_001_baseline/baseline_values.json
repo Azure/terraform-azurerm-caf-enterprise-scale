@@ -4,6 +4,43 @@
       {
         "resources": [
           {
+            "address": "module.settings.azurerm_resource_group.example",
+            "mode": "managed",
+            "type": "azurerm_resource_group",
+            "name": "example",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "location": "northeurope",
+              "managed_by": null,
+              "name": "rg-identity",
+              "tags": null,
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.settings.azurerm_user_assigned_identity.example",
+            "mode": "managed",
+            "type": "azurerm_user_assigned_identity",
+            "name": "example",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "location": "northeurope",
+              "name": "id-identity",
+              "resource_group_name": "rg-identity",
+              "tags": null,
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          }
+        ],
+        "address": "module.settings"
+      },
+      {
+        "resources": [
+          {
             "address": "module.test_core.azurerm_management_group.level_1[\"/providers/Microsoft.Management/managementGroups/root-id-1\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
