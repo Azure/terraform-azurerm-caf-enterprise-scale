@@ -59,7 +59,7 @@ module "role_assignments_for_policy" {
 data "azapi_resource" "user_msi" {
   for_each = {
     for ik, iv in local.es_role_assignments_by_policy_assignment : ik => iv
-    if try(azurerm_management_group_policy_assignment.enterprise_scale[ik].identity[0].type, null) == "UserAssigned"
+    if try(local.azurerm_management_group_policy_assignment_enterprise_scale[ik].template.identity.type, null) == "UserAssigned"
   }
 
   resource_id = one(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].identity_ids)
