@@ -38,13 +38,14 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   # ensures the block is only created when this value
   # is specified in the source template
   dynamic "identity" {
-    for_each = {
-      for ik, iv in try(each.value.template.identity, local.empty_map) :
-      ik => iv
-      if lower(iv) == "systemassigned"
-    }
+    for_each = (
+      try(each.value.template.identity, local.empty_map) == local.empty_map
+      ? []
+      : [for ik, iv in tomap({ "type" = each.value.template.identity.type }) : each.value.template.identity if iv != "None"]
+    )
     content {
-      type = "SystemAssigned"
+      type         = identity.value.type
+      identity_ids = can(identity.value.userAssignedIdentities) ? toset(keys(identity.value.userAssignedIdentities)) : null
     }
   }
 

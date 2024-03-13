@@ -190,5 +190,8 @@ locals {
       "northcentralus",
       "southcentralus",
     ]
+    subscription_id         = data.azurerm_client_config.core.subscription_id
+    umi_resource_group_name = local.umi_resource_group_name
+    umi_name                = local.umi_name
   }
 }

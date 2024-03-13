@@ -4,6 +4,43 @@
       {
         "resources": [
           {
+            "address": "module.settings.azurerm_resource_group.example",
+            "mode": "managed",
+            "type": "azurerm_resource_group",
+            "name": "example",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "location": "northeurope",
+              "managed_by": null,
+              "name": "rg-identity",
+              "tags": null,
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
+            "address": "module.settings.azurerm_user_assigned_identity.example",
+            "mode": "managed",
+            "type": "azurerm_user_assigned_identity",
+            "name": "example",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 1,
+            "values": {
+              "location": "northeurope",
+              "name": "id-identity",
+              "resource_group_name": "rg-identity",
+              "tags": null,
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          }
+        ],
+        "address": "module.settings"
+      },
+      {
+        "resources": [
+          {
             "address": "module.test_core.azurerm_management_group.level_1[\"/providers/Microsoft.Management/managementGroups/root-id-1\"]",
             "mode": "managed",
             "type": "azurerm_management_group",
@@ -1573,38 +1610,37 @@
             "provider_name": "registry.terraform.io/hashicorp/azurerm",
             "schema_version": 0,
             "values": {
-              "description": "Deploy resource group containing Log Analytics workspace and linked automation account to centralize logs and monitoring. The automation account is aprerequisite for solutions like Updates and Change Tracking.",
-              "display_name": "Configure Log Analytics workspace and automation account to centralize logs and monitoring",
+              "description": "Deploy-Log-Analytics.",
+              "display_name": "Deploy-Log-Analytics",
               "enforce": false,
               "identity": [
                 {
-                  "identity_ids": null,
-                  "type": "SystemAssigned"
+                  "identity_ids": [
+                    "/subscriptions/2a8527ca-5340-49aa-8931-ea03669451a0/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-identity"
+                  ],
+                  "type": "UserAssigned"
                 }
               ],
               "location": "northeurope",
               "management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-1-management",
               "name": "Deploy-Log-Analytics",
-              "non_compliance_message": [
-                {
-                  "content": "Log Analytics workspace and automation account should be configured to centralize logs and monitoring.",
-                  "policy_definition_reference_id": null
-                }
-              ],
+              "non_compliance_message": [],
               "not_scopes": [],
               "overrides": [],
-              "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"60\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"sku\":{\"value\":\"pergb2018\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
+              "parameters": "{\"automationAccountName\":{\"value\":\"root-id-1-automation\"},\"automationRegion\":{\"value\":\"northeurope\"},\"dataRetention\":{\"value\":\"60\"},\"effect\":{\"value\":\"DeployIfNotExists\"},\"rgName\":{\"value\":\"root-id-1-mgmt\"},\"sku\":{\"value\":\"pergb2018\"},\"workspaceName\":{\"value\":\"root-id-1-la\"},\"workspaceRegion\":{\"value\":\"northeurope\"}}",
               "policy_definition_id": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
               "resource_selectors": [],
               "timeouts": null
             },
             "sensitive_values": {
               "identity": [
-                {}
+                {
+                  "identity_ids": [
+                    false
+                  ]
+                }
               ],
-              "non_compliance_message": [
-                {}
-              ],
+              "non_compliance_message": [],
               "not_scopes": [],
               "overrides": [],
               "resource_selectors": []
@@ -7900,6 +7936,32 @@
               "timeouts": null
             },
             "sensitive_values": {}
+          },
+          {
+            "address": "module.test_core.data.azapi_resource.user_msi[\"/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics\"]",
+            "mode": "data",
+            "type": "azapi_resource",
+            "name": "user_msi",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-management/providers/Microsoft.Authorization/policyAssignments/Deploy-Log-Analytics",
+            "provider_name": "registry.terraform.io/azure/azapi",
+            "schema_version": 0,
+            "values": {
+              "identity": [],
+              "name": null,
+              "resource_id": "/subscriptions/2a8527ca-5340-49aa-8931-ea03669451a0/resourceGroups/rg-identity/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-identity",
+              "response_export_values": [
+                "properties.principalId"
+              ],
+              "timeouts": null,
+              "type": "Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31"
+            },
+            "sensitive_values": {
+              "identity": [],
+              "response_export_values": [
+                false
+              ],
+              "tags": {}
+            }
           },
           {
             "address": "module.test_core.random_id.telem[0]",
