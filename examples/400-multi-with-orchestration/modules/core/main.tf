@@ -74,4 +74,6 @@ module "alz" {
   configure_management_resources = var.configure_management_resources
   subscription_id_management     = var.subscription_id_management
 
+  template_file_variables = var.template_file_variables
+
 }
