@@ -1343,6 +1343,7 @@ locals {
       location            = location
       virtual_hub_id      = local.virtual_hub_resource_id[location]
       scale_units         = virtual_hub.config.expressroute_gateway.config.scale_unit
+      allow_non_virtual_wan_traffic = virtual_hub.config.expressroute_gateway.config.allow_non_virtual_wan_traffic
       # Optional definition attributes
       tags = try(local.custom_settings.azurerm_express_route_gateway["virtual_wan"][location].tags, local.tags)
     }
