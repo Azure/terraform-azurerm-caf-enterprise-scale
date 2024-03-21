@@ -180,6 +180,7 @@ locals {
               enabled = true
               config = {
                 scale_unit = 1
+                allow_non_virtual_wan_traffic = false
               }
             }
             vpn_gateway = {
