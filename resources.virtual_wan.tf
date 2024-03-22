@@ -80,7 +80,7 @@ resource "azurerm_express_route_gateway" "virtual_wan" {
   location            = each.value.template.location
   virtual_hub_id      = each.value.template.virtual_hub_id
   scale_units         = each.value.template.scale_units
-
+  allow_non_virtual_wan_traffic = each.value.template.allow_non_virtual_wan_traffic
   # Optional resource attributes
   tags = each.value.template.tags
 
