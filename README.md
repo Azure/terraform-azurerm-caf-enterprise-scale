@@ -534,6 +534,7 @@ object({
             azure_database_for_mariadb_server    = optional(bool, true)
             azure_database_for_mysql_server      = optional(bool, true)
             azure_database_for_postgresql_server = optional(bool, true)
+            azure_databricks                     = optional(bool, true)
             azure_digital_twins                  = optional(bool, true)
             azure_event_grid_domain              = optional(bool, true)
             azure_event_grid_topic               = optional(bool, true)
@@ -550,6 +551,7 @@ object({
             azure_media_services                 = optional(bool, true)
             azure_migrate                        = optional(bool, true)
             azure_monitor                        = optional(bool, true)
+            azure_openai_service                 = optional(bool, true)
             azure_purview_account                = optional(bool, true)
             azure_purview_studio                 = optional(bool, true)
             azure_relay_namespace                = optional(bool, true)
@@ -1107,6 +1109,7 @@ The following resources are used by this module:
 - [time_sleep.after_azurerm_policy_set_definition](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
 - [time_sleep.after_azurerm_role_assignment](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
 - [time_sleep.after_azurerm_role_definition](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
+- [azapi_resource.user_msi](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/resource) (data source)
 - [azurerm_policy_definition.external_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) (data source)
 - [azurerm_policy_set_definition.external_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_set_definition) (data source)
 
