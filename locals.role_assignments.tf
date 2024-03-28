@@ -37,3 +37,11 @@ locals {
     (role.role_assignment_id) => role.role_assignment_config
   }
 }
+
+# The following locals is required to resolve bug as per https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/794
+# This locals is used by resource "azurerm_role_assignment" "private_dns_zone_contributor_connectivity"
+# in resources.role_assignments.tf to determine if the connectivity management group exists
+
+locals {
+  connectivity_mg_exists = length([for k, v in local.es_landing_zones_map : v if (v.id == "${var.root_id}-connectivity")]) > 0
+}

@@ -97,3 +97,21 @@ resource "time_sleep" "after_azurerm_role_assignment" {
   create_duration  = local.create_duration_delay["after_azurerm_role_assignment"]
   destroy_duration = local.destroy_duration_delay["after_azurerm_role_assignment"]
 }
+
+# Role Assignment required to resolve bug as per https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues/794
+# Role assignment will add "Private DNS Zone Contributor" role def for the policy assignment's Managed Identity
+# on the connectivity management group
+resource "azurerm_role_assignment" "private_dns_zone_contributor_connectivity" {
+  for_each             = local.connectivity_mg_exists ? { for k, v in azurerm_management_group_policy_assignment.enterprise_scale : k => v if endswith(k, "Deploy-Private-DNS-Zones") } : {}
+  role_definition_name = "Private DNS Zone Contributor"
+  scope                = "/providers/Microsoft.Management/managementGroups/${var.root_id}-connectivity"
+  principal_id         = each.value.identity[0].principal_id
+
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+    azurerm_role_assignment.policy_assignment,
+  ]
+}
