@@ -43,5 +43,5 @@ locals {
 # in resources.role_assignments.tf to determine if the connectivity management group exists
 
 locals {
-  connectivity_mg_exists = length([for k, v in local.es_landing_zones_map : v if (v.id == "${var.root_id}-connectivity")]) > 0
+  connectivity_mg_exists = length([for k, v in local.es_landing_zones_map : v if(v.id == "${var.root_id}-connectivity")]) > 0
 }
