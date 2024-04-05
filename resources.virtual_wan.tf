@@ -75,12 +75,12 @@ resource "azurerm_express_route_gateway" "virtual_wan" {
   provider = azurerm.connectivity
 
   # Mandatory resource attributes
-  name                = each.value.template.name
-  resource_group_name = each.value.template.resource_group_name
-  location            = each.value.template.location
-  virtual_hub_id      = each.value.template.virtual_hub_id
-  scale_units         = each.value.template.scale_units
-
+  name                          = each.value.template.name
+  resource_group_name           = each.value.template.resource_group_name
+  location                      = each.value.template.location
+  virtual_hub_id                = each.value.template.virtual_hub_id
+  scale_units                   = each.value.template.scale_units
+  allow_non_virtual_wan_traffic = each.value.template.allow_non_virtual_wan_traffic
   # Optional resource attributes
   tags = each.value.template.tags
 
