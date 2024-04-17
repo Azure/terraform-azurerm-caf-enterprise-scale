@@ -110,7 +110,7 @@ locals {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -159,7 +159,7 @@ locals {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -270,7 +270,7 @@ locals {
 
 ### Reference `settings.management.tf`
 
-The below `settings.management.tf` file can be used to declare these variables as local values, containing the custom inputs for the `configure_management_resources` input variables as described above.  
+The below `settings.management.tf` file can be used to declare these variables as local values, containing the custom inputs for the `configure_management_resources` input variables as described above.
 
 Read more about customizing a connectivity deployment in the [Deploy Management Resources with Custom Settings](%5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings) article.
 
