@@ -45,10 +45,11 @@ resource "azurerm_virtual_hub" "virtual_wan" {
   location            = each.value.template.location
 
   # Optional resource attributes
-  sku            = each.value.template.sku
-  address_prefix = each.value.template.address_prefix
-  virtual_wan_id = each.value.template.virtual_wan_id
-  tags           = each.value.template.tags
+  sku                    = each.value.template.sku
+  address_prefix         = each.value.template.address_prefix
+  hub_routing_preference = each.value.template.hub_routing_preference
+  virtual_wan_id         = each.value.template.virtual_wan_id
+  tags                   = each.value.template.tags
 
   # Dynamic configuration blocks
   dynamic "route" {
