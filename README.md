@@ -155,6 +155,7 @@ Please see the [releases](https://github.com/Azure/terraform-azurerm-caf-enterpr
 
 For upgrade guides from previous versions, please refer to the following links:
 
+- [Upgrade from v4.2.0 to v5.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v4.2.0-to-v5.0.0)
 - [Upgrade from v3.3.0 to v4.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v4.0.0)
 - [Upgrade from v2.4.1 to v3.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0)
 - [Upgrade from v1.1.4 to v2.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v1.1.4-to-v2.0.0)
