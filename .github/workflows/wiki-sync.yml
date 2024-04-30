@@ -1,6 +1,9 @@
 ---
 name: Docs/Wiki Sync
 
+permissions:
+  contents: write
+
 # yamllint disable-line rule:truthy
 on:
   release:
