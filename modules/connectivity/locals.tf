@@ -16,7 +16,7 @@ locals {
   root_id                                   = var.root_id
   subscription_id                           = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
   settings                                  = var.settings
-  location                                  = var.location
+  location                                  = lower(var.location)
   tags                                      = var.tags
   resource_prefix                           = coalesce(var.resource_prefix, local.root_id)
   resource_suffix                           = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
@@ -37,7 +37,7 @@ locals {
   # terraform will throw an error at this point.
   hub_networks_by_location = {
     for hub_network in local.hub_networks :
-    coalesce(hub_network.config.location, local.location) => hub_network
+    coalesce(lower(hub_network.config.location), local.location) => hub_network
   }
   hub_network_locations = keys(local.hub_networks_by_location)
   virtual_hubs          = local.settings.vwan_hub_networks
@@ -54,16 +54,16 @@ locals {
   # Groups per location if preferred.
   virtual_hubs_by_location = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
   }
   virtual_hubs_by_location_for_resource_group_per_location = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if local.resource_group_per_virtual_hub_location
   }
   virtual_hubs_by_location_for_shared_resource_group = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if !local.resource_group_per_virtual_hub_location
   }
   # The following objects are used to identify azurerm_virtual_hub
@@ -71,12 +71,12 @@ locals {
   # azurerm_virtual_wan resource
   virtual_hubs_by_location_for_managed_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if local.existing_virtual_wan_resource_id == local.empty_string
   }
   virtual_hubs_by_location_for_existing_virtual_wan = {
     for virtual_hub in local.virtual_hubs :
-    coalesce(virtual_hub.config.location, local.location) => virtual_hub
+    coalesce(lower(virtual_hub.config.location), local.location) => virtual_hub
     if local.existing_virtual_wan_resource_id != local.empty_string
   }
   # Need to know the full list of virtual_hub_locations
@@ -89,9 +89,9 @@ locals {
       length(local.virtual_hubs_by_location_for_managed_virtual_wan) > 0,
       length(local.virtual_hubs_by_location_for_shared_resource_group) > 0,
     ]
-  ) ? [local.location, ] : local.empty_list
-  ddos_location = coalesce(local.settings.ddos_protection_plan.config.location, local.location)
-  dns_location  = coalesce(local.settings.dns.config.location, local.location)
+  ) ? [local.location] : local.empty_list
+  ddos_location = coalesce(lower(local.settings.ddos_protection_plan.config.location), local.location)
+  dns_location  = coalesce(lower(local.settings.dns.config.location), local.location)
   connectivity_locations = distinct(concat(
     local.hub_network_locations,
     keys(local.virtual_hubs_by_location_for_resource_group_per_location),
@@ -235,6 +235,14 @@ locals {
     local.enabled &&
     virtual_hub.enabled
   }
+
+  deploy_virtual_hub_routing_intent = {
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    location =>
+    local.deploy_virtual_hub[location] &&
+    virtual_hub.config.routing_intent.enabled
+  }
+
   deploy_virtual_hub_express_route_gateway = {
     for location, virtual_hub in local.virtual_hubs_by_location :
     location =>
@@ -460,7 +468,7 @@ locals {
         }
       ] : local.empty_list,
       # Conditionally add Azure Firewall Management Subnet
-      local.deploy_azure_firewall[location] && local.hub_networks_by_location[location].config.azure_firewall.config.sku_tier == "Basic" ? [
+      local.deploy_azure_firewall[location] && local.hub_networks_by_location[location].config.azure_firewall.config.address_management_prefix != "" ? [
         {
           # Resource logic attributes
           resource_id               = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallManagementSubnet"
@@ -978,7 +986,7 @@ locals {
         dns_servers        = try(local.custom_settings.azurerm_firewall["connectivity"][location].dns_servers, null)
         private_ip_ranges  = try(local.custom_settings.azurerm_firewall["connectivity"][location].private_ip_ranges, null)
         management_ip_configuration = try(local.custom_settings.azurerm_firewall["connectivity"][location].management_ip_configuration,
-          hub_network.config.azure_firewall.config.sku_tier == "Basic" ?
+          hub_network.config.azure_firewall.config.address_management_prefix != "" ?
           [
             {
               name                 = local.azfw_mgmt_pip_name[location]
@@ -1057,7 +1065,7 @@ locals {
               : [{
                 # Resource logic attributes
                 resource_id       = local.azfw_mgmt_pip_resource_id[location]
-                managed_by_module = local.deploy_azure_firewall[location] && local.hub_networks_by_location[location].config.azure_firewall.config.sku_tier == "Basic"
+                managed_by_module = local.deploy_azure_firewall[location] && local.hub_networks_by_location[location].config.azure_firewall.config.address_management_prefix != ""
                 # Resource definition attributes
                 name                    = local.azfw_mgmt_pip_name[location]
                 resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
@@ -1266,6 +1274,44 @@ locals {
   ]
 }
 
+locals {
+  virtual_hub_routing_intent_name = {
+    for location in local.virtual_hub_locations :
+    location =>
+    try(local.custom_settings.azurerm_routing_intent["virtual_wan"][location].name,
+    "${local.resource_prefix}-routingintent-${location}${local.resource_suffix}")
+  }
+  virtual_hub_routing_intent_resource_id_prefix = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_resource_group_id[location]}/providers/Microsoft.Network/virtualHubs/${local.virtual_hub_name[location]}"
+  }
+  virtual_hub_routing_intent_resource_id = {
+    for location in local.virtual_hub_locations :
+    location =>
+    "${local.virtual_hub_routing_intent_resource_id_prefix[location]}/${local.virtual_hub_routing_intent_name[location]}"
+  }
+  azurerm_virtual_hub_routing_intent = [
+    for location, virtual_hub in local.virtual_hubs_by_location :
+    {
+      resource_id       = local.virtual_hub_routing_intent_resource_id[location]
+      managed_by_module = local.deploy_virtual_hub_routing_intent[location]
+      name              = local.virtual_hub_routing_intent_name[location]
+      virtual_hub_id    = local.virtual_hub_resource_id[location]
+      routing_policy = try(local.custom_settings.azurerm_virtual_hub_routing_intent["virtual_wan"][location].routing_policy,
+        [
+          for routing_policy in virtual_hub.config.routing_intent.config.routing_policies :
+          {
+            name         = routing_policy.name
+            destinations = routing_policy.destinations
+            next_hop     = local.virtual_hub_azfw_resource_id[location]
+          }
+        ]
+      )
+    }
+  ]
+}
+
 # Configuration settings for resource type:
 #  - azurerm_express_route_gateway
 locals {
@@ -1292,11 +1338,12 @@ locals {
       resource_id       = local.virtual_hub_express_route_gateway_resource_id[location]
       managed_by_module = local.deploy_virtual_hub_express_route_gateway[location]
       # Resource definition attributes
-      name                = local.virtual_hub_express_route_gateway_name[location]
-      resource_group_name = local.virtual_hub_resource_group_name[location]
-      location            = location
-      virtual_hub_id      = local.virtual_hub_resource_id[location]
-      scale_units         = virtual_hub.config.expressroute_gateway.config.scale_unit
+      name                          = local.virtual_hub_express_route_gateway_name[location]
+      resource_group_name           = local.virtual_hub_resource_group_name[location]
+      location                      = location
+      virtual_hub_id                = local.virtual_hub_resource_id[location]
+      scale_units                   = virtual_hub.config.expressroute_gateway.config.scale_unit
+      allow_non_virtual_wan_traffic = virtual_hub.config.expressroute_gateway.config.allow_non_virtual_wan_traffic
       # Optional definition attributes
       tags = try(local.custom_settings.azurerm_express_route_gateway["virtual_wan"][location].tags, local.tags)
     }
@@ -1377,10 +1424,14 @@ locals {
 #  - azurerm_private_dns_zone
 locals {
   enable_private_link_by_service = local.settings.dns.config.enable_private_link_by_service
-  private_link_locations         = coalescelist(local.settings.dns.config.private_link_locations, [local.location])
+  lowered_private_link_locations = [for location in local.settings.dns.config.private_link_locations : lower(location)]
+  private_link_locations         = coalescelist(local.lowered_private_link_locations, [local.location])
   private_dns_zone_prefix        = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/privateDnsZones/"
+
+  lowered_builtin_azure_backup_geo_codes = { for key, value in local.builtin_azure_backup_geo_codes : lower(key) => lower(value) }
+
   lookup_azure_backup_geo_codes = merge(
-    local.builtin_azure_backup_geo_codes,
+    local.lowered_builtin_azure_backup_geo_codes,
     local.custom_azure_backup_geo_codes,
   )
   lookup_private_link_dns_zone_by_service = {
@@ -1577,7 +1628,7 @@ locals {
     for fqdn in toset(local.settings.dns.config.public_dns_zones) :
     {
       # Resource logic attributes
-      resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/dnszones/${fqdn}"
+      resource_id       = "${local.resource_group_config_by_scope_and_location["dns"][local.dns_location].resource_id}/providers/Microsoft.Network/dnsZones/${fqdn}"
       managed_by_module = local.deploy_dns
       # Resource definition attributes
       name = fqdn
@@ -1776,10 +1827,16 @@ locals {
         for spoke_resource_id in distinct(concat(virtual_hub_config.config.spoke_virtual_network_resource_ids, virtual_hub_config.config.secure_spoke_virtual_network_resource_ids)) :
         {
           # Resource logic attributes
-          resource_id       = "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
+          resource_id = try(
+            "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/${local.custom_settings.azurerm_virtual_hub_connection["virtual_wan"][location][spoke_resource_id].name}",
+            "${local.virtual_hub_resource_id[location]}/hubVirtualNetworkConnections/peering-${uuidv5("url", spoke_resource_id)}"
+          )
           managed_by_module = local.deploy_virtual_hub_connection[location]
           # Resource definition attributes
-          name                      = "peering-${uuidv5("url", spoke_resource_id)}"
+          name = try(
+            local.custom_settings.azurerm_virtual_hub_connection["virtual_wan"][location][spoke_resource_id].name,
+            "peering-${uuidv5("url", spoke_resource_id)}"
+          )
           virtual_hub_id            = local.virtual_hub_resource_id[location]
           remote_virtual_network_id = spoke_resource_id
           # Optional definition attributes
@@ -2026,6 +2083,21 @@ locals {
     ]
     azurerm_virtual_hub = [
       for resource in local.azurerm_virtual_hub :
+      {
+        resource_id   = resource.resource_id
+        resource_name = resource.name
+        template = {
+          for key, value in resource :
+          key => value
+          if resource.managed_by_module &&
+          key != "resource_id" &&
+          key != "managed_by_module"
+        }
+        managed_by_module = resource.managed_by_module
+      }
+    ]
+    azurerm_virtual_hub_routing_intent = [
+      for resource in local.azurerm_virtual_hub_routing_intent :
       {
         resource_id   = resource.resource_id
         resource_name = resource.name

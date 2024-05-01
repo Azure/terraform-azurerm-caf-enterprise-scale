@@ -198,8 +198,8 @@ variable "configure_connectivity_resources" {
                       ), [])
                       revoked_certificate = optional(list(
                         object({
-                          name             = string
-                          public_cert_data = string
+                          name       = string
+                          thumbprint = string
                         })
                       ), [])
                       radius_server_address = optional(string, null)
@@ -239,7 +239,7 @@ variable "configure_connectivity_resources" {
                 base_policy_id                = optional(string, "")
                 private_ip_ranges             = optional(list(string), [])
                 threat_intelligence_mode      = optional(string, "Alert")
-                threat_intelligence_allowlist = optional(list(string), [])
+                threat_intelligence_allowlist = optional(map(list(string)), {})
                 availability_zones = optional(object({
                   zone_1 = optional(bool, true)
                   zone_2 = optional(bool, true)
@@ -266,10 +266,20 @@ variable "configure_connectivity_resources" {
                 next_hop_ip_address = string
               })
             ), [])
+            routing_intent = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                routing_policies = optional(list(object({
+                  name         = string
+                  destinations = list(string)
+                })), [])
+              }), {})
+            }), {})
             expressroute_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
-                scale_unit = optional(number, 1)
+                scale_unit                    = optional(number, 1)
+                allow_non_virtual_wan_traffic = optional(bool, false)
               }), {})
             }), {})
             vpn_gateway = optional(object({
@@ -304,7 +314,7 @@ variable "configure_connectivity_resources" {
                 base_policy_id                = optional(string, "")
                 private_ip_ranges             = optional(list(string), [])
                 threat_intelligence_mode      = optional(string, "Alert")
-                threat_intelligence_allowlist = optional(list(string), [])
+                threat_intelligence_allowlist = optional(map(list(string)), {})
                 availability_zones = optional(object({
                   zone_1 = optional(bool, true)
                   zone_2 = optional(bool, true)
@@ -594,8 +604,8 @@ DESCRIPTION
   default     = {}
 
   validation {
-    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-]{2,89}$", k)]) || length(keys(var.custom_landing_zones)) == 0
-    error_message = "The custom_landing_zones keys must be between 2 to 89 characters long and can only contain lowercase letters, numbers and hyphens."
+    condition     = can([for k in keys(var.custom_landing_zones) : regex("^[a-zA-Z0-9-.]{2,89}$", k)]) || length(keys(var.custom_landing_zones)) == 0
+    error_message = "The custom_landing_zones keys must be between 2 to 89 characters long and can only contain lowercase letters, numbers, periods, and hyphens."
   }
 }
 
@@ -678,8 +688,8 @@ variable "disable_telemetry" {
 
 variable "strict_subscription_association" {
   type        = bool
-  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed."
-  default     = true
+  description = "If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed. Default is false as this works better with subscription vending."
+  default     = false
 }
 
 variable "policy_non_compliance_message_enabled" {

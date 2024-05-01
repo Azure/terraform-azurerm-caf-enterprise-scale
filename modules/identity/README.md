@@ -69,5 +69,4 @@ The following outputs are exported:
 Description: Returns the configuration settings for resources to deploy for the identity solution.
 
 <!-- markdownlint-enable -->
-
 <!-- END_TF_DOCS -->

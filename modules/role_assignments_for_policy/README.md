@@ -10,7 +10,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.54.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.74.0)
 
 ## Modules
 
@@ -75,5 +75,4 @@ The following outputs are exported:
 Description: Returns the configuration data for all Role Assignments created by this module.
 
 <!-- markdownlint-enable -->
-
 <!-- END_TF_DOCS -->

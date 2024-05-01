@@ -163,8 +163,8 @@ object({
                     ), [])
                     revoked_certificate = optional(list(
                       object({
-                        name             = string
-                        public_cert_data = string
+                        name       = string
+                        thumbprint = string
                       })
                     ), [])
                     radius_server_address = optional(string, null)
@@ -204,7 +204,7 @@ object({
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -231,6 +231,15 @@ object({
               next_hop_ip_address = string
             })
           ), [])
+          routing_intent = optional(object({
+            enabled = optional(bool, false)
+            config = optional(object({
+              routing_policies = optional(list(object({
+                name         = string
+                destinations = list(string)
+              })), [])
+            }), {})
+          }), {})
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
@@ -269,7 +278,7 @@ object({
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -395,5 +404,4 @@ Description: Returns the configuration settings for resources to deploy for the 
 Description: Returns the debug output for the module.
 
 <!-- markdownlint-enable -->
-
 <!-- END_TF_DOCS -->

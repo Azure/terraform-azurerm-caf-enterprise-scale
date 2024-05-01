@@ -85,8 +85,8 @@ variable "settings" {
                     ), [])
                     revoked_certificate = optional(list(
                       object({
-                        name             = string
-                        public_cert_data = string
+                        name       = string
+                        thumbprint = string
                       })
                     ), [])
                     radius_server_address = optional(string, null)
@@ -126,7 +126,7 @@ variable "settings" {
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -153,10 +153,20 @@ variable "settings" {
               next_hop_ip_address = string
             })
           ), [])
+          routing_intent = optional(object({
+            enabled = optional(bool, false)
+            config = optional(object({
+              routing_policies = optional(list(object({
+                name         = string
+                destinations = list(string)
+              })), [])
+            }), {})
+          }), {})
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              scale_unit = optional(number, 1)
+              scale_unit                    = optional(number, 1)
+              allow_non_virtual_wan_traffic = optional(bool, false)
             }), {})
           }), {})
           vpn_gateway = optional(object({
@@ -191,7 +201,7 @@ variable "settings" {
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)

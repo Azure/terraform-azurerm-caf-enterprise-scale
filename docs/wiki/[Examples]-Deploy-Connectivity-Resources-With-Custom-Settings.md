@@ -73,7 +73,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.54.0"
+      version = ">= 3.74.0"
     }
   }
 }
@@ -206,7 +206,7 @@ locals {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -255,7 +255,7 @@ locals {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true

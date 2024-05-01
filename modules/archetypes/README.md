@@ -99,5 +99,4 @@ The following outputs are exported:
 Description: Returns the archetype configuration data used to generate all resources needed to complete deployment of the Enterprise-scale Landing Zones, as per the specified archetype\_id.
 
 <!-- markdownlint-enable -->
-
 <!-- END_TF_DOCS -->

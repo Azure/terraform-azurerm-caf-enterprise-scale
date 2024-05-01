@@ -40,7 +40,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.54.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.74.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -65,7 +65,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.54.0"
+      version = ">= 3.74.0"
     }
   }
 }
@@ -172,9 +172,9 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
 
-- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.3.0)
+- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.7.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.54.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.74.0)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
 
@@ -238,10 +238,10 @@ The following input variables are optional (have default values):
 
 ### <a name="input_archetype_config_overrides"></a> [archetype\_config\_overrides](#input\_archetype\_config\_overrides)
 
-Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.
-Does not work for management groups specified by the 'custom\_landing\_zones' input variable.
-To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.
-To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.
+Description: If specified, will set custom Archetype configurations for the core ALZ Management Groups.  
+Does not work for management groups specified by the 'custom\_landing\_zones' input variable.  
+To override the default configuration settings for any of the core Management Groups, add an entry to the archetype\_config\_overrides variable for each Management Group you want to customize.  
+To create a valid archetype\_config\_overrides entry, you must provide the required values in the archetype\_config\_overrides object for the Management Group you wish to re-configure.  
 To do this, simply create an entry similar to the root example below for one or more of the supported core Management Group IDs:
 
 - root
@@ -369,8 +369,8 @@ object({
                       ), [])
                       revoked_certificate = optional(list(
                         object({
-                          name             = string
-                          public_cert_data = string
+                          name       = string
+                          thumbprint = string
                         })
                       ), [])
                       radius_server_address = optional(string, null)
@@ -410,7 +410,7 @@ object({
                 base_policy_id                = optional(string, "")
                 private_ip_ranges             = optional(list(string), [])
                 threat_intelligence_mode      = optional(string, "Alert")
-                threat_intelligence_allowlist = optional(list(string), [])
+                threat_intelligence_allowlist = optional(map(list(string)), {})
                 availability_zones = optional(object({
                   zone_1 = optional(bool, true)
                   zone_2 = optional(bool, true)
@@ -437,10 +437,20 @@ object({
                 next_hop_ip_address = string
               })
             ), [])
+            routing_intent = optional(object({
+              enabled = optional(bool, false)
+              config = optional(object({
+                routing_policies = optional(list(object({
+                  name         = string
+                  destinations = list(string)
+                })), [])
+              }), {})
+            }), {})
             expressroute_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
                 scale_unit = optional(number, 1)
+                allow_non_virtual_wan_traffic = optional(bool, false)
               }), {})
             }), {})
             vpn_gateway = optional(object({
@@ -475,7 +485,7 @@ object({
                 base_policy_id                = optional(string, "")
                 private_ip_ranges             = optional(list(string), [])
                 threat_intelligence_mode      = optional(string, "Alert")
-                threat_intelligence_allowlist = optional(list(string), [])
+                threat_intelligence_allowlist = optional(map(list(string)), {})
                 availability_zones = optional(object({
                   zone_1 = optional(bool, true)
                   zone_2 = optional(bool, true)
@@ -682,7 +692,7 @@ Default: `{}`
 
 ### <a name="input_custom_landing_zones"></a> [custom\_landing\_zones](#input\_custom\_landing\_zones)
 
-Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.
+Description: If specified, will deploy additional Management Groups alongside Enterprise-scale core Management Groups.  
 Although the object type for this input variable is set to `any`, the expected object is based on the following structure:
 
 ```terraform
@@ -701,13 +711,13 @@ variable "custom_landing_zones" {
   )
 ```
 
-The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.
-This was necessary to allow the `parameters` value to be correctly interpreted.
+The decision not to hard code the structure in the input variable `type` is by design, as it allows Terraform to handle the input as a dynamic object type.  
+This was necessary to allow the `parameters` value to be correctly interpreted.  
 Without this, Terraform would throw an error if each parameter value wasn't a consistent type, as it would incorrectly identify the input as a `tuple` which must contain consistent type structure across all entries.
 
 > Note the id of the custom landing zone will be appended to `var.root_id`. The maximum length of the resulting name must be less than 90 characters.
 
-The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.
+The `custom_landing_zones` object is used to deploy additional Management Groups within the core Management Group hierarchy.  
 The main object parameters are `display_name`, `parent_management_group_id`, `subscription_ids`and `archetype_config`.
 
 - `display_name` is the name assigned to the Management Group.
@@ -941,8 +951,8 @@ Default:
 
 Description: Optional - Used to tune terraform deploy when faced with errors caused by API limits.
 
-For each supported resource type, there is a child object that specifies the create, update, and delete timeouts.
-Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, "10s" for ten seconds, or "2h" for two hours.
+For each supported resource type, there is a child object that specifies the create, update, and delete timeouts.  
+Each of these arguments takes a string representation of a duration, such as "60m" for 60 minutes, "10s" for ten seconds, or "2h" for two hours.  
 If a timeout is not specified, the default value for the resource will be used.
 
 e.g.
@@ -997,11 +1007,11 @@ Default: `"Enterprise-Scale"`
 
 ### <a name="input_strict_subscription_association"></a> [strict\_subscription\_association](#input\_strict\_subscription\_association)
 
-Description: If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed.
+Description: If set to true, subscriptions associated to management groups will be exclusively set by the module and any added by another process will be removed. If set to false, the module will will only enforce association of the specified subscriptions and those added to management groups by other processes will not be removed. Default is false as this works better with subscription vending.
 
 Type: `bool`
 
-Default: `true`
+Default: `false`
 
 ### <a name="input_subscription_id_connectivity"></a> [subscription\_id\_connectivity](#input\_subscription\_id\_connectivity)
 
@@ -1085,6 +1095,7 @@ The following resources are used by this module:
 - [azurerm_subscription_template_deployment.telemetry_management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
 - [azurerm_virtual_hub.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub) (resource)
 - [azurerm_virtual_hub_connection.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) (resource)
+- [azurerm_virtual_hub_routing_intent.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_routing_intent) (resource)
 - [azurerm_virtual_network.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) (resource)
 - [azurerm_virtual_network_gateway.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_gateway) (resource)
 - [azurerm_virtual_network_peering.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering) (resource)
@@ -1195,6 +1206,10 @@ Description: Returns the configuration data for all Virtual Hubs created by this
 ### <a name="output_azurerm_virtual_hub_connection"></a> [azurerm\_virtual\_hub\_connection](#output\_azurerm\_virtual\_hub\_connection)
 
 Description: Returns the configuration data for all Virtual Hub Connections created by this module.
+
+### <a name="output_azurerm_virtual_hub_routing_intent"></a> [azurerm\_virtual\_hub\_routing\_intent](#output\_azurerm\_virtual\_hub\_routing\_intent)
+
+Description: Returns the configuration data for all Virtual Hub Routing Intents created by this module.
 
 ### <a name="output_azurerm_virtual_network"></a> [azurerm\_virtual\_network](#output\_azurerm\_virtual\_network)
 
