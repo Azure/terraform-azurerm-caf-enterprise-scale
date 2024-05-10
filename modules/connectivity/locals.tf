@@ -1255,8 +1255,9 @@ locals {
       resource_group_name = local.virtual_hub_resource_group_name[location]
       location            = location
       # Optional definition attributes
-      sku            = coalesce(virtual_hub.config.sku, "Standard")
-      address_prefix = virtual_hub.config.address_prefix
+      sku                    = coalesce(virtual_hub.config.sku, "Standard")
+      address_prefix         = virtual_hub.config.address_prefix
+      hub_routing_preference = try(local.custom_settings.azurerm_virtual_hub["virtual_wan"][location].hub_routing_preference, "ExpressRoute")
       virtual_wan_id = length(local.existing_virtual_wan_resource_id) > 0 ? local.existing_virtual_wan_resource_id : (
         length(local.virtual_wan_locations) > 0 ?
         lookup(local.virtual_wan_resource_id, local.virtual_wan_locations[0], null) :
