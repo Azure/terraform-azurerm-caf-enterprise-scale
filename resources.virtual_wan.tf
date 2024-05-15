@@ -45,10 +45,11 @@ resource "azurerm_virtual_hub" "virtual_wan" {
   location            = each.value.template.location
 
   # Optional resource attributes
-  sku            = each.value.template.sku
-  address_prefix = each.value.template.address_prefix
-  virtual_wan_id = each.value.template.virtual_wan_id
-  tags           = each.value.template.tags
+  sku                    = each.value.template.sku
+  address_prefix         = each.value.template.address_prefix
+  hub_routing_preference = each.value.template.hub_routing_preference
+  virtual_wan_id         = each.value.template.virtual_wan_id
+  tags                   = each.value.template.tags
 
   # Dynamic configuration blocks
   dynamic "route" {
@@ -75,12 +76,12 @@ resource "azurerm_express_route_gateway" "virtual_wan" {
   provider = azurerm.connectivity
 
   # Mandatory resource attributes
-  name                = each.value.template.name
-  resource_group_name = each.value.template.resource_group_name
-  location            = each.value.template.location
-  virtual_hub_id      = each.value.template.virtual_hub_id
-  scale_units         = each.value.template.scale_units
-
+  name                          = each.value.template.name
+  resource_group_name           = each.value.template.resource_group_name
+  location                      = each.value.template.location
+  virtual_hub_id                = each.value.template.virtual_hub_id
+  scale_units                   = each.value.template.scale_units
+  allow_non_virtual_wan_traffic = each.value.template.allow_non_virtual_wan_traffic
   # Optional resource attributes
   tags = each.value.template.tags
 

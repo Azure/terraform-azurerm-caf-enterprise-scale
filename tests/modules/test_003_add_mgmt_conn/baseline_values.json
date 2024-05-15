@@ -13331,6 +13331,25 @@
             }
           },
           {
+            "address": "module.test_core.azurerm_role_assignment.private_dns_zone_contributor_connectivity[\"/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deploy-Private-DNS-Zones\"]",
+            "mode": "managed",
+            "type": "azurerm_role_assignment",
+            "name": "private_dns_zone_contributor_connectivity",
+            "index": "/providers/Microsoft.Management/managementGroups/root-id-1-corp/providers/Microsoft.Authorization/policyAssignments/Deploy-Private-DNS-Zones",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "condition": null,
+              "condition_version": null,
+              "delegated_managed_identity_resource_id": null,
+              "description": null,
+              "role_definition_name": "Private DNS Zone Contributor",
+              "scope": "/providers/Microsoft.Management/managementGroups/root-id-1-connectivity",
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          },
+          {
             "address": "module.test_core.azurerm_role_definition.enterprise_scale[\"/providers/Microsoft.Authorization/roleDefinitions/07824e45-af54-586f-a5f0-4bb8676cb3a2\"]",
             "mode": "managed",
             "type": "azurerm_role_definition",

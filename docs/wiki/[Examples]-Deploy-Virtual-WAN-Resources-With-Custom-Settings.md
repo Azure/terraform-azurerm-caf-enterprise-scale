@@ -180,6 +180,7 @@ locals {
               enabled = true
               config = {
                 scale_unit = 1
+                allow_non_virtual_wan_traffic = false
               }
             }
             vpn_gateway = {
@@ -199,7 +200,7 @@ locals {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -242,7 +243,7 @@ locals {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true

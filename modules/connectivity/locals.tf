@@ -1255,8 +1255,9 @@ locals {
       resource_group_name = local.virtual_hub_resource_group_name[location]
       location            = location
       # Optional definition attributes
-      sku            = coalesce(virtual_hub.config.sku, "Standard")
-      address_prefix = virtual_hub.config.address_prefix
+      sku                    = coalesce(virtual_hub.config.sku, "Standard")
+      address_prefix         = virtual_hub.config.address_prefix
+      hub_routing_preference = try(local.custom_settings.azurerm_virtual_hub["virtual_wan"][location].hub_routing_preference, "ExpressRoute")
       virtual_wan_id = length(local.existing_virtual_wan_resource_id) > 0 ? local.existing_virtual_wan_resource_id : (
         length(local.virtual_wan_locations) > 0 ?
         lookup(local.virtual_wan_resource_id, local.virtual_wan_locations[0], null) :
@@ -1338,11 +1339,12 @@ locals {
       resource_id       = local.virtual_hub_express_route_gateway_resource_id[location]
       managed_by_module = local.deploy_virtual_hub_express_route_gateway[location]
       # Resource definition attributes
-      name                = local.virtual_hub_express_route_gateway_name[location]
-      resource_group_name = local.virtual_hub_resource_group_name[location]
-      location            = location
-      virtual_hub_id      = local.virtual_hub_resource_id[location]
-      scale_units         = virtual_hub.config.expressroute_gateway.config.scale_unit
+      name                          = local.virtual_hub_express_route_gateway_name[location]
+      resource_group_name           = local.virtual_hub_resource_group_name[location]
+      location                      = location
+      virtual_hub_id                = local.virtual_hub_resource_id[location]
+      scale_units                   = virtual_hub.config.expressroute_gateway.config.scale_unit
+      allow_non_virtual_wan_traffic = virtual_hub.config.expressroute_gateway.config.allow_non_virtual_wan_traffic
       # Optional definition attributes
       tags = try(local.custom_settings.azurerm_express_route_gateway["virtual_wan"][location].tags, local.tags)
     }
