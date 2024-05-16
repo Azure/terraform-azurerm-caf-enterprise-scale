@@ -181,7 +181,7 @@ variable "configure_connectivity_resources" {
                 gateway_sku_vpn             = optional(string, "")
                 remote_vnet_traffic_enabled = optional(bool, false)
                 virtual_wan_traffic_enabled = optional(bool, false)
-                advanced_vpn_settings       = optional(object({
+                advanced_vpn_settings = optional(object({
                   enable_bgp                       = optional(bool, null)
                   active_active                    = optional(bool, null)
                   private_ip_address_allocation    = optional(string, "")
