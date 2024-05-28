@@ -626,6 +626,12 @@ variable "default_location" {
   description = "Must be specified, e.g `eastus`. Will set the Azure region in which region bound resources will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/"
 }
 
+variable "diag_settings_location" {
+  type        = string
+  description = "Will set the Azure region in which region azapi diagnostic settings will be deployed. Please see: https://azure.microsoft.com/en-gb/global-infrastructure/geographies/"
+  default     = null
+}
+
 variable "default_tags" {
   type        = map(string)
   description = "If specified, will set the default tags for all resources deployed by this module where supported."

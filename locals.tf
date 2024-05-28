@@ -39,6 +39,7 @@ locals {
     module.management_resources.configuration.template_file_variables,
   )
   default_location                = lower(var.default_location)
+  diag_settings_location          = lower(var.diag_settings_location)
   default_tags                    = var.default_tags
   disable_base_module_tags        = var.disable_base_module_tags
   disable_telemetry               = var.disable_telemetry
