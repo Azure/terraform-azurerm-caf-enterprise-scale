@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Enforce-GR-Kubernetes0",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "This initiative assignment enables additional ALZ guardrails for Kubernetes.",
+    "displayName": "Enforce recommended guardrails for Kubernetes",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-Kubernetes",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Recommended guardrails {enforcementMode} be enforced for Kubernetes."
+      }
+    ],
+    "scope": "${current_scope_resource_id}",
+    "notScopes": [],
+    "parameters": {}
+  }
+}

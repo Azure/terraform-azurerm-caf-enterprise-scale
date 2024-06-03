@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Enforce-GR-CogServ0",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "This initiative assignment enables additional ALZ guardrails for Cognitive Services.",
+    "displayName": "Enforce recommended guardrails for Cognitive Services",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-CognitiveServices",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Recommended guardrails {enforcementMode} be enforced for Cognitive Services."
+      }
+    ],
+    "scope": "${current_scope_resource_id}",
+    "notScopes": [],
+    "parameters": {}
+  }
+}
