@@ -116,10 +116,10 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
         foreach($property in Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties.parameters -MemberType NoteProperty)
         {
             $propertyName = $property.Name
-            Write-Output "Checking Parameter: $propertyName"
+            Write-Verbose "Checking Parameter: $propertyName"
             if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.GetType() -ne [System.String])
             {
-                Write-Output "Skipping non-string parameter: $propertyName"
+                Write-Verbose "Skipping non-string parameter: $propertyName"
                 continue
             }
 

@@ -88,32 +88,43 @@ $managementGroupMapping = @{
     "platform" = "platform"
 }
 
+$defaultParameterValues =@(
+    "-p location=uksouth"
+)
+
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
 
 $policyAssignmentSourcePath = "$SourcePath/eslzArm/managementGroupTemplates/policyAssignments"
-
-
 
 foreach($managementGroup in $policyAssignments.Keys)
 {
     foreach($policyAssignmentFile in $policyAssignments[$managementGroup])
     {
-        $parsedAssignment = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" | Out-String | ConvertFrom-Json
-        $policyAssignmentName = $parsedAssignment.name
+        $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
 
-        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
-
-        Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
-
-        if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
+        foreach($parsedAssignment in $parsedAssignmentArray)
         {
-            $values = New-Object 'System.Collections.Generic.List[string]'
-            $values.Add($policyAssignmentName)
-            $finalPolicyAssignments.Add($managementGroupNameFinal, $values)
-        }
-        else
-        {
-            $finalPolicyAssignments[$managementGroupNameFinal].Add($policyAssignmentName)
+            if($parsedAssignment.type -ne "Microsoft.Authorization/policyAssignments")
+            {
+                continue
+            }
+            
+            $policyAssignmentName = $parsedAssignment.name
+
+            $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
+
+            Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
+
+            if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
+            {
+                $values = New-Object 'System.Collections.Generic.List[string]'
+                $values.Add($policyAssignmentName)
+                $finalPolicyAssignments.Add($managementGroupNameFinal, $values)
+            }
+            else
+            {
+                $finalPolicyAssignments[$managementGroupNameFinal].Add($policyAssignmentName)
+            }
         }
     }
 }
