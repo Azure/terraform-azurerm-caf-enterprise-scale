@@ -1941,6 +1941,7 @@ locals {
     ddos_protection_plan_resource_id        = local.ddos_protection_plan_resource_id
     private_dns_zone_prefix                 = local.private_dns_zone_prefix
     connectivity_location                   = local.location
+    connectivity_location_short             = local.lookup_azure_backup_geo_codes[local.location]
     virtual_network_resource_id_by_location = local.virtual_network_resource_id
     vpn_gateway_resource_id_by_location     = local.vpn_gateway_resource_id
     firewall_resource_id_by_location        = local.azfw_resource_id
