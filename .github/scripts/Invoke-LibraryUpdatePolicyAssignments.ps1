@@ -74,10 +74,14 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
     Write-Output "Processing Assignment: $sourcePolicyAssignmentFile"
 
     $parsedAssignment = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues | Out-String | ConvertFrom-Json
+
+    Write-Output "Parsed Assignment Name: $($parsedAssignment.name)"
+
     $parsedAssignments[$parsedAssignment.name] = @{
         json = $parsedAssignment
         file = $sourcePolicyAssignmentFile
     }
+    
     if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "scope" -MemberType Properties))
     {
         $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "scope" -Value "`${current_scope_resource_id}"
