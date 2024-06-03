@@ -117,9 +117,9 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
         {
             $propertyName = $property.Name
             Write-Verbose "Checking Parameter: $propertyName"
-            if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.GetType() -ne [System.String])
+            if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.GetType() -eq [System.Boolean])
             {
-                Write-Verbose "Skipping non-string parameter: $propertyName"
+                Write-Verbose "Skipping boolean parameter: $propertyName"
                 continue
             }
 

@@ -100,6 +100,8 @@ foreach($managementGroup in $policyAssignments.Keys)
 {
     foreach($policyAssignmentFile in $policyAssignments[$managementGroup])
     {
+        Write-Verbose "Processing Archetype Policy Assignment: $managementGroup $policyAssignmentFile"
+
         $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
 
         foreach($parsedAssignment in $parsedAssignmentArray)
@@ -108,7 +110,7 @@ foreach($managementGroup in $policyAssignments.Keys)
             {
                 continue
             }
-            
+
             $policyAssignmentName = $parsedAssignment.name
 
             $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
