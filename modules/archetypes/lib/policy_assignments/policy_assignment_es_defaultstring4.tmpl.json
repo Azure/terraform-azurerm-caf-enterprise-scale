@@ -1,0 +1,30 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "defaultString4",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "defaultString3",
+    "displayName": "defaultString2",
+    "policyDefinitionId": "defaultString1",
+    "enforcementMode": "Default",
+    "parameters": {
+      "allowedContainerImagesRegex-febd0533-8e55-448f-b837-bd0e06f16469": {
+        "value": "^[^\\/]+\\.azurecr\\.io\\/.+$"
+      },
+      "cpuLimit-e345eecc-fa47-480f-9e88-67dcc122b164": {
+        "value": "200m"
+      },
+      "memoryLimit-e345eecc-fa47-480f-9e88-67dcc122b164": {
+        "value": "1Gi"
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  },
+  "condition": false
+}
