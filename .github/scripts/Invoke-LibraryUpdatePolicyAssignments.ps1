@@ -65,7 +65,8 @@ $defaultParameterValues =@(
     "-p topLevelManagementGroupPrefix=`${temp}",
     "-p dnsZoneResourceGroupId=`${private_dns_zone_prefix}",
     "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos",
-    "-p emailContactAsc=security_contact@replace_me"
+    "-p emailContactAsc=security_contact@replace_me",
+    "-p location=uksouth"
 )
 
 $parsedAssignments = @{}
@@ -81,7 +82,7 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
         json = $parsedAssignment
         file = $sourcePolicyAssignmentFile
     }
-    
+
     if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "scope" -MemberType Properties))
     {
         $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "scope" -Value "`${current_scope_resource_id}"
