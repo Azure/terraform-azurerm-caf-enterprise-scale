@@ -67,10 +67,15 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
     Write-Output "Processing Assignment: $sourcePolicyAssignmentFile"
 
-    $parsedAssignments = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
+    $parsedAssignmentArray = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
 
-    foreach($parsedAssignment in $parsedAssignments)
+    foreach($parsedAssignment in $parsedAssignmentArray)
     {
+        if($parsedAssignment.type -ne "Microsoft.Authorization/policyAssignments")
+        {
+            continue
+        }
+
         Write-Output "Parsed Assignment Name: $($parsedAssignment.name)"
 
         $parsedAssignments[$parsedAssignment.name] = @{
