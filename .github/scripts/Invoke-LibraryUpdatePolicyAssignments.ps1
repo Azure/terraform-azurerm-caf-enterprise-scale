@@ -71,7 +71,7 @@ $defaultParameterValues =@(
 $parsedAssignments = @{}
 foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
-    Write-Output "Processing $sourcePolicyAssignmentFile"
+    Write-Output "Processing Assignment: $sourcePolicyAssignmentFile"
 
     $parsedAssignment = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues | Out-String | ConvertFrom-Json
     $parsedAssignments[$parsedAssignment.name] = @{
@@ -111,7 +111,13 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
     foreach($property in Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties.parameters -MemberType NoteProperty)
     {
         $propertyName = $property.Name
-        Write-Output "Processing $propertyName"
+        Write-Output "Checking Parameter: $propertyName"
+        if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.GetType() -ne [System.String])
+        {
+            Write-Output "Skipping non-string parameter: $propertyName"
+            continue
+        }
+
         if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/"))
         {
             $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/", "`${private_dns_zone_prefix}")
