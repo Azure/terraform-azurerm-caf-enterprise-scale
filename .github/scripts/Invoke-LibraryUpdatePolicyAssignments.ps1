@@ -74,63 +74,66 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
 {
     Write-Output "Processing Assignment: $sourcePolicyAssignmentFile"
 
-    $parsedAssignment = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues | Out-String | ConvertFrom-Json
+    $parsedAssignments = & $parser "-s $sourcePolicyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
 
-    Write-Output "Parsed Assignment Name: $($parsedAssignment.name)"
-
-    $parsedAssignments[$parsedAssignment.name] = @{
-        json = $parsedAssignment
-        file = $sourcePolicyAssignmentFile
-    }
-
-    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "scope" -MemberType Properties))
+    foreach($parsedAssignment in $parsedAssignments)
     {
-        $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "scope" -Value "`${current_scope_resource_id}"
-    }
+        Write-Output "Parsed Assignment Name: $($parsedAssignment.name)"
 
-    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "notScopes" -MemberType Properties))
-    {
-        $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "notScopes" -Value @()
-    }
-
-    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "parameters" -MemberType Properties))
-    {
-        $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "parameters" -Value @{}
-    }
-
-    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json -Name "location" -MemberType Properties))
-    {
-        $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "location" -Value "`${default_location}"
-    }
-
-    if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json -Name "identity" -MemberType Properties))
-    {
-        $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
-    }
-
-    if($parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
-    {
-        $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId = $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")
-    }
-
-    foreach($property in Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties.parameters -MemberType NoteProperty)
-    {
-        $propertyName = $property.Name
-        Write-Output "Checking Parameter: $propertyName"
-        if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.GetType() -ne [System.String])
-        {
-            Write-Output "Skipping non-string parameter: $propertyName"
-            continue
+        $parsedAssignments[$parsedAssignment.name] = @{
+            json = $parsedAssignment
+            file = $sourcePolicyAssignmentFile
         }
 
-        if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/"))
+        if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "scope" -MemberType Properties))
         {
-            $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/", "`${private_dns_zone_prefix}")
-            $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("privatelink.batch.azure.com", "privatelink.`${connectivity_location}.batch.azure.com")
+            $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "scope" -Value "`${current_scope_resource_id}"
         }
-        if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${temp}"))
+
+        if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "notScopes" -MemberType Properties))
         {
-            $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${temp}", "`${root_scope_id}")
+            $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "notScopes" -Value @()
+        }
+
+        if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties -Name "parameters" -MemberType Properties))
+        {
+            $parsedAssignments[$parsedAssignment.name].json.properties | Add-Member -MemberType NoteProperty -Name "parameters" -Value @{}
+        }
+
+        if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json -Name "location" -MemberType Properties))
+        {
+            $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "location" -Value "`${default_location}"
+        }
+
+        if(!(Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json -Name "identity" -MemberType Properties))
+        {
+            $parsedAssignments[$parsedAssignment.name].json | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
+        }
+
+        if($parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
+        {
+            $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId = $parsedAssignments[$parsedAssignment.name].json.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")
+        }
+
+        foreach($property in Get-Member -InputObject $parsedAssignments[$parsedAssignment.name].json.properties.parameters -MemberType NoteProperty)
+        {
+            $propertyName = $property.Name
+            Write-Output "Checking Parameter: $propertyName"
+            if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.GetType() -ne [System.String])
+            {
+                Write-Output "Skipping non-string parameter: $propertyName"
+                continue
+            }
+
+            if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/"))
+            {
+                $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/", "`${private_dns_zone_prefix}")
+                $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("privatelink.batch.azure.com", "privatelink.`${connectivity_location}.batch.azure.com")
+            }
+            if($parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.StartsWith("`${temp}"))
+            {
+                $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value = $parsedAssignments[$parsedAssignment.name].json.properties.parameters.($propertyName).value.Replace("`${temp}", "`${root_scope_id}")
+            }
         }
     }
 }
