@@ -45,13 +45,6 @@ Write-Information "Updating Policy Assignments." -InformationAction Continue
 $policyAssignmentSourcePath = "$SourcePath/eslzArm/managementGroupTemplates/policyAssignments"
 $policyAssignmentTargetPath = "$TargetPath/modules/archetypes/lib/policy_assignments"
 $sourcePolicyAssignmentFiles = Get-ChildItem -Path $policyAssignmentSourcePath -File
-$targetPolicyAssignmentFiles = Get-ChildItem -Path $policyAssignmentTargetPath -File
-
-$temporaryNameMatches = @{
-    "Deny-IP-forwarding" = "Deny-IP-Forwarding"
-    "Deny-Priv-Esc-AKS" = "Deny-Priv-Containers-AKS"
-    "Deny-Privileged-AKS" = "Deny-Priv-Escalation-AKS"
-}
 
 $defaultParameterValues =@(
     "-p nonComplianceMessagePlaceholder={donotchange}"
@@ -138,46 +131,9 @@ foreach($sourcePolicyAssignmentFile in $sourcePolicyAssignmentFiles)
     }
 }
 
-$originalAssignments = @{}
-foreach($targetPolicyAssignmentFile in $targetPolicyAssignmentFiles)
-{
-    $originalAssignment = Get-Content $targetPolicyAssignmentFile | ConvertFrom-Json
-    $originalAssignments[$originalAssignment.name] = @{
-        json = $originalAssignment
-        file = $targetPolicyAssignmentFile
-    }
-}
-
 foreach($key in $parsedAssignments.Keys | Sort-Object)
 {
     $targetPolicyAssignmentFileName = "policy_assignment_es_$($key.ToLower() -replace "-", "_").tmpl.json"
-
-    $mappedKey = $key
-    if($temporaryNameMatches.ContainsKey($key))
-    {
-        $mappedKey = $temporaryNameMatches[$key]
-    }
-
-    $sourceFileName = $parsedAssignments[$key].file.Name
-
-    if($originalAssignments.ContainsKey($mappedKey))
-    {
-        $originalFileName = $originalAssignments[$mappedKey].file.Name
-
-        Write-Information "Found match for $mappedKey $key $originalFileName $sourceFileName $targetPolicyAssignmentFileName" -InformationAction Continue
-        if($originalFileName -ne $targetPolicyAssignmentFileName)
-        {
-            Write-Information "Renaming $originalFileName to $targetPolicyAssignmentFileName" -InformationAction Continue
-            Set-Location $policyAssignmentTargetPath
-            git mv $originalAssignments[$mappedKey].file.FullName $targetPolicyAssignmentFileName
-            Set-Location $SourcePath
-            Set-Location ..
-        }
-    }
-    else
-    {
-        Write-Information "No match found for $mappedKey $key $sourceFileName $targetPolicyAssignmentFileName" -InformationAction Continue
-    }
 
     Write-Information "Writing $targetPolicyAssignmentFileName" -InformationAction Continue
     $json = $parsedAssignments[$key].json | ConvertTo-Json -Depth 10
