@@ -88,6 +88,8 @@ $managementGroupMapping = @{
     "platform" = "platform"
 }
 
+$logAnalyticsWorkspaceIdPlaceholder = "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/`${root_scope_id}-la"
+
 $defaultParameterValues =@(
     "-p nonComplianceMessagePlaceholder={donotchange}"
     "-p logAnalyticsWorkspaceName=`${root_scope_id}-la",
@@ -96,13 +98,16 @@ $defaultParameterValues =@(
     "-p automationRegion=`${default_location}",
     "-p retentionInDays=30",
     "-p rgName=`${root_scope_id}-mgmt",
-    "-p logAnalyticsResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/`${root_scope_id}-la",
+    "-p logAnalyticsResourceId=$logAnalyticsWorkspaceIdPlaceholder",
     "-p topLevelManagementGroupPrefix=`${temp}",
     "-p dnsZoneResourceGroupId=`${private_dns_zone_prefix}",
     "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos",
     "-p emailContactAsc=security_contact@replace_me",
     "-p location=uksouth",
-    "-p listOfResourceTypesDisallowedForDeletion=[[[Array]]]"
+    "-p listOfResourceTypesDisallowedForDeletion=[[[Array]]]",
+    "-p userWorkspaceResourceId=$logAnalyticsWorkspaceIdPlaceholder",
+    "-p userAssignedIdentityResourceId=`${user_assigned_managed_identity_resource_id}",
+    "-p dcrResourceId=`${azure_monitor_data_collection_rule_resource_id}"
 )
 
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
