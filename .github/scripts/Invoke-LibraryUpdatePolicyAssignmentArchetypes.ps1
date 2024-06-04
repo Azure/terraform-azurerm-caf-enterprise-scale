@@ -90,26 +90,61 @@ $managementGroupMapping = @{
 
 $logAnalyticsWorkspaceIdPlaceholder = "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/`${root_scope_id}-la"
 
-$defaultParameterValues =@(
-    "-p nonComplianceMessagePlaceholder={donotchange}"
-    "-p logAnalyticsWorkspaceName=`${root_scope_id}-la",
-    "-p automationAccountName=`${root_scope_id}-automation",
-    "-p workspaceRegion=`${default_location}",
-    "-p automationRegion=`${default_location}",
-    "-p retentionInDays=30",
-    "-p rgName=`${root_scope_id}-mgmt",
-    "-p logAnalyticsResourceId=$logAnalyticsWorkspaceIdPlaceholder",
-    "-p topLevelManagementGroupPrefix=`${temp}",
-    "-p dnsZoneResourceGroupId=`${private_dns_zone_prefix}",
-    "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos",
-    "-p emailContactAsc=security_contact@replace_me",
-    "-p location=uksouth",
-    "-p listOfResourceTypesDisallowedForDeletion=[[[Array]]]",
-    "-p userWorkspaceResourceId=$logAnalyticsWorkspaceIdPlaceholder",
-    "-p userAssignedIdentityResourceId=`${user_assigned_managed_identity_resource_id}",
-    "-p dcrResourceId=`${azure_monitor_data_collection_rule_resource_id}",
-    "-p dataCollectionRuleResourceId=`${azure_monitor_data_collection_rule_resource_id}"
-)
+$parameters = @{
+    default = @{
+        nonComplianceMessagePlaceholder          = "{donotchange}"
+        logAnalyticsWorkspaceName                = "`${root_scope_id}-la"
+        automationAccountName                    = "`${root_scope_id}-automation"
+        workspaceRegion                          = "`${default_location}"
+        automationRegion                         = "`${default_location}"
+        retentionInDays                          = "30"
+        rgName                                   = "`${root_scope_id}-mgmt"
+        logAnalyticsResourceId                   = "$logAnalyticsWorkspaceIdPlaceholder"
+        topLevelManagementGroupPrefix            = "`${temp}"
+        dnsZoneResourceGroupId                   = "`${private_dns_zone_prefix}"
+        ddosPlanResourceId                       = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos"
+        emailContactAsc                          = "security_contact@replace_me"
+        location                                 = "uksouth"
+        listOfResourceTypesDisallowedForDeletion = "[[[Array]]]"
+        userWorkspaceResourceId                  = "$logAnalyticsWorkspaceIdPlaceholder"
+        userAssignedIdentityResourceId           = "`${user_assigned_managed_identity_resource_id}"
+        dcrResourceId                            = "`${azure_monitor_data_collection_rule_resource_id}"
+        dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_resource_id}"
+    }
+    overrides = @{
+        sql_data_collection_rule_overrides = @{
+            policy_assignments = @(
+                "DINE-MDFCDefenderSQLAMAPolicyAssignment.json"
+            )
+            parameters = @{
+                dcrResourceId                            = "`${azure_monitor_data_collection_rule_sql_resource_id}"
+                dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_sql_resource_id}"
+            }
+        }
+        vm_insights_data_collection_rule_overrides = @{
+            policy_assignments = @(
+                "DINE-VMHybridMonitoringPolicyAssignment.json",
+                "DINE-VMMonitoringPolicyAssignment.json",
+                "DINE-VMSSMonitoringPolicyAssignment.json"
+            )
+            parameters = @{
+                dcrResourceId                            = "`${azure_monitor_data_collection_rule_vm_insights_resource_id}"
+                dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_vm_insights_resource_id}"
+            }
+        }
+        change_tracking_data_collection_rule_overrides = @{
+            policy_assignments = @(
+                "DINE-ChangeTrackingVMArcPolicyAssignment.json",
+                "DINE-ChangeTrackingVMPolicyAssignment.json",
+                "DINE-ChangeTrackingVMSSPolicyAssignment.json"
+            )
+            parameters = @{
+                dcrResourceId                            = "`${azure_monitor_data_collection_rule_change_tracking_resource_id}"
+                dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_change_tracking_resource_id}"
+            }
+        }
+    }
+}
 
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
 
@@ -125,7 +160,21 @@ foreach($managementGroup in $policyAssignments.Keys)
     {
         Write-Output "`nProcessing Archetype Policy Assignment: $managementGroupNameFinal - $policyAssignmentFile"
 
-        $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
+        $defaultParameters = $parameters.default
+        foreach($overrideKey in $parameters.overrides.Keys)
+        {
+            if($policyAssignmentFile -in $parameters.overrides[$overrideKey].policy_assignments)
+            {
+                foreach($parameter in $parameters.overrides[$overrideKey].parameters.Keys)
+                {
+                    $defaultParameters.$parameter = $parameters.overrides[$overrideKey].parameters.$parameter
+                }
+            }
+        }
+
+        $defaultParameterFormatted = $defaultParameters.GetEnumerator().ForEach({ "-p $($_.Name)=$($_.Value)" })
+
+        $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterFormatted "-a" | Out-String | ConvertFrom-Json
 
         foreach($parsedAssignment in $parsedAssignmentArray)
         {
