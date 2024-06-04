@@ -11,7 +11,7 @@ param (
     [Parameter()][String]$TargetPath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourcePath = "$PWD/enterprise-scale",
     [Parameter()][String]$LineEnding = "unix",
-    [Parameter()][String]$ParserToolUrl = "https://github.com/jaredfholgate/template-parser/releases/download/0.1.18"
+    [Parameter()][String]$ParserToolUrl = "https://github.com/Azure/arm-template-parser/releases/download/0.2.2"
 )
 
 $ErrorActionPreference = "Stop"
@@ -102,7 +102,7 @@ $defaultParameterValues =@(
     "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos",
     "-p emailContactAsc=security_contact@replace_me",
     "-p location=uksouth",
-    "-p listOfResourceTypesDisallowedForDeletion="
+    "-p listOfResourceTypesDisallowedForDeletion=[[[Array]]]"
 )
 
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
