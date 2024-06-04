@@ -450,7 +450,7 @@ object({
             expressroute_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
-                scale_unit = optional(number, 1)
+                scale_unit                    = optional(number, 1)
                 allow_non_virtual_wan_traffic = optional(bool, false)
               }), {})
             }), {})
@@ -1088,6 +1088,7 @@ The following resources are used by this module:
 - [azurerm_resource_group.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [azurerm_role_assignment.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.policy_assignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.private_dns_zone_contributor_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_definition.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition) (resource)
 - [azurerm_subnet.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) (resource)
 - [azurerm_subscription_template_deployment.telemetry_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
@@ -1109,6 +1110,7 @@ The following resources are used by this module:
 - [time_sleep.after_azurerm_policy_set_definition](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
 - [time_sleep.after_azurerm_role_assignment](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
 - [time_sleep.after_azurerm_role_definition](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
+- [azapi_resource.user_msi](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/resource) (data source)
 - [azurerm_policy_definition.external_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) (data source)
 - [azurerm_policy_set_definition.external_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_set_definition) (data source)
 

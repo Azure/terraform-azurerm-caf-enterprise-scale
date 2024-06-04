@@ -11,7 +11,7 @@ param (
     [Parameter()][String]$TargetPath = "$PWD/terraform-azurerm-caf-enterprise-scale",
     [Parameter()][String]$SourcePath = "$PWD/enterprise-scale",
     [Parameter()][String]$LineEnding = "unix",
-    [Parameter()][String]$ParserToolUrl = "https://github.com/jaredfholgate/template-parser/releases/download/0.1.18"
+    [Parameter()][String]$ParserToolUrl = "https://github.com/Azure/arm-template-parser/releases/download/0.2.2"
 )
 
 $ErrorActionPreference = "Stop"
@@ -88,32 +88,174 @@ $managementGroupMapping = @{
     "platform" = "platform"
 }
 
+$logAnalyticsWorkspaceIdPlaceholder = "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/`${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/`${root_scope_id}-la"
+
+$parameters = @{
+    default = @{
+        nonComplianceMessagePlaceholder          = "{donotchange}"
+        logAnalyticsWorkspaceName                = "`${root_scope_id}-la"
+        automationAccountName                    = "`${root_scope_id}-automation"
+        workspaceRegion                          = "`${default_location}"
+        automationRegion                         = "`${default_location}"
+        retentionInDays                          = "30"
+        rgName                                   = "`${root_scope_id}-mgmt"
+        logAnalyticsResourceId                   = "$logAnalyticsWorkspaceIdPlaceholder"
+        topLevelManagementGroupPrefix            = "`${temp}"
+        dnsZoneResourceGroupId                   = "`${private_dns_zone_prefix}"
+        ddosPlanResourceId                       = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos"
+        emailContactAsc                          = "security_contact@replace_me"
+        location                                 = "uksouth"
+        listOfResourceTypesDisallowedForDeletion = "[[[Array]]]"
+        userWorkspaceResourceId                  = "$logAnalyticsWorkspaceIdPlaceholder"
+        userAssignedIdentityResourceId           = "`${user_assigned_managed_identity_resource_id}"
+        dcrResourceId                            = "`${azure_monitor_data_collection_rule_resource_id}"
+        dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_resource_id}"
+    }
+    overrides = @{
+        sql_data_collection_rule_overrides = @{
+            policy_assignments = @(
+                "DINE-MDFCDefenderSQLAMAPolicyAssignment.json"
+            )
+            parameters = @{
+                dcrResourceId                            = "`${azure_monitor_data_collection_rule_sql_resource_id}"
+                dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_sql_resource_id}"
+            }
+        }
+        vm_insights_data_collection_rule_overrides = @{
+            policy_assignments = @(
+                "DINE-VMHybridMonitoringPolicyAssignment.json",
+                "DINE-VMMonitoringPolicyAssignment.json",
+                "DINE-VMSSMonitoringPolicyAssignment.json"
+            )
+            parameters = @{
+                dcrResourceId                            = "`${azure_monitor_data_collection_rule_vm_insights_resource_id}"
+                dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_vm_insights_resource_id}"
+            }
+        }
+        change_tracking_data_collection_rule_overrides = @{
+            policy_assignments = @(
+                "DINE-ChangeTrackingVMArcPolicyAssignment.json",
+                "DINE-ChangeTrackingVMPolicyAssignment.json",
+                "DINE-ChangeTrackingVMSSPolicyAssignment.json"
+            )
+            parameters = @{
+                dcrResourceId                            = "`${azure_monitor_data_collection_rule_change_tracking_resource_id}"
+                dataCollectionRuleResourceId             = "`${azure_monitor_data_collection_rule_change_tracking_resource_id}"
+            }
+        }
+    }
+}
+
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
 
 $policyAssignmentSourcePath = "$SourcePath/eslzArm/managementGroupTemplates/policyAssignments"
-
-
+$policyAssignmentTargetPath = "$TargetPath/modules/archetypes/lib/policy_assignments"
 
 foreach($managementGroup in $policyAssignments.Keys)
 {
+    $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
+    Write-Output "`nProcessing Archetype Policy Assignments for Management Group: $managementGroupNameFinal"
+
     foreach($policyAssignmentFile in $policyAssignments[$managementGroup])
     {
-        $parsedAssignment = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" | Out-String | ConvertFrom-Json
-        $policyAssignmentName = $parsedAssignment.name
+        Write-Output "`nProcessing Archetype Policy Assignment: $managementGroupNameFinal - $policyAssignmentFile"
 
-        $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
-
-        Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
-
-        if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
+        $defaultParameters = $parameters.default
+        foreach($overrideKey in $parameters.overrides.Keys)
         {
-            $values = New-Object 'System.Collections.Generic.List[string]'
-            $values.Add($policyAssignmentName)
-            $finalPolicyAssignments.Add($managementGroupNameFinal, $values)
+            if($policyAssignmentFile -in $parameters.overrides[$overrideKey].policy_assignments)
+            {
+                foreach($parameter in $parameters.overrides[$overrideKey].parameters.Keys)
+                {
+                    $defaultParameters.$parameter = $parameters.overrides[$overrideKey].parameters.$parameter
+                }
+            }
         }
-        else
+
+        $defaultParameterFormatted = $defaultParameters.GetEnumerator().ForEach({ "-p $($_.Name)=$($_.Value)" })
+
+        $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterFormatted "-a" | Out-String | ConvertFrom-Json
+
+        foreach($parsedAssignment in $parsedAssignmentArray)
         {
-            $finalPolicyAssignments[$managementGroupNameFinal].Add($policyAssignmentName)
+            if($parsedAssignment.type -ne "Microsoft.Authorization/policyAssignments")
+            {
+                continue
+            }
+
+            $policyAssignmentName = $parsedAssignment.name
+
+            Write-Output "Parsed Assignment Name: $($parsedAssignment.name)"
+
+            if(!(Get-Member -InputObject $parsedAssignment.properties -Name "scope" -MemberType Properties))
+            {
+                $parsedAssignment.properties | Add-Member -MemberType NoteProperty -Name "scope" -Value "`${current_scope_resource_id}"
+            }
+
+            if(!(Get-Member -InputObject $parsedAssignment.properties -Name "notScopes" -MemberType Properties))
+            {
+                $parsedAssignment.properties | Add-Member -MemberType NoteProperty -Name "notScopes" -Value @()
+            }
+
+            if(!(Get-Member -InputObject $parsedAssignment.properties -Name "parameters" -MemberType Properties))
+            {
+                $parsedAssignment.properties | Add-Member -MemberType NoteProperty -Name "parameters" -Value @{}
+            }
+
+            if(!(Get-Member -InputObject $parsedAssignment -Name "location" -MemberType Properties))
+            {
+                $parsedAssignment | Add-Member -MemberType NoteProperty -Name "location" -Value "`${default_location}"
+            }
+
+            if(!(Get-Member -InputObject $parsedAssignment -Name "identity" -MemberType Properties))
+            {
+                $parsedAssignment | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
+            }
+
+            if($parsedAssignment.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
+            {
+                $parsedAssignment.properties.policyDefinitionId = $parsedAssignment.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")
+            }
+
+            foreach($property in Get-Member -InputObject $parsedAssignment.properties.parameters -MemberType NoteProperty)
+            {
+                $propertyName = $property.Name
+                Write-Verbose "Checking Parameter: $propertyName"
+                if($parsedAssignment.properties.parameters.($propertyName).value.GetType() -ne [System.String])
+                {
+                    Write-Verbose "Skipping non-string parameter: $propertyName"
+                    continue
+                }
+
+                if($parsedAssignment.properties.parameters.($propertyName).value.StartsWith("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/"))
+                {
+                    $parsedAssignment.properties.parameters.($propertyName).value = $parsedAssignment.properties.parameters.($propertyName).value.Replace("`${private_dns_zone_prefix}/providers/Microsoft.Network/privateDnsZones/", "`${private_dns_zone_prefix}")
+                    $parsedAssignment.properties.parameters.($propertyName).value = $parsedAssignment.properties.parameters.($propertyName).value.Replace("privatelink.uks.backup.windowsazure.com", "privatelink.`${connectivity_location_short}.backup.windowsazure.com")
+                }
+                if($parsedAssignment.properties.parameters.($propertyName).value.StartsWith("`${temp}"))
+                {
+                    $parsedAssignment.properties.parameters.($propertyName).value = $parsedAssignment.properties.parameters.($propertyName).value.Replace("`${temp}", "`${root_scope_id}")
+                }
+            }
+
+            $targetPolicyAssignmentFileName = "policy_assignment_es_$($policyAssignmentName.ToLower() -replace "-", "_").tmpl.json"
+
+            Write-Information "Writing $targetPolicyAssignmentFileName" -InformationAction Continue
+            $json = $parsedAssignment | ConvertTo-Json -Depth 10
+            $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
+
+            Write-Verbose "Got final data for $managementGroupNameFinal and $policyAssignmentName"
+
+            if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
+            {
+                $values = New-Object 'System.Collections.Generic.List[string]'
+                $values.Add($policyAssignmentName)
+                $finalPolicyAssignments.Add($managementGroupNameFinal, $values)
+            }
+            else
+            {
+                $finalPolicyAssignments[$managementGroupNameFinal].Add($policyAssignmentName)
+            }
         }
     }
 }
