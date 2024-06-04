@@ -35,6 +35,7 @@ locals {
   custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], local.empty_map)
   custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], local.empty_map)
   custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
+  custom_settings_uami              = try(local.custom_settings.azurerm_user_assigned_identity["management"], local.empty_map)
   custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
 }
 
@@ -50,18 +51,8 @@ locals {
   deploy_log_analytics_linked_service = local.deploy_monitoring_resources && local.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring_resources && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
-    AgentHealthAssessment       = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
-    AntiMalware                 = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_anti_malware
-    ChangeTracking              = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_change_tracking
-    Security                    = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
-    SecurityInsights            = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
-    ServiceMap                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_service_map
-    SQLAssessment               = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_assessment
-    SQLVulnerabilityAssessment  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_vulnerability_assessment
-    SQLAdvancedThreatProtection = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_advanced_threat_detection
-    Updates                     = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_updates
-    VMInsights                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
-    ContainerInsights           = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
+    Security         = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
+    SecurityInsights = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
   }
   deploy_security_settings                              = local.settings.security_center.enabled
   deploy_defender_for_apis                              = local.settings.security_center.config.enable_defender_for_apis
@@ -78,6 +69,10 @@ locals {
   deploy_defender_for_sql_servers                       = local.settings.security_center.config.enable_defender_for_sql_servers
   deploy_defender_for_sql_server_vms                    = local.settings.security_center.config.enable_defender_for_sql_server_vms
   deploy_defender_for_storage                           = local.settings.security_center.config.enable_defender_for_storage
+  deploy_ama_uami                                       = local.deploy_monitoring_resources && local.settings.ama.enable_uami
+  deploy_vminsights_dcr                                 = local.deploy_monitoring_resources && local.settings.ama.enable_vminsights_dcr
+  deploy_change_tracking_dcr                            = local.deploy_monitoring_resources && local.settings.ama.enable_change_tracking_dcr
+  deploy_mdfc_defender_for_sql_dcr                      = local.deploy_monitoring_resources && local.settings.ama.enable_mdfc_defender_for_sql_dcr
 }
 
 # Configuration settings for resource type:
@@ -142,6 +137,17 @@ locals {
     }
     if solution_enabled
   ]
+}
+
+# Configuration for the user assigned managed identity
+locals {
+  user_assigned_managed_identity_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${local.user_assigned_managed_identity.name}"
+  user_assigned_managed_identity = {
+    name                = lookup(local.custom_settings_uami, "name", "${local.resource_prefix}-uami${local.resource_suffix}")
+    resource_group_name = lookup(local.custom_settings_uami, "resource_group_name", local.resource_group_name)
+    location            = lookup(local.custom_settings_uami, "location", local.location)
+    tags                = lookup(local.custom_settings_uami, "tags", local.tags)
+  }
 }
 
 # Configuration settings for resource type:
@@ -334,6 +340,18 @@ locals {
         }
         managed_by_module = local.deploy_log_analytics_linked_service
       },
+    ]
+    azurerm_user_assigned_identity = [
+      {
+        resource_id   = local.user_assigned_managed_identity_resource_id
+        resource_name = basename(local.user_assigned_managed_identity_resource_id)
+        template = {
+          for key, value in local.user_assigned_managed_identity :
+          key => value
+          if local.deploy_ama_uami
+        }
+        managed_by_module = local.deploy_ama_uami
+      }
     ]
     archetype_config_overrides = local.archetype_config_overrides
     template_file_variables    = local.template_file_variables

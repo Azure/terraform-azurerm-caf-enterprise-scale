@@ -43,23 +43,19 @@ variable "tags" {
 
 variable "settings" {
   type = object({
+    ama = optional(object({
+      enable_uami                      = optional(bool, true)
+      enable_vminsights_dcr            = optional(bool, true)
+      enable_change_tracking_dcr       = optional(bool, true)
+      enable_mdfc_defender_for_sql_dcr = optional(bool, true)
+    }), {})
     log_analytics = optional(object({
       enabled = optional(bool, true)
       config = optional(object({
-        retention_in_days                                 = optional(number, 30)
-        enable_monitoring_for_vm                          = optional(bool, true)
-        enable_monitoring_for_vmss                        = optional(bool, true)
-        enable_solution_for_agent_health_assessment       = optional(bool, true)
-        enable_solution_for_anti_malware                  = optional(bool, true)
-        enable_solution_for_change_tracking               = optional(bool, true)
-        enable_solution_for_service_map                   = optional(bool, true)
-        enable_solution_for_sql_assessment                = optional(bool, true)
-        enable_solution_for_sql_vulnerability_assessment  = optional(bool, true)
-        enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
-        enable_solution_for_updates                       = optional(bool, true)
-        enable_solution_for_vm_insights                   = optional(bool, true)
-        enable_solution_for_container_insights            = optional(bool, true)
-        enable_sentinel                                   = optional(bool, true)
+        retention_in_days          = optional(number, 30)
+        enable_monitoring_for_vm   = optional(bool, true)
+        enable_monitoring_for_vmss = optional(bool, true)
+        enable_sentinel            = optional(bool, true)
       }), {})
     }), {})
     security_center = optional(object({
