@@ -111,9 +111,11 @@ $policyAssignmentTargetPath = "$TargetPath/modules/archetypes/lib/policy_assignm
 
 foreach($managementGroup in $policyAssignments.Keys)
 {
+    Write-Output "Processing Archetype Policy Assignments for Management Group: $managementGroup"
+
     foreach($policyAssignmentFile in $policyAssignments[$managementGroup])
     {
-        Write-Verbose "Processing Archetype Policy Assignment: $managementGroup $policyAssignmentFile"
+        Write-Output "Processing Archetype Policy Assignment: $managementGroup - $policyAssignmentFile"
 
         $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
 
