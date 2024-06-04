@@ -121,7 +121,7 @@
         "value": "${private_dns_zone_prefix}privatelink.webpubsub.azure.com"
       },
       "azureBatchPrivateDnsZoneId": {
-        "value": "${private_dns_zone_prefix}privatelink.${connectivity_location}.batch.azure.com"
+        "value": "${private_dns_zone_prefix}privatelink.batch.azure.com"
       },
       "azureAppPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.azconfig.io"
@@ -168,11 +168,56 @@
       "azureMachineLearningWorkspacePrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.api.azureml.ms"
       },
+      "azureMachineLearningWorkspaceSecondPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.notebooks.azure.net"
+      },
       "azureServiceBusNamespacePrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.servicebus.windows.net"
       },
       "azureCognitiveSearchPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.search.windows.net"
+      },
+      "azureBotServicePrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.directline.botframework.com"
+      },
+      "azureManagedGrafanaWorkspacePrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.grafana.azure.com"
+      },
+      "azureVirtualDesktopHostpoolPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.wvd.microsoft.com"
+      },
+      "azureVirtualDesktopWorkspacePrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.wvd.microsoft.com"
+      },
+      "azureIotDeviceupdatePrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.azure-devices.net"
+      },
+      "azureArcGuestconfigurationPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.guestconfiguration.azure.com"
+      },
+      "azureArcHybridResourceProviderPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.his.arc.azure.com"
+      },
+      "azureArcKubernetesConfigurationPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.dp.kubernetesconfiguration.azure.com"
+      },
+      "azureIotCentralPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.azureiotcentral.com"
+      },
+      "azureStorageTablePrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.table.core.windows.net"
+      },
+      "azureStorageTableSecondaryPrivateDnsZoneId": {
+        "value": "${private_dns_zone_prefix}privatelink.table.core.windows.net"
+      },
+      "azureSiteRecoveryBackupPrivateDnsZoneID": {
+        "value": "${private_dns_zone_prefix}privatelink.${connectivity_location_short}.backup.windowsazure.com"
+      },
+      "azureSiteRecoveryBlobPrivateDnsZoneID": {
+        "value": "${private_dns_zone_prefix}privatelink.blob.core.windows.net"
+      },
+      "azureSiteRecoveryQueuePrivateDnsZoneID": {
+        "value": "${private_dns_zone_prefix}privatelink.queue.core.windows.net"
       }
     },
     "scope": "${current_scope_resource_id}",
