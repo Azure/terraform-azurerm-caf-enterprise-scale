@@ -1,11 +1,11 @@
 config {
-  module     = true
-  plugin_dir = "/root/.tflint.d/plugins"
+  call_module_type = "all"
 }
 
-# The following plugin adds rules specific to the azurerm provider
 plugin "azurerm" {
-  enabled = true
+    enabled = true
+    version = "0.26.0"
+    source  = "github.com/terraform-linters/tflint-ruleset-azurerm"
 }
 
 # The following section determines which rules which will be enabled
