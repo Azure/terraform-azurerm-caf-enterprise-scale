@@ -76,13 +76,7 @@ jobs:
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}" `
               -Reset
 
-            Write-Information "==> Running policy assignments script..." -InformationAction Continue
-            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignments.ps1 `
-              -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
-              -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
-              -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
-
-            Write-Information "==> Running archetypes script..." -InformationAction Continue
+            Write-Information "==> Running policy assignments and archetypes script..." -InformationAction Continue
             ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignmentArchetypes.ps1 `
               -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
               -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
