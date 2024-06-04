@@ -107,7 +107,8 @@ $defaultParameterValues =@(
     "-p listOfResourceTypesDisallowedForDeletion=[[[Array]]]",
     "-p userWorkspaceResourceId=$logAnalyticsWorkspaceIdPlaceholder",
     "-p userAssignedIdentityResourceId=`${user_assigned_managed_identity_resource_id}",
-    "-p dcrResourceId=`${azure_monitor_data_collection_rule_resource_id}"
+    "-p dcrResourceId=`${azure_monitor_data_collection_rule_resource_id}",
+    "-p dataCollectionRuleResourceId=`${azure_monitor_data_collection_rule_resource_id}"
 )
 
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
