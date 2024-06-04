@@ -1,0 +1,367 @@
+{
+  "name": "Enforce-Guardrails-AppServices",
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "scope": null,
+  "properties": {
+    "policyType": "Custom",
+    "displayName": "Enforce recommended guardrails for App Service",
+    "description": "This policy initiative is a group of policies that ensures App Service is compliant per regulated Landing Zones.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "App Service",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
+    },
+    "parameters": {
+      "functionAppDebugging": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ]
+      },
+      "appServiceDisableLocalAuth": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ]
+      },
+      "appServiceSkuPl": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "appServiceDisableLocalAuthFtp": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ]
+      },
+      "appServiceRouting": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "appServiceScmAuth": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ]
+      },
+      "appServiceRfc": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "appServiceAppsRfc": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "appServiceAppsVnetRouting": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "appServiceEnvLatestVersion": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "appServiceAppSlotsRemoteDebugging": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ]
+      },
+      "appServiceAppsRemoteDebugging": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ]
+      },
+      "appServiceByoc": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "functionAppSlotsModifyHttps": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      },
+      "appServiceAppHttps": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      },
+      "functionAppSlotsModifyPublicNetworkAccess": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      },
+      "appServiceAppsModifyPublicNetworkAccess": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      },
+      "appServiceAppModifyPublicNetworkAccess": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "Deny-AppService-Byoc",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-AppService-without-BYOC",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceByoc')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Dine-AppService-Apps-Remote-Debugging",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a5e3fe8f-f6cd-4f1d-bbf6-c749754a724b",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppsRemoteDebugging')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppService-Slots-Remote-Debugging",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/cca5adfe-626b-4cc6-8522-f5b6ed2391bd",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppSlotsRemoteDebugging')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppService-Latest-Version",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/eb4d34ab-0929-491c-bbf3-61e13da19f9a",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceEnvLatestVersion')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppService-Vnet-Routing",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/801543d1-1953-4a90-b8b0-8cf6d41473a5",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppsVnetRouting')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppService-Rfc",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f5c0bfb3-acea-47b1-b477-b0edcdf6edc1",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceRfc')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppServiceApps-Rfc",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a691eacb-474d-47e4-b287-b4813ca44222",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppsRfc')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DINE-FuncApp-Debugging",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/70adbb40-e092-42d5-a6f8-71c540a5efdb",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('functionAppDebugging')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DINE-AppService-ScmAuth",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/5e97b776-f380-4722-a9a3-e7f0be029e79",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceScmAuth')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppServ-Routing",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/5747353b-1ca9-42c1-a4dd-b874b894f3d4",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceRouting')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppServ-FtpAuth",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/572e342c-c920-4ef5-be2e-1ed3c6a51dc5",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceDisableLocalAuthFtp')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-AppServ-SkuPl",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/546fe8d2-368d-4029-a418-6af48a7f61e5",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceSkuPl')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DINE-AppService-LocalAuth",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2c034a29-2a5f-4857-b120-f800fe5549ae",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceDisableLocalAuth')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "DINE-AppService-Debugging",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/25a5046c-c423-4805-9235-e844ae9ef49b",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('functionAppDebugging')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Modify-Function-Apps-Slots-Https",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/08cf2974-d178-48a0-b26d-f6b8e555748b",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('functionAppSlotsModifyHttps')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Modify-AppService-Https",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0f98368e-36bc-4716-8ac2-8f8067203b63",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppHttps')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Modify-Function-Apps-Slots-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/242222f3-4985-4e99-b5ef-086d6a6cb01c",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('functionAppSlotsModifyPublicNetworkAccess')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Modify-AppService-Apps-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2374605e-3e0b-492b-9046-229af202562c",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppsModifyPublicNetworkAccess')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "Modify-AppService-App-Public-Network-Access",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c6c3e00e-d414-4ca4-914f-406699bb8eee",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('appServiceAppModifyPublicNetworkAccess')]"
+          }
+        },
+        "groupNames": []
+      }
+    ],
+    "policyDefinitionGroups": null
+  }
+}

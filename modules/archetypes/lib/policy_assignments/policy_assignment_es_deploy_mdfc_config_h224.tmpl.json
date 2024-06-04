@@ -1,0 +1,73 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-MDFC-Config-H224",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "Deploy Microsoft Defender for Cloud and Security Contacts",
+    "displayName": "Deploy Microsoft Defender for Cloud configuration",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Deploy-MDFC-Config_20240319",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Microsoft Defender for Cloud and Security Contacts {enforcementMode} be deployed."
+      }
+    ],
+    "parameters": {
+      "emailSecurityContact": {
+        "value": "security_contact@replace_me"
+      },
+      "logAnalytics": {
+        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
+      },
+      "ascExportResourceGroupName": {
+        "value": "${root_scope_id}-asc-export"
+      },
+      "ascExportResourceGroupLocation": {
+        "value": "${default_location}"
+      },
+      "enableAscForServers": {
+        "value": "Disabled"
+      },
+      "enableAscForServersVulnerabilityAssessments": {
+        "value": "Disabled"
+      },
+      "enableAscForSql": {
+        "value": "Disabled"
+      },
+      "enableAscForAppServices": {
+        "value": "Disabled"
+      },
+      "enableAscForStorage": {
+        "value": "Disabled"
+      },
+      "enableAscForContainers": {
+        "value": "Disabled"
+      },
+      "enableAscForKeyVault": {
+        "value": "Disabled"
+      },
+      "enableAscForSqlOnVm": {
+        "value": "Disabled"
+      },
+      "enableAscForArm": {
+        "value": "Disabled"
+      },
+      "enableAscForOssDb": {
+        "value": "Disabled"
+      },
+      "enableAscForCosmosDbs": {
+        "value": "Disabled"
+      },
+      "enableAscForCspm": {
+        "value": "Disabled"
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}
