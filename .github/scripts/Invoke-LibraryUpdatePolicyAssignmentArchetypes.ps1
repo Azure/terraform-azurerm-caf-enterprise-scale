@@ -157,7 +157,7 @@ foreach($managementGroup in $policyAssignments.Keys)
 
             if($parsedAssignment.properties.policyDefinitionId.StartsWith("/providers/Microsoft.Management/managementGroups/`${temp}"))
             {
-                $parsedAssignment.properties.policyDefinitionId = $parsedAssignments.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")
+                $parsedAssignment.properties.policyDefinitionId = $parsedAssignment.properties.policyDefinitionId.Replace("/providers/Microsoft.Management/managementGroups/`${temp}", "`${root_scope_resource_id}")
             }
 
             foreach($property in Get-Member -InputObject $parsedAssignment.properties.parameters -MemberType NoteProperty)
