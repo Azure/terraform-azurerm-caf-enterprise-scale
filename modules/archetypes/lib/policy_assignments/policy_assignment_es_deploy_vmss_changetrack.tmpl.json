@@ -1,0 +1,40 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-VMSS-ChangeTrack",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "Enable ChangeTracking and Inventory for virtual machine scale sets. Takes Data Collection Rule ID as parameter and asks for an option to input applicable locations and user-assigned identity for Azure Monitor Agent.",
+    "displayName": "Enable ChangeTracking and Inventory for virtual machine scale sets",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/c4a70814-96be-461c-889f-2b27429120dc",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Change Tracking {enforcementMode} be enabled for Virtual Machines Scales Sets."
+      }
+    ],
+    "parameters": {
+      "dcrResourceId": {
+        "value": "${azure_monitor_data_collection_rule_change_tracking_resource_id}"
+      },
+      "bringYourOwnUserAssignedManagedIdentity": {
+        "value": true
+      },
+      "restrictBringYourOwnUserAssignedIdentityToSubscription": {
+        "value": false
+      },
+      "userAssignedIdentityResourceId": {
+        "value": "${user_assigned_managed_identity_resource_id}"
+      },
+      "effect": {
+        "value": "DeployIfNotExists"
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}
