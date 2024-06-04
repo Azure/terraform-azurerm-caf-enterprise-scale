@@ -101,7 +101,8 @@ $defaultParameterValues =@(
     "-p dnsZoneResourceGroupId=`${private_dns_zone_prefix}",
     "-p ddosPlanResourceId=/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/`${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/`${root_scope_id}-ddos",
     "-p emailContactAsc=security_contact@replace_me",
-    "-p location=uksouth"
+    "-p location=uksouth",
+    "-p listOfResourceTypesDisallowedForDeletion="
 )
 
 $finalPolicyAssignments = New-Object 'System.Collections.Generic.Dictionary[string,System.Collections.Generic.List[string]]'
