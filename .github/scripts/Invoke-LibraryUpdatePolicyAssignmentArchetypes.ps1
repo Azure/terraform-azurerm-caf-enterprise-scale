@@ -111,11 +111,12 @@ $policyAssignmentTargetPath = "$TargetPath/modules/archetypes/lib/policy_assignm
 
 foreach($managementGroup in $policyAssignments.Keys)
 {
-    Write-Output "Processing Archetype Policy Assignments for Management Group: $managementGroup"
+    $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
+    Write-Output "`nProcessing Archetype Policy Assignments for Management Group: $managementGroupNameFinal"
 
     foreach($policyAssignmentFile in $policyAssignments[$managementGroup])
     {
-        Write-Output "Processing Archetype Policy Assignment: $managementGroup - $policyAssignmentFile"
+        Write-Output "`nProcessing Archetype Policy Assignment: $managementGroupNameFinal - $policyAssignmentFile"
 
         $parsedAssignmentArray = & $parser "-s $policyAssignmentSourcePath/$policyAssignmentFile" $defaultParameterValues "-a" | Out-String | ConvertFrom-Json
 
@@ -187,9 +188,7 @@ foreach($managementGroup in $policyAssignments.Keys)
             $json = $parsedAssignment | ConvertTo-Json -Depth 10
             $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
 
-            $managementGroupNameFinal = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
-
-            Write-Information "Got final data for $managementGroupNameFinal and $policyAssignmentName" -InformationAction Continue
+            Write-Verbose "Got final data for $managementGroupNameFinal and $policyAssignmentName"
 
             if(!($finalPolicyAssignments.ContainsKey($managementGroupNameFinal)))
             {
