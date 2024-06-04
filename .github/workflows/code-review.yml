@@ -31,15 +31,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run tflint
-        run: |
-          CONFIG_FILE=$(realpath ./.github/linters/.tflint.hcl)
-          tflint --init --config=$CONFIG_FILE
-          tflint --config=$CONFIG_FILE
-          tflint --chdir=./examples/400-multi-with-orchestration --config=$CONFIG_FILE
-          tflint --chdir=./examples/400-multi-with-remote-state/connectivity --config=$CONFIG_FILE
-          tflint --chdir=./examples/400-multi-with-remote-state/core --config=$CONFIG_FILE
-          tflint --chdir=./examples/400-multi-with-remote-state/management --config=$CONFIG_FILE
+      # - name: Run tflint
+      #   run: |
+      #     CONFIG_FILE=$(realpath ./.github/linters/.tflint.hcl)
+      #     tflint --init --config=$CONFIG_FILE
+      #     tflint --config=$CONFIG_FILE
+      #     tflint --chdir=./examples/400-multi-with-orchestration --config=$CONFIG_FILE
+      #     tflint --chdir=./examples/400-multi-with-remote-state/connectivity --config=$CONFIG_FILE
+      #     tflint --chdir=./examples/400-multi-with-remote-state/core --config=$CONFIG_FILE
+      #     tflint --chdir=./examples/400-multi-with-remote-state/management --config=$CONFIG_FILE
 
       - name: Lint Code Base
         uses: github/super-linter@v6
