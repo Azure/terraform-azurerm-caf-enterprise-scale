@@ -1,0 +1,28 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Audit-TrustedLaunch",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "properties": {
+    "description": "Trusted Launch improves security of a Virtual Machine which requires VM SKU, OS Disk & OS Image to support it (Gen 2). To learn more about Trusted Launch, visit https://aka.ms/trustedlaunch.",
+    "displayName": "Audit virtual machines for Trusted Launch support",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Audit-TrustedLaunch",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Trust Launch {enforcementMode} be used on supported virtual machines for enhanced security."
+      }
+    ],
+    "parameters": {
+      "effect": {
+        "value": "Audit"
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  },
+  "identity": {
+    "type": "None"
+  }
+}

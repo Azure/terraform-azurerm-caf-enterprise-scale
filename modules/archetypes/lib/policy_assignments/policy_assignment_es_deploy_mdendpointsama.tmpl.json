@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-MDEndpointsAMA",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "Configure the multiple Microsoft Defender for Endpoint integration settings with Microsoft Defender for Cloud (WDATP, WDATP_EXCLUDE_LINUX_PUBLIC_PREVIEW, WDATP_UNIFIED_SOLUTION etc.). See: https://learn.microsoft.com/azure/defender-for-cloud/integration-defender-for-endpoint for more information.",
+    "displayName": "Configure multiple Microsoft Defender for Endpoint integration settings with Microsoft Defender for Cloud",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/77b391e3-2d5d-40c3-83bf-65c846b3c6a3",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Microsoft Defender for Endpoint {enforcementMode} be deployed."
+      }
+    ],
+    "parameters": {},
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}
