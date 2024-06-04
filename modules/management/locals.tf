@@ -269,15 +269,19 @@ locals {
 # Template file variable outputs
 locals {
   template_file_variables = {
-    log_analytics_workspace_resource_id = local.log_analytics_workspace_resource_id
-    log_analytics_workspace_name        = local.azurerm_log_analytics_workspace.name
-    log_analytics_workspace_location    = local.azurerm_log_analytics_workspace.location
-    automation_account_resource_id      = local.automation_account_resource_id
-    automation_account_name             = local.azurerm_automation_account.name
-    automation_account_location         = local.azurerm_automation_account.location
-    management_location                 = local.location
-    management_resource_group_name      = local.azurerm_resource_group.name
-    data_retention                      = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+    automation_account_location                                    = local.azurerm_automation_account.location
+    automation_account_name                                        = local.azurerm_automation_account.name
+    automation_account_resource_id                                 = local.automation_account_resource_id
+    azure_monitor_data_collection_rule_change_tracking_resource_id = ""
+    azure_monitor_data_collection_rule_sql_resource_id             = ""
+    azure_monitor_data_collection_rule_vm_insights_resource_id     = ""
+    data_retention                                                 = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+    log_analytics_workspace_location                               = local.azurerm_log_analytics_workspace.location
+    log_analytics_workspace_name                                   = local.azurerm_log_analytics_workspace.name
+    log_analytics_workspace_resource_id                            = local.log_analytics_workspace_resource_id
+    management_location                                            = local.location
+    management_resource_group_name                                 = local.azurerm_resource_group.name
+    user_assigned_managed_identity_resource_id                     = local.user_assigned_managed_identity_resource_id
   }
 }
 
