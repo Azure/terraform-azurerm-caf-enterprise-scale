@@ -137,3 +137,22 @@ resource "azurerm_log_analytics_linked_service" "management" {
   ]
 
 }
+
+resource "azurerm_user_assigned_identity" "management" {
+  for_each = local.azurerm_user_assigned_identity_management
+
+  provider = azurerm.management
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  location            = each.value.template.location
+  resource_group_name = each.value.template.resource_group_name
+
+  # Optional resource attributes
+  tags = each.value.template.tags
+
+  # Set explicit dependency on Resource Group deployment
+  depends_on = [
+    azurerm_resource_group.management,
+  ]
+
+}
