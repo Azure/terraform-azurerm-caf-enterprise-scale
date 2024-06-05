@@ -260,13 +260,14 @@
         "policyDefinitionReferenceId": "Deny-Storage-LocalUser"
       },
       {
-        "policyDefinitionReferenceId": "Deny-Storage-SFTP",
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-SFTP",
+        "groupNames": [],
         "parameters": {
           "effect": {
             "value": "[parameters('storageSftp')]"
           }
-        }
+        },
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-SFTP",
+        "policyDefinitionReferenceId": "Deny-Storage-SFTP"
       },
       {
         "groupNames": [],

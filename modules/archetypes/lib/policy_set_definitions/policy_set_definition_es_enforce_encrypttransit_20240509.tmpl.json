@@ -880,13 +880,14 @@
         "policyDefinitionReferenceId": "Deny-ContainerApps-Https"
       },
       {
-        "policyDefinitionReferenceId": "Deny-EH-minTLS",
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-EH-minTLS",
+        "groupNames": [],
         "parameters": {
           "effect": {
             "value": "[parameters('eventHubMinTls')]"
           }
-        }
+        },
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-EH-minTLS",
+        "policyDefinitionReferenceId": "Deny-EH-minTLS"
       },
       {
         "groupNames": [],

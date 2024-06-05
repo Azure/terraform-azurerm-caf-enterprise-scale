@@ -30,14 +30,14 @@
     },
     "policyDefinitions": [
       {
-        "policyDefinitionReferenceId": "Deny-ContainerInstance-Vnet",
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8af8f826-edcb-4178-b35f-851ea6fea615",
+        "groupNames": [],
         "parameters": {
           "effect": {
             "value": "[parameters('containerInstanceVnet')]"
           }
         },
-        "groupNames": []
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8af8f826-edcb-4178-b35f-851ea6fea615",
+        "policyDefinitionReferenceId": "Deny-ContainerInstance-Vnet"
       }
     ],
     "policyDefinitionGroups": null
