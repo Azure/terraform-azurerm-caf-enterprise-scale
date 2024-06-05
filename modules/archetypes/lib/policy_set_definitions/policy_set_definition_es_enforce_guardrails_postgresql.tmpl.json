@@ -27,16 +27,18 @@
         ]
       }
     },
-    "policyDefinitions": {
-      "policyDefinitionReferenceId": "Dine-PostgreSql-Adv-Threat-Protection",
-      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/db048e65-913c-49f9-bb5f-1084184671d3",
-      "parameters": {
-        "effect": {
-          "value": "[parameters('postgreSqlAdvThreatProtection')]"
-        }
-      },
-      "groupNames": []
-    },
+    "policyDefinitions": [
+      {
+        "groupNames": [],
+        "parameters": {
+          "effect": {
+            "value": "[parameters('postgreSqlAdvThreatProtection')]"
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/db048e65-913c-49f9-bb5f-1084184671d3",
+        "policyDefinitionReferenceId": "Dine-PostgreSql-Adv-Threat-Protection"
+      }
+    ],
     "policyDefinitionGroups": null
   }
 }
