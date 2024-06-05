@@ -5,10 +5,16 @@ name: Update Library Templates
 on:
   schedule:
     - cron: "0 8 * * 1-5"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      enterprise-scale-repository-branch:
+        description: "The branch to target for the enterprise scale repository"
+        required: false
+        default: "main"
 
 env:
   remote_repository: "Azure/Enterprise-Scale"
+  remote_repository_branch: ${{ github.event.inputs.enterprise-scale-repository-branch != 'main' && github.event.inputs.enterprise-scale-repository-branch || 'main' }}
   branch_name: "patch-library-${{ github.run_number }}"
   pr_title: "Update Library Templates (automated)"
   pr_body:
@@ -34,7 +40,7 @@ jobs:
         with:
           repository: ${{ env.remote_repository }}
           path: ${{ env.remote_repository }}
-          ref: main
+          ref: ${{ env.remote_repository_branch }}
 
       - uses: tibdex/github-app-token@v2
         id: generate-token
