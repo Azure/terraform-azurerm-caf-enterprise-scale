@@ -243,7 +243,8 @@ object({
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              scale_unit = optional(number, 1)
+              scale_unit                    = optional(number, 1)
+              allow_non_virtual_wan_traffic = optional(bool, false)
             }), {})
           }), {})
           vpn_gateway = optional(object({
