@@ -91,6 +91,7 @@
       "Deny-VNET-Peering-To-Non-Approved-VNETs",
       "Deny-VNet-Peering",
       "DenyAction-ActivityLogs",
+      "DenyAction-DeleteResources",
       "DenyAction-DiagnosticLogs",
       "Deploy-ASC-SecurityContacts",
       "Deploy-Budget",
