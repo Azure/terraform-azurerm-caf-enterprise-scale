@@ -585,16 +585,10 @@ locals {
           enableAscForSqlOnVm                         = local.deploy_defender_for_sql_server_vms ? "DeployIfNotExists" : "Disabled"
           enableAscForStorage                         = local.deploy_defender_for_storage ? "DeployIfNotExists" : "Disabled"
         }
-        Deploy-VM-Monitoring = {
-          logAnalytics_1 = local.log_analytics_workspace_resource_id
-        }
-        Deploy-VMSS-Monitoring = {
-          logAnalytics_1 = local.log_analytics_workspace_resource_id
-        }
         Deploy-AzActivity-Log = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
-        Deploy-Resource-Diag = {
+        Deploy-Diag-Logs = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
       }
@@ -602,6 +596,14 @@ locals {
         Deploy-MDFC-Config     = local.deploy_security_settings
         Deploy-VM-Monitoring   = local.deploy_monitoring_for_vm
         Deploy-VMSS-Monitoring = local.deploy_monitoring_for_vmss
+      }
+    }
+    "${local.root_id}-landing-zones" = {
+      parameters = {
+        DenyAction-DeleteUAMIAMA = {
+          resourceName = local.user_assigned_managed_identity.Name
+          resourceType = "Microsoft.ManagedIdentity/userAssignedIdentities"
+        }
       }
     }
     "${local.root_id}-landing-zones" = {
@@ -640,9 +642,9 @@ locals {
     automation_account_location                                    = local.azurerm_automation_account.location
     automation_account_name                                        = local.azurerm_automation_account.name
     automation_account_resource_id                                 = local.automation_account_resource_id
-    azure_monitor_data_collection_rule_change_tracking_resource_id = ""
-    azure_monitor_data_collection_rule_sql_resource_id             = ""
-    azure_monitor_data_collection_rule_vm_insights_resource_id     = ""
+    azure_monitor_data_collection_rule_change_tracking_resource_id = local.azure_monitor_data_collection_rule_change_tracking_resource_id
+    azure_monitor_data_collection_rule_sql_resource_id             = local.azure_monitor_data_collection_rule_defender_sql_resource_id
+    azure_monitor_data_collection_rule_vm_insights_resource_id     = local.azure_monitor_data_collection_rule_vm_insights_resource_id
     data_retention                                                 = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
     log_analytics_workspace_location                               = local.azurerm_log_analytics_workspace.location
     log_analytics_workspace_name                                   = local.azurerm_log_analytics_workspace.name
