@@ -1,319 +1,322 @@
 {
-  "apiVersion": "2021-06-01",
   "name": "Enforce-Guardrails-Storage",
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "scope": null,
   "properties": {
-    "description": "This policy initiative is a group of policies that ensures Storage is compliant per regulated Landing Zones.",
+    "policyType": "Custom",
     "displayName": "Enforce recommended guardrails for Storage Account",
+    "description": "This policy initiative is a group of policies that ensures Storage is compliant per regulated Landing Zones.",
     "metadata": {
+      "version": "1.0.0",
+      "category": "Storage",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
         "AzureCloud",
         "AzureChinaCloud",
         "AzureUSGovernment"
-      ],
-      "category": "Storage",
-      "source": "https://github.com/Azure/Enterprise-Scale/",
-      "version": "1.0.0"
+      ]
     },
     "parameters": {
-      "modifyStorageAccountPublicEndpoint": {
+      "storageKeysExpiration": {
+        "type": "string",
+        "defaultValue": "Deny",
         "allowedValues": [
-          "Modify",
+          "Audit",
+          "Deny",
           "Disabled"
-        ],
-        "defaultValue": "Modify",
-        "type": "string"
-      },
-      "modifyStorageFileSyncPublicEndpoint": {
-        "allowedValues": [
-          "Modify",
-          "Disabled"
-        ],
-        "defaultValue": "Modify",
-        "type": "string"
+        ]
       },
       "storageAccountNetworkRules": {
+        "type": "string",
+        "defaultValue": "Deny",
         "allowedValues": [
           "Audit",
           "Deny",
           "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
+        ]
       },
       "storageAccountRestrictNetworkRules": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
+        "type": "string",
         "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageAccountSharedKey": {
         "allowedValues": [
           "Audit",
           "Deny",
           "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageAccountsAllowedCopyScope": {
-        "defaultValue": "AAD",
-        "type": "string"
-      },
-      "storageAccountsCopyScope": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageAccountsCrossTenant": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageAccountsDoubleEncryption": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageAccountsInfraEncryption": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageAccountsModifyDisablePublicNetworkAccess": {
-        "allowedValues": [
-          "Modify",
-          "Disabled"
-        ],
-        "defaultValue": "Modify",
-        "type": "string"
-      },
-      "storageAllowedNetworkAclsBypass": {
-        "defaultValue": [
-          "None"
-        ],
-        "type": "array"
-      },
-      "storageClassicToArm": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageContainerDeleteRetentionPolicy": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageCorsRules": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageKeysExpiration": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageLocalUser": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Disabled",
-        "type": "string"
-      },
-      "storageMinContainerDeleteRetentionInDays": {
-        "defaultValue": 7,
-        "type": "Integer"
-      },
-      "storageNetworkAclsBypass": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageNetworkAclsVirtualNetworkRules": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageResourceAccessRulesResourceId": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageResourceAccessRulesTenantId": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageServicesEncryption": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
-      },
-      "storageSftp": {
-        "allowedValues": [
-          "Audit",
-          "Deny",
-          "Disabled"
-        ],
-        "defaultValue": "Deny",
-        "type": "string"
+        ]
       },
       "storageThreatProtection": {
+        "type": "string",
+        "defaultValue": "DeployIfNotExists",
         "allowedValues": [
           "DeployIfNotExists",
           "Disabled"
-        ],
-        "defaultValue": "DeployIfNotExists",
-        "type": "string"
+        ]
+      },
+      "storageClassicToArm": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAccountsInfraEncryption": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAccountSharedKey": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAccountsCrossTenant": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAccountsDoubleEncryption": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAccountsCopyScope": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAccountsAllowedCopyScope": {
+        "type": "string",
+        "defaultValue": "AAD"
+      },
+      "storageServicesEncryption": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageLocalUser": {
+        "type": "string",
+        "defaultValue": "Disabled",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageSftp": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageNetworkAclsBypass": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageAllowedNetworkAclsBypass": {
+        "type": "array",
+        "defaultValue": [
+          "None"
+        ]
+      },
+      "storageResourceAccessRulesTenantId": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageResourceAccessRulesResourceId": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageNetworkAclsVirtualNetworkRules": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageContainerDeleteRetentionPolicy": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "storageMinContainerDeleteRetentionInDays": {
+        "type": "Integer",
+        "defaultValue": 7
+      },
+      "storageCorsRules": {
+        "type": "string",
+        "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "modifyStorageFileSyncPublicEndpoint": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      },
+      "modifyStorageAccountPublicEndpoint": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
+      },
+      "storageAccountsModifyDisablePublicNetworkAccess": {
+        "type": "string",
+        "defaultValue": "Modify",
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ]
       }
     },
-    "policyDefinitionGroups": null,
     "policyDefinitions": [
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-CopyScope",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-CopyScope",
         "parameters": {
-          "allowedCopyScope": {
-            "value": "[parameters('storageAccountsAllowedCopyScope')]"
-          },
           "effect": {
             "value": "[parameters('storageAccountsCopyScope')]"
+          },
+          "allowedCopyScope": {
+            "value": "[parameters('storageAccountsAllowedCopyScope')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-CopyScope",
-        "policyDefinitionReferenceId": "Deny-Storage-CopyScope"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-ServicesEncryption",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ServicesEncryption",
         "parameters": {
           "effect": {
             "value": "[parameters('storageServicesEncryption')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ServicesEncryption",
-        "policyDefinitionReferenceId": "Deny-Storage-ServicesEncryption"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-LocalUser",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-LocalUser",
         "parameters": {
           "effect": {
             "value": "[parameters('storageLocalUser')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-LocalUser",
-        "policyDefinitionReferenceId": "Deny-Storage-LocalUser"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-SFTP",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-SFTP",
         "parameters": {
           "effect": {
             "value": "[parameters('storageSftp')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-SFTP",
-        "policyDefinitionReferenceId": "Deny-Storage-SFTP"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-NetworkAclsBypass",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-NetworkAclsBypass",
         "parameters": {
-          "allowedBypassOptions": {
-            "value": "[parameters('storageAllowedNetworkAclsBypass')]"
-          },
           "effect": {
             "value": "[parameters('storageNetworkAclsBypass')]"
+          },
+          "allowedBypassOptions": {
+            "value": "[parameters('storageAllowedNetworkAclsBypass')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-NetworkAclsBypass",
-        "policyDefinitionReferenceId": "Deny-Storage-NetworkAclsBypass"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-ResourceAccessRulesTenantId",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ResourceAccessRulesTenantId",
         "parameters": {
           "effect": {
             "value": "[parameters('storageResourceAccessRulesTenantId')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ResourceAccessRulesTenantId",
-        "policyDefinitionReferenceId": "Deny-Storage-ResourceAccessRulesTenantId"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-ResourceAccessRulesResourceId",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ResourceAccessRulesResourceId",
         "parameters": {
           "effect": {
             "value": "[parameters('storageResourceAccessRulesResourceId')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ResourceAccessRulesResourceId",
-        "policyDefinitionReferenceId": "Deny-Storage-ResourceAccessRulesResourceId"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-NetworkAclsVirtualNetworkRules",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-NetworkAclsVirtualNetworkRules",
         "parameters": {
           "effect": {
             "value": "[parameters('storageNetworkAclsVirtualNetworkRules')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-NetworkAclsVirtualNetworkRules",
-        "policyDefinitionReferenceId": "Deny-Storage-NetworkAclsVirtualNetworkRules"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-ContainerDeleteRetentionPolicy",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ContainerDeleteRetentionPolicy",
         "parameters": {
           "effect": {
             "value": "[parameters('storageContainerDeleteRetentionPolicy')]"
@@ -322,142 +325,139 @@
             "value": "[parameters('storageMinContainerDeleteRetentionInDays')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-ContainerDeleteRetentionPolicy",
-        "policyDefinitionReferenceId": "Deny-Storage-ContainerDeleteRetentionPolicy"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-CorsRules",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-CorsRules",
         "parameters": {
           "effect": {
             "value": "[parameters('storageCorsRules')]"
           }
         },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-CorsRules",
-        "policyDefinitionReferenceId": "Deny-Storage-CorsRules"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Account-Encryption",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/bfecdea6-31c4-4045-ad42-71b9dc87247d",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountsDoubleEncryption')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/bfecdea6-31c4-4045-ad42-71b9dc87247d",
-        "policyDefinitionReferenceId": "Deny-Storage-Account-Encryption"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Cross-Tenant",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/92a89a79-6c52-4a7e-a03f-61306fc49312",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountsCrossTenant')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/92a89a79-6c52-4a7e-a03f-61306fc49312",
-        "policyDefinitionReferenceId": "Deny-Storage-Cross-Tenant"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Shared-Key",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountSharedKey')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-        "policyDefinitionReferenceId": "Deny-Storage-Shared-Key"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Infra-Encryption",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4733ea7b-a883-42fe-8cac-97454c2a9e4a",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountsInfraEncryption')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4733ea7b-a883-42fe-8cac-97454c2a9e4a",
-        "policyDefinitionReferenceId": "Deny-Storage-Infra-Encryption"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Classic",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/37e0d2fe-28a5-43d6-a273-67d37d1f5606",
         "parameters": {
           "effect": {
             "value": "[parameters('storageClassicToArm')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/37e0d2fe-28a5-43d6-a273-67d37d1f5606",
-        "policyDefinitionReferenceId": "Deny-Storage-Classic"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Dine-Storage-Threat-Protection",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/361c2074-3595-4e5d-8cab-4f21dffc835c",
         "parameters": {
           "effect": {
             "value": "[parameters('storageThreatProtection')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/361c2074-3595-4e5d-8cab-4f21dffc835c",
-        "policyDefinitionReferenceId": "Dine-Storage-Threat-Protection"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Restrict-NetworkRules",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/34c877ad-507e-4c82-993e-3452a6e0ad3c",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountRestrictNetworkRules')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/34c877ad-507e-4c82-993e-3452a6e0ad3c",
-        "policyDefinitionReferenceId": "Deny-Storage-Restrict-NetworkRules"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-NetworkRules",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountNetworkRules')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-        "policyDefinitionReferenceId": "Deny-Storage-NetworkRules"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Storage-Account-Keys-Expire",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/044985bb-afe1-42cd-8a36-9d5d42424537",
         "parameters": {
           "effect": {
             "value": "[parameters('storageKeysExpiration')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/044985bb-afe1-42cd-8a36-9d5d42424537",
-        "policyDefinitionReferenceId": "Deny-Storage-Account-Keys-Expire"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Modify-Storage-FileSync-PublicEndpoint",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0e07b2e9-6cd9-4c40-9ccb-52817b95133b",
         "parameters": {
           "effect": {
             "value": "[parameters('modifyStorageFileSyncPublicEndpoint')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0e07b2e9-6cd9-4c40-9ccb-52817b95133b",
-        "policyDefinitionReferenceId": "Modify-Storage-FileSync-PublicEndpoint"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Modify-Blob-Storage-Account-PublicEndpoint",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/13502221-8df0-4414-9937-de9c5c4e396b",
         "parameters": {
           "effect": {
             "value": "[parameters('modifyStorageAccountPublicEndpoint')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/13502221-8df0-4414-9937-de9c5c4e396b",
-        "policyDefinitionReferenceId": "Modify-Blob-Storage-Account-PublicEndpoint"
+        "groupNames": []
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Modify-Storage-Account-PublicEndpoint",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a06d0189-92e8-4dba-b0c4-08d7669fce7d",
         "parameters": {
           "effect": {
             "value": "[parameters('storageAccountsModifyDisablePublicNetworkAccess')]"
           }
         },
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a06d0189-92e8-4dba-b0c4-08d7669fce7d",
-        "policyDefinitionReferenceId": "Modify-Storage-Account-PublicEndpoint"
+        "groupNames": []
       }
     ],
-    "policyType": "Custom"
-  },
-  "scope": null,
-  "type": "Microsoft.Authorization/policySetDefinitions"
+    "policyDefinitionGroups": null
+  }
 }
