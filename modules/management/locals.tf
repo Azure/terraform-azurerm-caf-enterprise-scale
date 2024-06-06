@@ -683,6 +683,16 @@ locals {
           if local.deploy_vminsights_dcr
         }
         managed_by_module = local.deploy_vminsights_dcr
+      },
+      {
+        resource_id   = local.azure_monitor_data_collection_rule_change_tracking_resource_id
+        resource_name = basename(local.azure_monitor_data_collection_rule_change_tracking_resource_id)
+        template = {
+          for key, value in local.azure_monitor_data_collection_rule_vm_insights :
+          key => value
+          if local.deploy_change_tracking_dcr
+        }
+        managed_by_module = local.deploy_change_tracking_dcr
       }
     ]
     archetype_config_overrides = local.archetype_config_overrides
