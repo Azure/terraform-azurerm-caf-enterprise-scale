@@ -4,10 +4,6 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 3.84"
-      configuration_aliases = [
-        azurerm.connectivity,
-        azurerm.management,
-      ]
     }
     required_version = "~> 1.7"
   }
