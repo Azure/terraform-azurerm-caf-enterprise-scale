@@ -3,9 +3,12 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.74.0"
+      version = "~> 3.84"
+      configuration_aliases = [
+        azurerm.connectivity,
+        azurerm.management,
+      ]
     }
+    required_version = "~> 1.7"
   }
-
-  required_version = ">= 1.3.1"
 }
