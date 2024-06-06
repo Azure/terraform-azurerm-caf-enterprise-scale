@@ -76,10 +76,11 @@ variable "configure_management_resources" {
   type = object({
     settings = optional(object({
       ama = optional(object({
-        enable_uami                      = optional(bool, true)
-        enable_vminsights_dcr            = optional(bool, true)
-        enable_change_tracking_dcr       = optional(bool, true)
-        enable_mdfc_defender_for_sql_dcr = optional(bool, true)
+        enable_uami                                                         = optional(bool, true)
+        enable_vminsights_dcr                                               = optional(bool, true)
+        enable_change_tracking_dcr                                          = optional(bool, true)
+        enable_mdfc_defender_for_sql_dcr                                    = optional(bool, true)
+        enable_mdfc_defender_for_sql_query_collection_for_security_research = optional(bool, true)
       }), {})
       log_analytics = optional(object({
         enabled = optional(bool, true)

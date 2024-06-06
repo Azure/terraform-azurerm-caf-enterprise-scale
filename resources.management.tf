@@ -180,8 +180,8 @@ resource "azurerm_monitor_data_collection_rule" "management" {
           name               = extension.value.name
           streams            = extension.value.streams
           extension_name     = extension.value.extension_name
-          extension_json     = lookup(extension.value.extension_json, null)
-          input_data_sources = lookup(extension.value.input_data_sources, null)
+          extension_json     = lookup(extension.value, "extension_json", null)
+          input_data_sources = lookup(extension.value, "input_data_sources", null)
         }
       }
     }

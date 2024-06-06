@@ -44,10 +44,11 @@ variable "tags" {
 variable "settings" {
   type = object({
     ama = optional(object({
-      enable_uami                      = optional(bool, true)
-      enable_vminsights_dcr            = optional(bool, true)
-      enable_change_tracking_dcr       = optional(bool, true)
-      enable_mdfc_defender_for_sql_dcr = optional(bool, true)
+      enable_uami                                                         = optional(bool, true)
+      enable_vminsights_dcr                                               = optional(bool, true)
+      enable_change_tracking_dcr                                          = optional(bool, true)
+      enable_mdfc_defender_for_sql_dcr                                    = optional(bool, true)
+      enable_mdfc_defender_for_sql_query_collection_for_security_research = optional(bool, true)
     }), {})
     log_analytics = optional(object({
       enabled = optional(bool, true)
@@ -56,6 +57,7 @@ variable "settings" {
         enable_monitoring_for_vm   = optional(bool, true)
         enable_monitoring_for_vmss = optional(bool, true)
         enable_sentinel            = optional(bool, true)
+        enable_change_tracking     = optional(bool, true)
       }), {})
     }), {})
     security_center = optional(object({

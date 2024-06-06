@@ -417,6 +417,58 @@ locals {
   }
 }
 
+# Configuration for the change tracking DCR
+locals {
+  azure_monitor_data_collection_rule_defender_sql_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_defender_sql.name}"
+  azure_monitor_data_collection_rule_defender_sql = {
+    name                = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-defendersql-prod${local.resource_suffix}")
+    description         = lookup(local.custom_settings_dcr_change_tracking, "description", "This is the name of the Data Collection Rule(DCR) for Defender for SQL")
+    resource_group_name = lookup(local.custom_settings_dcr_change_tracking, "resource_group_name", local.resource_group_name)
+    location            = lookup(local.custom_settings_dcr_change_tracking, "location", local.location)
+    tags                = lookup(local.custom_settings_dcr_change_tracking, "tags", local.tags)
+    data_sources = [
+      {
+        extension = [
+          {
+            streams = [
+              "Microsoft-DefenderForSqlAlerts",
+              "Microsoft-DefenderForSqlLogins",
+              "Microsoft-DefenderForSqlTelemetry",
+              "Microsoft-DefenderForSqlScanEvents",
+              "Microsoft-DefenderForSqlScanResults"
+            ]
+            extension_name = "MicrosoftDefenderForSQL"
+            extension_json = jsonencode({
+              enableCollectionOfSqlQueriesForSecurityResearch = local.settings.ama.enable_mdfc_defender_for_sql_query_collection_for_security_research
+            })
+            name = "MicrosoftDefenderForSQL"
+          }
+        ]
+      }
+    ]
+    destinations = {
+      log_analytics = [
+        {
+          name                  = "LogAnalyticsDest"
+          workspace_resource_id = local.log_analytics_workspace_resource_id
+        }
+      ]
+    }
+    data_flows = [
+      {
+        streams = [
+          "Microsoft-DefenderForSqlAlerts",
+          "Microsoft-DefenderForSqlLogins",
+          "Microsoft-DefenderForSqlTelemetry",
+          "Microsoft-DefenderForSqlScanEvents",
+          "Microsoft-DefenderForSqlScanResults"
+        ]
+        destinations = ["LogAnalyticsDest"]
+      }
+    ]
+  }
+}
+
 # Configuration for the VM Insights DCR
 locals {
   azure_monitor_data_collection_rule_vm_insights_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_vm_insights.name}"
@@ -688,11 +740,21 @@ locals {
         resource_id   = local.azure_monitor_data_collection_rule_change_tracking_resource_id
         resource_name = basename(local.azure_monitor_data_collection_rule_change_tracking_resource_id)
         template = {
-          for key, value in local.azure_monitor_data_collection_rule_vm_insights :
+          for key, value in local.azure_monitor_data_collection_rule_change_tracking :
           key => value
           if local.deploy_change_tracking_dcr
         }
         managed_by_module = local.deploy_change_tracking_dcr
+      },
+      {
+        resource_id   = local.azure_monitor_data_collection_rule_defender_sql_resource_id
+        resource_name = basename(local.azure_monitor_data_collection_rule_defender_sql_resource_id)
+        template = {
+          for key, value in local.azure_monitor_data_collection_rule_defender_sql :
+          key => value
+          if local.deploy_mdfc_defender_for_sql_dcr
+        }
+        managed_by_module = local.deploy_mdfc_defender_for_sql_dcr
       }
     ]
     archetype_config_overrides = local.archetype_config_overrides
