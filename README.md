@@ -65,7 +65,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.74.0"
+      version = "~> 3.84"
     }
   }
 }
@@ -171,15 +171,15 @@ For upgrade guides from previous versions, please refer to the following links:
 
 The following requirements are needed by this module:
 
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.7)
 
-- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.7.0)
+- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 1.7)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.74.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.84)
 
-- <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
+- <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.1)
 
-- <a name="requirement_time"></a> [time](#requirement\_time) (>= 0.7.0)
+- <a name="requirement_time"></a> [time](#requirement\_time) (~> 0.7)
 
 ## Modules
 
@@ -348,9 +348,11 @@ object({
             virtual_network_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
-                address_prefix           = optional(string, "")
-                gateway_sku_expressroute = optional(string, "")
-                gateway_sku_vpn          = optional(string, "")
+                address_prefix              = optional(string, "")
+                gateway_sku_expressroute    = optional(string, "")
+                gateway_sku_vpn             = optional(string, "")
+                remote_vnet_traffic_enabled = optional(bool, false)
+                virtual_wan_traffic_enabled = optional(bool, false)
                 advanced_vpn_settings = optional(object({
                   enable_bgp                       = optional(bool, null)
                   active_active                    = optional(bool, null)

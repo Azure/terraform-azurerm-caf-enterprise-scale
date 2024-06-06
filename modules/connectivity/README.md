@@ -141,9 +141,11 @@ object({
           virtual_network_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              address_prefix           = optional(string, "")
-              gateway_sku_expressroute = optional(string, "")
-              gateway_sku_vpn          = optional(string, "")
+              address_prefix              = optional(string, "")
+              gateway_sku_expressroute    = optional(string, "")
+              gateway_sku_vpn             = optional(string, "")
+              remote_vnet_traffic_enabled = optional(bool, false)
+              virtual_wan_traffic_enabled = optional(bool, false)
               advanced_vpn_settings = optional(object({
                 enable_bgp                       = optional(bool, null)
                 active_active                    = optional(bool, null)
