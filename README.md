@@ -624,23 +624,21 @@ Type:
 ```hcl
 object({
     settings = optional(object({
+      ama = optional(object({
+        enable_uami                                                         = optional(bool, true)
+        enable_vminsights_dcr                                               = optional(bool, true)
+        enable_change_tracking_dcr                                          = optional(bool, true)
+        enable_mdfc_defender_for_sql_dcr                                    = optional(bool, true)
+        enable_mdfc_defender_for_sql_query_collection_for_security_research = optional(bool, true)
+      }), {})
       log_analytics = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
-          retention_in_days                                 = optional(number, 30)
-          enable_monitoring_for_vm                          = optional(bool, true)
-          enable_monitoring_for_vmss                        = optional(bool, true)
-          enable_solution_for_agent_health_assessment       = optional(bool, true)
-          enable_solution_for_anti_malware                  = optional(bool, true)
-          enable_solution_for_change_tracking               = optional(bool, true)
-          enable_solution_for_service_map                   = optional(bool, false)
-          enable_solution_for_sql_assessment                = optional(bool, true)
-          enable_solution_for_sql_vulnerability_assessment  = optional(bool, true)
-          enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
-          enable_solution_for_updates                       = optional(bool, true)
-          enable_solution_for_vm_insights                   = optional(bool, true)
-          enable_solution_for_container_insights            = optional(bool, true)
-          enable_sentinel                                   = optional(bool, true)
+          retention_in_days          = optional(number, 30)
+          enable_monitoring_for_vm   = optional(bool, true)
+          enable_monitoring_for_vmss = optional(bool, true)
+          enable_sentinel            = optional(bool, true)
+          enable_change_tracking     = optional(bool, true)
         }), {})
       }), {})
       security_center = optional(object({
@@ -1077,6 +1075,7 @@ The following resources are used by this module:
 - [azurerm_management_group.level_6](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group) (resource)
 - [azurerm_management_group_policy_assignment.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment) (resource)
 - [azurerm_management_group_subscription_association.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_subscription_association) (resource)
+- [azurerm_monitor_data_collection_rule.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_data_collection_rule) (resource)
 - [azurerm_network_ddos_protection_plan.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan) (resource)
 - [azurerm_policy_definition.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition) (resource)
 - [azurerm_policy_set_definition.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition) (resource)
@@ -1095,6 +1094,7 @@ The following resources are used by this module:
 - [azurerm_subscription_template_deployment.telemetry_core](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
 - [azurerm_subscription_template_deployment.telemetry_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
 - [azurerm_subscription_template_deployment.telemetry_management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
+- [azurerm_user_assigned_identity.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) (resource)
 - [azurerm_virtual_hub.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub) (resource)
 - [azurerm_virtual_hub_connection.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) (resource)
 - [azurerm_virtual_hub_routing_intent.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_routing_intent) (resource)
