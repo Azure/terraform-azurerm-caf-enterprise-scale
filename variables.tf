@@ -88,6 +88,7 @@ variable "configure_management_resources" {
           enable_monitoring_for_vm   = optional(bool, true)
           enable_monitoring_for_vmss = optional(bool, true)
           enable_sentinel            = optional(bool, true)
+          enable_change_tracking     = optional(bool, true)
         }), {})
       }), {})
       security_center = optional(object({
