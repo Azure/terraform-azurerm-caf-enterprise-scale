@@ -406,14 +406,13 @@
         "policyDefinitionReferenceId": "Deny-AppGw-Without-Waf"
       },
       {
-        "groupNames": [],
+        "policyDefinitionReferenceId": "Deny-Subnet-Without-Udr",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Udr",
         "parameters": {
           "effect": {
             "value": "[parameters('subnetUdr')]"
           }
-        },
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Subnet-Without-Udr",
-        "policyDefinitionReferenceId": "Deny-Subnet-Without-Udr"
+        }
       },
       {
         "groupNames": [],
