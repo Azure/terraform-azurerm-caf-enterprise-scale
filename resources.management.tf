@@ -105,7 +105,6 @@ resource "azurerm_automation_account" "management" {
       key_vault_key_id = encryption.value["key_vault_key_id"]
       # Optional attributes
       user_assigned_identity_id = lookup(encryption.value, "user_assigned_identity_id", null)
-      key_source                = lookup(encryption.value, "key_source", null)
     }
   }
 
