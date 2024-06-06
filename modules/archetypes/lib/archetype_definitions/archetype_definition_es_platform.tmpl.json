@@ -1,7 +1,7 @@
 {
   "es_platform": {
     "policy_assignments": [
-      "DenyAction-Resource-Del",
+      "DenyAction-DeleteUAMIAMA",
       "Deploy-MDFC-DefSQL-AMA",
       "Deploy-VM-ChangeTrack",
       "Deploy-VM-Monitoring",

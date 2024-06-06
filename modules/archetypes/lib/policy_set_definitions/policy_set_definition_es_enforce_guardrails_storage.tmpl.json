@@ -262,8 +262,8 @@
         "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "Deny-Storage-Sftp",
-        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-Sftp",
+        "policyDefinitionReferenceId": "Deny-Storage-SFTP",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deny-Storage-SFTP",
         "parameters": {
           "effect": {
             "value": "[parameters('storageSftp')]"
