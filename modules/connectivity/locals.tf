@@ -538,11 +538,13 @@ locals {
       resource_id       = local.er_gateway_resource_id[location]
       managed_by_module = local.deploy_virtual_network_gateway_express_route[location]
       # Resource definition attributes
-      name                = local.er_gateway_name[location]
-      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
-      location            = location
-      type                = "ExpressRoute"
-      sku                 = hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute
+      name                        = local.er_gateway_name[location]
+      resource_group_name         = local.resource_group_names_by_scope_and_location["connectivity"][location]
+      location                    = location
+      type                        = "ExpressRoute"
+      sku                         = hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute
+      remote_vnet_traffic_enabled = hub_network.config.virtual_network_gateway.config.remote_vnet_traffic_enabled
+      virtual_wan_traffic_enabled = hub_network.config.virtual_network_gateway.config.virtual_wan_traffic_enabled
       ip_configuration = try(
         # To support `active_active = true` must currently specify a custom ip_configuration
         local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].ip_configuration,
