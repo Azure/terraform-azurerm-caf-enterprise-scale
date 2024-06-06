@@ -154,5 +154,52 @@ resource "azurerm_user_assigned_identity" "management" {
   depends_on = [
     azurerm_resource_group.management,
   ]
+}
 
+resource "azurerm_monitor_data_collection_rule" "management" {
+  for_each            = local.azurerm_monitor_data_collection_rule_management
+  name                = each.value.template.name
+  resource_group_name = each.value.template.resource_group_name
+  location            = each.value.template.location
+
+  data_sources {
+    dynamic "performance_counter" {
+      for_each = each.value.template.data_sources.performance_counters
+      content {
+        name                          = performance_counter.value.name
+        streams                       = performance_counter.value.streams
+        sampling_frequency_in_seconds = performance_counter.value.sampling_frequency_in_seconds
+        counter_specifiers            = performance_counter.value.counter_specifiers
+      }
+    }
+
+    dynamic "extension" {
+      for_each = each.value.template.data_sources.extensions
+      content {
+        name               = extension.value.name
+        streams            = extension.value.streams
+        extension_name     = extension.value.extension_name
+        extension_json     = lookup(extension.value.extension_json, null)
+        input_data_sources = lookup(extension.value.input_data_sources, null)
+      }
+    }
+  }
+
+  destinations {
+    dynamic "log_analytics" {
+      for_each = each.value.template.destinations.log_analytics
+      content {
+        name                  = log_analytics.value.name
+        workspace_resource_id = log_analytics.value.workspace_resource_id
+      }
+    }
+  }
+
+  dynamic "data_flow" {
+    for_each = each.value.template.data_flows
+    content {
+      streams      = data_flow.value.streams
+      destinations = data_flow.value.destinations
+    }
+  }
 }

@@ -37,6 +37,7 @@ locals {
   custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
   custom_settings_uami              = try(local.custom_settings.azurerm_user_assigned_identity["management"], local.empty_map)
   custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
+  custom_settings_dcr_vm_insights   = try(local.custom_settings.azurerm_data_collection_rule["management"]["vminsights"], local.empty_map)
 }
 
 # Logic to determine whether specific resources
@@ -147,6 +148,53 @@ locals {
     resource_group_name = lookup(local.custom_settings_uami, "resource_group_name", local.resource_group_name)
     location            = lookup(local.custom_settings_uami, "location", local.location)
     tags                = lookup(local.custom_settings_uami, "tags", local.tags)
+  }
+}
+
+# Configuration for the VM Insights DCR
+locals {
+  azure_monitor_data_collection_rule_vm_insights_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.user_assigned_managed_identity.name}"
+  azure_monitor_data_collection_rule_vm_insights = {
+    name                = lookup(local.custom_settings_dcr_vm_insights, "name", "${local.resource_prefix}-dcr-vm-insights${local.resource_suffix}")
+    description         = lookup(local.custom_settings_dcr_vm_insights, "description", "Data Collection Rule for VM Insights")
+    resource_group_name = lookup(local.custom_settings_dcr_vm_insights, "resource_group_name", local.resource_group_name)
+    location            = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
+    tags                = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
+    data_sources = {
+      performance_counters = [
+        {
+          name                          = "VMInsightsPerfCounters"
+          streams                       = ["Microsoft-InsightsMetrics"]
+          sampling_frequency_in_seconds = 60
+          counter_specifiers            = ["Microsoft-InsightsMetrics"]
+        }
+      ]
+      extensions = [
+        {
+          name           = "DependencyAgentDataSource"
+          extension_name = "DependencyAgent"
+          streams        = ["Microsoft-ServiceMap"]
+        }
+      ]
+    }
+    destinations = {
+      log_analytics = [
+        {
+          name                  = "VMInsightsPerf-Logs-Dest"
+          workspace_resource_id = local.log_analytics_workspace_resource_id
+        }
+      ]
+    }
+    data_flows = [
+      {
+        streams      = ["Microsoft-InsightsMetrics"]
+        destinations = ["VMInsightsPerf-Logs-Dest"]
+      },
+      {
+        streams      = ["Microsoft-ServiceMap"]
+        destinations = ["VMInsightsPerf-Logs-Dest"]
+      }
+    ]
   }
 }
 
@@ -355,6 +403,18 @@ locals {
           if local.deploy_ama_uami
         }
         managed_by_module = local.deploy_ama_uami
+      }
+    ]
+    azurerm_monitor_data_collection_rule = [
+      {
+        resource_id   = local.azure_monitor_data_collection_rule_vm_insights_resource_id
+        resource_name = basename(local.azure_monitor_data_collection_rule_vm_insights_resource_id)
+        template = {
+          for key, value in local.azure_monitor_data_collection_rule_vm_insights :
+          key => value
+          if local.deploy_vminsights_dcr
+        }
+        managed_by_module = local.deploy_vminsights_dcr
       }
     ]
     archetype_config_overrides = local.archetype_config_overrides
