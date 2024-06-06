@@ -14,7 +14,7 @@ steps:
   - task: GoTool@0
     displayName: "Install Go"
     inputs:
-      version: "1.23.3"
+      version: "1.22.3"
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
 
   - task: Bash@3
