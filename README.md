@@ -175,7 +175,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 1.7)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.84)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.85)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.1)
 
