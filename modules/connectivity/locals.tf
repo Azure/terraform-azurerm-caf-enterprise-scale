@@ -655,11 +655,13 @@ locals {
       resource_id       = local.vpn_gateway_resource_id[location]
       managed_by_module = local.deploy_virtual_network_gateway_vpn[location]
       # Resource definition attributes
-      name                = local.vpn_gateway_name[location]
-      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
-      location            = location
-      type                = "Vpn"
-      sku                 = hub_network.config.virtual_network_gateway.config.gateway_sku_vpn
+      name                        = local.vpn_gateway_name[location]
+      resource_group_name         = local.resource_group_names_by_scope_and_location["connectivity"][location]
+      location                    = location
+      type                        = "Vpn"
+      sku                         = hub_network.config.virtual_network_gateway.config.gateway_sku_vpn
+      remote_vnet_traffic_enabled = null
+      virtual_wan_traffic_enabled = null
       ip_configuration = try(
         local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].ip_configuration,
         concat(
