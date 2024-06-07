@@ -14,7 +14,6 @@ This is a major release, following the update of Azure Landing Zones with it's m
 1. [Policy refresh H2 FY24](https://github.com/Azure/Enterprise-Scale/pull/1651)
 2. [AMA Updates](https://github.com/Azure/Enterprise-Scale/pull/1649)
 
-
 ## Policy Refresh
 
 See: <https://github.com/Azure/Enterprise-Scale/wiki/ALZ-Policies>
@@ -51,7 +50,6 @@ You will need to manually clean up the resources.
 1. feat: new private DNS zones: [#918](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/918) (thanks @chrsundermann!)
 2. feat: new virtual network gateway routing parameters: [#925](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/925) (thanks @nyanhp!)
 3. fix: mg diag setting location: [#952](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/pull/952) (thanks @Keetika-Yogendra!)
-
 
 ### `configure_management_resources`
 
