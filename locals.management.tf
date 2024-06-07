@@ -58,7 +58,7 @@ locals {
   }
 }
 
-# The following locals are used to build the map of azure monitor vminsights DCR
+# The following locals are used to build the map of the DCRs
 locals {
   azurerm_monitor_data_collection_rule_management = {
     for resource in module.management_resources.configuration.azurerm_monitor_data_collection_rule :
