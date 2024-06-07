@@ -159,7 +159,9 @@ resource "azurerm_monitor_data_collection_rule" "management" {
   for_each            = local.azurerm_monitor_data_collection_rule_management
   name                = each.value.template.name
   resource_group_name = each.value.template.resource_group_name
+  description         = each.value.template.description
   location            = each.value.template.location
+  tags                = each.value.template.tags
 
   dynamic "data_sources" {
     for_each = lookup(each.value.template, "data_sources", [])
