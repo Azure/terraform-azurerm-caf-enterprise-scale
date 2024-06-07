@@ -601,7 +601,7 @@ locals {
     "${local.root_id}-landing-zones" = {
       parameters = {
         DenyAction-DeleteUAMIAMA = {
-          resourceName = local.user_assigned_managed_identity.Name
+          resourceName = local.user_assigned_managed_identity.name
           resourceType = "Microsoft.ManagedIdentity/userAssignedIdentities"
         }
       }
