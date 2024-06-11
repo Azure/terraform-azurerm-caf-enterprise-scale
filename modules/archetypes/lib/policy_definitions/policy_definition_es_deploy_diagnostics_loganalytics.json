@@ -83,18 +83,34 @@
           "type": "Microsoft.Insights/diagnosticSettings",
           "name": "[parameters('profileName')]",
           "existenceCondition": {
-            "allOf": [
+            "anyOf": [
               {
-                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
-                "equals": "true"
+                "allOf": [
+                  {
+                    "field": "Microsoft.Insights/diagnosticSettings/eventHubName",
+                    "exists": "false"
+                  },
+                  {
+                    "anyOf":[
+                      {
+                        "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                        "equals": "[parameters('logAnalytics')]"
+                      },
+                      {
+                        "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                        "match": "*aco-log-security"
+                      }
+                    ]
+                  },
+                  {
+                    "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
+                    "equals": "true"
+                  }
+                ]
               },
               {
-                "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
-                "equals": "true"
-              },
-              {
-                "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
-                "equals": "[parameters('logAnalytics')]"
+                "field": "Microsoft.Insights/diagnosticSettings/eventHubName",
+                "exists": "true"
               }
             ]
           },
