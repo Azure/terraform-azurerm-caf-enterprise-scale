@@ -4,6 +4,7 @@
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Percentage of issues still open")
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Azure/terraform-azurerm-caf-enterprise-scale/badge)](https://scorecard.dev/viewer/?uri=github.com/Azure/terraform-azurerm-caf-enterprise-scale)
 
 Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
