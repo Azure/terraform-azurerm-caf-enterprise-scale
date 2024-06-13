@@ -173,13 +173,13 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.7)
 
-- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 1.7)
+- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 1.13, != 1.13.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.85)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.107)
 
-- <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.1)
+- <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.6)
 
-- <a name="requirement_time"></a> [time](#requirement\_time) (~> 0.7)
+- <a name="requirement_time"></a> [time](#requirement\_time) (~> 0.11)
 
 ## Modules
 
@@ -654,13 +654,11 @@ object({
         enabled = optional(bool, true)
         config = optional(object({
           email_security_contact                                = optional(string, "security_contact@replace_me")
-          enable_defender_for_apis                              = optional(bool, true)
           enable_defender_for_app_services                      = optional(bool, true)
           enable_defender_for_arm                               = optional(bool, true)
           enable_defender_for_containers                        = optional(bool, true)
           enable_defender_for_cosmosdbs                         = optional(bool, true)
           enable_defender_for_cspm                              = optional(bool, true)
-          enable_defender_for_dns                               = optional(bool, true)
           enable_defender_for_key_vault                         = optional(bool, true)
           enable_defender_for_oss_databases                     = optional(bool, true)
           enable_defender_for_servers                           = optional(bool, true)
@@ -1065,6 +1063,7 @@ Default: `{}`
 
 The following resources are used by this module:
 
+- [azapi_resource.data_collection_rule](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
 - [azapi_resource.diag_settings](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
 - [azurerm_automation_account.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account) (resource)
 - [azurerm_dns_zone.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone) (resource)
@@ -1084,7 +1083,6 @@ The following resources are used by this module:
 - [azurerm_management_group.level_6](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group) (resource)
 - [azurerm_management_group_policy_assignment.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment) (resource)
 - [azurerm_management_group_subscription_association.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_subscription_association) (resource)
-- [azurerm_monitor_data_collection_rule.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_data_collection_rule) (resource)
 - [azurerm_network_ddos_protection_plan.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan) (resource)
 - [azurerm_policy_definition.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_definition) (resource)
 - [azurerm_policy_set_definition.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition) (resource)
