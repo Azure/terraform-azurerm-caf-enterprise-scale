@@ -64,13 +64,11 @@ variable "settings" {
       enabled = optional(bool, true)
       config = optional(object({
         email_security_contact                                = optional(string, "security_contact@replace_me")
-        enable_defender_for_apis                              = optional(bool, true)
         enable_defender_for_app_services                      = optional(bool, true)
         enable_defender_for_arm                               = optional(bool, true)
         enable_defender_for_containers                        = optional(bool, true)
         enable_defender_for_cosmosdbs                         = optional(bool, true)
         enable_defender_for_cspm                              = optional(bool, true)
-        enable_defender_for_dns                               = optional(bool, true)
         enable_defender_for_key_vault                         = optional(bool, true)
         enable_defender_for_oss_databases                     = optional(bool, true)
         enable_defender_for_servers                           = optional(bool, true)
