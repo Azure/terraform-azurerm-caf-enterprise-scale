@@ -595,18 +595,16 @@ locals {
   archetype_config_overrides = {
     (local.root_id) = {
       parameters = {
-        Deploy-MDFC-Config = {
+        Deploy-MDFC-Config-H224 = {
           emailSecurityContact                        = local.settings.security_center.config.email_security_contact
           logAnalytics                                = local.log_analytics_workspace_resource_id
           ascExportResourceGroupName                  = local.asc_export_resource_group_name
           ascExportResourceGroupLocation              = local.location
-          enableAscForApis                            = local.deploy_defender_for_apis ? "DeployIfNotExists" : "Disabled"
           enableAscForAppServices                     = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
           enableAscForArm                             = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
           enableAscForContainers                      = local.deploy_defender_for_containers ? "DeployIfNotExists" : "Disabled"
           enableAscForCosmosDbs                       = local.deploy_defender_for_cosmosdbs ? "DeployIfNotExists" : "Disabled"
           enableAscForCspm                            = local.deploy_defender_for_cspm ? "DeployIfNotExists" : "Disabled"
-          enableAscForDns                             = local.deploy_defender_for_dns ? "DeployIfNotExists" : "Disabled"
           enableAscForKeyVault                        = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
           enableAscForOssDb                           = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
           enableAscForServers                         = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
@@ -634,10 +632,24 @@ locals {
           resourceName = local.user_assigned_managed_identity.name
           resourceType = "Microsoft.ManagedIdentity/userAssignedIdentities"
         }
+        Deploy-MDFC-DefSQL-AMA = {
+          userWorkspaceResourceId = local.log_analytics_workspace_resource_id
+        }
+        Deploy-AzSqlDb-Auditing = {
+          logAnalyticsWorkspaceId = lower(local.log_analytics_workspace_resource_id)
+        }
       }
+      enforcement_mode = {}
     }
-    "${local.root_id}-landing-zones" = {
+    "${local.root_id}-platform" = {
       parameters = {
+        DenyAction-DeleteUAMIAMA = {
+          resourceName = local.user_assigned_managed_identity.name
+          resourceType = "Microsoft.ManagedIdentity/userAssignedIdentities"
+        }
+        Deploy-MDFC-DefSQL-AMA = {
+          userWorkspaceResourceId = local.log_analytics_workspace_resource_id
+        }
         Deploy-AzSqlDb-Auditing = {
           logAnalyticsWorkspaceId = lower(local.log_analytics_workspace_resource_id)
         }
