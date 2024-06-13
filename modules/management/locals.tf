@@ -156,264 +156,268 @@ locals {
 locals {
   azure_monitor_data_collection_rule_change_tracking_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_change_tracking.name}"
   azure_monitor_data_collection_rule_change_tracking = {
-    name                = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-changetracking-prod${local.resource_suffix}")
-    description         = lookup(local.custom_settings_dcr_change_tracking, "description", "Data collection rule for CT")
-    resource_group_name = lookup(local.custom_settings_dcr_change_tracking, "resource_group_name", local.resource_group_name)
-    location            = lookup(local.custom_settings_dcr_change_tracking, "location", local.location)
-    tags                = lookup(local.custom_settings_dcr_change_tracking, "tags", local.tags)
-    data_sources = [
-      {
-        extension = [
+    name                      = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-changetracking-prod${local.resource_suffix}")
+    type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
+    parent_id                 = local.resource_group_resource_id
+    location                  = lookup(local.custom_settings_dcr_change_tracking, "location", local.location)
+    schema_validation_enabled = true
+    tags                      = lookup(local.custom_settings_dcr_change_tracking, "tags", local.tags)
+    body = {
+      properties = {
+        description = "Data collection rule for CT"
+        dataSources = {
+          extensions = [
+            {
+              streams = [
+                "Microsoft-ConfigurationChange",
+                "Microsoft-ConfigurationChangeV2",
+                "Microsoft-ConfigurationData"
+              ]
+              extensionName = "ChangeTracking-Windows"
+              extensionSettings = {
+                enableFiles     = true,
+                enableSoftware  = true,
+                enableRegistry  = true,
+                enableServices  = true,
+                enableInventory = true,
+                registrySettings = {
+                  registryCollectionFrequency = 3600
+                  registryInfo = [
+                    {
+                      name        = "Registry_1",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\Scripts\\Startup",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_2",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\Scripts\\Shutdown",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_3",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_4",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_5",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\ShellEx\\ContextMenuHandlers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_6",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\Background\\ShellEx\\ContextMenuHandlers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_7",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\Shellex\\CopyHookHandlers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_8",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_9",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_10",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_11",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_12",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Internet Explorer\\Extensions",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_13",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\Extensions",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_14",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Drivers32",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_15",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Drivers32",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_16",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\KnownDlls",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_17",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify",
+                      valueName   = ""
+                    }
+                  ]
+                }
+                fileSettings = {
+                  fileCollectionFrequency = 2700,
+                },
+                softwareSettings = {
+                  softwareCollectionFrequency = 1800
+                },
+                inventorySettings = {
+                  inventoryCollectionFrequency = 36000
+                },
+                servicesSettings = {
+                  serviceCollectionFrequency = 1800
+                }
+              }
+              name = "CTDataSource-Windows"
+            },
+            {
+              streams = [
+                "Microsoft-ConfigurationChange",
+                "Microsoft-ConfigurationChangeV2",
+                "Microsoft-ConfigurationData"
+              ]
+              extensionName = "ChangeTracking-Linux"
+              extensionSettings = {
+                enableFiles     = true,
+                enableSoftware  = true,
+                enableRegistry  = false,
+                enableServices  = true,
+                enableInventory = true,
+                fileSettings = {
+                  fileCollectionFrequency = 900,
+                  fileInfo = [
+                    {
+                      name                  = "ChangeTrackingLinuxPath_default",
+                      enabled               = true,
+                      destinationPath       = "/etc/.*.conf",
+                      useSudo               = true,
+                      recurse               = true,
+                      maxContentsReturnable = 5000000,
+                      pathType              = "File",
+                      type                  = "File",
+                      links                 = "Follow",
+                      maxOutputSize         = 500000,
+                      groupTag              = "Recommended"
+                    }
+                  ]
+                },
+                softwareSettings = {
+                  softwareCollectionFrequency = 300
+                },
+                inventorySettings = {
+                  inventoryCollectionFrequency = 36000
+                },
+                servicesSettings = {
+                  serviceCollectionFrequency = 300
+                }
+              }
+              name = "CTDataSource-Linux"
+            }
+          ]
+        }
+        destinations = {
+          logAnalytics = [
+            {
+              name                = "Microsoft-CT-Dest"
+              workspaceResourceId = local.log_analytics_workspace_resource_id
+            }
+          ]
+        }
+        dataFlows = [
           {
             streams = [
               "Microsoft-ConfigurationChange",
               "Microsoft-ConfigurationChangeV2",
               "Microsoft-ConfigurationData"
             ]
-            extension_name = "ChangeTracking-Windows"
-            extension_json = jsonencode({
-              enableFiles     = true,
-              enableSoftware  = true,
-              enableRegistry  = true,
-              enableServices  = true,
-              enableInventory = true,
-              registrySettings = {
-                registryCollectionFrequency = 3600
-                registryInfo = [
-                  {
-                    name        = "Registry_1",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\Scripts\\Startup",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_2",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\Scripts\\Shutdown",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_3",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_4",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_5",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\ShellEx\\ContextMenuHandlers",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_6",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\Background\\ShellEx\\ContextMenuHandlers",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_7",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\Shellex\\CopyHookHandlers",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_8",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_9",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_10",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_11",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_12",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Internet Explorer\\Extensions",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_13",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\Extensions",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_14",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Drivers32",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_15",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Drivers32",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_16",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\KnownDlls",
-                    valueName   = ""
-                  },
-                  {
-                    name        = "Registry_17",
-                    groupTag    = "Recommended",
-                    enabled     = false,
-                    recurse     = true,
-                    description = "",
-                    keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify",
-                    valueName   = ""
-                  }
-                ]
-              }
-              fileSettings = {
-                fileCollectionFrequency = 2700,
-              },
-              softwareSettings = {
-                softwareCollectionFrequency = 1800
-              },
-              inventorySettings = {
-                inventoryCollectionFrequency = 36000
-              },
-              servicesSettings = {
-                serviceCollectionFrequency = 1800
-              }
-            })
-            name = "CTDataSource-Windows"
-          },
-          {
-            streams = [
-              "Microsoft-ConfigurationChange",
-              "Microsoft-ConfigurationChangeV2",
-              "Microsoft-ConfigurationData"
-            ]
-            extension_name = "ChangeTracking-Linux"
-            extension_json = jsonencode({
-              enableFiles     = true,
-              enableSoftware  = true,
-              enableRegistry  = false,
-              enableServices  = true,
-              enableInventory = true,
-              fileSettings = {
-                fileCollectionFrequency = 900,
-                fileInfo = [
-                  {
-                    name                  = "ChangeTrackingLinuxPath_default",
-                    enabled               = true,
-                    destinationPath       = "/etc/.*.conf",
-                    useSudo               = true,
-                    recurse               = true,
-                    maxContentsReturnable = 5000000,
-                    pathType              = "File",
-                    type                  = "File",
-                    links                 = "Follow",
-                    maxOutputSize         = 500000,
-                    groupTag              = "Recommended"
-                  }
-                ]
-              },
-              softwareSettings = {
-                softwareCollectionFrequency = 300
-              },
-              inventorySettings = {
-                inventoryCollectionFrequency = 36000
-              },
-              servicesSettings = {
-                serviceCollectionFrequency = 300
-              }
-            })
-            name = "CTDataSource-Linux"
+            destinations = ["Microsoft-CT-Dest"]
           }
         ]
       }
-    ]
-    destinations = {
-      log_analytics = [
-        {
-          name                  = "Microsoft-CT-Dest"
-          workspace_resource_id = local.log_analytics_workspace_resource_id
-        }
-      ]
     }
-    data_flows = [
-      {
-        streams = [
-          "Microsoft-ConfigurationChange",
-          "Microsoft-ConfigurationChangeV2",
-          "Microsoft-ConfigurationData"
-        ]
-        destinations = ["Microsoft-CT-Dest"]
-      }
-    ]
   }
 }
 
@@ -421,51 +425,57 @@ locals {
 locals {
   azure_monitor_data_collection_rule_defender_sql_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_defender_sql.name}"
   azure_monitor_data_collection_rule_defender_sql = {
-    name                = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-defendersql-prod${local.resource_suffix}")
-    description         = lookup(local.custom_settings_dcr_change_tracking, "description", "This is the name of the Data Collection Rule(DCR) for Defender for SQL")
-    resource_group_name = lookup(local.custom_settings_dcr_change_tracking, "resource_group_name", local.resource_group_name)
-    location            = lookup(local.custom_settings_dcr_change_tracking, "location", local.location)
-    tags                = lookup(local.custom_settings_dcr_change_tracking, "tags", local.tags)
-    data_sources = [
-      {
-        extension = [
+    name                      = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-defendersql-prod${local.resource_suffix}")
+    parent_id                 = local.resource_group_resource_id
+    type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
+    location                  = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
+    schema_validation_enabled = true
+    tags                      = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
+    body = {
+      properties = {
+        description = "Data collection rule for Defender for SQL.",
+        dataSources = {
+          extensions = [
+            {
+              extensionName = "MicrosoftDefenderForSQL",
+              name          = "MicrosoftDefenderForSQL",
+              streams = [
+                "Microsoft-DefenderForSqlAlerts",
+                "Microsoft-DefenderForSqlLogins",
+                "Microsoft-DefenderForSqlTelemetry",
+                "Microsoft-DefenderForSqlScanEvents",
+                "Microsoft-DefenderForSqlScanResults",
+              ],
+              extensionSettings = {
+                enableCollectionOfSqlQueriesForSecurityResearch = local.settings.ama.enable_mdfc_defender_for_sql_query_collection_for_security_research
+              }
+            }
+          ]
+        },
+        destinations = {
+          logAnalytics = [
+            {
+              workspaceResourceId = local.log_analytics_workspace_resource_id,
+              name                = "LogAnalyticsDest"
+            }
+          ]
+        },
+        dataFlows = [
           {
             streams = [
               "Microsoft-DefenderForSqlAlerts",
               "Microsoft-DefenderForSqlLogins",
               "Microsoft-DefenderForSqlTelemetry",
               "Microsoft-DefenderForSqlScanEvents",
-              "Microsoft-DefenderForSqlScanResults"
+              "Microsoft-DefenderForSqlScanResults",
+            ],
+            destinations = [
+              "LogAnalyticsDest"
             ]
-            extension_name = "MicrosoftDefenderForSQL"
-            extension_json = jsonencode({
-              enableCollectionOfSqlQueriesForSecurityResearch = local.settings.ama.enable_mdfc_defender_for_sql_query_collection_for_security_research
-            })
-            name = "MicrosoftDefenderForSQL"
           }
         ]
       }
-    ]
-    destinations = {
-      log_analytics = [
-        {
-          name                  = "LogAnalyticsDest"
-          workspace_resource_id = local.log_analytics_workspace_resource_id
-        }
-      ]
     }
-    data_flows = [
-      {
-        streams = [
-          "Microsoft-DefenderForSqlAlerts",
-          "Microsoft-DefenderForSqlLogins",
-          "Microsoft-DefenderForSqlTelemetry",
-          "Microsoft-DefenderForSqlScanEvents",
-          "Microsoft-DefenderForSqlScanResults"
-        ]
-        destinations = ["LogAnalyticsDest"]
-      }
-    ]
   }
 }
 
@@ -473,48 +483,68 @@ locals {
 locals {
   azure_monitor_data_collection_rule_vm_insights_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_vm_insights.name}"
   azure_monitor_data_collection_rule_vm_insights = {
-    name                = lookup(local.custom_settings_dcr_vm_insights, "name", "${local.resource_prefix}-dcr-vm-insights${local.resource_suffix}")
-    description         = lookup(local.custom_settings_dcr_vm_insights, "description", "Data Collection Rule for VM Insights")
-    resource_group_name = lookup(local.custom_settings_dcr_vm_insights, "resource_group_name", local.resource_group_name)
-    location            = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
-    tags                = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
-    data_sources = [
-      {
-        performance_counters = [
+    name                      = lookup(local.custom_settings_dcr_vm_insights, "name", "${local.resource_prefix}-dcr-vm-insights${local.resource_suffix}")
+    parent_id                 = local.resource_group_resource_id
+    type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
+    location                  = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
+    tags                      = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
+    schema_validation_enabled = false
+    body = {
+      properties = {
+        description = "Data collection rule for VM Insights.",
+        dataSources = {
+          performanceCounters = [
+            {
+              name = "VMInsightsPerfCounters",
+              streams = [
+                "Microsoft-InsightsMetrics"
+              ],
+              scheduledTransferPeriod    = "PT1M",
+              samplingFrequencyInSeconds = 60,
+              counterSpecifiers = [
+                "\\VmInsights\\DetailedMetrics"
+              ]
+            }
+          ],
+          extensions = [
+            {
+              streams = [
+                "Microsoft-ServiceMap"
+              ],
+              extensionName     = "DependencyAgent",
+              extensionSettings = {},
+              name              = "DependencyAgentDataSource"
+            }
+          ]
+        },
+        destinations = {
+          logAnalytics = [
+            {
+              workspaceResourceId = local.log_analytics_workspace_resource_id,
+              name                = "VMInsightsPerf-Logs-Dest"
+            }
+          ]
+        },
+        dataFlows = [
           {
-            name                          = "VMInsightsPerfCounters"
-            streams                       = ["Microsoft-InsightsMetrics"]
-            sampling_frequency_in_seconds = 60
-            counter_specifiers            = ["Microsoft-InsightsMetrics"]
-          }
-        ]
-        extensions = [
+            streams = [
+              "Microsoft-InsightsMetrics"
+            ],
+            destinations = [
+              "VMInsightsPerf-Logs-Dest"
+            ]
+          },
           {
-            name           = "DependencyAgentDataSource"
-            extension_name = "DependencyAgent"
-            streams        = ["Microsoft-ServiceMap"]
+            streams = [
+              "Microsoft-ServiceMap"
+            ],
+            destinations = [
+              "VMInsightsPerf-Logs-Dest"
+            ]
           }
         ]
       }
-    ]
-    destinations = {
-      log_analytics = [
-        {
-          name                  = "VMInsightsPerf-Logs-Dest"
-          workspace_resource_id = local.log_analytics_workspace_resource_id
-        }
-      ]
     }
-    data_flows = [
-      {
-        streams      = ["Microsoft-InsightsMetrics"]
-        destinations = ["VMInsightsPerf-Logs-Dest"]
-      },
-      {
-        streams      = ["Microsoft-ServiceMap"]
-        destinations = ["VMInsightsPerf-Logs-Dest"]
-      }
-    ]
   }
 }
 
