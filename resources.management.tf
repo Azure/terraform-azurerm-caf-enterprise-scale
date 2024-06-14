@@ -164,4 +164,6 @@ resource "azapi_resource" "data_collection_rule" {
   tags                      = each.value.template.tags
   schema_validation_enabled = each.value.template.schema_validation_enabled
   body                      = each.value.template.body
+
+  depends_on = [azurerm_log_analytics_workspace.management]
 }
