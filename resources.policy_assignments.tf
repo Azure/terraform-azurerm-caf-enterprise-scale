@@ -90,7 +90,7 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   # Additionally ensure the Policy Assignment is created after and destroyed before the User Assigned Identity
   # this is to ensure that the deny delete policy is deleted before the identity is removed.
   depends_on = [
-    azurerm_user_assigned_identity.enterprise_scale,
+    azurerm_user_assigned_identity.management,
     time_sleep.after_azurerm_management_group,
     time_sleep.after_azurerm_policy_definition,
     time_sleep.after_azurerm_policy_set_definition,
