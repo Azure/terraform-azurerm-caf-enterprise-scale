@@ -42,7 +42,7 @@ function Get-RandomId {
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
-$terraformVersions = @("1.3.1")
+$terraformVersions = @("1.7.0")
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1(\.\d{1,2}){1,2}$" } | Select-Object -First 1
 
 $terraformVersions = $terraformVersions | Sort-Object
@@ -51,11 +51,11 @@ $terraformVersionsCount = $terraformVersions.Count
 
 #######################################
 # Terraform AzureRM Provider Versions
-# - Base Version: (3.74.0)
+# - Base Version: (3.107.0)
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "3.74.0"
+$azurermProviderVersionBase = "3.107.0"
 $azurermProviderVersionLatest = (Invoke-RestMethod -Method Get -Uri $azurermProviderUrl).version
 
 #######################################

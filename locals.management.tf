@@ -47,3 +47,22 @@ locals {
     if resource.managed_by_module
   }
 }
+
+# The following locals are used to build the map of UAMI
+# resources to deploy.
+locals {
+  azurerm_user_assigned_identity_management = {
+    for resource in module.management_resources.configuration.azurerm_user_assigned_identity :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}
+
+# The following locals are used to build the map of the DCRs
+locals {
+  azurerm_monitor_data_collection_rule_management = {
+    for resource in module.management_resources.configuration.azurerm_monitor_data_collection_rule :
+    resource.resource_id => resource
+    if resource.managed_by_module
+  }
+}

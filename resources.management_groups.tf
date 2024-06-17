@@ -77,11 +77,12 @@ resource "azurerm_management_group" "level_6" {
 }
 
 # This will deploy Diagnostic Settings for the Management Groups
-# when the input variable deploy_diagnostics_for_mg is true 
+# when the input variable deploy_diagnostics_for_mg is true
 resource "azapi_resource" "diag_settings" {
   for_each  = local.azapi_mg_diagnostics
   type      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
   name      = "toLA"
+  location  = local.default_location
   parent_id = each.key
   body = jsonencode({
     properties = {

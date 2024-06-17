@@ -2,23 +2,22 @@
 locals {
   configure_management_resources = {
     settings = {
+      ama = {
+        enable_uami                                                         = true
+        enable_vminsights_dcr                                               = true
+        enable_change_tracking_dcr                                          = true
+        enable_mdfc_defender_for_sql_dcr                                    = true
+        enable_mdfc_defender_for_sql_query_collection_for_security_research = true
+      }
       log_analytics = {
         enabled = true
         config = {
-          retention_in_days                           = 60
-          enable_monitoring_for_arc                   = false
-          enable_monitoring_for_vm                    = false
-          enable_monitoring_for_vmss                  = false
-          enable_solution_for_agent_health_assessment = false
-          enable_solution_for_anti_malware            = false
-          enable_solution_for_azure_activity          = false
-          enable_solution_for_change_tracking         = false
-          enable_solution_for_service_map             = false
-          enable_solution_for_sql_assessment          = false
-          enable_solution_for_updates                 = false
-          enable_solution_for_vm_insights             = false
-          enable_solution_for_container_insights      = false
-          enable_sentinel                             = false
+          retention_in_days          = 60
+          enable_monitoring_for_arc  = true
+          enable_monitoring_for_vm   = true
+          enable_monitoring_for_vmss = true
+          enable_change_tracking     = true
+          enable_sentinel            = true
         }
       }
       security_center = {

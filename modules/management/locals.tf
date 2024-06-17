@@ -31,11 +31,14 @@ locals {
 # Extract individual custom settings blocks from
 # the custom_settings_by_resource_type variable.
 locals {
-  custom_settings_rsg               = try(local.custom_settings.azurerm_resource_group["management"], local.empty_map)
-  custom_settings_la_workspace      = try(local.custom_settings.azurerm_log_analytics_workspace["management"], local.empty_map)
-  custom_settings_la_solution       = try(local.custom_settings.azurerm_log_analytics_solution["management"], local.empty_map)
-  custom_settings_aa                = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
-  custom_settings_la_linked_service = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
+  custom_settings_rsg                 = try(local.custom_settings.azurerm_resource_group["management"], local.empty_map)
+  custom_settings_la_workspace        = try(local.custom_settings.azurerm_log_analytics_workspace["management"], local.empty_map)
+  custom_settings_la_solution         = try(local.custom_settings.azurerm_log_analytics_solution["management"], local.empty_map)
+  custom_settings_aa                  = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
+  custom_settings_uami                = try(local.custom_settings.azurerm_user_assigned_identity["management"], local.empty_map)
+  custom_settings_la_linked_service   = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
+  custom_settings_dcr_vm_insights     = try(local.custom_settings.azurerm_data_collection_rule["management"]["vminsights"], local.empty_map)
+  custom_settings_dcr_change_tracking = try(local.custom_settings.azurerm_data_collection_rule["management"]["change_tracking"], local.empty_map)
 }
 
 # Logic to determine whether specific resources
@@ -50,27 +53,15 @@ locals {
   deploy_log_analytics_linked_service = local.deploy_monitoring_resources && local.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring_resources && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
-    AgentHealthAssessment       = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_agent_health_assessment
-    AntiMalware                 = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_anti_malware
-    ChangeTracking              = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_change_tracking
-    Security                    = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
-    SecurityInsights            = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
-    ServiceMap                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_service_map
-    SQLAssessment               = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_assessment
-    SQLVulnerabilityAssessment  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_vulnerability_assessment
-    SQLAdvancedThreatProtection = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_sql_advanced_threat_detection
-    Updates                     = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_updates
-    VMInsights                  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
-    ContainerInsights           = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
+    SecurityInsights = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
+    ChangeTracking   = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_change_tracking
   }
   deploy_security_settings                              = local.settings.security_center.enabled
-  deploy_defender_for_apis                              = local.settings.security_center.config.enable_defender_for_apis
   deploy_defender_for_app_services                      = local.settings.security_center.config.enable_defender_for_app_services
   deploy_defender_for_arm                               = local.settings.security_center.config.enable_defender_for_arm
   deploy_defender_for_containers                        = local.settings.security_center.config.enable_defender_for_containers
   deploy_defender_for_cosmosdbs                         = local.settings.security_center.config.enable_defender_for_cosmosdbs
   deploy_defender_for_cspm                              = local.settings.security_center.config.enable_defender_for_cspm
-  deploy_defender_for_dns                               = local.settings.security_center.config.enable_defender_for_dns
   deploy_defender_for_key_vault                         = local.settings.security_center.config.enable_defender_for_key_vault
   deploy_defender_for_oss_databases                     = local.settings.security_center.config.enable_defender_for_oss_databases
   deploy_defender_for_servers                           = local.settings.security_center.config.enable_defender_for_servers
@@ -78,6 +69,10 @@ locals {
   deploy_defender_for_sql_servers                       = local.settings.security_center.config.enable_defender_for_sql_servers
   deploy_defender_for_sql_server_vms                    = local.settings.security_center.config.enable_defender_for_sql_server_vms
   deploy_defender_for_storage                           = local.settings.security_center.config.enable_defender_for_storage
+  deploy_ama_uami                                       = local.deploy_monitoring_resources && local.settings.ama.enable_uami
+  deploy_vminsights_dcr                                 = local.deploy_monitoring_resources && local.settings.ama.enable_vminsights_dcr
+  deploy_change_tracking_dcr                            = local.deploy_monitoring_resources && local.settings.ama.enable_change_tracking_dcr
+  deploy_mdfc_defender_for_sql_dcr                      = local.deploy_monitoring_resources && local.settings.ama.enable_mdfc_defender_for_sql_dcr
 }
 
 # Configuration settings for resource type:
@@ -144,6 +139,413 @@ locals {
   ]
 }
 
+# Configuration for the user assigned managed identity
+locals {
+  user_assigned_managed_identity_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${local.user_assigned_managed_identity.name}"
+  user_assigned_managed_identity = {
+    name                = lookup(local.custom_settings_uami, "name", "${local.resource_prefix}-uami${local.resource_suffix}")
+    resource_group_name = lookup(local.custom_settings_uami, "resource_group_name", local.resource_group_name)
+    location            = lookup(local.custom_settings_uami, "location", local.location)
+    tags                = lookup(local.custom_settings_uami, "tags", local.tags)
+  }
+}
+
+# Configuration for the change tracking DCR
+locals {
+  azure_monitor_data_collection_rule_change_tracking_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_change_tracking.name}"
+  azure_monitor_data_collection_rule_change_tracking = {
+    name                      = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-changetracking-prod${local.resource_suffix}")
+    type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
+    parent_id                 = local.resource_group_resource_id
+    location                  = lookup(local.custom_settings_dcr_change_tracking, "location", local.location)
+    schema_validation_enabled = true
+    tags                      = lookup(local.custom_settings_dcr_change_tracking, "tags", local.tags)
+    body = {
+      properties = {
+        description = "Data collection rule for CT"
+        dataSources = {
+          extensions = [
+            {
+              streams = [
+                "Microsoft-ConfigurationChange",
+                "Microsoft-ConfigurationChangeV2",
+                "Microsoft-ConfigurationData"
+              ]
+              extensionName = "ChangeTracking-Windows"
+              extensionSettings = {
+                enableFiles     = true,
+                enableSoftware  = true,
+                enableRegistry  = true,
+                enableServices  = true,
+                enableInventory = true,
+                registrySettings = {
+                  registryCollectionFrequency = 3600
+                  registryInfo = [
+                    {
+                      name        = "Registry_1",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\Scripts\\Startup",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_2",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\Scripts\\Shutdown",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_3",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_4",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_5",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\ShellEx\\ContextMenuHandlers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_6",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\Background\\ShellEx\\ContextMenuHandlers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_7",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Classes\\Directory\\Shellex\\CopyHookHandlers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_8",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_9",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_10",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_11",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_12",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Internet Explorer\\Extensions",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_13",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\Extensions",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_14",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Drivers32",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_15",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Drivers32",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_16",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\KnownDlls",
+                      valueName   = ""
+                    },
+                    {
+                      name        = "Registry_17",
+                      groupTag    = "Recommended",
+                      enabled     = false,
+                      recurse     = true,
+                      description = "",
+                      keyName     = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify",
+                      valueName   = ""
+                    }
+                  ]
+                }
+                fileSettings = {
+                  fileCollectionFrequency = 2700,
+                },
+                softwareSettings = {
+                  softwareCollectionFrequency = 1800
+                },
+                inventorySettings = {
+                  inventoryCollectionFrequency = 36000
+                },
+                servicesSettings = {
+                  serviceCollectionFrequency = 1800
+                }
+              }
+              name = "CTDataSource-Windows"
+            },
+            {
+              streams = [
+                "Microsoft-ConfigurationChange",
+                "Microsoft-ConfigurationChangeV2",
+                "Microsoft-ConfigurationData"
+              ]
+              extensionName = "ChangeTracking-Linux"
+              extensionSettings = {
+                enableFiles     = true,
+                enableSoftware  = true,
+                enableRegistry  = false,
+                enableServices  = true,
+                enableInventory = true,
+                fileSettings = {
+                  fileCollectionFrequency = 900,
+                  fileInfo = [
+                    {
+                      name                  = "ChangeTrackingLinuxPath_default",
+                      enabled               = true,
+                      destinationPath       = "/etc/.*.conf",
+                      useSudo               = true,
+                      recurse               = true,
+                      maxContentsReturnable = 5000000,
+                      pathType              = "File",
+                      type                  = "File",
+                      links                 = "Follow",
+                      maxOutputSize         = 500000,
+                      groupTag              = "Recommended"
+                    }
+                  ]
+                },
+                softwareSettings = {
+                  softwareCollectionFrequency = 300
+                },
+                inventorySettings = {
+                  inventoryCollectionFrequency = 36000
+                },
+                servicesSettings = {
+                  serviceCollectionFrequency = 300
+                }
+              }
+              name = "CTDataSource-Linux"
+            }
+          ]
+        }
+        destinations = {
+          logAnalytics = [
+            {
+              name                = "Microsoft-CT-Dest"
+              workspaceResourceId = local.log_analytics_workspace_resource_id
+            }
+          ]
+        }
+        dataFlows = [
+          {
+            streams = [
+              "Microsoft-ConfigurationChange",
+              "Microsoft-ConfigurationChangeV2",
+              "Microsoft-ConfigurationData"
+            ]
+            destinations = ["Microsoft-CT-Dest"]
+          }
+        ]
+      }
+    }
+  }
+}
+
+# Configuration for the change tracking DCR
+locals {
+  azure_monitor_data_collection_rule_defender_sql_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_defender_sql.name}"
+  azure_monitor_data_collection_rule_defender_sql = {
+    name                      = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-defendersql-prod${local.resource_suffix}")
+    parent_id                 = local.resource_group_resource_id
+    type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
+    location                  = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
+    schema_validation_enabled = true
+    tags                      = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
+    body = {
+      properties = {
+        description = "Data collection rule for Defender for SQL.",
+        dataSources = {
+          extensions = [
+            {
+              extensionName = "MicrosoftDefenderForSQL",
+              name          = "MicrosoftDefenderForSQL",
+              streams = [
+                "Microsoft-DefenderForSqlAlerts",
+                "Microsoft-DefenderForSqlLogins",
+                "Microsoft-DefenderForSqlTelemetry",
+                "Microsoft-DefenderForSqlScanEvents",
+                "Microsoft-DefenderForSqlScanResults",
+              ],
+              extensionSettings = {
+                enableCollectionOfSqlQueriesForSecurityResearch = local.settings.ama.enable_mdfc_defender_for_sql_query_collection_for_security_research
+              }
+            }
+          ]
+        },
+        destinations = {
+          logAnalytics = [
+            {
+              workspaceResourceId = local.log_analytics_workspace_resource_id,
+              name                = "LogAnalyticsDest"
+            }
+          ]
+        },
+        dataFlows = [
+          {
+            streams = [
+              "Microsoft-DefenderForSqlAlerts",
+              "Microsoft-DefenderForSqlLogins",
+              "Microsoft-DefenderForSqlTelemetry",
+              "Microsoft-DefenderForSqlScanEvents",
+              "Microsoft-DefenderForSqlScanResults",
+            ],
+            destinations = [
+              "LogAnalyticsDest"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
+
+# Configuration for the VM Insights DCR
+locals {
+  azure_monitor_data_collection_rule_vm_insights_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_vm_insights.name}"
+  azure_monitor_data_collection_rule_vm_insights = {
+    name                      = lookup(local.custom_settings_dcr_vm_insights, "name", "${local.resource_prefix}-dcr-vm-insights${local.resource_suffix}")
+    parent_id                 = local.resource_group_resource_id
+    type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
+    location                  = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
+    tags                      = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
+    schema_validation_enabled = false
+    body = {
+      properties = {
+        description = "Data collection rule for VM Insights.",
+        dataSources = {
+          performanceCounters = [
+            {
+              name = "VMInsightsPerfCounters",
+              streams = [
+                "Microsoft-InsightsMetrics"
+              ],
+              scheduledTransferPeriod    = "PT1M",
+              samplingFrequencyInSeconds = 60,
+              counterSpecifiers = [
+                "\\VmInsights\\DetailedMetrics"
+              ]
+            }
+          ],
+          extensions = [
+            {
+              streams = [
+                "Microsoft-ServiceMap"
+              ],
+              extensionName     = "DependencyAgent",
+              extensionSettings = {},
+              name              = "DependencyAgentDataSource"
+            }
+          ]
+        },
+        destinations = {
+          logAnalytics = [
+            {
+              workspaceResourceId = local.log_analytics_workspace_resource_id,
+              name                = "VMInsightsPerf-Logs-Dest"
+            }
+          ]
+        },
+        dataFlows = [
+          {
+            streams = [
+              "Microsoft-InsightsMetrics"
+            ],
+            destinations = [
+              "VMInsightsPerf-Logs-Dest"
+            ]
+          },
+          {
+            streams = [
+              "Microsoft-ServiceMap"
+            ],
+            destinations = [
+              "VMInsightsPerf-Logs-Dest"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
+
 # Configuration settings for resource type:
 #  - azurerm_automation_account
 locals {
@@ -191,18 +593,16 @@ locals {
   archetype_config_overrides = {
     (local.root_id) = {
       parameters = {
-        Deploy-MDFC-Config = {
+        Deploy-MDFC-Config-H224 = {
           emailSecurityContact                        = local.settings.security_center.config.email_security_contact
           logAnalytics                                = local.log_analytics_workspace_resource_id
           ascExportResourceGroupName                  = local.asc_export_resource_group_name
           ascExportResourceGroupLocation              = local.location
-          enableAscForApis                            = local.deploy_defender_for_apis ? "DeployIfNotExists" : "Disabled"
           enableAscForAppServices                     = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
           enableAscForArm                             = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
           enableAscForContainers                      = local.deploy_defender_for_containers ? "DeployIfNotExists" : "Disabled"
           enableAscForCosmosDbs                       = local.deploy_defender_for_cosmosdbs ? "DeployIfNotExists" : "Disabled"
           enableAscForCspm                            = local.deploy_defender_for_cspm ? "DeployIfNotExists" : "Disabled"
-          enableAscForDns                             = local.deploy_defender_for_dns ? "DeployIfNotExists" : "Disabled"
           enableAscForKeyVault                        = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
           enableAscForOssDb                           = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
           enableAscForServers                         = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
@@ -211,16 +611,10 @@ locals {
           enableAscForSqlOnVm                         = local.deploy_defender_for_sql_server_vms ? "DeployIfNotExists" : "Disabled"
           enableAscForStorage                         = local.deploy_defender_for_storage ? "DeployIfNotExists" : "Disabled"
         }
-        Deploy-VM-Monitoring = {
-          logAnalytics_1 = local.log_analytics_workspace_resource_id
-        }
-        Deploy-VMSS-Monitoring = {
-          logAnalytics_1 = local.log_analytics_workspace_resource_id
-        }
         Deploy-AzActivity-Log = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
-        Deploy-Resource-Diag = {
+        Deploy-Diag-Logs = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
       }
@@ -232,6 +626,28 @@ locals {
     }
     "${local.root_id}-landing-zones" = {
       parameters = {
+        DenyAction-DeleteUAMIAMA = {
+          resourceName = local.user_assigned_managed_identity.name
+          resourceType = "Microsoft.ManagedIdentity/userAssignedIdentities"
+        }
+        Deploy-MDFC-DefSQL-AMA = {
+          userWorkspaceResourceId = local.log_analytics_workspace_resource_id
+        }
+        Deploy-AzSqlDb-Auditing = {
+          logAnalyticsWorkspaceId = lower(local.log_analytics_workspace_resource_id)
+        }
+      }
+      enforcement_mode = {}
+    }
+    "${local.root_id}-platform" = {
+      parameters = {
+        DenyAction-DeleteUAMIAMA = {
+          resourceName = local.user_assigned_managed_identity.name
+          resourceType = "Microsoft.ManagedIdentity/userAssignedIdentities"
+        }
+        Deploy-MDFC-DefSQL-AMA = {
+          userWorkspaceResourceId = local.log_analytics_workspace_resource_id
+        }
         Deploy-AzSqlDb-Auditing = {
           logAnalyticsWorkspaceId = lower(local.log_analytics_workspace_resource_id)
         }
@@ -263,15 +679,19 @@ locals {
 # Template file variable outputs
 locals {
   template_file_variables = {
-    log_analytics_workspace_resource_id = local.log_analytics_workspace_resource_id
-    log_analytics_workspace_name        = local.azurerm_log_analytics_workspace.name
-    log_analytics_workspace_location    = local.azurerm_log_analytics_workspace.location
-    automation_account_resource_id      = local.automation_account_resource_id
-    automation_account_name             = local.azurerm_automation_account.name
-    automation_account_location         = local.azurerm_automation_account.location
-    management_location                 = local.location
-    management_resource_group_name      = local.azurerm_resource_group.name
-    data_retention                      = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+    automation_account_location                                    = local.azurerm_automation_account.location
+    automation_account_name                                        = local.azurerm_automation_account.name
+    automation_account_resource_id                                 = local.automation_account_resource_id
+    azure_monitor_data_collection_rule_change_tracking_resource_id = local.azure_monitor_data_collection_rule_change_tracking_resource_id
+    azure_monitor_data_collection_rule_sql_resource_id             = local.azure_monitor_data_collection_rule_defender_sql_resource_id
+    azure_monitor_data_collection_rule_vm_insights_resource_id     = local.azure_monitor_data_collection_rule_vm_insights_resource_id
+    data_retention                                                 = tostring(local.azurerm_log_analytics_workspace.retention_in_days)
+    log_analytics_workspace_location                               = local.azurerm_log_analytics_workspace.location
+    log_analytics_workspace_name                                   = local.azurerm_log_analytics_workspace.name
+    log_analytics_workspace_resource_id                            = local.log_analytics_workspace_resource_id
+    management_location                                            = local.location
+    management_resource_group_name                                 = local.azurerm_resource_group.name
+    user_assigned_managed_identity_resource_id                     = local.user_assigned_managed_identity_resource_id
   }
 }
 
@@ -334,6 +754,50 @@ locals {
         }
         managed_by_module = local.deploy_log_analytics_linked_service
       },
+    ]
+    azurerm_user_assigned_identity = [
+      {
+        resource_id   = local.user_assigned_managed_identity_resource_id
+        resource_name = basename(local.user_assigned_managed_identity_resource_id)
+        template = {
+          for key, value in local.user_assigned_managed_identity :
+          key => value
+          if local.deploy_ama_uami
+        }
+        managed_by_module = local.deploy_ama_uami
+      }
+    ]
+    azurerm_monitor_data_collection_rule = [
+      {
+        resource_id   = local.azure_monitor_data_collection_rule_vm_insights_resource_id
+        resource_name = basename(local.azure_monitor_data_collection_rule_vm_insights_resource_id)
+        template = {
+          for key, value in local.azure_monitor_data_collection_rule_vm_insights :
+          key => value
+          if local.deploy_vminsights_dcr
+        }
+        managed_by_module = local.deploy_vminsights_dcr
+      },
+      {
+        resource_id   = local.azure_monitor_data_collection_rule_change_tracking_resource_id
+        resource_name = basename(local.azure_monitor_data_collection_rule_change_tracking_resource_id)
+        template = {
+          for key, value in local.azure_monitor_data_collection_rule_change_tracking :
+          key => value
+          if local.deploy_change_tracking_dcr
+        }
+        managed_by_module = local.deploy_change_tracking_dcr
+      },
+      {
+        resource_id   = local.azure_monitor_data_collection_rule_defender_sql_resource_id
+        resource_name = basename(local.azure_monitor_data_collection_rule_defender_sql_resource_id)
+        template = {
+          for key, value in local.azure_monitor_data_collection_rule_defender_sql :
+          key => value
+          if local.deploy_mdfc_defender_for_sql_dcr
+        }
+        managed_by_module = local.deploy_mdfc_defender_for_sql_dcr
+      }
     ]
     archetype_config_overrides = local.archetype_config_overrides
     template_file_variables    = local.template_file_variables

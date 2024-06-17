@@ -223,9 +223,11 @@ locals {
             azure_database_for_mariadb_server    = false
             azure_database_for_mysql_server      = false
             azure_database_for_postgresql_server = false
+            azure_databricks                     = false
             azure_digital_twins                  = false
             azure_key_vault_managed_hsm          = false
             azure_kubernetes_service_management  = false
+            azure_openai_service                 = false
             azure_purview_account                = false
             azure_purview_studio                 = false
             azure_relay_namespace                = false
