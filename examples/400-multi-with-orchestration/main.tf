@@ -16,6 +16,12 @@ provider "azurerm" {
   features {}
 }
 
+provider "azurerm" {
+  alias           = "connectivity"
+  subscription_id = local.subscription_id_connectivity
+  features {}
+}
+
 # Get the current client configuration from the AzureRM provider
 
 data "azurerm_client_config" "current" {}
@@ -66,5 +72,24 @@ module "core" {
   subscription_id_connectivity     = local.subscription_id_connectivity
   subscription_id_identity         = local.subscription_id_identity
   subscription_id_management       = local.subscription_id_management
-  template_file_variables          = var.template_file_variables
+  template_file_variables = {
+    userAssignedIdentities = {
+      "Deploy-VMSS-Monitoring" = [
+        "/subscriptions/${local.subscription_id_connectivity}/resourceGroups/${azurerm_resource_group.uami.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.uami1.name}"
+      ]
+    }
+  }
+}
+
+resource "azurerm_resource_group" "uami" {
+  provider = azurerm.connectivity
+  name     = "rg-uami-01"
+  location = var.primary_location
+}
+
+resource "azurerm_user_assigned_identity" "uami1" {
+  provider            = azurerm.connectivity
+  location            = azurerm_resource_group.uami.location
+  name                = "uami-01"
+  resource_group_name = azurerm_resource_group.uami.name
 }
