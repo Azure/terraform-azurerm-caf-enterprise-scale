@@ -41,8 +41,9 @@ If you wish to continue using the MMA, you will need to manage this outside of t
 
 As MMA resources were deployed using Azure Policy (DeployIfNotExists), the resources will not be cleaned up automatically.
 You will need to manually clean up the resources.
+Please see product group guidance on how to clean up the MMA resources: <https://learn.microsoft.com/azure/azure-monitor/agents/azure-monitor-agent-mma-removal-tool?tabs=single-tenant%2Cdiscovery>.
 
-We will publish a link to the MMA migration guidance once it is released, this will contain the steps to clean up the legacy MMA resources.
+We will publish a link to additional ALZ tooling once it is published.
 
 ## Notable changes from our awesome community
 
