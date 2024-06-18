@@ -46,6 +46,7 @@ If jumping multiple release versions, take care to note additional changes docum
 
 Please refer to the following upgrade guides when updating between major release:
 
+- [Upgrade from v5.2.1 to v6.0.0][wiki_upgrade_from_v5_2_1_to_v6_0_0]
 - [Upgrade from v5.1.0 to v5.2.0][wiki_upgrade_from_v5_1_0_to_v5_2_0]
 - [Upgrade from v4.2.0 to v5.0.0][wiki_upgrade_from_v4_2_0_to_v5_0_0]
 - [Upgrade from v3.3.0 to v4.0.0][wiki_upgrade_from_v3_3_0_to_v4_0_0]
@@ -64,6 +65,7 @@ Please refer to the following upgrade guides when updating between major release
 [module_releases]:     https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/releases "Releases - Azure/terraform-azurerm-caf-enterprise-scale"
 
 [wiki_module_releases]:               %5BUser-Guide%5D-Module-Releases "Wiki - [User Guide] Module Releases"
+[wiki_upgrade_from_v5_2_1_to_v6_0_0]: %5BUser-Guide%5D-Upgrade-from-v5.2.1-to-v6.0.0 "Wiki - Upgrade from v5.2.1 to v6.0.0"
 [wiki_upgrade_from_v5_1_0_to_v5_2_0]: %5BUser-Guide%5D-Upgrade-from-v5.1.0-to-v5.2.0 "Wiki - Upgrade from v5.1.0 to v5.2.0"
 [wiki_upgrade_from_v4_2_0_to_v5_0_0]: %5BUser-Guide%5D-Upgrade-from-v4.2.0-to-v5.0.0 "Wiki - Upgrade from v4.2.0 to v5.0.0"
 [wiki_upgrade_from_v3_3_0_to_v4_0_0]: %5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v4.0.0 "Wiki - Upgrade from v3.3.0 to v4.0.0"
