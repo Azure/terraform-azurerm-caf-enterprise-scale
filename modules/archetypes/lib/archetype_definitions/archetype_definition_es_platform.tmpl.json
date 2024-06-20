@@ -6,9 +6,11 @@
       "Deploy-VM-ChangeTrack",
       "Deploy-VM-Monitoring",
       "Deploy-vmArc-ChangeTrack",
+      "Deploy-vmHybr-Monitoring",
       "Deploy-VMSS-ChangeTrack",
       "Deploy-VMSS-Monitoring",
       "Enable-AUM-CheckUpdates",
+      "Enforce-ASR",
       "Enforce-GR-KeyVault"
     ],
     "policy_definitions": [],
