@@ -17,11 +17,13 @@
       "Deploy-VM-ChangeTrack",
       "Deploy-VM-Monitoring",
       "Deploy-vmArc-ChangeTrack",
+      "Deploy-vmHybr-Monitoring",
       "Deploy-VMSS-ChangeTrack",
       "Deploy-VMSS-Monitoring",
       "Enable-AUM-CheckUpdates",
       "Enable-DDoS-VNET",
       "Enforce-AKS-HTTPS",
+      "Enforce-ASR",
       "Enforce-GR-KeyVault",
       "Enforce-TLS-SSL-H224"
     ],
