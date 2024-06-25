@@ -15,6 +15,17 @@ Detailed information about how to use, configure and extend this module can be f
 - [Frequently Asked Questions](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Frequently-Asked-Questions)
 - [Troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting)
 
+## ‼ Notice of upcoming breaking changes
+
+We are planning to make some breaking changes to the module in the next release (Q4 2024).
+
+- Module defaults will updated to deploy zone redundant SKUs by default - this applies to:
+  - Firewall
+  - Public IP
+  - Virtual Network Gateway
+
+We will publish guidance on how to avoid re-deployment of existing resources nearer the time.
+
 ## Overview
 
 The [Azure landing zones Terraform module](https://registry.terraform.io/modules/Azure/caf-enterprise-scale/azurerm/latest) is designed to accelerate deployment of platform resources based on the [Azure landing zones conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Terraform.
