@@ -162,23 +162,21 @@ This helps to keep the module block clean, whilst providing clear separation bet
 locals {
   configure_management_resources = {
     settings = {
+      ama = {
+        enable_uami                                                         = true
+        enable_vminsights_dcr                                               = true
+        enable_change_tracking_dcr                                          = true
+        enable_mdfc_defender_for_sql_dcr                                    = false
+        enable_mdfc_defender_for_sql_query_collection_for_security_research = false
+      }
       log_analytics = {
         enabled = true
         config = {
-          retention_in_days                                 = var.log_retention_in_days
-          enable_monitoring_for_vm                          = true
-          enable_monitoring_for_vmss                        = true
-          enable_solution_for_agent_health_assessment       = true
-          enable_solution_for_anti_malware                  = true
-          enable_solution_for_change_tracking               = true
-          enable_solution_for_service_map                   = false
-          enable_solution_for_sql_assessment                = false
-          enable_solution_for_sql_vulnerability_assessment  = false
-          enable_solution_for_sql_advanced_threat_detection = false
-          enable_solution_for_updates                       = true
-          enable_solution_for_vm_insights                   = true
-          enable_solution_for_container_insights            = true
-          enable_sentinel                                   = true
+          retention_in_days          = var.log_retention_in_days
+          enable_monitoring_for_vm   = true
+          enable_monitoring_for_vmss = true
+          enable_sentinel            = true
+          enable_change_tracking     = true
         }
       }
       security_center = {
