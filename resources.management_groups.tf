@@ -79,12 +79,13 @@ resource "azurerm_management_group" "level_6" {
 # This will deploy Diagnostic Settings for the Management Groups
 # when the input variable deploy_diagnostics_for_mg is true
 resource "azapi_resource" "diag_settings" {
-  for_each  = local.azapi_mg_diagnostics
-  type      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
-  name      = "toLA"
-  location  = local.default_location
-  parent_id = each.key
-  body = jsonencode({
+  for_each                  = local.azapi_mg_diagnostics
+  type                      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
+  name                      = "toLA"
+  location                  = "global"
+  parent_id                 = each.key
+  schema_validation_enabled = false
+  body = {
     properties = {
       logAnalyticsDestinationType = "null"
       logs = [
@@ -99,7 +100,7 @@ resource "azapi_resource" "diag_settings" {
       ]
       workspaceId = local.template_file_variables.log_analytics_workspace_resource_id
     }
-  })
+  }
   depends_on = [
     time_sleep.after_azurerm_management_group,
     azurerm_management_group.level_1,
