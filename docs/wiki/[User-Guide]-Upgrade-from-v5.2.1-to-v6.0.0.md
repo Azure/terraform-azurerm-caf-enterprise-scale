@@ -23,7 +23,7 @@ See: <https://github.com/Azure/Enterprise-Scale/wiki/ALZ-Policies>
 
 ## Azure Monitor Agent
 
-The Microsoft Monitoring Agent is deprecated and all assignments have been removed, howwver the policy definitions remain.
+The Microsoft Monitoring Agent is deprecated and all assignments have been removed, however the policy definitions remain.
 We now assign polices that deploy the Azure Monitor Agent (AMA) instead of the Microsoft Monitoring Agent (MMA).
 We deploy AMA resources using the new `configure_management_resources` variable.
 

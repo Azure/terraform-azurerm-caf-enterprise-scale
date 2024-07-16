@@ -37,8 +37,9 @@ locals {
   custom_settings_aa                  = try(local.custom_settings.azurerm_automation_account["management"], local.empty_map)
   custom_settings_uami                = try(local.custom_settings.azurerm_user_assigned_identity["management"], local.empty_map)
   custom_settings_la_linked_service   = try(local.custom_settings.azurerm_log_analytics_linked_service["management"], local.empty_map)
-  custom_settings_dcr_vm_insights     = try(local.custom_settings.azurerm_data_collection_rule["management"]["vminsights"], local.empty_map)
-  custom_settings_dcr_change_tracking = try(local.custom_settings.azurerm_data_collection_rule["management"]["change_tracking"], local.empty_map)
+  custom_settings_dcr_vm_insights     = try(local.custom_settings.azurerm_data_collection_rule["vm_insights"], local.empty_map)
+  custom_settings_dcr_change_tracking = try(local.custom_settings.azurerm_data_collection_rule["change_tracking"], local.empty_map)
+  custom_settings_dcr_defender_sql    = try(local.custom_settings.azurerm_data_collection_rule["defender_sql"], local.empty_map)
 }
 
 # Logic to determine whether specific resources
@@ -423,12 +424,12 @@ locals {
 locals {
   azure_monitor_data_collection_rule_defender_sql_resource_id = "${local.resource_group_resource_id}/providers/Microsoft.Insights/dataCollectionRules/${local.azure_monitor_data_collection_rule_defender_sql.name}"
   azure_monitor_data_collection_rule_defender_sql = {
-    name                      = lookup(local.custom_settings_dcr_change_tracking, "name", "${local.resource_prefix}-dcr-defendersql-prod${local.resource_suffix}")
+    name                      = lookup(local.custom_settings_dcr_defender_sql, "name", "${local.resource_prefix}-dcr-defendersql-prod${local.resource_suffix}")
     parent_id                 = local.resource_group_resource_id
     type                      = "Microsoft.Insights/dataCollectionRules@2021-04-01"
-    location                  = lookup(local.custom_settings_dcr_vm_insights, "location", local.location)
+    location                  = lookup(local.custom_settings_dcr_defender_sql, "location", local.location)
     schema_validation_enabled = true
-    tags                      = lookup(local.custom_settings_dcr_vm_insights, "tags", local.tags)
+    tags                      = lookup(local.custom_settings_dcr_defender_sql, "tags", local.tags)
     body = {
       properties = {
         description = "Data collection rule for Defender for SQL.",
