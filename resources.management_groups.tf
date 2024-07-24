@@ -82,7 +82,6 @@ resource "azapi_resource" "diag_settings" {
   for_each                  = local.azapi_mg_diagnostics
   type                      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
   name                      = "toLA"
-  location                  = "global"
   parent_id                 = each.key
   schema_validation_enabled = false
   body = {
