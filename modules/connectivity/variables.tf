@@ -367,6 +367,16 @@ DESCRIPTION
   default     = {}
 }
 
+variable "custom_privatelink_azurestaticapps_partitionids" {
+  type        = list(number)
+  nullable    = false
+  description = <<DESCRIPTION
+As a uncertanty in the partition id for the azure static web app, this variable is used to specify the partition ids deployed for the azure static web app private DNS zones.
+For more information, please refer to: https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#web and https://learn.microsoft.com/en-us/azure/static-web-apps/private-endpoint
+DESCRIPTION
+  default     = [1, 2, 3, 4, 5]
+}
+
 variable "custom_settings_by_resource_type" {
   type        = any
   description = "If specified, allows full customization of common settings for all resources (by type) deployed by this module."
