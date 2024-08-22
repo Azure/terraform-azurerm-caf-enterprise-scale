@@ -1495,7 +1495,7 @@ locals {
     azure_synapse_analytics_sql          = ["privatelink.sql.azuresynapse.net"]
     azure_synapse_studio                 = ["privatelink.azuresynapse.net"]
     azure_virtual_desktop                = ["privatelink.wvd.microsoft.com"]
-    azure_web_apps_sites                 = ["privatelink.azurewebsites.net", "scm.privatelink.azurewebsites.net"]
+    azure_web_apps_sites                 = ["privatelink.azurewebsites.net"]
     azure_web_apps_static_sites          = ["privatelink.azurestaticapps.net"]
     cognitive_services_account           = ["privatelink.cognitiveservices.azure.com"]
     microsoft_power_bi                   = ["privatelink.analysis.windows.net", "privatelink.pbidedicated.windows.net", "privatelink.tip1.powerquery.microsoft.com"]
