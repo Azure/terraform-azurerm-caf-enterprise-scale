@@ -1681,7 +1681,7 @@ locals {
     [
       for location, virtual_hub_config in local.virtual_hubs_by_location :
       [
-        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        for spoke_resource_id in concat(virtual_hub_config.config.spoke_virtual_network_resource_ids, virtual_hub_config.config.secure_spoke_virtual_network_resource_ids) :
         {
           resource_id       = spoke_resource_id
           name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
