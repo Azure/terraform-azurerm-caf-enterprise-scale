@@ -1,7 +1,7 @@
 <!-- markdownlint-disable first-line-h1 -->
 ## Overview
 
-This page describes how to deploy Azure landing zones with connectivity resources based on the [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] created in the current Subscription context, using custom configuration settings.
+This page describes how to deploy a multi-region Azure landing zone with connectivity resources based on the [Traditional Azure networking topology (hub and spoke)][wiki_connectivity_resources_hub_and_spoke] created in the current Subscription context, using custom configuration settings.
 
 > **NOTE:**
 > If you need to deploy a network based on Virtual WAN, please see our [Deploy Connectivity Resources With Custom Settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom] example.
