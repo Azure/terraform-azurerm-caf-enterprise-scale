@@ -12,20 +12,21 @@ locals {
 # NOTE: Need to catch error for resource_suffix when
 # no value for subscription_id is provided.
 locals {
-  enabled                                   = var.enabled
-  root_id                                   = var.root_id
-  subscription_id                           = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
-  settings                                  = var.settings
-  location                                  = lower(var.location)
-  tags                                      = var.tags
-  resource_prefix                           = coalesce(var.resource_prefix, local.root_id)
-  resource_suffix                           = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
-  existing_ddos_protection_plan_resource_id = var.existing_ddos_protection_plan_resource_id
-  existing_virtual_wan_resource_id          = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
-  existing_virtual_wan_resource_group_name  = var.existing_virtual_wan_resource_group_name != null ? var.existing_virtual_wan_resource_group_name : local.empty_string
-  resource_group_per_virtual_hub_location   = var.resource_group_per_virtual_hub_location
-  custom_azure_backup_geo_codes             = var.custom_azure_backup_geo_codes
-  custom_settings                           = var.custom_settings_by_resource_type
+  enabled                                         = var.enabled
+  root_id                                         = var.root_id
+  subscription_id                                 = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
+  settings                                        = var.settings
+  location                                        = lower(var.location)
+  tags                                            = var.tags
+  resource_prefix                                 = coalesce(var.resource_prefix, local.root_id)
+  resource_suffix                                 = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
+  existing_ddos_protection_plan_resource_id       = var.existing_ddos_protection_plan_resource_id
+  existing_virtual_wan_resource_id                = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
+  existing_virtual_wan_resource_group_name        = var.existing_virtual_wan_resource_group_name != null ? var.existing_virtual_wan_resource_group_name : local.empty_string
+  resource_group_per_virtual_hub_location         = var.resource_group_per_virtual_hub_location
+  custom_azure_backup_geo_codes                   = var.custom_azure_backup_geo_codes
+  custom_privatelink_azurestaticapps_partitionids = var.custom_privatelink_azurestaticapps_partitionids
+  custom_settings                                 = var.custom_settings_by_resource_type
 }
 
 # Logic to help keep code DRY
@@ -1514,6 +1515,10 @@ locals {
       for location in local.private_link_locations :
       "privatelink.${location}.azmk8s.io"
     ]
+    azure_web_apps_static_sites = concat(["privatelink.azurestaticapps.net"], [
+      for partitionid in local.custom_privatelink_azurestaticapps_partitionids :
+      "privatelink.${partitionid}.azurestaticapps.net"
+    ])
   }
   # The lookup_private_link_group_id_by_service local doesn't currently
   # do anything but is planned to control policy configuration for
