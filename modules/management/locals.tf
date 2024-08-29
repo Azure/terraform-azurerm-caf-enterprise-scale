@@ -54,8 +54,10 @@ locals {
   deploy_log_analytics_linked_service = local.deploy_monitoring_resources && local.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring_resources && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
-    SecurityInsights = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
-    ChangeTracking   = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_change_tracking
+    SecurityInsights  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
+    ChangeTracking    = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_change_tracking
+    VMInsights        = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
+    ContainerInsights = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
   }
   deploy_security_settings                              = local.settings.security_center.enabled
   deploy_defender_for_app_services                      = local.settings.security_center.config.enable_defender_for_app_services
