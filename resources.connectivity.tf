@@ -55,7 +55,6 @@ resource "azurerm_subnet" "connectivity" {
   address_prefixes     = each.value.template.address_prefixes
 
   # Optional resource attributes
-  private_endpoint_network_policies_enabled     = each.value.template.private_endpoint_network_policies_enabled
   private_link_service_network_policies_enabled = each.value.template.private_link_service_network_policies_enabled
   service_endpoints                             = each.value.template.service_endpoints
   service_endpoint_policy_ids                   = each.value.template.service_endpoint_policy_ids
