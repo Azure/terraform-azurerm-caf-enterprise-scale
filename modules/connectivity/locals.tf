@@ -419,7 +419,6 @@ locals {
             # Resource definition attributes
             resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
             virtual_network_name                          = local.virtual_network_name[location]
-            private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_endpoint_network_policies_enabled, null)
             private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_link_service_network_policies_enabled, null)
             service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoints, null)
             service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoint_policy_ids, null)
@@ -440,7 +439,6 @@ locals {
           address_prefixes                              = [hub_network.config.virtual_network_gateway.config.address_prefix, ]
           resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name                          = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_endpoint_network_policies_enabled, null)
           private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_link_service_network_policies_enabled, null)
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoint_policy_ids, null)
@@ -460,7 +458,6 @@ locals {
           address_prefixes                              = [hub_network.config.azure_firewall.config.address_prefix, ]
           resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name                          = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_endpoint_network_policies_enabled, null)
           private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_link_service_network_policies_enabled, null)
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoint_policy_ids, null)
@@ -480,7 +477,6 @@ locals {
           address_prefixes                              = [hub_network.config.azure_firewall.config.address_management_prefix, ]
           resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name                          = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].private_endpoint_network_policies_enabled, null)
           private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].private_link_service_network_policies_enabled, null)
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoint_policy_ids, null)
