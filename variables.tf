@@ -26,7 +26,7 @@ variable "root_name" {
   default     = "Enterprise-Scale"
 
   validation {
-    condition     = can(regex("^[A-Za-z][A-Za-z0-9- ._]{1,22}[A-Za-z0-9]?$", var.root_name))
+    condition     = can(regex("^[A-Za-z][A-Za-z0-9- ._]{1,34}[A-Za-z0-9]?$", var.root_name))
     error_message = "Value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space, hyphen, underscore or period characters."
   }
 }
