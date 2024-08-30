@@ -60,6 +60,7 @@ variable "settings" {
         enable_change_tracking                 = optional(bool, true)
         enable_solution_for_vm_insights        = optional(bool, true)
         enable_solution_for_container_insights = optional(bool, true)
+        sentinel_customer_managed_key_enabled  = optional(bool, false)
       }), {})
     }), {})
     security_center = optional(object({

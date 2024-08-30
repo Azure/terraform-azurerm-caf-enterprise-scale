@@ -92,6 +92,7 @@ variable "configure_management_resources" {
           enable_change_tracking                 = optional(bool, true)
           enable_solution_for_vm_insights        = optional(bool, true)
           enable_solution_for_container_insights = optional(bool, true)
+          sentinel_customer_managed_key_enabled  = optional(bool, false) # not used at this time
         }), {})
       }), {})
       security_center = optional(object({

@@ -54,10 +54,10 @@ locals {
   deploy_log_analytics_linked_service = local.deploy_monitoring_resources && local.link_log_analytics_to_automation_account
   deploy_automation_account           = local.deploy_monitoring_resources && local.existing_automation_account_resource_id == local.empty_string
   deploy_azure_monitor_solutions = {
-    SecurityInsights  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
     ChangeTracking    = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_change_tracking
     VMInsights        = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_vm_insights
     ContainerInsights = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_solution_for_container_insights
+    SecurityInsights  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
   }
   deploy_security_settings                              = local.settings.security_center.enabled
   deploy_defender_for_app_services                      = local.settings.security_center.config.enable_defender_for_app_services
@@ -92,7 +92,6 @@ locals {
     tags     = lookup(local.custom_settings_rsg, "tags", local.tags)
   }
 }
-
 
 # Configuration settings for resource type:
 #  - azurerm_log_analytics_workspace
@@ -679,6 +678,21 @@ locals {
   }
 }
 
+# Sentinel onboarding
+locals {
+  azapi_sentinel_onboarding_resource_id = "${local.log_analytics_workspace_resource_id}/Microsoft.SecurityInsights/onboardingStates/default"
+  azapi_sentinel_onboarding = {
+    type = "Microsoft.SecurityInsights/onboardingStates@2024-03-01"
+    body = {
+      properties = {
+        customerManagedKey = try(local.settings.log_analytics.config.sentinel_customer_managed_key_enabled, false)
+      }
+    }
+    name      = "default"
+    parent_id = local.log_analytics_workspace_resource_id
+  }
+}
+
 # Template file variable outputs
 locals {
   template_file_variables = {
@@ -800,6 +814,18 @@ locals {
           if local.deploy_mdfc_defender_for_sql_dcr
         }
         managed_by_module = local.deploy_mdfc_defender_for_sql_dcr
+      }
+    ]
+    azapi_sentinel_onboarding = [
+      {
+        resource_id   = local.azapi_sentinel_onboarding_resource_id
+        resource_name = basename(local.azapi_sentinel_onboarding_resource_id)
+        template = {
+          for key, value in local.azapi_sentinel_onboarding :
+          key => value
+          if local.deploy_azure_monitor_solutions.SecurityInsights
+        }
+        managed_by_module = local.deploy_azure_monitor_solutions.SecurityInsights
       }
     ]
     archetype_config_overrides = local.archetype_config_overrides
