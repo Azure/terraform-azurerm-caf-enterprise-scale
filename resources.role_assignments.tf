@@ -33,7 +33,7 @@ module "role_assignments_for_policy" {
   policy_assignment_id = each.key
   scope_id             = azurerm_management_group_policy_assignment.enterprise_scale[each.key].management_group_id
   principal_id = (
-    lookup(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0], "type") == "UserAssigned"
+    lookup(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0], "type", "") == "UserAssigned"
     ? jsondecode(data.azapi_resource.user_msi[each.key].output).properties.principalId # workarround as azurerm_management_group_policy_assignment does not export the principal_id when using UserAssigned identity
     : azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].principal_id
   )
