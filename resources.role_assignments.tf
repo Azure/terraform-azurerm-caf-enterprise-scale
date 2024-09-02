@@ -33,7 +33,7 @@ module "role_assignments_for_policy" {
   policy_assignment_id = each.key
   scope_id             = azurerm_management_group_policy_assignment.enterprise_scale[each.key].management_group_id
   principal_id = (
-    lookup(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0], "type") == "UserAssigned"
+    lookup(azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0], "type", "") == "UserAssigned"
     ? jsondecode(data.azapi_resource.user_msi[each.key].output).properties.principalId # workarround as azurerm_management_group_policy_assignment does not export the principal_id when using UserAssigned identity
     : azurerm_management_group_policy_assignment.enterprise_scale[each.key].identity[0].principal_id
   )
@@ -55,7 +55,7 @@ module "role_assignments_for_policy" {
 
 # The data source will retrieve the principalId of a user msi
 # used for the policy assignment
-# 
+#
 data "azapi_resource" "user_msi" {
   for_each = {
     for ik, iv in local.es_role_assignments_by_policy_assignment : ik => iv
@@ -107,6 +107,34 @@ resource "azurerm_role_assignment" "private_dns_zone_contributor_connectivity" {
   scope                = "/providers/Microsoft.Management/managementGroups/${var.root_id}-connectivity"
   principal_id         = each.value.identity[0].principal_id
 
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+    azurerm_role_assignment.policy_assignment,
+  ]
+}
+
+resource "azurerm_role_assignment" "ama_reader" {
+  for_each             = local.platform_mg_exists ? { for k, v in azurerm_management_group_policy_assignment.enterprise_scale : k => v if endswith(k, "Deploy-VM-Monitoring") } : {}
+  role_definition_name = "Reader"
+  scope                = "/providers/Microsoft.Management/managementGroups/${var.root_id}-platform"
+  principal_id         = each.value.identity[0].principal_id
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+    azurerm_role_assignment.policy_assignment,
+  ]
+}
+
+resource "azurerm_role_assignment" "ama_managed_identity_operator" {
+  for_each             = local.platform_mg_exists ? { for k, v in azurerm_management_group_policy_assignment.enterprise_scale : k => v if endswith(k, "Deploy-VM-Monitoring") } : {}
+  role_definition_name = "Managed Identity Operator"
+  scope                = "/providers/Microsoft.Management/managementGroups/${var.root_id}-platform"
+  principal_id         = each.value.identity[0].principal_id
   depends_on = [
     time_sleep.after_azurerm_management_group,
     time_sleep.after_azurerm_policy_definition,

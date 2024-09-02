@@ -130,11 +130,14 @@ object({
     log_analytics = optional(object({
       enabled = optional(bool, true)
       config = optional(object({
-        retention_in_days          = optional(number, 30)
-        enable_monitoring_for_vm   = optional(bool, true)
-        enable_monitoring_for_vmss = optional(bool, true)
-        enable_sentinel            = optional(bool, true)
-        enable_change_tracking     = optional(bool, true)
+        retention_in_days                      = optional(number, 30)
+        enable_monitoring_for_vm               = optional(bool, true)
+        enable_monitoring_for_vmss             = optional(bool, true)
+        enable_sentinel                        = optional(bool, true)
+        enable_change_tracking                 = optional(bool, true)
+        enable_solution_for_vm_insights        = optional(bool, true)
+        enable_solution_for_container_insights = optional(bool, true)
+        sentinel_customer_managed_key_enabled  = optional(bool, false)
       }), {})
     }), {})
     security_center = optional(object({

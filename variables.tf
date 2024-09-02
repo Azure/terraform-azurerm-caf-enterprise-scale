@@ -26,8 +26,8 @@ variable "root_name" {
   default     = "Enterprise-Scale"
 
   validation {
-    condition     = can(regex("^[A-Za-z][A-Za-z0-9- ._]{1,22}[A-Za-z0-9]?$", var.root_name))
-    error_message = "Value must be between 2 to 24 characters long, start with a letter, end with a letter or number, and can only contain space, hyphen, underscore or period characters."
+    condition     = can(regex("^[A-Za-z][A-Za-z0-9- ._]{1,34}[A-Za-z0-9]?$", var.root_name))
+    error_message = "Value must be between 2 to 35 characters long, start with a letter, end with a letter or number, and can only contain space, hyphen, underscore or period characters."
   }
 }
 
@@ -85,11 +85,14 @@ variable "configure_management_resources" {
       log_analytics = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
-          retention_in_days          = optional(number, 30)
-          enable_monitoring_for_vm   = optional(bool, true)
-          enable_monitoring_for_vmss = optional(bool, true)
-          enable_sentinel            = optional(bool, true)
-          enable_change_tracking     = optional(bool, true)
+          retention_in_days                      = optional(number, 30)
+          enable_monitoring_for_vm               = optional(bool, true)
+          enable_monitoring_for_vmss             = optional(bool, true)
+          enable_sentinel                        = optional(bool, true)
+          enable_change_tracking                 = optional(bool, true)
+          enable_solution_for_vm_insights        = optional(bool, true)
+          enable_solution_for_container_insights = optional(bool, true)
+          sentinel_customer_managed_key_enabled  = optional(bool, false) # not used at this time
         }), {})
       }), {})
       security_center = optional(object({

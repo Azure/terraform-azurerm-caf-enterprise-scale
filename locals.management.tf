@@ -66,3 +66,11 @@ locals {
     if resource.managed_by_module
   }
 }
+
+# locals {
+#   azapi_sentinel_onboarding = {
+#     for resource in module.management_resources.configuration.azapi_sentinel_onboarding :
+#     resource.resource_id => resource
+#     if resource.managed_by_module
+#   }
+# }

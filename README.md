@@ -654,11 +654,14 @@ object({
       log_analytics = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
-          retention_in_days          = optional(number, 30)
-          enable_monitoring_for_vm   = optional(bool, true)
-          enable_monitoring_for_vmss = optional(bool, true)
-          enable_sentinel            = optional(bool, true)
-          enable_change_tracking     = optional(bool, true)
+          retention_in_days                      = optional(number, 30)
+          enable_monitoring_for_vm               = optional(bool, true)
+          enable_monitoring_for_vmss             = optional(bool, true)
+          enable_sentinel                        = optional(bool, true)
+          enable_change_tracking                 = optional(bool, true)
+          enable_solution_for_vm_insights        = optional(bool, true)
+          enable_solution_for_container_insights = optional(bool, true)
+          sentinel_customer_managed_key_enabled  = optional(bool, false) # not used at this time
         }), {})
       }), {})
       security_center = optional(object({
@@ -1103,6 +1106,8 @@ The following resources are used by this module:
 - [azurerm_resource_group.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [azurerm_resource_group.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [azurerm_resource_group.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
+- [azurerm_role_assignment.ama_managed_identity_operator](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.ama_reader](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.policy_assignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.private_dns_zone_contributor_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
