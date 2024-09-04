@@ -49,6 +49,25 @@ Type: `map(string)`
 
 Default: `{}`
 
+### <a name="input_custom_privatelink_azurestaticapps_partitionids"></a> [custom\_privatelink\_azurestaticapps\_partitionids](#input\_custom\_privatelink\_azurestaticapps\_partitionids)
+
+Description: As a uncertanty in the partition id for the azure static web app, this variable is used to specify the partition ids deployed for the azure static web app private DNS zones.  
+For more information, please refer to: https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#web and https://learn.microsoft.com/en-us/azure/static-web-apps/private-endpoint
+
+Type: `list(number)`
+
+Default:
+
+```json
+[
+  1,
+  2,
+  3,
+  4,
+  5
+]
+```
+
 ### <a name="input_custom_settings_by_resource_type"></a> [custom\_settings\_by\_resource\_type](#input\_custom\_settings\_by\_resource\_type)
 
 Description: If specified, allows full customization of common settings for all resources (by type) deployed by this module.

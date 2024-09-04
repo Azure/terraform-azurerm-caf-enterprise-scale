@@ -167,3 +167,20 @@ resource "azapi_resource" "data_collection_rule" {
 
   depends_on = [azurerm_log_analytics_workspace.management]
 }
+
+# Delaying until next major release as this will be a breaking change requiring state manipulation
+# as the old LA solution will have to be removed from state, but we cannot use the removed block as
+# it does not support interpolation for map keys.
+#
+# resource "azapi_resource" "sentinel_onboarding" {
+#   for_each  = local.azapi_sentinel_onboarding
+#   name      = each.value.template.name
+#   parent_id = each.value.template.parent_id
+#   type      = each.value.template.type
+#   body      = each.value.template.body
+
+#   depends_on = [
+#     azurerm_log_analytics_workspace.management,
+#     azurerm_log_analytics_solution.management,
+#   ]
+# }
