@@ -751,9 +751,9 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [terraform_remote_state_data_store]: https://developer.hashicorp.com/terraform/language/state/remote-state-data "The terraform_remote_state Data Source"
 [terraform_tfe_outputs]:             https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/outputs "Terraform documentation - tfe_outputs data source"
 
-[wiki_deploy_connectivity_resources_custom]:                         %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Hub and Spoke)"
+[wiki_deploy_connectivity_resources_custom]:                         %5BExamples%5D-Deploy-Multi-Region-Networking-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Hub and Spoke)"
 [wiki_deploy_custom_landing_zone_archetypes]:                        %5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes "Wiki - Deploy Custom landing zone archetypes"
-[wiki_deploy_management_resources_custom]:                           %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy management resources with custom settings"
+[wiki_deploy_management_resources_custom]:                           %5BExamples%5D-Deploy-Virtual-WAN-Multi-Region-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Virtual WAN)"
 [wiki_deploy_using_multiple_module_declarations_with_orchestration]: %5BExamples%5D-Deploy-using-module-declarations-with-orchestration "Wiki - Deploy using multiple module declarations with orchestration"
 [wiki_examples]:                                                     Examples "Wiki - Examples"
 [wiki_module_permissions]:                                           %5BUser-Guide%5D-Module-Permissions "Wiki - Module permissions"

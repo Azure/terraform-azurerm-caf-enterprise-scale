@@ -496,5 +496,5 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_configure_connectivity_resources]:     %5BVariables%5D-configure_connectivity_resources "Instructions for how to use the configure_connectivity_resources variable"
 [wiki_default_location]:                     %5BVariables%5D-default_location "Instructions for how to use the default_location variable"
 [wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub and Spoke)"
-[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Virtual WAN)"
+[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Multi-Region-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Virtual WAN)"
 [wiki_private_link_locations]:               %5BVariables%5D-configure_connectivity_resources#configure-dns "Wiki - configure_connectivity_resources"

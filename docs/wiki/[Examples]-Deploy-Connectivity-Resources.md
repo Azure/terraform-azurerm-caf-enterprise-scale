@@ -167,7 +167,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_module_variables]:                     %5BUser-Guide%5D-Module-Variables "Wiki - Module Variables"
 [wiki_provider_configuration]:               %5BUser-Guide%5D-Provider-Configuration "Wiki - Provider Configuration"
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
-[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy Connectivity Resources With Custom Settings (Hub and Spoke)"
+[wiki_deploy_connectivity_resources_custom]: %5BExamples%5D-Deploy-Multi-Region-Networking-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Hub and Spoke)"
 [wiki_deploy_virtual_wan_resources]:         %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy Connectivity Resources (Virtual WAN)"
 [wiki_examples]:                             Examples "Wiki - Examples"
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"
