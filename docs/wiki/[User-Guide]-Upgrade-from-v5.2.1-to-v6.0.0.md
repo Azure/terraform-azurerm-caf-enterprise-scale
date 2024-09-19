@@ -5,7 +5,7 @@ This is a major release, following the update of Azure Landing Zones with it's m
 
 ## ‼️ Breaking Changes
 
-1. Minimum AzureRM provider version now `3.107.0`
+1. Minimum AzureRM provider version now `3.108.0`
 2. Minimum Terraform version now `1.7.0`
 3. `var.configure_management_resources` schema change, removing legacy components and adding support for AMA resources
 

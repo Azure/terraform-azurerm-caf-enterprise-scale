@@ -52,7 +52,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.107.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
