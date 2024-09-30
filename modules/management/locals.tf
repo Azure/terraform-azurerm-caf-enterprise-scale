@@ -107,7 +107,7 @@ locals {
     allow_resource_only_permissions    = lookup(local.custom_settings_la_workspace, "allow_resource_only_permissions", true) # Available only in v3.36.0 onwards
     sku                                = lookup(local.custom_settings_la_workspace, "sku", "PerGB2018")
     retention_in_days                  = lookup(local.custom_settings_la_workspace, "retention_in_days", local.settings.log_analytics.config.retention_in_days)
-    daily_quota_gb                     = lookup(local.custom_settings_la_workspace, "daily_quota_gb", null)
+    daily_quota_gb                     = lookup(local.custom_settings_la_workspace, "daily_quota_gb", local.settings.log_analytics.config.daily_quota_gb)
     cmk_for_query_forced               = lookup(local.custom_settings_la_workspace, "cmk_for_query_forced", null)
     internet_ingestion_enabled         = lookup(local.custom_settings_la_workspace, "internet_ingestion_enabled", true)
     internet_query_enabled             = lookup(local.custom_settings_la_workspace, "internet_query_enabled", true)
