@@ -13,6 +13,7 @@
       "Deploy-MDEndpoints",
       "Deploy-MDEndpointsAMA",
       "Deploy-MDFC-Config-H224",
+      "Deploy-MDFC-Config-H324",
       "Deploy-MDFC-OssDb",
       "Deploy-MDFC-SqlAtp",
       "Enforce-ACSB"
@@ -184,6 +185,7 @@
       "DenyAction-DeleteProtection",
       "Deploy-AUM-CheckUpdates",
       "Deploy-Diagnostics-LogAnalytics",
+      "Deploy-MDFC-Config_20241027",
       "Deploy-MDFC-Config_20240319",
       "Deploy-MDFC-Config",
       "Deploy-MDFC-DefenderSQL-AMA",
