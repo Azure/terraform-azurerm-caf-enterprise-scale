@@ -94,6 +94,7 @@
       "DenyAction-ActivityLogs",
       "DenyAction-DeleteResources",
       "DenyAction-DiagnosticLogs",
+      "Deploy-ASC-APIs",
       "Deploy-ASC-SecurityContacts",
       "Deploy-Budget",
       "Deploy-Custom-Route-Table",
