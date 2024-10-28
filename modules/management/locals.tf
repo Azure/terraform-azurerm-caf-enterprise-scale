@@ -60,6 +60,7 @@ locals {
     SecurityInsights  = local.deploy_monitoring_resources && local.settings.log_analytics.config.enable_sentinel
   }
   deploy_security_settings                              = local.settings.security_center.enabled
+  deploy_defender_for_apis                              = local.settings.security_center.config.enable_defender_for_apis
   deploy_defender_for_app_services                      = local.settings.security_center.config.enable_defender_for_app_services
   deploy_defender_for_arm                               = local.settings.security_center.config.enable_defender_for_arm
   deploy_defender_for_containers                        = local.settings.security_center.config.enable_defender_for_containers
@@ -600,6 +601,7 @@ locals {
           logAnalytics                                = local.log_analytics_workspace_resource_id
           ascExportResourceGroupName                  = local.asc_export_resource_group_name
           ascExportResourceGroupLocation              = local.location
+          enableAscForAPIs                            = local.deploy_defender_for_apis ? "DeployIfNotExists" : "Disabled"
           enableAscForAppServices                     = local.deploy_defender_for_app_services ? "DeployIfNotExists" : "Disabled"
           enableAscForArm                             = local.deploy_defender_for_arm ? "DeployIfNotExists" : "Disabled"
           enableAscForContainers                      = local.deploy_defender_for_containers ? "DeployIfNotExists" : "Disabled"
@@ -607,6 +609,7 @@ locals {
           enableAscForCspm                            = local.deploy_defender_for_cspm ? "DeployIfNotExists" : "Disabled"
           enableAscForKeyVault                        = local.deploy_defender_for_key_vault ? "DeployIfNotExists" : "Disabled"
           enableAscForOssDb                           = local.deploy_defender_for_oss_databases ? "DeployIfNotExists" : "Disabled"
+          enableAscForServers                         = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
           enableAscForServers                         = local.deploy_defender_for_servers ? "DeployIfNotExists" : "Disabled"
           enableAscForServersVulnerabilityAssessments = local.deploy_defender_for_servers_vulnerability_assessments ? "DeployIfNotExists" : "Disabled"
           enableAscForSql                             = local.deploy_defender_for_sql_servers ? "DeployIfNotExists" : "Disabled"
