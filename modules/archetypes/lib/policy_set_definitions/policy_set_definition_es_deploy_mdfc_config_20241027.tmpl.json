@@ -59,6 +59,33 @@
           "description": "The location where the resource group and the export to Log Analytics workspace configuration are created."
         }
       },
+      "enableAscForAPIs": {
+        "type": "String",
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "DeployIfNotExists",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        }
+      },
+      "enableAscForAPIsSubPlan": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Defender for APIs plans",
+          "description": "Select a Defender for APIs plan"
+        },
+        "allowedValues": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5"
+        ],
+        "defaultValue": "P1"
+      },
       "enableAscForCosmosDbs": {
         "type": "String",
         "allowedValues": [
@@ -179,7 +206,7 @@
           "description": "Enable or disable the execution of the policy"
         }
       },
-      "subPlan": {
+      "enableAscForServersSubPlan": {
         "type": "String",
         "metadata": {
           "displayName": "Defender for Servers plans",
@@ -230,6 +257,19 @@
     },
     "policyDefinitions": [
       {
+        "policyDefinitionReferenceId": "defenderForAPIs",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-ASC-APIs",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('enableAscForAPIs')]"
+          },
+          "subPlan": {
+            "value": "[parameters('enableAscForAPIsSubPlan')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
         "policyDefinitionReferenceId": "defenderForOssDb",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/44433aa3-7ec2-4002-93ea-65c65ff0310a",
         "parameters": {
@@ -247,7 +287,7 @@
             "value": "[parameters('enableAscForServers')]"
           },
           "subPlan": {
-            "value": "[parameters('subPlan')]"
+            "value": "[parameters('enableAscForServersSubPlan')]"
           }
         },
         "groupNames": []

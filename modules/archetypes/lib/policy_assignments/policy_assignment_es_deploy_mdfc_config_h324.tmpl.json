@@ -30,10 +30,16 @@
       "ascExportResourceGroupLocation": {
         "value": "${default_location}"
       },
+      "enableAscForAPIs": {
+        "value": "Disabled"
+      },
+      "enableAscForAPIsSubPlan": {
+        "value": "P1"
+      },
       "enableAscForServers": {
         "value": "Disabled"
       },
-      "subPlan": {
+      "enableAscForServersSubPlan": {
         "value": "P2"
       },
       "enableAscForServersVulnerabilityAssessments": {
