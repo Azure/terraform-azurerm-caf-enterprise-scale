@@ -1853,7 +1853,7 @@ locals {
           virtual_hub_id            = local.virtual_hub_resource_id[location]
           remote_virtual_network_id = spoke_resource_id
           # Optional definition attributes
-          internet_security_enabled = contains(virtual_hub_config.config.secure_spoke_virtual_network_resource_ids, spoke_resource_id)
+          internet_security_enabled = contains(virtual_hub_config.config.secure_spoke_virtual_network_resource_ids, spoke_resource_id) && !contains(virtual_hub_config.config.internet_security_disabled_ids, spoke_resource_id)
           routing                   = local.empty_list
         }
       ]

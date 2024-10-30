@@ -213,6 +213,7 @@ variable "settings" {
           }), {})
           spoke_virtual_network_resource_ids        = optional(list(string), [])
           secure_spoke_virtual_network_resource_ids = optional(list(string), [])
+          internet_security_disabled_ids            = optional(list(string), [])
           enable_virtual_hub_connections            = optional(bool, false)
         })
       })
