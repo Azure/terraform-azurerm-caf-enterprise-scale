@@ -11,7 +11,8 @@
       "Deploy-VMSS-Monitoring",
       "Enable-AUM-CheckUpdates",
       "Enforce-ASR",
-      "Enforce-GR-KeyVault"
+      "Enforce-GR-KeyVault",
+      "Enforce-Subnet-Private"
     ],
     "policy_definitions": [],
     "policy_set_definitions": [],
