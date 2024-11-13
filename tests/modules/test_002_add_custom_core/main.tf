@@ -34,7 +34,7 @@ module "test_core" {
   custom_landing_zones       = module.settings.core.custom_landing_zones
   archetype_config_overrides = module.settings.core.archetype_config_overrides
   subscription_id_overrides  = module.settings.core.subscription_id_overrides
-  deploy_diagnostics_for_mg = true
+  deploy_diagnostics_for_mg  = true
 
   # Configuration settings for management resources
   deploy_management_resources    = true
