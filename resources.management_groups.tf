@@ -83,6 +83,7 @@ resource "azapi_resource" "diag_settings" {
   type                      = "Microsoft.Insights/diagnosticSettings@2021-05-01-preview"
   name                      = "toLA"
   parent_id                 = each.key
+  location                  = "global"
   schema_validation_enabled = false
   body = {
     properties = {
@@ -109,6 +110,11 @@ resource "azapi_resource" "diag_settings" {
     azurerm_management_group.level_5,
     azurerm_management_group.level_6,
   ]
+  lifecycle {
+    ignore_changes = [
+      location,
+    ]
+  }
 }
 
 # This is used when strict_subscription_association is set to true
