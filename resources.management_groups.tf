@@ -98,6 +98,7 @@ resource "azapi_resource" "diag_settings" {
           enabled  = true
         }
       ]
+
       workspaceId = local.template_file_variables.log_analytics_workspace_resource_id
     }
   }
