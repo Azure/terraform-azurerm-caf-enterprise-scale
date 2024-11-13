@@ -1934,8 +1934,8 @@ locals {
           azureWebPrivateDnsZoneId                        = "${local.private_dns_zone_prefix}privatelink.webpubsub.azure.com"
           azureVirtualDesktopHostpoolPrivateDnsZoneId     = "${local.private_dns_zone_prefix}privatelink.wvd.microsoft.com"
           azureVirtualDesktopWorkspacePrivateDnsZoneId    = "${local.private_dns_zone_prefix}privatelink.wvd.microsoft.com"
-          azureSiteRecoveryBlobPrivateDnsZoneID           = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
-          azureSiteRecoveryQueuePrivateDnsZoneID          = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
+          azureSiteRecoveryBlobPrivateDnsZoneId           = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
+          azureSiteRecoveryQueuePrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
         }
       }
       enforcement_mode = {

@@ -116,6 +116,21 @@ resource "azurerm_role_assignment" "private_dns_zone_contributor_connectivity" {
   ]
 }
 
+resource "azurerm_role_assignment" "deploy_azsqldb_auditing_connectivity" {
+  for_each             = local.connectivity_mg_exists ? { for k, v in azurerm_management_group_policy_assignment.enterprise_scale : k => v if endswith(k, "Deploy-AzSqlDb-Auditing") } : {}
+  role_definition_name = "Log Analytics Contributor"
+  scope                = "/providers/Microsoft.Management/managementGroups/${var.root_id}-connectivity"
+  principal_id         = each.value.identity[0].principal_id
+
+  depends_on = [
+    time_sleep.after_azurerm_management_group,
+    time_sleep.after_azurerm_policy_definition,
+    time_sleep.after_azurerm_policy_set_definition,
+    time_sleep.after_azurerm_policy_assignment,
+    azurerm_role_assignment.policy_assignment,
+  ]
+}
+
 resource "azurerm_role_assignment" "ama_reader" {
   for_each             = local.platform_mg_exists ? { for k, v in azurerm_management_group_policy_assignment.enterprise_scale : k => v if endswith(k, "Deploy-VM-Monitoring") } : {}
   role_definition_name = "Reader"

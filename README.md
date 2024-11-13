@@ -52,7 +52,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.107.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -186,7 +186,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 1.13, != 1.13.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.107)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.108)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.6)
 
@@ -654,6 +654,7 @@ object({
       log_analytics = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
+          daily_quota_gb                         = optional(number, -1)
           retention_in_days                      = optional(number, 30)
           enable_monitoring_for_vm               = optional(bool, true)
           enable_monitoring_for_vmss             = optional(bool, true)
@@ -1108,6 +1109,7 @@ The following resources are used by this module:
 - [azurerm_resource_group.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [azurerm_role_assignment.ama_managed_identity_operator](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.ama_reader](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.deploy_azsqldb_auditing_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.policy_assignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.private_dns_zone_contributor_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
@@ -1140,6 +1142,10 @@ The following resources are used by this module:
 ## Outputs
 
 The following outputs are exported:
+
+### <a name="output_ama_user_assigned_identity"></a> [ama\_user\_assigned\_identity](#output\_ama\_user\_assigned\_identity)
+
+Description: The user assigned identity for Azure Monitor Agent that is created by this module.
 
 ### <a name="output_azurerm_automation_account"></a> [azurerm\_automation\_account](#output\_azurerm\_automation\_account)
 
@@ -1256,6 +1262,10 @@ Description: Returns the configuration data for all Virtual WANs created by this
 ### <a name="output_azurerm_vpn_gateway"></a> [azurerm\_vpn\_gateway](#output\_azurerm\_vpn\_gateway)
 
 Description: Returns the configuration data for all (Virtual WAN) VPN Gateways created by this module.
+
+### <a name="output_data_collection_rules"></a> [data\_collection\_rules](#output\_data\_collection\_rules)
+
+Description: A map of the data collection rules created by this module.
 
 <!-- markdownlint-enable -->
 <!-- markdownlint-disable MD041 -->

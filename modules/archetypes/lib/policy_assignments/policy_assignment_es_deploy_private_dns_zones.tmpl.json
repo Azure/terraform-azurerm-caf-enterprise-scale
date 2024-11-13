@@ -210,13 +210,13 @@
       "azureStorageTableSecondaryPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.table.core.windows.net"
       },
-      "azureSiteRecoveryBackupPrivateDnsZoneID": {
+      "azureSiteRecoveryBackupPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.${connectivity_location_short}.backup.windowsazure.com"
       },
-      "azureSiteRecoveryBlobPrivateDnsZoneID": {
+      "azureSiteRecoveryBlobPrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.blob.core.windows.net"
       },
-      "azureSiteRecoveryQueuePrivateDnsZoneID": {
+      "azureSiteRecoveryQueuePrivateDnsZoneId": {
         "value": "${private_dns_zone_prefix}privatelink.queue.core.windows.net"
       }
     },
