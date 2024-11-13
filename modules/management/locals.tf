@@ -616,7 +616,7 @@ locals {
         Deploy-AzActivity-Log = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
-        Deploy-Diag-Logs = {
+        Deploy-Diag-LogsCat = {
           logAnalytics = local.log_analytics_workspace_resource_id
         }
       }
