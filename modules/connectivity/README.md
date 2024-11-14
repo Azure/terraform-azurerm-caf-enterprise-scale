@@ -49,6 +49,25 @@ Type: `map(string)`
 
 Default: `{}`
 
+### <a name="input_custom_privatelink_azurestaticapps_partitionids"></a> [custom\_privatelink\_azurestaticapps\_partitionids](#input\_custom\_privatelink\_azurestaticapps\_partitionids)
+
+Description: As a uncertanty in the partition id for the azure static web app, this variable is used to specify the partition ids deployed for the azure static web app private DNS zones.  
+For more information, please refer to: https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#web and https://learn.microsoft.com/en-us/azure/static-web-apps/private-endpoint
+
+Type: `list(number)`
+
+Default:
+
+```json
+[
+  1,
+  2,
+  3,
+  4,
+  5
+]
+```
+
 ### <a name="input_custom_settings_by_resource_type"></a> [custom\_settings\_by\_resource\_type](#input\_custom\_settings\_by\_resource\_type)
 
 Description: If specified, allows full customization of common settings for all resources (by type) deployed by this module.
@@ -141,9 +160,11 @@ object({
           virtual_network_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              address_prefix           = optional(string, "")
-              gateway_sku_expressroute = optional(string, "")
-              gateway_sku_vpn          = optional(string, "")
+              address_prefix              = optional(string, "")
+              gateway_sku_expressroute    = optional(string, "")
+              gateway_sku_vpn             = optional(string, "")
+              remote_vnet_traffic_enabled = optional(bool, false)
+              virtual_wan_traffic_enabled = optional(bool, false)
               advanced_vpn_settings = optional(object({
                 enable_bgp                       = optional(bool, null)
                 active_active                    = optional(bool, null)
@@ -163,8 +184,8 @@ object({
                     ), [])
                     revoked_certificate = optional(list(
                       object({
-                        name             = string
-                        public_cert_data = string
+                        name       = string
+                        thumbprint = string
                       })
                     ), [])
                     radius_server_address = optional(string, null)
@@ -197,13 +218,14 @@ object({
             enabled = optional(bool, false)
             config = optional(object({
               address_prefix                = optional(string, "")
+              address_management_prefix     = optional(string, "")
               enable_dns_proxy              = optional(bool, true)
               dns_servers                   = optional(list(string), [])
               sku_tier                      = optional(string, "Standard")
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -230,10 +252,20 @@ object({
               next_hop_ip_address = string
             })
           ), [])
+          routing_intent = optional(object({
+            enabled = optional(bool, false)
+            config = optional(object({
+              routing_policies = optional(list(object({
+                name         = string
+                destinations = list(string)
+              })), [])
+            }), {})
+          }), {})
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              scale_unit = optional(number, 1)
+              scale_unit                    = optional(number, 1)
+              allow_non_virtual_wan_traffic = optional(bool, false)
             }), {})
           }), {})
           vpn_gateway = optional(object({
@@ -268,7 +300,7 @@ object({
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -296,6 +328,9 @@ object({
           azure_api_management                 = optional(bool, true)
           azure_app_configuration_stores       = optional(bool, true)
           azure_arc                            = optional(bool, true)
+          azure_arc_guest_configuration        = optional(bool, true)
+          azure_arc_hybrid_resource_provider   = optional(bool, true)
+          azure_arc_kubernetes                 = optional(bool, true)
           azure_automation_dscandhybridworker  = optional(bool, true)
           azure_automation_webhook             = optional(bool, true)
           azure_backup                         = optional(bool, true)
@@ -318,6 +353,7 @@ object({
           azure_database_for_mariadb_server    = optional(bool, true)
           azure_database_for_mysql_server      = optional(bool, true)
           azure_database_for_postgresql_server = optional(bool, true)
+          azure_databricks                     = optional(bool, true)
           azure_digital_twins                  = optional(bool, true)
           azure_event_grid_domain              = optional(bool, true)
           azure_event_grid_topic               = optional(bool, true)
@@ -331,9 +367,11 @@ object({
           azure_kubernetes_service_management  = optional(bool, true)
           azure_machine_learning_workspace     = optional(bool, true)
           azure_managed_disks                  = optional(bool, true)
+          azure_managed_grafana                = optional(bool, true)
           azure_media_services                 = optional(bool, true)
           azure_migrate                        = optional(bool, true)
           azure_monitor                        = optional(bool, true)
+          azure_openai_service                 = optional(bool, true)
           azure_purview_account                = optional(bool, true)
           azure_purview_studio                 = optional(bool, true)
           azure_relay_namespace                = optional(bool, true)
@@ -344,6 +382,7 @@ object({
           azure_synapse_analytics_dev          = optional(bool, true)
           azure_synapse_analytics_sql          = optional(bool, true)
           azure_synapse_studio                 = optional(bool, true)
+          azure_virtual_desktop                = optional(bool, true)
           azure_web_apps_sites                 = optional(bool, true)
           azure_web_apps_static_sites          = optional(bool, true)
           cognitive_services_account           = optional(bool, true)
@@ -394,5 +433,4 @@ Description: Returns the configuration settings for resources to deploy for the 
 Description: Returns the debug output for the module.
 
 <!-- markdownlint-enable -->
-
 <!-- END_TF_DOCS -->

@@ -1,0 +1,49 @@
+${jsonencode(
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-VMSS-Monitoring",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      for msi_id in userAssignedIdentities.Deploy-VMSS-Monitoring : msi_id => {}
+    }
+  },
+  "properties": {
+    "description": "Enable Azure Monitor for the Virtual Machine Scale Sets in the specified scope (Management group, Subscription or resource group). Takes Log Analytics workspace as parameter. Note: if your scale set upgradePolicy is set to Manual, you need to apply the extension to the all VMs in the set by calling upgrade on them. In CLI this would be az vmss update-instances.",
+    "displayName": "Enable Azure Monitor for Virtual Machine Scale Sets",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/f5bf694c-cca7-4033-b883-3a23327d5485",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Azure Monitor {enforcementMode} be enabled for Virtual Machines Scales Sets."
+      }
+    ],
+    "parameters": {
+      "dcrResourceId": {
+        "value": "${azure_monitor_data_collection_rule_vm_insights_resource_id}"
+      },
+      "bringYourOwnUserAssignedManagedIdentity": {
+        "value": true
+      },
+      "restrictBringYourOwnUserAssignedIdentityToSubscription": {
+        "value": false
+      },
+      "userAssignedIdentityResourceId": {
+        "value": "${user_assigned_managed_identity_resource_id}"
+      },
+      "enableProcessesAndDependencies": {
+        "value": true
+      },
+      "scopeToSupportedImages": {
+        "value": false
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}
+)}
+

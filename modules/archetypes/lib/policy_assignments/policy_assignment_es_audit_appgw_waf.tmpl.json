@@ -1,0 +1,28 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Audit-AppGW-WAF",
+  "dependsOn": [],
+  "properties": {
+    "description": "Assign the WAF should be enabled for Application Gateway audit policy.",
+    "displayName": "Web Application Firewall (WAF) should be enabled for Application Gateway",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/564feb30-bf6a-4854-b4bb-0d2d2d1e6c66",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Web Application Firewall (WAF) {enforcementMode} be enabled for Application Gateway."
+      }
+    ],
+    "parameters": {
+      "effect": {
+        "value": "Audit"
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "None"
+  }
+}

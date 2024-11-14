@@ -1,11 +1,22 @@
 {
-  "name": "Deploy-Log-Analytics",
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-Log-Analytics",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
   "properties": {
-    "description": "Deploy-Log-Analytics.",
-    "displayName": "Deploy-Log-Analytics",
-    "notScopes": [],
+    "description": "Deploy resource group containing Log Analytics workspace and linked automation account to centralize logs and monitoring. The automation account is aprerequisite for solutions like Updates and Change Tracking.",
+    "displayName": "Configure Log Analytics workspace and automation account to centralize logs and monitoring",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
+    "enforcementMode": "DoNotEnforce",
+    "nonComplianceMessages": [
+      {
+        "message": "Log Analytics workspace and automation account {enforcementMode} be configured to centralize logs and monitoring."
+      }
+    ],
     "parameters": {
       "workspaceName": {
         "value": "${root_scope_id}-la"
@@ -19,30 +30,14 @@
       "automationRegion": {
         "value": "${default_location}"
       },
-      "dataRetention": {
-        "value": "30"
-      },
-      "sku": {
-        "value": "pergb2018"
-      },
       "rgName": {
         "value": "${root_scope_id}-mgmt"
       },
-      "effect": {
-        "value": "DeployIfNotExists"
+      "dataRetention": {
+        "value": "30"
       }
     },
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
-    "nonComplianceMessages": [
-      {
-        "message": "Log Analytics {enforcementMode} be deployed."
-      }
-    ],
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": null
-  },
-  "location": "${default_location}",
-  "identity": {
-    "type": "SystemAssigned"
+    "notScopes": []
   }
 }

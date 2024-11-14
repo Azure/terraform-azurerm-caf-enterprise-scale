@@ -1,27 +1,31 @@
 {
-  "name": "Deploy-AzActivity-Log",
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-AzActivity-Log",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
   "properties": {
-    "description": "Ensures that Activity Log Diagnostics settings are set to push logs into Log Analytics workspace.",
-    "displayName": "Deploy Diagnostic Settings for Activity Log to Log Analytics workspace",
-    "notScopes": [],
+    "description": "Deploys the diagnostic settings for Azure Activity to stream subscriptions audit logs to a Log Analytics workspace to monitor subscription-level events",
+    "displayName": "Configure Azure Activity logs to stream to specified Log Analytics workspace",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Azure Activity logs {enforcementMode} be configured to stream to specified Log Analytics workspace."
+      }
+    ],
     "parameters": {
       "logAnalytics": {
         "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/${root_scope_id}-mgmt/providers/Microsoft.OperationalInsights/workspaces/${root_scope_id}-la"
+      },
+      "logsEnabled": {
+        "value": "True"
       }
     },
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
-    "nonComplianceMessages": [
-      {
-        "message": "Activity log Diagnostic Settings {enforcementMode} be set for Log Analytics workspaces."
-      }
-    ],
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": null
-  },
-  "location": "${default_location}",
-  "identity": {
-    "type": "SystemAssigned"
+    "notScopes": []
   }
 }

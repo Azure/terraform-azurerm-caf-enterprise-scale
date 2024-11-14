@@ -250,7 +250,7 @@ sku_tier                      = ""
 base_policy_id                = ""
 private_ip_ranges             = []
 threat_intelligence_mode      = ""
-threat_intelligence_allowlist = []
+threat_intelligence_allowlist = {}
 ```
 
 > **IMPORTANT:** If you have updated any connectivity resource settings using the `advanced` configuration object, you will need to update your code to move your settings into this input and ensure you are using the updated naming schema.

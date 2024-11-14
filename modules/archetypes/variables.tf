@@ -9,8 +9,8 @@ variable "root_id" {
   description = "Specifies the ID of the Enterprise-scale root Management Group where Policy Definitions are created by default."
 
   validation {
-    condition     = can(regex("^/providers/Microsoft.Management/managementGroups/[a-zA-Z0-9-_\\(\\)\\.]{1,36}$", var.root_id))
-    error_message = "The root_id value must be a valid Management Group ID."
+    condition     = can(regex("^\\/providers\\/Microsoft\\.Management\\/managementGroups\\/[a-zA-Z0-9_\\(\\)-\\.]{1,88}[a-zA-Z0-9_\\(\\)\\-]$", var.root_id))
+    error_message = "Value must be a valid Management Group ID (ASCII letter, digit, -, _, (, ), . and cannot end with a period)"
   }
 }
 
@@ -19,7 +19,7 @@ variable "scope_id" {
   description = "Specifies the scope to apply the archetype resources against."
 
   validation {
-    condition     = can(regex("^/(subscriptions|providers/Microsoft.Management/managementGroups)/[a-zA-Z0-9-_\\(\\)\\.]{1,36}$", var.scope_id))
+    condition     = can(regex("^\\/providers\\/Microsoft\\.Management\\/managementGroups\\/[a-zA-Z0-9_\\(\\)-\\.]{1,88}[a-zA-Z0-9_\\(\\)\\-]$", var.scope_id)) || can(regex("^/subscriptions/[a-zA-Z0-9-_\\(\\)\\.]{1,36}$", var.scope_id))
     error_message = "The scope_id value must be a valid Subscription or Management Group ID."
   }
 }
@@ -36,7 +36,7 @@ variable "parameters" {
 }
 
 variable "enforcement_mode" {
-  type        = map(string)
+  type        = map(bool)
   description = "If specified, will use the specified enforcement_mode values to override defaults for Policy Assignments."
   default     = {}
 }

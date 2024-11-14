@@ -24,16 +24,7 @@ steps:
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
-    condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit', 'e2e'))
-
-  - task: Bash@3
-    displayName: "[conftest run]"
-    inputs:
-      targetType: "inline"
-      script: "make opa-run-tests"
-    env:
-      TEST_MODULE_PATH: "${{ parameters.module_path }}"
-    condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
+    condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit'))
 
   - task: Bash@3
     displayName: "[terraform apply]"

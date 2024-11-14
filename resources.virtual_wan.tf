@@ -45,10 +45,11 @@ resource "azurerm_virtual_hub" "virtual_wan" {
   location            = each.value.template.location
 
   # Optional resource attributes
-  sku            = each.value.template.sku
-  address_prefix = each.value.template.address_prefix
-  virtual_wan_id = each.value.template.virtual_wan_id
-  tags           = each.value.template.tags
+  sku                    = each.value.template.sku
+  address_prefix         = each.value.template.address_prefix
+  hub_routing_preference = each.value.template.hub_routing_preference
+  virtual_wan_id         = each.value.template.virtual_wan_id
+  tags                   = each.value.template.tags
 
   # Dynamic configuration blocks
   dynamic "route" {
@@ -75,12 +76,12 @@ resource "azurerm_express_route_gateway" "virtual_wan" {
   provider = azurerm.connectivity
 
   # Mandatory resource attributes
-  name                = each.value.template.name
-  resource_group_name = each.value.template.resource_group_name
-  location            = each.value.template.location
-  virtual_hub_id      = each.value.template.virtual_hub_id
-  scale_units         = each.value.template.scale_units
-
+  name                          = each.value.template.name
+  resource_group_name           = each.value.template.resource_group_name
+  location                      = each.value.template.location
+  virtual_hub_id                = each.value.template.virtual_hub_id
+  scale_units                   = each.value.template.scale_units
+  allow_non_virtual_wan_traffic = each.value.template.allow_non_virtual_wan_traffic
   # Optional resource attributes
   tags = each.value.template.tags
 
@@ -232,13 +233,16 @@ resource "azurerm_firewall_policy" "virtual_wan" {
   }
 
   dynamic "threat_intelligence_allowlist" {
-    for_each = each.value.template.threat_intelligence_allowlist
+    # Ensure that the dynamic block is created only if the allowlist is defined
+    for_each = length(keys(each.value.template.threat_intelligence_allowlist)) > 0 ? [each.value.template.threat_intelligence_allowlist] : []
+
     content {
       # Optional attributes
       fqdns        = lookup(threat_intelligence_allowlist.value, "fqdns", null)
       ip_addresses = lookup(threat_intelligence_allowlist.value, "ip_addresses", null)
     }
   }
+
 
   # Set explicit dependencies
   depends_on = [
@@ -353,10 +357,37 @@ resource "azurerm_virtual_hub_connection" "virtual_wan" {
 
   # Set explicit dependencies
   depends_on = [
+    azurerm_express_route_gateway.virtual_wan,
     azurerm_resource_group.connectivity,
     azurerm_resource_group.virtual_wan,
     azurerm_virtual_wan.virtual_wan,
     azurerm_virtual_hub.virtual_wan,
   ]
 
+}
+
+resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
+  for_each = local.azurerm_virtual_hub_routing_intent
+
+  name           = each.value.template.name
+  virtual_hub_id = each.value.template.virtual_hub_id
+
+  dynamic "routing_policy" {
+    for_each = each.value.template.routing_policy
+    content {
+      name         = routing_policy.value.name
+      destinations = routing_policy.value.destinations
+      next_hop     = routing_policy.value.next_hop
+    }
+  }
+
+  # Set explicit dependencies
+  depends_on = [
+    azurerm_express_route_gateway.virtual_wan,
+    azurerm_firewall.virtual_wan,
+    azurerm_resource_group.connectivity,
+    azurerm_resource_group.virtual_wan,
+    azurerm_virtual_wan.virtual_wan,
+    azurerm_virtual_hub.virtual_wan,
+  ]
 }

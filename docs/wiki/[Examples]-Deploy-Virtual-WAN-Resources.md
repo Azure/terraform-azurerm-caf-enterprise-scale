@@ -58,7 +58,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.35.0"
+      version = "~> 3.107"
     }
   }
 }
@@ -78,6 +78,8 @@ data "azurerm_client_config" "core" {}
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
+
+  default_location = "<YOUR_LOCATION>"
 
   providers = {
     azurerm              = azurerm
@@ -128,7 +130,7 @@ module "enterprise_scale" {
                 base_policy_id                = ""
                 private_ip_ranges             = []
                 threat_intelligence_mode      = ""
-                threat_intelligence_allowlist = []
+                threat_intelligence_allowlist = {}
                 availability_zones = {
                   zone_1 = true
                   zone_2 = true
@@ -229,7 +231,6 @@ module "enterprise_scale" {
     tags     = null
     advanced = null
   }
-
 }
 ```
 
@@ -320,7 +321,7 @@ Looking for further inspiration? Why not try some of our other [examples][wiki_e
 [wiki_connectivity_resources_hub_and_spoke]: %5BUser-Guide%5D-Connectivity-Resources#traditional-azure-networking-topology-hub-and-spoke "Wiki - Connectivity Resources - Traditional Azure networking topology (hub and spoke)"
 [wiki_connectivity_resources_virtual_wan]:   %5BUser-Guide%5D-Connectivity-Resources#virtual-wan-network-topology-microsoft-managed "Wiki - Connectivity Resources - Virtual WAN network topology (Microsoft-managed)"
 [wiki_deploy_connectivity_resources]:        %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy Connectivity Resources (Hub & Spoke)"
-[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy Virtual WAN Resources With Custom Settings"
+[wiki_deploy_virtual_wan_resources_custom]:  %5BExamples%5D-Deploy-Virtual-WAN-Multi-Region-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Virtual WAN)"
 [wiki_configure_hub_networks_virtual_wan]:   %5BVariables%5D-configure_connectivity_resources#configure-hub-networks-virtual-wan "Wiki - configure_connectivity_resources - Configure hub networks (Virtual WAN)"
 [wiki_examples]:                             Examples "Wiki - Examples"
 [wiki_management_resources]:                 %5BUser-Guide%5D-Management-Resources "Wiki - Management Resources"

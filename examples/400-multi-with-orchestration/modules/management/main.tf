@@ -5,7 +5,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.35.0"
+      version = "~> 3.107"
     }
   }
 }
@@ -40,8 +40,9 @@ module "alz" {
   }
 
   # Base module configuration settings
-  root_parent_id = data.azurerm_client_config.current.tenant_id
-  root_id        = var.root_id
+  root_parent_id   = data.azurerm_client_config.current.tenant_id
+  root_id          = var.root_id
+  default_location = "eastus"
 
   # Disable creation of the core management group hierarchy
   # as this is being created by the core module instance

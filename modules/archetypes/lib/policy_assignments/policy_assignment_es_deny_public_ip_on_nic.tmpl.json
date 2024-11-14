@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Deny-Public-IP-On-NIC",
+  "dependsOn": [],
+  "properties": {
+    "description": "This policy denies network interfaces from having a public IP associated to it under the assigned scope.",
+    "displayName": "Deny network interfaces having a public IP associated",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/83a86a26-fd1f-447c-b59d-e51f44264114",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Network interfaces {enforcementMode} not have a public IP associated."
+      }
+    ],
+    "scope": "${current_scope_resource_id}",
+    "notScopes": [],
+    "parameters": {}
+  },
+  "location": "${default_location}",
+  "identity": {
+    "type": "None"
+  }
+}

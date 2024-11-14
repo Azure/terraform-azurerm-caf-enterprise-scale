@@ -1,23 +1,19 @@
 {
-  "name": "Deploy-AKS-Policy",
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2022-06-01",
+  "name": "Deploy-AKS-Policy",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
   "properties": {
     "description": "Use Azure Policy Add-on to manage and report on the compliance state of your Azure Kubernetes Service (AKS) clusters. For more information, see https://aka.ms/akspolicydoc.",
     "displayName": "Deploy Azure Policy Add-on to Azure Kubernetes Service clusters",
-    "notScopes": [],
-    "parameters": {},
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a8eff44f-8c92-45c3-a3fb-9880802d67a7",
-    "nonComplianceMessages": [
-      {
-        "message": "Azure Policy Add-on {enforcementMode} be deployed to Azure Kubernetes Service clusters."
-      }
-    ],
+    "enforcementMode": "Default",
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": null
-  },
-  "location": "${default_location}",
-  "identity": {
-    "type": "SystemAssigned"
+    "notScopes": [],
+    "parameters": {}
   }
 }

@@ -16,12 +16,7 @@ module "management_group_archetypes" {
   library_path            = local.library_path
   template_file_variables = local.template_file_variables
   default_location        = local.default_location
-  enforcement_mode = merge(
-    lookup(module.connectivity_resources.configuration.archetype_config_overrides, basename(each.key), local.enforcement_mode_default).enforcement_mode,
-    lookup(module.identity_resources.configuration.archetype_config_overrides, basename(each.key), local.enforcement_mode_default).enforcement_mode,
-    lookup(module.management_resources.configuration.archetype_config_overrides, basename(each.key), local.enforcement_mode_default).enforcement_mode,
-    lookup(var.archetype_config_overrides, basename(each.key), local.enforcement_mode_default).enforcement_mode,
-  )
+  enforcement_mode        = each.value.archetype_config.enforcement_mode
 }
 
 # The following module is used to generate the configuration
@@ -80,12 +75,13 @@ module "connectivity_resources" {
   tags     = local.connectivity_resources_tags
 
   # Optional input variables (advanced configuration)
-  resource_prefix                           = lookup(local.connectivity_resources_advanced, "resource_prefix", local.empty_string)
-  resource_suffix                           = lookup(local.connectivity_resources_advanced, "resource_suffix", local.empty_string)
-  existing_ddos_protection_plan_resource_id = lookup(local.connectivity_resources_advanced, "existing_ddos_protection_plan_resource_id", local.empty_string)
-  existing_virtual_wan_resource_id          = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_id", local.empty_string)
-  existing_virtual_wan_resource_group_name  = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_group_name", local.empty_string)
-  resource_group_per_virtual_hub_location   = lookup(local.connectivity_resources_advanced, "resource_group_per_virtual_hub_location", false)
-  custom_azure_backup_geo_codes             = lookup(local.connectivity_resources_advanced, "custom_azure_backup_geo_codes", local.empty_map)
-  custom_settings_by_resource_type          = lookup(local.connectivity_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
+  resource_prefix                                 = lookup(local.connectivity_resources_advanced, "resource_prefix", local.empty_string)
+  resource_suffix                                 = lookup(local.connectivity_resources_advanced, "resource_suffix", local.empty_string)
+  existing_ddos_protection_plan_resource_id       = lookup(local.connectivity_resources_advanced, "existing_ddos_protection_plan_resource_id", local.empty_string)
+  existing_virtual_wan_resource_id                = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_id", local.empty_string)
+  existing_virtual_wan_resource_group_name        = lookup(local.connectivity_resources_advanced, "existing_virtual_wan_resource_group_name", local.empty_string)
+  resource_group_per_virtual_hub_location         = lookup(local.connectivity_resources_advanced, "resource_group_per_virtual_hub_location", false)
+  custom_azure_backup_geo_codes                   = lookup(local.connectivity_resources_advanced, "custom_azure_backup_geo_codes", local.empty_map)
+  custom_privatelink_azurestaticapps_partitionids = lookup(local.connectivity_resources_advanced, "custom_privatelink_azurestaticapps_partitionids", null)
+  custom_settings_by_resource_type                = lookup(local.connectivity_resources_advanced, "custom_settings_by_resource_type", local.empty_map)
 }

@@ -55,7 +55,6 @@ resource "azurerm_subnet" "connectivity" {
   address_prefixes     = each.value.template.address_prefixes
 
   # Optional resource attributes
-  private_endpoint_network_policies_enabled     = each.value.template.private_endpoint_network_policies_enabled
   private_link_service_network_policies_enabled = each.value.template.private_link_service_network_policies_enabled
   service_endpoints                             = each.value.template.service_endpoints
   service_endpoint_policy_ids                   = each.value.template.service_endpoint_policy_ids
@@ -152,6 +151,8 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
   active_active                    = each.value.template.active_active
   private_ip_address_enabled       = each.value.template.private_ip_address_enabled
   default_local_network_gateway_id = each.value.template.default_local_network_gateway_id
+  remote_vnet_traffic_enabled      = each.value.template.remote_vnet_traffic_enabled
+  virtual_wan_traffic_enabled      = each.value.template.virtual_wan_traffic_enabled
   sku                              = each.value.template.sku
   generation                       = each.value.template.generation
   tags                             = each.value.template.tags
@@ -327,7 +328,9 @@ resource "azurerm_firewall_policy" "connectivity" {
   }
 
   dynamic "threat_intelligence_allowlist" {
-    for_each = each.value.template.threat_intelligence_allowlist
+    # Ensure that the dynamic block is created only if the allowlist is defined
+    for_each = length(keys(each.value.template.threat_intelligence_allowlist)) > 0 ? [each.value.template.threat_intelligence_allowlist] : []
+
     content {
       # Optional attributes
       fqdns        = lookup(threat_intelligence_allowlist.value, "fqdns", null)
@@ -450,6 +453,13 @@ resource "azurerm_private_dns_zone" "connectivity" {
     azurerm_resource_group.connectivity,
   ]
 
+  timeouts {
+    create = var.resource_custom_timeouts.azurerm_private_dns_zone.create
+    update = var.resource_custom_timeouts.azurerm_private_dns_zone.update
+    read   = var.resource_custom_timeouts.azurerm_private_dns_zone.read
+    delete = var.resource_custom_timeouts.azurerm_private_dns_zone.delete
+  }
+
 }
 
 resource "azurerm_dns_zone" "connectivity" {
@@ -510,6 +520,13 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
     azurerm_virtual_network.connectivity,
     azurerm_private_dns_zone.connectivity,
   ]
+
+  timeouts {
+    create = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.create
+    update = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.update
+    read   = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.read
+    delete = var.resource_custom_timeouts.azurerm_private_dns_zone_virtual_network_link.delete
+  }
 
 }
 

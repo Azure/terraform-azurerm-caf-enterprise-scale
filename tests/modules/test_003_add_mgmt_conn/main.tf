@@ -21,7 +21,7 @@ module "test_core" {
   # Configuration settings for optional landing zones
   deploy_corp_landing_zones   = true
   deploy_online_landing_zones = true
-  deploy_sap_landing_zones    = true
+  deploy_sap_landing_zones    = false
   deploy_demo_landing_zones   = false
 
   # Configure path for custom library folder and
@@ -110,7 +110,6 @@ module "test_management" {
   deploy_management_resources    = true
   configure_management_resources = module.settings.management.configure_management_resources
   subscription_id_management     = data.azurerm_client_config.management.subscription_id
-
 }
 
 module "test_connectivity" {

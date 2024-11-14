@@ -21,19 +21,21 @@ Currently, this file looks like this. You can see that a couple of policies are 
 {
     "es_landing_zones": {
         "policy_assignments": [
-            "Deny-IP-Forwarding",
-            "Deny-RDP-From-Internet",
-            "Deny-Storage-http",
-            "Deny-Subnet-Without-Nsg",
-            "Deploy-AKS-Policy",
-            "Deploy-SQL-DB-Auditing",
-            "Deploy-SQL-Threat",
-            "Deploy-VM-Backup",
-            "Deny-Priv-Escalation-AKS",
-            "Deny-Priv-Containers-AKS",
-            "Enable-DDoS-VNET",
-            "Enforce-AKS-HTTPS",
-            "Enforce-TLS-SSL"
+          "Audit-AppGW-WAF",
+          "Deny-IP-forwarding",
+          "Deny-MgmtPorts-Internet",
+          "Deny-Priv-Esc-AKS",
+          "Deny-Privileged-AKS",
+          "Deny-Storage-http",
+          "Deny-Subnet-Without-Nsg",
+          "Deploy-AKS-Policy",
+          "Deploy-AzSqlDb-Auditing",
+          "Deploy-SQL-Threat",
+          "Deploy-VM-Backup",
+          "Enable-DDoS-VNET",
+          "Enforce-AKS-HTTPS",
+          "Enforce-GR-KeyVault",
+          "Enforce-TLS-SSL"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],
@@ -107,6 +109,8 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints, should be at least 3.4.0
 
+  default_location = "<YOUR_LOCATION>"
+
   providers = {
     azurerm              = azurerm
     azurerm.connectivity = azurerm
@@ -116,7 +120,7 @@ module "enterprise_scale" {
   root_parent_id = data.azurerm_client_config.core.tenant_id
   root_id        = "myorg"
   root_name      = "My Organization"
-  
+
   deploy_corp_landing_zones   = true
   deploy_online_landing_zones = true
   deploy_identity_resources   = true
@@ -127,31 +131,49 @@ module "enterprise_scale" {
 
 ### `archetype_config_overrides.tf` for landing zones archetype
 
-Examplary, to change the enforcementMode for the landing zone archetype, we could use the following configuration. Note how the `root_id` specified when calling the module in `main.tf` is used to identify the archetype.
+Examplary, to change the enforcementMode for the landing zone archetype, we could use the following configuration.
 
 ```hcl
 locals {
   archetype_config_overrides = {
-    myorg-landing-zones = {
+    landing-zones = {
       enforcement_mode = {
-        Deny-IP-Forwarding       = false
-        Deny-RDP-From-Internet   = false
-        Deny-Storage-http        = false
-        Deny-Subnet-Without-Nsg  = false
-        Deploy-AKS-Policy        = false
-        Deploy-SQL-DB-Auditing   = false
-        Deploy-SQL-Threat        = false
-        Deploy-VM-Backup         = false
-        Deny-Priv-Escalation-AKS = false
-        Deny-Priv-Containers-AKS = false
-        Enable-DDoS-VNET         = false
-        Enforce-AKS-HTTPS        = false
-        Enforce-TLS-SSL          = false
+        Audit-AppGW-WAF         = false
+        Deny-IP-forwarding      = false
+        Deny-MgmtPorts-Internet = false
+        Deny-Priv-Esc-AKS       = false
+        Deny-Privileged-AKS     = false
+        Deny-Storage-http       = false
+        Deny-Subnet-Without-Nsg = false
+        Deploy-AKS-Policy       = false
+        Deploy-AzSqlDb-Auditing = false
+        Deploy-SQL-Threat       = false
+        Deploy-VM-Backup        = false
+        Enable-DDoS-VNET        = false
+        Enforce-AKS-HTTPS       = false
+        Enforce-GR-KeyVault     = false
+        Enforce-TLS-SSL         = false
       }
     }
   }
 }
 ```
+
+Note that the key `landing-zones` in this example refers to the name of the default core management group as specified in the archetype file name. The supported management group names are:
+
+- `root`
+- `decommissioned`
+- `sandboxes`
+- `landing-zones`
+- `platform`
+- `connectivity`
+- `management`
+- `identity`
+- `corp`
+- `online`
+- `sap`
+
+You can see the default policy assignments for each management group in the corresponding template file in the [archetype_definitions](../../modules/archetypes/lib/archetype_definitions) folder.
 
 You have successfully overridden the `enforcementMode` for the landing zone archetype.
 
@@ -164,30 +186,32 @@ If you want to move your workloads quickly into the corp landing zone, it might 
 ```hcl
 locals {
   archetype_config_overrides = {
-    myorg-corp = {
+    corp = {
       enforcement_mode = {
-        Deny-DataB-Pip           = false
-        Deny-DataB-Sku           = false
-        Deny-DataB-Vnet          = false
+        Audit-PeDnsZones         = false
+        Deny-HybridNetworking    = false
         Deny-Public-Endpoints    = false
+        Deny-Public-IP-On-NIC    = false
         Deploy-Private-DNS-Zones = false
       }
     }
-    myorg-landing-zones = {
+    landing-zones = {
       enforcement_mode = {
-        Deny-IP-Forwarding       = false
-        Deny-RDP-From-Internet   = false
-        Deny-Storage-http        = false
-        Deny-Subnet-Without-Nsg  = false
-        Deploy-AKS-Policy        = false
-        Deploy-SQL-DB-Auditing   = false
-        Deploy-SQL-Threat        = false
-        Deploy-VM-Backup         = false
-        Deny-Priv-Escalation-AKS = false
-        Deny-Priv-Containers-AKS = false
-        Enable-DDoS-VNET         = false
-        Enforce-AKS-HTTPS        = false
-        Enforce-TLS-SSL          = false
+        Audit-AppGW-WAF         = false
+        Deny-IP-forwarding      = false
+        Deny-MgmtPorts-Internet = false
+        Deny-Priv-Esc-AKS       = false
+        Deny-Privileged-AKS     = false
+        Deny-Storage-http       = false
+        Deny-Subnet-Without-Nsg = false
+        Deploy-AKS-Policy       = false
+        Deploy-AzSqlDb-Auditing = false
+        Deploy-SQL-Threat       = false
+        Deploy-VM-Backup        = false
+        Enable-DDoS-VNET        = false
+        Enforce-AKS-HTTPS       = false
+        Enforce-GR-KeyVault     = false
+        Enforce-TLS-SSL         = false
       }
     }
   }

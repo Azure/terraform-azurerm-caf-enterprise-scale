@@ -21,8 +21,8 @@ module "test_core" {
   # Configuration settings for optional landing zones
   deploy_corp_landing_zones   = true
   deploy_online_landing_zones = true
-  deploy_sap_landing_zones    = true
-  deploy_demo_landing_zones   = true
+  deploy_sap_landing_zones    = false
+  deploy_demo_landing_zones   = false
 
   # Configure path for custom library folder and
   # custom template file variables
@@ -34,9 +34,10 @@ module "test_core" {
   custom_landing_zones       = module.settings.core.custom_landing_zones
   archetype_config_overrides = module.settings.core.archetype_config_overrides
   subscription_id_overrides  = module.settings.core.subscription_id_overrides
+  deploy_diagnostics_for_mg  = true
 
   # Configuration settings for management resources
-  deploy_management_resources    = false
+  deploy_management_resources    = true
   configure_management_resources = module.settings.management.configure_management_resources
   subscription_id_management     = data.azurerm_client_config.management.subscription_id
 

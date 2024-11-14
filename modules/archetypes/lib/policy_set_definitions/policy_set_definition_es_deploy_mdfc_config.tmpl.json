@@ -5,12 +5,14 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "displayName": "Deploy Microsoft Defender for Cloud configuration",
-    "description": "Deploy Microsoft Defender for Cloud configuration",
+    "displayName": "[Deprecated]: Deploy Microsoft Defender for Cloud configuration",
+    "description": "Deploy Microsoft Defender for Cloud configuration. Superseded by https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-MDFC-Config_20240319.html",
     "metadata": {
-      "version": "5.0.0",
+      "version": "7.0.0-deprecated",
       "category": "Security Center",
       "source": "https://github.com/Azure/Enterprise-Scale/",
+      "deprecated": true,
+      "supersededBy": "Deploy-MDFC-Config_20240319",
       "alzCloudEnvironments": [
         "AzureCloud"
       ]
@@ -294,8 +296,8 @@
         "groupNames": []
       },
       {
-        "policyDefinitionReferenceId": "defenderForStorageAccounts",
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/74c30959-af11-47b3-9ed2-a26e03f427a3",
+        "policyDefinitionReferenceId": "defenderForStorageAccountsV2",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/cfdc5972-75b3-4418-8ae1-7f5c36839390",
         "parameters": {
           "effect": {
             "value": "[parameters('enableAscForStorage')]"
@@ -340,7 +342,7 @@
         "policyDefinitionReferenceId": "defenderForKeyVaults",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1f725891-01c0-420a-9059-4fa46cb770b7",
         "parameters": {
-          "Effect": {
+          "effect": {
             "value": "[parameters('enableAscForKeyVault')]"
           }
         },
@@ -433,6 +435,12 @@
             "value": "[parameters('logAnalytics')]"
           }
         },
+        "groupNames": []
+      },
+      {
+        "policyDefinitionReferenceId": "migrateToMdeTvm",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/766e621d-ba95-4e43-a6f2-e945db3d7888",
+        "parameters": {},
         "groupNames": []
       }
     ],

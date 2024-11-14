@@ -5,11 +5,17 @@ name: Update Library Templates
 on:
   schedule:
     - cron: "0 8 * * 1-5"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      enterprise-scale-repository-branch:
+        description: "The branch to target for the enterprise scale repository"
+        required: false
+        default: "main"
 
 env:
   remote_repository: "Azure/Enterprise-Scale"
-  branch_name: "patch-library"
+  remote_repository_branch: ${{ github.event.inputs.enterprise-scale-repository-branch != 'main' && github.event.inputs.enterprise-scale-repository-branch || 'main' }}
+  branch_name: "patch-library-${{ github.run_number }}"
   pr_title: "Update Library Templates (automated)"
   pr_body:
     "This is an automated 'pull_request' containing updates to the library templates stored in 'modules/archetypes/lib'.\n
@@ -19,21 +25,24 @@ jobs:
   update-templates:
     name: Update Library Templates
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Local repository checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: ${{ github.repository }}
           fetch-depth: 0
 
       - name: Remote repository checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ env.remote_repository }}
           path: ${{ env.remote_repository }}
-          ref: main
+          ref: ${{ env.remote_repository_branch }}
 
-      - uses: tibdex/github-app-token@v1
+      - uses: tibdex/github-app-token@v2
         id: generate-token
         with:
           app_id: ${{ secrets.APP_ID }}
@@ -63,15 +72,21 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Update library templates
-        uses: azure/powershell@v1
+        uses: azure/powershell@v2
         with:
           inlineScript: |
-            Write-Information "==> Running script..." -InformationAction Continue
-            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdate.ps1 `
+            Write-Information "==> Running policy definitions script..." -InformationAction Continue
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyDefinitions.ps1 `
               -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
               -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}" `
               -Reset
+
+            Write-Information "==> Running policy assignments and archetypes script..." -InformationAction Continue
+            ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignmentArchetypes.ps1 `
+              -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
+              -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
+              -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
           azPSVersion: "latest"
 
       - name: Check for changes

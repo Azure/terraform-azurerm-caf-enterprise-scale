@@ -84,7 +84,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.35.0"
+      version = "~> 3.107"
     }
   }
 }
@@ -137,6 +137,8 @@ module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
   version = "<version>" # change this to your desired version, https://www.terraform.io/language/expressions/version-constraints
 
+  default_location = "<YOUR_LOCATION>"
+
   providers = {
     azurerm              = azurerm
     azurerm.connectivity = azurerm
@@ -177,7 +179,6 @@ module "enterprise_scale" {
       }
     }
   }
-
 }
 
 # Enterprise scale nested landing zone instance

@@ -15,13 +15,13 @@ variable "root_name" {
 variable "primary_location" {
   type        = string
   description = "Sets the location for \"primary\" resources to be created in."
-  default     = "northeurope"
+  default     = "NorthEurope"
 }
 
 variable "secondary_location" {
   type        = string
   description = "Sets the location for \"secondary\" resources to be created in."
-  default     = "westeurope"
+  default     = "WestEurope"
 }
 
 variable "subscription_id_connectivity" {
@@ -76,4 +76,10 @@ variable "management_resources_tags" {
     deployedBy = "terraform/azure/caf-enterprise-scale/examples/l400-multi"
     demo_type  = "Deploy management resources using multiple module declarations"
   }
+}
+
+variable "template_file_variables" {
+  type        = any
+  description = "If specified, provides the ability to define custom template variables used when reading in template files from the built-in and custom library_path."
+  default     = {}
 }

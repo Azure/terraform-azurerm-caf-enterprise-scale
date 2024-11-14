@@ -72,4 +72,7 @@ opa-update-git:
 	@echo "==> Running script..."
 	./tests/scripts/opa-update-git.sh
 
-.PHONY: azp-strategy azp-backend azp-spn-generator tf-install tf-prepare tf-fmt tf-init tf-plan tf-apply tf-destroy terratest opa-install opa-run-tests opa-update-values opa-update-git
+docs:
+	terraform-docs .
+
+.PHONY: azp-strategy azp-backend azp-spn-generator docs tf-install tf-prepare tf-fmt tf-init tf-plan tf-apply tf-destroy terratest opa-install opa-run-tests opa-update-values opa-update-git

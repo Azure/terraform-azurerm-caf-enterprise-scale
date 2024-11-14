@@ -1,0 +1,34 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Audit-UnusedResources",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "properties": {
+    "description": "This Policy initiative is a group of Policy definitions that help optimize cost by detecting unused but chargeable resources. Leverage this Policy initiative as a cost control to reveal orphaned resources that are driving cost.",
+    "displayName": "Unused resources driving cost should be avoided",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Audit-UnusedResourcesCostOptimization",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Unused resources driving cost {enforcementMode} be avoided."
+      }
+    ],
+    "parameters": {
+      "EffectDisks": {
+        "value": "Audit"
+      },
+      "EffectPublicIpAddresses": {
+        "value": "Audit"
+      },
+      "EffectServerFarms": {
+        "value": "Audit"
+      }
+    },
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  },
+  "identity": {
+    "type": "None"
+  }
+}

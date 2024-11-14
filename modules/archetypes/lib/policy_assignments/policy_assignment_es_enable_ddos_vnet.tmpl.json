@@ -1,11 +1,17 @@
 {
-  "name": "Enable-DDoS-VNET",
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2019-09-01",
+  "apiVersion": "2022-06-01",
+  "name": "Enable-DDoS-VNET",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
   "properties": {
-    "description": "Protect your virtual networks against volumetric and protocol attacks with Azure DDoS Protection Standard. For more information, visit https://aka.ms/ddosprotectiondocs.",
-    "displayName": "Virtual networks should be protected by Azure DDoS Protection Standard",
-    "notScopes": [],
+    "description": "Protect your virtual networks against volumetric and protocol attacks with Azure DDoS Network Protection. For more information, visit https://aka.ms/ddosprotectiondocs.",
+    "displayName": "Virtual networks should be protected by Azure DDoS Network Protection",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+    "enforcementMode": "Default",
     "parameters": {
       "ddosPlan": {
         "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/${root_scope_id}-ddos"
@@ -14,17 +20,7 @@
         "value": "Modify"
       }
     },
-    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
-    "nonComplianceMessages": [
-      {
-        "message": "Virtual networks {enforcementMode} be protected by Azure DDoS Protection Standard."
-      }
-    ],
     "scope": "${current_scope_resource_id}",
-    "enforcementMode": null
-  },
-  "location": "${default_location}",
-  "identity": {
-    "type": "SystemAssigned"
+    "notScopes": []
   }
 }

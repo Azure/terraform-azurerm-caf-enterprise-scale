@@ -14,14 +14,7 @@ steps:
   - task: GoTool@0
     displayName: "Install Go"
     inputs:
-      version: '1.18'
-    condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
-
-  - task: Bash@3
-    displayName: "Install conftest"
-    inputs:
-      targetType: "inline"
-      script: "make opa-install"
+      version: "1.22.3"
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
 
   - task: Bash@3

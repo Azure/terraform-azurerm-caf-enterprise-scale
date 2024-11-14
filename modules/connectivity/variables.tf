@@ -14,8 +14,8 @@ variable "root_id" {
   description = "Specifies the ID of the Enterprise-scale root Management Group, used as a prefix for resources created by this module."
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9-]{2,10}$", var.root_id))
-    error_message = "Value must be between 2 to 10 characters long, consisting of alphanumeric characters and hyphens."
+    condition     = can(regex("[a-zA-Z0-9-_\\(\\)\\.]", var.root_id))
+    error_message = "Value must consist of alphanumeric characters and hyphens."
   }
 }
 
@@ -63,9 +63,11 @@ variable "settings" {
           virtual_network_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              address_prefix           = optional(string, "")
-              gateway_sku_expressroute = optional(string, "")
-              gateway_sku_vpn          = optional(string, "")
+              address_prefix              = optional(string, "")
+              gateway_sku_expressroute    = optional(string, "")
+              gateway_sku_vpn             = optional(string, "")
+              remote_vnet_traffic_enabled = optional(bool, false)
+              virtual_wan_traffic_enabled = optional(bool, false)
               advanced_vpn_settings = optional(object({
                 enable_bgp                       = optional(bool, null)
                 active_active                    = optional(bool, null)
@@ -85,8 +87,8 @@ variable "settings" {
                     ), [])
                     revoked_certificate = optional(list(
                       object({
-                        name             = string
-                        public_cert_data = string
+                        name       = string
+                        thumbprint = string
                       })
                     ), [])
                     radius_server_address = optional(string, null)
@@ -126,7 +128,7 @@ variable "settings" {
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -153,10 +155,20 @@ variable "settings" {
               next_hop_ip_address = string
             })
           ), [])
+          routing_intent = optional(object({
+            enabled = optional(bool, false)
+            config = optional(object({
+              routing_policies = optional(list(object({
+                name         = string
+                destinations = list(string)
+              })), [])
+            }), {})
+          }), {})
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              scale_unit = optional(number, 1)
+              scale_unit                    = optional(number, 1)
+              allow_non_virtual_wan_traffic = optional(bool, false)
             }), {})
           }), {})
           vpn_gateway = optional(object({
@@ -191,7 +203,7 @@ variable "settings" {
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
               threat_intelligence_mode      = optional(string, "Alert")
-              threat_intelligence_allowlist = optional(list(string), [])
+              threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
                 zone_1 = optional(bool, true)
                 zone_2 = optional(bool, true)
@@ -219,6 +231,9 @@ variable "settings" {
           azure_api_management                 = optional(bool, true)
           azure_app_configuration_stores       = optional(bool, true)
           azure_arc                            = optional(bool, true)
+          azure_arc_guest_configuration        = optional(bool, true)
+          azure_arc_hybrid_resource_provider   = optional(bool, true)
+          azure_arc_kubernetes                 = optional(bool, true)
           azure_automation_dscandhybridworker  = optional(bool, true)
           azure_automation_webhook             = optional(bool, true)
           azure_backup                         = optional(bool, true)
@@ -241,6 +256,7 @@ variable "settings" {
           azure_database_for_mariadb_server    = optional(bool, true)
           azure_database_for_mysql_server      = optional(bool, true)
           azure_database_for_postgresql_server = optional(bool, true)
+          azure_databricks                     = optional(bool, true)
           azure_digital_twins                  = optional(bool, true)
           azure_event_grid_domain              = optional(bool, true)
           azure_event_grid_topic               = optional(bool, true)
@@ -254,9 +270,11 @@ variable "settings" {
           azure_kubernetes_service_management  = optional(bool, true)
           azure_machine_learning_workspace     = optional(bool, true)
           azure_managed_disks                  = optional(bool, true)
+          azure_managed_grafana                = optional(bool, true)
           azure_media_services                 = optional(bool, true)
           azure_migrate                        = optional(bool, true)
           azure_monitor                        = optional(bool, true)
+          azure_openai_service                 = optional(bool, true)
           azure_purview_account                = optional(bool, true)
           azure_purview_studio                 = optional(bool, true)
           azure_relay_namespace                = optional(bool, true)
@@ -267,6 +285,7 @@ variable "settings" {
           azure_synapse_analytics_dev          = optional(bool, true)
           azure_synapse_analytics_sql          = optional(bool, true)
           azure_synapse_studio                 = optional(bool, true)
+          azure_virtual_desktop                = optional(bool, true)
           azure_web_apps_sites                 = optional(bool, true)
           azure_web_apps_static_sites          = optional(bool, true)
           cognitive_services_account           = optional(bool, true)
@@ -346,6 +365,16 @@ If specified, the custom_azure_backup_geo_codes variable will override or append
 For more information, please refer to: https://learn.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files
 DESCRIPTION
   default     = {}
+}
+
+variable "custom_privatelink_azurestaticapps_partitionids" {
+  type        = list(number)
+  nullable    = false
+  description = <<DESCRIPTION
+As a uncertanty in the partition id for the azure static web app, this variable is used to specify the partition ids deployed for the azure static web app private DNS zones.
+For more information, please refer to: https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#web and https://learn.microsoft.com/en-us/azure/static-web-apps/private-endpoint
+DESCRIPTION
+  default     = [1, 2, 3, 4, 5]
 }
 
 variable "custom_settings_by_resource_type" {
