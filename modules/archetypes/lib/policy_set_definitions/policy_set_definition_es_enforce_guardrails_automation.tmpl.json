@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Automation Account",
     "description": "This policy initiative is a group of policies that ensures Automation Account is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Automation",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
