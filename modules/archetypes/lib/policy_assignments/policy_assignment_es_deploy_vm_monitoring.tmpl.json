@@ -1,6 +1,6 @@
 {
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2022-06-01",
+  "apiVersion": "2024-04-01",
   "name": "Deploy-VM-Monitoring",
   "location": "${default_location}",
   "dependsOn": [],
@@ -11,6 +11,7 @@
     "description": "Enable Azure Monitor for the virtual machines (VMs) in the specified scope (management group, subscription or resource group). Takes Log Analytics workspace as parameter.",
     "displayName": "Enable Azure Monitor for VMs",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/924bfe3a-762f-40e7-86dd-5c8b95eb09e6",
+    "definitionVersion": "1.*.*",
     "enforcementMode": "Default",
     "nonComplianceMessages": [
       {

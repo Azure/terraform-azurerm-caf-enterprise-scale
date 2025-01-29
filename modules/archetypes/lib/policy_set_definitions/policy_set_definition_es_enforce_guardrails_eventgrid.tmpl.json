@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Event Grid",
     "description": "This policy initiative is a group of policies that ensures Event Grid is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Event Grid",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [

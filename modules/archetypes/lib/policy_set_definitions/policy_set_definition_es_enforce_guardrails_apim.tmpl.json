@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for API Management",
     "description": "This policy initiative is a group of policies that ensures API Management is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "API Management",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
