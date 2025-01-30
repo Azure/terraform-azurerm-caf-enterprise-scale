@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Service Bus",
     "description": "This policy initiative is a group of policies that ensures Service Bus is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Service Bus",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
