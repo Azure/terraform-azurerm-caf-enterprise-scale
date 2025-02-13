@@ -229,6 +229,7 @@ object({
               sku_tier                      = optional(string, "Standard")
               base_policy_id                = optional(string, "")
               private_ip_ranges             = optional(list(string), [])
+              public_ip_count               = optional(number, 1)
               threat_intelligence_mode      = optional(string, "Alert")
               threat_intelligence_allowlist = optional(map(list(string)), {})
               availability_zones = optional(object({
