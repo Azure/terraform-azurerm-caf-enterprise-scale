@@ -967,13 +967,16 @@ locals {
         location            = location
         ip_configuration = try(
           local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration,
-          [for i in range(hub_network.config.azure_firewall.config.public_ip_count) :
-            {
-              name                 = i == 0 ? local.azfw_pip_name[location] : "${local.azfw_pip_name[location]}-${i + 1}"
-              public_ip_address_id = i == 0 ? local.azfw_pip_resource_id[location] : "${local.azfw_pip_resource_id[location]}-${i + 1}"
-              subnet_id            = i == 0 ? "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet" : null
+          concat([{
+            name                 = local.azfw_pip_name[location]
+            public_ip_address_id = local.azfw_pip_resource_id[location]
+            subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet"
+            }], [
+            for i in range(1, hub_network.config.azure_firewall.config.public_ip_count) : {
+              name                 = join("-", [local.azfw_pip_name[location], i + 1])
+              public_ip_address_id = join("-", [local.azfw_pip_resource_id[location], i + 1])
             }
-          ]
+          ])
         )
         sku_name = "AZFW_VNet"
         sku_tier = coalesce(
