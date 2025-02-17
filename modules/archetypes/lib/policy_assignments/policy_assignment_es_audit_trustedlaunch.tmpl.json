@@ -11,7 +11,7 @@
     "enforcementMode": "Default",
     "nonComplianceMessages": [
       {
-        "message": "Trust Launch {enforcementMode} be used on supported virtual machines for enhanced security."
+        "message": "Trusted Launch {enforcementMode} be used on supported virtual machines for enhanced security."
       }
     ],
     "parameters": {
