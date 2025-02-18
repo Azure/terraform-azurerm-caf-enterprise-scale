@@ -226,10 +226,9 @@
       },
       "cognitiveSearchCmk": {
         "type": "string",
-        "defaultValue": "Deny",
+        "defaultValue": "AuditIfNotExists",
         "allowedValues": [
-          "Audit",
-          "Deny",
+          "AuditIfNotExists",
           "Disabled"
         ]
       },
@@ -495,6 +494,16 @@
         "groupNames": []
       },
       {
+        "policyDefinitionReferenceId": "Aine-CognitiveSearch-Cmk",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/76a56461-9dc0-40f0-82f5-2453283afa2f",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveSearchCmk')]"
+          }
+        },
+        "groupNames": []
+      },
+      {
         "policyDefinitionReferenceId": "Deny-Aa-Cmk",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/56a5ee18-2ae6-4810-86f7-18e39ce5629b",
         "parameters": {
@@ -510,16 +519,6 @@
         "parameters": {
           "effect": {
             "value": "[parameters('BackupCmkEffect')]"
-          }
-        },
-        "groupNames": []
-      },
-      {
-        "policyDefinitionReferenceId": "Deny-CognitiveSearch-Cmk",
-        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/76a56461-9dc0-40f0-82f5-2453283afa2f",
-        "parameters": {
-          "effect": {
-            "value": "[parameters('cognitiveSearchCmk')]"
           }
         },
         "groupNames": []
