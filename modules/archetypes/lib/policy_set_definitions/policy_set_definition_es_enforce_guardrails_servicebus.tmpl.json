@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Service Bus",
     "description": "This policy initiative is a group of policies that ensures Service Bus is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Service Bus",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -63,7 +63,8 @@
             "value": "[parameters('serviceBusAuthzRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sb-Encryption",
@@ -73,7 +74,8 @@
             "value": "[parameters('serviceBusDoubleEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sb-LocalAuth",
@@ -83,7 +85,8 @@
             "value": "[parameters('serviceBusDenyDisabledLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Sb-LocalAuth",
@@ -93,7 +96,8 @@
             "value": "[parameters('serviceBusModifyDisableLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
