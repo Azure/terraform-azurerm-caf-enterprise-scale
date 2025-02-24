@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Event Grid",
     "description": "This policy initiative is a group of policies that ensures Event Grid is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Event Grid",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -95,7 +95,8 @@
             "value": "[parameters('eventGridPartnerNamespaceModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-EventGrid-Domain-Local-Auth",
@@ -105,7 +106,8 @@
             "value": "[parameters('eventGridDomainModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EventGrid-Topic-Local-Auth",
@@ -115,7 +117,8 @@
             "value": "[parameters('eventGridTopicLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-EventGrid-Topic-Local-Auth",
@@ -125,7 +128,8 @@
             "value": "[parameters('eventGridTopicModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EventGrid-Partner-Namespace-Local-Auth",
@@ -135,7 +139,8 @@
             "value": "[parameters('eventGridPartnerNamespaceLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EventGrid-Local-Auth",
@@ -145,7 +150,8 @@
             "value": "[parameters('eventGridLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-EventGrid-Domain-Public-Network-Access",
@@ -155,7 +161,8 @@
             "value": "[parameters('eventGridDomainModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-EventGrid-Topic-Public-Network-Access",
@@ -165,7 +172,8 @@
             "value": "[parameters('eventGridTopicModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

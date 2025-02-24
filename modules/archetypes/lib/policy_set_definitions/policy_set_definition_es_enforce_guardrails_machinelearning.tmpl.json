@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Machine Learning",
     "description": "This policy initiative is a group of policies that ensures Machine Learning is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Machine Learning",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -144,7 +144,8 @@
             "value": "[parameters('mlOutdatedOS')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Local-Auth",
@@ -154,7 +155,8 @@
             "value": "[parameters('mlLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ML-Local-Auth",
@@ -164,7 +166,8 @@
             "value": "[parameters('mlModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-User-Assigned-Identity",
@@ -174,7 +177,8 @@
             "value": "[parameters('mlUserAssignedIdentity')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ML-Public-Network-Access",
@@ -184,7 +188,8 @@
             "value": "[parameters('mlModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Idle-Shutdown",
@@ -194,7 +199,8 @@
             "value": "[parameters('mlIdleShutdown')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Audit-ML-Virtual-Network",
@@ -204,7 +210,8 @@
             "value": "[parameters('mlVirtualNetwork')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Legacy-Mode",
@@ -214,7 +221,8 @@
             "value": "[parameters('mlLegacyMode')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Audit-ML-Private-Link",
@@ -224,7 +232,8 @@
             "value": "[parameters('mlPrivateLink')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Aine-ML-Resource-Logs",
@@ -234,7 +243,8 @@
             "value": "[parameters('mlResourceLogs')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Allowed-Registry-Deploy",
@@ -244,7 +254,8 @@
             "value": "[parameters('mlAllowedRegistryDeploy')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Allowed-Module",
@@ -254,7 +265,8 @@
             "value": "[parameters('mlAllowedModule')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "6.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Allowed-Python",
@@ -264,7 +276,8 @@
             "value": "[parameters('mlAllowedPython')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "5.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-ML-Allowed-Registries",
@@ -274,7 +287,8 @@
             "value": "[parameters('mlAllowedRegistries')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "6.*.*-preview"
       }
     ],
     "policyDefinitionGroups": null

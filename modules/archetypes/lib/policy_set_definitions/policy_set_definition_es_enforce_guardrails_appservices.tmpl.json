@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for App Service",
     "description": "This policy initiative is a group of policies that ensures App Service is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "App Service",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -179,7 +179,8 @@
             "value": "[parameters('appServiceByoc')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-AppService-Apps-Remote-Debugging",
@@ -189,7 +190,8 @@
             "value": "[parameters('appServiceAppsRemoteDebugging')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Slots-Remote-Debugging",
@@ -199,7 +201,8 @@
             "value": "[parameters('appServiceAppSlotsRemoteDebugging')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Latest-Version",
@@ -209,7 +212,8 @@
             "value": "[parameters('appServiceEnvLatestVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Vnet-Routing",
@@ -219,7 +223,8 @@
             "value": "[parameters('appServiceAppsVnetRouting')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Rfc",
@@ -229,7 +234,8 @@
             "value": "[parameters('appServiceRfc')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppServiceApps-Rfc",
@@ -239,7 +245,8 @@
             "value": "[parameters('appServiceAppsRfc')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "DINE-FuncApp-Debugging",
@@ -249,7 +256,8 @@
             "value": "[parameters('functionAppDebugging')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "DINE-AppService-ScmAuth",
@@ -259,7 +267,8 @@
             "value": "[parameters('appServiceScmAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppServ-Routing",
@@ -269,7 +278,8 @@
             "value": "[parameters('appServiceRouting')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppServ-FtpAuth",
@@ -279,7 +289,8 @@
             "value": "[parameters('appServiceDisableLocalAuthFtp')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppServ-SkuPl",
@@ -289,7 +300,8 @@
             "value": "[parameters('appServiceSkuPl')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "4.*.*"
       },
       {
         "policyDefinitionReferenceId": "DINE-AppService-LocalAuth",
@@ -299,7 +311,8 @@
             "value": "[parameters('appServiceDisableLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "DINE-AppService-Debugging",
@@ -309,7 +322,8 @@
             "value": "[parameters('functionAppDebugging')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Function-Apps-Slots-Https",
@@ -319,7 +333,8 @@
             "value": "[parameters('functionAppSlotsModifyHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-AppService-Https",
@@ -329,7 +344,8 @@
             "value": "[parameters('appServiceAppHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Function-Apps-Slots-Public-Network-Access",
@@ -339,7 +355,8 @@
             "value": "[parameters('functionAppSlotsModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-AppService-Apps-Public-Network-Access",
@@ -349,7 +366,8 @@
             "value": "[parameters('appServiceAppsModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-AppService-App-Public-Network-Access",
@@ -359,7 +377,8 @@
             "value": "[parameters('appServiceAppModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

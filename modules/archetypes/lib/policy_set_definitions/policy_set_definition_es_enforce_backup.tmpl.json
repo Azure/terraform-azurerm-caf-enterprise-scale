@@ -8,7 +8,7 @@
     "displayName": "Enforce enhanced recovery and backup policies",
     "description": "Enforce enhanced recovery and backup policies on assigned scopes.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Backup",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -67,7 +67,8 @@
             "value": "[parameters('checkLockedImmutabilityOnly')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "BackupRVault-Immutability",
@@ -80,7 +81,8 @@
             "value": "[parameters('checkLockedImmutabilityOnly')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "BackupBVault-SoftDelete",
@@ -93,7 +95,8 @@
             "value": "[parameters('checkAlwaysOnSoftDeleteOnly')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "BackupRVault-SoftDelete",
@@ -106,7 +109,8 @@
             "value": "[parameters('checkAlwaysOnSoftDeleteOnly')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "BackupBVault-MUA",
@@ -116,7 +120,8 @@
             "value": "[parameters('effect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "BackupRVault-MUA",
@@ -126,7 +131,8 @@
             "value": "[parameters('effect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       }
     ],
     "policyDefinitionGroups": null

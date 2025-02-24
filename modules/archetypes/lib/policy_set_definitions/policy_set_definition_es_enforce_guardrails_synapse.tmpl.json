@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Synapse workspaces",
     "description": "This policy initiative is a group of policies that ensures Synapse workspaces is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Synapse",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -110,7 +110,8 @@
             "value": "[parameters('synapseDefender')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Synapse-Local-Auth",
@@ -120,7 +121,8 @@
             "value": "[parameters('synapseModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Synapse-Fw-Rules",
@@ -130,7 +132,8 @@
             "value": "[parameters('synapseFwRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Synapse-Tenant-Access",
@@ -143,7 +146,8 @@
             "value": "[parameters('synapseAllowedTenantIds')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Synapse-Data-Traffic",
@@ -153,7 +157,8 @@
             "value": "[parameters('synapseDataTraffic')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Synapse-Managed-Vnet",
@@ -163,7 +168,8 @@
             "value": "[parameters('synapseManagedVnet')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Synapse-Local-Auth",
@@ -173,7 +179,8 @@
             "value": "[parameters('synapseLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Synapse-Tls-Version",
@@ -183,7 +190,8 @@
             "value": "[parameters('synapseModifyTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Synapse-Public-Network-Access",
@@ -193,7 +201,8 @@
             "value": "[parameters('synapseModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
