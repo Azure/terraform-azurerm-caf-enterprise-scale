@@ -226,10 +226,9 @@
       },
       "cognitiveSearchCmk": {
         "type": "string",
-        "defaultValue": "Deny",
+        "defaultValue": "AuditIfNotExists",
         "allowedValues": [
-          "Audit",
-          "Deny",
+          "AuditIfNotExists",
           "Disabled"
         ]
       },
