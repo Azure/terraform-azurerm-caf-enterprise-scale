@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Network and Networking services",
     "description": "This policy initiative is a group of policies that ensures Network and Networking services are compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Network",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -268,7 +268,8 @@
         "policyDefinitionReferenceId": "Deny-Nsg-GW-subnet",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/35f9c03a-cc27-418e-9c0c-539ff999d010",
         "parameters": {},
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-VPN-AzureAD",
@@ -278,7 +279,8 @@
             "value": "[parameters('vpnAzureAD')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Waf-Afd-Enabled",
@@ -288,7 +290,8 @@
             "value": "[parameters('wafAfdEnabled')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Waf-IDPS",
@@ -298,7 +301,8 @@
             "value": "[parameters('afwEnableIDPS')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-FW-AllIDPSS",
@@ -308,7 +312,8 @@
             "value": "[parameters('afwEnableAllIDPSSignatureRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-FW-EmpIDPSBypass",
@@ -318,7 +323,8 @@
             "value": "[parameters('afwEmptyIDPSBypassList')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-FW-TLS-Inspection",
@@ -328,7 +334,8 @@
             "value": "[parameters('afwEnableTlsInspection')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-FW-TLS-AllApp",
@@ -338,7 +345,8 @@
             "value": "[parameters('afwEnbaleTlsForAllAppRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Waf-AppGw-mode",
@@ -351,7 +359,8 @@
             "value": "[parameters('wafModeAppGwRequirement')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Waf-Fw-rules",
@@ -361,7 +370,8 @@
             "value": "[parameters('wafFwRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Waf-mode",
@@ -374,7 +384,8 @@
             "value": "[parameters('wafModeRequirement')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-vNet-DDoS",
@@ -387,19 +398,22 @@
             "value": "[parameters('ddosPlanResourceId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Ip-Forwarding",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/88c0b9da-ce96-4b03-9635-f29a937e2900",
         "parameters": {},
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-vNic-Pip",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/83a86a26-fd1f-447c-b59d-e51f44264114",
         "parameters": {},
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppGw-Without-Waf",
@@ -409,7 +423,8 @@
             "value": "[parameters('appGwWaf')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Subnet-Without-Udr",
@@ -419,7 +434,8 @@
             "value": "[parameters('subnetUdr')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Subnet-Without-NSG",
@@ -429,7 +445,8 @@
             "value": "[parameters('subnetNsg')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Subnet-with-Service-Endpoints",
@@ -439,7 +456,8 @@
             "value": "[parameters('subnetServiceEndpoint')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Mgmt-From-Internet",
@@ -452,7 +470,8 @@
             "value": "[parameters('denyMgmtFromInternetPorts')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppGw-Without-Tls",
@@ -462,7 +481,8 @@
             "value": "[parameters('appGwTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Udr",
@@ -481,7 +501,8 @@
             "value": "[parameters('modifyUdrAddressPrefix')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Nsg",
@@ -521,7 +542,8 @@
             "value": "[parameters('modifyNsgRuleDescription')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
