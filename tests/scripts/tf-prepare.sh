@@ -11,14 +11,6 @@ CREDENTIALS_WORKSPACE="$PIPELINE_WORKSPACE/s/tests"
 echo "==> Switching directories..."
 cd "$CREDENTIALS_WORKSPACE"
 
-echo "==> Authenticating cli..."
-az login \
-  --service-principal \
-  --tenant "$ARM_TENANT_ID" \
-  --username "$ARM_CLIENT_ID" \
-  --password "$ARM_CLIENT_SECRET" \
-  --query [?isDefault]
-
 echo "==> Creating SPN and Role Assignments..."
 SPN_NAME="ES-TestFramework-Job$TF_JOB_ID"
 KEY_VAULT_NAME="$DEFAULT_PREFIX-kv"
@@ -32,9 +24,7 @@ CERTIFICATE_CLIENT_ID=$(
     --out tsv
 )
 
-echo "==> Storing Client Certificate Details"
 echo "##vso[task.setvariable variable=ARM_CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CLIENT_ID"
-
 echo "==> Terraform Variable (Root ID)   - $TF_ROOT_ID"
 echo "==> Terraform Version              - $TF_VERSION"
 echo "==> Terraform Provider Version     - $TF_AZ_VERSION"

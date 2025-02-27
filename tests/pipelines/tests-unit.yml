@@ -48,13 +48,16 @@ jobs:
         parameters:
           module_path: "tests/modules/test_001_baseline"
           run_type: unit
+          job_id: $(TF_JOB_ID)
 
       - template: templates/tests-loop.yml
         parameters:
           module_path: "tests/modules/test_002_add_custom_core"
           run_type: unit
+          job_id: $(TF_JOB_ID)
 
       - template: templates/tests-loop.yml
         parameters:
           module_path: "tests/modules/test_003_add_mgmt_conn"
           run_type: unit
+          job_id: $(TF_JOB_ID)
