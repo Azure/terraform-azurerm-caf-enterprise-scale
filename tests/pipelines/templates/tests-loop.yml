@@ -14,7 +14,7 @@ steps:
       scriptPath: "tests/scripts/tf-init.sh"
       failOnStandardError: true
       addSpnToEnvironment: true
-      azureSubscription: ES-TestFramework-Job1
+      azureSubscription: ado-mscet-cae-estf
     env:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
     condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit', 'e2e', 'destroy'))
@@ -27,7 +27,7 @@ steps:
       scriptPath: "tests/scripts/tf-plan.sh"
       failOnStandardError: true
       addSpnToEnvironment: true
-      azureSubscription: ES-TestFramework-Job1
+      azureSubscription: ado-mscet-cae-estf
     env:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
     condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit'))
@@ -40,7 +40,7 @@ steps:
       failOnStandardError: true
       addSpnToEnvironment: true
       scriptPath: "tests/scripts/tf-apply.sh"
-      azureSubscription: ES-TestFramework-Job2
+      azureSubscription: ado-mscet-cae-estf
     env:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'e2e'))
@@ -53,7 +53,7 @@ steps:
       failOnStandardError: true
       addSpnToEnvironment: true
       scriptPath: "tests/scripts/tf-destroy.sh"
-      azureSubscription: ES-TestFramework-Job3
+      azureSubscription: ado-mscet-cae-estf
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
