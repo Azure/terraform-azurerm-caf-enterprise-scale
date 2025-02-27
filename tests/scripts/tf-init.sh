@@ -41,26 +41,27 @@ cat >providers_override.tf <<TFCONFIG
 provider "azurerm" {
   features {}
 
-  tenant_id = "$ARM_TENANT_ID"
-  client_id = "$ARM_CERTIFICATE_CLIENT_ID"
+  tenant_id       = "$ARM_TENANT_ID"
+  client_id       = "$ARM_CERTIFICATE_CLIENT_ID"
+  subscription_id = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
 }
 
 provider "azurerm" {
   features {}
 
-  alias                       = "connectivity"
-  subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
-  client_id                   = "$ARM_CERTIFICATE_CLIENT_ID"
-  use_oidc                    = true
+  alias           = "connectivity"
+  subscription_id = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
+  client_id       = "$ARM_CERTIFICATE_CLIENT_ID"
+  use_oidc        = true
 }
 
 provider "azurerm" {
   features {}
 
-  alias                       = "management"
-  subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
-  client_id                   = "$ARM_CERTIFICATE_CLIENT_ID"
-  use_oidc                    = true
+  alias           = "management"
+  subscription_id = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
+  client_id       = "$ARM_CERTIFICATE_CLIENT_ID"
+  use_oidc        = true
 }
 TFCONFIG
 

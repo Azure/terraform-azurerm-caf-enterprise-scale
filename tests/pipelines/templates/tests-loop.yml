@@ -4,8 +4,6 @@ parameters:
     type: string
   - name: run_type
     type: string
-  - name: job_id
-    type: string
 
 steps:
   - task: Bash@3
@@ -26,7 +24,7 @@ steps:
       scriptPath: "tests/scripts/tf-plan.sh"
       failOnStandardError: true
       addSpnToEnvironment: true
-      azureSubscription: ES-TestFramework-Job${{ parameters.job_id }}
+      azureSubscription: ES-TestFramework-Job1
       workingDirectory: "$(System.DefaultWorkingDirectory)"
     env:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
@@ -40,7 +38,7 @@ steps:
       failOnStandardError: true
       addSpnToEnvironment: true
       scriptPath: "tests/scripts/tf-apply.sh"
-      azureSubscription: ES-TestFramework-Job${{ parameters.job_id }}
+      azureSubscription: ES-TestFramework-Job2
       workingDirectory: "$(System.DefaultWorkingDirectory)"
     env:
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
@@ -54,7 +52,7 @@ steps:
       failOnStandardError: true
       addSpnToEnvironment: true
       scriptPath: "tests/scripts/tf-destroy.sh"
-      azureSubscription: ES-TestFramework-Job${{ parameters.job_id }}
+      azureSubscription: ES-TestFramework-Job3
       workingDirectory: "$(System.DefaultWorkingDirectory)"
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
