@@ -29,6 +29,9 @@ terraform {
     storage_account_name = "$STORAGE_ACCOUNT_NAME"
     container_name       = "$STORAGE_CONTAINER_NAME"
     key                  = "terraform-$TF_ROOT_ID.tfstate"
+    use_azuread_auth     = true
+    use_oidc             = true
+    client_id            = "$ARM_CERTIFICATE_CLIENT_ID"
   }
 }
 TFCONFIG
@@ -37,6 +40,9 @@ echo "==> Creating providers_override.tf with subscription configuration and cre
 cat >providers_override.tf <<TFCONFIG
 provider "azurerm" {
   features {}
+
+  tenant_id = "$ARM_TENANT_ID"
+  client_id = "$ARM_CERTIFICATE_CLIENT_ID"
 }
 
 provider "azurerm" {
@@ -45,9 +51,7 @@ provider "azurerm" {
   alias                       = "connectivity"
   subscription_id             = "$TF_SUBSCRIPTION_ID_CONNECTIVITY"
   client_id                   = "$ARM_CERTIFICATE_CLIENT_ID"
-  client_certificate_path     = "$ARM_CERTIFICATE_PATH"
-  client_certificate_password = "$ARM_CERTIFICATE_PASSWORD"
-  tenant_id                   = "$ARM_TENANT_ID"
+  use_oidc                    = true
 }
 
 provider "azurerm" {
@@ -56,11 +60,9 @@ provider "azurerm" {
   alias                       = "management"
   subscription_id             = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
   client_id                   = "$ARM_CERTIFICATE_CLIENT_ID"
-  client_certificate_path     = "$ARM_CERTIFICATE_PATH"
-  client_certificate_password = "$ARM_CERTIFICATE_PASSWORD"
-  tenant_id                   = "$ARM_TENANT_ID"
+  use_oidc                    = true
 }
 TFCONFIG
 
-echo "==> Initializaing Terraform workspace..."
+echo "==> Initializing Terraform workspace..."
 terraform init

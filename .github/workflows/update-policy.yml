@@ -4,7 +4,7 @@ name: Update Library Templates
 # yamllint disable-line rule:truthy
 on:
   schedule:
-    - cron: "0 8 * * 1-5"
+    - cron: "0 8 * * 1"
   workflow_dispatch:
     inputs:
       enterprise-scale-repository-branch:
@@ -42,11 +42,11 @@ jobs:
           path: ${{ env.remote_repository }}
           ref: ${{ env.remote_repository_branch }}
 
-      - uses: tibdex/github-app-token@v2
+      - uses: /actions/create-github-app-token@v1
         id: generate-token
         with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Configure local git
         run: |
@@ -105,6 +105,14 @@ jobs:
           git commit -m '${{ env.pr_title }}'
           git push origin ${{ env.branch_name }}
         working-directory: ${{ github.repository }}
+
+      - name: close and comment out of date prs
+        if: steps.git_status.outputs.changes > 0
+        run: |
+          PULL_REQUESTS=$(gh pr list --search "${{ env.pr_title }}" --json number,headRefName)
+          echo "$PULL_REQUESTS" | jq -r '.[] | .number' | xargs -I {} gh pr close {} --delete-branch --comment "Out of date PR, closing and deleting branch"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Create pull request
         if: steps.git_status.outputs.changes > 0

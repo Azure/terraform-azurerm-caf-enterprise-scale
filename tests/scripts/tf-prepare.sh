@@ -27,36 +27,13 @@ CERTIFICATE_CLIENT_ID=$(
     --name "$SPN_NAME" \
     --role "Owner" \
     --scope "/providers/Microsoft.Management/managementGroups/$ARM_TENANT_ID" \
-    --keyvault "$KEY_VAULT_NAME" \
-    --cert "$SPN_NAME" \
     --only-show-errors \
     --query 'appId' \
     --out tsv
 )
 
-echo "==> Retrieving SPN certificate for authentication..."
-az keyvault secret download \
-  --file "$SPN_NAME.pem" \
-  --vault-name "$KEY_VAULT_NAME" \
-  --name "$SPN_NAME"
-
-echo "==> Generating SPN certificate password..."
-CERTIFICATE_PASSWORD='estf-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-'"$RANDOM"'-pwd'
-
-echo "==> Converting SPN certificate to PFX..."
-openssl pkcs12 \
-  -export \
-  -in "$SPN_NAME.pem" \
-  -out "$SPN_NAME.pfx" \
-  -passout pass:"$CERTIFICATE_PASSWORD"
-
-echo "==> Deleting SPN certificate in PEM format..."
-shred -uz "$SPN_NAME.pem"
-
 echo "==> Storing Client Certificate Details"
 echo "##vso[task.setvariable variable=ARM_CERTIFICATE_CLIENT_ID;]$CERTIFICATE_CLIENT_ID"
-echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PATH;]$CREDENTIALS_WORKSPACE/$SPN_NAME.pfx"
-echo "##vso[task.setvariable variable=ARM_CERTIFICATE_PASSWORD;]$CERTIFICATE_PASSWORD"
 
 echo "==> Terraform Variable (Root ID)   - $TF_ROOT_ID"
 echo "==> Terraform Version              - $TF_VERSION"
