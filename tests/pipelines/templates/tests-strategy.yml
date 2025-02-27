@@ -1,11 +1,13 @@
 ---
 steps:
-  - task: PowerShell@2
+  - task: AzurePowerShell@5
     name: build_strategy
     displayName: "Generate Build Strategy"
     inputs:
-      targetType: "inline"
-      script: "make azp-strategy"
+      azureSubscription: ado-mscet-cae-estf
+      scriptType: FilePath
+      scriptPath: "tests/scripts/azp-strategy.ps1"
+      failOnStandardError: true
+      azurePowerShellVersion: 'LatestVersion'  # Adding version specification for clarity
     env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       BILLING_SCOPE: $(BILLING_SCOPE)

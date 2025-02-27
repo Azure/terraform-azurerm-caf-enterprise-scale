@@ -4,7 +4,7 @@ name: "Tests (E2E)"
 trigger: none
 
 pool:
-  vmImage: ubuntu-20.04
+  vmImage: ubuntu-22.04
 
 variables:
   - group: csu-tf-environment
