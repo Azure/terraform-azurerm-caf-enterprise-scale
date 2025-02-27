@@ -1,13 +1,14 @@
 ---
 steps:
-  - task: AzureCLI@2
+  - task: AzurePowerShell@5
     name: build_strategy
     displayName: "Generate Build Strategy"
     inputs:
       azureSubscription: ado-mscet-cae-estf
-      scriptType: pscore
-      scriptLocation: scriptPath
+      scriptType: FilePath
       scriptPath: "tests/scripts/azp-strategy.ps1"
       failOnStandardError: true
+      azurePowerShellVersion: 'LatestVersion'  # Adding version specification for clarity
+
     env:
       BILLING_SCOPE: $(BILLING_SCOPE)
