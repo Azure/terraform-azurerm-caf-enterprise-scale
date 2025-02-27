@@ -42,7 +42,7 @@ jobs:
           path: ${{ env.remote_repository }}
           ref: ${{ env.remote_repository_branch }}
 
-      - uses: /actions/create-github-app-token@v1
+      - uses: actions/create-github-app-token@v1
         id: generate-token
         with:
           app-id: ${{ secrets.APP_ID }}

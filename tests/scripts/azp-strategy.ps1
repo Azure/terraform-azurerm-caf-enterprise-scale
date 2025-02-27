@@ -20,7 +20,6 @@ $ErrorActionPreference = "Stop"
 Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -InformationAction Continue
 
 $jsonDepth = 4
-$terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
 
 function Get-RandomId {
   [CmdletBinding()]

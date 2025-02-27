@@ -13,7 +13,6 @@ cd "$CREDENTIALS_WORKSPACE"
 
 echo "==> Creating SPN and Role Assignments..."
 SPN_NAME="ES-TestFramework-Job$TF_JOB_ID"
-KEY_VAULT_NAME="$DEFAULT_PREFIX-kv"
 CERTIFICATE_CLIENT_ID=$(
   az ad sp create-for-rbac \
     --name "$SPN_NAME" \
