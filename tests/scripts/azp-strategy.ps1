@@ -41,7 +41,7 @@ function Get-RandomId {
 $terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
 $terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
 
-$terraformVersions = @("1.7.0")
+$terraformVersions = @("1.9.0")
 $terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1(\.\d{1,2}){1,2}$" } | Select-Object -First 1
 
 $terraformVersions = $terraformVersions | Sort-Object
