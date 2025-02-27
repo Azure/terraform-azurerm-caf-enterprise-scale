@@ -7,8 +7,7 @@ steps:
       azureSubscription: ado-mscet-cae-estf
       scriptType: pscore
       scriptLocation: scriptPath
-      scriptPath: "tests/scripts/build-strategy.ps1"
+      scriptPath: "tests/scripts/azp-strategy.ps1"
       failOnStandardError: true
-      workingDirectory: "$(System.DefaultWorkingDirectory)"
     env:
       BILLING_SCOPE: $(BILLING_SCOPE)
