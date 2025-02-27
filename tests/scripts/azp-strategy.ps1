@@ -20,7 +20,6 @@ $ErrorActionPreference = "Stop"
 Write-Information "==> Generating Azure Pipelines Strategy Matrix..." -InformationAction Continue
 
 $jsonDepth = 4
-$terraformUrl = "https://api.github.com/repos/hashicorp/terraform/tags"
 
 function Get-RandomId {
   [CmdletBinding()]
@@ -38,13 +37,7 @@ function Get-RandomId {
 #     1.3.*  (latest 1)
 ########################################
 
-$terraformVersionsResponse = Invoke-RestMethod -Method Get -Uri $terraformUrl -FollowRelLink
-$terraformVersionsAll = $terraformVersionsResponse.name -replace "v", ""
-
-$terraformVersions = @("1.7.0")
-$terraformVersions += $terraformVersionsAll | Where-Object { $_ -match "^1(\.\d{1,2}){1,2}$" } | Select-Object -First 1
-
-$terraformVersions = $terraformVersions | Sort-Object
+$terraformVersions = @("1.11.0")
 
 $terraformVersionsCount = $terraformVersions.Count
 
@@ -54,8 +47,7 @@ $terraformVersionsCount = $terraformVersions.Count
 # - Latest Versions: (latest 1)
 #######################################
 
-$azurermProviderVersionBase = "3.108.0"
-$azurermProviderVersionLatest = "3.116.0"
+$azurermProviderVersionBase = "3.117.0"
 
 #######################################
 # Generate Subscription Aliases
@@ -68,20 +60,6 @@ if ((Get-Module -ListAvailable "Az.Accounts").Count -eq 0) {
 Import-Module -Name "Az.Accounts" -Force
 
 Write-Information "==> Getting Subscription Aliases..." -InformationAction Continue
-
-Write-Verbose "Switching Azure Context using Client ID [$($env:ARM_CLIENT_ID)]."
-$Credential = New-Object System.Management.Automation.PSCredential (
-  $($env:ARM_CLIENT_ID),
-  $($env:ARM_CLIENT_SECRET | ConvertTo-SecureString -AsPlainText -Force)
-)
-$ctx = Connect-AzAccount `
-  -ServicePrincipal `
-  -Tenant $($env:ARM_TENANT_ID) `
-  -SubscriptionId $($env:ARM_SUBSCRIPTION_ID) `
-  -Credential $Credential `
-  -WarningAction SilentlyContinue
-
-Write-Information " Successfully authenticated account ($($ctx.Context.Account.Id))." -InformationAction Continue
 
 Write-Verbose "Checking for Management Subscription Aliases."
 $subscriptionAliasesManagement = [PSCustomObject]@{}
@@ -149,9 +127,7 @@ $matrixObject = [PSCustomObject]@{}
 for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
   $terraformVersion = $terraformVersions[$i]
   $jobId1 = ($i * 2) + 1
-  $jobId2 = ($i * 2) + 2
   $jobName1 = "$jobId1. (TF: $terraformVersion, AZ: $azurermProviderVersionBase)"
-  $jobName2 = "$jobId2. (TF: $terraformVersion, AZ: $azurermProviderVersionLatest)"
   $matrixObject | Add-Member `
     -NotePropertyName $jobName1 `
     -NotePropertyValue @{
@@ -163,17 +139,6 @@ for ($i = 0; $i -lt $terraformVersionsCount; $i++) {
     TF_SUBSCRIPTION_ID_CONNECTIVITY = ($subscriptionAliasesConnectivity."csu-tf-connectivity-$jobId1")
   }
   Write-Information " Added job to matrix ($($jobName1))." -InformationAction Continue
-  $matrixObject | Add-Member `
-    -NotePropertyName $jobName2 `
-    -NotePropertyValue @{
-    TF_ROOT_ID                      = Get-RandomId
-    TF_VERSION                      = $terraformVersion
-    TF_AZ_VERSION                   = $azurermProviderVersionLatest
-    TF_JOB_ID                       = $jobId2
-    TF_SUBSCRIPTION_ID_MANAGEMENT   = ($subscriptionAliasesManagement."csu-tf-management-$jobId2")
-    TF_SUBSCRIPTION_ID_CONNECTIVITY = ($subscriptionAliasesConnectivity."csu-tf-connectivity-$jobId2")
-  }
-  Write-Information " Added job to matrix ($($jobName2))." -InformationAction Continue
 }
 
 # Convert PSCustomObject to JSON.
