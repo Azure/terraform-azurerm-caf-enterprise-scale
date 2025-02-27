@@ -92,7 +92,8 @@
             "value": "[parameters('SqlDbTdeDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SqlDbSecurityAlertPoliciesDeploySqlSecurity",
@@ -102,7 +103,8 @@
             "value": "[parameters('SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SqlDbAuditingSettingsDeploySqlSecurity",
@@ -112,7 +114,8 @@
             "value": "[parameters('SqlDbAuditingSettingsDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SqlDbVulnerabilityAssessmentsDeploySqlSecurity",
@@ -128,7 +131,8 @@
             "value": "[parameters('vulnerabilityAssessmentsStorageID')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       }
     ],
     "policyDefinitionGroups": null

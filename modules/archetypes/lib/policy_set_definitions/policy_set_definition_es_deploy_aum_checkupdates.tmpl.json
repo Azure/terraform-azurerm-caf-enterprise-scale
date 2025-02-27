@@ -8,7 +8,7 @@
     "displayName": "Configure periodic checking for missing system updates on azure virtual machines and Arc-enabled virtual machines",
     "description": "Configure auto-assessment (every 24 hours) for OS updates. You can control the scope of assignment according to machine subscription, resource group, location or tag. Learn more about this for Windows: https://aka.ms/computevm-windowspatchassessmentmode, for Linux: https://aka.ms/computevm-linuxpatchassessmentmode.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Security Center",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -79,7 +79,8 @@
             "value": "[parameters('tagOperator')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "4.*.*"
       },
       {
         "policyDefinitionReferenceId": "azureUpdateManagerVmCheckUpdateLinux",
@@ -101,7 +102,8 @@
             "value": "[parameters('tagOperator')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "4.*.*"
       },
       {
         "policyDefinitionReferenceId": "azureUpdateManagerVmArcCheckUpdateWindows",
@@ -123,7 +125,8 @@
             "value": "[parameters('tagOperator')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "azureUpdateManagerVmArcCheckUpdateLinux",
@@ -145,7 +148,8 @@
             "value": "[parameters('tagOperator')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       }
     ],
     "policyDefinitionGroups": null

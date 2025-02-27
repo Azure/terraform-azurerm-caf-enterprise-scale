@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Cosmos DB",
     "description": "This policy initiative is a group of policies that ensures Cosmos DB is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Cosmos DB",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -70,7 +70,8 @@
             "value": "[parameters('cosmosDbModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-CosmosDb-Atp",
@@ -80,7 +81,8 @@
             "value": "[parameters('cosmosDbAtp')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-CosmosDb-Fw-Rules",
@@ -90,7 +92,8 @@
             "value": "[parameters('cosmosDbFwRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-CosmosDb-Local-Auth",
@@ -100,13 +103,15 @@
             "value": "[parameters('cosmosDbLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Append-CosmosDb-Metadata",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4750c32b-89c0-46af-bfcb-2e4541a818d5",
         "parameters": {},
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-CosmosDb-Public-Network-Access",
@@ -116,7 +121,8 @@
             "value": "[parameters('cosmosDbModifyPublicAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

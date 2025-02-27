@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Open AI (Cognitive Service)",
     "description": "This policy initiative is a group of policies that ensures Open AI (Cognitive Service) is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Cognitive Services",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -122,7 +122,8 @@
             "value": "[parameters('cognitiveServicesOutboundNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-OpenAi-NetworkAcls",
@@ -132,7 +133,8 @@
             "value": "[parameters('cognitiveServicesNetworkAcls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Cognitive-Services-Managed-Identity",
@@ -142,7 +144,8 @@
             "value": "[parameters('cognitiveServicesManagedIdentity')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Cognitive-Services-Local-Auth",
@@ -152,7 +155,8 @@
             "value": "[parameters('cognitiveServicesDisableLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Cognitive-Services-Cust-Storage",
@@ -162,7 +166,8 @@
             "value": "[parameters('cognitiveServicesCustomerStorage')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Cognitive-Services-Local-Auth",
@@ -172,7 +177,8 @@
             "value": "[parameters('cognitiveServicesModifyDisableLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AzureAI-Network-Access",
@@ -182,7 +188,8 @@
             "value": "[parameters('azureAiNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "Audit-AzureAI-Private-Link",
@@ -192,7 +199,8 @@
             "value": "[parameters('azureAiPrivateLink')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-AzureAI-Local-Key",
@@ -202,7 +210,8 @@
             "value": "[parameters('azureAiDisableLocalKey')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-AzureAI-Local-Key2",
@@ -212,7 +221,8 @@
             "value": "[parameters('azureAiDisableLocalKey2')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Aine-AzureAI-Diag-Settings",
@@ -222,7 +232,8 @@
             "value": "[parameters('azureAiDiagSettings')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

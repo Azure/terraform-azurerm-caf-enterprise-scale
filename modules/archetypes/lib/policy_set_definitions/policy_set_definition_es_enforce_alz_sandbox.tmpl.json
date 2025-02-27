@@ -8,7 +8,7 @@
     "displayName": "Enforce policies in the Sandbox Landing Zone",
     "description": "Enforce policies in the Sandbox Landing Zone.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Sandbox",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -66,7 +66,8 @@
             "value": "[parameters('listOfResourceTypesNotAllowed')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "SandboxDenyVnetPeering",
@@ -76,7 +77,8 @@
             "value": "[parameters('effectDenyVnetPeering')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

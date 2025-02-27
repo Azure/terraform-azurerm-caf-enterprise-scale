@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Data Explorer",
     "description": "This policy initiative is a group of policies that ensures Data Explorer is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Azure Data Explorer",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -63,7 +63,8 @@
             "value": "[parameters('adxSku')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ADX-Double-Encryption",
@@ -73,7 +74,8 @@
             "value": "[parameters('adxDoubleEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ADX-Encryption",
@@ -83,7 +85,8 @@
             "value": "[parameters('adxEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ADX-Public-Network-Access",
@@ -93,7 +96,8 @@
             "value": "[parameters('adxModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

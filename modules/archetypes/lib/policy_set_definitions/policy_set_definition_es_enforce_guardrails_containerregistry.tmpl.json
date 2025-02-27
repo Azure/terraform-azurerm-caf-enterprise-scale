@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Container Registry",
     "description": "This policy initiative is a group of policies that ensures Container Apps is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Container Registry",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -131,7 +131,8 @@
             "value": "[parameters('containerRegistryModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ContainerRegistry-Repo-Token",
@@ -141,7 +142,8 @@
             "value": "[parameters('containerRegistryModifyRepositoryToken')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Arm-Audience",
@@ -151,7 +153,8 @@
             "value": "[parameters('containerRegistryArmAudience')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ContainerRegistry-Arm-Audience",
@@ -161,7 +164,8 @@
             "value": "[parameters('containerRegistryModifyArmAudience')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Sku-PrivateLink",
@@ -171,7 +175,8 @@
             "value": "[parameters('containerRegistrySkuPrivateLink')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ContainerRegistry-Anonymous-Auth",
@@ -181,7 +186,8 @@
             "value": "[parameters('containerRegistryModifyAnAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Anonymous-Auth",
@@ -191,7 +197,8 @@
             "value": "[parameters('containerRegistryAnAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Exports",
@@ -201,7 +208,8 @@
             "value": "[parameters('containerRegistryExports')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Local-Auth",
@@ -211,7 +219,8 @@
             "value": "[parameters('containerRegistryLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Repo-Token",
@@ -221,7 +230,8 @@
             "value": "[parameters('containerRegistryRepositoryToken')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerRegistry-Unrestricted-Network-Access",
@@ -231,7 +241,8 @@
             "value": "[parameters('containerRegistryUnrestrictedNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-ContainerRegistry-Public-Network-Access",
@@ -241,7 +252,8 @@
             "value": "[parameters('containerRegistryModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

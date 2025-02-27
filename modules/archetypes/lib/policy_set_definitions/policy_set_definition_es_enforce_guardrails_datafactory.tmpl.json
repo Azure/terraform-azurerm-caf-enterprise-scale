@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Data Factory",
     "description": "This policy initiative is a group of policies that ensures Data Factory is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Data Factory",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -72,7 +72,8 @@
             "value": "[parameters('adfManagedIdentity')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Adf-Git",
@@ -82,7 +83,8 @@
             "value": "[parameters('adfGit')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Adf-Linked-Service-Key-Vault",
@@ -92,7 +94,8 @@
             "value": "[parameters('adfLinkedServiceKeyVault')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Adf-Sql-Integration",
@@ -102,7 +105,8 @@
             "value": "[parameters('adfSqlIntegration')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Adf-Public-Network-Access",
@@ -112,7 +116,8 @@
             "value": "[parameters('adfModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
