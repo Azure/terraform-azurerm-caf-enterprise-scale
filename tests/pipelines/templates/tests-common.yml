@@ -11,12 +11,6 @@ steps:
       targetType: "inline"
       script: "make tf-install"
 
-  - task: GoTool@0
-    displayName: "Install Go"
-    inputs:
-      version: "1.22.3"
-    condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
-
   - task: AzureCLI@2
     displayName: "Prepare Terraform Environment"
     inputs:
