@@ -41,6 +41,7 @@ cat >providers_override.tf <<TFCONFIG
 provider "azurerm" {
   features {}
 
+  use_oidc        = true
   tenant_id       = "$ARM_TENANT_ID"
   client_id       = "$ARM_CERTIFICATE_CLIENT_ID"
   subscription_id = "$TF_SUBSCRIPTION_ID_MANAGEMENT"
