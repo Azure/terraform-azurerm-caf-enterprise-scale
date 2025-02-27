@@ -5,15 +5,6 @@ set -e
 # Shell Script
 # - Terraform Create or Update Azure Backend Storage
 #
-
-echo "==> Authenticating cli..."
-az login \
-    --service-principal \
-    --tenant "$ARM_TENANT_ID" \
-    --username "$ARM_CLIENT_ID" \
-    --password "$ARM_CLIENT_SECRET" \
-    --query [?isDefault]
-
 echo "==> Setting active Subscription..."
 az account set \
     --subscription "$ARM_SUBSCRIPTION_ID"
