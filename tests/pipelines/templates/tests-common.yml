@@ -25,4 +25,3 @@ steps:
       scriptPath: "tests/scripts/tf-prepare.sh"
       scriptType: bash
       failOnStandardError: true
-      workingDirectory: "$(System.DefaultWorkingDirectory)"
