@@ -69,20 +69,6 @@ Import-Module -Name "Az.Accounts" -Force
 
 Write-Information "==> Getting Subscription Aliases..." -InformationAction Continue
 
-Write-Verbose "Switching Azure Context using Client ID [$($env:ARM_CLIENT_ID)]."
-$Credential = New-Object System.Management.Automation.PSCredential (
-  $($env:ARM_CLIENT_ID),
-  $($env:ARM_CLIENT_SECRET | ConvertTo-SecureString -AsPlainText -Force)
-)
-$ctx = Connect-AzAccount `
-  -ServicePrincipal `
-  -Tenant $($env:ARM_TENANT_ID) `
-  -SubscriptionId $($env:ARM_SUBSCRIPTION_ID) `
-  -Credential $Credential `
-  -WarningAction SilentlyContinue
-
-Write-Information " Successfully authenticated account ($($ctx.Context.Account.Id))." -InformationAction Continue
-
 Write-Verbose "Checking for Management Subscription Aliases."
 $subscriptionAliasesManagement = [PSCustomObject]@{}
 for ($i = 1; $i -lt (($terraformVersionsCount * 2) + 1); $i++) {
