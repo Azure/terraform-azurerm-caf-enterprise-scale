@@ -8,8 +8,6 @@ set -e
 echo "==> Setting active Subscription..."
 az account set \
     --subscription "$ARM_SUBSCRIPTION_ID"
-az account list \
-    --query "[?isDefault]"
 
 echo "==> Create or update Resource Group..."
 RSG_NAME="$DEFAULT_PREFIX"
