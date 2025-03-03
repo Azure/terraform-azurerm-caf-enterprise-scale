@@ -386,7 +386,8 @@
             "value": "[parameters('AppServiceHttpEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AppServiceminTlsVersion",
@@ -399,7 +400,8 @@
             "value": "[parameters('AppServiceminTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "FunctionLatestTlsEffect",
@@ -409,7 +411,8 @@
             "value": "[parameters('FunctionLatestTlsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "WebAppServiceLatestTlsEffect",
@@ -419,7 +422,8 @@
             "value": "[parameters('WebAppServiceLatestTlsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "APIAppServiceHttpsEffect",
@@ -429,7 +433,8 @@
             "value": "[parameters('APIAppServiceHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "FunctionServiceHttpsEffect",
@@ -439,7 +444,8 @@
             "value": "[parameters('FunctionServiceHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "WebAppServiceHttpsEffect",
@@ -449,7 +455,8 @@
             "value": "[parameters('WebAppServiceHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AKSIngressHttpsOnlyEffect",
@@ -459,7 +466,8 @@
             "value": "[parameters('AKSIngressHttpsOnlyEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "MySQLEnableSSLDeployEffect",
@@ -472,7 +480,8 @@
             "value": "[parameters('MySQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "MySQLEnableSSLEffect",
@@ -485,7 +494,8 @@
             "value": "[parameters('MySQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLEnableSSLDeployEffect",
@@ -498,7 +508,8 @@
             "value": "[parameters('PostgreSQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLEnableSSLEffect",
@@ -511,7 +522,8 @@
             "value": "[parameters('PostgreSQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "RedisTLSDeployEffect",
@@ -524,7 +536,8 @@
             "value": "[parameters('RedisMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "RedisdisableNonSslPort",
@@ -534,7 +547,8 @@
             "value": "[parameters('RedisTLSDeployEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "RedisDenyhttps",
@@ -547,7 +561,8 @@
             "value": "[parameters('RedisMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLManagedInstanceTLSDeployEffect",
@@ -560,7 +575,8 @@
             "value": "[parameters('SQLManagedInstanceMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLManagedInstanceTLSEffect",
@@ -573,7 +589,8 @@
             "value": "[parameters('SQLManagedInstanceMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLServerTLSDeployEffect",
@@ -586,7 +603,8 @@
             "value": "[parameters('SQLServerminTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLServerTLSEffect",
@@ -599,7 +617,8 @@
             "value": "[parameters('SQLServerminTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StorageHttpsEnabledEffect",
@@ -612,7 +631,8 @@
             "value": "[parameters('StorageMinimumTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StorageDeployHttpsEnabledEffect",
@@ -625,7 +645,8 @@
             "value": "[parameters('StorageMinimumTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "ContainerAppsHttpsOnlyEffect",
@@ -635,7 +656,8 @@
             "value": "[parameters('ContainerAppsHttpsOnlyEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       }
     ],
     "policyDefinitionGroups": null

@@ -1,6 +1,6 @@
 {
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2022-06-01",
+  "apiVersion": "2024-04-01",
   "name": "Deploy-AzActivity-Log",
   "location": "${default_location}",
   "dependsOn": [],
@@ -11,6 +11,7 @@
     "description": "Deploys the diagnostic settings for Azure Activity to stream subscriptions audit logs to a Log Analytics workspace to monitor subscription-level events",
     "displayName": "Configure Azure Activity logs to stream to specified Log Analytics workspace",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
+    "definitionVersion": "1.*.*",
     "enforcementMode": "Default",
     "nonComplianceMessages": [
       {

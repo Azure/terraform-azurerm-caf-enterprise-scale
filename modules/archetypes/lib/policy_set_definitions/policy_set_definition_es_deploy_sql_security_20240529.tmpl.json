@@ -8,7 +8,7 @@
     "displayName": "Deploy SQL Database built-in SQL security configuration",
     "description": "Deploy auditing, Alert, TDE and SQL vulnerability to SQL Databases when it not exist in the deployment",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "SQL",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "replacesPolicy": "Deploy-Sql-Security",
@@ -91,7 +91,8 @@
             "value": "[parameters('SqlDbTdeDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "SqlDbSecurityAlertPoliciesDeploySqlSecurity",
@@ -101,7 +102,8 @@
             "value": "[parameters('SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SqlDbAuditingSettingsDeploySqlSecurity",
@@ -111,7 +113,8 @@
             "value": "[parameters('SqlDbAuditingSettingsDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SqlDbVulnerabilityAssessmentsDeploySqlSecurity",
@@ -127,7 +130,8 @@
             "value": "[parameters('vulnerabilityAssessmentsStorageID')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

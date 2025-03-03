@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Cognitive Services",
     "description": "This policy initiative is a group of policies that ensures Cognitive Services is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Cognitive Services",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -104,7 +104,8 @@
             "value": "[parameters('cognitiveSearchSku')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-CongitiveSearch-LocalAuth",
@@ -114,7 +115,8 @@
             "value": "[parameters('cognitiveSearchLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-CogntiveSearch-LocalAuth",
@@ -124,7 +126,8 @@
             "value": "[parameters('modifyCognitiveSearchLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-CogntiveSearch-PublicEndpoint",
@@ -134,7 +137,8 @@
             "value": "[parameters('modifyCognitiveSearchPublicEndpoint')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Cognitive-Services-Public-Network-Access",
@@ -144,7 +148,8 @@
             "value": "[parameters('cognitiveServicesModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Cognitive-Services-Managed-Identity",
@@ -154,7 +159,8 @@
             "value": "[parameters('cognitiveServicesManagedIdentity')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Cognitive-Services-Customer-Storage",
@@ -164,7 +170,8 @@
             "value": "[parameters('cognitiveServicesCustomerStorage')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Cognitive-Services-Local-Auth",
@@ -174,7 +181,8 @@
             "value": "[parameters('cognitiveServicesLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Aine-Cognitive-Services-Resource-Logs",
@@ -184,7 +192,8 @@
             "value": "[parameters('cognitiveServicesResourceLogs')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "5.*.*"
       }
     ],
     "policyDefinitionGroups": null

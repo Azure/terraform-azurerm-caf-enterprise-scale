@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Azure Key Vault",
     "description": "Enforce recommended guardrails for Azure Key Vault.",
     "metadata": {
-      "version": "2.1.0",
+      "version": "2.2.0",
       "category": "Key Vault",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -21,7 +21,7 @@
       "effectKvSoftDelete": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Soft Delete",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -34,7 +34,7 @@
       "effectKvPurgeProtection": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Purge Protection",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -47,7 +47,7 @@
       "effectKvSecretsExpire": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Secrets Expiry",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -60,7 +60,7 @@
       "effectKvKeysExpire": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Keys Expiry",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -73,7 +73,7 @@
       "effectKvFirewallEnabled": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Firewall Enabled",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -86,7 +86,7 @@
       "effectKvCertLifetime": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Certificate Lifetime",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -118,7 +118,7 @@
       "effectKvKeysLifetime": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Keys Lifetime",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -139,7 +139,7 @@
       "effectKvSecretsLifetime": {
         "type": "String",
         "metadata": {
-          "displayName": "Effect",
+          "displayName": "Effect - KV Secrets Lifetime",
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
@@ -456,7 +456,8 @@
             "value": "[parameters('effectKvSoftDelete')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvPurgeProtection",
@@ -466,7 +467,8 @@
             "value": "[parameters('effectKvPurgeProtection')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvSecretsExpire",
@@ -476,7 +478,8 @@
             "value": "[parameters('effectKvSecretsExpire')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvKeysExpire",
@@ -486,7 +489,8 @@
             "value": "[parameters('effectKvKeysExpire')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvFirewallEnabled",
@@ -496,7 +500,8 @@
             "value": "[parameters('effectKvFirewallEnabled')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvCertLifetime",
@@ -512,7 +517,8 @@
             "value": "[parameters('minimumCertLifeDaysBeforeExpiry')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvKeysLifetime",
@@ -525,7 +531,8 @@
             "value": "[parameters('minimumKeysLifeDaysBeforeExpiry')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "KvSecretsLifetime",
@@ -538,7 +545,8 @@
             "value": "[parameters('minimumSecretsLifeDaysBeforeExpiry')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-RSA-Keys-without-MinCertSize",
@@ -551,7 +559,8 @@
             "value": "[parameters('keyVaultMinimumRSACertificateSizeValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-keyVaultManagedHsm-RSA-Keys-without-MinKeySize",
@@ -564,7 +573,8 @@
             "value": "[parameters('keyVaultManagedHsmMinimumRSAKeySizeValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-RSA-Keys-without-MinKeySize",
@@ -577,7 +587,8 @@
             "value": "[parameters('keyVaultMinimumRSAKeySizeValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-without-ArmRbac",
@@ -587,7 +598,8 @@
             "value": "[parameters('keyVaultArmRbac')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Hms-PurgeProtection",
@@ -597,7 +609,8 @@
             "value": "[parameters('keyVaultHmsPurgeProtection')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Cert-Period",
@@ -610,7 +623,8 @@
             "value": "[parameters('keyVaultCertValidPeriod')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Hms-Key-Expire",
@@ -620,7 +634,8 @@
             "value": "[parameters('keyVaultHmsKeysExpiration')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Keys-Expire",
@@ -633,7 +648,8 @@
             "value": "[parameters('keysValidityInDays')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Secrets-ValidityDays",
@@ -646,7 +662,8 @@
             "value": "[parameters('secretsValidityInDays')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Key-Types",
@@ -656,7 +673,8 @@
             "value": "[parameters('keyVaultCertKeyTypes')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Elliptic-Curve",
@@ -666,7 +684,8 @@
             "value": "[parameters('keyVaultEllipticCurve')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Cryptographic-Type",
@@ -676,7 +695,8 @@
             "value": "[parameters('keyVaultCryptographicType')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Key-Active",
@@ -689,7 +709,8 @@
             "value": "[parameters('keysActiveInDays')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Curve-Names",
@@ -699,7 +720,8 @@
             "value": "[parameters('keysCurveNames')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-KV-Secret-ActiveDays",
@@ -712,7 +734,8 @@
             "value": "[parameters('secretsActiveInDays')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Kv-Secret-Content-Type",
@@ -722,7 +745,8 @@
             "value": "[parameters('keyVaultSecretContentType')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Kv-Non-Integrated-Ca",
@@ -735,7 +759,8 @@
             "value": "[parameters('keyVaultNonIntegratedCaValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Kv-Integrated-Ca",
@@ -748,7 +773,8 @@
             "value": "[parameters('keyVaultIntegratedCaValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Kv-Hsm-MinimumDays-Before-Expiration",
@@ -761,7 +787,8 @@
             "value": "[parameters('keyVaultHsmMinimumDaysBeforeExpirationValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-Kv-Hsm-Curve-Names",
@@ -774,7 +801,8 @@
             "value": "[parameters('keyVaultHmsCurveNamesValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-Kv-Cert-Expiration-Within-Specific-Number-Days",
@@ -787,7 +815,8 @@
             "value": "[parameters('keyVaultCertificateNotExpireWithinSpecifiedNumberOfDaysValue')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       }
     ],
     "policyDefinitionGroups": null

@@ -1,6 +1,6 @@
 {
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2022-06-01",
+  "apiVersion": "2024-04-01",
   "name": "Enable-DDoS-VNET",
   "location": "${default_location}",
   "dependsOn": [],
@@ -11,6 +11,7 @@
     "description": "Protect your virtual networks against volumetric and protocol attacks with Azure DDoS Network Protection. For more information, visit https://aka.ms/ddosprotectiondocs.",
     "displayName": "Virtual networks should be protected by Azure DDoS Network Protection",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+    "definitionVersion": "1.*.*",
     "enforcementMode": "Default",
     "parameters": {
       "ddosPlan": {

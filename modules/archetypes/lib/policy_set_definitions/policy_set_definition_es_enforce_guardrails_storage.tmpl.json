@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Storage Account",
     "description": "This policy initiative is a group of policies that ensures Storage is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Storage",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -239,7 +239,8 @@
             "value": "[parameters('storageAccountsAllowedCopyScope')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-ServicesEncryption",
@@ -249,7 +250,8 @@
             "value": "[parameters('storageServicesEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-LocalUser",
@@ -259,7 +261,8 @@
             "value": "[parameters('storageLocalUser')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-SFTP",
@@ -269,7 +272,8 @@
             "value": "[parameters('storageSftp')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-NetworkAclsBypass",
@@ -282,7 +286,8 @@
             "value": "[parameters('storageAllowedNetworkAclsBypass')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-ResourceAccessRulesTenantId",
@@ -292,7 +297,8 @@
             "value": "[parameters('storageResourceAccessRulesTenantId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-ResourceAccessRulesResourceId",
@@ -302,7 +308,8 @@
             "value": "[parameters('storageResourceAccessRulesResourceId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-NetworkAclsVirtualNetworkRules",
@@ -312,7 +319,8 @@
             "value": "[parameters('storageNetworkAclsVirtualNetworkRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-ContainerDeleteRetentionPolicy",
@@ -325,7 +333,8 @@
             "value": "[parameters('storageMinContainerDeleteRetentionInDays')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-CorsRules",
@@ -335,7 +344,8 @@
             "value": "[parameters('storageCorsRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Account-Encryption",
@@ -345,7 +355,8 @@
             "value": "[parameters('storageAccountsDoubleEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Cross-Tenant",
@@ -355,7 +366,8 @@
             "value": "[parameters('storageAccountsCrossTenant')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Shared-Key",
@@ -365,7 +377,8 @@
             "value": "[parameters('storageAccountSharedKey')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Infra-Encryption",
@@ -375,7 +388,8 @@
             "value": "[parameters('storageAccountsInfraEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Classic",
@@ -385,7 +399,8 @@
             "value": "[parameters('storageClassicToArm')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-Storage-Threat-Protection",
@@ -395,7 +410,8 @@
             "value": "[parameters('storageThreatProtection')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Restrict-NetworkRules",
@@ -405,7 +421,8 @@
             "value": "[parameters('storageAccountRestrictNetworkRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-NetworkRules",
@@ -415,7 +432,8 @@
             "value": "[parameters('storageAccountNetworkRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Account-Keys-Expire",
@@ -425,7 +443,8 @@
             "value": "[parameters('storageKeysExpiration')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Storage-FileSync-PublicEndpoint",
@@ -435,7 +454,8 @@
             "value": "[parameters('modifyStorageFileSyncPublicEndpoint')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Blob-Storage-Account-PublicEndpoint",
@@ -445,7 +465,8 @@
             "value": "[parameters('modifyStorageAccountPublicEndpoint')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Storage-Account-PublicEndpoint",
@@ -455,7 +476,8 @@
             "value": "[parameters('storageAccountsModifyDisablePublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

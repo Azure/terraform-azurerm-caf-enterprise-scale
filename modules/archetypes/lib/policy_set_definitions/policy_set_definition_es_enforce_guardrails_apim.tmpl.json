@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for API Management",
     "description": "This policy initiative is a group of policies that ensures API Management is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "API Management",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -126,7 +126,8 @@
             "value": "[parameters('apimSecrets')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-without-Vnet",
@@ -136,7 +137,8 @@
             "value": "[parameters('apimVnetUsage')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-APIM-TLS",
@@ -146,7 +148,8 @@
             "value": "[parameters('apimTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-Protocols",
@@ -156,7 +159,8 @@
             "value": "[parameters('apimEncryptedProtocols')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-Authn",
@@ -166,7 +170,8 @@
             "value": "[parameters('apimCallApiAuthn')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-Direct-Endpoint",
@@ -176,7 +181,8 @@
             "value": "[parameters('apimDirectApiEndpoint')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-Cert-Validation",
@@ -186,7 +192,8 @@
             "value": "[parameters('apimApiBackendCertValidation')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-Apim-Public-NetworkAccess",
@@ -196,7 +203,8 @@
             "value": "[parameters('apimDisablePublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-Sku-Vnet",
@@ -206,7 +214,8 @@
             "value": "[parameters('apimSkuVnet')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Apim-Version",
@@ -216,7 +225,8 @@
             "value": "[parameters('minimumApiVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Api-subscription-scope",
@@ -226,7 +236,8 @@
             "value": "[parameters('apiSubscriptionScope')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
