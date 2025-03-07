@@ -8,7 +8,7 @@
     "displayName": "Enforce policies in the Decommissioned Landing Zone",
     "description": "Enforce policies in the Decommissioned Landing Zone.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Decommissioned",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -37,13 +37,15 @@
             "value": "[parameters('listOfResourceTypesAllowed')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "DecomShutdownMachines",
         "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Deploy-Vm-autoShutdown",
         "parameters": {},
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

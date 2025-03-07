@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for SQL and SQL Managed Instance",
     "description": "This policy initiative is a group of policies that ensures SQL and SQL Managed Instance is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "SQL",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -62,7 +62,8 @@
             "value": "[parameters('sqlManagedDefender')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sql-Aad-Only",
@@ -72,7 +73,8 @@
             "value": "[parameters('sqlAadOnly')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sql-Managed-Aad-Only",
@@ -82,13 +84,15 @@
             "value": "[parameters('sqlManagedAadOnly')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-Sql-Adv-Data",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/6134c3db-786f-471e-87bc-8f479dc890f6",
         "parameters": {},
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Sql-PublicNetworkAccess",
@@ -98,7 +102,8 @@
             "value": "[parameters('modifySqlPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

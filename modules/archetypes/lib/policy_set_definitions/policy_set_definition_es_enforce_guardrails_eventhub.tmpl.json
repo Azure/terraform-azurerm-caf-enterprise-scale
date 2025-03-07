@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Event Hub",
     "description": "This policy initiative is a group of policies that ensures Event Hub is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Event Hub",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -63,7 +63,8 @@
             "value": "[parameters('eventHubNamespacesDoubleEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-EH-Local-Auth",
@@ -73,7 +74,8 @@
             "value": "[parameters('eventHubNamespacesModifyLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EH-Local-Auth",
@@ -83,7 +85,8 @@
             "value": "[parameters('eventHubNamespacesLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EH-Auth-Rules",
@@ -93,7 +96,8 @@
             "value": "[parameters('eventHubAuthRules')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
