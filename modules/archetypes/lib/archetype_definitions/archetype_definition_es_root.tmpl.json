@@ -197,6 +197,7 @@
       "Enforce-ALZ-Sandbox",
       "Enforce-Backup",
       "Enforce-Encryption-CMK_20250218",
+      "Enforce-Encryption-CMK",
       "Enforce-EncryptTransit_20240509",
       "Enforce-EncryptTransit_20241211",
       "Enforce-EncryptTransit",
