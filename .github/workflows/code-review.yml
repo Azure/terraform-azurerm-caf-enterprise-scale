@@ -42,7 +42,7 @@ jobs:
       #     tflint --chdir=./examples/400-multi-with-remote-state/management --config=$CONFIG_FILE
 
       - name: Lint Code Base
-        uses: github/super-linter@v6
+        uses: github/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: false
           # Need to define main branch as default
