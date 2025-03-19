@@ -105,7 +105,8 @@
             "value": "[parameters('effect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "defenderForSqlArcMdsql",
@@ -115,7 +116,8 @@
             "value": "[parameters('effect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "defenderForSqlArcMdsqlDcr",
@@ -143,7 +145,8 @@
             "value": "[parameters('dcrId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "defenderForSqlArcDcrAssociation",
@@ -165,7 +168,8 @@
             "value": "[parameters('dcrId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "defenderForSqlAma",
@@ -181,7 +185,8 @@
             "value": "[parameters('userAssignedIdentityName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "defenderForSqlMdsql",
@@ -203,7 +208,8 @@
             "value": "[parameters('dcrId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "defenderForSqlMdsqlDcr",
@@ -231,7 +237,8 @@
             "value": "[parameters('dcrId')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       }
     ],
     "policyDefinitionGroups": null

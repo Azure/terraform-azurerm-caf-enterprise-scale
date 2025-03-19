@@ -1,5 +1,5 @@
 {
-  "name": "Enforce-Encryption-CMK",
+  "name": "Enforce-Encryption-CMK_20250218",
   "type": "Microsoft.Authorization/policySetDefinitions",
   "apiVersion": "2021-06-01",
   "scope": null,
@@ -8,9 +8,10 @@
     "displayName": "Deny or Audit resources without Encryption with a customer-managed key (CMK)",
     "description": "Deny or Audit resources without Encryption with a customer-managed key (CMK)",
     "metadata": {
-      "version": "3.1.0",
+      "version": "1.0.0",
       "category": "Encryption",
       "source": "https://github.com/Azure/Enterprise-Scale/",
+      "replacesPolicy": "Enforce-Encryption-CMK",
       "alzCloudEnvironments": [
         "AzureCloud"
       ]
@@ -226,10 +227,9 @@
       },
       "cognitiveSearchCmk": {
         "type": "string",
-        "defaultValue": "Deny",
+        "defaultValue": "AuditIfNotExists",
         "allowedValues": [
-          "Audit",
-          "Deny",
+          "AuditIfNotExists",
           "Disabled"
         ]
       },
@@ -352,7 +352,8 @@
             "value": "[parameters('ACRCmkEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AksCmkDeny",
@@ -362,7 +363,8 @@
             "value": "[parameters('AksCmkEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "WorkspaceCMK",
@@ -372,7 +374,8 @@
             "value": "[parameters('WorkspaceCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "CognitiveServicesCMK",
@@ -382,7 +385,8 @@
             "value": "[parameters('CognitiveServicesCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "CosmosCMKEffect",
@@ -392,7 +396,8 @@
             "value": "[parameters('CosmosCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "DataBoxCMKEffect",
@@ -402,7 +407,8 @@
             "value": "[parameters('DataBoxCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "StreamAnalyticsCMKEffect",
@@ -412,7 +418,8 @@
             "value": "[parameters('StreamAnalyticsCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SynapseWorkspaceCMKEffect",
@@ -422,7 +429,8 @@
             "value": "[parameters('SynapseWorkspaceCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "StorageCMKEffect",
@@ -432,7 +440,8 @@
             "value": "[parameters('StorageCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "MySQLCMKEffect",
@@ -442,7 +451,8 @@
             "value": "[parameters('MySQLCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLCMKEffect",
@@ -452,7 +462,8 @@
             "value": "[parameters('PostgreSQLCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SqlServerTDECMKEffect",
@@ -462,7 +473,8 @@
             "value": "[parameters('SqlServerTDECMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "HealthcareAPIsCMKEffect",
@@ -472,7 +484,8 @@
             "value": "[parameters('HealthcareAPIsCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AzureBatchCMKEffect",
@@ -482,7 +495,8 @@
             "value": "[parameters('AzureBatchCMKEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "EncryptedVMDisksEffect",
@@ -492,7 +506,8 @@
             "value": "[parameters('EncryptedVMDisksEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aa-Cmk",
@@ -502,7 +517,8 @@
             "value": "[parameters('AutomationAccountCmkEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Backup-Cmk",
@@ -512,7 +528,8 @@
             "value": "[parameters('BackupCmkEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*-preview"
       },
       {
         "policyDefinitionReferenceId": "Deny-CognitiveSearch-Cmk",
@@ -522,7 +539,8 @@
             "value": "[parameters('cognitiveSearchCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-OsAndDataDisk-Cmk",
@@ -532,7 +550,8 @@
             "value": "[parameters('osAndDataDiskCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerInstance-Cmk",
@@ -542,7 +561,8 @@
             "value": "[parameters('containerInstanceCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ADX-Cmk",
@@ -552,7 +572,8 @@
             "value": "[parameters('adxCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Adf-Cmk",
@@ -562,7 +583,8 @@
             "value": "[parameters('adfCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EH-Cmk",
@@ -572,7 +594,8 @@
             "value": "[parameters('eventHubNamespacesCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EH-Premium-CMK",
@@ -582,7 +605,8 @@
             "value": "[parameters('eventHubPremiumCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sb-Cmk",
@@ -592,7 +616,8 @@
             "value": "[parameters('serviceBusDenyCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sql-Managed-Cmk",
@@ -602,7 +627,8 @@
             "value": "[parameters('sqlManagedCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Table-Cmk",
@@ -612,7 +638,8 @@
             "value": "[parameters('storageTableCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Encryption-Cmk",
@@ -622,7 +649,8 @@
             "value": "[parameters('storageAccountsEncryptionCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Queue-Cmk",
@@ -632,7 +660,8 @@
             "value": "[parameters('storageQueueCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-BotService-Cmk",
@@ -642,7 +671,8 @@
             "value": "[parameters('botServiceCmk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

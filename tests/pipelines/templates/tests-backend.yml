@@ -1,10 +1,11 @@
 ---
 steps:
-  - task: Bash@3
+  - task: AzureCLI@2
     name: prepare_backend
     displayName: "Prepare Backend Storage"
     inputs:
-      targetType: "inline"
-      script: "make azp-backend"
-    env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      azureSubscription: ado-mscet-cae-estf
+      scriptLocation: scriptPath
+      scriptPath: "tests/scripts/azp-backend.sh"
+      scriptType: bash
+      failOnStandardError: true

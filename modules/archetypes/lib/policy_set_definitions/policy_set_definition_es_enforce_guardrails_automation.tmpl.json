@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Automation Account",
     "description": "This policy initiative is a group of policies that ensures Automation Account is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Automation",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -79,7 +79,8 @@
             "value": "[parameters('autoHotPatch')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aa-Managed-Identity",
@@ -89,7 +90,8 @@
             "value": "[parameters('aaManagedIdentity')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aa-Local-Auth",
@@ -99,7 +101,8 @@
             "value": "[parameters('aaLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aa-Variables-Encrypt",
@@ -109,7 +112,8 @@
             "value": "[parameters('aaVariablesEncryption')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Aa-Local-Auth",
@@ -119,7 +123,8 @@
             "value": "[parameters('aaModifyLocalAUth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Modify-Aa-Public-Network-Access",
@@ -129,7 +134,8 @@
             "value": "[parameters('aaModifyPublicNetworkAccess')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

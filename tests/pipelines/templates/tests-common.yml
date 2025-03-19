@@ -11,16 +11,11 @@ steps:
       targetType: "inline"
       script: "make tf-install"
 
-  - task: GoTool@0
-    displayName: "Install Go"
-    inputs:
-      version: "1.22.3"
-    condition: and(succeeded(), eq('${{ parameters.run_type }}', 'unit'))
-
-  - task: Bash@3
+  - task: AzureCLI@2
     displayName: "Prepare Terraform Environment"
     inputs:
-      targetType: "inline"
-      script: "make tf-prepare"
-    env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      azureSubscription: ado-mscet-cae-estf
+      scriptLocation: scriptPath
+      scriptPath: "tests/scripts/tf-prepare.sh"
+      scriptType: bash
+      failOnStandardError: true

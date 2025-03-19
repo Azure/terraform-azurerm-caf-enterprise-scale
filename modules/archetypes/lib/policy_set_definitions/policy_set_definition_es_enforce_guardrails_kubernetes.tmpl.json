@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Kubernetes",
     "description": "This policy initiative is a group of policies that ensures Kubernetes is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Kubernetes",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -186,7 +186,8 @@
             "value": "[parameters('aksWindowsContainerAdministrator')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Shared-Host-Process-Namespace",
@@ -196,7 +197,8 @@
             "value": "[parameters('aksShareHostProcessAndNamespace')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "5.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Naked-Pods",
@@ -206,7 +208,8 @@
             "value": "[parameters('aksNakedPods')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Default-Namespace",
@@ -216,7 +219,8 @@
             "value": "[parameters('aksDefaultNamespace')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "4.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Internal-Lb",
@@ -226,7 +230,8 @@
             "value": "[parameters('aksInternalLb')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "8.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Temp-Disk-Encryption",
@@ -236,7 +241,8 @@
             "value": "[parameters('aksTempDisk')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Allowed-Capabilities",
@@ -246,7 +252,8 @@
             "value": "[parameters('aksAllowedCapabilities')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "6.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Priv-Escalation",
@@ -256,7 +263,8 @@
             "value": "[parameters('aksPrivEscalation')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "7.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Priv-Containers",
@@ -266,7 +274,8 @@
             "value": "[parameters('aksPrivContainers')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "9.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-ReadinessOrLiveness-Probes",
@@ -276,7 +285,8 @@
             "value": "[parameters('aksReadinessOrLivenessProbes')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "3.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-Aks-Command-Invoke",
@@ -286,7 +296,8 @@
             "value": "[parameters('aksCommandInvoke')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-Aks-Policy",
@@ -296,7 +307,8 @@
             "value": "[parameters('aksPolicy')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "4.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Private-Cluster",
@@ -306,7 +318,8 @@
             "value": "[parameters('aksPrivateCluster')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Local-Auth",
@@ -316,7 +329,8 @@
             "value": "[parameters('aksLocalAuth')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Kms",
@@ -326,7 +340,8 @@
             "value": "[parameters('aksKms')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Aks-Cni",
@@ -336,7 +351,8 @@
             "value": "[parameters('aksCni')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

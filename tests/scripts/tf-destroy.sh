@@ -24,14 +24,6 @@ status=$?
 
 if [ $status -ne 0 ]; then
 
-    echo "==> Authenticating cli..."
-    az login \
-        --service-principal \
-        --tenant "$ARM_TENANT_ID" \
-        --username "$ARM_CLIENT_ID" \
-        --password "$ARM_CLIENT_SECRET" \
-        --query [?isDefault]
-
     IFS=$'\n'
 
     TF_ROOT_ID=("$TF_ROOT_ID")

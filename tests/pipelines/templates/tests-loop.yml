@@ -6,41 +6,54 @@ parameters:
     type: string
 
 steps:
-  - task: Bash@3
+  - task: AzureCLI@2
     displayName: "[terraform init]"
     inputs:
-      targetType: "inline"
-      script: "make tf-init"
+      scriptType: bash
+      scriptLocation: scriptPath
+      scriptPath: "tests/scripts/tf-init.sh"
+      failOnStandardError: true
+      addSpnToEnvironment: true
+      azureSubscription: ado-mscet-cae-estf
     env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
     condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit', 'e2e', 'destroy'))
 
-  - task: Bash@3
+  - task: AzureCLI@2
     displayName: "[terraform plan]"
     inputs:
-      targetType: "inline"
-      script: "make tf-plan"
+      scriptType: bash
+      scriptLocation: scriptPath
+      scriptPath: "tests/scripts/tf-plan.sh"
+      failOnStandardError: true
+      addSpnToEnvironment: true
+      azureSubscription: ado-mscet-cae-estf
     env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
     condition: and(succeeded(), in('${{ parameters.run_type }}', 'unit'))
 
-  - task: Bash@3
+  - task: AzureCLI@2
     displayName: "[terraform apply]"
     inputs:
-      targetType: "inline"
-      script: "make tf-apply"
+      scriptType: bash
+      scriptLocation: scriptPath
+      failOnStandardError: true
+      addSpnToEnvironment: true
+      scriptPath: "tests/scripts/tf-apply.sh"
+      azureSubscription: ado-mscet-cae-estf
     env:
-      ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
     condition: and(succeeded(), eq('${{ parameters.run_type }}', 'e2e'))
 
-  - task: Bash@3
+  - task: AzureCLI@2
     displayName: "[terraform destroy]"
     inputs:
-      targetType: "inline"
-      script: "make tf-destroy"
+      scriptType: bash
+      scriptLocation: scriptPath
+      failOnStandardError: true
+      addSpnToEnvironment: true
+      scriptPath: "tests/scripts/tf-destroy.sh"
+      azureSubscription: ado-mscet-cae-estf
     env:
       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
       TEST_MODULE_PATH: "${{ parameters.module_path }}"
