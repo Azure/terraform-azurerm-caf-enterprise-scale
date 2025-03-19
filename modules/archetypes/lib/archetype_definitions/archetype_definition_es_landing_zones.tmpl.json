@@ -25,7 +25,7 @@
       "Enforce-ASR",
       "Enforce-GR-KeyVault",
       "Enforce-Subnet-Private",
-      "Enforce-TLS-SSL-H224"
+      "Enforce-TLS-SSL-Q225"
     ],
     "policy_definitions": [],
     "policy_set_definitions": [],
