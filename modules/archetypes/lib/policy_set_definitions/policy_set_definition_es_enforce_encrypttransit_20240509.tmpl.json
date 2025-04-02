@@ -5,13 +5,15 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "displayName": "Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit",
-    "description": "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing existence condition require then the combination of Audit. ",
+    "displayName": "[Deprecated]: Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit",
+    "description": "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing existence condition require then the combination of Audit. Superseded by https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Enforce-EncryptTransit_20241211.html ",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.0.0-deprecated",
       "category": "Encryption",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "replacesPolicy": "Enforce-EncryptTransit",
+      "deprecated": true,
+      "supersededBy": "Enforce-EncryptTransit_20241211",
       "alzCloudEnvironments": [
         "AzureCloud",
         "AzureChinaCloud",
@@ -47,9 +49,10 @@
         "type": "String",
         "defaultValue": "1.2",
         "allowedValues": [
+          "1.3",
           "1.2",
-          "1.0",
-          "1.1"
+          "1.1",
+          "1.0"
         ],
         "metadata": {
           "displayName": "App Service. Select version minimum TLS Web App config",
@@ -356,7 +359,7 @@
           "Disabled"
         ]
       },
-      "StorageminimumTlsVersion": {
+      "StorageMinimumTlsVersion": {
         "type": "String",
         "defaultValue": "TLS1_2",
         "allowedValues": [
@@ -523,7 +526,8 @@
             "value": "[parameters('AppServiceHttpEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AppServiceminTlsVersion",
@@ -536,7 +540,8 @@
             "value": "[parameters('AppServiceminTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "FunctionLatestTlsEffect",
@@ -546,7 +551,8 @@
             "value": "[parameters('FunctionLatestTlsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "WebAppServiceLatestTlsEffect",
@@ -556,7 +562,8 @@
             "value": "[parameters('WebAppServiceLatestTlsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "APIAppServiceHttpsEffect",
@@ -566,7 +573,8 @@
             "value": "[parameters('APIAppServiceHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "FunctionServiceHttpsEffect",
@@ -576,7 +584,8 @@
             "value": "[parameters('FunctionServiceHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "WebAppServiceHttpsEffect",
@@ -586,7 +595,8 @@
             "value": "[parameters('WebAppServiceHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AKSIngressHttpsOnlyEffect",
@@ -596,7 +606,8 @@
             "value": "[parameters('AKSIngressHttpsOnlyEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "8.*.*"
       },
       {
         "policyDefinitionReferenceId": "MySQLEnableSSLDeployEffect",
@@ -609,7 +620,8 @@
             "value": "[parameters('MySQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "MySQLEnableSSLEffect",
@@ -622,7 +634,8 @@
             "value": "[parameters('MySQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLEnableSSLDeployEffect",
@@ -635,7 +648,8 @@
             "value": "[parameters('PostgreSQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLEnableSSLEffect",
@@ -648,7 +662,8 @@
             "value": "[parameters('PostgreSQLminimalTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "RedisTLSDeployEffect",
@@ -661,7 +676,8 @@
             "value": "[parameters('RedisMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "RedisdisableNonSslPort",
@@ -671,7 +687,8 @@
             "value": "[parameters('RedisTLSDeployEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "RedisDenyhttps",
@@ -684,7 +701,8 @@
             "value": "[parameters('RedisMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SQLManagedInstanceTLSDeployEffect",
@@ -697,7 +715,8 @@
             "value": "[parameters('SQLManagedInstanceMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SQLManagedInstanceTLSEffect",
@@ -710,7 +729,8 @@
             "value": "[parameters('SQLManagedInstanceMinTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SQLServerTLSDeployEffect",
@@ -723,7 +743,8 @@
             "value": "[parameters('SQLServerminTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "SQLServerTLSEffect",
@@ -736,7 +757,8 @@
             "value": "[parameters('SQLServerminTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "StorageDeployHttpsEnabledEffect",
@@ -749,7 +771,8 @@
             "value": "[parameters('StorageMinimumTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "ContainerAppsHttpsOnlyEffect",
@@ -759,7 +782,8 @@
             "value": "[parameters('ContainerAppsHttpsOnlyEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-FunctionApp-Tls",
@@ -769,7 +793,8 @@
             "value": "[parameters('FunctionAppTlsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deploy-LogicApp-TLS",
@@ -779,7 +804,8 @@
             "value": "[parameters('LogicAppTlsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-LogicApp-Without-Https",
@@ -789,7 +815,8 @@
             "value": "[parameters('logicAppHttpsEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-Function-Apps-Slots-Tls",
@@ -799,7 +826,8 @@
             "value": "[parameters('functionAppSlotsTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Dine-AppService-Apps-Tls",
@@ -809,7 +837,8 @@
             "value": "[parameters('appServiceAppsTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Apps-Https",
@@ -819,7 +848,8 @@
             "value": "[parameters('appServiceAppsHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "4.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Tls",
@@ -829,7 +859,8 @@
             "value": "[parameters('appServiceTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "DINE-AppService-AppSlotTls",
@@ -839,7 +870,8 @@
             "value": "[parameters('appServiceAppSlotTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-FuncAppSlots-Https",
@@ -849,7 +881,8 @@
             "value": "[parameters('functionAppSlotsHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-FunctionApp-Https",
@@ -859,7 +892,8 @@
             "value": "[parameters('functionAppHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "5.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-AppService-Slots-Https",
@@ -869,7 +903,8 @@
             "value": "[parameters('appServiceAppSlotsHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-ContainerApps-Https",
@@ -879,7 +914,8 @@
             "value": "[parameters('containerAppsHttps')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-EH-minTLS",
@@ -889,7 +925,8 @@
             "value": "[parameters('eventHubMinTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sql-Managed-Tls-Version",
@@ -899,7 +936,8 @@
             "value": "[parameters('sqlManagedTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Sql-Db-Tls",
@@ -909,7 +947,8 @@
             "value": "[parameters('sqlDbTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "2.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Storage-Tls",
@@ -919,7 +958,8 @@
             "value": "[parameters('storageAccountsTls')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "Deny-Synapse-Tls-Version",
@@ -929,7 +969,8 @@
             "value": "[parameters('synapseTlsVersion')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null

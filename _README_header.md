@@ -1,5 +1,10 @@
 # Azure landing zones Terraform module
 
+> [!IMPORTANT]
+> For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
+> Please see the documentation at <https://aka.ms/alz/tf>.
+> This module will continue to be supported for existing deployments.
+
 [![Build Status](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_apis/build/status/Tests/E2E?branchName=refs%2Ftags%2Fv6.0.0)](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_build/latest?definitionId=26&branchName=refs%2Ftags%2Fv6.0.0)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
@@ -51,7 +56,7 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.107.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 

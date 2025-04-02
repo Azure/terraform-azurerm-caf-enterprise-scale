@@ -1,6 +1,11 @@
 <!-- BEGIN_TF_DOCS -->
 # Management sub-module
 
+> [!IMPORTANT]
+> For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
+> Please see the documentation at <https://aka.ms/alz/tf>.
+> This module will continue to be supported for existing deployments.
+
 ## Documentation
 <!-- markdownlint-disable MD033 -->
 
@@ -130,6 +135,7 @@ object({
     log_analytics = optional(object({
       enabled = optional(bool, true)
       config = optional(object({
+        daily_quota_gb                         = optional(number, -1)
         retention_in_days                      = optional(number, 30)
         enable_monitoring_for_vm               = optional(bool, true)
         enable_monitoring_for_vmss             = optional(bool, true)
