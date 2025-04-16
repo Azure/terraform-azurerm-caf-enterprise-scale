@@ -19,7 +19,6 @@
     pkgs.nodePackages.nodemon
     pkgs.jdk
     pkgs.tenv
-    pkgs.tgenv
     pkgs.azure-cli
   ];
 
