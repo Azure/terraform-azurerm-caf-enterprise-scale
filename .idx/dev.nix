@@ -21,6 +21,7 @@
     pkgs.tenv
     pkgs.azure-cli
     pkgs.neofetch
+    pkgs.cmatrix
   ];
 
   # Sets environment variables in the workspace
