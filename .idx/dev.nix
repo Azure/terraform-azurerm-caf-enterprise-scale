@@ -18,6 +18,10 @@
     pkgs.nodejs_22
     pkgs.nodePackages.nodemon
     pkgs.jdk
+    pkgs.tenv
+    pkgs.tgenv
+    pkgs.wget
+    pkgs.azure-cli
   ];
 
   # Sets environment variables in the workspace
