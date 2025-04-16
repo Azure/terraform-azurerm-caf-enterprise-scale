@@ -13,9 +13,9 @@
     pkgs.jq
     pkgs.tree
     pkgs.go
-    pkgs.python311
-    pkgs.python311Packages.pip
-    pkgs.nodejs_20
+    pkgs.python313
+    pkgs.python313Packages.pip
+    pkgs.nodejs_22
     pkgs.nodePackages.nodemon
     pkgs.jdk
   ];
