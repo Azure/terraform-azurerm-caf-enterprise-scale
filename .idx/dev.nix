@@ -6,12 +6,18 @@
 
   # Use https://search.nixos.org/packages to find packages
   packages = [
+    pkgs.git
+    pkgs.curl
+    pkgs.zip
+    pkgs.unzip
+    pkgs.jq
+    pkgs.tree
     pkgs.go
     pkgs.python311
     pkgs.python311Packages.pip
     pkgs.nodejs_20
     pkgs.nodePackages.nodemon
-    pkgs.azure-cli
+    pkgs.jdk
   ];
 
   # Sets environment variables in the workspace
