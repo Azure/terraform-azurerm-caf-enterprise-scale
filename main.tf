@@ -1,3 +1,143 @@
+locals {
+  es_landing_zones_map = {
+    for key, value in merge(
+      local.es_core_landing_zones_to_include,
+      local.es_corp_landing_zones_to_include,
+      local.es_online_landing_zones_to_include,
+      local.es_sap_landing_zones_to_include,
+      local.es_demo_landing_zones_to_include,
+      local.custom_landing_zones,
+    ) :
+    "${local.provider_path.management_groups}${key}" => {
+      id                         = key
+      display_name               = value.display_name
+      parent_management_group_id = coalesce(value.parent_management_group_id, local.root_parent_id)
+      subscription_ids           = local.strict_subscription_association ? value.subscription_ids : null
+      archetype_config = {
+        archetype_id   = value.archetype_config.archetype_id
+        access_control = value.archetype_config.access_control
+        parameters = {
+          for policy_name in toset(keys(merge(
+            lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters,
+            lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters,
+            lookup(module.management_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters,
+            value.archetype_config.parameters,
+          ))) :
+          policy_name => merge(
+            lookup(lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters, policy_name, null),
+            lookup(lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters, policy_name, null),
+            lookup(lookup(module.management_resources.configuration.archetype_config_overrides, key, local.parameter_map_default).parameters, policy_name, null),
+            lookup(value.archetype_config.parameters, policy_name, null),
+          )
+        }
+        enforcement_mode = merge(
+          lookup(module.connectivity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(module.identity_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(module.management_resources.configuration.archetype_config_overrides, key, local.enforcement_mode_default).enforcement_mode,
+          lookup(value.archetype_config, "enforcement_mode", local.empty_map)
+        )
+      }
+    }
+  }
+
+  deploy_management_resources      = var.deploy_management_resources
+  root_id                          = var.root_id
+  subscription_id_management       = var.subscription_id_management
+  configure_management_resources   = var.configure_management_resources
+  default_location                = lower(var.default_location)
+  management_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    local.default_tags,
+    local.configure_management_resources.tags,
+  )
+  management_resources_advanced = merge(
+    local.create_object,
+    coalesce(local.configure_management_resources.advanced, local.empty_map)
+  )
+
+  empty_string = ""
+  empty_map    = tomap({})
+
+  deploy_identity_resources        = var.deploy_identity_resources
+  configure_identity_resources     = var.configure_identity_resources
+
+  deploy_connectivity_resources    = var.deploy_connectivity_resources
+  subscription_id_connectivity     = var.subscription_id_connectivity
+  configure_connectivity_resources = var.configure_connectivity_resources
+  connectivity_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    local.default_tags,
+    local.configure_connectivity_resources.tags,
+  )
+  connectivity_resources_advanced = merge(
+    local.create_object,
+    coalesce(local.configure_connectivity_resources.advanced, local.empty_map)
+  )
+
+
+  # The following locals are used to determine which archetype
+  # pattern to apply to the core Enterprise-scale Management
+  # Groups. To ensure a valid value is always provided, we
+  # provide a list of defaults in es_defaults which
+  # can be overridden using the es_overrides variable.
+  es_archetype_config_defaults = {
+    (local.root_id) = {
+      archetype_id   = "es_root"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-decommissioned" = {
+      archetype_id   = "es_decommissioned"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-sandboxes" = {
+      archetype_id   = "es_sandboxes"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-landing-zones" = {
+      archetype_id   = "es_landing_zones"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-platform" = {
+      archetype_id   = "es_platform"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-connectivity" = {
+      archetype_id   = "es_connectivity"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-management" = {
+      archetype_id   = "es_management"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-identity" = {
+      archetype_id   = "es_identity"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-corp" = {
+      archetype_id   = "es_corp"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-online" = {
+      archetype_id   = "es_online"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+    "${local.root_id}-sap" = {
+      archetype_id   = "es_sap"
+      parameters     = local.empty_map
+      access_control = local.empty_map
+    }
+  }
+}
 # The following module is used to generate the configuration
 # data used to deploy all archetype resources at the
 # Management Group scope. Future plans include repeating this
@@ -6,7 +146,7 @@
 # groups of Resources within a Subscription.
 module "management_group_archetypes" {
   for_each = local.es_landing_zones_map
-  source   = "./modules/archetypes"
+  source = "./modules/archetypes"
 
   root_id                 = "${local.provider_path.management_groups}${local.root_id}"
   scope_id                = each.key
@@ -26,10 +166,10 @@ module "management_resources" {
   source = "./modules/management"
 
   # Mandatory input variables
-  enabled         = local.deploy_management_resources
-  root_id         = local.root_id
+  enabled = local.deploy_management_resources
+  root_id = local.root_id
   subscription_id = local.subscription_id_management
-  settings        = local.configure_management_resources.settings
+  settings = local.configure_management_resources.settings
 
   # Optional input variables (basic configuration)
   location = coalesce(local.configure_management_resources.location, local.default_location)
@@ -53,8 +193,8 @@ module "identity_resources" {
   source = "./modules/identity"
 
   # Mandatory input variables
-  enabled  = local.deploy_identity_resources
-  root_id  = local.root_id
+  enabled = local.deploy_identity_resources
+  root_id = local.root_id
   settings = local.configure_identity_resources.settings
 }
 
@@ -65,10 +205,10 @@ module "connectivity_resources" {
   source = "./modules/connectivity"
 
   # Mandatory input variables
-  enabled         = local.deploy_connectivity_resources
-  root_id         = local.root_id
+  enabled = local.deploy_connectivity_resources
+  root_id = local.root_id
   subscription_id = local.subscription_id_connectivity
-  settings        = local.configure_connectivity_resources.settings
+  settings = local.configure_connectivity_resources.settings
 
   # Optional input variables (basic configuration)
   location = coalesce(local.configure_connectivity_resources.location, local.default_location)
