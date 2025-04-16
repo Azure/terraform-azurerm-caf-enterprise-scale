@@ -20,6 +20,7 @@
     pkgs.jdk
     pkgs.tenv
     pkgs.azure-cli
+    pkgs.neofetch
   ];
 
   # Sets environment variables in the workspace
