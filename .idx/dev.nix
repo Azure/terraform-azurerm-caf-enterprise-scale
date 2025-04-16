@@ -20,7 +20,6 @@
     pkgs.jdk
     pkgs.tenv
     pkgs.tgenv
-    pkgs.wget
     pkgs.azure-cli
   ];
 
