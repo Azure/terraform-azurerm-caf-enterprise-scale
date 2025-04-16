@@ -18,6 +18,10 @@ This document serves as an **index** for the Azure landing zones Terraform modul
 
 ---
 
+This section provides important information about upcoming breaking changes that will impact the module in future releases. Users should review this section to understand how the changes might affect their existing deployments and plan accordingly.
+
+
+## ‼ Notice of upcoming breaking changes
 The Azure landing zones Terraform module is designed to accelerate the deployment of platform resources based on the [Azure landing zones conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Terraform. It provides capabilities for core resource organization, management, connectivity, and identity.
 
 For detailed information, refer to the [Wiki](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki)
@@ -39,8 +43,6 @@ Detailed information about how to use, configure and extend this module can be f
 - [Examples](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Examples)
 - [Frequently Asked Questions](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Frequently-Asked-Questions)
 - [Troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting)
-
-## ‼ Notice of upcoming breaking changes
 
 We are planning to make some breaking changes to the module in the next release (Q4 2024).
 
