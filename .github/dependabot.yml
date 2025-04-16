@@ -6,3 +6,8 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+
+  - package-ecosystem: gomod
+    directory: /tests/terratest
+    schedule:
+      interval: daily
