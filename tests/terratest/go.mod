@@ -5,7 +5,7 @@ toolchain go1.24.1
 
 require (
 	github.com/Azure/terratest-terraform-fluent v0.8.1
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
