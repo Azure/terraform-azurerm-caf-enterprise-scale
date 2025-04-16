@@ -1151,123 +1151,123 @@ The following outputs are exported:
 
 ### <a name="output_ama_user_assigned_identity"></a> [ama\_user\_assigned\_identity](#output\_ama\_user\_assigned\_identity)
 
-Description: The user assigned identity for Azure Monitor Agent that is created by this module.
+Description: Returns the configuration data for the user assigned identity for Azure Monitor Agent created by this module.
 
 ### <a name="output_azurerm_automation_account"></a> [azurerm\_automation\_account](#output\_azurerm\_automation\_account)
 
-Description: Returns the configuration data for all Automation Accounts created by this module.
+Description: Returns a map of the configuration data for all Automation Accounts created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_dns_zone"></a> [azurerm\_dns\_zone](#output\_azurerm\_dns\_zone)
 
-Description: Returns the configuration data for all DNS Zones created by this module.
+Description: Returns a map of the configuration data for all DNS Zones created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_express_route_gateway"></a> [azurerm\_express\_route\_gateway](#output\_azurerm\_express\_route\_gateway)
 
-Description: Returns the configuration data for all (Virtual WAN) ExpressRoute Gateways created by this module.
+Description: Returns a map of the configuration data for all (Virtual WAN) ExpressRoute Gateways created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_firewall"></a> [azurerm\_firewall](#output\_azurerm\_firewall)
 
-Description: Returns the configuration data for all Azure Firewalls created by this module.
+Description: Returns a map of the configuration data for all Azure Firewalls created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_firewall_policy"></a> [azurerm\_firewall\_policy](#output\_azurerm\_firewall\_policy)
 
-Description: Returns the configuration data for all Azure Firewall Policies created by this module.
+Description: Returns a map of the configuration data for all Azure Firewall Policies created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_log_analytics_linked_service"></a> [azurerm\_log\_analytics\_linked\_service](#output\_azurerm\_log\_analytics\_linked\_service)
 
-Description: Returns the configuration data for all Log Analytics linked services created by this module.
+Description: Returns a map of the configuration data for all Log Analytics linked services created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_log_analytics_solution"></a> [azurerm\_log\_analytics\_solution](#output\_azurerm\_log\_analytics\_solution)
 
-Description: Returns the configuration data for all Log Analytics solutions created by this module.
+Description: Returns a map of the configuration data for all Log Analytics solutions created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_log_analytics_workspace"></a> [azurerm\_log\_analytics\_workspace](#output\_azurerm\_log\_analytics\_workspace)
 
-Description: Returns the configuration data for all Log Analytics workspaces created by this module.
+Description: Returns a map of the configuration data for all Log Analytics workspaces created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_management_group"></a> [azurerm\_management\_group](#output\_azurerm\_management\_group)
 
-Description: Returns the configuration data for all Management Groups created by this module.
+Description: Returns a map of the configuration data for all Management Groups created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_management_group_policy_assignment"></a> [azurerm\_management\_group\_policy\_assignment](#output\_azurerm\_management\_group\_policy\_assignment)
 
-Description: Returns the configuration data for all Management Group Policy Assignments created by this module.
+Description: Returns a map of the configuration data for all Management Group Policy Assignments created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_management_group_subscription_association"></a> [azurerm\_management\_group\_subscription\_association](#output\_azurerm\_management\_group\_subscription\_association)
 
-Description: Returns the configuration data for all Management Group Subscription Associations created by this module.
+Description: Returns a map of the configuration data for all Management Group Subscription Associations created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_network_ddos_protection_plan"></a> [azurerm\_network\_ddos\_protection\_plan](#output\_azurerm\_network\_ddos\_protection\_plan)
 
-Description: Returns the configuration data for all DDoS Protection Plans created by this module.
+Description: Returns a map of the configuration data for all DDoS Protection Plans created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_policy_definition"></a> [azurerm\_policy\_definition](#output\_azurerm\_policy\_definition)
 
-Description: Returns the configuration data for all Policy Definitions created by this module.
+Description: Returns a map of the configuration data for all Policy Definitions created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_policy_set_definition"></a> [azurerm\_policy\_set\_definition](#output\_azurerm\_policy\_set\_definition)
 
-Description: Returns the configuration data for all Policy Set Definitions created by this module.
+Description: Returns a map of the configuration data for all Policy Set Definitions created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_private_dns_zone"></a> [azurerm\_private\_dns\_zone](#output\_azurerm\_private\_dns\_zone)
 
-Description: Returns the configuration data for all Private DNS Zones created by this module.
+Description: Returns a map of the configuration data for all Private DNS Zones created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_private_dns_zone_virtual_network_link"></a> [azurerm\_private\_dns\_zone\_virtual\_network\_link](#output\_azurerm\_private\_dns\_zone\_virtual\_network\_link)
 
-Description: Returns the configuration data for all Private DNS Zone network links created by this module.
+Description: Returns a map of the configuration data for all Private DNS Zone network links created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_public_ip"></a> [azurerm\_public\_ip](#output\_azurerm\_public\_ip)
 
-Description: Returns the configuration data for all Public IPs created by this module.
+Description: Returns a map of the configuration data for all Public IPs created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_resource_group"></a> [azurerm\_resource\_group](#output\_azurerm\_resource\_group)
 
-Description: Returns the configuration data for all Resource Groups created by this module.
+Description: Returns a map of the configuration data for all Resource Groups created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_role_assignment"></a> [azurerm\_role\_assignment](#output\_azurerm\_role\_assignment)
 
-Description: Returns the configuration data for all Role Assignments created by this module.
+Description: Returns a map of the configuration data for all Role Assignments created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_role_definition"></a> [azurerm\_role\_definition](#output\_azurerm\_role\_definition)
 
-Description: Returns the configuration data for all Role Definitions created by this module.
+Description: Returns a map of the configuration data for all Role Definitions created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_subnet"></a> [azurerm\_subnet](#output\_azurerm\_subnet)
 
-Description: Returns the configuration data for all Subnets created by this module.
+Description: Returns a map of the configuration data for all Subnets created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_hub"></a> [azurerm\_virtual\_hub](#output\_azurerm\_virtual\_hub)
 
-Description: Returns the configuration data for all Virtual Hubs created by this module.
+Description: Returns a map of the configuration data for all Virtual Hubs created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_hub_connection"></a> [azurerm\_virtual\_hub\_connection](#output\_azurerm\_virtual\_hub\_connection)
 
-Description: Returns the configuration data for all Virtual Hub Connections created by this module.
+Description: Returns a map of the configuration data for all Virtual Hub Connections created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_hub_routing_intent"></a> [azurerm\_virtual\_hub\_routing\_intent](#output\_azurerm\_virtual\_hub\_routing\_intent)
 
-Description: Returns the configuration data for all Virtual Hub Routing Intents created by this module.
+Description: Returns a map of the configuration data for all Virtual Hub Routing Intents created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_network"></a> [azurerm\_virtual\_network](#output\_azurerm\_virtual\_network)
 
-Description: Returns the configuration data for all Virtual Networks created by this module.
+Description: Returns a map of the configuration data for all Virtual Networks created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_network_gateway"></a> [azurerm\_virtual\_network\_gateway](#output\_azurerm\_virtual\_network\_gateway)
 
-Description: Returns the configuration data for all Virtual Network Gateways created by this module.
+Description: Returns a map of the configuration data for all Virtual Network Gateways created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_network_peering"></a> [azurerm\_virtual\_network\_peering](#output\_azurerm\_virtual\_network\_peering)
 
-Description: Returns the configuration data for all Virtual Network Peerings created by this module.
+Description: Returns a map of the configuration data for all Virtual Network Peerings created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_virtual_wan"></a> [azurerm\_virtual\_wan](#output\_azurerm\_virtual\_wan)
 
-Description: Returns the configuration data for all Virtual WANs created by this module.
+Description: Returns a map of the configuration data for all Virtual WANs created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_azurerm_vpn_gateway"></a> [azurerm\_vpn\_gateway](#output\_azurerm\_vpn\_gateway)
 
-Description: Returns the configuration data for all (Virtual WAN) VPN Gateways created by this module.
+Description: Returns a map of the configuration data for all (Virtual WAN) VPN Gateways created by this module, which can be used to reference resource properties in other parts of the configuration.
 
 ### <a name="output_data_collection_rules"></a> [data\_collection\_rules](#output\_data\_collection\_rules)
 
