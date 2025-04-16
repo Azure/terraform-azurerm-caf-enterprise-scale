@@ -2,11 +2,16 @@
 <!-- BEGIN_TF_DOCS -->
 # Azure landing zones Terraform module
 
+This document serves as an **index** for the Azure landing zones Terraform module documentation. Here you'll find a concise overview of the module, its capabilities, and links to more detailed information.
+
+The Azure landing zones Terraform module is designed to accelerate the deployment of platform resources based on the [Azure landing zones conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Terraform. It provides capabilities for core resource organization, management, connectivity, and identity.
+
+For detailed information, refer to the [Wiki](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki)
+
 > [!IMPORTANT]
 > For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
 > Please see the documentation at <https://aka.ms/alz/tf>.
 > This module will continue to be supported for existing deployments.
-
 [![Build Status](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_apis/build/status/Tests/E2E?branchName=refs%2Ftags%2Fv6.0.0)](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_build/latest?definitionId=26&branchName=refs%2Ftags%2Fv6.0.0)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
