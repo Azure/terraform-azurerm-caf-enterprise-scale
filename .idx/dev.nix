@@ -13,8 +13,8 @@
     pkgs.jq
     pkgs.tree
     pkgs.go
-    pkgs.python313
-    pkgs.python313Packages.pip
+    pkgs.python312
+    pkgs.python312Packages.pip
     pkgs.nodejs_22
     pkgs.nodePackages.nodemon
     pkgs.jdk
