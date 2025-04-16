@@ -4,6 +4,20 @@
 
 This document serves as an **index** for the Azure landing zones Terraform module documentation. Here you'll find a concise overview of the module, its capabilities, and links to more detailed information.
 
+## Table of Contents
+
+- [Notice of upcoming breaking changes](#-notice-of-upcoming-breaking-changes)
+- [Overview](#overview)
+- [Terraform versions](#terraform-versions)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Inputs](#required-inputs)
+- [Outputs](#outputs)
+- [Module Permissions](#permissions)
+- [Troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting)
+
+---
+
 The Azure landing zones Terraform module is designed to accelerate the deployment of platform resources based on the [Azure landing zones conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone#azure-landing-zone-conceptual-architecture) using Terraform. It provides capabilities for core resource organization, management, connectivity, and identity.
 
 For detailed information, refer to the [Wiki](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki)
