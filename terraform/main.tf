@@ -151,6 +151,22 @@ locals {
       }
     }
   }
+
+  connectivity_settings = lookup(local.configure_connectivity_resources.settings, "settings", {})
+  vwan_hub_networks     = lookup(local.connectivity_settings, "vwan_hub_networks", [])
+  hub_networks          = lookup(local.connectivity_settings, "hub_networks", [])
+  dns_settings          = lookup(local.connectivity_settings, "dns", {})
+  hub_network_settings  = lookup(local.connectivity_settings, "hub_network", {})
+  vpn_gateway_settings  = lookup(local.connectivity_settings, "vpn_gateway", {})
+  firewall_settings     = lookup(local.connectivity_settings, "firewall", {})
+  ddos_protection_settings = lookup(local.connectivity_settings, "ddos_protection", {})
+  express_route_gateway_settings = lookup(local.connectivity_settings, "express_route_gateway", {})
+
+  management_settings   = lookup(local.configure_management_resources.settings, "settings", {})
+  log_analytics_settings = lookup(local.management_settings, "log_analytics", {})
+  security_center_settings = lookup(local.management_settings, "security_center", {})
+  automation_settings    = lookup(local.management_settings, "automation", {})
+
 }
 
 module "connectivity_resources" {
@@ -232,7 +248,7 @@ resource "azurerm_management_group" "level_2" {
   ], count.index)
   parent_management_group_id = local.root_id
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
+    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
 }
@@ -377,14 +393,14 @@ resource "azurerm_resource_group" "connectivity" {
 }
 
 resource "azurerm_resource_group" "virtual_wan" {
-  count    = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "virtual_wan", {}).enabled ? 1 : 0
+  count    = local.deploy_connectivity_resources && lookup(local.connectivity_settings.virtual_wan, "enabled", {}).enabled ? 1 : 0
   name     = "${local.root_id}-virtual-wan-rg"
   location = local.default_location
   tags     = local.connectivity_resources_tags
 }
 
 resource "azurerm_log_analytics_workspace" "management" {
-  count               = local.deploy_management_resources && lookup(local.configure_management_resources.settings, "log_analytics", {}).enabled ? 1 : 0
+  count               = local.deploy_management_resources && lookup(local.log_analytics_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string ? 1 : 0
   name                = "${local.root_id}-log-analytics"
   location            = local.configure_management_resources.location
   resource_group_name = azurerm_resource_group.management[0].name
@@ -393,7 +409,7 @@ resource "azurerm_log_analytics_workspace" "management" {
 }
 
 resource "azurerm_log_analytics_solution" "management" {
-  count                 = local.deploy_management_resources && lookup(local.configure_management_resources.settings, "security_center", {}).enabled ? 1 : 0
+  count                 = local.deploy_management_resources && lookup(local.security_center_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string ? 1 : 0
   location              = local.configure_management_resources.location
   resource_group_name   = azurerm_resource_group.management[0].name
   workspace_resource_id = azurerm_log_analytics_workspace.management[0].id
@@ -407,7 +423,7 @@ resource "azurerm_log_analytics_solution" "management" {
 
 
 resource "azurerm_automation_account" "management" {
-  count               = local.deploy_management_resources && lookup(local.configure_management_resources.settings, "automation", {}).enabled ? 1 : 0
+  count               = local.deploy_management_resources && lookup(local.automation_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string ? 1 : 0
   name                = "${local.root_id}-automation"
   location            = local.configure_management_resources.location
   resource_group_name = azurerm_resource_group.management[0].name
@@ -416,7 +432,7 @@ resource "azurerm_automation_account" "management" {
 }
 
 resource "azurerm_log_analytics_linked_service" "management" {
-  count               = local.deploy_management_resources && lookup(local.configure_management_resources.settings, "automation", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string && local.management_resources_advanced.link_log_analytics_to_automation_account ? 1 : 0
+  count               = local.deploy_management_resources && lookup(local.automation_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string && local.management_resources_advanced.link_log_analytics_to_automation_account ? 1 : 0
   resource_group_name = azurerm_resource_group.management[0].name
   workspace_id        = azurerm_log_analytics_workspace.management[0].id
   # You need to specify either read_access_id or write_access_id here based on your requirements.
@@ -425,24 +441,24 @@ resource "azurerm_log_analytics_linked_service" "management" {
 }
 
 resource "azurerm_virtual_network" "connectivity" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "hub_networks", [])) > 0 ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.hub_networks) > 0 ? 1 : 0
   name                = "${local.root_id}-hub-network"
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
-  address_space       = [lookup(local.configure_connectivity_resources.settings.hub_network, "address_prefixes", [""])[0]]
+  address_space       = [lookup(local.hub_network_settings, "address_prefixes", [""])[0]]
   tags                = local.connectivity_resources_tags
 }
 
 #resource "azurerm_subnet" "connectivity" {
-#  count                = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "hub_network", {}).enabled && length(lookup(local.configure_connectivity_resources.settings.hub_network, "subnets", [])) > 0 ? length(lookup(local.configure_connectivity_resources.settings.hub_network, "subnets", [])) : 0
-#  name                 = lookup(local.configure_connectivity_resources.settings.hub_network.subnets[count.index], "name", "")
+#  count                = local.deploy_connectivity_resources && lookup(local.hub_network_settings, "enabled", {}).enabled && length(lookup(local.hub_network_settings, "subnets", [])) > 0 ? length(lookup(local.hub_network_settings, "subnets", [])) : 0
+#  name                 = lookup(local.hub_network_settings.subnets[count.index], "name", "")
 #  resource_group_name  = azurerm_resource_group.connectivity[0].name
 #  virtual_network_name = azurerm_virtual_network.connectivity[0].name
-#  address_prefixes     = [lookup(local.configure_connectivity_resources.settings.hub_network.subnets[count.index], "address_prefix", "")]
+#  address_prefixes     = [lookup(local.hub_network_settings.subnets[count.index], "address_prefix", "")]
 #}
 
 resource "azurerm_network_ddos_protection_plan" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "ddos_protection", {}).enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && lookup(local.ddos_protection_settings, "enabled", {}).enabled ? 1 : 0
   name                = "${local.root_id}-ddos-plan"
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
@@ -450,7 +466,7 @@ resource "azurerm_network_ddos_protection_plan" "connectivity" {
 }
 
 resource "azurerm_public_ip" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "firewall", {}).enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && lookup(local.firewall_settings, "enabled", {}).enabled ? 1 : 0
   name                = "${local.root_id}-firewall-pip"
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
@@ -460,12 +476,12 @@ resource "azurerm_public_ip" "connectivity" {
 }
 
 resource "azurerm_virtual_network_gateway" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "hub_networks", []).virtual_network_gateway.enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && lookup(local.hub_networks[0].virtual_network_gateway, "enabled", false) ? 1 : 0
   name                = "${local.root_id}-vpn-gateway"
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
-  sku                 = lookup(local.configure_connectivity_resources.settings.vpn_gateway, "sku", "")
-  type                = lookup(local.configure_connectivity_resources.settings.vpn_gateway, "type", "")
+  sku                 = lookup(local.vpn_gateway_settings, "sku", "")
+  type                = lookup(local.vpn_gateway_settings, "type", "")
   ip_configuration {
     name                 = "vnetGatewayConfig"
     subnet_id            = azurerm_subnet.connectivity[index(azurerm_subnet.connectivity[*].name, "GatewaySubnet")].id
@@ -475,7 +491,7 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
 }
 
 resource "azurerm_firewall_policy" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "hub_networks", []).azure_firewall.enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && lookup(local.hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
   name                = "${local.root_id}-firewall-policy"
   resource_group_name = azurerm_resource_group.connectivity[0].name
   location            = local.configure_connectivity_resources.location
@@ -483,7 +499,7 @@ resource "azurerm_firewall_policy" "connectivity" {
 }
 
 resource "azurerm_firewall_policy" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].azure_firewall.enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
   name                = "${local.root_id}-vwan-firewall-policy"
   resource_group_name = azurerm_resource_group.virtual_wan[0].name
   location            = local.default_location
@@ -491,7 +507,7 @@ resource "azurerm_firewall_policy" "virtual_wan" {
 }
 
 resource "azurerm_firewall" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "hub_networks", []).azure_firewall.enabled && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) == 0 ? 1 : 0
+  count               = local.deploy_connectivity_resources && lookup(local.hub_networks[0].azure_firewall, "enabled", false) && length(local.vwan_hub_networks) == 0 ? 1 : 0
   name                = "${local.root_id}-firewall"
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
@@ -507,7 +523,7 @@ resource "azurerm_firewall" "connectivity" {
 }
 
 resource "azurerm_firewall" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].azure_firewall.enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
   name                = "${local.root_id}-vwan-firewall"
   location            = local.default_location
   resource_group_name = azurerm_resource_group.virtual_wan[0].name
@@ -519,22 +535,22 @@ resource "azurerm_firewall" "virtual_wan" {
 }
 
 resource "azurerm_private_dns_zone" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "dns", {}).enabled ? length(lookup(local.configure_connectivity_resources.settings.dns.config, "private_dns_zones", [])) : 0
-  name                = lookup(local.configure_connectivity_resources.settings.dns.config.private_dns_zones[count.index], "", "")
+  count               = local.deploy_connectivity_resources && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "private_dns_zones", [])) : 0
+  name                = lookup(local.dns_settings.config.private_dns_zones[count.index], "", "")
   resource_group_name = azurerm_resource_group.connectivity[0].name
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_dns_zone" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "dns", {}).enabled ? length(lookup(local.configure_connectivity_resources.settings.dns.config, "public_dns_zones", [])) : 0
-  name                = lookup(local.configure_connectivity_resources.settings.dns.config.public_dns_zones[count.index], "", "")
+  count               = local.deploy_connectivity_resources && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "public_dns_zones", [])) : 0
+  name                = lookup(local.dns_settings.config.public_dns_zones[count.index], "", "")
   resource_group_name = azurerm_resource_group.connectivity[0].name
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
-  count                 = local.deploy_connectivity_resources && lookup(local.configure_connectivity_resources.settings, "dns", {}).enabled ? length(lookup(local.configure_connectivity_resources.settings.dns.config, "private_dns_zones", [])) : 0
-  name                  = "${local.root_id}-${lookup(local.configure_connectivity_resources.settings.dns.config.private_dns_zones[count.index], "", "")}-link"
+  count                 = local.deploy_connectivity_resources && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "private_dns_zones", [])) : 0
+  name                  = "${local.root_id}-${lookup(local.dns_settings.config.private_dns_zones[count.index], "", "")}-link"
   resource_group_name   = azurerm_resource_group.connectivity[0].name
   private_dns_zone_name = azurerm_private_dns_zone.connectivity[count.index].name
   virtual_network_id    = azurerm_virtual_network.connectivity[0].id
@@ -543,7 +559,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
 }
 
 resource "azurerm_virtual_network_peering" "connectivity" {
-  count                         = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].enable_virtual_hub_connections ? 1 : 0
+  count                         = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0], "enable_virtual_hub_connections", false) ? 1 : 0
   name                          = "${local.root_id}-vnet-peering"
   resource_group_name           = azurerm_resource_group.connectivity[0].name
   virtual_network_name          = azurerm_virtual_network.connectivity[0].name
@@ -554,7 +570,7 @@ resource "azurerm_virtual_network_peering" "connectivity" {
 }
 
 resource "azurerm_virtual_wan" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && local.connectivity_resources_advanced.existing_virtual_wan_resource_id == local.empty_string ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && local.connectivity_resources_advanced.existing_virtual_wan_resource_id == local.empty_string ? 1 : 0
   name                = "${local.root_id}-virtual-wan"
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.virtual_wan[0].name
@@ -562,7 +578,7 @@ resource "azurerm_virtual_wan" "virtual_wan" {
 }
 
 resource "azurerm_virtual_hub" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 ? 1 : 0
   name                = "${local.root_id}-virtual-hub"
   location            = local.configure_connectivity_resources.location
   resource_group_name = lookup(local.configure_connectivity_resources.settings.virtual_wan, "resource_group_per_virtual_hub_location", false) ? azurerm_resource_group.virtual_wan[0].name : azurerm_resource_group.connectivity[0].name
@@ -572,7 +588,7 @@ resource "azurerm_virtual_hub" "virtual_wan" {
 }
 
 resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
-  count          = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].routing_intent.enabled ? 1 : 0
+  count          = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].routing_intent, "enabled", false) ? 1 : 0
   name           = "${local.root_id}-default-routing-intent"
   virtual_hub_id = azurerm_virtual_hub.virtual_wan[0].id
   routing_policy {
@@ -583,7 +599,7 @@ resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
 }
 
 resource "azurerm_express_route_gateway" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].expressroute_gateway.enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].expressroute_gateway, "enabled", false) ? 1 : 0
   name                = "${local.root_id}-er-gateway"
   location            = local.configure_connectivity_resources.location
   resource_group_name = lookup(local.configure_connectivity_resources.settings.virtual_wan, "resource_group_per_virtual_hub_location", false) ? azurerm_resource_group.virtual_wan[0].name : azurerm_resource_group.connectivity[0].name
@@ -593,20 +609,19 @@ resource "azurerm_express_route_gateway" "virtual_wan" {
 }
 
 resource "azurerm_vpn_gateway" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].vpn_gateway.enabled ? 1 : 0
+  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].vpn_gateway, "enabled", false) ? 1 : 0
   name                = "${local.root_id}-vwan-vpn-gateway"
   location            = local.configure_connectivity_resources.location
   resource_group_name = lookup(local.configure_connectivity_resources.settings.virtual_wan, "resource_group_per_virtual_hub_location", false) ? azurerm_resource_group.virtual_wan[0].name : azurerm_resource_group.connectivity[0].name
-  virtual_hub_id      = azurerm_virtual_hub.virtual_wan[0].id
+  virtual_hub_id      = azurerm_virtual_wan[0].id
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_virtual_hub_connection" "virtual_wan" {
-  count                     = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && length(lookup(local.configure_connectivity_resources.settings, "hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].enable_virtual_hub_connections ? 1 : 0
+  count                     = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && length(local.hub_networks) > 0 && lookup(local.vwan_hub_networks[0], "enable_virtual_hub_connections", false) ? 1 : 0
   name                      = "${local.root_id}-hub-connection"
   virtual_hub_id            = azurerm_virtual_hub.virtual_wan[0].id
   remote_virtual_network_id = azurerm_virtual_network.connectivity[0].id
-
 }
 
 resource "azapi_resource" "data_collection_rule" {
