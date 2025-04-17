@@ -1,4 +1,15 @@
 locals {
+  disable_base_module_tags = false
+  empty_map              = {}
+  base_module_tags         = {}
+  default_tags           = {}
+  create_object            = {}
+
+
+
+  es_archetype_config_defaults = {
+
+
   es_landing_zones_map = {
     for key, value in merge(
       local.es_core_landing_zones_to_include,
@@ -81,7 +92,7 @@ locals {
   # provide a list of defaults in es_defaults which
   # can be overridden using the es_overrides variable.
   es_archetype_config_defaults = {
-    (local.root_id) = {
+    "${local.root_id}" = {
       archetype_id   = "es_root"
       parameters     = local.empty_map
       access_control = local.empty_map
@@ -138,6 +149,211 @@ locals {
     }
   }
 }
+
+
+resource "azurerm_management_group" "level_1" {
+  count = 0
+  # Add configuration for azurerm_management_group resources here
+}
+
+resource "azurerm_management_group" "level_2" {
+  count = 0
+  # Add configuration for azurerm_management_group resources here
+}
+
+resource "azurerm_management_group" "level_3" {
+  count = 0
+  # Add configuration for azurerm_management_group resources here
+}
+
+resource "azurerm_management_group" "level_4" {
+  count = 0
+  # Add configuration for azurerm_management_group resources here
+}
+
+resource "azurerm_management_group" "level_5" {
+  count = 0
+  # Add configuration for azurerm_management_group resources here
+}
+
+resource "azurerm_management_group" "level_6" {
+  count = 0
+  # Add configuration for azurerm_management_group resources here
+}
+
+
+resource "azurerm_management_group_subscription_association" "enterprise_scale" {
+  count = 0
+  # Add configuration for azurerm_management_group_subscription_association resources here
+}
+
+resource "azurerm_policy_definition" "enterprise_scale" {
+  count = 0
+  # Add configuration for azurerm_policy_definition resources here
+}
+
+resource "azurerm_policy_set_definition" "enterprise_scale" {
+  count = 0
+  # Add configuration for azurerm_policy_set_definition resources here
+}
+
+resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
+  count = 0
+  # Add configuration for azurerm_management_group_policy_assignment resources here
+}
+
+resource "azurerm_role_definition" "enterprise_scale" {
+  count = 0
+  # Add configuration for azurerm_role_definition resources here
+}
+
+resource "azurerm_role_assignment" "enterprise_scale" {
+  count = 0
+  # Add configuration for azurerm_role_assignment resources here
+}
+
+resource "azurerm_resource_group" "management" {
+  count = 0
+  # Add configuration for azurerm_resource_group resources here
+}
+
+resource "azurerm_resource_group" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_resource_group resources here
+}
+
+resource "azurerm_resource_group" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_resource_group resources here
+}
+
+resource "azurerm_log_analytics_workspace" "management" {
+  count = 0
+  # Add configuration for azurerm_log_analytics_workspace resources here
+}
+
+resource "azurerm_log_analytics_solution" "management" {
+  count = 0
+  # Add configuration for azurerm_log_analytics_solution resources here
+}
+
+resource "azurerm_automation_account" "management" {
+  count = 0
+  # Add configuration for azurerm_automation_account resources here
+}
+
+resource "azurerm_log_analytics_linked_service" "management" {
+  count = 0
+  # Add configuration for azurerm_log_analytics_linked_service resources here
+}
+
+resource "azurerm_virtual_network" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_virtual_network resources here
+}
+
+resource "azurerm_subnet" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_subnet resources here
+}
+
+resource "azurerm_network_ddos_protection_plan" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_network_ddos_protection_plan resources here
+}
+
+resource "azurerm_public_ip" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_public_ip resources here
+}
+
+resource "azurerm_virtual_network_gateway" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_virtual_network_gateway resources here
+}
+
+resource "azurerm_firewall_policy" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_firewall_policy resources here
+}
+
+resource "azurerm_firewall_policy" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_firewall_policy resources here
+}
+
+resource "azurerm_firewall" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_firewall resources here
+}
+
+resource "azurerm_firewall" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_firewall resources here
+}
+
+resource "azurerm_private_dns_zone" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_private_dns_zone resources here
+}
+
+resource "azurerm_dns_zone" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_dns_zone resources here
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_private_dns_zone_virtual_network_link resources here
+}
+
+resource "azurerm_virtual_network_peering" "connectivity" {
+  count = 0
+  # Add configuration for azurerm_virtual_network_peering resources here
+}
+
+resource "azurerm_virtual_wan" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_virtual_wan resources here
+}
+
+resource "azurerm_virtual_hub" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_virtual_hub resources here
+}
+
+resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_virtual_hub_routing_intent resources here
+}
+
+resource "azurerm_express_route_gateway" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_express_route_gateway resources here
+}
+
+resource "azurerm_vpn_gateway" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_vpn_gateway resources here
+}
+
+resource "azurerm_virtual_hub_connection" "virtual_wan" {
+  count = 0
+  # Add configuration for azurerm_virtual_hub_connection resources here
+}
+
+resource "azapi_resource" "data_collection_rule" {
+  count = 0
+  # Add configuration for azapi_resource resources here
+}
+
+resource "azurerm_user_assigned_identity" "management" {
+  count = 0
+  # Add configuration for azurerm_user_assigned_identity resources here
+}
+
+
+
 # The following module is used to generate the configuration
 # data used to deploy all archetype resources at the
 # Management Group scope. Future plans include repeating this
