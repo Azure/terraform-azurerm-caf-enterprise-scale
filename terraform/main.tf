@@ -164,7 +164,6 @@ module "connectivity_resources" {
   enabled                     = var.deploy_connectivity_resources
   subscription_id             = var.subscription_id_connectivity
   settings                    = local.configure_connectivity_resources.settings
-  default_location            = local.default_location
   location                    = local.configure_connectivity_resources.location
   tags                        = local.connectivity_resources_tags
 }
