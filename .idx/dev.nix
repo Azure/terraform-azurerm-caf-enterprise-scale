@@ -22,6 +22,7 @@
     pkgs.azure-cli
     pkgs.neofetch
     pkgs.cmatrix
+    pkgs.adoptopenjdk-jre-bin
   ];
 
   # Sets environment variables in the workspace
