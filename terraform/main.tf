@@ -18,6 +18,39 @@ locals {
   library_path            = var.library_path
   template_file_variables = var.template_file_variables
 
+  deploy_connectivity_resources    = var.deploy_connectivity_resources
+  subscription_id_connectivity     = var.subscription_id_connectivity
+  configure_connectivity_resources = var.configure_connectivity_resources
+  connectivity_resources_advanced = merge(
+    local.create_object,
+    coalesce(local.configure_connectivity_resources.advanced, local.empty_map),
+  )
+  connectivity_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    local.default_tags,
+    local.configure_connectivity_resources.tags,
+  )
+
+  deploy_management_resources    = var.deploy_management_resources
+  root_id                        = var.root_id
+  subscription_id_management     = var.subscription_id_management
+  configure_management_resources = var.configure_management_resources
+  default_location               = lower(var.default_location)
+  management_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    local.default_tags,
+    local.configure_management_resources.tags,
+  )
+  management_resources_advanced = merge(
+    local.create_object,
+    coalesce(local.configure_management_resources.advanced, local.empty_map),
+  )
+
+  empty_string = ""
+
+  deploy_identity_resources    = var.deploy_identity_resources
+  configure_identity_resources = var.configure_identity_resources
+
   es_archetype_config_defaults = {
     enforcement_mode_default = {}
     parameter_map_default    = {}
@@ -118,43 +151,10 @@ locals {
       }
     }
   }
-
-  deploy_management_resources    = var.deploy_management_resources
-  root_id                        = var.root_id
-  subscription_id_management     = var.subscription_id_management
-  configure_management_resources = var.configure_management_resources
-  default_location               = lower(var.default_location)
-  management_resources_tags = merge(
-    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
-    local.default_tags,
-    local.configure_management_resources.tags,
-  )
-  management_resources_advanced = merge(
-    local.create_object,
-    coalesce(local.configure_management_resources.advanced, local.empty_map),
-  )
-  connectivity_resources_tags = merge(
-    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
-    local.default_tags,
-    local.configure_connectivity_resources.tags,
-  )
-
-  empty_string = ""
-
-  deploy_identity_resources    = var.deploy_identity_resources
-  configure_identity_resources = var.configure_identity_resources
-
-  deploy_connectivity_resources    = var.deploy_connectivity_resources
-  subscription_id_connectivity     = var.subscription_id_connectivity
-  configure_connectivity_resources = var.configure_connectivity_resources
-  connectivity_resources_advanced = merge(
-    local.create_object,
-    coalesce(local.configure_connectivity_resources.advanced, local.empty_map),
-  )
 }
 
 module "connectivity_resources" {
-  source = "./modules/connectivity"
+  source        = "./modules/connectivity"
   providers = {
     azurerm              = azurerm.connectivity
     azurerm.subscription = azurerm.connectivity
@@ -201,7 +201,7 @@ module "management_group_archetypes" {
   }
   root_id                 = local.root_id
   default_location        = local.default_location
-  library_path            = local.library_path
+  library_path            = var.library_path
   template_file_variables = local.template_file_variables
   archetype_id            = local.root_id # You might need to adjust this based on the module's requirements
   scope_id                = local.root_id # You might need to adjust this based on the module's requirements
@@ -251,7 +251,7 @@ resource "azurerm_management_group" "level_3" {
   ], count.index)
   parent_management_group_id = "${local.root_id}-platform"
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
+    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
 }
@@ -287,7 +287,6 @@ resource "azurerm_management_group" "level_5" {
 }
 
 resource "azurerm_management_group" "level_6" {
-  count = length(var.custom_landing_zones)
   for_each = {
     for key, value in var.custom_landing_zones : key => value
   }
@@ -544,14 +543,14 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
 }
 
 resource "azurerm_virtual_network_peering" "connectivity" {
-  count                        = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].enable_virtual_hub_connections ? 1 : 0
-  name                         = "${local.root_id}-vnet-peering"
-  resource_group_name          = azurerm_resource_group.connectivity[0].name
-  virtual_network_name         = azurerm_virtual_network.connectivity[0].name
-  remote_virtual_network_id    = azurerm_virtual_hub.virtual_wan[0].id
-  allow_virtual_network_access = true
-  allow_forwarded_traffic      = true
-  use_remote_gateways          = false
+  count                         = local.deploy_connectivity_resources && length(lookup(local.configure_connectivity_resources.settings, "vwan_hub_networks", [])) > 0 && lookup(local.configure_connectivity_resources.settings.vwan_hub_networks, [])[0].enable_virtual_hub_connections ? 1 : 0
+  name                          = "${local.root_id}-vnet-peering"
+  resource_group_name           = azurerm_resource_group.connectivity[0].name
+  virtual_network_name          = azurerm_virtual_network.connectivity[0].name
+  remote_virtual_network_id     = azurerm_virtual_hub.virtual_wan[0].id
+  allow_virtual_network_access  = true
+  allow_forwarded_traffic       = true
+  use_remote_gateways           = false
 }
 
 resource "azurerm_virtual_wan" "virtual_wan" {
@@ -607,6 +606,7 @@ resource "azurerm_virtual_hub_connection" "virtual_wan" {
   name                      = "${local.root_id}-hub-connection"
   virtual_hub_id            = azurerm_virtual_hub.virtual_wan[0].id
   remote_virtual_network_id = azurerm_virtual_network.connectivity[0].id
+
 }
 
 resource "azapi_resource" "data_collection_rule" {
