@@ -133,6 +133,11 @@ locals {
     local.create_object,
     coalesce(local.configure_management_resources.advanced, local.empty_map),
   )
+  connectivity_resources_tags = merge(
+    local.disable_base_module_tags ? local.empty_map : local.base_module_tags,
+    local.default_tags,
+    local.configure_connectivity_resources.tags,
+  )
 
   empty_string = ""
 
@@ -155,13 +160,13 @@ module "connectivity_resources" {
     azurerm.subscription = azurerm.connectivity
     azapi              = azapi
   }
-  root_id                          = local.root_id
-  default_location                 = local.default_location
-  deploy_connectivity_resources    = local.deploy_connectivity_resources
-  configure_connectivity_resources = local.configure_connectivity_resources
-  connectivity_resources_advanced  = local.connectivity_resources_advanced
-  enabled                          = var.deploy_connectivity_resources
-  subscription_id                  = var.subscription_id_connectivity
+  root_id                     = local.root_id
+  enabled                     = var.deploy_connectivity_resources
+  subscription_id             = var.subscription_id_connectivity
+  settings                    = local.configure_connectivity_resources.settings
+  default_location            = local.default_location
+  location                    = local.configure_connectivity_resources.location
+  tags                        = local.connectivity_resources_tags
 }
 
 module "identity_resources" {
@@ -171,10 +176,9 @@ module "identity_resources" {
     azurerm.subscription = azurerm.identity
     azapi              = azapi
   }
-  root_id                      = local.root_id
-  deploy_identity_resources    = var.deploy_identity_resources
-  configure_identity_resources = var.configure_identity_resources
-  enabled                      = var.deploy_identity_resources
+  root_id                 = local.root_id
+    enabled                 = var.deploy_identity_resources
+    settings                = local.configure_identity_resources.settings
 }
 
 module "management_resources" {
@@ -184,15 +188,9 @@ module "management_resources" {
     azurerm.subscription = azurerm.management
     azapi              = azapi
   }
-  root_id                        = local.root_id
-  default_location               = local.default_location
-  deploy_management_resources    = var.deploy_management_resources
-  configure_management_resources = var.configure_management_resources
-  subscription_id_management     = var.subscription_id_management
-  management_resources_tags      = local.management_resources_tags
-  management_resources_advanced  = local.management_resources_advanced
+  root_id                          = local.root_id
+  subscription_id                  = var.subscription_id_management
   enabled                        = var.deploy_management_resources
-  subscription_id                = var.subscription_id_management
 }
 
 module "management_group_archetypes" {
@@ -206,9 +204,6 @@ module "management_group_archetypes" {
   default_location                = local.default_location
   library_path                    = local.library_path
   template_file_variables         = local.template_file_variables
-  es_archetype_config_defaults    = local.es_archetype_config_defaults
-  es_landing_zones_map            = local.es_landing_zones_map
-  strict_subscription_association = local.strict_subscription_association
   archetype_id                    = local.root_id # You might need to adjust this based on the module's requirements
   scope_id                        = local.root_id # You might need to adjust this based on the module's requirements
 }
@@ -218,7 +213,7 @@ resource "azurerm_management_group" "level_1" {
   display_name = var.root_name
   name         = local.root_id
   parent_management_group_id = var.root_parent_id
-  timeouts {
+    timeouts {
     create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
@@ -237,7 +232,7 @@ resource "azurerm_management_group" "level_2" {
     "${local.root_id}-decommissioned",
   ], count.index)
   parent_management_group_id = local.root_id
-  timeouts {
+    timeouts {
     create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
@@ -256,7 +251,7 @@ resource "azurerm_management_group" "level_3" {
     "${local.root_id}-identity",
   ], count.index)
   parent_management_group_id = "${local.root_id}-platform"
-  timeouts {
+    timeouts {
     create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
@@ -267,8 +262,8 @@ resource "azurerm_management_group" "level_4" {
   display_name = "Sandboxes"
   name         = "${local.root_id}-sandboxes"
   parent_management_group_id = "${local.root_id}-landing-zones"
-  timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
+    timeouts {
+    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
 }
@@ -286,8 +281,8 @@ resource "azurerm_management_group" "level_5" {
     "${local.root_id}-sap",
   ], count.index)
   parent_management_group_id = "${local.root_id}-landing-zones"
-  timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
+    timeouts {
+    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
 }
@@ -300,7 +295,7 @@ resource "azurerm_management_group" "level_6" {
   display_name = each.value.display_name
   name         = "${local.root_id}-${each.key}"
   parent_management_group_id = each.value.parent_management_group_id
-  timeouts {
+    timeouts {
     create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
     delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
   }
@@ -311,7 +306,7 @@ resource "azurerm_management_group_subscription_association" "enterprise_scale" 
     for key, value in local.es_landing_zones_map : key => value
     if length(value.subscription_ids) > 0
   }
-  subscription_id     = each.value.subscription_ids[0]
+    subscription_id     = each.value.subscription_ids[0]
   management_group_id = each.key
   depends_on = [
     module.management_group_archetypes
@@ -340,7 +335,7 @@ resource "azurerm_policy_set_definition" "enterprise_scale" {
     parameter_values = jsonencode(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].parameter_values)
   }
   metadata = jsonencode(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].metadata)
-  timeouts {
+    timeouts {
     create = lookup(var.create_duration_delay, "azurerm_policy_set_definition", "30s")
   }
 }
