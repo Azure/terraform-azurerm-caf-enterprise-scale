@@ -1,0 +1,58 @@
+name: Checkov Scan
+
+on:
+  push:
+    branches:
+      - aws-dev
+  pull_request:
+    branches:
+      - aws-dev
+
+permissions:
+  contents: read
+
+jobs:
+  checkov_scan:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+      # security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      # actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clear Cache
+        uses: actions/cache@v4.2.3
+        with:
+          path: |
+            ./.github/workflows/
+          key: ${{ runner.os }}-workflow-${{ github.event_name }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-workflow-${{ github.event_name }}-
+
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2.11.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.7
+
+      - name: Checkov Scan
+        id: checkov_scan
+        uses: bridgecrewio/checkov-action@v12.2993.0
+        with:
+          directory: '.'  # Root directory to scan (adjust if needed)
+          output_format: github_failed_only # Output format (cli,csv,cyclonedx,cyclonedx_json,json,junitxml,github_failed_only,gitlab_sast,sarif,spdx)
+          output_file_path: console,results.xml
+          # Add other Checkov configuration options here if necessary
+
+      - name: Fail on Checkov Errors (Push Only)
+        if: steps.checkov_scan.outcome == 'failure' && !contains(github.event_name, 'pull_request')
+        run: exit 1
+
+      # Commented out the step that requires GitHub Advanced Security
+      # - name: Upload SARIF file (optional)
+      #   if: always()  # Always run this step, even if previous steps fail
+      #   uses: github/codeql-action/upload-sarif@v3.25.8
+      #   with:
+      #     sarif_file: 'results.sarif'  # SARIF output file name (adjust if needed)
