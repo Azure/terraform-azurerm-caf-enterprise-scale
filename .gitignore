@@ -55,3 +55,4 @@ tests/modules/test_local
 .github/scripts/Template.Parser.Cli.exe
 examples/400-multi-with-orchestration/*.auto.tfvars
 .qodo
+.alzlib
