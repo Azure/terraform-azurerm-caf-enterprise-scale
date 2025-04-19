@@ -23,6 +23,11 @@
     pkgs.neofetch
     pkgs.cmatrix
     pkgs.adoptopenjdk-jre-bin
+    pkgs.zsh
+    pkgs.zsh-completions
+    pkgs.zsh-syntax-highlighting
+    pkgs.zsh-autosuggestions
+    pkgs.zsh-powerlevel10k
   ];
 
   # Sets environment variables in the workspace
