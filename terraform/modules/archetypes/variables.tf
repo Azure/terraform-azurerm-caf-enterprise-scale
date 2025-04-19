@@ -63,3 +63,11 @@ variable "default_location" {
   type        = string
   description = "Sets the default location used for resource deployments where needed."
 }
+
+variable "connectivity_subscription_id" {
+  type = string
+}
+
+variable "management_subscription_id" {
+  type = string
+}

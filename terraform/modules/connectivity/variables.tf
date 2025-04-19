@@ -409,3 +409,21 @@ variable "custom_settings_by_resource_type" {
     error_message = "Invalid key specified. Please check the list of allowed resource types supported by the connectivity module for caf-enterprise-scale."
   }
 }
+
+variable "hub_name" {
+  description = "Specifies the name for the hub virtual network."
+  type        = string
+  default     = null # Or define a more specific default if needed
+}
+
+variable "deploy_hub_vnet" {
+  description = "Specifies whether to deploy the hub virtual network."
+  type        = bool
+  default     = true # Matches the try default in the calling module
+}
+
+variable "hub_address_prefixes" {
+  description = "Specifies the address prefixes for the hub virtual network."
+  type        = list(string)
+  default     = null # Or define a more specific default if needed
+}

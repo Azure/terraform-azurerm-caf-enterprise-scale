@@ -7,6 +7,7 @@ locals {
   default_tags                       = {}
   create_object                      = {}
   es_core_landing_zones_to_include   = {}
+
   es_corp_landing_zones_to_include   = {}
   es_online_landing_zones_to_include = {}
   es_sap_landing_zones_to_include    = {}
@@ -18,7 +19,6 @@ locals {
   library_path            = var.library_path
   template_file_variables = var.template_file_variables
 
-  deploy_connectivity_resources    = var.deploy_connectivity_resources
   subscription_id_connectivity     = var.subscription_id_connectivity
   configure_connectivity_resources = var.configure_connectivity_resources
   connectivity_resources_advanced = merge(
@@ -31,7 +31,6 @@ locals {
     local.configure_connectivity_resources.tags,
   )
 
-  deploy_management_resources    = var.deploy_management_resources
   root_id                        = var.root_id
   subscription_id_management     = var.subscription_id_management
   configure_management_resources = var.configure_management_resources
@@ -167,28 +166,53 @@ locals {
   security_center_settings = lookup(local.management_settings, "security_center", {})
   automation_settings    = lookup(local.management_settings, "automation", {})
 
+  vwan_enabled = length(local.vwan_hub_networks) > 0
+  hub_enabled  = length(local.hub_networks) > 0
+
+  is_connectivity_enabled = var.deploy_connectivity_resources
+  is_management_enabled   = var.deploy_management_resources
+
+  # Alias for the output of the archetypes module (assuming a single instance)
+  mgmt_group_archetypes_output = module.management_group_archetypes[keys(module.management_group_archetypes)[0]]
+
+  # Aliases for common resource group names
+  management_rg_name  = "${local.root_id}-management-rg"
+  connectivity_rg_name = "${local.root_id}-connectivity-rg"
+  virtual_wan_rg_name = "${local.root_id}-virtual-wan-rg"
+
+  # Aliases for timeout lookups
+  get_create_timeout = func(resource_type, default_value) {
+    lookup(var.create_duration_delay, resource_type, default_value)
+  }
+
+  get_delete_timeout = func(resource_type, default_value) {
+    lookup(var.destroy_duration_delay, resource_type, default_value)
+  }
 }
+
 
 module "connectivity_resources" {
   source        = "./modules/connectivity"
   providers = {
     azurerm              = azurerm.connectivity
-    azurerm.subscription = azurerm.connectivity
+    azurerm.subscription = azurerm.subscription
     azapi                = azapi
   }
   root_id         = local.root_id
-  enabled         = var.deploy_connectivity_resources
+  enabled         = local.is_connectivity_enabled
   subscription_id = var.subscription_id_connectivity
   settings        = local.configure_connectivity_resources.settings
   location        = local.configure_connectivity_resources.location
   tags            = local.connectivity_resources_tags
 }
 
+
+
 module "identity_resources" {
   source = "./modules/identity"
   providers = {
     azurerm              = azurerm.identity
-    azurerm.subscription = azurerm.identity
+    azurerm.subscription = azurerm.subscription
     azapi                = azapi
   }
   root_id  = local.root_id
@@ -205,14 +229,14 @@ module "management_resources" {
   }
   root_id         = local.root_id
   subscription_id = var.subscription_id_management
-  enabled         = var.deploy_management_resources
+  enabled         = local.is_management_enabled
 }
 
 module "management_group_archetypes" {
   source = "./modules/archetypes"
   providers = {
     azurerm              = azurerm.root
-    azurerm.subscription = azurerm.root
+    azurerm.subscription = azurerm.subscription
     azapi                = azapi
   }
   root_id                 = local.root_id
@@ -221,16 +245,18 @@ module "management_group_archetypes" {
   template_file_variables = local.template_file_variables
   archetype_id            = local.root_id # You might need to adjust this based on the module's requirements
   scope_id                = local.root_id # You might need to adjust this based on the module's requirements
+  management_subscription_id = var.subscription_id_management
+  connectivity_subscription_id = var.subscription_id_connectivity
 }
 
 resource "azurerm_management_group" "level_1" {
-  count                      = var.deploy_core_landing_zones ? 1 : 0
-  display_name               = var.root_name
-  name                       = local.root_id
+  count        = var.deploy_core_landing_zones ? 1 : 0
+  display_name = var.root_name
+  name         = local.root_id
   parent_management_group_id = var.root_parent_id
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
-    delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
+    create = local.get_create_timeout("azurerm_management_group", "30s")
+    delete = local.get_delete_timeout("azurerm_management_group", "0s")
   }
 }
 
@@ -248,8 +274,8 @@ resource "azurerm_management_group" "level_2" {
   ], count.index)
   parent_management_group_id = local.root_id
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
-    delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
+    create = local.get_create_timeout("azurerm_management_group", "0s")
+    delete = local.get_delete_timeout("azurerm_management_group", "0s")
   }
 }
 
@@ -267,8 +293,8 @@ resource "azurerm_management_group" "level_3" {
   ], count.index)
   parent_management_group_id = "${local.root_id}-platform"
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
-    delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
+    create = local.get_create_timeout("azurerm_management_group", "0s")
+    delete = local.get_delete_timeout("azurerm_management_group", "0s")
   }
 }
 
@@ -278,8 +304,8 @@ resource "azurerm_management_group" "level_4" {
   name                       = "${local.root_id}-sandboxes"
   parent_management_group_id = "${local.root_id}-landing-zones"
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
-    delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
+    create = local.get_create_timeout("azurerm_management_group", "0s")
+    delete = local.get_delete_timeout("azurerm_management_group", "0s")
   }
 }
 
@@ -297,8 +323,8 @@ resource "azurerm_management_group" "level_5" {
   ], count.index)
   parent_management_group_id = "${local.root_id}-landing-zones"
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "0s")
-    delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
+    create = local.get_create_timeout("azurerm_management_group", "0s")
+    delete = local.get_delete_timeout("azurerm_management_group", "0s")
   }
 }
 
@@ -310,8 +336,8 @@ resource "azurerm_management_group" "level_6" {
   name                       = "${local.root_id}-${each.key}"
   parent_management_group_id = each.value.parent_management_group_id
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_management_group", "30s")
-    delete = lookup(var.destroy_duration_delay, "azurerm_management_group", "0s")
+    create = local.get_create_timeout("azurerm_management_group", "30s")
+    delete = local.get_delete_timeout("azurerm_management_group", "0s")
   }
 }
 
@@ -328,29 +354,29 @@ resource "azurerm_management_group_subscription_association" "enterprise_scale" 
 }
 
 resource "azurerm_policy_definition" "enterprise_scale" {
-  count        = length(module.management_group_archetypes) > 0 ? length(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_definition) : 0
-  name         = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_definition[count.index].policy_definition_name
+  count        = length(module.management_group_archetypes) > 0 ? length(local.mgmt_group_archetypes_output.policy_definition) : 0
+  name         = local.mgmt_group_archetypes_output.policy_definition[count.index].policy_definition_name
   policy_type  = "Custom"
-  mode         = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_definition[count.index].policy_definition_mode
-  display_name = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_definition[count.index].policy_definition_display_name
-  metadata     = jsonencode(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_definition[count.index].metadata)
+  mode         = local.mgmt_group_archetypes_output.policy_definition[count.index].policy_definition_mode
+  display_name = local.mgmt_group_archetypes_output.policy_definition[count.index].policy_definition_display_name
+  metadata     = jsonencode(local.mgmt_group_archetypes_output.policy_definition[count.index].metadata)
 }
 
 resource "azurerm_policy_set_definition" "enterprise_scale" {
-  count               = length(module.management_group_archetypes) > 0 ? length(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition) : 0
-  name                = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].policy_set_definition_name
-  display_name        = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].policy_set_definition_display_name
+  count               = length(module.management_group_archetypes) > 0 ? length(local.mgmt_group_archetypes_output.policy_set_definition) : 0
+  name                = local.mgmt_group_archetypes_output.policy_set_definition[count.index].policy_set_definition_name
+  display_name        = local.mgmt_group_archetypes_output.policy_set_definition[count.index].policy_set_definition_display_name
   policy_type         = "Custom"
-  description         = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].policy_set_definition_description
+  description         = local.mgmt_group_archetypes_output.policy_set_definition[count.index].policy_set_definition_description
   management_group_id = keys(module.management_group_archetypes)[0]
   policy_definition_reference {
-    policy_definition_id = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].policy_definition_id
-    reference_id         = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].reference_id
-    parameter_values     = jsonencode(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].parameter_values)
+    policy_definition_id = local.mgmt_group_archetypes_output.policy_set_definition[count.index].policy_definition_id
+    reference_id         = local.mgmt_group_archetypes_output.policy_set_definition[count.index].reference_id
+    parameter_values     = jsonencode(local.mgmt_group_archetypes_output.policy_set_definition[count.index].parameter_values)
   }
-  metadata = jsonencode(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].policy_set_definition[count.index].metadata)
+  metadata = jsonencode(local.mgmt_group_archetypes_output.policy_set_definition[count.index].metadata)
   timeouts {
-    create = lookup(var.create_duration_delay, "azurerm_policy_set_definition", "30s")
+    create = local.get_create_timeout("azurerm_policy_set_definition", "30s")
   }
 }
 
@@ -364,10 +390,10 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
 }
 
 resource "azurerm_role_definition" "enterprise_scale" {
-  count       = length(module.management_group_archetypes) > 0 ? length(module.management_group_archetypes[keys(module.management_group_archetypes)[0]].role_definition) : 0
-  name        = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].role_definition[count.index].role_definition_name
+  count       = length(module.management_group_archetypes) > 0 ? length(local.mgmt_group_archetypes_output.role_definition) : 0
+  name        = local.mgmt_group_archetypes_output.role_definition[count.index].role_definition_name
   scope       = keys(module.management_group_archetypes)[0]
-  description = module.management_group_archetypes[keys(module.management_group_archetypes)[0]].role_definition[count.index].role_definition_description
+  description = local.mgmt_group_archetypes_output.role_definition[count.index].role_definition_description
 }
 
 resource "azurerm_role_assignment" "enterprise_scale" {
@@ -379,29 +405,29 @@ resource "azurerm_role_assignment" "enterprise_scale" {
 }
 
 resource "azurerm_resource_group" "management" {
-  count    = local.deploy_management_resources ? 1 : 0
-  name     = "${local.root_id}-management-rg"
+  count    = local.is_management_enabled ? 1 : 0
+  name     = local.management_rg_name
   location = local.default_location
   tags     = local.management_resources_tags
 }
 
 resource "azurerm_resource_group" "connectivity" {
-  count    = local.deploy_connectivity_resources ? 1 : 0
-  name     = "${local.root_id}-connectivity-rg"
+  count    = local.is_connectivity_enabled ? 1 : 0
+  name     = local.connectivity_rg_name
   location = local.default_location
   tags     = local.connectivity_resources_tags
 }
 
 resource "azurerm_resource_group" "virtual_wan" {
-  count    = local.deploy_connectivity_resources && lookup(local.connectivity_settings.virtual_wan, "enabled", {}).enabled ? 1 : 0
-  name     = "${local.root_id}-virtual-wan-rg"
+  count    = local.is_connectivity_enabled && lookup(local.connectivity_settings.virtual_wan, "enabled", false) ? 1 : 0
+  name     = local.virtual_wan_rg_name
   location = local.default_location
   tags     = local.connectivity_resources_tags
 }
 
 resource "azurerm_log_analytics_workspace" "management" {
-  count               = local.deploy_management_resources && lookup(local.log_analytics_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string ? 1 : 0
-  name                = "${local.root_id}-log-analytics"
+  count               = local.is_management_enabled && lookup(local.log_analytics_settings, "enabled", false) && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string ? 1 : 0
+  name                = "${local.root_id}-log-analytics" # Specific name, not aliased
   location            = local.configure_management_resources.location
   resource_group_name = azurerm_resource_group.management[0].name
   sku                 = "PerGB2018"
@@ -409,7 +435,7 @@ resource "azurerm_log_analytics_workspace" "management" {
 }
 
 resource "azurerm_log_analytics_solution" "management" {
-  count                 = local.deploy_management_resources && lookup(local.security_center_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string ? 1 : 0
+  count                 = local.is_management_enabled && lookup(local.security_center_settings, "enabled", false) && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string ? 1 : 0
   location              = local.configure_management_resources.location
   resource_group_name   = azurerm_resource_group.management[0].name
   workspace_resource_id = azurerm_log_analytics_workspace.management[0].id
@@ -423,8 +449,8 @@ resource "azurerm_log_analytics_solution" "management" {
 
 
 resource "azurerm_automation_account" "management" {
-  count               = local.deploy_management_resources && lookup(local.automation_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string ? 1 : 0
-  name                = "${local.root_id}-automation"
+  count               = local.is_management_enabled && lookup(local.automation_settings, "enabled", false) && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string ? 1 : 0
+  name                = "${local.root_id}-automation" # Specific name, not aliased
   location            = local.configure_management_resources.location
   resource_group_name = azurerm_resource_group.management[0].name
   sku_name            = "Basic"
@@ -432,7 +458,7 @@ resource "azurerm_automation_account" "management" {
 }
 
 resource "azurerm_log_analytics_linked_service" "management" {
-  count               = local.deploy_management_resources && lookup(local.automation_settings, "enabled", {}).enabled && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string && local.management_resources_advanced.link_log_analytics_to_automation_account ? 1 : 0
+  count               = local.is_management_enabled && lookup(local.automation_settings, "enabled", false) && local.management_resources_advanced.existing_log_analytics_workspace_resource_id == local.empty_string && local.management_resources_advanced.existing_automation_account_resource_id == local.empty_string && local.management_resources_advanced.link_log_analytics_to_automation_account ? 1 : 0
   resource_group_name = azurerm_resource_group.management[0].name
   workspace_id        = azurerm_log_analytics_workspace.management[0].id
   # You need to specify either read_access_id or write_access_id here based on your requirements.
@@ -441,8 +467,8 @@ resource "azurerm_log_analytics_linked_service" "management" {
 }
 
 resource "azurerm_virtual_network" "connectivity" {
-  count               = local.deploy_connectivity_resources && length(local.hub_networks) > 0 ? 1 : 0
-  name                = "${local.root_id}-hub-network"
+  count               = local.is_connectivity_enabled && local.hub_enabled ? 1 : 0
+  name                = "${local.root_id}-hub-network" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
   address_space       = [lookup(local.hub_network_settings, "address_prefixes", [""])[0]]
@@ -450,7 +476,7 @@ resource "azurerm_virtual_network" "connectivity" {
 }
 
 #resource "azurerm_subnet" "connectivity" {
-#  count                = local.deploy_connectivity_resources && lookup(local.hub_network_settings, "enabled", {}).enabled && length(lookup(local.hub_network_settings, "subnets", [])) > 0 ? length(lookup(local.hub_network_settings, "subnets", [])) : 0
+#  count                = local.is_connectivity_enabled && lookup(local.hub_network_settings, "enabled", false) && length(lookup(local.hub_network_settings, "subnets", [])) > 0 ? length(lookup(local.hub_network_settings, "subnets", [])) : 0
 #  name                 = lookup(local.hub_network_settings.subnets[count.index], "name", "")
 #  resource_group_name  = azurerm_resource_group.connectivity[0].name
 #  virtual_network_name = azurerm_virtual_network.connectivity[0].name
@@ -458,16 +484,16 @@ resource "azurerm_virtual_network" "connectivity" {
 #}
 
 resource "azurerm_network_ddos_protection_plan" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.ddos_protection_settings, "enabled", {}).enabled ? 1 : 0
-  name                = "${local.root_id}-ddos-plan"
+  count               = local.is_connectivity_enabled && lookup(local.ddos_protection_settings, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-ddos-plan" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_public_ip" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.firewall_settings, "enabled", {}).enabled ? 1 : 0
-  name                = "${local.root_id}-firewall-pip"
+  count               = local.is_connectivity_enabled && lookup(local.firewall_settings, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-firewall-pip" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
   allocation_method   = "Static"
@@ -476,8 +502,8 @@ resource "azurerm_public_ip" "connectivity" {
 }
 
 resource "azurerm_virtual_network_gateway" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.hub_networks[0].virtual_network_gateway, "enabled", false) ? 1 : 0
-  name                = "${local.root_id}-vpn-gateway"
+  count               = local.is_connectivity_enabled && lookup(local.hub_networks[0].virtual_network_gateway, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-vpn-gateway" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
   sku                 = lookup(local.vpn_gateway_settings, "sku", "")
@@ -491,24 +517,24 @@ resource "azurerm_virtual_network_gateway" "connectivity" {
 }
 
 resource "azurerm_firewall_policy" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
-  name                = "${local.root_id}-firewall-policy"
+  count               = local.is_connectivity_enabled && lookup(local.hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-firewall-policy" # Specific name, not aliased
   resource_group_name = azurerm_resource_group.connectivity[0].name
   location            = local.configure_connectivity_resources.location
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_firewall_policy" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
-  name                = "${local.root_id}-vwan-firewall-policy"
+  count               = local.is_connectivity_enabled && local.vwan_enabled && lookup(local.vwan_hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-vwan-firewall-policy" # Specific name, not aliased
   resource_group_name = azurerm_resource_group.virtual_wan[0].name
   location            = local.default_location
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_firewall" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.hub_networks[0].azure_firewall, "enabled", false) && length(local.vwan_hub_networks) == 0 ? 1 : 0
-  name                = "${local.root_id}-firewall"
+  count               = local.is_connectivity_enabled && lookup(local.hub_networks[0].azure_firewall, "enabled", false) && !local.vwan_enabled ? 1 : 0
+  name                = "${local.root_id}-firewall" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.connectivity[0].name
   firewall_policy_id  = azurerm_firewall_policy.connectivity[0].id
@@ -518,38 +544,38 @@ resource "azurerm_firewall" "connectivity" {
     public_ip_address_id = azurerm_public_ip.connectivity[0].id
   }
   sku_name = "AZFW_VNet"
-  sku_tier = lookup(local.configure_connectivity_resources.settings.hub_network.azure_firewall.config, "sku_tier", "")
+  sku_tier = lookup(local.hub_network_settings.azure_firewall.config, "sku_tier", "")
   tags     = local.connectivity_resources_tags
 }
 
 resource "azurerm_firewall" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
-  name                = "${local.root_id}-vwan-firewall"
+  count               = local.is_connectivity_enabled && local.vwan_enabled && lookup(local.vwan_hub_networks[0].azure_firewall, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-vwan-firewall" # Specific name, not aliased
   location            = local.default_location
   resource_group_name = azurerm_resource_group.virtual_wan[0].name
   firewall_policy_id  = azurerm_firewall_policy.virtual_wan[0].id
 
   sku_name = "AZFW_Hub"
-  sku_tier = lookup(local.configure_connectivity_resources.settings.virtual_wan.azure_firewall.config, "sku_tier", "")
+  sku_tier = lookup(local.connectivity_settings.virtual_wan.azure_firewall.config, "sku_tier", "")
   tags     = local.connectivity_resources_tags
 }
 
 resource "azurerm_private_dns_zone" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "private_dns_zones", [])) : 0
+  count               = local.is_connectivity_enabled && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "private_dns_zones", [])) : 0
   name                = lookup(local.dns_settings.config.private_dns_zones[count.index], "", "")
   resource_group_name = azurerm_resource_group.connectivity[0].name
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_dns_zone" "connectivity" {
-  count               = local.deploy_connectivity_resources && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "public_dns_zones", [])) : 0
+  count               = local.is_connectivity_enabled && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "public_dns_zones", [])) : 0
   name                = lookup(local.dns_settings.config.public_dns_zones[count.index], "", "")
   resource_group_name = azurerm_resource_group.connectivity[0].name
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
-  count                 = local.deploy_connectivity_resources && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "private_dns_zones", [])) : 0
+  count                 = local.is_connectivity_enabled && lookup(local.dns_settings, "enabled", false) ? length(lookup(local.dns_settings.config, "private_dns_zones", [])) : 0
   name                  = "${local.root_id}-${lookup(local.dns_settings.config.private_dns_zones[count.index], "", "")}-link"
   resource_group_name   = azurerm_resource_group.connectivity[0].name
   private_dns_zone_name = azurerm_private_dns_zone.connectivity[count.index].name
@@ -559,8 +585,8 @@ resource "azurerm_private_dns_zone_virtual_network_link" "connectivity" {
 }
 
 resource "azurerm_virtual_network_peering" "connectivity" {
-  count                         = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0], "enable_virtual_hub_connections", false) ? 1 : 0
-  name                          = "${local.root_id}-vnet-peering"
+  count                         = local.is_connectivity_enabled && local.vwan_enabled && lookup(local.vwan_hub_networks[0], "enable_virtual_hub_connections", false) ? 1 : 0
+  name                          = "${local.root_id}-vnet-peering" # Specific name, not aliased
   resource_group_name           = azurerm_resource_group.connectivity[0].name
   virtual_network_name          = azurerm_virtual_network.connectivity[0].name
   remote_virtual_network_id     = azurerm_virtual_hub.virtual_wan[0].id
@@ -570,26 +596,26 @@ resource "azurerm_virtual_network_peering" "connectivity" {
 }
 
 resource "azurerm_virtual_wan" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && local.connectivity_resources_advanced.existing_virtual_wan_resource_id == local.empty_string ? 1 : 0
-  name                = "${local.root_id}-virtual-wan"
+  count               = local.is_connectivity_enabled && local.vwan_enabled && local.connectivity_resources_advanced.existing_virtual_wan_resource_id == local.empty_string ? 1 : 0
+  name                = "${local.root_id}-virtual-wan" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = azurerm_resource_group.virtual_wan[0].name
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_virtual_hub" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 ? 1 : 0
-  name                = "${local.root_id}-virtual-hub"
+  count               = local.is_connectivity_enabled && local.vwan_enabled ? 1 : 0
+  name                = "${local.root_id}-virtual-hub" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = lookup(local.configure_connectivity_resources.settings.virtual_wan, "resource_group_per_virtual_hub_location", false) ? azurerm_resource_group.virtual_wan[0].name : azurerm_resource_group.connectivity[0].name
   virtual_wan_id      = local.connectivity_resources_advanced.existing_virtual_wan_resource_id != local.empty_string ? local.connectivity_resources_advanced.existing_virtual_wan_resource_id : azurerm_virtual_wan.virtual_wan[0].id
-  address_prefix      = lookup(local.configure_connectivity_resources.settings.virtual_wan, "hub_address_prefix", "")
+  address_prefix      = lookup(local.connectivity_settings.virtual_wan, "hub_address_prefix", "")
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
-  count          = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].routing_intent, "enabled", false) ? 1 : 0
-  name           = "${local.root_id}-default-routing-intent"
+  count          = local.is_connectivity_enabled && local.vwan_enabled && lookup(local.vwan_hub_networks[0].routing_intent, "enabled", false) ? 1 : 0
+  name           = "${local.root_id}-default-routing-intent" # Specific name, not aliased
   virtual_hub_id = azurerm_virtual_hub.virtual_wan[0].id
   routing_policy {
     name         = "RouteToAzureFirewall"
@@ -599,18 +625,18 @@ resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
 }
 
 resource "azurerm_express_route_gateway" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].expressroute_gateway, "enabled", false) ? 1 : 0
-  name                = "${local.root_id}-er-gateway"
+  count               = local.is_connectivity_enabled && local.vwan_enabled && lookup(local.vwan_hub_networks[0].expressroute_gateway, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-er-gateway" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = lookup(local.configure_connectivity_resources.settings.virtual_wan, "resource_group_per_virtual_hub_location", false) ? azurerm_resource_group.virtual_wan[0].name : azurerm_resource_group.connectivity[0].name
   virtual_hub_id      = azurerm_virtual_hub.virtual_wan[0].id
-  scale_units         = lookup(local.configure_connectivity_resources.settings.express_route_gateway, "scale_units", 1)
+  scale_units         = lookup(local.connectivity_settings.express_route_gateway, "scale_units", 1)
   tags                = local.connectivity_resources_tags
 }
 
 resource "azurerm_vpn_gateway" "virtual_wan" {
-  count               = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && lookup(local.vwan_hub_networks[0].vpn_gateway, "enabled", false) ? 1 : 0
-  name                = "${local.root_id}-vwan-vpn-gateway"
+  count               = local.is_connectivity_enabled && local.vwan_enabled && lookup(local.vwan_hub_networks[0].vpn_gateway, "enabled", false) ? 1 : 0
+  name                = "${local.root_id}-vwan-vpn-gateway" # Specific name, not aliased
   location            = local.configure_connectivity_resources.location
   resource_group_name = lookup(local.configure_connectivity_resources.settings.virtual_wan, "resource_group_per_virtual_hub_location", false) ? azurerm_resource_group.virtual_wan[0].name : azurerm_resource_group.connectivity[0].name
   virtual_hub_id      = azurerm_virtual_wan[0].id
@@ -618,16 +644,16 @@ resource "azurerm_vpn_gateway" "virtual_wan" {
 }
 
 resource "azurerm_virtual_hub_connection" "virtual_wan" {
-  count                     = local.deploy_connectivity_resources && length(local.vwan_hub_networks) > 0 && length(local.hub_networks) > 0 && lookup(local.vwan_hub_networks[0], "enable_virtual_hub_connections", false) ? 1 : 0
-  name                      = "${local.root_id}-hub-connection"
+  count                     = local.is_connectivity_enabled && local.vwan_enabled && local.hub_enabled && lookup(local.vwan_hub_networks[0], "enable_virtual_hub_connections", false) ? 1 : 0
+  name                      = "${local.root_id}-hub-connection" # Specific name, not aliased
   virtual_hub_id            = azurerm_virtual_hub.virtual_wan[0].id
   remote_virtual_network_id = azurerm_virtual_network.connectivity[0].id
 }
 
 resource "azapi_resource" "data_collection_rule" {
-  count    = local.deploy_management_resources && lookup(lookup(local.configure_management_resources.settings, "log_analytics", {}), "export_all_logs_to_storage_account", false) && local.management_resources_advanced.asc_export_resource_group_name != local.empty_string ? 1 : 0
+  count    = local.is_management_enabled && lookup(local.log_analytics_settings, "export_all_logs_to_storage_account", false) && local.management_resources_advanced.asc_export_resource_group_name != local.empty_string ? 1 : 0
   type     = "Microsoft.Insights/dataCollectionRules@2021-09-01-preview"
-  name     = "${local.root_id}-asc-dcr"
+  name     = "${local.root_id}-asc-dcr" # Specific name, not aliased
   location = local.configure_management_resources.location
   # You need to determine the correct parent_id for this resource.
   # It might be the subscription ID or a resource group ID.
@@ -654,7 +680,7 @@ resource "azapi_resource" "data_collection_rule" {
       dataFlows = [
         { destinations = ["ESASCExport"], streams = ["Microsoft-ResourceHealthLogs"] },
         { destinations = ["ESASCExport"], streams = ["Microsoft-SecurityAlert"] },
-        { destinations = ["ESASCExport"], streams = ["Microsoft-SecurityRecommendation"] }
+        { destinations = ["Microsoft-SecurityRecommendation"] }
       ]
     }
   })
