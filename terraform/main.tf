@@ -194,7 +194,7 @@
     get_create_timeout = func(resource_type, default_value) {
       lookup(var.create_duration_delay, resource_type, default_value)
     }
-
+    
 
 
     get_delete_timeout = func(resource_type, default_value) {
@@ -249,12 +249,13 @@
 
   module "management_group_archetypes" {
     source = "./modules/archetypes"
+
     providers = {
-      azurerm.root         = azurerm.root
       azurerm              = azurerm.root
       azurerm.subscription = azurerm.subscription
       azapi                = azapi
     }
+
     root_id                 = local.root_id
     default_location        = local.default_location
     library_path            = var.library_path

@@ -62,7 +62,6 @@ output "azurerm_role_definition" {
 output "azurerm_role_assignment" {
   value = {
     enterprise_scale  = azurerm_role_assignment.enterprise_scale
-    policy_assignment = local.role_assignments_for_policy_output
   }
   description = "Returns the configuration data for all Role Assignments created by this module."
 }
