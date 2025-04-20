@@ -4,25 +4,25 @@
 terraform {
   required_providers {
     azapi = {
-      source  = "Azure/azapi"
+      source = "Azure/azapi"
       # Use version constraint compatible with your caf-enterprise-scale module version
-      # Example based on module requirements. 
+      # Example based on module requirements.
       version = ">= 1.0, <= 2.3.0"
     }
     azurerm = {
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
       # Use version constraint compatible with your caf-enterprise-scale module version
       # Example based on recent module requirements
       version = ">= 3.0, <= 4.26.0"
     }
     random = {
-      source  = "hashicorp/random"
+      source = "hashicorp/random"
       # Use version constraint compatible with your caf-enterprise-scale module version
       # Example based on recent module requirements
       version = "~> 3.7.1"
     }
     time = {
-      source  = "hashicorp/time"
+      source = "hashicorp/time"
       # Use version constraint compatible with your caf-enterprise-scale module version
       # Example based on recent module requirements
       version = "~> 0.13.0"
@@ -44,7 +44,7 @@ provider "azurerm" {
 # Provider alias for Connectivity Landing Zone Subscription
 # Used by resources/modules targeting the connectivity subscription. [1, 2]
 provider "azurerm" {
-  alias           = "connectivity"
+  alias = "connectivity"
   features {}
   subscription_id = var.subscription_id_connectivity # Requires var.subscription_id_connectivity to be defined
   # tenant_id       = var.tenant_id                    # Ensure tenant context if needed
@@ -53,7 +53,7 @@ provider "azurerm" {
 # Provider alias for Management Landing Zone Subscription
 # Used by resources/modules targeting the management subscription. [1, 2]
 provider "azurerm" {
-  alias           = "management"
+  alias = "management"
   features {}
   subscription_id = var.subscription_id_management # Requires var.subscription_id_management to be defined
   # tenant_id       = var.tenant_id                # Ensure tenant context if needed
@@ -62,7 +62,7 @@ provider "azurerm" {
 # Provider alias for Identity Landing Zone Subscription
 # Used by resources/modules targeting the identity subscription. [1, 2]
 provider "azurerm" {
-  alias           = "identity"
+  alias = "identity"
   features {}
   subscription_id = var.subscription_id_identity # Requires var.subscription_id_identity to be defined
   # tenant_id       = var.tenant_id              # Ensure tenant context if needed
