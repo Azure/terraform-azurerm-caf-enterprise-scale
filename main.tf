@@ -1,13 +1,37 @@
 # The following module is used to generate the configuration
 # data used to deploy all archetype resources at the
+# Management Group scope.
 # Management Group scope. Future plans include repeating this
 # for Subscription scope configuration so we can improve
 # coverage for archetype patterns which deploy specific
-# groups of Resources within a Subscription.
+# groups of Resources within a Subscription.s
 module "management_group_archetypes" {
-  for_each = local.es_landing_zones_map
   source   = "./modules/archetypes"
+  for_each = local.es_landing_zones_map
 
+  # Mandatory input variables
+  root_id                      = "${local.provider_path.management_groups}${local.root_id}" #root_parent_id
+  scope_id                     = each.key                                                   #es_landing_zone_key
+  archetype_id                 = each.value.archetype_config.archetype_id                   #archetype_id
+  parameters                   = each.value.archetype_config.parameters                     #archetype_config_parameters
+  access_control               = each.value.archetype_config.access_control                 #archetype_config_access_control
+  library_path                 = local.library_path                                         #library_path
+  template_file_variables      = local.template_file_variables                              #template_file_variables
+  default_location             = local.default_location                                     #default_location
+  enforcement_mode             = each.value.archetype_config.enforcement_mode               #enforcement_mode
+  connectivity_subscription_id = var.subscription_id_connectivity                           #connectivity_subscription_id
+  management_subscription_id   = var.subscription_id_management                             #management_subscription_id
+}
+
+
+# The following module is used to generate the configuration
+# data used to deploy platform resources based on the
+# "core" landing zone archetype.
+module "core_resources" {
+  source   = "./modules/archetypes"
+  for_each = local.es_landing_zones_map
+
+  # Mandatory input variables
   root_id                      = "${local.provider_path.management_groups}${local.root_id}"
   scope_id                     = each.key
   archetype_id                 = each.value.archetype_config.archetype_id
@@ -25,18 +49,13 @@ module "management_group_archetypes" {
 # data used to deploy platform resources based on the
 # "management" landing zone archetype.
 module "management_resources" {
-  source = "./modules/management"
 
-  providers = {
-    azurerm.management   = azurerm.management
-    azurerm.subscription = azurerm.subscription
-  }
+  source = "./modules/management"
 
   # Mandatory input variables
   enabled         = local.deploy_management_resources
   root_id         = local.root_id
   subscription_id = local.subscription_id_management
-  settings        = local.configure_management_resources.settings
 
   # Optional input variables (basic configuration)
   location = coalesce(local.configure_management_resources.location, local.default_location)
@@ -57,17 +76,15 @@ module "management_resources" {
 # data used to deploy platform resources based on the
 # "identity" landing zone archetype.
 module "identity_resources" {
-  source = "./modules/identity"
 
-  providers = {
-    azurerm.identity     = azurerm.identity
-    azurerm.subscription = azurerm.subscription
-  }
+  source = "./modules/identity"
 
   # Mandatory input variables
   enabled  = local.deploy_identity_resources
-  root_id  = local.root_id
   settings = local.configure_identity_resources.settings
+  root_id  = local.root_id
+
+
 }
 
 # The following module is used to generate the configuration
@@ -75,11 +92,6 @@ module "identity_resources" {
 # "connectivity" landing zone archetype.
 module "connectivity_resources" {
   source = "./modules/connectivity"
-
-  providers = {
-    azurerm.connectivity = azurerm.connectivity
-    azurerm.subscription = azurerm.subscription
-  }
 
   # Mandatory input variables
   enabled         = local.deploy_connectivity_resources
