@@ -11,6 +11,10 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Percentage of issues still open")
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Azure/terraform-azurerm-caf-enterprise-scale/badge)](https://scorecard.dev/viewer/?uri=github.com/Azure/terraform-azurerm-caf-enterprise-scale)
+[![AI Code Assurance](https://sonarqubeenterprise.pgcloud.com/sonarqube/api/project_badges/ai_code_assurance?project=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7&token=sqb_c7f11c7036a37644d37c1f44bbaa22e1540dadbe)](https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7)
+
+[![Quality gate](https://sonarqubeenterprise.pgcloud.com/sonarqube/api/project_badges/quality_gate?project=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7&token=sqb_c7f11c7036a37644d37c1f44bbaa22e1540dadbe)](https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7)
+
 
 Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
