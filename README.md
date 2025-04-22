@@ -2,7 +2,7 @@
 # Azure landing zones Terraform module
 
 > [!IMPORTANT]
-> For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
+> For new deployments, we now recommend using Azure Verified Modules for Platform Landing Zones.
 > Please see the documentation at <https://aka.ms/alz/tf>.
 > This module will continue to be supported for existing deployments.
 
@@ -11,8 +11,12 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Percentage of issues still open")
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Azure/terraform-azurerm-caf-enterprise-scale/badge)](https://scorecard.dev/viewer/?uri=github.com/Azure/terraform-azurerm-caf-enterprise-scale)
+[![AI Code Assurance](https://sonarqubeenterprise.pgcloud.com/sonarqube/api/project_badges/ai_code_assurance?project=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7&token=sqb_c7f11c7036a37644d37c1f44bbaa22e1540dadbe)](https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7)
 
-Detailed information about how to use, configure and extend this module can be found on our Wiki:
+[![Quality gate](https://sonarqubeenterprise.pgcloud.com/sonarqube/api/project_badges/quality_gate?project=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7&token=sqb_c7f11c7036a37644d37c1f44bbaa22e1540dadbe)](https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=procter-gamble_terraform-azure-enterprise-landing-zone_ec68270f-193f-453c-84de-ada31dcc14f7)
+
+
+Detailed information about how to use, configure, and extend this module can be found on our Wiki:
 
 - [Home](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Home )
 - [User Guide](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/User-Guide)
@@ -24,12 +28,12 @@ Detailed information about how to use, configure and extend this module can be f
 
 We are planning to make some breaking changes to the module in the next release (Q4 2024).
 
-- Module defaults will updated to deploy zone redundant SKUs by default - this applies to:
+- Module defaults will be updated to deploy zone redundant SKUs by default - this applies to:
   - Firewall
   - Public IP
   - Virtual Network Gateway
 
-We will publish guidance on how to avoid re-deployment of existing resources nearer the time.
+We will publish guidance on how to avoid the redeployment of existing resources nearer the time.
 
 ## Overview
 
@@ -47,17 +51,17 @@ This is currently split logically into the following capabilities within the mod
 | [Identity Resources](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Identity-Resources) | Identity subscription | [Identity and access management](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access) |
 
 Using a very [simple initial configuration](#maintf), the module will deploy a management group hierarchy based on the above diagram.
-This includes the recommended governance baseline, applied using Azure Policy and Access control (IAM) resources deployed at the management group scope.
-The default configuration can be easily extended to meet differing requirements, and includes the ability to deploy platform resources in the `management` and `connectivity` subscriptions.
+This includes the recommended governance baseline, which is applied using Azure Policy and Access control (IAM) resources deployed at the management group scope.
+The default configuration can be easily extended to meet differing requirements and includes the ability to deploy platform resources in the `management` and `connectivity` subscriptions.
 
 > **NOTE:** In addition to setting input variables to control which resources are deployed, the module requires setting a [Provider Configuration](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Provider-Configuration) block to enable deployment across multiple subscriptions.
 
 Although resources are logically grouped to simplify operations, the modular design of the module also allows resources to be deployed using different Terraform workspaces.
-This allows customers to address concerns around managing large state files, or assigning granular permissions to pipelines based on the principle of least privilege. (*more information coming soon in the Wiki*)
+This allows customers to address concerns around managing large state files or assigning granular permissions to pipelines based on the principle of least privilege. (*more information coming soon in the Wiki*)
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline and various versions up to the latest at the time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
 
@@ -67,7 +71,7 @@ We recommend starting with the following configuration in your root module to le
 
 This will deploy the core components only.
 
-> **NOTE:** For production use we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
+> **NOTE:** For production use, we highly recommend using the Terraform Registry and pinning to the latest stable version, as per the example below.
 > Pinning to the `main` branch in GitHub will give you the latest updates quicker, but increases the likelihood of unplanned changes to your environment and unforeseen issues.
 
 ### `main.tf`
