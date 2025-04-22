@@ -39,7 +39,7 @@ jobs:
 
       - name: Checkov Scan
         id: checkov_scan
-        uses: bridgecrewio/checkov-action@v12.2996.0
+        uses: bridgecrewio/checkov-action@v12.2997.0
         with:
           directory: '.'  # Root directory to scan (adjust if needed)
           output_format: github_failed_only # Output format (cli,csv,cyclonedx,cyclonedx_json,json,junitxml,github_failed_only,gitlab_sast,sarif,spdx)
