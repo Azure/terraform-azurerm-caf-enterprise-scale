@@ -19,47 +19,13 @@ No modules.
 
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD034 -->
-## Required Inputs
+## Inputs
 
-The following input variables are required:
-
-### <a name="input_enabled"></a> [enabled](#input\_enabled)
-
-Description: Controls whether to manage the identity landing zone policies and deploy the identity resources into the current Subscription context.
-
-Type: `bool`
-
-### <a name="input_root_id"></a> [root\_id](#input\_root\_id)
-
-Description: Specifies the ID of the Enterprise-scale root Management Group, used as a prefix for resources created by this module.
-
-Type: `string`
-
-## Optional Inputs
-
-The following input variables are optional (have default values):
-
-### <a name="input_settings"></a> [settings](#input\_settings)
-
-Description: Configuration settings for the "Identity" landing zone resources.
-
-Type:
-
-```hcl
-object({
-    identity = optional(object({
-      enabled = optional(bool, true)
-      config = optional(object({
-        enable_deny_public_ip             = optional(bool, true)
-        enable_deny_rdp_from_internet     = optional(bool, true)
-        enable_deny_subnet_without_nsg    = optional(bool, true)
-        enable_deploy_azure_backup_on_vms = optional(bool, true)
-      }), {})
-    }), {})
-  })
-```
-
-Default: `{}`
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Controls whether to manage the identity landing zone policies and deploy the identity resources into the current Subscription context. | `bool` | n/a | yes |
+| <a name="input_root_id"></a> [root\_id](#input\_root\_id) | Specifies the ID of the Enterprise-scale root Management Group, used as a prefix for resources created by this module. | `string` | n/a | yes |
+| <a name="input_settings"></a> [settings](#input\_settings) | Configuration settings for the "Identity" landing zone resources. | <pre>object({<br>    identity = optional(object({<br>      enabled = optional(bool, true)<br>      config = optional(object({<br>        enable_deny_public_ip             = optional(bool, true)<br>        enable_deny_rdp_from_internet     = optional(bool, true)<br>        enable_deny_subnet_without_nsg    = optional(bool, true)<br>        enable_deploy_azure_backup_on_vms = optional(bool, true)<br>      }), {})<br>    }), {})<br>  })</pre> | `{}` | no |
 
 ## Resources
 
@@ -67,11 +33,9 @@ No resources.
 
 ## Outputs
 
-The following outputs are exported:
-
-### <a name="output_configuration"></a> [configuration](#output\_configuration)
-
-Description: Returns the configuration settings for resources to deploy for the identity solution.
+| Name | Description |
+|------|-------------|
+| <a name="output_configuration"></a> [configuration](#output\_configuration) | Returns the configuration settings for resources to deploy for the identity solution. |
 
 <!-- markdownlint-enable -->
 <!-- END_TF_DOCS -->
