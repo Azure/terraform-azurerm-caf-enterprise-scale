@@ -53,6 +53,7 @@ resource "azurerm_subnet" "connectivity" {
   resource_group_name  = each.value.template.resource_group_name
   virtual_network_name = each.value.template.virtual_network_name
   address_prefixes     = each.value.template.address_prefixes
+  default_outbound_access_enabled = each.value.template.default_outbound_access_enabled
 
   # Optional resource attributes
   private_link_service_network_policies_enabled = each.value.template.private_link_service_network_policies_enabled
