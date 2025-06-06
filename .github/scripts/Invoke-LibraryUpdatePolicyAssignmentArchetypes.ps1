@@ -14,6 +14,10 @@ param (
   [Parameter()][String]$ParserToolUrl = "https://github.com/Azure/arm-template-parser/releases/download/0.2.2"
 )
 
+$assignmentsToSkip = @(
+  "Enforce-Encryption-CMK" # Deprecated and breaks as we don't support policy versioning
+)
+
 $ErrorActionPreference = "Stop"
 
 # This script relies on a custom set of classes and functions
@@ -177,6 +181,10 @@ foreach ($managementGroup in $policyAssignments.Keys) {
 
       $policyAssignmentName = $parsedAssignment.name
 
+      if ($assignmentsToSkip.Contains($policyAssignmentName)) {
+        continue
+      }
+
       Write-Output "Parsed Assignment Name: $($parsedAssignment.name)"
 
       if (!(Get-Member -InputObject $parsedAssignment.properties -Name "scope" -MemberType Properties)) {
@@ -200,7 +208,7 @@ foreach ($managementGroup in $policyAssignments.Keys) {
       }
 
       $enforcementMode = $enforcementModeLookup[[Tuple]::Create($managementGroupNameFinal, $policyAssignmentFile)]
-      if ($null -ne $enforcementMode) {
+      if (($null -ne $enforcementMode) -and ($enforcementMode.Length -gt 0)) {
         Write-Verbose "Setting enforcement mode for $policyAssignmentName to $enforcementMode"
         if (!(Get-Member -InputObject $parsedAssignment.properties -Name "enforcementMode" -MemberType Properties)) {
           $parsedAssignment.properties | Add-Member -MemberType NoteProperty -Name "enforcementMode" -Value $enforcementMode
