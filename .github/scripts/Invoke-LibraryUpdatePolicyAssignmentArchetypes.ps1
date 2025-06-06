@@ -199,7 +199,7 @@ foreach ($managementGroup in $policyAssignments.Keys) {
         $parsedAssignment | Add-Member -MemberType NoteProperty -Name "identity" -Value @{ type = "None" }
       }
 
-      $enforcementMode = $enforcementModeLookup[[Tuple]::Create($managementGroupNameFinal, $policyAssignmentFileName)]
+      $enforcementMode = $enforcementModeLookup[[Tuple]::Create($managementGroupNameFinal, $policyAssignmentFile)]
       if ($null -ne $enforcementMode) {
         Write-Verbose "Setting enforcement mode for $policyAssignmentName to $enforcementMode"
         if (!(Get-Member -InputObject $parsedAssignment.properties -Name "enforcementMode" -MemberType Properties)) {
