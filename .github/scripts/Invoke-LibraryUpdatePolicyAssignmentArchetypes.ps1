@@ -9,7 +9,6 @@
 param (
   [Parameter()][String]$TargetPath = "$PWD/terraform-azurerm-caf-enterprise-scale",
   [Parameter()][String]$SourcePath = "$PWD/enterprise-scale",
-  [Parameter()][String]$LineEnding = "unix",
   [Parameter()][String]$ParserToolUrl = "https://github.com/Azure/arm-template-parser/releases/download/0.2.2"
 )
 
