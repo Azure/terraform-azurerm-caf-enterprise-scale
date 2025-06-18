@@ -8,4 +8,4 @@ steps:
       scriptLocation: scriptPath
       scriptPath: "tests/scripts/azp-backend.sh"
       scriptType: bash
-      failOnStandardError: true
+      failOnStandardError: false

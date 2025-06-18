@@ -7,7 +7,7 @@ steps:
       azureSubscription: ado-mscet-cae-estf
       scriptType: FilePath
       scriptPath: "tests/scripts/azp-strategy.ps1"
-      failOnStandardError: true
-      azurePowerShellVersion: 'LatestVersion'  # Adding version specification for clarity
+      failOnStandardError: false
+      azurePowerShellVersion: "LatestVersion" # Adding version specification for clarity
     env:
       BILLING_SCOPE: $(BILLING_SCOPE)

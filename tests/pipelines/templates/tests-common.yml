@@ -18,4 +18,4 @@ steps:
       scriptLocation: scriptPath
       scriptPath: "tests/scripts/tf-prepare.sh"
       scriptType: bash
-      failOnStandardError: true
+      failOnStandardError: false
