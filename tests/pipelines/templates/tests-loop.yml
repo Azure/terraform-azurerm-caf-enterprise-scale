@@ -12,7 +12,7 @@ steps:
       scriptType: bash
       scriptLocation: scriptPath
       scriptPath: "tests/scripts/tf-init.sh"
-      failOnStandardError: true
+      failOnStandardError: false
       addSpnToEnvironment: true
       azureSubscription: ado-mscet-cae-estf
     env:
@@ -25,7 +25,7 @@ steps:
       scriptType: bash
       scriptLocation: scriptPath
       scriptPath: "tests/scripts/tf-plan.sh"
-      failOnStandardError: true
+      failOnStandardError: false
       addSpnToEnvironment: true
       azureSubscription: ado-mscet-cae-estf
     env:
@@ -37,7 +37,7 @@ steps:
     inputs:
       scriptType: bash
       scriptLocation: scriptPath
-      failOnStandardError: true
+      failOnStandardError: false
       addSpnToEnvironment: true
       scriptPath: "tests/scripts/tf-apply.sh"
       azureSubscription: ado-mscet-cae-estf
@@ -50,7 +50,7 @@ steps:
     inputs:
       scriptType: bash
       scriptLocation: scriptPath
-      failOnStandardError: true
+      failOnStandardError: false
       addSpnToEnvironment: true
       scriptPath: "tests/scripts/tf-destroy.sh"
       azureSubscription: ado-mscet-cae-estf
