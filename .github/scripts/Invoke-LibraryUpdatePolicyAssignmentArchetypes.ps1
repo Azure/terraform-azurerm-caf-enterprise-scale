@@ -81,6 +81,7 @@ foreach ($resource in $eslzArm) {
       else {
         $policyAssignments[$managementGroup].Add($policyAssignmentFileName)
       }
+      $enforcementMode = $resource.properties.parameters.enforcementMode.value
       $newMg = $managementGroupMapping[$managementGroup.Replace("defaults-", "")]
       Write-Verbose "Adding enforcement mode for $newMg - ${policyAssignmentFileName}: $enforcementMode"
       $enforcementModeLookup[[Tuple]::Create($newMg, $policyAssignmentFileName)] = $enforcementMode

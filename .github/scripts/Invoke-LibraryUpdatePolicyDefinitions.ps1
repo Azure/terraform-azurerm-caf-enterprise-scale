@@ -63,7 +63,7 @@ $excludePolicyDefinitions = @(
 )
 
 $excludePolicySetDefinitions = @(
-  "*.AzureChineCloud.json",
+  "*.AzureChinaCloud.json",
   "*.AzureUSGovernment.json",
   "Enforce-Encryption-CMK.json"
 )
@@ -72,14 +72,13 @@ $excludePolicySetDefinitions = @(
 # resources, organised by type
 $policyDefinitionFilePaths = (
   Get-ChildItem -Path "$SourcePath/src/resources/Microsoft.Authorization/policyDefinitions/*" `
-    -File `
-    -Include "*.json" `
+    -Filter "*.json" `
     -Exclude $excludePolicyDefinitions
 ).FullName
 $policySetDefinitionFilePaths = (
   Get-ChildItem -Path "$SourcePath/src/resources/Microsoft.Authorization/policySetDefinitions/*" `
     -File `
-    -Include "*.json" `
+    -Filter "*.json" `
     -Exclude $excludePolicySetDefinitions
 ).FullName
 
@@ -91,14 +90,13 @@ $policySetDefinitionFilePaths = (
 # defaultConfig object.
 $exportConfig = @()
 # Add Policy Definition source files to $exportConfig
-$exportConfig += $policyDefinitionFilePaths |
-  ForEach-Object {
-    [PsCustomObject]@{
-      inputPath          = $_
-      resourceTypeFilter = "Microsoft.Authorization/policyDefinitions"
-      fileNamePrefix     = "policy_definitions/policy_definition_es_"
-    }
+$exportConfig += $policyDefinitionFilePaths | ForEach-Object {
+  [PsCustomObject]@{
+    inputPath          = $_
+    resourceTypeFilter = "Microsoft.Authorization/policyDefinitions"
+    fileNamePrefix     = "policy_definitions/policy_definition_es_"
   }
+}
 # Add Policy Set Definition source files to $exportConfig
 $exportConfig += $policySetDefinitionFilePaths | ForEach-Object {
   [PsCustomObject]@{
