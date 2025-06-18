@@ -7,7 +7,6 @@
 
 [CmdletBinding(SupportsShouldProcess)]
 param (
-  [Parameter()][String]$AlzToolsPath = "$PWD/enterprise-scale/src/Alz.Tools",
   [Parameter()][String]$TargetPath = "$PWD/terraform-azurerm-caf-enterprise-scale",
   [Parameter()][String]$SourcePath = "$PWD/enterprise-scale",
   [Parameter()][String]$LineEnding = "unix",
@@ -20,10 +19,10 @@ $assignmentsToSkip = @(
 
 $ErrorActionPreference = "Stop"
 
-# This script relies on a custom set of classes and functions
-# defined within the EnterpriseScaleLibraryTools PowerShell
-# module.
-Import-Module $AlzToolsPath -ErrorAction Stop
+# # This script relies on a custom set of classes and functions
+# # defined within the EnterpriseScaleLibraryTools PowerShell
+# # module.
+# Import-Module $AlzToolsPath -ErrorAction Stop
 
 $parserPath = "$TargetPath/.github/scripts"
 $parserExe = "Template.Parser.Cli"
@@ -243,7 +242,7 @@ foreach ($managementGroup in $policyAssignments.Keys) {
 
       Write-Information "Writing $targetPolicyAssignmentFileName" -InformationAction Continue
       $json = $parsedAssignment | ConvertTo-Json -Depth 10
-      $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
+      $json | Out-File -FilePath "$policyAssignmentTargetPath/$targetPolicyAssignmentFileName" -Force
 
       Write-Verbose "Got final data for $managementGroupNameFinal and $policyAssignmentName"
 
@@ -269,5 +268,5 @@ foreach ($managementGroup in $finalPolicyAssignments.Keys) {
 
   Write-Information "Writing $archetypeFilePath" -InformationAction Continue
   $json = $archetypeJson | ConvertTo-Json -Depth 10
-  $json | Edit-LineEndings -LineEnding $LineEnding | Out-File -FilePath "$archetypeFilePath" -Force
+  $json | Out-File -FilePath "$archetypeFilePath" -Force
 }
