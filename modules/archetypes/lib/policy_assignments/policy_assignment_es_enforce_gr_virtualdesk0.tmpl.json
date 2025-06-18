@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Enforce-GR-VirtualDesk0",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "This initiative assignment enables additional ALZ guardrails for Virtual Desktop.",
+    "displayName": "Enforce recommended guardrails for Virtual Desktop",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-VirtualDesktop",
+    "enforcementMode": "DoNotEnforce",
+    "nonComplianceMessages": [
+      {
+        "message": "Recommended guardrails {enforcementMode} be enforced for Virtual Desktop."
+      }
+    ],
+    "scope": "${current_scope_resource_id}",
+    "notScopes": [],
+    "parameters": {}
+  }
+}

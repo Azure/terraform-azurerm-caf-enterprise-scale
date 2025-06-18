@@ -1,0 +1,28 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Enforce-GR-Network0",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "This initiative assignment enables additional ALZ guardrails for Network and Networking services.",
+    "displayName": "Enforce recommended guardrails for Network and Networking services",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-Network",
+    "enforcementMode": "DoNotEnforce",
+    "parameters": {
+      "ddosPlanResourceId": {
+        "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/${root_scope_id}-mgmt/providers/Microsoft.Network/ddosProtectionPlans/${root_scope_id}-ddos"
+      }
+    },
+    "nonComplianceMessages": [
+      {
+        "message": "Recommended guardrails {enforcementMode} be enforced for Network and Networking services."
+      }
+    ],
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}
