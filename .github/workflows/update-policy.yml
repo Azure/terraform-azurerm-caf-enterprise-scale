@@ -84,7 +84,6 @@ jobs:
 
             Write-Information "==> Running policy assignments and archetypes script..." -InformationAction Continue
             ${{ github.repository }}/.github/scripts/Invoke-LibraryUpdatePolicyAssignmentArchetypes.ps1 `
-              -AlzToolsPath "${{ github.workspace }}/${{ env.remote_repository }}/src/Alz.Tools/" `
               -TargetPath "${{ github.workspace }}/${{ github.repository }}" `
               -SourcePath "${{ github.workspace }}/${{ env.remote_repository }}"
           azPSVersion: "latest"
@@ -113,6 +112,7 @@ jobs:
           echo "$PULL_REQUESTS" | jq -r '.[] | .number' | xargs -I {} gh pr close {} --delete-branch --comment "Out of date PR, closing and deleting branch"
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        working-directory: ${{ github.repository }}
 
       - name: Create pull request
         if: steps.git_status.outputs.changes > 0

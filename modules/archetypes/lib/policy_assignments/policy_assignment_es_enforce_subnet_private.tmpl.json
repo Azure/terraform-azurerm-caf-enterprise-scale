@@ -8,7 +8,7 @@
     "displayName": "Subnets should be private",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/7bca8353-aa3b-429b-904a-9229c4385837",
     "definitionVersion": "1.*.*",
-    "enforcementMode": "Default",
+    "enforcementMode": "DoNotEnforce",
     "nonComplianceMessages": [
       {
         "message": "Subnets {enforcementMode} be private."
