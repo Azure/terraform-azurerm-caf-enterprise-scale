@@ -10,7 +10,7 @@
 
 ### Current Status
 - **Extended Support Period**: This module is now in extended support for one year (until August 1, 2026)
-- **Support Scope**: During this period, we will provide quality updates (e.g. bug fuxes) and policy library updates only
+- **Support Scope**: During this period, we will provide quality updates (e.g. bug fixes) and policy library updates only
 - **No New Features**: No new features or functionality will be added to this module
 
 ### Migration Path
