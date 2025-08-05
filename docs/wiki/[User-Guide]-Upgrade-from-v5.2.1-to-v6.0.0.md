@@ -29,7 +29,7 @@ We deploy AMA resources using the new `configure_management_resources` variable.
 
 ### New resources
 
-- A user-assigned managed identity (UAMI) for the AMA agent to authenticate with Azure Monitor (this needs no special tole assignments, any valid identity will suffice)
+- A user-assigned managed identity (UAMI) for the AMA agent to authenticate with Azure Monitor (this needs no special role assignments, any valid identity will suffice)
 - Data collection rule for VM Insights
 - Data collection rule for Change Tracking
 - Data collection rule for Defender for SQL
