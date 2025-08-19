@@ -1515,6 +1515,10 @@ locals {
       for location in local.private_link_locations :
       "privatelink.${location}.azmk8s.io"
     ]
+    azure_managed_prometheus = [
+      for location in local.private_link_locations :
+      "privatelink.${location}.prometheus.monitor.azure.com"
+    ]
     azure_web_apps_static_sites = concat(["privatelink.azurestaticapps.net"], [
       for partitionid in local.custom_privatelink_azurestaticapps_partitionids :
       "privatelink.${partitionid}.azurestaticapps.net"
