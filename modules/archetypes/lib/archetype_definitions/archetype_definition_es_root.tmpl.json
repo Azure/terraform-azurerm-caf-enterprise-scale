@@ -15,6 +15,7 @@
       "Deploy-MDFC-Config-H224",
       "Deploy-MDFC-OssDb",
       "Deploy-MDFC-SqlAtp",
+      "Deploy-SvcHealth-BuiltIn",
       "Enforce-ACSB"
     ],
     "policy_definitions": [
@@ -46,7 +47,7 @@
       "Deny-Databricks-NoPublicIp",
       "Deny-Databricks-Sku",
       "Deny-Databricks-VirtualNetwork",
-      "Deny-EH-minTLS",
+      "Deny-EH-MINTLS",
       "Deny-EH-Premium-CMK",
       "Deny-FileServices-InsecureAuth",
       "Deny-FileServices-InsecureKerberos",
@@ -219,6 +220,7 @@
       "Enforce-Guardrails-Kubernetes",
       "Enforce-Guardrails-MachineLearning",
       "Enforce-Guardrails-MySQL",
+      "Enforce-Guardrails-Network_20250326",
       "Enforce-Guardrails-Network",
       "Enforce-Guardrails-OpenAI",
       "Enforce-Guardrails-PostgreSQL",
