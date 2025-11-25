@@ -746,11 +746,11 @@ locals {
               tags                    = try(local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].tags, local.tags)
               sku = try(
                 local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].sku,
-                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Standard" : "Basic"
+                "Standard"
               )
               allocation_method = try(
                 local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].allocation_method,
-                length(regexall("AZ$", hub_network.config.virtual_network_gateway.config.gateway_sku_vpn)) > 0 ? "Static" : "Dynamic"
+                "Static"
               )
               zones = try(
                 local.custom_settings.azurerm_public_ip["connectivity_vpn"][location].zones,
