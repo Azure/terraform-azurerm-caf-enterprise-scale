@@ -61,7 +61,7 @@ module "alz" {
   # resources created by the connectivity module instance and
   # to map the subscription to the correct management group,
   # but no resources are created by this module instance
-  deploy_connectivity_resources    = true
+  deploy_connectivity_resources    = false
   configure_connectivity_resources = var.configure_connectivity_resources
   subscription_id_connectivity     = var.subscription_id_connectivity
 
@@ -70,7 +70,7 @@ module "alz" {
   # resources created by the management module instance and
   # to map the subscription to the correct management group,
   # but no resources are created by this module instance
-  deploy_management_resources    = true
+  deploy_management_resources    = false
   configure_management_resources = var.configure_management_resources
   subscription_id_management     = var.subscription_id_management
 
