@@ -9,6 +9,7 @@
       "Deny-Storage-http",
       "Deny-Subnet-Without-Nsg",
       "Deploy-AzSqlDb-Auditing",
+      "Deploy-GuestAttest",
       "Deploy-MDFC-DefSQL-AMA",
       "Deploy-SQL-TDE",
       "Deploy-SQL-Threat",

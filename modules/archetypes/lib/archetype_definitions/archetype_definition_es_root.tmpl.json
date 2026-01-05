@@ -15,6 +15,7 @@
       "Deploy-MDFC-Config-H224",
       "Deploy-MDFC-OssDb",
       "Deploy-MDFC-SqlAtp",
+      "Deploy-SvcHealth-BuiltIn",
       "Enforce-ACSB"
     ],
     "policy_definitions": [
@@ -219,6 +220,7 @@
       "Enforce-Guardrails-Kubernetes",
       "Enforce-Guardrails-MachineLearning",
       "Enforce-Guardrails-MySQL",
+      "Enforce-Guardrails-Network_20250326",
       "Enforce-Guardrails-Network",
       "Enforce-Guardrails-OpenAI",
       "Enforce-Guardrails-PostgreSQL",

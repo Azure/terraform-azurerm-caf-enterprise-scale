@@ -10,7 +10,7 @@
   "properties": {
     "description": "This initiative assignment enables additional ALZ guardrails for Network and Networking services.",
     "displayName": "Enforce recommended guardrails for Network and Networking services",
-    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-Network",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-Guardrails-Network_20250326",
     "enforcementMode": "DoNotEnforce",
     "parameters": {
       "ddosPlanResourceId": {
