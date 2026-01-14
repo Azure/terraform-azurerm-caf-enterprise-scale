@@ -384,6 +384,7 @@ variable "configure_connectivity_resources" {
             azure_machine_learning_workspace     = optional(bool, true)
             azure_managed_disks                  = optional(bool, true)
             azure_managed_grafana                = optional(bool, true)
+            azure_managed_prometheus             = optional(bool, true)
             azure_media_services                 = optional(bool, true)
             azure_migrate                        = optional(bool, true)
             azure_monitor                        = optional(bool, true)
