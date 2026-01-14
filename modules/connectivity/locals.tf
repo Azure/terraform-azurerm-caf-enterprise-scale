@@ -967,13 +967,16 @@ locals {
         location            = location
         ip_configuration = try(
           local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration,
-          [
-            {
-              name                 = local.azfw_pip_name[location]
-              public_ip_address_id = local.azfw_pip_resource_id[location]
-              subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet"
+          concat([{
+            name                 = local.azfw_pip_name[location]
+            public_ip_address_id = local.azfw_pip_resource_id[location]
+            subnet_id            = "${local.virtual_network_resource_id[location]}/subnets/AzureFirewallSubnet"
+            }], [
+            for i in range(1, hub_network.config.azure_firewall.config.public_ip_count) : {
+              name                 = join("-", [local.azfw_pip_name[location], i + 1])
+              public_ip_address_id = join("-", [local.azfw_pip_resource_id[location], i + 1])
             }
-          ]
+          ])
         )
         sku_name = "AZFW_VNet"
         sku_tier = coalesce(
@@ -1041,12 +1044,12 @@ locals {
           concat(
             length(try(local.custom_settings.azurerm_firewall["connectivity"][location].ip_configuration, local.empty_map)) > 0
             ? local.empty_list
-            : [{
+            : [for i in range(hub_network.config.azure_firewall.config.public_ip_count) : {
               # Resource logic attributes
-              resource_id       = local.azfw_pip_resource_id[location]
+              resource_id       = i == 0 ? local.azfw_pip_resource_id[location] : "${local.azfw_pip_resource_id[location]}-${i + 1}"
               managed_by_module = local.deploy_azure_firewall[location]
               # Resource definition attributes
-              name                    = local.azfw_pip_name[location]
+              name                    = i == 0 ? local.azfw_pip_name[location] : "${local.azfw_pip_name[location]}-${i + 1}"
               resource_group_name     = local.resource_group_names_by_scope_and_location["connectivity"][location]
               location                = location
               zones                   = local.azfw_pip_zones[location]
