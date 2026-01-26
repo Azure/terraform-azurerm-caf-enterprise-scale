@@ -1,0 +1,25 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2024-04-01",
+  "name": "Deploy-MCSB2-Monitoring",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "Microsoft Cloud Security Benchmark v2 policy initiative.",
+    "displayName": "Microsoft Cloud Security Benchmark v2",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/e3ec7e09-768c-4b64-882c-fcada3772047",
+    "definitionVersion": "1.*.*-preview",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "Microsoft Cloud Security Benchmark v2 {enforcementMode} be met."
+      }
+    ],
+    "parameters": {},
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}
