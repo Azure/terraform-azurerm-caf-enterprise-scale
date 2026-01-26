@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Kubernetes",
     "description": "This policy initiative is a group of policies that ensures Kubernetes is compliant per regulated Landing Zones.",
     "metadata": {
-      "version": "1.2.0",
+      "version": "2.0.0",
       "category": "Kubernetes",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -170,6 +170,15 @@
       "aksWindowsContainerAdministrator": {
         "type": "string",
         "defaultValue": "Deny",
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ]
+      },
+      "aksKubenetEffect": {
+        "type": "string",
+        "defaultValue": "Audit",
         "allowedValues": [
           "Audit",
           "Deny",
@@ -349,6 +358,17 @@
         "parameters": {
           "effect": {
             "value": "[parameters('aksCni')]"
+          }
+        },
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
+      },
+      {
+        "policyDefinitionReferenceId": "Audit-AKS-Kubenet",
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/Audit-AKS-kubenet",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('aksKubenetEffect')]"
           }
         },
         "groupNames": [],
