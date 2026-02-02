@@ -8,7 +8,7 @@
     "displayName": "Enforce recommended guardrails for Azure Key Vault",
     "description": "Enforce recommended guardrails for Azure Key Vault.",
     "metadata": {
-      "version": "2.2.0",
+      "version": "2.3.0",
       "category": "Key Vault",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -223,7 +223,7 @@
           "Disabled"
         ]
       },
-      "keyVaultHmsPurgeProtection": {
+      "keyVaultHsmPurgeProtection": {
         "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
@@ -248,7 +248,7 @@
         "type": "integer",
         "defaultValue": 12
       },
-      "keyVaultHmsKeysExpiration": {
+      "keyVaultHsmKeysExpiration": {
         "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
@@ -412,7 +412,7 @@
         "type": "integer",
         "defaultValue": 90
       },
-      "keyVaultHmsCurveNames": {
+      "keyVaultHsmCurveNames": {
         "type": "string",
         "defaultValue": "Deny",
         "allowedValues": [
@@ -421,7 +421,7 @@
           "Disabled"
         ]
       },
-      "keyVaultHmsCurveNamesValue": {
+      "keyVaultHsmCurveNamesValue": {
         "type": "array",
         "defaultValue": [
           "P-256",
@@ -602,11 +602,11 @@
         "definitionVersion": "1.*.*"
       },
       {
-        "policyDefinitionReferenceId": "Deny-KV-Hms-PurgeProtection",
+        "policyDefinitionReferenceId": "Deny-KV-Hsm-PurgeProtection",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c39ba22d-4428-4149-b981-70acb31fc383",
         "parameters": {
           "effect": {
-            "value": "[parameters('keyVaultHmsPurgeProtection')]"
+            "value": "[parameters('keyVaultHsmPurgeProtection')]"
           }
         },
         "groupNames": [],
@@ -627,11 +627,11 @@
         "definitionVersion": "2.*.*"
       },
       {
-        "policyDefinitionReferenceId": "Deny-KV-Hms-Key-Expire",
+        "policyDefinitionReferenceId": "Deny-KV-Hsm-Key-Expire",
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/1d478a74-21ba-4b9f-9d8f-8e6fced0eec5",
         "parameters": {
           "effect": {
-            "value": "[parameters('keyVaultHmsKeysExpiration')]"
+            "value": "[parameters('keyVaultHsmKeysExpiration')]"
           }
         },
         "groupNames": [],
@@ -795,10 +795,10 @@
         "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e58fd0c1-feac-4d12-92db-0a7e9421f53e",
         "parameters": {
           "effect": {
-            "value": "[parameters('keyVaultHmsCurveNames')]"
+            "value": "[parameters('keyVaultHsmCurveNames')]"
           },
           "allowedECNames": {
-            "value": "[parameters('keyVaultHmsCurveNamesValue')]"
+            "value": "[parameters('keyVaultHsmCurveNamesValue')]"
           }
         },
         "groupNames": [],
