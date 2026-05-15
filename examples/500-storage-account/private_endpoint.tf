@@ -7,7 +7,7 @@ resource "azurerm_private_endpoint" "blob" {
   private_service_connection {
     name                           = local.names.private_endpoint
     private_connection_resource_id = azurerm_storage_account.this.id
-    subresource_names              = ["blob"]
+    subresource_names              = [local.blob_service.subresource]
     is_manual_connection           = false
   }
 

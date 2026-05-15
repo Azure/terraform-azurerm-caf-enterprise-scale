@@ -1,30 +1,23 @@
 # Diagnostic settings for the blob service sub-resource.
-# Captures read/write/delete operations and transaction metrics.
+# Log and metric categories are driven by local.blob_service — no hardcoded strings.
 resource "azurerm_monitor_diagnostic_setting" "blob" {
-  name                       = "diag-${local.names.storage_account}-blob"
-  target_resource_id         = "${azurerm_storage_account.this.id}/blobServices/default"
+  name                       = "diag-${local.names.storage_account}-${local.blob_service.subresource}"
+  target_resource_id         = "${azurerm_storage_account.this.id}/${local.blob_service.diag_path}"
   log_analytics_workspace_id = var.log_analytics_workspace_id
 
-  enabled_log {
-    category = "StorageRead"
+  dynamic "enabled_log" {
+    for_each = local.blob_service.log_categories
+    content {
+      category = enabled_log.value
+    }
   }
 
-  enabled_log {
-    category = "StorageWrite"
-  }
-
-  enabled_log {
-    category = "StorageDelete"
-  }
-
-  metric {
-    category = "Transaction"
-    enabled  = true
-  }
-
-  metric {
-    category = "Capacity"
-    enabled  = true
+  dynamic "metric" {
+    for_each = local.blob_service.metric_categories
+    content {
+      category = metric.value
+      enabled  = true
+    }
   }
 }
 
@@ -34,13 +27,11 @@ resource "azurerm_monitor_diagnostic_setting" "account" {
   target_resource_id         = azurerm_storage_account.this.id
   log_analytics_workspace_id = var.log_analytics_workspace_id
 
-  metric {
-    category = "Transaction"
-    enabled  = true
-  }
-
-  metric {
-    category = "Capacity"
-    enabled  = true
+  dynamic "metric" {
+    for_each = local.blob_service.metric_categories
+    content {
+      category = metric.value
+      enabled  = true
+    }
   }
 }
