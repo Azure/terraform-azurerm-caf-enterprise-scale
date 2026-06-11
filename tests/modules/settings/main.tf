@@ -1,8 +1,8 @@
 data "azurerm_client_config" "core" {}
 
 locals {
-  umi_name                = "id-identity"
-  umi_resource_group_name = "rg-identity"
+  umi_name                = "id-${var.root_id}-identity"
+  umi_resource_group_name = "rg-${var.root_id}-identity"
 }
 
 resource "azurerm_resource_group" "example" {

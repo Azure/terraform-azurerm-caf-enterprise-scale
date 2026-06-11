@@ -12,20 +12,21 @@ locals {
 # NOTE: Need to catch error for resource_suffix when
 # no value for subscription_id is provided.
 locals {
-  enabled                                   = var.enabled
-  root_id                                   = var.root_id
-  subscription_id                           = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
-  settings                                  = var.settings
-  location                                  = lower(var.location)
-  tags                                      = var.tags
-  resource_prefix                           = coalesce(var.resource_prefix, local.root_id)
-  resource_suffix                           = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
-  existing_ddos_protection_plan_resource_id = var.existing_ddos_protection_plan_resource_id
-  existing_virtual_wan_resource_id          = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
-  existing_virtual_wan_resource_group_name  = var.existing_virtual_wan_resource_group_name != null ? var.existing_virtual_wan_resource_group_name : local.empty_string
-  resource_group_per_virtual_hub_location   = var.resource_group_per_virtual_hub_location
-  custom_azure_backup_geo_codes             = var.custom_azure_backup_geo_codes
-  custom_settings                           = var.custom_settings_by_resource_type
+  enabled                                         = var.enabled
+  root_id                                         = var.root_id
+  subscription_id                                 = coalesce(var.subscription_id, "00000000-0000-0000-0000-000000000000")
+  settings                                        = var.settings
+  location                                        = lower(var.location)
+  tags                                            = var.tags
+  resource_prefix                                 = coalesce(var.resource_prefix, local.root_id)
+  resource_suffix                                 = var.resource_suffix != local.empty_string ? "-${var.resource_suffix}" : local.empty_string
+  existing_ddos_protection_plan_resource_id       = var.existing_ddos_protection_plan_resource_id
+  existing_virtual_wan_resource_id                = var.existing_virtual_wan_resource_id != null ? var.existing_virtual_wan_resource_id : local.empty_string
+  existing_virtual_wan_resource_group_name        = var.existing_virtual_wan_resource_group_name != null ? var.existing_virtual_wan_resource_group_name : local.empty_string
+  resource_group_per_virtual_hub_location         = var.resource_group_per_virtual_hub_location
+  custom_azure_backup_geo_codes                   = var.custom_azure_backup_geo_codes
+  custom_privatelink_azurestaticapps_partitionids = var.custom_privatelink_azurestaticapps_partitionids
+  custom_settings                                 = var.custom_settings_by_resource_type
 }
 
 # Logic to help keep code DRY
@@ -419,7 +420,6 @@ locals {
             # Resource definition attributes
             resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
             virtual_network_name                          = local.virtual_network_name[location]
-            private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_endpoint_network_policies_enabled, null)
             private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].private_link_service_network_policies_enabled, null)
             service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoints, null)
             service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoint_policy_ids, null)
@@ -440,7 +440,6 @@ locals {
           address_prefixes                              = [hub_network.config.virtual_network_gateway.config.address_prefix, ]
           resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name                          = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_endpoint_network_policies_enabled, null)
           private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].private_link_service_network_policies_enabled, null)
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoint_policy_ids, null)
@@ -460,7 +459,6 @@ locals {
           address_prefixes                              = [hub_network.config.azure_firewall.config.address_prefix, ]
           resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name                          = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_endpoint_network_policies_enabled, null)
           private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].private_link_service_network_policies_enabled, null)
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoint_policy_ids, null)
@@ -480,7 +478,6 @@ locals {
           address_prefixes                              = [hub_network.config.azure_firewall.config.address_management_prefix, ]
           resource_group_name                           = local.resource_group_names_by_scope_and_location["connectivity"][location]
           virtual_network_name                          = local.virtual_network_name[location]
-          private_endpoint_network_policies_enabled     = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].private_endpoint_network_policies_enabled, null)
           private_link_service_network_policies_enabled = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].private_link_service_network_policies_enabled, null)
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoint_policy_ids, null)
@@ -538,11 +535,13 @@ locals {
       resource_id       = local.er_gateway_resource_id[location]
       managed_by_module = local.deploy_virtual_network_gateway_express_route[location]
       # Resource definition attributes
-      name                = local.er_gateway_name[location]
-      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
-      location            = location
-      type                = "ExpressRoute"
-      sku                 = hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute
+      name                        = local.er_gateway_name[location]
+      resource_group_name         = local.resource_group_names_by_scope_and_location["connectivity"][location]
+      location                    = location
+      type                        = "ExpressRoute"
+      sku                         = hub_network.config.virtual_network_gateway.config.gateway_sku_expressroute
+      remote_vnet_traffic_enabled = hub_network.config.virtual_network_gateway.config.remote_vnet_traffic_enabled
+      virtual_wan_traffic_enabled = hub_network.config.virtual_network_gateway.config.virtual_wan_traffic_enabled
       ip_configuration = try(
         # To support `active_active = true` must currently specify a custom ip_configuration
         local.custom_settings.azurerm_virtual_network_gateway["connectivity_expressroute"][location].ip_configuration,
@@ -653,11 +652,13 @@ locals {
       resource_id       = local.vpn_gateway_resource_id[location]
       managed_by_module = local.deploy_virtual_network_gateway_vpn[location]
       # Resource definition attributes
-      name                = local.vpn_gateway_name[location]
-      resource_group_name = local.resource_group_names_by_scope_and_location["connectivity"][location]
-      location            = location
-      type                = "Vpn"
-      sku                 = hub_network.config.virtual_network_gateway.config.gateway_sku_vpn
+      name                        = local.vpn_gateway_name[location]
+      resource_group_name         = local.resource_group_names_by_scope_and_location["connectivity"][location]
+      location                    = location
+      type                        = "Vpn"
+      sku                         = hub_network.config.virtual_network_gateway.config.gateway_sku_vpn
+      remote_vnet_traffic_enabled = null
+      virtual_wan_traffic_enabled = null
       ip_configuration = try(
         local.custom_settings.azurerm_virtual_network_gateway["connectivity_vpn"][location].ip_configuration,
         concat(
@@ -1439,6 +1440,9 @@ locals {
     azure_api_management                 = ["privatelink.azure-api.net", "privatelink.developer.azure-api.net"]
     azure_app_configuration_stores       = ["privatelink.azconfig.io"]
     azure_arc                            = ["privatelink.his.arc.azure.com", "privatelink.guestconfiguration.azure.com", "privatelink.kubernetesconfiguration.azure.com"]
+    azure_arc_guest_configuration        = ["privatelink.guestconfiguration.azure.com"]
+    azure_arc_hybrid_resource_provider   = ["privatelink.his.arc.azure.com"]
+    azure_arc_kubernetes                 = ["privatelink.dp.kubernetesconfiguration.azure.com"]
     azure_automation_dscandhybridworker  = ["privatelink.azure-automation.net"]
     azure_automation_webhook             = ["privatelink.azure-automation.net"]
     azure_batch_account                  = ["privatelink.batch.azure.com"]
@@ -1459,6 +1463,7 @@ locals {
     azure_database_for_mariadb_server    = ["privatelink.mariadb.database.azure.com"]
     azure_database_for_mysql_server      = ["privatelink.mysql.database.azure.com"]
     azure_database_for_postgresql_server = ["privatelink.postgres.database.azure.com"]
+    azure_databricks                     = ["privatelink.azuredatabricks.net"]
     azure_digital_twins                  = ["privatelink.digitaltwins.azure.net"]
     azure_event_grid_domain              = ["privatelink.eventgrid.azure.net"]
     azure_event_grid_topic               = ["privatelink.eventgrid.azure.net"]
@@ -1471,9 +1476,11 @@ locals {
     azure_key_vault_managed_hsm          = ["privatelink.managedhsm.azure.net"]
     azure_machine_learning_workspace     = ["privatelink.api.azureml.ms", "privatelink.notebooks.azure.net"]
     azure_managed_disks                  = ["privatelink.blob.core.windows.net"]
+    azure_managed_grafana                = ["privatelink.grafana.azure.com"]
     azure_media_services                 = ["privatelink.media.azure.net"]
     azure_migrate                        = ["privatelink.prod.migration.windowsazure.com"]
     azure_monitor                        = ["privatelink.monitor.azure.com", "privatelink.oms.opinsights.azure.com", "privatelink.ods.opinsights.azure.com", "privatelink.agentsvc.azure-automation.net", "privatelink.blob.core.windows.net"]
+    azure_openai_service                 = ["privatelink.openai.azure.com"]
     azure_purview_account                = ["privatelink.purview.azure.com"]
     azure_purview_studio                 = ["privatelink.purviewstudio.azure.com"]
     azure_relay_namespace                = ["privatelink.servicebus.windows.net"]
@@ -1484,6 +1491,7 @@ locals {
     azure_synapse_analytics_dev          = ["privatelink.dev.azuresynapse.net"]
     azure_synapse_analytics_sql          = ["privatelink.sql.azuresynapse.net"]
     azure_synapse_studio                 = ["privatelink.azuresynapse.net"]
+    azure_virtual_desktop                = ["privatelink.wvd.microsoft.com"]
     azure_web_apps_sites                 = ["privatelink.azurewebsites.net"]
     azure_web_apps_static_sites          = ["privatelink.azurestaticapps.net"]
     cognitive_services_account           = ["privatelink.cognitiveservices.azure.com"]
@@ -1507,6 +1515,10 @@ locals {
       for location in local.private_link_locations :
       "privatelink.${location}.azmk8s.io"
     ]
+    azure_web_apps_static_sites = concat(["privatelink.azurestaticapps.net"], [
+      for partitionid in local.custom_privatelink_azurestaticapps_partitionids :
+      "privatelink.${partitionid}.azurestaticapps.net"
+    ])
   }
   # The lookup_private_link_group_id_by_service local doesn't currently
   # do anything but is planned to control policy configuration for
@@ -1670,7 +1682,7 @@ locals {
     [
       for location, virtual_hub_config in local.virtual_hubs_by_location :
       [
-        for spoke_resource_id in virtual_hub_config.config.spoke_virtual_network_resource_ids :
+        for spoke_resource_id in concat(virtual_hub_config.config.spoke_virtual_network_resource_ids, virtual_hub_config.config.secure_spoke_virtual_network_resource_ids) :
         {
           resource_id       = spoke_resource_id
           name              = "${split("/", spoke_resource_id)[2]}-${uuidv5("url", spoke_resource_id)}"
@@ -1865,57 +1877,65 @@ locals {
     "${local.root_id}-corp" = {
       parameters = {
         Deploy-Private-DNS-Zones = {
-          azureAcrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azurecr.io"
-          azureAppPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azconfig.io"
-          azureAppServicesPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.azurewebsites.net"
-          azureAsrPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.siterecovery.windowsazure.com"
-          azureAutomationDSCHybridPrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.azure-automation.net"
-          azureAutomationWebhookPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.azure-automation.net"
-          azureBatchPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.batch.azure.com"
-          azureCognitiveSearchPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.search.windows.net"
-          azureCognitiveServicesPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.cognitiveservices.azure.com"
-          azureCosmosCassandraPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.cassandra.cosmos.azure.com"
-          azureCosmosGremlinPrivateDnsZoneId            = "${local.private_dns_zone_prefix}privatelink.gremlin.cosmos.azure.com"
-          azureCosmosMongoPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.mongo.cosmos.azure.com"
-          azureCosmosSQLPrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.documents.azure.com"
-          azureCosmosTablePrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.table.cosmos.azure.com"
-          azureDataFactoryPortalPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.adf.azure.com"
-          azureDataFactoryPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.datafactory.azure.net"
-          azureDiskAccessPrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
-          azureEventGridDomainsPrivateDnsZoneId         = "${local.private_dns_zone_prefix}privatelink.eventgrid.azure.net"
-          azureEventGridTopicsPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.eventgrid.azure.net"
-          azureEventHubNamespacePrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.servicebus.windows.net"
-          azureFilePrivateDnsZoneId                     = "${local.private_dns_zone_prefix}privatelink.afs.azure.net"
-          azureHDInsightPrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.azurehdinsight.net"
-          azureIotHubsPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.azure-devices.net"
-          azureIotPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.azure-devices-provisioning.net"
-          azureKeyVaultPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.vaultcore.azure.net"
-          azureMachineLearningWorkspacePrivateDnsZoneId = "${local.private_dns_zone_prefix}privatelink.api.azureml.ms"
-          azureMediaServicesKeyPrivateDnsZoneId         = "${local.private_dns_zone_prefix}privatelink.media.azure.net"
-          azureMediaServicesLivePrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.media.azure.net"
-          azureMediaServicesStreamPrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.media.azure.net"
-          azureMigratePrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.prod.migration.windowsazure.com"
-          azureMonitorPrivateDnsZoneId1                 = "${local.private_dns_zone_prefix}privatelink.monitor.azure.com"             # Private DNS Zone for global endpoints used by Azure Monitor
-          azureMonitorPrivateDnsZoneId2                 = "${local.private_dns_zone_prefix}privatelink.oms.opinsights.azure.com"      # Private DNS Zone for workspace-specific mapping to OMS agents endpoints
-          azureMonitorPrivateDnsZoneId3                 = "${local.private_dns_zone_prefix}privatelink.ods.opinsights.azure.com"      # Private DNS Zone for workspace-specific mapping to ingestion endpoints
-          azureMonitorPrivateDnsZoneId4                 = "${local.private_dns_zone_prefix}privatelink.agentsvc.azure-automation.net" # Private DNS Zone for workspace-specific mapping to the agent service automation endpoints
-          azureMonitorPrivateDnsZoneId5                 = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"         # Private DNS Zone for connectivity to the global agent's solution packs storage account
-          azureRedisCachePrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.redis.cache.windows.net"
-          azureServiceBusNamespacePrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.servicebus.windows.net"
-          azureSignalRPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.service.signalr.net"
-          azureStorageBlobPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
-          azureStorageBlobSecPrivateDnsZoneId           = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
-          azureStorageDFSPrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.dfs.core.windows.net"
-          azureStorageDFSSecPrivateDnsZoneId            = "${local.private_dns_zone_prefix}privatelink.dfs.core.windows.net"
-          azureStorageFilePrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.file.core.windows.net"
-          azureStorageQueuePrivateDnsZoneId             = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
-          azureStorageQueueSecPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
-          azureStorageStaticWebPrivateDnsZoneId         = "${local.private_dns_zone_prefix}privatelink.web.core.windows.net"
-          azureStorageStaticWebSecPrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.web.core.windows.net"
-          azureSynapseDevPrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.dev.azuresynapse.net"
-          azureSynapseSQLODPrivateDnsZoneId             = "${local.private_dns_zone_prefix}privatelink.sql.azuresynapse.net"
-          azureSynapseSQLPrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.sql.azuresynapse.net"
-          azureWebPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.webpubsub.azure.com"
+          azureAcrPrivateDnsZoneId                        = "${local.private_dns_zone_prefix}privatelink.azurecr.io"
+          azureManagedGrafanaWorkspacePrivateDnsZoneId    = "${local.private_dns_zone_prefix}privatelink.grafana.azure.com"
+          azureArcKubernetesConfigurationPrivateDnsZoneId = "${local.private_dns_zone_prefix}privatelink.dp.kubernetesconfiguration.azure.com"
+          azureArcHybridResourceProviderPrivateDnsZoneId  = "${local.private_dns_zone_prefix}privatelink.his.arc.azure.com"
+          azureArcGuestconfigurationPrivateDnsZoneId      = "${local.private_dns_zone_prefix}privatelink.guestconfiguration.azure.com"
+          azureAppPrivateDnsZoneId                        = "${local.private_dns_zone_prefix}privatelink.azconfig.io"
+          azureAppServicesPrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.azurewebsites.net"
+          azureAsrPrivateDnsZoneId                        = "${local.private_dns_zone_prefix}privatelink.siterecovery.windowsazure.com"
+          azureAutomationDSCHybridPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.azure-automation.net"
+          azureAutomationWebhookPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.azure-automation.net"
+          azureBatchPrivateDnsZoneId                      = "${local.private_dns_zone_prefix}privatelink.batch.azure.com"
+          azureCognitiveSearchPrivateDnsZoneId            = "${local.private_dns_zone_prefix}privatelink.search.windows.net"
+          azureCognitiveServicesPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.cognitiveservices.azure.com"
+          azureCosmosCassandraPrivateDnsZoneId            = "${local.private_dns_zone_prefix}privatelink.cassandra.cosmos.azure.com"
+          azureCosmosGremlinPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.gremlin.cosmos.azure.com"
+          azureCosmosMongoPrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.mongo.cosmos.azure.com"
+          azureCosmosSQLPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.documents.azure.com"
+          azureCosmosTablePrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.table.cosmos.azure.com"
+          azureDataFactoryPortalPrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.adf.azure.com"
+          azureDataFactoryPrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.datafactory.azure.net"
+          azureDiskAccessPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
+          azureEventGridDomainsPrivateDnsZoneId           = "${local.private_dns_zone_prefix}privatelink.eventgrid.azure.net"
+          azureEventGridTopicsPrivateDnsZoneId            = "${local.private_dns_zone_prefix}privatelink.eventgrid.azure.net"
+          azureEventHubNamespacePrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.servicebus.windows.net"
+          azureFilePrivateDnsZoneId                       = "${local.private_dns_zone_prefix}privatelink.afs.azure.net"
+          azureHDInsightPrivateDnsZoneId                  = "${local.private_dns_zone_prefix}privatelink.azurehdinsight.net"
+          azureIotHubsPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.azure-devices.net"
+          azureIotPrivateDnsZoneId                        = "${local.private_dns_zone_prefix}privatelink.azure-devices-provisioning.net"
+          azureKeyVaultPrivateDnsZoneId                   = "${local.private_dns_zone_prefix}privatelink.vaultcore.azure.net"
+          azureMachineLearningWorkspacePrivateDnsZoneId   = "${local.private_dns_zone_prefix}privatelink.api.azureml.ms"
+          azureMediaServicesKeyPrivateDnsZoneId           = "${local.private_dns_zone_prefix}privatelink.media.azure.net"
+          azureMediaServicesLivePrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.media.azure.net"
+          azureMediaServicesStreamPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.media.azure.net"
+          azureMigratePrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.prod.migration.windowsazure.com"
+          azureMonitorPrivateDnsZoneId1                   = "${local.private_dns_zone_prefix}privatelink.monitor.azure.com"             # Private DNS Zone for global endpoints used by Azure Monitor
+          azureMonitorPrivateDnsZoneId2                   = "${local.private_dns_zone_prefix}privatelink.oms.opinsights.azure.com"      # Private DNS Zone for workspace-specific mapping to OMS agents endpoints
+          azureMonitorPrivateDnsZoneId3                   = "${local.private_dns_zone_prefix}privatelink.ods.opinsights.azure.com"      # Private DNS Zone for workspace-specific mapping to ingestion endpoints
+          azureMonitorPrivateDnsZoneId4                   = "${local.private_dns_zone_prefix}privatelink.agentsvc.azure-automation.net" # Private DNS Zone for workspace-specific mapping to the agent service automation endpoints
+          azureMonitorPrivateDnsZoneId5                   = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"         # Private DNS Zone for connectivity to the global agent's solution packs storage account
+          azureRedisCachePrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.redis.cache.windows.net"
+          azureServiceBusNamespacePrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.servicebus.windows.net"
+          azureSignalRPrivateDnsZoneId                    = "${local.private_dns_zone_prefix}privatelink.service.signalr.net"
+          azureStorageBlobPrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
+          azureStorageBlobSecPrivateDnsZoneId             = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
+          azureStorageDFSPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.dfs.core.windows.net"
+          azureStorageDFSSecPrivateDnsZoneId              = "${local.private_dns_zone_prefix}privatelink.dfs.core.windows.net"
+          azureStorageFilePrivateDnsZoneId                = "${local.private_dns_zone_prefix}privatelink.file.core.windows.net"
+          azureStorageQueuePrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
+          azureStorageQueueSecPrivateDnsZoneId            = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
+          azureStorageStaticWebPrivateDnsZoneId           = "${local.private_dns_zone_prefix}privatelink.web.core.windows.net"
+          azureStorageStaticWebSecPrivateDnsZoneId        = "${local.private_dns_zone_prefix}privatelink.web.core.windows.net"
+          azureSynapseDevPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.dev.azuresynapse.net"
+          azureSynapseSQLODPrivateDnsZoneId               = "${local.private_dns_zone_prefix}privatelink.sql.azuresynapse.net"
+          azureSynapseSQLPrivateDnsZoneId                 = "${local.private_dns_zone_prefix}privatelink.sql.azuresynapse.net"
+          azureWebPrivateDnsZoneId                        = "${local.private_dns_zone_prefix}privatelink.webpubsub.azure.com"
+          azureVirtualDesktopHostpoolPrivateDnsZoneId     = "${local.private_dns_zone_prefix}privatelink.wvd.microsoft.com"
+          azureVirtualDesktopWorkspacePrivateDnsZoneId    = "${local.private_dns_zone_prefix}privatelink.wvd.microsoft.com"
+          azureSiteRecoveryBlobPrivateDnsZoneId           = "${local.private_dns_zone_prefix}privatelink.blob.core.windows.net"
+          azureSiteRecoveryQueuePrivateDnsZoneId          = "${local.private_dns_zone_prefix}privatelink.queue.core.windows.net"
         }
       }
       enforcement_mode = {
@@ -1941,6 +1961,7 @@ locals {
     ddos_protection_plan_resource_id        = local.ddos_protection_plan_resource_id
     private_dns_zone_prefix                 = local.private_dns_zone_prefix
     connectivity_location                   = local.location
+    connectivity_location_short             = local.lookup_azure_backup_geo_codes[local.location]
     virtual_network_resource_id_by_location = local.virtual_network_resource_id
     vpn_gateway_resource_id_by_location     = local.vpn_gateway_resource_id
     firewall_resource_id_by_location        = local.azfw_resource_id

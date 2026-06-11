@@ -357,6 +357,7 @@ resource "azurerm_virtual_hub_connection" "virtual_wan" {
 
   # Set explicit dependencies
   depends_on = [
+    azurerm_express_route_gateway.virtual_wan,
     azurerm_resource_group.connectivity,
     azurerm_resource_group.virtual_wan,
     azurerm_virtual_wan.virtual_wan,
@@ -382,6 +383,7 @@ resource "azurerm_virtual_hub_routing_intent" "virtual_wan" {
 
   # Set explicit dependencies
   depends_on = [
+    azurerm_express_route_gateway.virtual_wan,
     azurerm_firewall.virtual_wan,
     azurerm_resource_group.connectivity,
     azurerm_resource_group.virtual_wan,

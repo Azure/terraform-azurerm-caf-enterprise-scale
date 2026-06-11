@@ -43,36 +43,36 @@ variable "tags" {
 
 variable "settings" {
   type = object({
+    ama = optional(object({
+      enable_uami                                                         = optional(bool, true)
+      enable_vminsights_dcr                                               = optional(bool, true)
+      enable_change_tracking_dcr                                          = optional(bool, true)
+      enable_mdfc_defender_for_sql_dcr                                    = optional(bool, true)
+      enable_mdfc_defender_for_sql_query_collection_for_security_research = optional(bool, true)
+    }), {})
     log_analytics = optional(object({
       enabled = optional(bool, true)
       config = optional(object({
-        retention_in_days                                 = optional(number, 30)
-        enable_monitoring_for_vm                          = optional(bool, true)
-        enable_monitoring_for_vmss                        = optional(bool, true)
-        enable_solution_for_agent_health_assessment       = optional(bool, true)
-        enable_solution_for_anti_malware                  = optional(bool, true)
-        enable_solution_for_change_tracking               = optional(bool, true)
-        enable_solution_for_service_map                   = optional(bool, true)
-        enable_solution_for_sql_assessment                = optional(bool, true)
-        enable_solution_for_sql_vulnerability_assessment  = optional(bool, true)
-        enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
-        enable_solution_for_updates                       = optional(bool, true)
-        enable_solution_for_vm_insights                   = optional(bool, true)
-        enable_solution_for_container_insights            = optional(bool, true)
-        enable_sentinel                                   = optional(bool, true)
+        daily_quota_gb                         = optional(number, -1)
+        retention_in_days                      = optional(number, 30)
+        enable_monitoring_for_vm               = optional(bool, true)
+        enable_monitoring_for_vmss             = optional(bool, true)
+        enable_sentinel                        = optional(bool, true)
+        enable_change_tracking                 = optional(bool, true)
+        enable_solution_for_vm_insights        = optional(bool, true)
+        enable_solution_for_container_insights = optional(bool, true)
+        sentinel_customer_managed_key_enabled  = optional(bool, false)
       }), {})
     }), {})
     security_center = optional(object({
       enabled = optional(bool, true)
       config = optional(object({
         email_security_contact                                = optional(string, "security_contact@replace_me")
-        enable_defender_for_apis                              = optional(bool, true)
         enable_defender_for_app_services                      = optional(bool, true)
         enable_defender_for_arm                               = optional(bool, true)
         enable_defender_for_containers                        = optional(bool, true)
         enable_defender_for_cosmosdbs                         = optional(bool, true)
         enable_defender_for_cspm                              = optional(bool, true)
-        enable_defender_for_dns                               = optional(bool, true)
         enable_defender_for_key_vault                         = optional(bool, true)
         enable_defender_for_oss_databases                     = optional(bool, true)
         enable_defender_for_servers                           = optional(bool, true)
@@ -140,7 +140,7 @@ variable "custom_settings_by_resource_type" {
   default     = {}
 
   validation {
-    condition     = can([for k in keys(var.custom_settings_by_resource_type) : contains(["azurerm_resource_group", "azurerm_log_analytics_workspace", "azurerm_log_analytics_solution", "azurerm_automation_account", "azurerm_log_analytics_linked_service"], k)]) || var.custom_settings_by_resource_type == {}
+    condition     = can([for k in keys(var.custom_settings_by_resource_type) : contains(["azurerm_resource_group", "azurerm_log_analytics_workspace", "azurerm_log_analytics_solution", "azurerm_automation_account", "azurerm_log_analytics_linked_service", "azurerm_data_collection_rule"], k)]) || var.custom_settings_by_resource_type == {}
     error_message = "Invalid key specified. Please check the list of allowed resource types supported by the management module for caf-enterprise-scale."
   }
 }

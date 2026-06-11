@@ -105,7 +105,6 @@ resource "azurerm_automation_account" "management" {
       key_vault_key_id = encryption.value["key_vault_key_id"]
       # Optional attributes
       user_assigned_identity_id = lookup(encryption.value, "user_assigned_identity_id", null)
-      key_source                = lookup(encryption.value, "key_source", null)
     }
   }
 
@@ -137,3 +136,51 @@ resource "azurerm_log_analytics_linked_service" "management" {
   ]
 
 }
+
+resource "azurerm_user_assigned_identity" "management" {
+  for_each = local.azurerm_user_assigned_identity_management
+
+  provider = azurerm.management
+  # Mandatory resource attributes
+  name                = each.value.template.name
+  location            = each.value.template.location
+  resource_group_name = each.value.template.resource_group_name
+
+  # Optional resource attributes
+  tags = each.value.template.tags
+
+  # Set explicit dependency on Resource Group deployment
+  depends_on = [
+    azurerm_resource_group.management,
+  ]
+}
+
+resource "azapi_resource" "data_collection_rule" {
+  for_each                  = local.azurerm_monitor_data_collection_rule_management
+  name                      = each.value.template.name
+  parent_id                 = each.value.template.parent_id
+  type                      = each.value.template.type
+  location                  = each.value.template.location
+  tags                      = each.value.template.tags
+  schema_validation_enabled = each.value.template.schema_validation_enabled
+  body                      = each.value.template.body
+
+  depends_on = [azurerm_log_analytics_workspace.management]
+}
+
+# Delaying until next major release as this will be a breaking change requiring state manipulation
+# as the old LA solution will have to be removed from state, but we cannot use the removed block as
+# it does not support interpolation for map keys.
+#
+# resource "azapi_resource" "sentinel_onboarding" {
+#   for_each  = local.azapi_sentinel_onboarding
+#   name      = each.value.template.name
+#   parent_id = each.value.template.parent_id
+#   type      = each.value.template.type
+#   body      = each.value.template.body
+
+#   depends_on = [
+#     azurerm_log_analytics_workspace.management,
+#     azurerm_log_analytics_solution.management,
+#   ]
+# }

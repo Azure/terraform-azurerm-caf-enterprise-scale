@@ -1,0 +1,24 @@
+{
+  "type": "Microsoft.Authorization/policyAssignments",
+  "apiVersion": "2022-06-01",
+  "name": "Enforce-TLS-SSL-H224",
+  "location": "${default_location}",
+  "dependsOn": [],
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "description": "Choose either Deploy if not exist and append in combination with audit or Select Deny in the Policy effect. Deny polices shift left. Deploy if not exist and append enforce but can be changed, and because missing existence condition require then the combination of Audit.",
+    "displayName": "Deny or Deploy and append TLS requirements and SSL enforcement on resources without Encryption in transit",
+    "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/Enforce-EncryptTransit_20240509",
+    "enforcementMode": "Default",
+    "nonComplianceMessages": [
+      {
+        "message": "TLS and SSL {enforcementMode} be enabled for on resources without encryption in transit."
+      }
+    ],
+    "parameters": {},
+    "scope": "${current_scope_resource_id}",
+    "notScopes": []
+  }
+}

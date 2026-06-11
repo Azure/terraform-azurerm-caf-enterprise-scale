@@ -12,5 +12,4 @@ resource "azurerm_role_assignment" "for_policy" {
   # Optional attributes
   role_definition_name = lookup(each.value, "role_definition_name", null)
   role_definition_id   = lookup(each.value, "role_definition_id", null)
-
 }

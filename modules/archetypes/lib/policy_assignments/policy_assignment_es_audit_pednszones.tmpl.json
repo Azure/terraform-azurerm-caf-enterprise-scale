@@ -33,7 +33,7 @@
           "privatelink.azurestaticapps.net",
           "privatelink.azuresynapse.net",
           "privatelink.azurewebsites.net",
-          "privatelink.${connectivity_location}.batch.azure.com",
+          "privatelink.batch.azure.com",
           "privatelink.blob.core.windows.net",
           "privatelink.cassandra.cosmos.azure.com",
           "privatelink.cognitiveservices.azure.com",

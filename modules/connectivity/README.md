@@ -1,6 +1,42 @@
 <!-- BEGIN_TF_DOCS -->
 # Connectivity sub-module
 
+> [!IMPORTANT]
+> For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
+> Please see the documentation at <https://aka.ms/alz/tf>.
+
+## ⚠️ DEPRECATION NOTICE
+
+**This module is now in extended support mode and will be archived on August 1, 2026.**
+
+### Current Status
+
+- **Extended Support Period**: This module is now in extended support for one year (until August 1, 2026)
+- **Support Scope**: During this period, we will provide quality updates (e.g. bug fixes) and policy library updates only
+- **No New Features**: No new features or functionality will be added to this module
+
+### Migration Path
+
+We strongly recommend that all users migrate to the new **Azure Verified Modules** approach for Azure Landing Zones. This new approach provides:
+
+- Enhanced reliability and testing
+- Improved modularity and flexibility
+- Better alignment with Azure best practices
+- Ongoing feature development and support
+
+**Further reading**: Please read our recent [blog](https://techcommunity.microsoft.com/blog/azuretoolsblog/terraform-azure-verified-modules-for-platform-landing-zone-alz-migration-guidanc/4432035)
+
+**Migration Guide**: Please visit [aka.ms/alz/tf/migrate](https://aka.ms/alz/tf/migrate) for detailed migration guidance and resources.
+
+### Timeline
+
+- **Now - August 1, 2026**: Extended support (quality and policy updates only)
+- **August 1, 2026**: Repository will be archived and no further updates will be made
+
+### Questions?
+
+If you have questions about the migration process or need assistance, please refer to the migration documentation or raise an issue in the repository before the archive date.
+
 ## Documentation
 <!-- markdownlint-disable MD033 -->
 
@@ -48,6 +84,25 @@ For more information, please refer to: https://learn.microsoft.com/azure/backup/
 Type: `map(string)`
 
 Default: `{}`
+
+### <a name="input_custom_privatelink_azurestaticapps_partitionids"></a> [custom\_privatelink\_azurestaticapps\_partitionids](#input\_custom\_privatelink\_azurestaticapps\_partitionids)
+
+Description: As a uncertanty in the partition id for the azure static web app, this variable is used to specify the partition ids deployed for the azure static web app private DNS zones.  
+For more information, please refer to: https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#web and https://learn.microsoft.com/en-us/azure/static-web-apps/private-endpoint
+
+Type: `list(number)`
+
+Default:
+
+```json
+[
+  1,
+  2,
+  3,
+  4,
+  5
+]
+```
 
 ### <a name="input_custom_settings_by_resource_type"></a> [custom\_settings\_by\_resource\_type](#input\_custom\_settings\_by\_resource\_type)
 
@@ -141,9 +196,11 @@ object({
           virtual_network_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              address_prefix           = optional(string, "")
-              gateway_sku_expressroute = optional(string, "")
-              gateway_sku_vpn          = optional(string, "")
+              address_prefix              = optional(string, "")
+              gateway_sku_expressroute    = optional(string, "")
+              gateway_sku_vpn             = optional(string, "")
+              remote_vnet_traffic_enabled = optional(bool, false)
+              virtual_wan_traffic_enabled = optional(bool, false)
               advanced_vpn_settings = optional(object({
                 enable_bgp                       = optional(bool, null)
                 active_active                    = optional(bool, null)
@@ -243,7 +300,8 @@ object({
           expressroute_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              scale_unit = optional(number, 1)
+              scale_unit                    = optional(number, 1)
+              allow_non_virtual_wan_traffic = optional(bool, false)
             }), {})
           }), {})
           vpn_gateway = optional(object({
@@ -306,6 +364,9 @@ object({
           azure_api_management                 = optional(bool, true)
           azure_app_configuration_stores       = optional(bool, true)
           azure_arc                            = optional(bool, true)
+          azure_arc_guest_configuration        = optional(bool, true)
+          azure_arc_hybrid_resource_provider   = optional(bool, true)
+          azure_arc_kubernetes                 = optional(bool, true)
           azure_automation_dscandhybridworker  = optional(bool, true)
           azure_automation_webhook             = optional(bool, true)
           azure_backup                         = optional(bool, true)
@@ -328,6 +389,7 @@ object({
           azure_database_for_mariadb_server    = optional(bool, true)
           azure_database_for_mysql_server      = optional(bool, true)
           azure_database_for_postgresql_server = optional(bool, true)
+          azure_databricks                     = optional(bool, true)
           azure_digital_twins                  = optional(bool, true)
           azure_event_grid_domain              = optional(bool, true)
           azure_event_grid_topic               = optional(bool, true)
@@ -341,9 +403,11 @@ object({
           azure_kubernetes_service_management  = optional(bool, true)
           azure_machine_learning_workspace     = optional(bool, true)
           azure_managed_disks                  = optional(bool, true)
+          azure_managed_grafana                = optional(bool, true)
           azure_media_services                 = optional(bool, true)
           azure_migrate                        = optional(bool, true)
           azure_monitor                        = optional(bool, true)
+          azure_openai_service                 = optional(bool, true)
           azure_purview_account                = optional(bool, true)
           azure_purview_studio                 = optional(bool, true)
           azure_relay_namespace                = optional(bool, true)
@@ -354,6 +418,7 @@ object({
           azure_synapse_analytics_dev          = optional(bool, true)
           azure_synapse_analytics_sql          = optional(bool, true)
           azure_synapse_studio                 = optional(bool, true)
+          azure_virtual_desktop                = optional(bool, true)
           azure_web_apps_sites                 = optional(bool, true)
           azure_web_apps_static_sites          = optional(bool, true)
           cognitive_services_account           = optional(bool, true)

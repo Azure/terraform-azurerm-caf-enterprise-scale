@@ -5,20 +5,9 @@ set -e
 # Shell Script
 # - Terraform Create or Update Azure Backend Storage
 #
-
-echo "==> Authenticating cli..."
-az login \
-    --service-principal \
-    --tenant "$ARM_TENANT_ID" \
-    --username "$ARM_CLIENT_ID" \
-    --password "$ARM_CLIENT_SECRET" \
-    --query [?isDefault]
-
 echo "==> Setting active Subscription..."
 az account set \
     --subscription "$ARM_SUBSCRIPTION_ID"
-az account list \
-    --query "[?isDefault]"
 
 echo "==> Create or update Resource Group..."
 RSG_NAME="$DEFAULT_PREFIX"
@@ -40,6 +29,7 @@ SA_NAME=$(
 )
 SA_ID=$(
     az storage account create \
+        --only-show-errors \
         --name "$SA_NAME" \
         --resource-group "$RSG_NAME" \
         --location "$PRIMARY_LOCATION" \
@@ -56,6 +46,7 @@ echo "##vso[task.setVariable variable=STORAGE_ACCOUNT_NAME;isOutput=true]$SA_NAM
 
 echo "==> Create or update Storage Account permissions..."
 az role assignment create \
+    --only-show-errors \
     --role 'Storage Blob Data Contributor' \
     --assignee "$ARM_CLIENT_ID" \
     --scope "$SA_ID"
@@ -63,6 +54,7 @@ az role assignment create \
 echo "==> Create or update Storage Account container..."
 SC_NAME="tfstate"
 az storage container create \
+    --only-show-errors \
     --name "$SC_NAME" \
     --auth-mode 'login' \
     --account-name "$SA_NAME" \

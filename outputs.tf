@@ -271,3 +271,13 @@ output "azurerm_virtual_hub_connection" {
   }
   description = "Returns the configuration data for all Virtual Hub Connections created by this module."
 }
+
+output "data_collection_rules" {
+  value       = azapi_resource.data_collection_rule
+  description = "A map of the data collection rules created by this module."
+}
+
+output "ama_user_assigned_identity" {
+  value       = azurerm_user_assigned_identity.management
+  description = "The user assigned identity for Azure Monitor Agent that is created by this module."
+}

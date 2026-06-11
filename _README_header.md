@@ -1,9 +1,40 @@
 # Azure landing zones Terraform module
 
-[![Build Status](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_apis/build/status/Tests/E2E?branchName=refs%2Ftags%2Fv3.3.0)](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_build/latest?definitionId=26&branchName=refs%2Ftags%2Fv3.3.0)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Percentage of issues still open")
+> [!IMPORTANT]
+> For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
+> Please see the documentation at <https://aka.ms/alz/tf>.
+
+## ⚠️ DEPRECATION NOTICE
+
+**This module is now in extended support mode and will be archived on August 1, 2026.**
+
+### Current Status
+
+- **Extended Support Period**: This module is now in extended support for one year (until August 1, 2026)
+- **Support Scope**: During this period, we will provide quality updates (e.g. bug fixes) and policy library updates only
+- **No New Features**: No new features or functionality will be added to this module
+
+### Migration Path
+
+We strongly recommend that all users migrate to the new **Azure Verified Modules** approach for Azure Landing Zones. This new approach provides:
+
+- Enhanced reliability and testing
+- Improved modularity and flexibility
+- Better alignment with Azure best practices
+- Ongoing feature development and support
+
+**Further reading**: Please read our recent [blog](https://techcommunity.microsoft.com/blog/azuretoolsblog/terraform-azure-verified-modules-for-platform-landing-zone-alz-migration-guidanc/4432035)
+
+**Migration Guide**: Please visit [aka.ms/alz/tf/migrate](https://aka.ms/alz/tf/migrate) for detailed migration guidance and resources.
+
+### Timeline
+
+- **Now - August 1, 2026**: Extended support (quality and policy updates only)
+- **August 1, 2026**: Repository will be archived and no further updates will be made
+
+### Questions?
+
+If you have questions about the migration process or need assistance, please refer to the migration documentation or raise an issue in the repository before the archive date.
 
 Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
@@ -39,11 +70,9 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.74.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
-
-> **NOTE:** The module now requires a minimum Terraform version of `1.3.1` to support the GA release of [`optional()` Object Type Attributes](https://developer.hashicorp.com/terraform/language/expressions/type-constraints#optional-object-type-attributes) and the required fix for [issue #31844](https://github.com/hashicorp/terraform/issues/31844).
 
 ## Usage
 
@@ -64,7 +93,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.74.0"
+      version = "~> 3.107"
     }
   }
 }
@@ -154,6 +183,7 @@ Please see the [releases](https://github.com/Azure/terraform-azurerm-caf-enterpr
 
 For upgrade guides from previous versions, please refer to the following links:
 
+- [Upgrade from v5.2.1 to v6.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v5.2.1-to-v6.0.0)
 - [Upgrade from v4.2.0 to v5.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v4.2.0-to-v5.0.0)
 - [Upgrade from v3.3.0 to v4.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v4.0.0)
 - [Upgrade from v2.4.1 to v3.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0)

@@ -5,12 +5,14 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "displayName": "Deploy SQL Database built-in SQL security configuration",
-    "description": "Deploy auditing, Alert, TDE and SQL vulnerability to SQL Databases when it not exist in the deployment",
+    "displayName": "[Deprecated]: Deploy SQL Database built-in SQL security configuration",
+    "description": "Deploy auditing, Alert, TDE and SQL vulnerability to SQL Databases when it not exist in the deployment. Superseded by https://www.azadvertizer.net/azpolicyinitiativesadvertizer/Deploy-Sql-Security_20240529.html",
     "metadata": {
-      "version": "1.0.0",
+      "version": "1.0.0-deprecated",
       "category": "SQL",
       "source": "https://github.com/Azure/Enterprise-Scale/",
+      "deprecated": true,
+      "supersededBy": "Deploy-Sql-Security_20240529",
       "alzCloudEnvironments": [
         "AzureCloud",
         "AzureChinaCloud",
@@ -90,7 +92,8 @@
             "value": "[parameters('SqlDbTdeDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SqlDbSecurityAlertPoliciesDeploySqlSecurity",
@@ -100,7 +103,8 @@
             "value": "[parameters('SqlDbSecurityAlertPoliciesDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SqlDbAuditingSettingsDeploySqlSecurity",
@@ -110,7 +114,8 @@
             "value": "[parameters('SqlDbAuditingSettingsDeploySqlSecurityEffect')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SqlDbVulnerabilityAssessmentsDeploySqlSecurity",
@@ -126,7 +131,8 @@
             "value": "[parameters('vulnerabilityAssessmentsStorageID')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       }
     ],
     "policyDefinitionGroups": null

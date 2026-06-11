@@ -5,10 +5,11 @@
   "scope": null,
   "properties": {
     "policyType": "Custom",
-    "displayName": "Deploy Diagnostic Settings to Azure Services",
-    "description": "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. See the list of policies of the services that are included ",
+    "displayName": "[Deprecated]: Deploy Diagnostic Settings to Azure Services",
+    "description": "This policy set deploys the configurations of application Azure resources to forward diagnostic logs and metrics to an Azure Log Analytics workspace. This policy set is superseded by built-in initiative https://www.azadvertizer.net/azpolicyinitiativesadvertizer/0884adba-2312-4468-abeb-5422caed1038.html.",
     "metadata": {
-      "version": "2.2.0",
+      "deprecated": true,
+      "version": "2.2.0-deprecated",
       "category": "Monitoring",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -852,7 +853,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StorageAccountBlobServicesDeployDiagnosticLogDeployLogAnalytics",
@@ -868,7 +870,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StorageAccountFileServicesDeployDiagnosticLogDeployLogAnalytics",
@@ -884,7 +887,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StorageAccountQueueServicesDeployDiagnosticLogDeployLogAnalytics",
@@ -900,7 +904,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StorageAccountTableServicesDeployDiagnosticLogDeployLogAnalytics",
@@ -916,7 +921,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AVDScalingPlansDeployDiagnosticLogDeployLogAnalytics",
@@ -932,7 +938,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "WVDAppGroupDeployDiagnosticLogDeployLogAnalytics",
@@ -948,7 +955,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "WVDWorkspaceDeployDiagnosticLogDeployLogAnalytics",
@@ -964,7 +972,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "WVDHostPoolsDeployDiagnosticLogDeployLogAnalytics",
@@ -980,7 +989,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "ACIDeployDiagnosticLogDeployLogAnalytics",
@@ -996,7 +1006,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "ACRDeployDiagnosticLogDeployLogAnalytics",
@@ -1012,7 +1023,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AKSDeployDiagnosticLogDeployLogAnalytics",
@@ -1028,7 +1040,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AnalysisServiceDeployDiagnosticLogDeployLogAnalytics",
@@ -1044,7 +1057,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "APIforFHIRDeployDiagnosticLogDeployLogAnalytics",
@@ -1060,7 +1074,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "APIMgmtDeployDiagnosticLogDeployLogAnalytics",
@@ -1079,7 +1094,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "ApplicationGatewayDeployDiagnosticLogDeployLogAnalytics",
@@ -1095,7 +1111,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AutomationDeployDiagnosticLogDeployLogAnalytics",
@@ -1111,7 +1128,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "BastionDeployDiagnosticLogDeployLogAnalytics",
@@ -1127,7 +1145,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "BatchDeployDiagnosticLogDeployLogAnalytics",
@@ -1143,7 +1162,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "CDNEndpointsDeployDiagnosticLogDeployLogAnalytics",
@@ -1159,7 +1179,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "CognitiveServicesDeployDiagnosticLogDeployLogAnalytics",
@@ -1175,7 +1196,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "CosmosDeployDiagnosticLogDeployLogAnalytics",
@@ -1191,7 +1213,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "DatabricksDeployDiagnosticLogDeployLogAnalytics",
@@ -1207,7 +1230,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "DataExplorerClusterDeployDiagnosticLogDeployLogAnalytics",
@@ -1223,7 +1247,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "DataFactoryDeployDiagnosticLogDeployLogAnalytics",
@@ -1239,7 +1264,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "DataLakeStoreDeployDiagnosticLogDeployLogAnalytics",
@@ -1255,7 +1281,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "DataLakeAnalyticsDeployDiagnosticLogDeployLogAnalytics",
@@ -1271,7 +1298,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "EventGridSubDeployDiagnosticLogDeployLogAnalytics",
@@ -1287,7 +1315,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "EventGridTopicDeployDiagnosticLogDeployLogAnalytics",
@@ -1303,7 +1332,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "EventHubDeployDiagnosticLogDeployLogAnalytics",
@@ -1319,7 +1349,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "EventSystemTopicDeployDiagnosticLogDeployLogAnalytics",
@@ -1335,7 +1366,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "ExpressRouteDeployDiagnosticLogDeployLogAnalytics",
@@ -1351,7 +1383,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "FirewallDeployDiagnosticLogDeployLogAnalytics",
@@ -1370,7 +1403,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "FrontDoorDeployDiagnosticLogDeployLogAnalytics",
@@ -1386,7 +1420,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "FunctionAppDeployDiagnosticLogDeployLogAnalytics",
@@ -1402,7 +1437,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "HDInsightDeployDiagnosticLogDeployLogAnalytics",
@@ -1418,7 +1454,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "IotHubDeployDiagnosticLogDeployLogAnalytics",
@@ -1434,7 +1471,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "KeyVaultDeployDiagnosticLogDeployLogAnalytics",
@@ -1450,7 +1488,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "LoadBalancerDeployDiagnosticLogDeployLogAnalytics",
@@ -1466,7 +1505,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "LogAnalyticsDeployDiagnosticLogDeployLogAnalytics",
@@ -1482,7 +1522,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "LogicAppsISEDeployDiagnosticLogDeployLogAnalytics",
@@ -1498,7 +1539,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "LogicAppsWFDeployDiagnosticLogDeployLogAnalytics",
@@ -1514,7 +1556,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "MariaDBDeployDiagnosticLogDeployLogAnalytics",
@@ -1530,7 +1573,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "MediaServiceDeployDiagnosticLogDeployLogAnalytics",
@@ -1546,7 +1590,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "MlWorkspaceDeployDiagnosticLogDeployLogAnalytics",
@@ -1562,7 +1607,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "MySQLDeployDiagnosticLogDeployLogAnalytics",
@@ -1578,7 +1624,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "NetworkSecurityGroupsDeployDiagnosticLogDeployLogAnalytics",
@@ -1594,7 +1641,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "NetworkNICDeployDiagnosticLogDeployLogAnalytics",
@@ -1610,7 +1658,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "PostgreSQLDeployDiagnosticLogDeployLogAnalytics",
@@ -1626,7 +1675,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "PowerBIEmbeddedDeployDiagnosticLogDeployLogAnalytics",
@@ -1642,7 +1692,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "NetworkPublicIPNicDeployDiagnosticLogDeployLogAnalytics",
@@ -1661,7 +1712,8 @@
             "value": "True"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "RecoveryVaultDeployDiagnosticLogDeployLogAnalytics",
@@ -1674,7 +1726,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "RedisCacheDeployDiagnosticLogDeployLogAnalytics",
@@ -1690,7 +1743,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "RelayDeployDiagnosticLogDeployLogAnalytics",
@@ -1706,7 +1760,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SearchServicesDeployDiagnosticLogDeployLogAnalytics",
@@ -1722,7 +1777,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "ServiceBusDeployDiagnosticLogDeployLogAnalytics",
@@ -1738,7 +1794,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SignalRDeployDiagnosticLogDeployLogAnalytics",
@@ -1754,7 +1811,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLDatabaseDeployDiagnosticLogDeployLogAnalytics",
@@ -1770,7 +1828,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLElasticPoolsDeployDiagnosticLogDeployLogAnalytics",
@@ -1786,7 +1845,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "SQLMDeployDiagnosticLogDeployLogAnalytics",
@@ -1802,7 +1862,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "StreamAnalyticsDeployDiagnosticLogDeployLogAnalytics",
@@ -1818,7 +1879,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "TimeSeriesInsightsDeployDiagnosticLogDeployLogAnalytics",
@@ -1834,7 +1896,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "TrafficManagerDeployDiagnosticLogDeployLogAnalytics",
@@ -1850,7 +1913,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "VirtualNetworkDeployDiagnosticLogDeployLogAnalytics",
@@ -1866,7 +1930,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "VirtualMachinesDeployDiagnosticLogDeployLogAnalytics",
@@ -1882,7 +1947,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "VMSSDeployDiagnosticLogDeployLogAnalytics",
@@ -1898,7 +1964,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "VNetGWDeployDiagnosticLogDeployLogAnalytics",
@@ -1914,7 +1981,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AppServiceDeployDiagnosticLogDeployLogAnalytics",
@@ -1930,7 +1998,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "AppServiceWebappDeployDiagnosticLogDeployLogAnalytics",
@@ -1946,7 +2015,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       },
       {
         "policyDefinitionReferenceId": "VWanS2SVPNGWDeployDiagnosticLogDeployLogAnalytics",
@@ -1962,7 +2032,8 @@
             "value": "[parameters('profileName')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": ""
       }
     ],
     "policyDefinitionGroups": null

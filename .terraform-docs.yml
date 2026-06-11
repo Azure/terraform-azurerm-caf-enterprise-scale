@@ -4,7 +4,7 @@
 
 formatter: "markdown document" # this is required
 
-version: "0.17.0"
+version: "~> 0.18"
 
 header-from: "_README_header.md"
 footer-from: "_README_footer.md"
@@ -12,13 +12,6 @@ footer-from: "_README_footer.md"
 recursive:
   enabled: true
   path: modules
-
-sections:
-  hide: []
-  show: []
-
-  hide-all: false # deprecated in v0.13.0, removed in v0.15.0
-  show-all: true # deprecated in v0.13.0, removed in v0.15.0
 
 content: |-
   {{ .Header }}

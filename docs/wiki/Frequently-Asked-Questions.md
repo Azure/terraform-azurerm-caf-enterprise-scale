@@ -45,6 +45,16 @@ In large environments, costs can also increase when large volumes of data are be
 
 To see further guidance regarding costs for Azure landing zones, please refer to our [pricing guidance][alz_pricing] page.
 
+### General questions
+
+#### With the upcoming release of the new Azure Landing Zones [AVM](https://aka.ms/avm) module, what is the future for this module and what should I do today?
+
+The Azure Landing Zones Terraform module (`caf-enterprise-scale`) is still our recommendation for customers looking to accelerate deployments.
+
+We are working on a new set of more focussed modules that can be combined like Lego bricks to achieve the outcome you are looking for. These will be published as AVM modules. However, these are not all ready yet. We will publish guidance on the roadmap (including migration advice) in the coming months.
+
+We do want to reassure customers that the caf-enterprise-scale module will remain supported once we release the new set of modules.
+
  [//]: # (************************)
  [//]: # (INSERT LINK LABELS BELOW)
  [//]: # (************************)

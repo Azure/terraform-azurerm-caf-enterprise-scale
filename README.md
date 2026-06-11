@@ -1,10 +1,41 @@
 <!-- BEGIN_TF_DOCS -->
 # Azure landing zones Terraform module
 
-[![Build Status](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_apis/build/status/Tests/E2E?branchName=refs%2Ftags%2Fv3.3.0)](https://dev.azure.com/mscet/CAE-ALZ-Terraform/_build/latest?definitionId=26&branchName=refs%2Ftags%2Fv3.3.0)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Azure/terraform-azurerm-caf-enterprise-scale?style=flat&logo=github)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/azure/terraform-azurerm-caf-enterprise-scale.svg)](http://isitmaintained.com/project/azure/terraform-azurerm-caf-enterprise-scale "Percentage of issues still open")
+> [!IMPORTANT]
+> For new deployments we now recommend using Azure Verified Modules for Platform Landing Zones.
+> Please see the documentation at <https://aka.ms/alz/tf>.
+
+## ⚠️ DEPRECATION NOTICE
+
+**This module is now in extended support mode and will be archived on August 1, 2026.**
+
+### Current Status
+
+- **Extended Support Period**: This module is now in extended support for one year (until August 1, 2026)
+- **Support Scope**: During this period, we will provide quality updates (e.g. bug fixes) and policy library updates only
+- **No New Features**: No new features or functionality will be added to this module
+
+### Migration Path
+
+We strongly recommend that all users migrate to the new **Azure Verified Modules** approach for Azure Landing Zones. This new approach provides:
+
+- Enhanced reliability and testing
+- Improved modularity and flexibility
+- Better alignment with Azure best practices
+- Ongoing feature development and support
+
+**Further reading**: Please read our recent [blog](https://techcommunity.microsoft.com/blog/azuretoolsblog/terraform-azure-verified-modules-for-platform-landing-zone-alz-migration-guidanc/4432035)
+
+**Migration Guide**: Please visit [aka.ms/alz/tf/migrate](https://aka.ms/alz/tf/migrate) for detailed migration guidance and resources.
+
+### Timeline
+
+- **Now - August 1, 2026**: Extended support (quality and policy updates only)
+- **August 1, 2026**: Repository will be archived and no further updates will be made
+
+### Questions?
+
+If you have questions about the migration process or need assistance, please refer to the migration documentation or raise an issue in the repository before the archive date.
 
 Detailed information about how to use, configure and extend this module can be found on our Wiki:
 
@@ -40,11 +71,9 @@ This allows customers to address concerns around managing large state files, or 
 
 ## Terraform versions
 
-This module has been tested using Terraform `1.3.1` and AzureRM Provider `3.74.0` as a baseline, and various versions to up the latest at time of release.
+This module has been tested using Terraform `1.7.0` and AzureRM Provider `3.108.0` as a baseline, and various versions to up the latest at time of release.
 In some cases, individual versions of the AzureRM provider may cause errors.
 If this happens, we advise upgrading to the latest version and checking our [troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting) guide before [raising an issue](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/issues).
-
-> **NOTE:** The module now requires a minimum Terraform version of `1.3.1` to support the GA release of [`optional()` Object Type Attributes](https://developer.hashicorp.com/terraform/language/expressions/type-constraints#optional-object-type-attributes) and the required fix for [issue #31844](https://github.com/hashicorp/terraform/issues/31844).
 
 ## Usage
 
@@ -65,7 +94,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.74.0"
+      version = "~> 3.107"
     }
   }
 }
@@ -155,6 +184,7 @@ Please see the [releases](https://github.com/Azure/terraform-azurerm-caf-enterpr
 
 For upgrade guides from previous versions, please refer to the following links:
 
+- [Upgrade from v5.2.1 to v6.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v5.2.1-to-v6.0.0)
 - [Upgrade from v4.2.0 to v5.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v4.2.0-to-v5.0.0)
 - [Upgrade from v3.3.0 to v4.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v3.3.0-to-v4.0.0)
 - [Upgrade from v2.4.1 to v3.0.0](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BUser-Guide%5D-Upgrade-from-v2.4.1-to-v3.0.0)
@@ -171,15 +201,15 @@ For upgrade guides from previous versions, please refer to the following links:
 
 The following requirements are needed by this module:
 
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.3.1)
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.7)
 
-- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (>= 1.7.0)
+- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~> 1.13, != 1.13.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.74.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.108)
 
-- <a name="requirement_random"></a> [random](#requirement\_random) (>= 3.1.0)
+- <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.6)
 
-- <a name="requirement_time"></a> [time](#requirement\_time) (>= 0.7.0)
+- <a name="requirement_time"></a> [time](#requirement\_time) (~> 0.11)
 
 ## Modules
 
@@ -348,9 +378,11 @@ object({
             virtual_network_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
-                address_prefix           = optional(string, "")
-                gateway_sku_expressroute = optional(string, "")
-                gateway_sku_vpn          = optional(string, "")
+                address_prefix              = optional(string, "")
+                gateway_sku_expressroute    = optional(string, "")
+                gateway_sku_vpn             = optional(string, "")
+                remote_vnet_traffic_enabled = optional(bool, false)
+                virtual_wan_traffic_enabled = optional(bool, false)
                 advanced_vpn_settings = optional(object({
                   enable_bgp                       = optional(bool, null)
                   active_active                    = optional(bool, null)
@@ -450,7 +482,7 @@ object({
             expressroute_gateway = optional(object({
               enabled = optional(bool, false)
               config = optional(object({
-                scale_unit = optional(number, 1)
+                scale_unit                    = optional(number, 1)
                 allow_non_virtual_wan_traffic = optional(bool, false)
               }), {})
             }), {})
@@ -514,6 +546,9 @@ object({
             azure_api_management                 = optional(bool, true)
             azure_app_configuration_stores       = optional(bool, true)
             azure_arc                            = optional(bool, true)
+            azure_arc_guest_configuration        = optional(bool, true)
+            azure_arc_hybrid_resource_provider   = optional(bool, true)
+            azure_arc_kubernetes                 = optional(bool, true)
             azure_automation_dscandhybridworker  = optional(bool, true)
             azure_automation_webhook             = optional(bool, true)
             azure_backup                         = optional(bool, true)
@@ -536,6 +571,7 @@ object({
             azure_database_for_mariadb_server    = optional(bool, true)
             azure_database_for_mysql_server      = optional(bool, true)
             azure_database_for_postgresql_server = optional(bool, true)
+            azure_databricks                     = optional(bool, true)
             azure_digital_twins                  = optional(bool, true)
             azure_event_grid_domain              = optional(bool, true)
             azure_event_grid_topic               = optional(bool, true)
@@ -549,9 +585,11 @@ object({
             azure_kubernetes_service_management  = optional(bool, true)
             azure_machine_learning_workspace     = optional(bool, true)
             azure_managed_disks                  = optional(bool, true)
+            azure_managed_grafana                = optional(bool, true)
             azure_media_services                 = optional(bool, true)
             azure_migrate                        = optional(bool, true)
             azure_monitor                        = optional(bool, true)
+            azure_openai_service                 = optional(bool, true)
             azure_purview_account                = optional(bool, true)
             azure_purview_studio                 = optional(bool, true)
             azure_relay_namespace                = optional(bool, true)
@@ -562,6 +600,7 @@ object({
             azure_synapse_analytics_dev          = optional(bool, true)
             azure_synapse_analytics_sql          = optional(bool, true)
             azure_synapse_studio                 = optional(bool, true)
+            azure_virtual_desktop                = optional(bool, true)
             azure_web_apps_sites                 = optional(bool, true)
             azure_web_apps_static_sites          = optional(bool, true)
             cognitive_services_account           = optional(bool, true)
@@ -624,36 +663,36 @@ Type:
 ```hcl
 object({
     settings = optional(object({
+      ama = optional(object({
+        enable_uami                                                         = optional(bool, true)
+        enable_vminsights_dcr                                               = optional(bool, true)
+        enable_change_tracking_dcr                                          = optional(bool, true)
+        enable_mdfc_defender_for_sql_dcr                                    = optional(bool, true)
+        enable_mdfc_defender_for_sql_query_collection_for_security_research = optional(bool, true)
+      }), {})
       log_analytics = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
-          retention_in_days                                 = optional(number, 30)
-          enable_monitoring_for_vm                          = optional(bool, true)
-          enable_monitoring_for_vmss                        = optional(bool, true)
-          enable_solution_for_agent_health_assessment       = optional(bool, true)
-          enable_solution_for_anti_malware                  = optional(bool, true)
-          enable_solution_for_change_tracking               = optional(bool, true)
-          enable_solution_for_service_map                   = optional(bool, false)
-          enable_solution_for_sql_assessment                = optional(bool, true)
-          enable_solution_for_sql_vulnerability_assessment  = optional(bool, true)
-          enable_solution_for_sql_advanced_threat_detection = optional(bool, true)
-          enable_solution_for_updates                       = optional(bool, true)
-          enable_solution_for_vm_insights                   = optional(bool, true)
-          enable_solution_for_container_insights            = optional(bool, true)
-          enable_sentinel                                   = optional(bool, true)
+          daily_quota_gb                         = optional(number, -1)
+          retention_in_days                      = optional(number, 30)
+          enable_monitoring_for_vm               = optional(bool, true)
+          enable_monitoring_for_vmss             = optional(bool, true)
+          enable_sentinel                        = optional(bool, true)
+          enable_change_tracking                 = optional(bool, true)
+          enable_solution_for_vm_insights        = optional(bool, true)
+          enable_solution_for_container_insights = optional(bool, true)
+          sentinel_customer_managed_key_enabled  = optional(bool, false) # not used at this time
         }), {})
       }), {})
       security_center = optional(object({
         enabled = optional(bool, true)
         config = optional(object({
           email_security_contact                                = optional(string, "security_contact@replace_me")
-          enable_defender_for_apis                              = optional(bool, true)
           enable_defender_for_app_services                      = optional(bool, true)
           enable_defender_for_arm                               = optional(bool, true)
           enable_defender_for_containers                        = optional(bool, true)
           enable_defender_for_cosmosdbs                         = optional(bool, true)
           enable_defender_for_cspm                              = optional(bool, true)
-          enable_defender_for_dns                               = optional(bool, true)
           enable_defender_for_key_vault                         = optional(bool, true)
           enable_defender_for_oss_databases                     = optional(bool, true)
           enable_defender_for_servers                           = optional(bool, true)
@@ -1058,6 +1097,7 @@ Default: `{}`
 
 The following resources are used by this module:
 
+- [azapi_resource.data_collection_rule](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
 - [azapi_resource.diag_settings](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) (resource)
 - [azurerm_automation_account.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/automation_account) (resource)
 - [azurerm_dns_zone.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone) (resource)
@@ -1086,14 +1126,19 @@ The following resources are used by this module:
 - [azurerm_resource_group.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [azurerm_resource_group.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [azurerm_resource_group.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
+- [azurerm_role_assignment.ama_managed_identity_operator](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.ama_reader](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.deploy_azsqldb_auditing_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.policy_assignment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.private_dns_zone_contributor_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_definition.enterprise_scale](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition) (resource)
 - [azurerm_subnet.connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) (resource)
 - [azurerm_subscription_template_deployment.telemetry_connectivity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
 - [azurerm_subscription_template_deployment.telemetry_core](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
 - [azurerm_subscription_template_deployment.telemetry_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
 - [azurerm_subscription_template_deployment.telemetry_management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subscription_template_deployment) (resource)
+- [azurerm_user_assigned_identity.management](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) (resource)
 - [azurerm_virtual_hub.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub) (resource)
 - [azurerm_virtual_hub_connection.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_connection) (resource)
 - [azurerm_virtual_hub_routing_intent.virtual_wan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_routing_intent) (resource)
@@ -1109,12 +1154,17 @@ The following resources are used by this module:
 - [time_sleep.after_azurerm_policy_set_definition](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
 - [time_sleep.after_azurerm_role_assignment](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
 - [time_sleep.after_azurerm_role_definition](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) (resource)
+- [azapi_resource.user_msi](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/resource) (data source)
 - [azurerm_policy_definition.external_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_definition) (data source)
 - [azurerm_policy_set_definition.external_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/policy_set_definition) (data source)
 
 ## Outputs
 
 The following outputs are exported:
+
+### <a name="output_ama_user_assigned_identity"></a> [ama\_user\_assigned\_identity](#output\_ama\_user\_assigned\_identity)
+
+Description: The user assigned identity for Azure Monitor Agent that is created by this module.
 
 ### <a name="output_azurerm_automation_account"></a> [azurerm\_automation\_account](#output\_azurerm\_automation\_account)
 
@@ -1231,6 +1281,10 @@ Description: Returns the configuration data for all Virtual WANs created by this
 ### <a name="output_azurerm_vpn_gateway"></a> [azurerm\_vpn\_gateway](#output\_azurerm\_vpn\_gateway)
 
 Description: Returns the configuration data for all (Virtual WAN) VPN Gateways created by this module.
+
+### <a name="output_data_collection_rules"></a> [data\_collection\_rules](#output\_data\_collection\_rules)
+
+Description: A map of the data collection rules created by this module.
 
 <!-- markdownlint-enable -->
 <!-- markdownlint-disable MD041 -->

@@ -69,18 +69,28 @@ resource "azurerm_management_group_policy_assignment" "enterprise_scale" {
   }
 
   # Optional Non-compliance messages
-  # The mesage will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
+  # The message will have the placeholder replaced with 'must' or 'should' by default dependent on the enforcement mode
   # The language can the altered or localised using the variables
   dynamic "non_compliance_message" {
-    for_each = local.policy_non_compliance_message_enabled ? (contains(local.non_compliance_message_supported_policy_modes, lookup(local.all_policy_modes, each.value.template.properties.policyDefinitionId, local.policy_set_mode)) ? lookup(each.value.template.properties, "nonComplianceMessages", local.default_non_compliance_message_list) : local.empty_list) : local.empty_list
+    for_each = local.policy_non_compliance_message_enabled ? (contains(                                  # if noncompliance msgs enabled...
+      local.non_compliance_message_supported_policy_modes,                                               # if non_compliance_message_supported_policy_modes contains
+      lookup(local.all_policy_modes,                                                                     # ...the policy definition mode
+        each.value.template.properties.policyDefinitionId,                                               #
+      local.policy_set_mode)                                                                             # default use policy set mode
+      ) ? lookup(                                                                                        # then... if the mode is supported then
+      each.value.template.properties, "nonComplianceMessages", local.default_non_compliance_message_list # lookup any custom non-compliance message if not use default
+    ) : local.empty_list) : local.empty_list                                                             # if mode not supported then empty list, or is not enabled then empty list
     content {
       content                        = replace(lookup(non_compliance_message.value, "message", local.policy_non_compliance_message_default), local.non_compliance_message_enforcement_mode_placeholder, each.value.enforcement_mode ? local.non_compliance_message_enforcement_mode_replacements.default : local.non_compliance_message_enforcement_mode_replacements.donotenforce)
       policy_definition_reference_id = lookup(non_compliance_message.value, "policyDefinitionReferenceId", null)
     }
   }
 
-  # Set explicit dependency on Management Group, Policy Definition and Policy Set Definition deployments
+  # Set explicit dependency on Management Group, Policy Definition and Policy Set Definition deployments.
+  # Additionally ensure the Policy Assignment is created after and destroyed before the User Assigned Identity
+  # this is to ensure that the deny delete policy is deleted before the identity is removed.
   depends_on = [
+    azurerm_user_assigned_identity.management,
     time_sleep.after_azurerm_management_group,
     time_sleep.after_azurerm_policy_definition,
     time_sleep.after_azurerm_policy_set_definition,

@@ -63,9 +63,11 @@ variable "settings" {
           virtual_network_gateway = optional(object({
             enabled = optional(bool, false)
             config = optional(object({
-              address_prefix           = optional(string, "")
-              gateway_sku_expressroute = optional(string, "")
-              gateway_sku_vpn          = optional(string, "")
+              address_prefix              = optional(string, "")
+              gateway_sku_expressroute    = optional(string, "")
+              gateway_sku_vpn             = optional(string, "")
+              remote_vnet_traffic_enabled = optional(bool, false)
+              virtual_wan_traffic_enabled = optional(bool, false)
               advanced_vpn_settings = optional(object({
                 enable_bgp                       = optional(bool, null)
                 active_active                    = optional(bool, null)
@@ -229,6 +231,9 @@ variable "settings" {
           azure_api_management                 = optional(bool, true)
           azure_app_configuration_stores       = optional(bool, true)
           azure_arc                            = optional(bool, true)
+          azure_arc_guest_configuration        = optional(bool, true)
+          azure_arc_hybrid_resource_provider   = optional(bool, true)
+          azure_arc_kubernetes                 = optional(bool, true)
           azure_automation_dscandhybridworker  = optional(bool, true)
           azure_automation_webhook             = optional(bool, true)
           azure_backup                         = optional(bool, true)
@@ -251,6 +256,7 @@ variable "settings" {
           azure_database_for_mariadb_server    = optional(bool, true)
           azure_database_for_mysql_server      = optional(bool, true)
           azure_database_for_postgresql_server = optional(bool, true)
+          azure_databricks                     = optional(bool, true)
           azure_digital_twins                  = optional(bool, true)
           azure_event_grid_domain              = optional(bool, true)
           azure_event_grid_topic               = optional(bool, true)
@@ -264,9 +270,11 @@ variable "settings" {
           azure_kubernetes_service_management  = optional(bool, true)
           azure_machine_learning_workspace     = optional(bool, true)
           azure_managed_disks                  = optional(bool, true)
+          azure_managed_grafana                = optional(bool, true)
           azure_media_services                 = optional(bool, true)
           azure_migrate                        = optional(bool, true)
           azure_monitor                        = optional(bool, true)
+          azure_openai_service                 = optional(bool, true)
           azure_purview_account                = optional(bool, true)
           azure_purview_studio                 = optional(bool, true)
           azure_relay_namespace                = optional(bool, true)
@@ -277,6 +285,7 @@ variable "settings" {
           azure_synapse_analytics_dev          = optional(bool, true)
           azure_synapse_analytics_sql          = optional(bool, true)
           azure_synapse_studio                 = optional(bool, true)
+          azure_virtual_desktop                = optional(bool, true)
           azure_web_apps_sites                 = optional(bool, true)
           azure_web_apps_static_sites          = optional(bool, true)
           cognitive_services_account           = optional(bool, true)
@@ -356,6 +365,16 @@ If specified, the custom_azure_backup_geo_codes variable will override or append
 For more information, please refer to: https://learn.microsoft.com/azure/backup/private-endpoints#when-using-custom-dns-server-or-host-files
 DESCRIPTION
   default     = {}
+}
+
+variable "custom_privatelink_azurestaticapps_partitionids" {
+  type        = list(number)
+  nullable    = false
+  description = <<DESCRIPTION
+As a uncertanty in the partition id for the azure static web app, this variable is used to specify the partition ids deployed for the azure static web app private DNS zones.
+For more information, please refer to: https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#web and https://learn.microsoft.com/en-us/azure/static-web-apps/private-endpoint
+DESCRIPTION
+  default     = [1, 2, 3, 4, 5]
 }
 
 variable "custom_settings_by_resource_type" {

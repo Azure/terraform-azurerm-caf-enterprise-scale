@@ -53,3 +53,4 @@ tests/modules/test_local
 **/super-linter.log
 .vscode/launch.json
 .github/scripts/Template.Parser.Cli.exe
+examples/400-multi-with-orchestration/*.auto.tfvars

@@ -32,8 +32,8 @@
     - [Create and assign custom RBAC roles][wiki_create_and_assign_custom_rbac_roles]
     - [Set parameter values for Policy Assignments][wiki_set_parameter_values_for_policy_assignments]
   - [Level 300][wiki_examples_level_300]
-    - [Deploy connectivity resources with custom settings (Hub and Spoke)][wiki_deploy_connectivity_resources_custom]
-    - [Deploy connectivity resources with custom settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom]
+    - [Deploy multi region networking with custom settings (Hub and Spoke)][wiki_deploy_connectivity_resources_custom]
+    - [Deploy multi region networking with custom settings (Virtual WAN)][wiki_deploy_virtual_wan_resources_custom]
     - [Deploy with Zero Trust network principles (Hub and Spoke)][wiki_deploy_ZT_network]
     - [Deploy identity resources with custom settings][wiki_deploy_identity_resources_custom]
     - [Deploy management resources with custom settings][wiki_deploy_management_resources_custom]
@@ -84,9 +84,9 @@
 [wiki_deploy_management_resources]:                                  %5BExamples%5D-Deploy-Management-Resources "Wiki - Deploy management resources"
 [wiki_deploy_management_resources_custom]:                           %5BExamples%5D-Deploy-Management-Resources-With-Custom-Settings "Wiki - Deploy management resources with custom settings"
 [wiki_deploy_connectivity_resources]:                                %5BExamples%5D-Deploy-Connectivity-Resources "Wiki - Deploy connectivity resources (Hub and Spoke)"
-[wiki_deploy_connectivity_resources_custom]:                         %5BExamples%5D-Deploy-Connectivity-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Hub and Spoke)"
+[wiki_deploy_connectivity_resources_custom]:                         %5BExamples%5D-Deploy-Multi-Region-Networking-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Hub and Spoke)"
 [wiki_deploy_virtual_wan_resources]:                                 %5BExamples%5D-Deploy-Virtual-WAN-Resources "Wiki - Deploy connectivity resources (Virtual WAN)"
-[wiki_deploy_virtual_wan_resources_custom]:                          %5BExamples%5D-Deploy-Virtual-WAN-Resources-With-Custom-Settings "Wiki - Deploy connectivity resources with custom settings (Virtual WAN)"
+[wiki_deploy_virtual_wan_resources_custom]:                          %5BExamples%5D-Deploy-Virtual-WAN-Multi-Region-With-Custom-Settings "Wiki - Deploy multi region networking with custom settings (Virtual WAN)"
 [wiki_deploy_identity_resources]:                                    %5BExamples%5D-Deploy-Identity-Resources "Wiki - Deploy identity resources"
 [wiki_deploy_identity_resources_custom]:                             %5BExamples%5D-Deploy-Identity-Resources-With-Custom-Settings "Wiki - Deploy identity resources with custom settings"
 [wiki_deploy_using_module_nesting]:                                  %5BExamples%5D-Deploy-Using-Module-Nesting "Wiki - Deploy using module nesting"

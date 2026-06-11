@@ -1,6 +1,6 @@
 {
   "type": "Microsoft.Authorization/policyAssignments",
-  "apiVersion": "2022-06-01",
+  "apiVersion": "2024-04-01",
   "name": "Deploy-ASC-Monitoring",
   "location": "${default_location}",
   "dependsOn": [],
@@ -11,6 +11,7 @@
     "description": "Microsoft Cloud Security Benchmark policy initiative.",
     "displayName": "Microsoft Cloud Security Benchmark",
     "policyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+    "definitionVersion": "57.*.*",
     "enforcementMode": "Default",
     "nonComplianceMessages": [
       {

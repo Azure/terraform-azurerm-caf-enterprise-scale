@@ -8,7 +8,7 @@
     "displayName": "Unused resources driving cost should be avoided",
     "description": "Optimize cost by detecting unused but chargeable resources. Leverage this Azure Policy Initiative as a cost control tool to reveal orphaned resources that are contributing cost.",
     "metadata": {
-      "version": "2.0.0",
+      "version": "2.1.0",
       "category": "Cost Optimization",
       "source": "https://github.com/Azure/Enterprise-Scale/",
       "alzCloudEnvironments": [
@@ -64,7 +64,8 @@
             "value": "[parameters('effectDisks')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AuditPublicIpAddressesUnusedResourcesCostOptimization",
@@ -74,7 +75,8 @@
             "value": "[parameters('effectPublicIpAddresses')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AuditServerFarmsUnusedResourcesCostOptimization",
@@ -84,7 +86,8 @@
             "value": "[parameters('effectServerFarms')]"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       },
       {
         "policyDefinitionReferenceId": "AuditAzureHybridBenefitUnusedResourcesCostOptimization",
@@ -94,7 +97,8 @@
             "value": "Audit"
           }
         },
-        "groupNames": []
+        "groupNames": [],
+        "definitionVersion": "1.*.*"
       }
     ],
     "policyDefinitionGroups": null
