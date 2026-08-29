@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           fetch-depth: 0
 
@@ -42,7 +42,7 @@ jobs:
       #     tflint --chdir=./examples/400-multi-with-remote-state/management --config=$CONFIG_FILE
 
       - name: Lint Code Base
-        uses: github/super-linter@v6
+        uses: github/super-linter@4e51915f4a812abf59fed160bb14595c0a38a9e7 # v6
         env:
           VALIDATE_ALL_CODEBASE: false
           # Need to define main branch as default
