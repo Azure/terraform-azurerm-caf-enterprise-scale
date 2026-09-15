@@ -31,7 +31,7 @@ Detailed information about how to use, configure and extend this module can be f
 - [Frequently Asked Questions](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Frequently-Asked-Questions)
 - [Troubleshooting](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/Troubleshooting)
 
-# Azure landing zones Terraform module
+## Azure landing zones Terraform module
 
 ## Overview
 

@@ -23,7 +23,7 @@ We strongly recommend that all users migrate to the new **Azure Verified Modules
 
 If you have questions about the migration process or need assistance, please refer to the migration documentation or raise an issue in the repository before the archive date.
 
-# Role Assignment for Policy sub-module
+## Role Assignment for Policy sub-module
 
 ## Documentation
 <!-- markdownlint-disable MD033 -->
