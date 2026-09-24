@@ -192,6 +192,7 @@ variable "settings" {
               ), [])
               routing_preference = optional(string, "Microsoft Network")
               scale_unit         = optional(number, 1)
+              bgp_route_translation_for_nat_enabled = optional(bool, false)
             }), {})
           }), {})
           azure_firewall = optional(object({

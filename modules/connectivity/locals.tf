@@ -1406,6 +1406,7 @@ locals {
         }
       ]
     }
+    bgp_route_translation_for_nat_enabled = virtual_hub.config.vpn_gateway.config.bgp_route_translation_for_nat_enabled
   ]
 }
 

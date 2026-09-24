@@ -110,7 +110,8 @@ resource "azurerm_vpn_gateway" "virtual_wan" {
   routing_preference = each.value.template.routing_preference
   scale_unit         = each.value.template.scale_unit
   tags               = each.value.template.tags
-
+  bgp_route_translation_for_nat_enabled = each.value.template.bgp_route_translation_for_nat_enabled
+  
   # Dynamic configuration blocks
   dynamic "bgp_settings" {
     for_each = each.value.template.bgp_settings
