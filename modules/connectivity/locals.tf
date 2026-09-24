@@ -424,6 +424,7 @@ locals {
             service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoints, null)
             service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].service_endpoint_policy_ids, null)
             delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].delegation, local.empty_list)
+            default_outbound_access_enabled               = try(local.custom_settings.azurerm_subnet["connectivity"][location][subnet.name].default_outbound_access_enabled, true)
           }
         )
       ],
@@ -444,6 +445,7 @@ locals {
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].service_endpoint_policy_ids, null)
           delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].delegation, local.empty_list)
+          default_outbound_access_enabled               = try(local.custom_settings.azurerm_subnet["connectivity"][location]["GatewaySubnet"].default_outbound_access_enabled, true)
         }
       ] : local.empty_list,
       # Conditionally add Azure Firewall subnet
@@ -463,6 +465,7 @@ locals {
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].service_endpoint_policy_ids, null)
           delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].delegation, local.empty_list)
+          default_outbound_access_enabled               = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallSubnet"].default_outbound_access_enabled, true)
         }
       ] : local.empty_list,
       # Conditionally add Azure Firewall Management Subnet
@@ -482,6 +485,7 @@ locals {
           service_endpoints                             = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoints, null)
           service_endpoint_policy_ids                   = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].service_endpoint_policy_ids, null)
           delegation                                    = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].delegation, local.empty_list)
+          default_outbound_access_enabled               = try(local.custom_settings.azurerm_subnet["connectivity"][location]["AzureFirewallManagementSubnet"].default_outbound_access_enabled, true)
         }
       ] : local.empty_list,
 
