@@ -1,0 +1,46 @@
+{
+  // VS Code MCP server configuration for terraform-azurerm-caf-enterprise-scale.
+  // Uses npx to run MCP servers locally without Docker.
+  "servers": {
+    "terraform": {
+      // Terraform Registry MCP server — provides module, provider, and resource lookup.
+      // Reference: https://github.com/hashicorp/terraform-mcp-server
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "terraform-mcp-server@latest"
+      ]
+    },
+    "azure": {
+      // Azure MCP server — provides Azure resource context via your existing Entra ID session.
+      // Reference: https://learn.microsoft.com/azure/developer/azure-mcp-server/
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure/mcp@latest",
+        "server",
+        "start"
+      ],
+      "env": {
+        "AZURE_TENANT_ID": "${input:azureTenantId}",
+        "AZURE_SUBSCRIPTION_ID": "${input:azureSubscriptionId}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "azureTenantId",
+      "type": "promptString",
+      "description": "Azure tenant ID for MCP context scope",
+      "password": false
+    },
+    {
+      "id": "azureSubscriptionId",
+      "type": "promptString",
+      "description": "Azure subscription ID for read-only MCP context",
+      "password": false
+    }
+  ]
+}
