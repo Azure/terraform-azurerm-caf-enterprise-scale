@@ -11,7 +11,7 @@
     "enforcementMode": "Default",
     "parameters": {
       "effect": {
-        "value": "deny"
+        "value": "Deny"
       }
     },
     "scope": "${current_scope_resource_id}",
